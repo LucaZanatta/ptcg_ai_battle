@@ -29,9 +29,10 @@ The branch did not previously exist.
 ## Commits
 - **`5a426adbe425586d1efc754b431931742f1dc839`** — `c001: add deterministic safe agent core`
   (implementation: `starter_kit/main.py`, `starter_kit/safe_policy.py`, `tests/`, `tools/`)
-- **`__EVIDENCE_COMMIT__`** — `c001: add safe agent validation evidence`
+- **`18a0ee566c78502a7e581b80e2d2c82d2467dcef`** — `c001: add safe agent validation evidence`
   (this contract folder: reports, logs, JSON artifacts, source snapshots, patch)
-- **`__FINAL_COMMIT__`** — `c001: record commit hashes in status/git report`
+- `c001: record commit hashes in status/git report` (this finalization commit,
+  updating `STATUS.json` + this file with the impl and evidence hashes)
 
 ## Staged names before the implementation commit (verified)
 ```
