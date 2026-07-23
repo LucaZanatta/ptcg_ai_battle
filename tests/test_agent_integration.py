@@ -6,7 +6,6 @@ Does not run a large benchmark; the smoke test plays a single game per seat.
 All imports use the ``cg`` package (symlink to ``starter_kit``).
 """
 
-import json
 import os
 import random
 import sys
@@ -19,10 +18,6 @@ if _REPO_ROOT not in sys.path:
 
 from cg.main import agent  # noqa: E402
 from cg.safe_policy import DECK_SIZE, MalformedDeck, load_deck  # noqa: E402
-
-_ARTIFACTS = os.path.join(
-    _REPO_ROOT, "contracts", "c001_deterministic_safe_agent_core", "results", "artifacts"
-)
 
 # Minimal deck-selection observation (select is None during deck selection).
 _DECK_SELECT_OBS = {"select": None, "logs": [], "current": None}
@@ -61,46 +56,26 @@ class TestDeckSelection(unittest.TestCase):
         finally:
             os.unlink(path)
 
-    def test_emit_deck_validation_evidence(self):
-        """AC-03 evidence: results/artifacts/deck_validation.json."""
+    def test_deck_validation_summary(self):
+        """Deck determinism + rejection, assertions only (c002 §5.4: no file writes)."""
         deck = agent(dict(_DECK_SELECT_OBS))
         repeat = agent(dict(_DECK_SELECT_OBS))
+        self.assertEqual(len(deck), DECK_SIZE)
+        self.assertTrue(all(isinstance(c, int) for c in deck))
+        self.assertEqual(deck, repeat)
 
         bad_len = _write_temp_deck("\n".join(str(i) for i in range(DECK_SIZE - 1)))
         bad_id_lines = [str(i) for i in range(DECK_SIZE)]
         bad_id_lines[3] = "not_an_int"
         bad_id = _write_temp_deck("\n".join(bad_id_lines))
         try:
-            rejects_len = False
-            try:
+            with self.assertRaises(MalformedDeck):
                 load_deck(bad_len)
-            except MalformedDeck:
-                rejects_len = True
-            rejects_id = False
-            try:
+            with self.assertRaises(MalformedDeck):
                 load_deck(bad_id)
-            except MalformedDeck:
-                rejects_id = True
         finally:
             os.unlink(bad_len)
             os.unlink(bad_id)
-
-        payload = {
-            "deck_size": len(deck),
-            "all_integers": all(isinstance(c, int) for c in deck),
-            "deterministic_repeated_calls_identical": deck == repeat,
-            "distinct_card_ids": sorted(set(deck)),
-            "rejects_wrong_length": rejects_len,
-            "rejects_malformed_card_id": rejects_id,
-        }
-        os.makedirs(_ARTIFACTS, exist_ok=True)
-        with open(os.path.join(_ARTIFACTS, "deck_validation.json"), "w") as fh:
-            json.dump(payload, fh, indent=2)
-
-        self.assertEqual(payload["deck_size"], DECK_SIZE)
-        self.assertTrue(payload["deterministic_repeated_calls_identical"])
-        self.assertTrue(payload["rejects_wrong_length"])
-        self.assertTrue(payload["rejects_malformed_card_id"])
 
 
 class TestHarnessSmoke(unittest.TestCase):

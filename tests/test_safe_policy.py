@@ -8,7 +8,6 @@ imports use the ``cg`` package (symlink to ``starter_kit``) to avoid loading the
 engine twice under a single interpreter.
 """
 
-import json
 import os
 import sys
 import unittest
@@ -30,10 +29,6 @@ from cg.safe_policy import (  # noqa: E402
     validate_selection,
 )
 from cg.api import SelectContext  # noqa: E402
-
-_ARTIFACTS = os.path.join(
-    _REPO_ROOT, "contracts", "c001_deterministic_safe_agent_core", "results", "artifacts"
-)
 
 
 class _FakeSelect:
@@ -187,25 +182,15 @@ class TestSelectContextCoverage(unittest.TestCase):
         self.assertGreaterEqual(len(members), 49)
         n, lo, hi = 4, 1, 2
         context_free = select_indices(n, lo, hi)
-        covered = []
+        covered = 0
         for ctx in members:
             sel = _FakeSelect(num_options=n, min_count=lo, max_count=hi, context=ctx)
             result = select_for(sel)
             self.assertEqual(result, context_free, f"context {ctx.name} altered selection")
             self.assertTrue(validate_selection(result, n, lo, hi), ctx.name)
-            covered.append({"name": ctx.name, "value": int(ctx)})
-
-        # Emit AC-02 evidence artifact (enum-level coverage).
-        os.makedirs(_ARTIFACTS, exist_ok=True)
-        payload = {
-            "description": "Enum-level SelectContext selector compatibility "
-            "(context identity does not affect the generic safe selector). "
-            "This is NOT runtime-observed context coverage.",
-            "enum_contexts_total": len(covered),
-            "contexts": covered,
-        }
-        with open(os.path.join(_ARTIFACTS, "enum_context_coverage.json"), "w") as fh:
-            json.dump(payload, fh, indent=2)
+            covered += 1
+        # No file writes (c002 §5.4: side-effect-free unit tests).
+        self.assertEqual(covered, len(members))
 
 
 if __name__ == "__main__":
