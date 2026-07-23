@@ -1,0 +1,202 @@
+{
+  "description": "Enum-level SelectContext selector compatibility (context identity does not affect the generic safe selector). This is NOT runtime-observed context coverage.",
+  "enum_contexts_total": 49,
+  "contexts": [
+    {
+      "name": "MAIN",
+      "value": 0
+    },
+    {
+      "name": "SETUP_ACTIVE_POKEMON",
+      "value": 1
+    },
+    {
+      "name": "SETUP_BENCH_POKEMON",
+      "value": 2
+    },
+    {
+      "name": "SWITCH",
+      "value": 3
+    },
+    {
+      "name": "TO_ACTIVE",
+      "value": 4
+    },
+    {
+      "name": "TO_BENCH",
+      "value": 5
+    },
+    {
+      "name": "TO_FIELD",
+      "value": 6
+    },
+    {
+      "name": "TO_HAND",
+      "value": 7
+    },
+    {
+      "name": "DISCARD",
+      "value": 8
+    },
+    {
+      "name": "TO_DECK",
+      "value": 9
+    },
+    {
+      "name": "TO_DECK_BOTTOM",
+      "value": 10
+    },
+    {
+      "name": "TO_PRIZE",
+      "value": 11
+    },
+    {
+      "name": "NOT_MOVE",
+      "value": 12
+    },
+    {
+      "name": "DAMAGE_COUNTER",
+      "value": 13
+    },
+    {
+      "name": "DAMAGE_COUNTER_ANY",
+      "value": 14
+    },
+    {
+      "name": "DAMAGE",
+      "value": 15
+    },
+    {
+      "name": "REMOVE_DAMAGE_COUNTER",
+      "value": 16
+    },
+    {
+      "name": "HEAL",
+      "value": 17
+    },
+    {
+      "name": "EVOLVES_FROM",
+      "value": 18
+    },
+    {
+      "name": "EVOLVES_TO",
+      "value": 19
+    },
+    {
+      "name": "DEVOLVE",
+      "value": 20
+    },
+    {
+      "name": "ATTACH_FROM",
+      "value": 21
+    },
+    {
+      "name": "ATTACH_TO",
+      "value": 22
+    },
+    {
+      "name": "DETACH_FROM",
+      "value": 23
+    },
+    {
+      "name": "LOOK",
+      "value": 24
+    },
+    {
+      "name": "EFFECT_TARGET",
+      "value": 25
+    },
+    {
+      "name": "DISCARD_ENERGY_CARD",
+      "value": 26
+    },
+    {
+      "name": "DISCARD_TOOL_CARD",
+      "value": 27
+    },
+    {
+      "name": "SWITCH_ENERGY_CARD",
+      "value": 28
+    },
+    {
+      "name": "DISCARD_CARD_OR_ATTACHED_CARD",
+      "value": 29
+    },
+    {
+      "name": "DISCARD_ENERGY",
+      "value": 30
+    },
+    {
+      "name": "TO_HAND_ENERGY",
+      "value": 31
+    },
+    {
+      "name": "TO_DECK_ENERGY",
+      "value": 32
+    },
+    {
+      "name": "SWITCH_ENERGY",
+      "value": 33
+    },
+    {
+      "name": "SKILL_ORDER",
+      "value": 34
+    },
+    {
+      "name": "ATTACK",
+      "value": 35
+    },
+    {
+      "name": "DISABLE_ATTACK",
+      "value": 36
+    },
+    {
+      "name": "EVOLVE",
+      "value": 37
+    },
+    {
+      "name": "DRAW_COUNT",
+      "value": 38
+    },
+    {
+      "name": "DAMAGE_COUNTER_COUNT",
+      "value": 39
+    },
+    {
+      "name": "REMOVE_DAMAGE_COUNTER_COUNT",
+      "value": 40
+    },
+    {
+      "name": "IS_FIRST",
+      "value": 41
+    },
+    {
+      "name": "MULLIGAN",
+      "value": 42
+    },
+    {
+      "name": "ACTIVATE",
+      "value": 43
+    },
+    {
+      "name": "FIRST_EFFECT",
+      "value": 44
+    },
+    {
+      "name": "MORE_DEVOLVE",
+      "value": 45
+    },
+    {
+      "name": "COIN_HEAD",
+      "value": 46
+    },
+    {
+      "name": "AFFECT_SPECIAL_CONDITION",
+      "value": 47
+    },
+    {
+      "name": "RECOVER_SPECIAL_CONDITION",
+      "value": 48
+    }
+  ]
+}

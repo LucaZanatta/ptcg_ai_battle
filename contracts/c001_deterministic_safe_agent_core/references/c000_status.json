@@ -1,0 +1,13 @@
+{
+  "contract": "c000_repository_audit_and_baseline",
+  "status": "PASS",
+  "acceptance_criteria_total": 7,
+  "acceptance_criteria_passed": 7,
+  "acceptance_criteria_failed": 0,
+  "baseline": {
+    "harness": "kaggle_environments.make(\"cabt\")",
+    "games_completed": "10/10",
+    "seconds": {"min": 0.045, "mean": 0.093, "max": 0.199},
+    "steps": {"min": 23, "mean": 45.2, "max": 94}
+  }
+}

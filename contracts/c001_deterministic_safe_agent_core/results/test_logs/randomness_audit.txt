@@ -1,0 +1,17 @@
+# Randomness audit — safe-agent call path (AST-based)
+Files scanned: starter_kit/main.py, starter_kit/safe_policy.py
+A finding = an actual import of random/numpy OR a call to an RNG function.
+Docstring/comment prose mentioning 'random' is intentionally NOT flagged.
+
+## starter_kit/main.py
+  (clean — no random/numpy import or RNG call)
+
+## starter_kit/safe_policy.py
+  (clean — no random/numpy import or RNG call)
+
+RESULT: PASS — safe-agent path contains zero randomness
+
+## Isolation note (F-06)
+The only RNG in this contract is tools/benchmark_safe_agent.py:make_random_opponent,
+which uses a local random.Random(seed) instance for the OPPONENT only. It never
+touches the safe-agent implementation and is clearly isolated.

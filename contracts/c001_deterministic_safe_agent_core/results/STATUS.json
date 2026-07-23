@@ -1,0 +1,25 @@
+{
+  "contract": "c001_deterministic_safe_agent_core",
+  "status": "PASS",
+  "acceptance_criteria_total": 8,
+  "acceptance_criteria_passed": 8,
+  "acceptance_criteria_failed": 0,
+  "commit_hashes": [
+    "5a426adbe425586d1efc754b431931742f1dc839"
+  ],
+  "blocking_issues": [],
+  "benchmark": {
+    "games_required": 300,
+    "games_completed": 300,
+    "invalid_safe_selections": 0,
+    "safe_agent_calls": 9984,
+    "latency_ms": {
+      "p50": 0.072,
+      "p95": 0.1516,
+      "p99": 0.207,
+      "max": 87.4696
+    },
+    "runtime_contexts_observed": 9,
+    "enum_contexts_total": 49
+  }
+}

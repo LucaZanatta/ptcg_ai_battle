@@ -1,0 +1,94 @@
+{
+  "games_required": 300,
+  "games_completed": 300,
+  "games_failed": 0,
+  "invalid_safe_selections": 0,
+  "safe_agent_calls": 9984,
+  "safe_agent_deck_calls": 400,
+  "latency_ms": {
+    "min": 0.0021239993657218292,
+    "mean": 0.09558623737978185,
+    "p50": 0.0720349999028258,
+    "p95": 0.15161399992393854,
+    "p99": 0.20695969971711747,
+    "max": 87.46962100030942
+  },
+  "cohorts": [
+    {
+      "name": "safe_p0_vs_random_p1",
+      "games": 100,
+      "games_completed": 100,
+      "games_failed": 0,
+      "p0_wins": 71,
+      "p1_wins": 29,
+      "draws": 0
+    },
+    {
+      "name": "random_p0_vs_safe_p1",
+      "games": 100,
+      "games_completed": 100,
+      "games_failed": 0,
+      "p0_wins": 16,
+      "p1_wins": 84,
+      "draws": 0
+    },
+    {
+      "name": "safe_vs_safe",
+      "games": 100,
+      "games_completed": 100,
+      "games_failed": 0,
+      "p0_wins": 66,
+      "p1_wins": 34,
+      "draws": 0
+    }
+  ],
+  "context_counts": {
+    "MAIN": 6844,
+    "SETUP_ACTIVE_POKEMON": 400,
+    "SETUP_BENCH_POKEMON": 104,
+    "TO_ACTIVE": 165,
+    "TO_HAND": 985,
+    "ATTACH_FROM": 378,
+    "ATTACH_TO": 378,
+    "DRAW_COUNT": 130,
+    "IS_FIRST": 200
+  },
+  "count_pairs": [
+    {
+      "minCount": 0,
+      "maxCount": 1,
+      "count": 903
+    },
+    {
+      "minCount": 0,
+      "maxCount": 2,
+      "count": 63
+    },
+    {
+      "minCount": 0,
+      "maxCount": 3,
+      "count": 86
+    },
+    {
+      "minCount": 1,
+      "maxCount": 1,
+      "count": 8439
+    },
+    {
+      "minCount": 2,
+      "maxCount": 2,
+      "count": 2
+    },
+    {
+      "minCount": 3,
+      "maxCount": 3,
+      "count": 91
+    }
+  ],
+  "runtime_contexts_observed": 9,
+  "enum_contexts_total": 49,
+  "seed": 20240101,
+  "games_per_cohort": 100,
+  "invalid_selection_details": [],
+  "failures": []
+}

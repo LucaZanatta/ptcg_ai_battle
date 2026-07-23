@@ -1,0 +1,30 @@
+test_load_real_deck_is_valid (tests.test_safe_policy.TestDeck.test_load_real_deck_is_valid) ... ok
+test_parse_deck_ignores_blank_lines (tests.test_safe_policy.TestDeck.test_parse_deck_ignores_blank_lines) ... ok
+test_parse_deck_malformed_id_raises (tests.test_safe_policy.TestDeck.test_parse_deck_malformed_id_raises) ... ok
+test_parse_deck_success (tests.test_safe_policy.TestDeck.test_parse_deck_success) ... ok
+test_parse_deck_wrong_length_raises (tests.test_safe_policy.TestDeck.test_parse_deck_wrong_length_raises) ... ok
+test_all_contexts_compatible (tests.test_safe_policy.TestSelectContextCoverage.test_all_contexts_compatible) ... ok
+test_select_for_duck_typed (tests.test_safe_policy.TestSelectFor.test_select_for_duck_typed) ... ok
+test_select_for_zero (tests.test_safe_policy.TestSelectFor.test_select_for_zero) ... ok
+test_deterministic_repeated (tests.test_safe_policy.TestSelectIndices.test_deterministic_repeated) ... ok
+test_many_options_multi_selection (tests.test_safe_policy.TestSelectIndices.test_many_options_multi_selection) ... ok
+test_many_options_one_selection (tests.test_safe_policy.TestSelectIndices.test_many_options_one_selection) ... ok
+test_max_gt_options_raises (tests.test_safe_policy.TestSelectIndices.test_max_gt_options_raises) ... ok
+test_min_gt_max_raises (tests.test_safe_policy.TestSelectIndices.test_min_gt_max_raises) ... ok
+test_min_zero_max_positive (tests.test_safe_policy.TestSelectIndices.test_min_zero_max_positive) ... ok
+test_negative_counts_raise (tests.test_safe_policy.TestSelectIndices.test_negative_counts_raise) ... ok
+test_no_duplicates_and_in_range (tests.test_safe_policy.TestSelectIndices.test_no_duplicates_and_in_range) ... ok
+test_non_integer_counts_raise (tests.test_safe_policy.TestSelectIndices.test_non_integer_counts_raise) ... ok
+test_one_option_one_selection (tests.test_safe_policy.TestSelectIndices.test_one_option_one_selection) ... ok
+test_zero_options_zero_counts (tests.test_safe_policy.TestSelectIndices.test_zero_options_zero_counts) ... ok
+test_count_out_of_bounds_raise (tests.test_safe_policy.TestValidateBoundsAndSelection.test_count_out_of_bounds_raise) ... ok
+test_duplicates_raise (tests.test_safe_policy.TestValidateBoundsAndSelection.test_duplicates_raise) ... ok
+test_non_list_raises (tests.test_safe_policy.TestValidateBoundsAndSelection.test_non_list_raises) ... ok
+test_out_of_range_raise (tests.test_safe_policy.TestValidateBoundsAndSelection.test_out_of_range_raise) ... ok
+test_valid_selection_ok (tests.test_safe_policy.TestValidateBoundsAndSelection.test_valid_selection_ok) ... ok
+test_validate_bounds_ok (tests.test_safe_policy.TestValidateBoundsAndSelection.test_validate_bounds_ok) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.002s
+
+OK

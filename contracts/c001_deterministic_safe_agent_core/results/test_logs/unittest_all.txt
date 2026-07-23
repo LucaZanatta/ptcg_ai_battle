@@ -1,0 +1,75 @@
+test_deck_selection_deterministic_60 (test_agent_integration.TestDeckSelection.test_deck_selection_deterministic_60) ... ok
+test_emit_deck_validation_evidence (test_agent_integration.TestDeckSelection.test_emit_deck_validation_evidence)
+AC-03 evidence: results/artifacts/deck_validation.json. ... ok
+test_invalid_deck_length_rejected (test_agent_integration.TestDeckSelection.test_invalid_deck_length_rejected) ... ok
+test_malformed_card_id_rejected (test_agent_integration.TestDeckSelection.test_malformed_card_id_rejected) ... ok
+test_agent_runs_as_both_players (test_agent_integration.TestHarnessSmoke.test_agent_runs_as_both_players) ... /home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:36: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  reasoning: Optional[str] = Field(
+/home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:39: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  perceived_threat_level: Optional[PerceivedThreatLevel] = Field(
+/home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:42: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  action: Optional[BaseAction] = Field(default=None, access=DataAccessLevel.PERSONAL)
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: Successfully loaded OpenSpiel environments: 31.
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_amazons
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_backgammon
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_ant_foraging
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_checkers
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_chess
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_clobber
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game_arena
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_connect_four
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dark_hex
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dots_and_boxes
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_gin_rummy
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_go
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_goofspiel
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_havannah
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hearts
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hex
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_lines_of_action
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_mancala
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_matching_pennies_3p
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_negotiation
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_oshi_zumo
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_othello
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_game
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_tic_tac_toe
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_ultimate_tic_tac_toe
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.
+ok
+test_load_real_deck_is_valid (test_safe_policy.TestDeck.test_load_real_deck_is_valid) ... ok
+test_parse_deck_ignores_blank_lines (test_safe_policy.TestDeck.test_parse_deck_ignores_blank_lines) ... ok
+test_parse_deck_malformed_id_raises (test_safe_policy.TestDeck.test_parse_deck_malformed_id_raises) ... ok
+test_parse_deck_success (test_safe_policy.TestDeck.test_parse_deck_success) ... ok
+test_parse_deck_wrong_length_raises (test_safe_policy.TestDeck.test_parse_deck_wrong_length_raises) ... ok
+test_all_contexts_compatible (test_safe_policy.TestSelectContextCoverage.test_all_contexts_compatible) ... ok
+test_select_for_duck_typed (test_safe_policy.TestSelectFor.test_select_for_duck_typed) ... ok
+test_select_for_zero (test_safe_policy.TestSelectFor.test_select_for_zero) ... ok
+test_deterministic_repeated (test_safe_policy.TestSelectIndices.test_deterministic_repeated) ... ok
+test_many_options_multi_selection (test_safe_policy.TestSelectIndices.test_many_options_multi_selection) ... ok
+test_many_options_one_selection (test_safe_policy.TestSelectIndices.test_many_options_one_selection) ... ok
+test_max_gt_options_raises (test_safe_policy.TestSelectIndices.test_max_gt_options_raises) ... ok
+test_min_gt_max_raises (test_safe_policy.TestSelectIndices.test_min_gt_max_raises) ... ok
+test_min_zero_max_positive (test_safe_policy.TestSelectIndices.test_min_zero_max_positive) ... ok
+test_negative_counts_raise (test_safe_policy.TestSelectIndices.test_negative_counts_raise) ... ok
+test_no_duplicates_and_in_range (test_safe_policy.TestSelectIndices.test_no_duplicates_and_in_range) ... ok
+test_non_integer_counts_raise (test_safe_policy.TestSelectIndices.test_non_integer_counts_raise) ... ok
+test_one_option_one_selection (test_safe_policy.TestSelectIndices.test_one_option_one_selection) ... ok
+test_zero_options_zero_counts (test_safe_policy.TestSelectIndices.test_zero_options_zero_counts) ... ok
+test_count_out_of_bounds_raise (test_safe_policy.TestValidateBoundsAndSelection.test_count_out_of_bounds_raise) ... ok
+test_duplicates_raise (test_safe_policy.TestValidateBoundsAndSelection.test_duplicates_raise) ... ok
+test_non_list_raises (test_safe_policy.TestValidateBoundsAndSelection.test_non_list_raises) ... ok
+test_out_of_range_raise (test_safe_policy.TestValidateBoundsAndSelection.test_out_of_range_raise) ... ok
+test_valid_selection_ok (test_safe_policy.TestValidateBoundsAndSelection.test_valid_selection_ok) ... ok
+test_validate_bounds_ok (test_safe_policy.TestValidateBoundsAndSelection.test_validate_bounds_ok) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 1.288s
+
+OK
