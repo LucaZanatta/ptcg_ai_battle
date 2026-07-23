@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# c002: generated episode-capture data (large; kept in the contract results
+# package, not tracked). Scoped to episode output dirs so a tiny committed
+# fixture elsewhere is not masked.
+/episodes/
+contracts/*/results/artifacts/episodes/
