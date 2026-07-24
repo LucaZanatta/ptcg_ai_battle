@@ -31,21 +31,40 @@ CONTEXT_MAP = {
 
 
 def _ood_envelope(select_context_names):
-    """[1,99] percentile envelope of the global feature vector + option-count range."""
+    """[1,99] percentile envelope of the global feature vector + option-count range.
+
+    History is threaded per game (as at runtime) so the previous-action-identity dims of
+    the envelope match the live featurization; using initial_prev_state here would leave
+    those dims empty and flag every live (history-carrying) decision as OOD."""
     globs = []
     nopts = []
     for sp in ("train", "validation"):
+        games = {}
         with gzip.open(os.path.join(V2_DATA, f"{sp}.jsonl.gz"), "rt") as fh:
             for line in fh:
                 r = json.loads(line)
+                games.setdefault(r["game_id"], []).append(r)
+        for gid, recs in games.items():
+            recs.sort(key=lambda r: r["decision_index"])
+            prev = enc.initial_prev_state()
+            for r in recs:
                 if r["select_context"] in select_context_names:
-                    f = enc.encode(r["observation"], enc.initial_prev_state())
+                    f = enc.encode(r["observation"], prev)
                     globs.append(f["global"]); nopts.append(f["n_options"])
+                prev = enc.derive_prev_state(r["observation"], r["teacher_action_indices"])
     if not globs:
         return None
     G = np.stack(globs)
-    return {"lo": np.percentile(G, 1, axis=0).tolist(), "hi": np.percentile(G, 99, axis=0).tolist(),
-            "opt_lo": int(np.min(nopts)), "opt_hi": int(np.max(nopts)), "n": len(globs)}
+    lo = np.percentile(G, 1, axis=0); hi = np.percentile(G, 99, axis=0)
+    # calibrate the OOD tolerance ON the training data: per-decision fraction of dims
+    # outside [1,99], then set tolerance at the 95th percentile so ~95% of in-context
+    # training decisions are (correctly) in-distribution. Per-dim [1,99] alone flags ~2%
+    # of dims by construction, so a fixed small tolerance would flag nearly everything.
+    outside_frac = np.mean((G < lo) | (G > hi), axis=1)
+    tol = float(np.percentile(outside_frac, 95))
+    return {"lo": lo.tolist(), "hi": hi.tolist(),
+            "opt_lo": int(np.min(nopts)), "opt_hi": int(np.max(nopts)), "n": len(globs),
+            "tolerance": tol, "train_outside_frac_median": float(np.median(outside_frac))}
 
 
 def main(argv=None):

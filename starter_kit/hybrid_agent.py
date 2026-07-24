@@ -231,7 +231,8 @@ def _in_distribution(feat, cfg: HybridConfig, ctx) -> bool:
     lo = np.asarray(env["lo"]); hi = np.asarray(env["hi"])
     outside = np.mean((g < lo) | (g > hi))
     n_ok = env.get("opt_lo", 0) <= feat["n_options"] <= env.get("opt_hi", 10 ** 9)
-    return bool(outside <= cfg.ood_tolerance and n_ok)
+    tol = env.get("tolerance", cfg.ood_tolerance)  # per-context calibrated on training data
+    return bool(outside <= tol and n_ok)
 
 
 def _is_legal(action, n, lo, hi) -> bool:
