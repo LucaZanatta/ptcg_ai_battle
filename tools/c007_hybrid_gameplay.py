@@ -79,6 +79,35 @@ def _h0_dual(job):
     return res
 
 
+def _mvf_from_scores(scores):
+    """seat-balanced mean-vs-field from a list of {opp,seat,score}."""
+    by = {}
+    for x in scores:
+        by.setdefault((x["opp"], x["seat"]), []).append(x["score"])
+    opps = sorted(set(o for o, _ in by))
+    vals = []
+    for o in opps:
+        m0 = np.mean(by.get((o, 0), [np.nan])); m1 = np.mean(by.get((o, 1), [np.nan]))
+        vals.append(np.nanmean([m0, m1]))
+    return float(np.nanmean(vals)), by
+
+
+def _boot_mvf(by, opps, rng, n=5000):
+    out = np.empty(n)
+    for b in range(n):
+        vals = []
+        for o in opps:
+            ms = []
+            for s in (0, 1):
+                a = np.asarray(by.get((o, s), []))
+                if len(a):
+                    ms.append(a[rng.integers(0, len(a), len(a))].mean())
+            if ms:
+                vals.append(np.mean(ms))
+        out[b] = np.mean(vals) if vals else np.nan
+    return out
+
+
 def phase_h0_parity(games_per_combo, nproc):
     jobs_games = [{"opp": o, "seat": s} for o in STRATEGIC for s in (0, 1) for _ in range(games_per_combo)]
     chunks = [[] for _ in range(min(nproc, len(jobs_games)))]
@@ -97,7 +126,32 @@ def phase_h0_parity(games_per_combo, nproc):
     s1 = [x["score"] for x in agg["scores"] if x["seat"] == 1]
     agg["h0_mean_vs_field"] = ns.seat_balanced_point(s0, s1)
     agg["per_decision_action_identity"] = agg["mismatch"] == 0
-    agg["parity_pass"] = agg["mismatch"] == 0 and agg["games"] >= 200 and agg["completed"] == agg["games"]
+
+    # limb (b), registered: statistical OUTCOME equivalence — teacher vs the SAME field,
+    # bootstrap the H0-teacher mean-vs-field difference (should contain 0). H0 is
+    # action-identical to the teacher, so any nonzero difference is game RNG variance.
+    tgames = run_matchup(("teacher",), "teacher", STRATEGIC, games_per_combo, {}, "h0_parity", nproc,
+                         start=500000)
+    tscores = [{"opp": [v for k, v in g["seat_labels"].items() if int(k) != g["focus_seat"]][0],
+                "seat": g["focus_seat"], "score": g["focus_score"]}
+               for g in tgames if g["focus_score"] is not None]
+    h0_mvf, h0_by = _mvf_from_scores(agg["scores"])
+    t_mvf, t_by = _mvf_from_scores(tscores)
+    rng = np.random.default_rng(70157)
+    h0_boot = _boot_mvf(h0_by, STRATEGIC, rng)
+    t_boot = _boot_mvf(t_by, STRATEGIC, rng)
+    diff = h0_boot - t_boot
+    ci90 = [float(np.percentile(diff, 5)), float(np.percentile(diff, 95))]
+    outcome_equivalent = ci90[0] <= 0 <= ci90[1]
+    agg["outcome_equivalence"] = {
+        "h0_mean_vs_field": h0_mvf, "teacher_mean_vs_field": t_mvf,
+        "diff_point": h0_mvf - t_mvf, "diff_ci90": ci90,
+        "ci90_contains_zero": outcome_equivalent,
+        "note": "H0 is action-identical to the teacher (0 mismatch), so outcome equivalence is "
+                "definitional; the mean-vs-field difference CI (unpaired game samples) contains 0.",
+    }
+    agg["parity_pass"] = (agg["mismatch"] == 0 and agg["games"] >= 200
+                          and agg["completed"] == agg["games"] and outcome_equivalent)
     return agg
 
 
@@ -195,7 +249,7 @@ def analyze_gauntlet(games):
         for opp, seats in by.items():
             pt = ns.seat_balanced_point(seats[0], seats[1])
             matrix[arm][opp] = {"point": pt, "n": len(seats[0]) + len(seats[1])}
-            if opp != "__control__":
+            if opp not in ("__control__", "control"):  # engineering control reported separately (§9/§15)
                 strat_scores.append(pt)
         mvf[arm] = float(np.mean(strat_scores)) if strat_scores else None
     # improvement + regression per strategic matchup (H2 - teacher), bootstrap
@@ -227,9 +281,10 @@ def analyze_gauntlet(games):
                    if m["diff_pp"] >= 5 and m["prob_h2_better"] >= 0.90]
     major_regression = [o for o, m in per_matchup.items() if m["prob_h2_worse_by_7pp"] >= 0.90]
     return {"matchup": matrix, "mean_vs_field": mvf, "per_matchup": per_matchup,
+            "mean_vs_field_note": "control excluded from mean-vs-field (reported separately, §9/§15)",
             "improvement_matchups_5pp_90": improvement,
             "major_regression_matchups": major_regression,
-            "control_reported_separately": {a: matrix[a].get("__control__") for a in arms}}
+            "control_reported_separately": {a: matrix[a].get("control") for a in arms}}
 
 
 def main(argv=None):

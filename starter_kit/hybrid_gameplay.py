@@ -121,7 +121,8 @@ def play_one(job: Dict[str, Any]) -> Dict[str, Any]:
     if job.get("focus_seat") is not None:
         fs = job["focus_seat"]
         agent = agents[fs]
-        out["focus_score"] = (None if wseat is None and statuses != ["DONE", "DONE"]
+        # only completed games are scored; any non-DONE game -> None (filtered downstream)
+        out["focus_score"] = (None if statuses != ["DONE", "DONE"]
                               else (0.5 if wseat is None else (1.0 if wseat == fs else 0.0)))
         out["focus_defects"] = _defects(agent)
     return out
