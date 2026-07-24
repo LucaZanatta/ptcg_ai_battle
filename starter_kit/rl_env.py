@@ -119,13 +119,18 @@ def _build_opponent(spec, deck, sources):
     raise ValueError(spec)
 
 
+_CUR = {"version": None, "policy": None}
+
+
 def play_game(job: Dict[str, Any]) -> Dict[str, Any]:
     from kaggle_environments import make
     from cg.rl_policy import RLPolicy
     ckpt = job["policy_ckpt"]
-    pol = _POLICY_CACHE.get(ckpt)
-    if pol is None:
-        pol = RLPolicy.load(ckpt); _POLICY_CACHE[ckpt] = pol
+    ver = job.get("policy_version")
+    # persistent-pool cache: reload the current policy only when the rollout version changes
+    if _CUR["version"] != ver or _CUR["policy"] is None:
+        _CUR["policy"] = RLPolicy.load(ckpt); _CUR["version"] = ver
+    pol = _CUR["policy"]
     seat = job["seat"]
     rng = np.random.default_rng(job["rng_seed"])
     rl = RLAgent(pol, job["deck"], rng, collect=job.get("collect", True), greedy=job.get("greedy", False))

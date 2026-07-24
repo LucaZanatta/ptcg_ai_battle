@@ -145,7 +145,7 @@ class RLPolicy:
         running = base_mask.copy()
         logprob = mg.Node(np.zeros(B))
         entropy = mg.Node(np.zeros(B))
-        rows = np.arange(B)
+        first_logp = None
         for t in range(L):
             logp_all, p = mg.masked_log_softmax(aug, running)   # Node[B,K+1], p numpy
             valid = (t < seq_len).astype(np.float64)            # [B]
@@ -153,6 +153,7 @@ class RLPolicy:
             step_lp = mg.gather_per_row(logp_all, a_t)          # Node[B]
             logprob = logprob + step_lp * mg.Node(valid)
             if t == 0:
+                first_logp = logp_all
                 ent = mg.reduce_sum(mg.exp(logp_all) * logp_all * mg.Node(base_mask), axis=1)
                 entropy = ent * mg.Node(-1.0)                   # H = -sum p log p (first step)
             # remove chosen (only for valid, non-STOP picks) from running mask
@@ -161,13 +162,43 @@ class RLPolicy:
                 if t < seq_len[bi] and seq[bi, t] != K:
                     upd[bi, seq[bi, t]] = 0.0
             running = upd
-        return logprob, entropy, value
+        return logprob, entropy, value, first_logp
+
+    def first_logp_np(self, b, aug_mask):
+        """Frozen-reference first-step masked log-prob distribution [B,K+1] (numpy, no graph)."""
+        scores = self.trunk.score_np(b)
+        B, K = scores.shape
+        stop = float(self.pv["stop"].data[0])
+        aug = np.concatenate([scores, np.full((B, 1), stop)], axis=1)
+        z = aug.copy(); z[aug_mask == 0] = -1e30
+        z -= z.max(axis=1, keepdims=True)
+        e = np.exp(z); e[aug_mask == 0] = 0.0
+        return z - np.log(e.sum(axis=1, keepdims=True))
 
 
 def _stub(feat):
     return {"feat": feat, "n": feat["n_options"], "form": "SINGLE_CHOICE", "lo": 0, "hi": 1,
             "action": [], "weight": 0.0,
             "aux": {"plan_target": 0, "use_support": 0.0, "value": 0.5, "has_plan": 0.0}}
+
+
+def to_rl_transition(d: Dict[str, Any]):
+    """Convert a featurized decision (with a teacher 'action' set) to an RL transition with
+    an 'action_seq' (STOP appended for variable-multiselect). Returns None if unusable
+    (empty action, EMPTY/ORDERED form). Used for the R2 offline teacher-replay loss."""
+    form = d["form"]; act = list(d["action"]); n = d["n"]
+    if form in ("EMPTY", "ORDERED") or not act:
+        return None
+    if form == "SINGLE_CHOICE":
+        seq = [act[0]]
+    elif form == "FIXED_MULTISELECT":
+        seq = act
+    elif form == "VARIABLE_MULTISELECT":
+        seq = act + [n]            # STOP token (decision-local index n)
+    else:
+        return None
+    return {"feat": d["feat"], "form": form, "lo": d["lo"], "hi": d["hi"],
+            "n_options": n, "action_seq": seq}
 
 
 def collate_rl(transitions: List[Dict[str, Any]]):

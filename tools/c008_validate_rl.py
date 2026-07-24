@@ -125,7 +125,7 @@ def env_and_decoder_checks(pol, n_records=4000):
             t = {"feat": d["feat"], "form": d["form"], "lo": d["lo"], "hi": d["hi"],
                  "n_options": d["n"], "action_seq": r["action_seq"]}
             b, arr = rlp.collate_rl([t])
-            lp, _, _ = pol.evaluate(b, arr)
+            lp, _, _, _ = pol.evaluate(b, arr)
             consistency.append(abs(r["logprob"] - float(lp.data[0])))
             # illegal masking: probs on illegal option indices must be 0
             scores = pol.trunk.forward(b)["scores"].data[0]

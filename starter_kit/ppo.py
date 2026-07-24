@@ -76,15 +76,6 @@ class AdamW:
 
 # -------------------- masked KL / replay helpers --------------------
 
-def _first_step_logp(policy, b, aug_mask):
-    """First sub-step masked log-prob distribution [B,K+1] under a policy (Node)."""
-    scores, _, _ = policy.forward(b)
-    B = scores.data.shape[0]
-    aug = policy._aug(scores, B)
-    logp, _ = mg.masked_log_softmax(aug, aug_mask)
-    return logp
-
-
 # -------------------- PPO update --------------------
 
 def ppo_update(policy, games, cfg, opt: AdamW, entropy_coef: float,
@@ -112,7 +103,7 @@ def ppo_update(policy, games, cfg, opt: AdamW, entropy_coef: float,
             idx = order[s:s + mb]
             sub = [flat[i] for i in idx]
             b, arr = rlp.collate_rl(sub)
-            newlp, ent, val = policy.evaluate(b, arr)
+            newlp, ent, val, first_logp = policy.evaluate(b, arr)
             a = mg.Node(adv_norm[idx]); ol = mg.Node(oldlp[idx])
             ratio = mg.exp(newlp + ol * mg.Node(-1.0))
             clipped = mg.clamp(ratio, 1 - cfg["clip"], 1 + cfg["clip"])
@@ -135,7 +126,11 @@ def ppo_update(policy, games, cfg, opt: AdamW, entropy_coef: float,
                 loss = loss + rl_loss * mg.Node(replay_coef)
                 replay_val = float(rl_loss.data)
             if kl_coef > 0 and ref_policy is not None:
-                refkl = _ref_kl(policy, ref_policy, b, arr)
+                ref_logp = ref_policy.first_logp_np(b, arr["aug_mask"])   # frozen ref, numpy
+                p = mg.exp(first_logp)
+                kl = mg.reduce_sum(mg.reduce_sum(
+                    p * (first_logp + mg.Node(-ref_logp)) * mg.Node(arr["aug_mask"]), axis=1), 0)
+                refkl = kl * mg.Node(1.0 / len(idx))
                 loss = loss + refkl * mg.Node(kl_coef)
                 refkl_val = float(refkl.data)
             loss.backward()
@@ -166,25 +161,5 @@ def _replay_loss(policy, pool, rng, mb):
     idx = rng.integers(0, len(pool), min(mb, len(pool)))
     sub = [pool[i] for i in idx]
     b, arr = rlp.collate_rl(sub)
-    newlp, _, _ = policy.evaluate(b, arr)
+    newlp, _, _, _ = policy.evaluate(b, arr)
     return mg.reduce_sum(newlp, 0) * mg.Node(-1.0 / len(sub))   # NLL
-
-
-def _ref_kl(policy, ref_policy, b, arr):
-    """KL(policy || ref) on the first-step masked distribution over on-policy states."""
-    logp = _first_step_logp(policy, b, arr["aug_mask"])
-    logq_data = _first_step_logp_np(ref_policy, b, arr["aug_mask"])   # numpy (ref frozen)
-    p = mg.exp(logp)
-    # KL = sum p*(logp - logq); mask handled by p=0 on illegal
-    kl = mg.reduce_sum(mg.reduce_sum(p * (logp + mg.Node(-logq_data)) * mg.Node(arr["aug_mask"]), axis=1), 0)
-    return kl * mg.Node(1.0 / b["global"].shape[0])
-
-
-def _first_step_logp_np(ref_policy, b, aug_mask):
-    scores = ref_policy.trunk.score_np(b)
-    B, K = scores.shape
-    stop = float(ref_policy.pv["stop"].data[0])
-    aug = np.concatenate([scores, np.full((B, 1), stop)], axis=1)
-    z = aug.copy(); z[aug_mask == 0] = -1e30
-    z -= z.max(axis=1, keepdims=True); e = np.exp(z); e[aug_mask == 0] = 0.0
-    return (z - np.log(e.sum(axis=1, keepdims=True)))
