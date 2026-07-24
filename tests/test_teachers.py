@@ -48,12 +48,32 @@ class TestTeacherLoader(unittest.TestCase):
         db = b({"select": None, "logs": [], "current": None})
         self.assertNotEqual(sorted(set(da)), sorted(set(db)))  # own decks, not shared
 
-    def test_teacher_produces_legal_selection(self):
-        t = make_fresh("iono", _SOURCES)
-        obs = {"select": {"option": [{"type": 1, "index": i} for i in range(4)],
-                          "minCount": 1, "maxCount": 1, "context": 0}, "logs": [], "current": None}
-        result = t(obs)
-        self.assertTrue(validate_selection(result, 4, 1, 1))
+    def test_teacher_plays_real_game_legally(self):
+        # Teachers need a real game observation; run one game and assert every
+        # in-game selection is legal (no INVALID terminal).
+        from kaggle_environments import make
+        a = make_fresh("iono", _SOURCES)
+        b = make_fresh("mega_abomasnow", _SOURCES)
+        invalid = [0]
+
+        def wrap(ag):
+            def w(obs):
+                res = ag(obs)
+                sel = obs["select"]
+                if sel is not None:
+                    try:
+                        validate_selection(list(res), len(sel["option"]), sel["minCount"], sel["maxCount"])
+                    except Exception:
+                        invalid[0] += 1
+                return res
+            return w
+
+        env = make("cabt")
+        env.run([wrap(a), wrap(b)])
+        last = env.steps[-1]
+        self.assertEqual(last[0]["status"], "DONE")
+        self.assertEqual(last[1]["status"], "DONE")
+        self.assertEqual(invalid[0], 0)
 
     def test_classify_decision_is_rule(self):
         t = make_fresh("mega_lucario", _SOURCES)
