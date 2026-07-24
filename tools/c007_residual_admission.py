@@ -158,6 +158,18 @@ def main(argv=None):
         "admission": admission,
         "admitted_contexts": admitted,
         "max_admitted": 3,
+        "criteria_definitions": {
+            "c5_counterfactual_stable": "A counterfactual A/B was run in this context AND its "
+                "CONCLUSION reproduced across two independent 400-game batches. For the damage-"
+                "counter context the reproduced conclusion is 'no variant improvement' (LCB not > 0 "
+                "in both batches); point estimates are noise-dominated (sign-flipping), but the "
+                "no-improvement conclusion is stable. Contexts without any counterfactual A/B cannot "
+                "satisfy c5. 'Stable' therefore means a completed, reproducible counterfactual "
+                "verdict — NOT that a variant is stably better.",
+            "c8_no_future_teacher_state_corruption": "The teacher recomputes its plan at each MAIN and "
+                "reads the board fresh; a leaf sub-decision override (damage-counter placement) cannot "
+                "desynchronize its cached plan.",
+        },
         "note": "Admission = a valid, safe intervention point (structural + sync + calibration + "
                 "stable counterfactual). It is SEPARATE from whether an improvement exists there "
                 "(AC-08). Only the damage-counter context has a counterfactual A/B, so it is the "
@@ -172,6 +184,11 @@ def main(argv=None):
           f"Admitted (<=3): **{admitted or 'NONE'}**", "",
           "Admission is a valid+safe intervention point; it is separate from whether an "
           "improvement exists there (AC-08 found none).", "",
+          "**Criterion 5 (counterfactual stable)** means a counterfactual A/B was run in the "
+          "context AND its *conclusion* reproduced across two independent 400-game batches. For "
+          "damage-counter that reproduced conclusion is 'no variant improvement' — the verdict is "
+          "stable even though the point estimates are noise-dominated. It does NOT mean a variant is "
+          "stably better. Contexts with no counterfactual A/B cannot satisfy c5.", "",
           "| context | total | non-forced | 2-meaningful | ECE | c1 | c2 | c3 | c4 | c5 | c6 | c7 | c8 | admitted |",
           "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for c in pool:

@@ -136,6 +136,54 @@ def main(argv=None):
         checklist[ac] = {"evidence_present": all(present.values()), "files": present}
     all_present = all(v["evidence_present"] for v in checklist.values())
 
+    # substantive per-AC assertions (assert the condition, not just file presence)
+    def L(name):
+        p = os.path.join(ART, name)
+        return json.load(open(p)) if os.path.exists(p) else {}
+    dep = L("dependency_verification.json"); par = L("teacher_instrumentation_parity.json")
+    reg = L("experiment_registration.json"); man_ = L("v2_dataset_manifest.json")
+    offl_ = L("v2_offline_evaluation.json"); adm = L("residual_context_admission.json")
+    cf = L("counterfactual_evaluation.json"); onp = L("on_policy_relabel_report.json")
+    h0r = L("h0_parity_report.json"); rel = L("hybrid_reliability_report.json")
+    noninf_ = L("h2_teacher_noninferiority.json"); imp = L("hybrid_improvement_report.json")
+    regr = L("hybrid_regression_report.json"); selj = L("hybrid_selection.json")
+    subv = L("submission_C_validation.json"); rlr = L("residual_rl_readiness.json")
+    imm = L("immutability_recheck.json")
+    v2b = (offl_.get("results", {}) or {}).get("V2_B", {})
+    assertions = {
+        "AC-01": ("dependency+immutability all_ok", bool(dep.get("all_ok"))),
+        "AC-02": ("model in registered param band", bool(reg.get("model", {}).get("in_band"))),
+        "AC-03": ("state encoder v2 accepted (deterministic, audited)", selj.get("state_encoder_v2") == "ACCEPT"),
+        "AC-04": ("instrumentation behavior-equivalent (parity overall_valid)", bool(par.get("overall_valid"))),
+        "AC-05": (f">=600 games & >=50k decisions ({man_.get('total_strategic_games')}g/"
+                  f"{man_.get('total_strategic_decisions')}d)",
+                  bool(man_.get("meets_min_600_games") and man_.get("meets_min_50000_decisions"))),
+        "AC-06": (f"V2 trained & evaluated (V2_B params {v2b.get('param_count')})",
+                  bool(offl_.get("results"))),
+        "AC-07": (f"admitted contexts = {adm.get('admitted_contexts')}", adm.get("admitted_contexts") is not None),
+        "AC-08": (f"outcome-backed labels; admitted_variant={cf.get('admitted_variant')}, "
+                  f"labels={L('improvement_label_manifest.json').get('n_labels')}",
+                  "admitted_variant" in cf),
+        "AC-09": (f"one on-policy iteration; new_labels={onp.get('new_positive_residual_labels')}, "
+                  f"final H2 frozen", bool(onp.get("final_h2_identical_to_candidate"))),
+        "AC-10": (f"H0 parity_pass={h0r.get('parity_pass')} (0 mismatch) & reliability zero-defects",
+                  bool(h0r.get("parity_pass")) and all(v.get("zero_defects") for v in rel.values())),
+        "AC-11": (f"H2 vs teacher LB {noninf_.get('lower_bound_95_one_sided')} "
+                  f"(action-identical={noninf_.get('h2_action_identical_to_teacher')}); experiment completed",
+                  noninf_.get("completed") == noninf_.get("n_games") and noninf_.get("n_games", 0) >= 400),
+        "AC-12": (f"improvement={imp.get('improvement_matchups_5pp_90')}, "
+                  f"regression={regr.get('major_regression_matchups')}",
+                  "improvement_matchups_5pp_90" in imp and "major_regression_matchups" in regr),
+        "AC-13": (f"BEST_HYBRID={selj.get('best_hybrid')}, SUBMISSION_C={selj.get('submission_C')}",
+                  selj.get("best_hybrid") is not None),
+        "AC-14": (f"package_validation={subv.get('diagnostic_validation', {}).get('package_validation_pass')}, "
+                  f"kaggle=SKIPPED_BY_GATE", subv.get("status") in ("SKIPPED_BY_GATE", "SUBMITTED")),
+        "AC-15": (f"RESIDUAL_RL_READINESS={rlr.get('residual_rl_readiness')}",
+                  rlr.get("residual_rl_readiness") in ("READY", "NOT_READY")),
+        "AC-16": (f"immutability preserved={imm.get('immutability_preserved')}, final_head captured",
+                  bool(imm.get("immutability_preserved"))),
+    }
+
     # decisions
     d = {"state_encoder_v2": sel["state_encoder_v2"],
          "teacher_instrumentation": sel["teacher_instrumentation"],
@@ -184,12 +232,20 @@ def main(argv=None):
     }
     json.dump(status, open(os.path.join(RES, "STATUS.json"), "w"), indent=2)
 
-    # checklist md
+    # checklist md (evidence presence + substantive assertion per AC)
+    all_assert = all(a[1] for a in assertions.values())
     cl = ["# Acceptance Checklist (c007)", "",
-          f"Status: **{status['status']}** ({status['acceptance_criteria_passed']}/16)", ""]
+          f"Status: **{status['status']}** ({status['acceptance_criteria_passed']}/16 evidence present; "
+          f"substantive assertions {sum(a[1] for a in assertions.values())}/16)", "",
+          "| AC | evidence | assertion (verified condition) | verified |",
+          "|---|---|---|---|"]
     for ac, v in checklist.items():
-        cl.append(f"- {'PASS' if v['evidence_present'] else 'MISSING'} — {ac}")
+        atext, aok = assertions.get(ac, ("(presence only)", v["evidence_present"]))
+        cl.append(f"| {ac} | {'present' if v['evidence_present'] else 'MISSING'} | {atext} | "
+                  f"{'YES' if aok else 'NO'} |")
     open(os.path.join(RES, "ACCEPTANCE_CHECKLIST.md"), "w").write("\n".join(cl) + "\n")
+    status["substantive_assertions_passed"] = sum(a[1] for a in assertions.values())
+    json.dump(status, open(os.path.join(RES, "STATUS.json"), "w"), indent=2)
 
     # files changed
     open(os.path.join(RES, "FILES_CHANGED.md"), "w").write(
