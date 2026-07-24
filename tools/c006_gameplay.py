@@ -24,8 +24,9 @@ if _REPO not in sys.path:
     sys.path.insert(0, _REPO)
 
 from cg.gameplay import run_batch
-from cg.gauntlet_stats import bradley_terry, stratified_bootstrap_ci
+from cg.gauntlet_stats import stratified_bootstrap_ci
 from cg.noninf_stats import one_sided_lower_bound, seat_balanced_point
+from tools.analyze_student_gauntlet import analyze_from_gz
 
 FIELD = ["mega_lucario", "mega_abomasnow", "iono", "mirror"]
 STRATEGIC_SMOKE_OPPS = ["mega_lucario", "mega_abomasnow"]
@@ -44,6 +45,7 @@ def a_score(term, a_seat):
 
 class GzW:
     def __init__(self, path):
+        self.path = path
         self.fh = gzip.open(path, "wt", encoding="utf-8"); self.n = 0
 
     def write(self, r):
@@ -228,89 +230,14 @@ def phase_gauntlet(args, cfg, writer):
               ("S1", student_spec(args, "S1_STATELESS"), "S1"),
               ("S2", student_spec(args, "S2_RECURRENT"), "S2"),
               ("control", ("control",), "control")]
-    matrix = {}
-    pair_games = {}                # (A,opp) -> list of (a_seat outcomes) for BT
     for name, spec, label in agents:
-        matrix[label] = {}
         for opp in FIELD:
             m = _matchup(args, cfg, writer, spec, label, opp, boot_rng)
-            matrix[label][opp] = {k: v for k, v in m.items() if k not in ("s0", "s1")}
-            pair_games[(label, opp)] = m
             print(f"  {label} vs {opp}: sb={m['seat_balanced']:.3f} ci={[round(x,3) for x in m['ci95']]} "
                   f"n={m['total']} ({m['stopping_reason']})")
-    # overall strength vs common strategic field (exclude control from ranking; mirror kept)
-    ranking = []
-    for label in ("teacher", "S1", "S2", "control"):
-        vs = [matrix[label][o]["seat_balanced"] for o in FIELD]
-        ranking.append({"agent": label, "mean_seat_balanced_vs_field": float(np.mean(vs)),
-                        "per_opponent": {o: matrix[label][o]["seat_balanced"] for o in FIELD}})
-    ranking.sort(key=lambda r: -r["mean_seat_balanced_vs_field"])
-
-    # Bradley-Terry over evaluated agents + opponents using all non-mirror gauntlet games
-    bt_wins = {}
-    cands = set()
-    for (label, opp), m in pair_games.items():
-        if opp == "mirror":
-            continue
-        A, B = label, opp
-        cands.add(A); cands.add(B)
-        aw = sum(m["s0"]) + sum(m["s1"])          # A's total score
-        n = len(m["s0"]) + len(m["s1"])
-        bt_wins[(A, B)] = bt_wins.get((A, B), 0.0) + aw
-        bt_wins[(B, A)] = bt_wins.get((B, A), 0.0) + (n - aw)
-    bt = bradley_terry(sorted(cands), bt_wins, reg=1.0)
-
-    # worst matchups per evaluated agent
-    worst = {}
-    for label in ("teacher", "S1", "S2"):
-        ws = sorted(FIELD, key=lambda o: matrix[label][o]["seat_balanced"])[0]
-        worst[label] = {"opponent": ws, "seat_balanced": matrix[label][ws]["seat_balanced"],
-                        "ci95": matrix[label][ws]["ci95"]}
-
-    # regression report: student vs teacher per opponent
-    regression = []
-    for label in ("S1", "S2"):
-        for opp in FIELD:
-            sm = pair_games[(label, opp)]; tm = pair_games[("teacher", opp)]
-            s_all = sm["s0"] + sm["s1"]; t_all = tm["s0"] + tm["s1"]
-            delta = np.mean(s_all) - np.mean(t_all)
-            rng = np.random.default_rng(hash((label, opp)) % (2**32))
-            prob_reg = np.mean([
-                (rng.choice(s_all, len(s_all)).mean() - rng.choice(t_all, len(t_all)).mean()) <= -0.10
-                for _ in range(2000)])
-            major = bool(delta <= -0.10 and prob_reg >= 0.90)
-            regression.append({"student": label, "opponent": opp,
-                               "student_seat_balanced": float(np.mean(s_all)),
-                               "teacher_seat_balanced": float(np.mean(t_all)),
-                               "delta_pp": float(delta * 100), "prob_regression": float(prob_reg),
-                               "major_regression": major})
-
-    json.dump({"contract": "c006", "matrix": matrix, "bradley_terry": bt},
-              open(os.path.join(args.out, "student_global_ranking.json"), "w"), indent=2)
-    json.dump({"ranking": ranking, "bradley_terry": bt},
-              open(os.path.join(args.out, "student_global_ranking.json"), "w"), indent=2)
-    json.dump({"worst_matchups": worst}, open(os.path.join(args.out, "student_worst_matchups.json"), "w"), indent=2)
-    json.dump({"regressions": regression,
-               "rule": "major regression iff student seat-balanced >=10pp below teacher vs same opponent "
-                       "AND bootstrap P(regression>=10pp) >= 0.90"},
-              open(os.path.join(args.out, "student_regression_report.json"), "w"), indent=2)
-    # matrix CSV
-    import csv
-    with open(os.path.join(args.out, "student_matchup_matrix.csv"), "w", newline="") as fh:
-        w = csv.writer(fh); w.writerow(["agent"] + FIELD + ["mean_vs_field"])
-        for label in ("teacher", "S1", "S2", "control"):
-            row = [label] + [round(matrix[label][o]["seat_balanced"], 4) for o in FIELD]
-            row.append(round(float(np.mean([matrix[label][o]["seat_balanced"] for o in FIELD])), 4))
-            w.writerow(row)
-    log = ["=== strategic gauntlet ==="]
-    for r in ranking:
-        log.append(f"  {r['agent']}: mean_vs_field={r['mean_seat_balanced_vs_field']:.3f} "
-                   + " ".join(f"{o}={r['per_opponent'][o]:.2f}" for o in FIELD))
-    log.append("worst: " + json.dumps(worst))
-    log.append("major_regressions: " + json.dumps([r for r in regression if r["major_regression"]]))
-    open(os.path.join(args.out, "..", "test_logs", "student_gauntlet_execution.txt"), "w").write("\n".join(log) + "\n")
-    print("\n".join(log))
-    return {"ranking": ranking, "worst": worst, "regression": regression, "bt": bt}
+    # analysis (ranking/BT/worst/regression) is done from the captured gz after the
+    # writer is closed, see run(); keeps a single source of truth.
+    return None
 
 
 def run(args):
@@ -325,6 +252,8 @@ def run(args):
     if args.phase in ("gauntlet", "all"):
         w = GzW(os.path.join(args.out, "student_strategic_gauntlet.jsonl.gz"))
         phase_gauntlet(args, cfg, w); w.close()
+        analyze_from_gz(w.path, args.out,
+                        os.path.join(args.out, "..", "test_logs", "student_gauntlet_execution.txt"))
     return 0
 
 
