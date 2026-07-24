@@ -292,5 +292,65 @@ def reduce_max(x: Node, axis, keepdims=False):
     return out
 
 
+def masked_log_softmax(logits: Node, mask):
+    """log-softmax over the last axis restricting to legal (mask==1) entries. Illegal
+    entries get log-prob -1e30 (probability exactly 0). Returns Node[..,K]. c008 masked
+    policy distribution."""
+    m = np.asarray(mask, dtype=np.float64)
+    neg = (m == 0)
+    z = logits.data.copy()
+    z[neg] = -1e30
+    zmax = z.max(axis=-1, keepdims=True)
+    ez = np.exp(z - zmax)
+    ez[neg] = 0.0
+    s = ez.sum(axis=-1, keepdims=True)
+    p = ez / s                                   # softmax over legal
+    logp = (z - zmax) - np.log(s)
+    logp[neg] = -1e30
+    out = Node(logp, _parents=(logits,), _backward=None)
+
+    def bw(g):
+        if logits.requires_grad:
+            g = g * (~neg)                        # no gradient into illegal entries
+            gsum = g.sum(axis=-1, keepdims=True)
+            grad = g - p * gsum
+            grad[neg] = 0.0
+            logits._accum(grad)
+    out._backward = bw
+    return out, p
+
+
+def gather_per_row(x: Node, idx):
+    """x[B,K] -> out[B] selecting x[b, idx[b]]. Scatter-add backward. c008 chosen log-prob."""
+    idx = np.asarray(idx, dtype=np.int64)
+    B = x.data.shape[0]
+    rows = np.arange(B)
+    out = Node(x.data[rows, idx], _parents=(x,), _backward=None)
+
+    def bw(g):
+        if x.requires_grad:
+            grad = np.zeros_like(x.data)
+            grad[rows, idx] = g
+            x._accum(grad)
+    out._backward = bw
+    return out
+
+
+def exp(x: Node):
+    e = np.exp(x.data)
+    out = x._child(e, None)
+    out._backward = lambda g: x._accum(g * e) if x.requires_grad else None
+    return out
+
+
+def clamp(x: Node, lo, hi):
+    """Elementwise clip to [lo, hi]; gradient passes through only where unclipped
+    (PPO ratio/value clipping)."""
+    inside = ((x.data >= lo) & (x.data <= hi)).astype(np.float64)
+    out = x._child(np.clip(x.data, lo, hi), None)
+    out._backward = lambda g: x._accum(g * inside) if x.requires_grad else None
+    return out
+
+
 def param(shape, scale, rng):
     return Node(rng.standard_normal(shape) * scale, requires_grad=True)
