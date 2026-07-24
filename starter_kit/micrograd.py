@@ -125,6 +125,13 @@ class Node:
         out._backward = lambda g: self._accum(g.reshape(old)) if self.requires_grad else None
         return out
 
+    def broadcast_to(self, shape):
+        """Differentiable numpy broadcast; backward sums the broadcast axes back down."""
+        old = self.data.shape
+        out = self._child(np.broadcast_to(self.data, shape).copy(), None)
+        out._backward = lambda g: self._accum(_unbroadcast(g, old)) if self.requires_grad else None
+        return out
+
     def _accum(self, g):
         if self.grad is None:
             self.grad = np.zeros_like(self.data)
@@ -246,6 +253,43 @@ def bce_with_logits_masked(logits: Node, targets, mask, weight=None):
             logits._accum(g * grad)
     out._backward = bw
     return out, s
+
+
+def reduce_sum(x: Node, axis, keepdims=False):
+    """Sum over ``axis`` with broadcast backward (c007 DeepSets set-pooling)."""
+    data = np.sum(x.data, axis=axis, keepdims=keepdims)
+    out = Node(data, _parents=(x,), _backward=None)
+
+    def bw(g):
+        if x.requires_grad:
+            gg = g
+            if not keepdims:
+                gg = np.expand_dims(gg, axis=axis)
+            x._accum(np.broadcast_to(gg, x.data.shape).copy())
+    out._backward = bw
+    return out
+
+
+def reduce_max(x: Node, axis, keepdims=False):
+    """Max over ``axis``; gradient routed to the argmax positions (ties split evenly).
+
+    For masked max-pool, set padded entries to a large negative value before calling
+    so they never win (and thus receive no gradient). c007 DeepSets set-pooling.
+    """
+    mx = np.max(x.data, axis=axis, keepdims=True)
+    data = mx if keepdims else np.max(x.data, axis=axis, keepdims=False)
+    out = Node(data, _parents=(x,), _backward=None)
+
+    def bw(g):
+        if x.requires_grad:
+            is_max = (x.data == mx).astype(np.float64)
+            counts = np.sum(is_max, axis=axis, keepdims=True)
+            gg = g
+            if not keepdims:
+                gg = np.expand_dims(gg, axis=axis)
+            x._accum(is_max / np.maximum(counts, 1.0) * gg)
+    out._backward = bw
+    return out
 
 
 def param(shape, scale, rng):
