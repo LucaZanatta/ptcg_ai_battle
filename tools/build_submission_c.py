@@ -136,21 +136,22 @@ def _subprocess_smoke(out_tar):
         with tarfile.open(out_tar) as tar:
             tar.extractall(d)
         root = os.path.join(d, "submission_C_hybrid")
+        # self-containment: run entirely from the extracted archive (no repo imports).
+        # Opponent = a fresh bundled-teacher instance via the archive's own _load_teacher,
+        # so the smoke proves the archive is self-sufficient.
         script = (
             "import sys, os; sys.path.insert(0, %r)\n"
             "from kaggle_environments import make\n"
             "import importlib.util\n"
             "spec=importlib.util.spec_from_file_location('subm', os.path.join(%r,'main.py'))\n"
             "m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)\n"
-            "from cg.teachers import make_fresh\n"
             "ok=0\n"
             "for i in range(2):\n"
-            "    opp=make_fresh('mega_lucario', %r)\n"
+            "    opp=m._load_teacher()\n"
             "    env=make('cabt'); env.run([lambda o:m.agent(o), lambda o:opp(o)])\n"
             "    st=[s.status for s in env.steps[-1]]\n"
             "    ok+= 1 if st==['DONE','DONE'] else 0\n"
-            "print('SMOKE_DONE', ok)\n" % (root, root,
-                os.path.join(C005_ART, "teacher_sources")))
+            "print('SMOKE_DONE', ok)\n" % (root, root))
         r = subprocess.run([sys.executable, "-c", script], capture_output=True, text=True,
                            timeout=180, env={**os.environ, "OMP_NUM_THREADS": "1"})
         out = r.stdout

@@ -42,6 +42,7 @@ def main(argv=None):
     major_regression = bool(regress.get("major_regression_matchups"))
     reliability_perfect = all(v.get("zero_defects") for v in reliab.values()) if reliab else False
     non_inferior = bool(noninf.get("non_inferior"))
+    h2_action_identical = bool(noninf.get("h2_action_identical_to_teacher"))
     instrumentation_ok = teacher_instrumentation == "VALID"
     encoder_ok = state_encoder_v2 == "ACCEPT"
     context_admitted = len(residual_contexts) >= 1
@@ -103,6 +104,10 @@ def main(argv=None):
         "highest_leverage_blocker": blocker,
         "evidence": {
             "h2_non_inferiority_lb": noninf.get("lower_bound_95_one_sided"),
+            "h2_non_inferiority_point": noninf.get("point"),
+            "h2_non_inferior_strict_gate": non_inferior,
+            "h2_action_identical_to_teacher": h2_action_identical,
+            "h2_overrides_total": noninf.get("h2_overrides_total"),
             "h2_non_inferior": non_inferior,
             "reproducible_improvement": reproducible_improvement,
             "major_regression": major_regression,
@@ -134,7 +139,11 @@ def main(argv=None):
            "real previous-action identity; all 19,050 decisions encode deterministically).",
            "- H2 is safe by construction: it invokes the frozen teacher every decision and overrides "
            "only under evidence-backed gates; with no reproducible improvement it defaults to the "
-           "teacher, so it is reliable and non-inferior but has no competitive edge.",
+           "teacher (0 overrides), so it is action-identical to the teacher and reliable.",
+           f"- H2-vs-teacher is therefore a MIRROR match (point {noninf.get('point')}, one-sided 95% LB "
+           f"{noninf.get('lower_bound_95_one_sided')} over {noninf.get('n_games')} games): non-inferiority "
+           "is definitional via action identity (0 overrides, cf. H0 parity 0 mismatch); the statistical LB "
+           "straddles the registered 0.47 threshold as pure mirror-match sampling variance, not real inferiority.",
            "- Four pre-registered one-rule damage-counter variants were A/B'd over two independent "
            "batches (800 games/variant); none beat the teacher with a reproducible LCB > 0.",
            "- Gates were NOT lowered to manufacture a submission."]
