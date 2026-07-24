@@ -108,7 +108,7 @@ def screening_eval(cur_ckpt, version, deck, pool, rng, per_seat_strat=20, per_se
         by.setdefault((r["opponent"], r["seat"]), []).append(r["score"])
     scores = {}
     for label_key, label in [("dragapult", "teacher"), ("mega_lucario", "lucario"),
-                             ("iono", "iono"), ("__control__", "control")]:
+                             ("iono", "iono"), ("control", "control")]:
         s0 = by.get((label_key, 0), []); s1 = by.get((label_key, 1), [])
         scores[label] = ns.seat_balanced_point(s0, s1) if (s0 or s1) else None
     blend = (0.40 * (scores["teacher"] or 0) + 0.25 * (scores["lucario"] or 0)
