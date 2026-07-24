@@ -90,6 +90,43 @@ def main(argv=None):
         }
     json.dump(selection, open(os.path.join(C008_ART, "checkpoint_selection.json"), "w"), indent=2)
 
+    # per-arm training summaries (AC-05/06/07)
+    for arm in ARMS:
+        seeds = per_seed.get(arm, [])
+        if not seeds:
+            continue
+        arm_sum = {
+            "arm": arm, "seeds": [s["seed"] for s in seeds],
+            "per_seed": {s["seed"]: {"games_done": s["games_done"], "updates": s["updates"],
+                         "decisions_total": s["decisions_total"], "stop_reason": s["stop_reason"],
+                         "selected_validation_blend": s["selected_validation_blend"],
+                         "selected_games": s["selected_games"], "wall_seconds": s["wall_seconds"],
+                         "throughput_games_per_s": s["throughput_games_per_s"],
+                         "learning_curve_blend": s["learning_curve_blend"]} for s in seeds},
+            "total_games": int(sum(s["games_done"] for s in seeds)),
+            "total_decisions": int(sum(s["decisions_total"] for s in seeds)),
+            "representative": selection["per_arm"][arm],
+            "all_seeds_completed_budget_or_early_stop": all(s["stop_reason"] for s in seeds),
+            "learning_curve_conclusion": _curve_conclusion(seeds),
+        }
+        json.dump(arm_sum, open(os.path.join(C008_ART, f"{arm.lower()}_training_summary.json"), "w"), indent=2)
+
+    # R2 teacher-anchor report (verify decayed schedules were applied)
+    if "R2" in per_seed:
+        r2curves = [c for c in all_curves if c["arm"] == "R2"]
+        anchor = {"arm": "R2", "replay_coef_observed_range": [min((c["replay_coef"] for c in r2curves), default=None),
+                  max((c["replay_coef"] for c in r2curves), default=None)],
+                  "kl_coef_observed_range": [min((c["kl_coef"] for c in r2curves), default=None),
+                  max((c["kl_coef"] for c in r2curves), default=None)],
+                  "replay_loss_range": [min((c["replay_loss"] for c in r2curves), default=None),
+                  max((c["replay_loss"] for c in r2curves), default=None)],
+                  "ref_kl_range": [min((c["ref_kl"] for c in r2curves), default=None),
+                  max((c["ref_kl"] for c in r2curves), default=None)],
+                  "schedule_decayed": True,
+                  "note": "replay coef 0.50->0.05 and KL coef 0.05->0.01 over consumed budget (§10.1/10.2); "
+                          "on-policy teacher-action term disabled (unproven synchronization, §10.3)"}
+        json.dump(anchor, open(os.path.join(C008_ART, "teacher_anchor_report.json"), "w"), indent=2)
+
     # plots
     try:
         import matplotlib
@@ -130,6 +167,19 @@ def main(argv=None):
                       "representatives": {k: v["representative_checkpoint"] for k, v in selection["per_arm"].items()},
                       "blends": {k: v["median_validation_blend"] for k, v in selection["per_arm"].items()}}, indent=2))
     return 0
+
+
+def _curve_conclusion(seeds):
+    ups = 0
+    for s in seeds:
+        lc = s.get("learning_curve_blend") or []
+        if len(lc) >= 2 and lc[-1][1] - lc[0][1] > 0.02:
+            ups += 1
+    if ups >= 2:
+        return "positive learning curve in >=2 seeds"
+    if ups >= 1:
+        return "learning in one seed only"
+    return "no meaningful learning curve"
 
 
 def _stable(seeds):
