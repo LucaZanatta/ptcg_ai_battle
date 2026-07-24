@@ -163,6 +163,33 @@ def seed_metadata(*, runner_seed: Optional[int], opponent_policy_seed: Optional[
 # Terminal classification (§7.10) — pure function of the FINAL state.
 # --------------------------------------------------------------------------
 
+def final_state_terminal(env) -> tuple:
+    """Extract ``(statuses, rewards, error)`` from the FINAL environment step.
+
+    c004 amendment #1: terminal error extraction inspects the *final* per-player
+    state, not the first step. The outcome (which player, which type) is derived
+    from the final step's statuses/rewards. cabt records deck-setup error text at
+    ``steps[0][0]["error"]``; that text is surfaced only as a documented fallback
+    and only when the final state actually indicates an error/invalid/timeout.
+    """
+    final = env.steps[-1]
+    statuses = [final[0].get("status"), final[1].get("status")]
+    rewards = [final[0].get("reward"), final[1].get("reward")]
+    error = None
+    for player in final:
+        if isinstance(player, dict) and player.get("error"):
+            error = player.get("error")
+            break
+    if error is None and any(s in ("INVALID", "ERROR", "TIMEOUT") for s in statuses):
+        try:  # documented fallback: cabt writes deck-setup errors to step 0
+            e0 = env.steps[0][0].get("error")
+            if e0:
+                error = e0
+        except Exception:
+            error = None
+    return statuses, rewards, error
+
+
 def classify_terminal(statuses: List[str], rewards: List[Any], *,
                       error: Optional[str] = None,
                       exception: Optional[str] = None) -> Dict[str, Any]:

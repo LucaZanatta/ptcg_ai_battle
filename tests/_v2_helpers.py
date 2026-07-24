@@ -35,6 +35,20 @@ def _agent_lineage(agent_id, policy_type):
             "source_files": [{"path": "starter_kit/x.py", "sha256": "z"}], "configuration": {}}
 
 
+def test_registry():
+    """A replay registry whose safe_agent lineage matches the synthetic records
+    (so registry hash-verification passes in unit tests). The callable is the
+    real safe agent, so replay against the synthetic observations still runs."""
+    from cg.main import agent as safe_agent
+    return {
+        "safe_agent": {
+            "lineage": {"agent_version": "test.1",
+                        "source_files": [{"path": "starter_kit/x.py", "sha256": "z"}]},
+            "deterministic": True, "callable": safe_agent,
+        },
+    }
+
+
 def run_metadata_record(run_id="run_test"):
     return {
         "schema_version": SCHEMA_VERSION, "record_type": "run_metadata", "run_id": run_id,

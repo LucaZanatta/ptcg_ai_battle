@@ -30,7 +30,8 @@ from cg.episode_capture import derive_seed  # reuse the v1 deterministic seed de
 from cg.episode_capture_v2 import GameRecorderV2, RunWriter, make_capturing_agent
 from cg.episode_schema import (
     canonical_deck, collect_engine_info, collect_environment, collect_git_info,
-    implementation_sha256, seed_metadata, sha256_bytes, source_files_lineage,
+    final_state_terminal, implementation_sha256, seed_metadata, sha256_bytes,
+    source_files_lineage,
 )
 from cg.safe_policy import load_deck
 
@@ -167,13 +168,8 @@ def run(args):
                 recorder.write_terminal(statuses=["ERROR", "ERROR"], rewards=[None, None],
                                         error=None, exception=exception, duration_s=duration)
                 continue
-            last = env.steps[-1]
-            statuses = [last[0]["status"], last[1]["status"]]
-            rewards = [last[0].get("reward"), last[1].get("reward")]
-            try:
-                err = env.steps[0][0].get("error")
-            except Exception:
-                err = None
+            # c004 amendment #1: extract terminal from the FINAL state, not step 0.
+            statuses, rewards, err = final_state_terminal(env)
             term = recorder.write_terminal(statuses=statuses, rewards=rewards, error=err,
                                            exception=None, duration_s=duration)
             total_invalid += sum(recorder.invalid_by_player.values())

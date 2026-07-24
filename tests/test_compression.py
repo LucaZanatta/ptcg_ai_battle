@@ -15,8 +15,10 @@ if _REPO_ROOT not in sys.path:
 import tools.validate_episodes_v2 as v2
 from cg.episode_capture_v2 import RunWriter
 from tests._v2_helpers import (
-    decision_record, game_start_record, run_metadata_record, terminal_record,
+    decision_record, game_start_record, run_metadata_record, terminal_record, test_registry,
 )
+
+_REG = test_registry()
 
 
 def _records():
@@ -48,8 +50,8 @@ class TestCompression(unittest.TestCase):
                              hashlib.sha256(decompressed).hexdigest())
 
             # 2) semantic validation yields equivalent results for both.
-            r_plain = v2.validate(jsonl)
-            r_gz = v2.validate(gz)
+            r_plain = v2.validate(jsonl, registry=_REG)
+            r_gz = v2.validate(gz, registry=_REG)
             self.assertTrue(r_plain["ok"])
             self.assertTrue(r_gz["ok"])
             self.assertEqual(r_plain["validation"]["decisions"], r_gz["validation"]["decisions"])

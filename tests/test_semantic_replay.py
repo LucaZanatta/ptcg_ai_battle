@@ -17,8 +17,10 @@ if _REPO_ROOT not in sys.path:
 
 import tools.validate_episodes_v2 as v2
 from tests._v2_helpers import (
-    decision_record, game_start_record, run_metadata_record, terminal_record,
+    decision_record, game_start_record, run_metadata_record, terminal_record, test_registry,
 )
+
+_REG = test_registry()
 
 
 def _write(records, path):
@@ -43,7 +45,7 @@ class TestSemanticReplay(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = os.path.join(td, "e.jsonl")
             _write(_dataset(dec), path)
-            res = v2.validate(path)
+            res = v2.validate(path, registry=_REG)
             self.assertTrue(res["ok"], res["validation"]["errors"])
             sem = res["semantic"]
             self.assertEqual(sem["safe_decisions_checked"], 1)
@@ -57,7 +59,7 @@ class TestSemanticReplay(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = os.path.join(td, "e.jsonl")
             _write(_dataset(dec), path)
-            res = v2.validate(path)
+            res = v2.validate(path, registry=_REG)
             self.assertFalse(res["ok"])
             self.assertGreaterEqual(res["semantic"]["mismatch_count"], 1)
 
@@ -66,7 +68,7 @@ class TestSemanticReplay(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = os.path.join(td, "e.jsonl")
             _write(_dataset(dec), path)
-            res = v2.validate(path)
+            res = v2.validate(path, registry=_REG)
             self.assertFalse(res["ok"])
             self.assertTrue(any("select_context" in e["message"]
                                 for e in res["validation"]["errors"]))
@@ -76,7 +78,7 @@ class TestSemanticReplay(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = os.path.join(td, "e.jsonl")
             _write(_dataset(dec), path)
-            res = v2.validate(path)
+            res = v2.validate(path, registry=_REG)
             self.assertFalse(res["ok"])
             self.assertTrue(any("min/max_count" in e["message"]
                                 for e in res["validation"]["errors"]))
@@ -86,7 +88,7 @@ class TestSemanticReplay(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = os.path.join(td, "e.jsonl")
             _write(_dataset(dec), path)
-            res = v2.validate(path)
+            res = v2.validate(path, registry=_REG)
             self.assertFalse(res["ok"])
             self.assertTrue(any("out of range" in e["message"]
                                 for e in res["validation"]["errors"]))
@@ -96,7 +98,7 @@ class TestSemanticReplay(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = os.path.join(td, "e.jsonl")
             _write(_dataset(dec), path)
-            res = v2.validate(path)
+            res = v2.validate(path, registry=_REG)
             self.assertFalse(res["ok"])
             self.assertTrue(any("duplicate record_id" in e["message"]
                                 for e in res["validation"]["errors"]))

@@ -29,8 +29,10 @@ if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 
 from cg.api import SelectContext, to_observation_class
-from cg.main import agent as safe_agent
 from cg.episode_compat import read_records
+from cg.replay_registry import (
+    OK as REPLAY_OK, STOCHASTIC as REPLAY_STOCHASTIC, build_registry, resolve as replay_resolve,
+)
 
 _RUN_META_REQUIRED = ["run_id", "created_at_utc", "git", "capture", "environment",
                       "engine", "agents", "decks"]
@@ -58,7 +60,9 @@ def _ctx_name(v):
         return f"UNKNOWN_{v}"
 
 
-def validate(path, run_semantic=True):
+def validate(path, run_semantic=True, registry=None):
+    if registry is None:
+        registry = build_registry(_REPO_ROOT)
     errors = []
     seen_ids = set()
     open_game = None
@@ -68,7 +72,8 @@ def validate(path, run_semantic=True):
     decisions = 0
     terminals = []
     terminal_types = {}
-    replay = {"checked": 0, "convert_ok": 0, "matches": 0, "mismatches": [], "cross_field_fail": 0}
+    replay = {"checked": 0, "convert_ok": 0, "matches": 0, "mismatches": [],
+              "stochastic_skipped": 0, "unavailable": 0}
     per_ctx = {}
     all_latency_ms = []
     seat_counts = {}
@@ -139,6 +144,9 @@ def validate(path, run_semantic=True):
                     err(line_no, "min/max_count != observation.select bounds")
                 if rec.get("legal_option_count") != len(sel.get("option") or []):
                     err(line_no, "legal_option_count != len(observation.select.option)")
+                if rec.get("legal_option_metadata") != sel.get("option"):
+                    # c004 amendment #2: duplicated metadata must equal the source
+                    err(line_no, "legal_option_metadata != observation.select.option")
                 n = len(sel.get("option") or [])
                 lo, hi = sel.get("minCount"), sel.get("maxCount")
                 seli = rec.get("selected_indices") or []
@@ -165,31 +173,38 @@ def validate(path, run_semantic=True):
             if isinstance(lat, (int, float)):
                 st["lat_ms"].append(lat / 1e6)
                 all_latency_ms.append(lat / 1e6)
-            # semantic replay for safe-agent decisions
-            if run_semantic and rec.get("agent_id") == "safe_agent":
-                replay["checked"] += 1
-                try:
-                    to_observation_class(obs)  # conversion test (§7.8 step 3)
-                    replay["convert_ok"] += 1
-                except Exception as exc:
-                    err(line_no, f"to_observation_class failed: {exc!r}")
-                    replay["mismatches"].append({"line": line_no, "reason": "convert_failed"})
-                    continue
-                try:
-                    got = safe_agent(obs)  # ACTUAL agent invocation on serialized obs
-                except Exception as exc:
-                    err(line_no, f"safe agent invocation failed: {exc!r}")
-                    replay["mismatches"].append({"line": line_no, "reason": "invoke_failed"})
-                    continue
-                if got == rec.get("selected_indices"):
-                    replay["matches"] += 1
+            # semantic replay — c004 amendment #3: verify recorded agent identity,
+            # version and source hashes against the current registry BEFORE invoking.
+            if run_semantic and rec.get("agent_id"):
+                status, fn = replay_resolve(registry, rec["agent_id"], run_agents.get(rec["agent_id"]))
+                if status == REPLAY_STOCHASTIC:
+                    replay["stochastic_skipped"] += 1
+                elif status != REPLAY_OK:
+                    replay["unavailable"] += 1  # hash mismatch / unregistered -> not invoked
                 else:
-                    replay["mismatches"].append({
-                        "line": line_no, "run_id": rec.get("run_id"), "game_id": rec.get("game_id"),
-                        "decision_index": rec.get("decision_index"), "context": _ctx_name(cv),
-                        "record_id": rec.get("record_id"), "recorded": rec.get("selected_indices"),
-                        "replayed": got})
-                    err(line_no, "semantic replay mismatch")
+                    replay["checked"] += 1
+                    try:
+                        to_observation_class(obs)  # conversion test (§7.8 step 3)
+                        replay["convert_ok"] += 1
+                    except Exception as exc:
+                        err(line_no, f"to_observation_class failed: {exc!r}")
+                        replay["mismatches"].append({"line": line_no, "reason": "convert_failed"})
+                        continue
+                    try:
+                        got = fn(obs)  # ACTUAL invocation of the verified current agent
+                    except Exception as exc:
+                        err(line_no, f"agent invocation failed: {exc!r}")
+                        replay["mismatches"].append({"line": line_no, "reason": "invoke_failed"})
+                        continue
+                    if got == rec.get("selected_indices"):
+                        replay["matches"] += 1
+                    else:
+                        replay["mismatches"].append({
+                            "line": line_no, "run_id": rec.get("run_id"), "game_id": rec.get("game_id"),
+                            "decision_index": rec.get("decision_index"), "context": _ctx_name(cv),
+                            "record_id": rec.get("record_id"), "recorded": rec.get("selected_indices"),
+                            "replayed": got})
+                        err(line_no, "semantic replay mismatch")
             continue
 
         if rt == "game_terminal":
@@ -228,8 +243,9 @@ def validate(path, run_semantic=True):
         "semantic": {
             "safe_decisions_checked": replay["checked"], "convert_ok": replay["convert_ok"],
             "matches": replay["matches"], "mismatch_count": len(replay["mismatches"]),
+            "stochastic_skipped": replay["stochastic_skipped"], "replay_unavailable": replay["unavailable"],
             "mismatches": replay["mismatches"][:50], "all_reproduced": replay_ok,
-            "method": "to_observation_class(obs) + safe_agent(obs); serialized observation, not duplicated bounds",
+            "method": "registry-verified (agent_id+version+source-hash) then to_observation_class(obs) + agent(obs); serialized observation, not duplicated bounds",
         },
         "context": _context_report(per_ctx, seat_counts, decisions),
         "latency": {
