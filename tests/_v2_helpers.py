@@ -30,6 +30,11 @@ def decision_obs(num_options, min_count, max_count, context):
     }
 
 
+def _agent_lineage(agent_id, policy_type):
+    return {"agent_id": agent_id, "agent_version": "test.1", "policy_type": policy_type,
+            "source_files": [{"path": "starter_kit/x.py", "sha256": "z"}], "configuration": {}}
+
+
 def run_metadata_record(run_id="run_test"):
     return {
         "schema_version": SCHEMA_VERSION, "record_type": "run_metadata", "run_id": run_id,
@@ -38,6 +43,11 @@ def run_metadata_record(run_id="run_test"):
         "capture": {"implementation_sha256": "x", "command": "test", "compression": "none+gzip"},
         "environment": {"python_version": "3.13.0"},
         "engine": {"path": "starter_kit/libcg.so", "sha256": "y", "size_bytes": 1},
+        "agents": {
+            "safe_agent": _agent_lineage("safe_agent", "deterministic_safe_fallback"),
+            "random_baseline": _agent_lineage("random_baseline", "uniform_random_legal"),
+        },
+        "decks": {"sha256:d": {"deck_id": "sha256:d", "card_count": 60}},
     }
 
 

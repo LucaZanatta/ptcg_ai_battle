@@ -67,6 +67,20 @@ class TestImplementationHash(unittest.TestCase):
         self.assertEqual(len(h1), 64)
 
 
+class TestRunMetadataAgents(unittest.TestCase):
+    def test_run_metadata_includes_every_player_lineage(self):
+        import tools.capture_episodes_v2 as cap
+        safe = safe_agent_definition(_REPO_ROOT).lineage()
+        rnd = random_baseline_definition(_REPO_ROOT, seed=1, deck=[1] * 60).lineage()
+        meta = cap.build_run_metadata(_REPO_ROOT, 1, "cmd",
+                                      {"deck_id": "sha256:d", "card_count": 60}, safe, rnd)
+        self.assertIn("safe_agent", meta["agents"])
+        self.assertIn("random_baseline", meta["agents"])  # not just a display string
+        for aid, lin in meta["agents"].items():
+            for k in ("agent_id", "agent_version", "policy_type", "source_files", "configuration"):
+                self.assertIn(k, lin, f"{aid} lineage missing {k}")
+
+
 class TestSeedMetadata(unittest.TestCase):
     def test_engine_rng_not_claimed_controlled(self):
         s = seed_metadata(runner_seed=5, opponent_policy_seed=6, requested_engine_seed=5)

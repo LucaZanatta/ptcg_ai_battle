@@ -57,7 +57,7 @@ def build_plan(base_seed, games_per_cohort):
     return plan
 
 
-def build_run_metadata(repo_root, base_seed, command, deck_record, safe_lineage):
+def build_run_metadata(repo_root, base_seed, command, deck_record, safe_lineage, random_lineage):
     git = collect_git_info(repo_root)
     env = collect_environment()
     engine = collect_engine_info(os.path.join(repo_root, "starter_kit", "libcg.so"), repo_root)
@@ -77,7 +77,7 @@ def build_run_metadata(repo_root, base_seed, command, deck_record, safe_lineage)
         },
         "environment": env,
         "engine": engine,
-        "agents": {"safe_agent": safe_lineage},
+        "agents": {"safe_agent": safe_lineage, "random_baseline": random_lineage},
         "base_seed": base_seed,
         "decks": {deck_record["deck_id"]: deck_record},
         "seed_policy_note": (
@@ -100,10 +100,16 @@ def run(args):
         return 2
 
     safe_def = safe_agent_definition(repo_root)
+    # Random-baseline lineage template: identity/source are stable; the RNG seed
+    # varies per game (see each game_start.seed.opponent_policy_seed).
+    random_lineage = random_baseline_definition(repo_root, seed=args.base_seed, deck=deck).lineage()
+    random_lineage["configuration"] = {
+        "opponent_policy_seed": "per_game: see game_start.seed.opponent_policy_seed"}
     command = (f".venv/bin/python tools/capture_episodes_v2.py "
                f"--games-per-cohort {args.games_per_cohort} --base-seed {args.base_seed} "
                f"--output-dir {os.path.relpath(args.output_dir, repo_root)}")
-    run_meta = build_run_metadata(repo_root, args.base_seed, command, deck_record, safe_def.lineage())
+    run_meta = build_run_metadata(repo_root, args.base_seed, command, deck_record,
+                                  safe_def.lineage(), random_lineage)
     run_id = run_meta["run_id"]
 
     os.makedirs(args.output_dir, exist_ok=True)

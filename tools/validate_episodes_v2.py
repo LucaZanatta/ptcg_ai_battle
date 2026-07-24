@@ -32,7 +32,10 @@ from cg.api import SelectContext, to_observation_class
 from cg.main import agent as safe_agent
 from cg.episode_compat import read_records
 
-_RUN_META_REQUIRED = ["run_id", "created_at_utc", "git", "capture", "environment", "engine"]
+_RUN_META_REQUIRED = ["run_id", "created_at_utc", "git", "capture", "environment",
+                      "engine", "agents", "decks"]
+_AGENT_LINEAGE_REQUIRED = ["agent_id", "agent_version", "policy_type", "source_files",
+                           "configuration"]
 
 
 def _pct(vals, p):
@@ -61,6 +64,7 @@ def validate(path, run_semantic=True):
     open_game = None
     run_id = None
     run_meta_seen = False
+    run_agents = {}
     decisions = 0
     terminals = []
     terminal_types = {}
@@ -86,6 +90,11 @@ def validate(path, run_semantic=True):
             for f in _RUN_META_REQUIRED:
                 if not rec.get(f):
                     err(line_no, f"run_metadata missing/empty field: {f}")
+            run_agents = rec.get("agents") or {}
+            for aid, lin in run_agents.items():
+                missing = [k for k in _AGENT_LINEAGE_REQUIRED if k not in (lin or {})]
+                if missing:
+                    err(line_no, f"agent '{aid}' lineage missing fields: {missing}")
             continue
 
         if rt == "game_start":
@@ -95,6 +104,10 @@ def validate(path, run_semantic=True):
                 err(line_no, "schema-v2 game_start must not contain ambiguous game_seed")
             if not rec.get("seed") or rec["seed"].get("engine_rng_controlled") is not False:
                 err(line_no, "game_start seed block missing or engine_rng_controlled != false")
+            # every seat's agent must have serialized lineage in run_metadata.agents
+            for seat, aid in (rec.get("seat_agent_ids") or {}).items():
+                if run_agents and aid not in run_agents:
+                    err(line_no, f"seat {seat} agent_id '{aid}' has no lineage in run_metadata.agents")
             open_game = {"game_id": rec.get("game_id"), "next": 0, "by_player": {}, "line": line_no}
             continue
 
