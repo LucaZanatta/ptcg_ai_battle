@@ -12,7 +12,7 @@ step "AC-07/08/09 consolidate all arms"
 $PY tools/c010_consolidate.py --arms A,B,C
 
 step "AC-10 screen every new checkpoint (Arm C)"
-$PY tools/c010_eval.py --panel screen --candidates ALL_NEW --nproc 8 2>&1 | grep -v INFO | tail -5
+$PY tools/c010_eval.py --panel screen --candidates ALL_NEW --nproc 12 2>&1 | grep -v INFO | tail -5
 
 step "AC-10 apply the Sec.17 nomination rule across all branches"
 $PY tools/c010_screen.py --stage nominate
@@ -29,7 +29,7 @@ PYEOF
 )
 if [ -n "$NEW" ]; then
   echo "new nominations: $NEW"
-  $PY tools/c010_eval.py --panel confirmation --candidates "$NEW" --nproc 8 2>&1 | grep -v INFO | tail -5
+  $PY tools/c010_eval.py --panel confirmation --candidates "$NEW" --nproc 12 2>&1 | grep -v INFO | tail -5
 else
   echo "no new nominations require a confirmation panel"
 fi
@@ -50,7 +50,7 @@ PYEOF
 )
 if [ -n "$FIN" ]; then
   echo "finalists needing a final panel: $FIN"
-  $PY tools/c010_eval.py --panel final --candidates "$FIN" --nproc 8 2>&1 | grep -v INFO | tail -5
+  $PY tools/c010_eval.py --panel final --candidates "$FIN" --nproc 12 2>&1 | grep -v INFO | tail -5
   $PY tools/c010_aggregate.py --stage all | tail -15
 else
   echo "every finalist already has a final panel"
@@ -66,7 +66,7 @@ PYEOF
 )
 if [ -n "$EXT" ]; then
   echo "extending teacher head-to-head to 800 games for: $EXT"
-  $PY tools/c010_eval.py --panel final --candidates "$EXT" --teacher-extension --nproc 8 2>&1 | grep -v INFO | tail -5
+  $PY tools/c010_eval.py --panel final --candidates "$EXT" --teacher-extension --nproc 12 2>&1 | grep -v INFO | tail -5
   $PY tools/c010_aggregate.py --stage all | tail -15
 else
   echo "no finalist is plausibly teacher-non-inferior; no extension required"
