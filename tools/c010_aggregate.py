@@ -304,6 +304,24 @@ def main(argv=None):
              for c, s in fsum.items()], key=lambda r: -(r["composite"] or 0))},
             open(os.path.join(ART, "final_ranking.json"), "w"), indent=2)
 
+        # §16: "If a finalist remains plausibly teacher-non-inferior, extend teacher
+        # head-to-head to 800 total games." Evaluated for every finalist and recorded, so
+        # that not running the extension is an observed outcome rather than an omission.
+        ext = {}
+        for c, s in fsum.items():
+            ci = (s["per_opponent"].get(TEACHER) or {}).get("ci95")
+            n = (s["per_opponent"].get(TEACHER) or {}).get("n")
+            ext[c] = {"teacher_score": s["teacher_score"], "teacher_ci95": ci,
+                      "teacher_games": n,
+                      "threshold": D.TEACHER_NON_INFERIORITY_LB,
+                      "plausibly_non_inferior": D.plausibly_teacher_non_inferior(ci),
+                      "extension_required": D.plausibly_teacher_non_inferior(ci)}
+        json.dump({"rule": "§16 teacher head-to-head extends to 800 games while the two-sided "
+                           "95% interval still reaches the 0.47 non-inferiority threshold.",
+                   "any_extension_required": any(v["extension_required"] for v in ext.values()),
+                   "finalists": ext},
+                  open(os.path.join(ART, "teacher_extension_assessment.json"), "w"), indent=2)
+
     inc = fsum.get("I0_incumbent") or i0s
     incd = fd.get("I0_incumbent") or i0d
     promo = {}
