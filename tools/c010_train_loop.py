@@ -103,6 +103,15 @@ def main(argv=None):
                    help="short throughput probe: 2 updates, no eval, writes nothing permanent")
     a = p.parse_args(argv)
 
+    # Thread split: this parent process already imported numpy with whatever OMP_NUM_THREADS the
+    # launcher set, so its BLAS keeps that many threads for the PPO update (the expensive part).
+    # Spawned rollout workers inherit the environment we set HERE, so force them to one thread —
+    # each worker does tiny per-decision forwards where BLAS threading only causes oversubscription
+    # (this machine has 12 physical cores, so N workers x M BLAS threads thrashes fast).
+    for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS",
+               "NUMEXPR_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+        os.environ[_v] = "1"
+
     reg = json.load(open(os.path.join(ART, "experiment_registry.json")))
     arm_cfg = reg["arms"][a.arm]
     ppo_cfg = dict(arm_cfg["ppo"])
