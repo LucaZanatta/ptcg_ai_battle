@@ -208,3 +208,34 @@ class TeacherExtensionRule(unittest.TestCase):
         self.assertTrue(D.plausibly_teacher_non_inferior([0.35, 0.49]))
         gate = D.submission_gate("X", {"promotion_composite": 0.9}, 0.35, True, False, True, True)
         self.assertFalse(gate["criteria"]["teacher_non_inferiority_lb95_ge_0.47"])
+
+
+class NextStepRule(unittest.TestCase):
+    """§25 must be decided by the continuation evidence, not by a fall-through."""
+
+    def test_rejected_loop_redesigns(self):
+        self.assertEqual(D.next_step("REJECTED", True, True, False, True),
+                         "REDESIGN_FIXED_DECK_AGENT")
+
+    def test_promising_loop_that_cannot_extend_redesigns(self):
+        self.assertEqual(D.next_step("PROMISING", True, True, False, True),
+                         "REDESIGN_FIXED_DECK_AGENT")
+
+    def test_promising_loop_that_did_extend_scales(self):
+        """Asserting 'PPO cannot reliably extend I0' is wrong when an arm reached EXTENDED."""
+        self.assertEqual(D.next_step("PROMISING", True, True, False, False),
+                         "SCALE_FIXED_DECK_RL")
+
+    def test_validated_loop_below_teacher_with_headroom_scales(self):
+        self.assertEqual(D.next_step("VALIDATED", True, True, False, False),
+                         "SCALE_FIXED_DECK_RL")
+
+    def test_deck_pipeline_requires_validated_and_its_own_gate(self):
+        self.assertEqual(D.next_step("VALIDATED", True, True, True, False),
+                         "BEGIN_DECK_PIPELINE")
+        self.assertNotEqual(D.next_step("PROMISING", True, True, True, False),
+                            "BEGIN_DECK_PIPELINE")
+
+    def test_no_headroom_does_not_scale(self):
+        self.assertEqual(D.next_step("PROMISING", False, False, False, False),
+                         "REDESIGN_FIXED_DECK_AGENT")

@@ -255,9 +255,27 @@ def submission_gate(best_agent_id: str, best: Dict[str, Any], teacher_lb95: Opti
 
 
 def next_step(loop_status: str, best_below_teacher: bool, credible_headroom: bool,
-              deck_gate_met: bool) -> str:
-    if loop_status == "VALIDATED" and best_below_teacher and credible_headroom:
-        return "SCALE_FIXED_DECK_RL"
+              deck_gate_met: bool, ppo_cannot_reliably_extend: Optional[bool] = None) -> str:
+    """§25, encoded by its stated conditions rather than as a fall-through.
+
+    §25 attaches REDESIGN to "the loop is rejected or PPO cannot reliably extend I0". A blanket
+    default to REDESIGN for every non-VALIDATED status would assert that second clause even
+    when the evidence contradicts it -- e.g. a PROMISING loop that did promote a new agent
+    which beat I0 on the final panel. `ppo_cannot_reliably_extend` is therefore supplied by
+    the caller from the continuation decisions, so the evidence decides which clause fires.
+
+    Note none of §25's three options is written for a PROMISING loop that *did* extend I0;
+    that gap is resolved here in favour of the option whose stated condition is not
+    contradicted by the measurements, and is called out explicitly in the summary.
+    """
+    if ppo_cannot_reliably_extend is None:
+        # §22 makes an extended continuation a necessary condition of VALIDATED, so a
+        # validated loop cannot simultaneously have failed to extend I0.
+        ppo_cannot_reliably_extend = loop_status != "VALIDATED"
     if deck_gate_met and loop_status == "VALIDATED":
         return "BEGIN_DECK_PIPELINE"
+    if loop_status == "REJECTED" or ppo_cannot_reliably_extend:
+        return "REDESIGN_FIXED_DECK_AGENT"
+    if best_below_teacher and credible_headroom:
+        return "SCALE_FIXED_DECK_RL"
     return "REDESIGN_FIXED_DECK_AGENT"

@@ -89,7 +89,12 @@ def main(argv=None):
 
     best_below_teacher = bool(best.get("teacher_score") is not None and best["teacher_score"] < 0.5)
     headroom = status in ("VALIDATED", "PROMISING")
-    nxt = D.next_step(status, best_below_teacher, headroom, deck_gate_met=False)
+    # §25's REDESIGN clause asserts "PPO cannot reliably extend I0"; that is only supportable
+    # when neither continuation arm reached EXTENDED. A promotion alone is not enough -- the
+    # registered continuation rules are the evidence for "reliably".
+    cannot_extend = not (ec == "EXTENDED" or sc == "EXTENDED")
+    nxt = D.next_step(status, best_below_teacher, headroom, deck_gate_met=False,
+                      ppo_cannot_reliably_extend=cannot_extend)
 
     if best_id == "I0_incumbent":
         blocker = ("Neither the exact c008 R1 loop nor the minimally stabilized variant produced a "
