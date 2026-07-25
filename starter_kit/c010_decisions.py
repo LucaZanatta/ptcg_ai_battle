@@ -231,9 +231,12 @@ def continuation(seed_bests: List[Dict[str, Any]], i0: Dict[str, Any],
                                  if (s.get("teacher_score", 0) > i0["teacher_score"]
                                      and s.get("strategic_field_score", 0) > i0["strategic_field_score"])]
         decision = "NOT_EXTENDED" if (not confirmed_improvement and sig < 0.5) else "INCONCLUSIVE"
-    strong = bool(med_t is not None and med_f is not None and med_t >= 0.30 and med_f >= 0.30) or \
-        (sum(1 for s in seed_bests if (s.get("teacher_score") or 0) >= 0.30
-             and (s.get("strategic_field_score") or 0) >= 0.30) >= 2)
+    # §20 strong-continuation flag: teacher >= 30% and field >= 30%, satisfied either by the
+    # confirmed aggregate or by at least two seeds. Same inclusive-threshold semantics as the
+    # gain conditions, so the same tie tolerance applies (see GAIN_EPS).
+    strong = bool(_ge(med_t, 0.30) and _ge(med_f, 0.30)) or \
+        (sum(1 for s in seed_bests if _ge(s.get("teacher_score") or 0, 0.30)
+             and _ge(s.get("strategic_field_score") or 0, 0.30)) >= 2)
     return {"decision": decision, "label": label, "conditions": cond,
             "seeds_above_i0": [s["candidate_id"] for s in above],
             "median_teacher": med_t, "median_field": med_f,
