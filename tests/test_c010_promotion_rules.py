@@ -239,3 +239,37 @@ class NextStepRule(unittest.TestCase):
     def test_no_headroom_does_not_scale(self):
         self.assertEqual(D.next_step("PROMISING", False, False, False, False),
                          "REDESIGN_FIXED_DECK_AGENT")
+
+
+class ExactTieThresholds(unittest.TestCase):
+    """'At least N percentage points' is inclusive; representation error must not flip it."""
+
+    def test_exact_tie_counts_as_met(self):
+        self.assertTrue(D._ge(0.03, 0.03))
+
+    def test_observed_arm_c_field_gain_is_an_exact_tie(self):
+        """47/150 - 17/60 == 3/100 exactly, but the float difference lands below 0.03."""
+        med_f, i0_f = 47 / 150, 17 / 60
+        self.assertLess(0.31333333333333330 - 0.28333333333333340, 0.03)   # the stored floats
+        self.assertTrue(D._ge(med_f - i0_f, 0.03))
+
+    def test_genuine_miss_still_fails(self):
+        self.assertFalse(D._ge(0.0266666666666666, 0.03))   # Arm B's real shortfall
+        self.assertFalse(D._ge(0.04, 0.05))                 # Arm A's real shortfall
+
+    def test_tolerance_cannot_admit_a_meaningful_shortfall(self):
+        """Tolerance is orders of magnitude below the metric's 1/600 resolution."""
+        self.assertLess(D.GAIN_EPS, (1 / 600) / 1000)
+        self.assertFalse(D._ge(0.03 - 1 / 600, 0.03))
+
+    def test_none_is_never_met(self):
+        self.assertFalse(D._ge(None, 0.03))
+
+    def test_continuation_extends_on_an_exact_tie(self):
+        seeds = [{"candidate_id": f"C_{i}", "teacher_score": 0.30,
+                  "strategic_field_score": 47 / 150, "per_opponent": {}} for i in range(3)]
+        i0 = {"teacher_score": 0.165, "strategic_field_score": 17 / 60, "per_opponent": {}}
+        boots = {f"C_{i}": {"teacher": [0.1] * 100, "field": [0.1] * 100} for i in range(3)}
+        out = D.continuation(seeds, i0, boots, True, "stabilized")
+        self.assertTrue(out["conditions"]["median_field_gain_3pp"], out["conditions"])
+        self.assertEqual(out["decision"], "EXTENDED")

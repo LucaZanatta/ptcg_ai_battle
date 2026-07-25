@@ -20,6 +20,21 @@ MAJOR_REGRESSION_DELTA = 0.07
 MAJOR_REGRESSION_PROB = 0.90
 SIG_PROB = 0.90
 
+# Threshold comparisons are made on differences of means, so a gain that is mathematically
+# EQUAL to its threshold can land a few ulps below it in binary floating point. Observed in
+# this run: Arm C's median field gain is exactly 47/150 - 17/60 = 9/300 = 3/100, yet the
+# float difference evaluated to 0.029999999999999916 and failed a bare `>= 0.03`.
+# The metrics are seat-balanced means over 100-200 game panels, so their true resolution is
+# 1/600 ~= 0.0017; a tolerance of 1e-9 cannot admit a value that is genuinely below the
+# threshold, it only prevents an exact tie from being read as a miss. "At least N percentage
+# points" is inclusive, so an exact tie must count as met.
+GAIN_EPS = 1e-9
+
+
+def _ge(value, threshold, eps: float = GAIN_EPS) -> bool:
+    """`value >= threshold`, tolerant of representation error at an exact tie."""
+    return value is not None and value >= threshold - eps
+
 
 # -------------------- metric helpers --------------------
 
@@ -81,11 +96,11 @@ def nominate(screen: Dict[str, Any], branch_best: Optional[Dict[str, Any]],
             reasons.append("promotion composite exceeds branch best")
         if (screen.get("teacher_score") is not None
                 and branch_best.get("teacher_score") is not None
-                and screen["teacher_score"] - branch_best["teacher_score"] >= 0.03):
+                and _ge(screen["teacher_score"] - branch_best["teacher_score"], 0.03)):
             reasons.append("teacher score improves by >= 3pp")
         if (screen.get("strategic_field_score") is not None
                 and branch_best.get("strategic_field_score") is not None
-                and screen["strategic_field_score"] - branch_best["strategic_field_score"] >= 0.04):
+                and _ge(screen["strategic_field_score"] - branch_best["strategic_field_score"], 0.04)):
             reasons.append("strategic-field score improves by >= 4pp")
     if is_final_checkpoint:
         reasons.append("branch's final registered checkpoint")
@@ -161,8 +176,7 @@ def exact_reproducibility(seed_bests: List[Dict[str, Any]], b0: Dict[str, Any],
     cond = {
         "c1_two_seeds_above_b0_teacher": len(t_above) >= 2,
         "c2_two_seeds_above_b0_field": len(f_above) >= 2,
-        "c3_median_gain_teacher_3pp_and_field_5pp": bool(dt is not None and df is not None
-                                                         and dt >= 0.03 and df >= 0.05),
+        "c3_median_gain_teacher_3pp_and_field_5pp": bool(_ge(dt, 0.03) and _ge(df, 0.05)),
         "c4_one_median_difference_90pct": bool(sig >= SIG_PROB),
         "c5_majority_no_abomasnow_regression": len(abom_reg) <= len(seed_bests) // 2,
         "c6_reliability_passes": bool(reliability_ok),
@@ -205,8 +219,8 @@ def continuation(seed_bests: List[Dict[str, Any]], i0: Dict[str, Any],
             for s in seed_bests}
     any_reg = any(v for v in regs.values())
     cond = {"two_seeds_confirmed_above_i0": len(above) >= 2,
-            "median_teacher_gain_3pp": bool(dt is not None and dt >= 0.03),
-            "median_field_gain_3pp": bool(df is not None and df >= 0.03),
+            "median_teacher_gain_3pp": bool(_ge(dt, 0.03)),
+            "median_field_gain_3pp": bool(_ge(df, 0.03)),
             "one_gain_90pct": bool(sig >= SIG_PROB),
             "no_major_regression": not any_reg,
             "reliability_passes": bool(reliability_ok)}
