@@ -197,7 +197,15 @@ def main(argv=None):
     reg = json.load(open(os.path.join(ART, "evaluation_candidate_registry.json")))
 
     # ---------------- summaries ----------------
-    CONF = {"confirmation", "final"}
+    # Confirmation evidence ONLY -- deliberately not pooled with the final panel.
+    # Two reasons. (1) Selection stability: finalists are chosen by promotion composite, so
+    # pooling final games into the selection metric would let the final panel change which
+    # checkpoint counts as "best A", i.e. the finalist could move after its own panel ran.
+    # (2) Cross-seed comparability: §18-§20 compare seed bests across all nine seeds, but only
+    # finalists ever receive final games -- pooling would give some seeds 1,500 games and
+    # others 500 in the same comparison. The final panel decides promotion (§21); the
+    # confirmation panel decides what advances and what §18-§20 conclude.
+    CONF = {"confirmation"}
     b0s, b0d = summarize(games, "B0_v2a", CONF, rng)
     i0s, i0d = summarize(games, "I0_incumbent", CONF, rng)
     cand_ids = [c for c in reg if c not in ("B0_v2a", "I0_incumbent", "T_teacher")]
