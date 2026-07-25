@@ -49,6 +49,46 @@ def J(n, base=None):
     return json.load(open(p)) if os.path.exists(p) else {}
 
 
+def _run_specific_limitations():
+    """Limitations this run actually produced, not the pre-run boilerplate.
+
+    A follow-on contract reads STATUS.json (c010_verify_deps.py), not the prose, so anything
+    it must not assume has to be machine-readable here.
+    """
+    out = []
+    for arm in ("A", "B", "C"):
+        p = os.path.join(ART, f"arm_{arm}_summary.json")
+        if not os.path.exists(p):
+            continue
+        cov = json.load(open(p)).get("evaluation_point_coverage", {})
+        for sd, v in (cov.get("per_seed") or {}).items():
+            if v.get("missing"):
+                t = v.get("terminal_below_registered_point") or {}
+                out.append(
+                    f"Arm {arm} seed {sd} stopped at {v.get('final_games')} games and did not "
+                    f"reach its registered evaluation point(s) {v['missing']}; rollouts are "
+                    f"atomic and its budget was derived to respect the 120,000 hard maximum. "
+                    f"Its terminal checkpoint is recorded with registered_eval_point=null "
+                    f"(nearest point reached: {t.get('nearest_reached')}). Do not assume every "
+                    f"seed has a checkpoint at every registered point.")
+    re_ = os.path.join(ART, "reproducibility_extendability.json")
+    if os.path.exists(re_):
+        d = json.load(open(re_))
+        ties = []
+        for k in ("exact_reproducibility", "exact_continuation", "stabilized_continuation"):
+            g = (d.get(k) or {}).get("median_field_gain")
+            if g is not None and abs(g - 0.03) <= 1e-6:
+                ties.append(k)
+        out.append(
+            "Every arm verdict turned on the strategic-field dimension, measured at 100 games "
+            "per field opponent on the confirmation panel; the teacher dimension was cleared "
+            "comfortably in all three. Field differences of a few percentage points are near "
+            "the resolution of that panel."
+            + (f" {' and '.join(ties)} sat exactly ON the 3pp threshold (see "
+               f"failures/DEFECT_float_tie_flipped_a_registered_threshold.md)." if ties else ""))
+    return out
+
+
 def main(argv=None):
     argparse.ArgumentParser().parse_args(argv)
     final_head = _git("rev-parse", "HEAD").strip()
@@ -249,7 +289,7 @@ def main(argv=None):
             "confirmation (500) and final (1,000) panels drive decisions.",
             "Throughput is memory-bandwidth bound in pure numpy: rollout workers must run with "
             "OMP_NUM_THREADS=1 or BLAS threads inside each worker oversubscribe the machine.",
-        ],
+        ] + _run_specific_limitations(),
     }
     json.dump(status, open(os.path.join(RES, "STATUS.json"), "w"), indent=2)
 

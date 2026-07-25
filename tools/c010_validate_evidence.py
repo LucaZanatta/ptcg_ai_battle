@@ -313,6 +313,20 @@ def main(argv=None):
         rec(f"{k}_markdown_matches_json",
             os.path.exists(os.path.join(ART, art))
             and (d or "") in open(os.path.join(ART, art)).read())
+        # "At least N percentage points" is inclusive, so a gain sitting ON its threshold must
+        # be recorded as MET. Recomputes the comparison from the stored gains instead of
+        # trusting the stored flag, so reverting the tie tolerance to a bare `>=` fails here
+        # and not only in the unit tests. See
+        # failures/DEFECT_float_tie_flipped_a_registered_threshold.md
+        _dec = re_.get(k) or {}
+        _conds = _dec.get("conditions") or {}
+        _pairs = [("median_teacher_gain_3pp", _dec.get("median_teacher_gain"), 0.03),
+                  ("median_field_gain_3pp", _dec.get("median_field_gain"), 0.03),
+                  ("c3_median_gain_teacher_3pp_and_field_5pp", _dec.get("median_field_gain"), 0.05)]
+        _bad = [f"{n}: gain={g!r} vs {t} recorded NOT MET while within 1e-6 of the threshold"
+                for n, g, t in _pairs
+                if n in _conds and g is not None and abs(g - t) <= 1e-6 and not _conds[n]]
+        rec(f"{k}_threshold_ties_counted_as_met", not _bad, _bad)
     best = bas.get("best_agent")
     rec("best_agent_defaults_to_incumbent_when_nothing_qualifies",
         (best == "I0_incumbent") == (not bas.get("qualified")), f"{best} / {bas.get('qualified')}")
