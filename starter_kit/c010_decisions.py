@@ -48,6 +48,24 @@ def major_regression(cand_point: float, base_point: float, diff_boot: Sequence[f
                 and float((np.asarray(diff_boot) < -delta).mean()) >= prob)
 
 
+TEACHER_NON_INFERIORITY_LB = 0.47
+
+
+def plausibly_teacher_non_inferior(teacher_ci95: Optional[Sequence[float]],
+                                   threshold: float = TEACHER_NON_INFERIORITY_LB) -> bool:
+    """§16: extend teacher head-to-head to 800 games while non-inferiority is still live.
+
+    A finalist is *plausibly* non-inferior when the current sample cannot yet rule the claim
+    out -- i.e. the upper end of the two-sided 95% interval still reaches the threshold. If
+    the whole interval lies below it, more teacher games cannot change the verdict and the
+    extension would be wasted. Note this is deliberately weaker than the promotion gate,
+    which requires the one-sided 95% LOWER bound to reach the same threshold.
+    """
+    if not teacher_ci95 or teacher_ci95[1] is None:
+        return False
+    return bool(teacher_ci95[1] >= threshold)
+
+
 # -------------------- nomination (§17) --------------------
 
 def nominate(screen: Dict[str, Any], branch_best: Optional[Dict[str, Any]],
