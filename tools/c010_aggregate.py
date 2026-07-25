@@ -257,6 +257,18 @@ def main(argv=None):
     finalists = ["B0_v2a", "I0_incumbent"] + [
         max(arm_seed_bests(arm), key=lambda x: x["promotion_composite"])["candidate_id"]
         for arm in ("A", "B", "C") if arm_seed_bests(arm)]
+    # The final panel must be RUN before it can be summarized, so the finalist list is
+    # recorded here on every pass -- including the pass that precedes the panel itself.
+    json.dump({"rule": "§16: B0, I0, and the best confirmed checkpoint of each arm, ranked "
+                       "by promotion composite over confirmation+final games.",
+               "finalists": finalists,
+               "per_arm_best": {arm: (max(arm_seed_bests(arm),
+                                          key=lambda x: x["promotion_composite"])["candidate_id"]
+                                      if arm_seed_bests(arm) else None)
+                                for arm in ("A", "B", "C")},
+               "seed_bests": {f"{k[0]}_{k[1]}": v["candidate_id"] for k, v in seed_best.items()}},
+              open(os.path.join(ART, "final_panel_candidates.json"), "w"), indent=2)
+
     fsum, fd = {}, {}
     for cid in finalists:
         s, d = summarize(games, cid, FINAL, rng)
