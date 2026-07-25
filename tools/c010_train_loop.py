@@ -209,6 +209,10 @@ def main(argv=None):
                    "rollout_seconds": round(roll_s, 1), "update_seconds": round(up_s, 1),
                    "elapsed_seconds": round(time.time() - t_start, 1)}
             update_records.append(rec)
+            # incremental crash-safety: consolidated .jsonl.gz is written at the end, but a
+            # multi-hour run must not lose its diagnostics if it dies mid-way.
+            with open(os.path.join(outdir, "updates.partial.jsonl"), "a") as pf:
+                pf.write(json.dumps(rec) + "\n")
             emit(f"[{a.arm} s{a.seed}] g={games_done} upd={updates} ret={diag['return_mean']:+.3f} "
                  f"evIS={diag['explained_variance']:.2f} evHO={vdiag['overall_held_out']['held_out_explained_variance']:.2f} "
                  f"ent={diag['entropy']:.3f} kl={diag['approx_kl']:.4f} clip={diag['clip_frac']:.3f} "
