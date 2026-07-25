@@ -29,6 +29,37 @@ def sha_file(p):
     return h.hexdigest()
 
 
+def eval_point_coverage(arm, per_seed, ckpt_registry):
+    """Which registered §10/§11/§12 evaluation points each seed actually reached.
+
+    Checkpoints fire on `games_done >= eval_point`, so a seed whose budget was trimmed can
+    stop short of its last registered point. That produces a terminal checkpoint carrying
+    `registered_eval_point: null`, and it must be reported as a point NOT reached rather than
+    silently counted as coverage.
+    """
+    reg = json.load(open(os.path.join(ART, "experiment_registry.json")))
+    points = [p for p in reg["arms"][arm]["evaluation_points"] if p]
+    out = {"registered_points": points, "per_seed": {}}
+    for sd, s in per_seed.items():
+        reached, terminal_below = [], None
+        for meta in s.get("checkpoints", {}).values():
+            if meta.get("registered_eval_point"):
+                reached.append(meta["registered_eval_point"])
+            elif meta.get("terminal_below_registered_point"):
+                terminal_below = {"training_games": meta["training_games"],
+                                  "unreached_point": meta.get("unreached_registered_point"),
+                                  "nearest_reached": meta.get("nearest_registered_point_reached")}
+        out["per_seed"][sd] = {
+            "reached": sorted(set(reached)),
+            "missing": [p for p in points if p not in reached],
+            "terminal_below_registered_point": terminal_below,
+            "final_games": s["games_done"],
+        }
+    out["all_seeds_reached_every_registered_point"] = all(
+        not v["missing"] for v in out["per_seed"].values())
+    return out
+
+
 def consolidate(arm):
     d = os.path.join(TROOT, f"arm_{arm}")
     if not os.path.isdir(d):
@@ -98,6 +129,7 @@ def consolidate(arm):
                                              "sha256": s["initialization_sha256"]}
                             for s in per_seed.values()},
         "registered_checkpoints": sorted(ckpt_registry),
+        "evaluation_point_coverage": eval_point_coverage(arm, per_seed, ckpt_registry),
         "per_seed": per_seed,
         "files": {"training_games": os.path.relpath(gpath, _REPO),
                   "training_games_sha256": sha_file(gpath),
