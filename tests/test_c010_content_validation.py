@@ -19,9 +19,15 @@ import unittest
 _REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ART = os.path.join(_REPO, "contracts", "c010_fixed_deck_rl_loop_v2", "results", "artifacts")
 VALIDATOR = os.path.join(_REPO, "tools", "c010_validate_evidence.py")
+# The pristine-copy control only means something once the whole pipeline has produced its
+# evidence: before that, the validator legitimately fails on artifacts that do not exist yet,
+# and a corruption test could not be attributed to the corruption. Gate on the full tree.
 REQUIRED = ["experiment_registry.json", "arm_configuration_diff.json",
             "baseline_incumbent_registry.json", "dependency_verification.json",
-            "immutability_verification.json", "ppo_validation.json"]
+            "immutability_verification.json", "ppo_validation.json",
+            "evaluation_games.jsonl.gz", "evaluation_game_manifest.json",
+            "reproducibility_extendability.json", "best_agent_selection.json",
+            "next_step.json", "submission_E_validation.json"]
 
 
 def artifacts_ready():
