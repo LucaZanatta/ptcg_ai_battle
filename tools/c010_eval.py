@@ -82,8 +82,12 @@ def build_candidate_registry():
     return reg
 
 
-def panel_jobs(registry, candidates, panel, deck, rng, replicate_offset=0):
-    spec = PANELS[panel]
+def panel_jobs(registry, candidates, panel, deck, rng, replicate_offset=0,
+               teacher_only=False):
+    # §16 final panel: "If a finalist remains plausibly teacher-non-inferior, extend teacher
+    # head-to-head to 800 total games." The extension is teacher-only and carries phase
+    # "final" so it pools into the same estimate; the replicate offset keeps job_ids unique.
+    spec = {TEACHER: PANELS[panel][TEACHER]} if teacher_only else PANELS[panel]
     jobs = []
     for cid in candidates:
         cand = registry[cid]
@@ -185,6 +189,8 @@ def main(argv=None):
     p.add_argument("--candidates", required=True, help="comma-separated candidate ids, or 'ALL_NEW'")
     p.add_argument("--nproc", type=int, default=16)
     p.add_argument("--replicate-offset", type=int, default=0)
+    p.add_argument("--teacher-extension", action="store_true",
+                   help="teacher-only extension of an existing panel (§16, 400 -> 800 games)")
     a = p.parse_args(argv)
     os.makedirs(ART, exist_ok=True); os.makedirs(LOGD, exist_ok=True)
     registry = build_candidate_registry()
@@ -208,7 +214,11 @@ def main(argv=None):
         return 0
 
     rng = np.random.default_rng(abs(hash((a.panel, tuple(cands)))) % (2 ** 32))
-    jobs = panel_jobs(registry, cands, a.panel, deck, rng, a.replicate_offset)
+    off = a.replicate_offset
+    if a.teacher_extension and off == 0:
+        off = PANELS[a.panel][TEACHER]   # start past the replicates the base panel used
+    jobs = panel_jobs(registry, cands, a.panel, deck, rng, off,
+                      teacher_only=a.teacher_extension)
     existing_ids = {g["job_id"] for g in existing}
     dup = [j["job_id"] for j in jobs if j["job_id"] in existing_ids]
     assert not dup, f"job_id collision with existing evidence: {dup[:3]}"

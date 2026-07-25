@@ -185,3 +185,26 @@ class StatusAndGates(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TeacherExtensionRule(unittest.TestCase):
+    """§16: the 800-game teacher extension fires only while non-inferiority is still live."""
+
+    def test_extends_when_interval_still_reaches_threshold(self):
+        self.assertTrue(D.plausibly_teacher_non_inferior([0.40, 0.50]))
+
+    def test_extends_at_exact_threshold(self):
+        self.assertTrue(D.plausibly_teacher_non_inferior([0.30, 0.47]))
+
+    def test_does_not_extend_when_ruled_out(self):
+        self.assertFalse(D.plausibly_teacher_non_inferior([0.20, 0.34]))
+
+    def test_missing_interval_does_not_extend(self):
+        self.assertFalse(D.plausibly_teacher_non_inferior(None))
+        self.assertFalse(D.plausibly_teacher_non_inferior([0.2, None]))
+
+    def test_weaker_than_the_promotion_gate(self):
+        """A finalist can warrant extension yet still fail the one-sided LB>=0.47 gate."""
+        self.assertTrue(D.plausibly_teacher_non_inferior([0.35, 0.49]))
+        gate = D.submission_gate("X", {"promotion_composite": 0.9}, 0.35, True, False, True, True)
+        self.assertFalse(gate["criteria"]["teacher_non_inferiority_lb95_ge_0.47"])
