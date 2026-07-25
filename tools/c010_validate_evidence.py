@@ -265,8 +265,12 @@ def main(argv=None):
         re_ = J("reproducibility_extendability.json") or {}
         bad_conf = []
         for cid, sm in (re_.get("seed_best") or {}).items():
+            # Recompute over the panel set the artifact itself declares, not an assumed one:
+            # seed bests are selected from confirmation evidence only (see c010_aggregate),
+            # and a hardcoded panel set here would silently drift from that choice.
+            panels = set(sm.get("panels") or ["confirmation"])
             for opp, m in (sm.get("per_opponent") or {}).items():
-                ss = seat_scores(games, sm["candidate_id"], opp, {"confirmation", "final"})
+                ss = seat_scores(games, sm["candidate_id"], opp, panels)
                 if ss[0] or ss[1]:
                     exp_pt = ns.seat_balanced_point(ss[0], ss[1])
                     if abs(m["point"] - exp_pt) > POINT_TOL:
