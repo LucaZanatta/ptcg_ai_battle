@@ -41,6 +41,27 @@ NEG = 1e30
 POOL_NEG = 1e9
 
 
+def enable_determinism(threads: int = 1):
+    """§9.2 'deterministic FP32'.
+
+    Multi-threaded CPU float32 reductions do not fix their accumulation order, so two
+    bit-identical runs of the same update were measured to diverge by ~2.6e-06 in the weights.
+    That is ordinary floating-point nondeterminism, not a defect -- but parity and
+    trainer-state round-trip evidence is only meaningful when the run is reproducible, so
+    every parity harness pins the thread count and asks cuBLAS for deterministic kernels.
+    Scale training does NOT need this and may use all threads.
+    """
+    torch.manual_seed(0)
+    torch.set_num_threads(threads)
+    torch.use_deterministic_algorithms(True, warn_only=True)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+    return {"torch_threads": torch.get_num_threads(),
+            "deterministic_algorithms": True,
+            "cudnn_deterministic": True}
+
+
 class TorchPolicy(nn.Module):
     """ModelV2 trunk (V2-A) + value head + global STOP logit."""
 
