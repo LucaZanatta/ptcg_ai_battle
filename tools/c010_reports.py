@@ -180,7 +180,13 @@ def main(argv=None):
                   f"{val.get('n_checks')} content checks, {val.get('n_failed')} failed",
                   bool(val.get("all_ok"))),
         "AC-15": (["SUBMISSION_E_DECISION.md", "submission_E_validation.json",
-                   "KAGGLE_SUBMIT_COMMAND.txt", "NEXT_STEP.md", "next_step.json"],
+                   "KAGGLE_SUBMIT_COMMAND.txt", "KAGGLE_PROMOTION_DECISION.md",
+                   "kaggle_submission_status.json", "kaggle_submission_history.jsonl",
+                   "kaggle_submissions_after_submit.csv",
+                   "kaggle_teacher_agent_comparison.json",
+                   "NEXT_STEP.md", "next_step.json",
+                   "../test_logs/kaggle_submission.txt",
+                   "../test_logs/kaggle_submission_retrieval.txt"],
                   "submission gate applied and exactly one next step + blocker stated",
                   bool(sub.get("submission_E")) and bool(nxt.get("next_step"))
                   and (os.path.exists(os.path.join(ART, "submission_E_fixed_deck_rl_v2.tar.gz"))
