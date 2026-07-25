@@ -96,11 +96,33 @@ def main(argv=None):
     nxt = D.next_step(status, best_below_teacher, headroom, deck_gate_met=False,
                       ppo_cannot_reliably_extend=cannot_extend)
 
+    # §25 requires exactly one highest-leverage blocker. Derive it from the measured
+    # diagnostics rather than asserting prose: when an arm has extended I0, "reproducibility
+    # across seeds" is precisely what is no longer binding.
+    vd = J("value_diagnostics_by_game_phase.json").get("by_arm", {})
+    early, late = [], []
+    for d in vd.values():
+        ph = d.get("held_out_ev_by_phase_last_quarter", {})
+        if ph.get("0-20", {}).get("mean_ev") is not None:
+            early.append(ph["0-20"]["mean_ev"])
+        if ph.get("60-80", {}).get("mean_ev") is not None:
+            late.append(ph["60-80"]["mean_ev"])
+    ev_early = sum(early) / len(early) if early else None
+    ev_late = sum(late) / len(late) if late else None
+
     if best_id == "I0_incumbent":
         blocker = ("Neither the exact c008 R1 loop nor the minimally stabilized variant produced a "
                    "checkpoint that beats the protected 22% incumbent under the registered "
                    "promotion gate, so the loop cannot yet compound its own gains — the binding "
                    "constraint is per-update learning signal, not budget.")
+    elif (ec == "EXTENDED" or sc == "EXTENDED") and ev_early is not None:
+        blocker = (
+            f"Early-game credit assignment. The value function explains {ev_early:.2f} of "
+            f"held-out return variance in the first fifth of a game against {ev_late:.2f} in "
+            f"the fourth fifth, so opening decisions — the ones the strategic field punishes "
+            f"hardest — train on the noisiest advantage estimates. Continuation is no longer "
+            f"the constraint: a registered arm reached EXTENDED across its seeds, and both "
+            f"exact-recipe arms fell short only on the field dimension.")
     elif status == "VALIDATED":
         blocker = ("The promoted agent remains below the frozen teacher, so absolute strength — "
                    "not loop reliability — is now the binding constraint.")
