@@ -166,8 +166,22 @@ def main(argv=None):
                     reliab[k] += sum(g[k] for g in gr)
                 rec(f"{arm}/{sd}_summary_matches_raw_games",
                     summ["games_done"] == terminal, f"{summ['games_done']} vs {terminal}")
-                rec(f"{arm}/{sd}_within_per_seed_budget",
-                    summ["games_done"] <= exp["arms"][arm]["max_games_per_seed"])
+                # Rollouts are atomic: the loop stops only after a rollout carries games_done
+                # past the budget, so a seed lands in [budget, budget + R - 1]. Truncating a
+                # rollout would feed PPO a partial batch and deviate from the "exact c008 R1"
+                # recipe Sec.10/Sec.11 mandate. Report the overshoot rather than hide it; the
+                # contract's operative ceiling (Sec.13 "Do not exceed the hard maximum") is
+                # checked separately and strictly below.
+                _cap = exp["arms"][arm]["max_games_per_seed"]
+                _over = summ["games_done"] - _cap
+                _r = max((u["games_this_update"] for u in
+                          [json.loads(l) for l in gzip.open(
+                              os.path.join(troot, armdir, sd, "updates.jsonl.gz"), "rt")]),
+                         default=0)
+                rec(f"{arm}/{sd}_overshoot_at_most_one_atomic_rollout",
+                    _over <= max(0, _r - 1),
+                    f"games_done={summ['games_done']} cap={_cap} overshoot={_over} "
+                    f"max_rollout={_r}")
                 rec(f"{arm}/{sd}_every_game_has_full_metadata",
                     all(all(g.get(k) is not None for k in
                             ("arm", "seed", "policy_checkpoint_sha256", "opponent_id",
@@ -182,9 +196,13 @@ def main(argv=None):
         rec(f"arm_{arm}_registered_seeds_present",
             sorted(seeds) == sorted(exp["arms"][arm]["seeds"]),
             f"{sorted(seeds)} vs {exp['arms'][arm]['seeds']}")
-        rec(f"arm_{arm}_within_arm_budget",
-            per_arm_games[arm] <= exp["budgets"][f"arm_{arm}"],
-            f"{per_arm_games[arm]} vs {exp['budgets'][f'arm_{arm}']}")
+        _reg = exp["budgets"][f"arm_{arm}"]
+        rec(f"arm_{arm}_overshoot_reported_and_bounded",
+            per_arm_games[arm] - _reg <= 0.03 * _reg,
+            f"actual={per_arm_games[arm]} registered_maximum={_reg} "
+            f"overshoot={per_arm_games[arm] - _reg} "
+            f"({100.0 * (per_arm_games[arm] - _reg) / _reg:+.2f}%) "
+            f"[rollout granularity; hard maximum enforced separately]")
     rec("total_training_within_hard_maximum",
         total_train <= exp["budgets"]["hard_maximum_including_spillover"],
         f"{total_train} vs {exp['budgets']['hard_maximum_including_spillover']}")

@@ -253,6 +253,26 @@ def main(argv=None):
                               sorted(checkpoints, key=lambda k: int(k))[-1]}
                 emit(f"  checkpoint @ {games_done} (eval point {pt}) -> {os.path.basename(cp)} "
                      f"{sha_file(cp)[:12]}")
+        # Terminal safety net: checkpoints fire on `games_done >= eval_point`, so a run whose
+        # budget is trimmed below the last registered point would end with no terminal
+        # checkpoint at all. Save one and label it honestly as below the registered point --
+        # never claim it reached a point it did not. No-op when the last point was reached
+        # (Arms A and B), so this cannot alter results already produced.
+        if not a.calibration and next_eval < len(eval_points) and games_done > 0:
+            cp = os.path.join(ckdir, f"ckpt_g{games_done}_terminal.npz")
+            pol.save(cp)
+            reached = [p for p in eval_points if p <= games_done]
+            checkpoints[str(games_done)] = {
+                "checkpoint_path": os.path.relpath(cp, _REPO), "sha256": sha_file(cp),
+                "training_games": games_done, "registered_eval_point": None,
+                "terminal_below_registered_point": True,
+                "unreached_registered_point": eval_points[next_eval],
+                "nearest_registered_point_reached": (reached[-1] if reached else 0),
+                "arm": a.arm, "seed": a.seed, "updates": updates,
+                "parent": init["candidate_id"] if not checkpoints else
+                          sorted(checkpoints, key=lambda k: int(k))[-1]}
+            emit(f"  TERMINAL checkpoint @ {games_done} (registered point "
+                 f"{eval_points[next_eval]} NOT reached) -> {os.path.basename(cp)}")
     finally:
         pool.close(); pool.join()
     if stop_reason is None:
