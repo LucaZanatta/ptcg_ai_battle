@@ -77,9 +77,15 @@ def build_candidate_registry():
                         "checkpoint_path": os.path.relpath(cc.TEACHER_MAIN, _REPO),
                         "checkpoint_sha256": tsha, "training_games": None, "protected": True,
                         "registered_sha256_c010": base.get("T", {}).get("checkpoint_sha256")}
+    # c010's registry records kinds in its TRAINING-initialisation vocabulary
+    # ("rl_ckpt_from_v2a"); cg.c009_eval's loader speaks the EVALUATION vocabulary
+    # ("v2a_init"). Copying the string verbatim makes every B0 game fail to build an agent,
+    # so the kind is translated rather than passed through.
+    EVAL_KIND = {"rl_ckpt_from_v2a": "v2a_init", "v2a_init": "v2a_init", "rl_ckpt": "rl_ckpt"}
     for key, cid, arm in (("B0", "B0_v2a", "B0"), ("I0", "I0_incumbent", "I0")):
         b = base[key]
-        reg[cid] = {"candidate_id": cid, "kind": b["kind"] if key == "B0" else "rl_ckpt",
+        reg[cid] = {"candidate_id": cid,
+                    "kind": EVAL_KIND.get(b.get("kind"), "rl_ckpt") if key == "B0" else "rl_ckpt",
                     "arm": arm, "seed": b.get("seed"),
                     "checkpoint_path": b["checkpoint_path"],
                     "checkpoint_sha256": b["checkpoint_sha256"],
