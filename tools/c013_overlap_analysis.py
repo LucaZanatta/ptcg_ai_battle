@@ -138,12 +138,26 @@ def _permuted(obs, sel, order: List[int]):
     return Struct(**{**dict(obs), "select": s2})
 
 
-def _classify(agent, obs, sel, rng) -> Dict[str, Any]:
-    """ERROR / INVALID / POSITIONAL / CONTENT_DRIVEN plus the chosen content."""
+def _classify(clean, probe, obs, sel, rng) -> Dict[str, Any]:
+    """ERROR / INVALID / UNSTABLE / POSITIONAL / CONTENT_DRIVEN plus the chosen content.
+
+    Two persistent instances per policy, because the permutation test is itself intrusive:
+    these rule agents carry turn counters and attack plans, so the K extra probe queries would
+    advance the state of the very instance whose decision is being recorded.
+
+      `clean` is queried EXACTLY ONCE per decision and supplies the recorded action;
+      `probe` receives the same decision sequence PLUS the permuted queries, and supplies only
+      the applicability class.
+
+    Both instances see the same states in the same order, so probe's verdict transfers to
+    clean's decision -- but that transfer is verified rather than assumed: if probe's own
+    unpermuted answer disagrees with clean's, the extra queries changed behaviour and the state
+    is recorded as UNSTABLE and excluded from every measure.
+    """
     opts, lo, hi, _ = _sel_fields(sel)
     n = len(opts)
     try:
-        base = [int(i) for i in agent(obs)]
+        base = [int(i) for i in clean(obs)]
     except Exception as e:  # noqa: BLE001
         return {"class": "ERROR", "detail": f"{type(e).__name__}: {e}"}
     if not all(0 <= i < n for i in base) or not (lo <= len(base) <= hi) \
@@ -151,11 +165,20 @@ def _classify(agent, obs, sel, rng) -> Dict[str, Any]:
         return {"class": "INVALID", "detail": f"returned {base} n={n} lo={lo} hi={hi}"}
 
     base_content = sorted(_opt_fingerprint(opts[i]) for i in base)
+    try:
+        pbase = [int(i) for i in probe(obs)]
+    except Exception as e:  # noqa: BLE001
+        return {"class": "ERROR", "detail": f"probe {type(e).__name__}: {e}"}
+    if not all(0 <= i < n for i in pbase) or \
+            sorted(_opt_fingerprint(opts[i]) for i in pbase) != base_content:
+        return {"class": "UNSTABLE", "chosen": base, "chosen_content": base_content,
+                "detail": "probe instance diverged from clean instance"}
+
     invariant = True
     for _ in range(PERM_K):
-        order = list(rng.permutation(n))
+        order = [int(i) for i in rng.permutation(n)]
         try:
-            perm = [int(i) for i in agent(_permuted(obs, sel, order))]
+            perm = [int(i) for i in probe(_permuted(obs, sel, order))]
         except Exception:  # noqa: BLE001
             invariant = False
             break
@@ -170,38 +193,64 @@ def _classify(agent, obs, sel, rng) -> Dict[str, Any]:
             "chosen": base, "chosen_content": base_content}
 
 
-def _action_semantics(opts: List[Any], chosen: List[int], ctx: Any) -> Dict[str, Any]:
+def _opt_decode(obs, o) -> Dict[str, Any]:
+    """Decode ONE option the way the engine itself encodes it.
+
+    `cg.policy_features.featurize_options` is the project's canonical reading of an option:
+    the `OptionType` enum gives the action type outright, and the referenced card is resolved
+    through `get_card` from (area, index, playerIndex). Using that rather than inferring a type
+    from card attributes means the action-type measure is the engine's own classification, not
+    a heuristic of mine that could drift between policies.
+    """
+    from cg.api import AreaType, OptionType
+    from cg.policy_features import get_card, _card_id
+    cur = obs.get("current") or {}
+    yi = cur.get("yourIndex", 0) or 0
+    t = o.get("type")
+    area, idx = o.get("area"), o.get("index")
+    pidx, ipa = o.get("playerIndex"), o.get("inPlayArea")
+    try:
+        if t == int(OptionType.PLAY):
+            c1 = get_card(obs, int(AreaType.HAND), idx, yi)
+        elif area is not None and idx is not None:
+            c1 = get_card(obs, area, idx, pidx if pidx is not None else yi)
+        else:
+            c1 = None
+    except Exception:  # noqa: BLE001
+        c1 = None
+    c2 = None
+    try:
+        if ipa is not None and o.get("inPlayIndex") is not None:
+            c2 = get_card(obs, ipa, o.get("inPlayIndex"), yi)
+    except Exception:  # noqa: BLE001
+        c2 = None
+    name = {int(x): x.name for x in OptionType}.get(t, str(t))
+    return {"option_type": name, "card_id": _card_id(c1), "target_card_id": _card_id(c2),
+            "area": area, "in_play_area": ipa, "attack_id": o.get("attackId"),
+            "number": o.get("number"), "player_index": pidx}
+
+
+def _action_semantics(obs, opts: List[Any], chosen: List[int]) -> Dict[str, Any]:
     """Interpretable per-decision descriptors used by the registered measures."""
-    import c013_semantic_serializer as ss
-    picked = [opts[i] for i in chosen] if chosen else []
-
-    def g(o, *keys):
-        for k in keys:
-            try:
-                v = o[k] if isinstance(o, dict) else getattr(o, k, None)
-            except Exception:  # noqa: BLE001
-                v = None
-            if v not in (None, ""):
-                return v
-        return None
-
-    types, targets, cards = [], [], []
-    for o in picked:
-        prim = {"id": g(o, "id", "cardId", "card"), "type": g(o, "type", "kind", "action")}
-        targ = {"id": g(o, "target", "targetId", "to")}
-        types.append(ss.classify_action(prim, targ, str(ctx or ""), 0, len(opts)))
-        targets.append(str(targ["id"]))
-        cards.append(str(prim["id"]))
-    ctx_s = str(ctx or "").lower()
+    from cg.api import AreaType
+    dec_all = [_opt_decode(obs, o) for o in opts]
+    dec = [dec_all[i] for i in chosen] if chosen else []
+    types = sorted(d["option_type"] for d in dec)
+    legal_types = {d["option_type"] for d in dec_all}
+    ENERGY_T = {"ENERGY", "ENERGY_CARD", "ATTACH"}
     return {
-        "action_types": sorted(types),
-        "targets": sorted(targets),
-        "cards": sorted(cards),
-        "is_energy": ("energy" in ctx_s) or any("ENERGY" in t for t in types),
-        "is_target": any("TARGET" in t or "ATTACK" in t for t in types),
-        "is_promotion": ("promote" in ctx_s) or any("PROMOTE" in t for t in types),
-        "is_attack_or_pass": any(("ATTACK" in t) or ("PASS" in t) for t in types),
-        "attacked": any("ATTACK" in t for t in types),
+        "action_types": types,
+        "targets": sorted(str(d["target_card_id"]) for d in dec),
+        "cards": sorted(str(d["card_id"]) for d in dec),
+        "attack_ids": sorted(str(d["attack_id"]) for d in dec),
+        # subset predicates are properties of the DECISION (legal set), so every policy on a
+        # given state is judged on the same subset membership
+        "is_energy": bool(legal_types & ENERGY_T),
+        "is_target": any(d["target_card_id"] for d in dec_all),
+        "is_promotion": bool(legal_types <= {"CARD", "PLAY"}) and any(
+            d["area"] in (int(AreaType.BENCH), int(AreaType.ACTIVE)) for d in dec_all),
+        "is_attack_or_pass": ("ATTACK" in legal_types and "END" in legal_types),
+        "attacked": any(d["option_type"] == "ATTACK" for d in dec),
     }
 
 
@@ -216,9 +265,14 @@ def shadow_game(acting_id: str, opponent_id: str, game_id: str, shadow_ids: List
 
     act = T.make_fresh(acting_id, SRC)
     opp = T.make_fresh(opponent_id, SRC)
-    shadows: Dict[str, Any] = {s: T.make_fresh(s, SRC) for s in shadow_ids}
+    # every policy -- including the teacher -- is an OBSERVER here, on its own pair of
+    # instances, so no policy is treated differently from the others
+    clean: Dict[str, Any] = {s: T.make_fresh(s, SRC) for s in shadow_ids}
+    probe: Dict[str, Any] = {s: T.make_fresh(s, SRC) for s in shadow_ids}
+    deck = T.read_deck(TEACHER, SRC)          # the frozen Dragapult deck (§21)
     for cid, path in neural.items():
-        shadows[cid] = _neural_callable(path)
+        clean[cid] = _neural_callable(path, deck, rng_seed)
+        probe[cid] = _neural_callable(path, deck, rng_seed)
 
     records: List[Dict[str, Any]] = []
     step = {"i": 0}
@@ -235,15 +289,11 @@ def shadow_game(acting_id: str, opponent_id: str, game_id: str, shadow_ids: List
                    "min_count": lo, "max_count": hi, "context": str(ctx),
                    "acting_policy": acting_id, "opponent_policy": opponent_id,
                    "policies": {}}
-            for pid, ag in shadows.items():
-                c = _classify(ag, obs, sel, rng)
+            for pid in clean:
+                c = _classify(clean[pid], probe[pid], obs, sel, rng)
                 if c["class"] == "CONTENT_DRIVEN":
-                    c["semantics"] = _action_semantics(opts, c["chosen"], ctx)
+                    c["semantics"] = _action_semantics(obs, opts, c["chosen"])
                 rec["policies"][pid] = c
-            # the acting policy is itself one of the queried policies
-            c = _classify(shadows[acting_id], obs, sel, rng) if acting_id in shadows else None
-            if c is not None:
-                rec["policies"][acting_id] = c
             records.append(rec)
         return act(obs)
 
@@ -262,13 +312,13 @@ def shadow_game(acting_id: str, opponent_id: str, game_id: str, shadow_ids: List
     return records
 
 
-def _neural_callable(ckpt_path: str):
-    """A neural policy exposed at the rule-agent interface, so it is queried identically."""
+def _neural_callable(ckpt_path: str, deck: List[int], seed: int):
+    """A neural policy at the same callable interface, built exactly as c009 builds it
+    (greedy, no collection) so its answers are the ones the evaluator would have scored."""
     from cg import rl_policy as rlp
-    from cg.student_agent import RLAgent
-    pol = rlp.RLPolicy.load(ckpt_path)
-    ag = RLAgent(pol, greedy=True)
-    return ag
+    from cg.rl_env import RLAgent
+    pol = rlp.RLPolicy.load(os.path.join(_REPO, ckpt_path))
+    return RLAgent(pol, list(deck), np.random.default_rng(seed), collect=False, greedy=True)
 
 
 # --------------------------------------------------------------------------------------
