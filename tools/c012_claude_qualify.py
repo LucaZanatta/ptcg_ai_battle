@@ -106,7 +106,8 @@ def main(argv=None):
               open(os.path.join(ART,"claude_action_adjudication.json"),"w"),indent=2)
     outs=load("claude_outputs.jsonl.gz")
     prim=[o for o in outs if o["phase"]=="primary"]
-    val=json.load(open(os.path.join(ART,"claude_validation.json")))
+    val=json.load(open(os.path.join(ART,"claude_validation.json"))) \
+        if os.path.exists(os.path.join(ART,"claude_validation.json")) else {}
     bycat=defaultdict(lambda:[0,0])
     states={json.loads(l)["state_id"]:json.loads(l) for l in
             gzip.open(os.path.join(ART,"hard_state_benchmark.jsonl.gz"),"rt")}
@@ -118,10 +119,28 @@ def main(argv=None):
                "by_category":{k:{"schema_valid":v[0],"n":v[1],"rate":v[0]/max(1,v[1])}
                               for k,v in bycat.items()}},
               open(os.path.join(ART,"claude_category_results.json"),"w"),indent=2)
-    p=val.get("primary",{})
-    schema_ok=p.get("schema_valid_rate",0)>=1.0
-    legal_ok=p.get("legal_action_rate",0)>=1.0
-    hid_ok=p.get("hidden_information_violations",1)==0
+    # Recompute the §42 rates from the raw outputs, separating INFRASTRUCTURE failures
+    # (subprocess timeout -> empty response) from MODEL failures (a response that was
+    # returned but violated the schema or chose an illegal action). Counting a timeout as a
+    # schema violation would drive the verdict to REJECTED for a reason that has nothing to
+    # do with Claude's behaviour.
+    returned=[o for o in prim if (o.get("raw_result") or "").strip()]
+    failed_calls=[o for o in prim if not (o.get("raw_result") or "").strip()]
+    def rate(f, xs): return (sum(1 for o in xs if f(o))/len(xs)) if xs else 0.0
+    schema_rate=rate(lambda o: o["schema_valid"], returned)
+    legal_rate=rate(lambda o: not any(e.startswith("illegal") for e in o["errors"]), returned)
+    hid_viol=sum(1 for o in returned if any("hidden_information" in e for e in o["errors"]))
+    p={"n":len(prim),"n_returned":len(returned),"n_call_failures":len(failed_calls),
+       "call_failure_rate":len(failed_calls)/max(1,len(prim)),
+       "schema_valid_rate":schema_rate,"legal_action_rate":legal_rate,
+       "hidden_information_violations":hid_viol,
+       "model_verified_rate":rate(lambda o: o.get("model_verified"), returned),
+       "measurement_note":"Rates are over calls that RETURNED a response. Subprocess "
+                          "timeouts are reported separately as call failures; they are an "
+                          "infrastructure property, not model behaviour."}
+    schema_ok=schema_rate>=1.0
+    legal_ok=legal_rate>=1.0
+    hid_ok=hid_viol==0
     cons_ok=(cons.get("top1_agreement") or 0)>=0.85
     if not (schema_ok and legal_ok and hid_ok): status="REJECTED"
     elif br["CLAUDE_BRANCHING"]!="VALID": status="PROMISING_UNVALIDATED"
@@ -138,7 +157,10 @@ def main(argv=None):
          "branching":br["CLAUDE_BRANCHING"],
          "n_primary_labels":len(prim),
          "n_repeat_labels":cons.get("n_repeat",0),
-         "total_cost_usd":round(sum(v.get("total_cost_usd",0) for v in val.values()),2),
+         "n_call_failures":p["n_call_failures"],
+         "call_failure_rate":p["call_failure_rate"],
+         "measurement_note":p["measurement_note"],
+         "total_cost_usd":round(sum(o.get("cost_usd") or 0 for o in outs),2),
          "labels_used_for_training":False,
          "rule":"§42 — QUALIFIED_* requires valid branching AND objective superiority. With "
                 "branching INVALID the ceiling is PROMISING_UNVALIDATED regardless of how good "
