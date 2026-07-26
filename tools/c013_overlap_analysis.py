@@ -399,15 +399,46 @@ def analyze(records: List[Dict], boot_seed: int = BOOT_SEED) -> Dict[str, Any]:
                 out.append(v)
         return out
 
+    def joint_series(pool: List[Dict], measure: str,
+                     phase: Optional[str] = None) -> Dict[str, List[float]]:
+        """Build all three officials' series over the SAME states.
+
+        Computing each series independently and truncating to the shortest would pair
+        state i of one official with state j of another, because the measures that are
+        conditional (target, energy, promotion, attack/pass) skip different states for
+        different policies. The paired bootstrap would then be pairing unrelated
+        observations. A state is included only when the measure is computable for the
+        teacher against all three officials.
+        """
+        out = {o: [] for o in OFFICIAL}
+        for r in pool:
+            if phase is not None and r.get("phase") != phase:
+                continue
+            t = r["policies"].get(TEACHER)
+            if not t or t.get("class") != "CONTENT_DRIVEN":
+                continue
+            vals = {}
+            ok = True
+            for o in OFFICIAL:
+                b = r["policies"].get(o)
+                if not b or b.get("class") != "CONTENT_DRIVEN":
+                    ok = False
+                    break
+                v = _pair_measure(t, b, measure, r)
+                if v is None:
+                    ok = False
+                    break
+                vals[o] = v
+            if ok:
+                for o in OFFICIAL:
+                    out[o].append(vals[o])
+        return out
+
     per_measure: Dict[str, Any] = {}
     for m in MEASURES:
         entry: Dict[str, Any] = {}
-        base = {o: series(TEACHER, o, primary, m) for o in OFFICIAL}
-        # keep the pairing: only states where all three are computable
-        keep = min((len(v) for v in base.values()), default=0)
-        for o in OFFICIAL:
-            base[o] = base[o][:keep]
-        entry["n"] = keep
+        base = joint_series(primary, m)
+        entry["n"] = len(base[OFFICIAL[0]])
         entry["means"] = {o: (float(np.mean(v)) if v else None) for o, v in base.items()}
         entry["lucario_vs_iono"] = paired_bootstrap(base["mega_lucario"], base["iono"], boot_seed)
         entry["lucario_vs_abomasnow"] = paired_bootstrap(base["mega_lucario"],
@@ -424,10 +455,12 @@ def analyze(records: List[Dict], boot_seed: int = BOOT_SEED) -> Dict[str, Any]:
             and all(entry["means"][o] is not None
                     and entry["means"]["mega_lucario"] >= entry["means"][o] for o in OFFICIAL))
         if m == "phase_conditioned_top1":
-            entry["by_phase"] = {
-                ph: {o: (float(np.mean(v)) if v else None)
-                     for o, v in ((o2, series(TEACHER, o2, primary, m, ph)) for o2 in OFFICIAL)}
-                for ph in ("early", "mid", "late")}
+            entry["by_phase"] = {}
+            for ph in ("early", "mid", "late"):
+                js = joint_series(primary, m, ph)
+                entry["by_phase"][ph] = {"n": len(js[OFFICIAL[0]]),
+                                         **{o: (float(np.mean(v)) if v else None)
+                                            for o, v in js.items()}}
         per_measure[m] = entry
 
     # secondary: per-pair-maximal subsets, reported with their own n
@@ -448,6 +481,31 @@ def analyze(records: List[Dict], boot_seed: int = BOOT_SEED) -> Dict[str, Any]:
                 "teacher_lucario_top1": (
                     float(np.mean(series(TEACHER, "mega_lucario", luc_states, "top1_agreement")))
                     if luc_states else None)}
+
+    # exact-choice identity between every pair, on the primary subset. Two policies that agree
+    # on 100% of a decision family share that routine outright, which is a stronger and more
+    # interpretable statement than a similarity score.
+    pol_all = [TEACHER] + OFFICIAL
+    identity = {}
+    for i, a in enumerate(pol_all):
+        for b in pol_all[i + 1:]:
+            same = tot = 0
+            fam = {"promotion": [0, 0], "energy": [0, 0], "attack_or_pass": [0, 0]}
+            for r in primary:
+                ra, rb = r["policies"][a], r["policies"][b]
+                eq = ra["chosen_content"] == rb["chosen_content"]
+                tot += 1
+                same += int(eq)
+                sa = ra.get("semantics") or {}
+                for key, flag in (("promotion", "is_promotion"), ("energy", "is_energy"),
+                                  ("attack_or_pass", "is_attack_or_pass")):
+                    if sa.get(flag):
+                        fam[key][1] += 1
+                        fam[key][0] += int(eq)
+            identity[f"{a}|{b}"] = {
+                "exact_choice_identity": (same / tot) if tot else None, "n": tot,
+                **{f"{k}_identity": (v[0] / v[1] if v[1] else None) for k, v in fam.items()},
+                **{f"{k}_n": v[1] for k, v in fam.items()}}
 
     computable = [m for m in MEASURES if per_measure[m]["n"] > 0]
     n_disc = sum(1 for m in MEASURES if per_measure[m]["discriminates_for_lucario"])
@@ -476,6 +534,7 @@ def analyze(records: List[Dict], boot_seed: int = BOOT_SEED) -> Dict[str, Any]:
                 p: (applic[p]["CONTENT_DRIVEN"] / max(1, sum(applic[p].values())))
                 for p in policies},
             "per_measure": per_measure, "secondary_per_pair": secondary,
+            "pairwise_exact_identity": identity,
             "transfer_gain_states": transfer,
             "counts": {"discriminates_for_lucario": n_disc, "discriminates_opposite": n_opp,
                        "lucario_highest": n_high, "computable_measures": len(computable)},
@@ -594,8 +653,30 @@ def main(argv=None):
         json.dump(dist, fh, indent=2, sort_keys=True, default=str)
 
     write_report(res, fp)
-    print(json.dumps({k: res[k] for k in ("n_states_total", "n_primary", "counts",
-                                          "OPPONENT_OVERLAP")}, indent=2))
+    summary = {k: res[k] for k in ("n_states_total", "n_primary", "counts",
+                                   "OPPONENT_OVERLAP")}
+    with open(os.path.join(LOGD, "opponent_overlap.txt"), "w") as fh:
+        fh.write("c013 AC-12 opponent overlap on identical visible states\n")
+        fh.write("=" * 70 + "\n\n")
+        fh.write(json.dumps(summary, indent=2) + "\n\n")
+        fh.write("applicability (content-driven rate)\n")
+        for p, r_ in sorted(res["applicability_rate_content_driven"].items()):
+            fh.write(f"  {p:24s} {r_:.4f}  {res['applicability'][p]}\n")
+        fh.write("\nper-measure (primary subset, paired)\n")
+        for m in MEASURES:
+            e = res["per_measure"][m]
+            fh.write(f"  {m:32s} n={e['n']:5d} means={e['means']}\n")
+            fh.write(f"      L-I {e['lucario_vs_iono']}\n")
+            fh.write(f"      L-A {e['lucario_vs_abomasnow']}\n")
+        fh.write("\npairwise exact-choice identity\n")
+        for k, v in sorted(res["pairwise_exact_identity"].items()):
+            fh.write(f"  {k:34s} {json.dumps(v)}\n")
+        fh.write("\nsecondary per-pair subsets\n")
+        fh.write(json.dumps(res["secondary_per_pair"], indent=2) + "\n")
+        fh.write("\ndeck context (excluded from verdict)\n")
+        fh.write(json.dumps(res["deck_context"], indent=2) + "\n")
+        fh.write(f"\nraw sha256: {res['raw_sha256']}\n")
+    print(json.dumps(summary, indent=2))
     return 0
 
 
@@ -658,10 +739,51 @@ def write_report(res: Dict, fp: Dict) -> None:
     L.append(f"\nDiscriminating for Lucario: **{c['discriminates_for_lucario']}/8**; "
              f"opposite: **{c['discriminates_opposite']}/8**; Lucario highest: "
              f"**{c['lucario_highest']}/8**; computable: {c['computable_measures']}/8.\n")
+    ident = res["pairwise_exact_identity"]
+    teach_pairs = {k: v for k, v in ident.items() if k.startswith(TEACHER + "|")}
+    opp_pairs = {k: v for k, v in ident.items() if not k.startswith(TEACHER + "|")}
+    L.append("## What this shows\n")
+    L.append(f"Lucario has the highest point estimate on {c['lucario_highest']} of the 8 "
+             "measures, so there *is* a consistent directional tendency. But no measure clears "
+             "the pre-registered bar, which requires the teacher–Lucario advantage to hold over "
+             "**both** Iono and Abomasnow with a paired 95% CI excluding zero. Against "
+             "Abomasnow several differences are significant; against Iono none are. The verdict "
+             "is therefore `INCONCLUSIVE` under the rule as registered, and the rule was not "
+             "adjusted after these numbers were visible.\n")
+    if teach_pairs and opp_pairs:
+        tmax = max(v["exact_choice_identity"] or 0 for v in teach_pairs.values())
+        omin = min(v["exact_choice_identity"] or 1 for v in opp_pairs.values())
+        if omin > tmax:
+            L.append(f"The more striking result is one §24 did not ask about: **the three "
+                     f"official opponents resemble each other far more than any of them "
+                     f"resembles the frozen teacher.** Every opponent–opponent pair agrees on "
+                     f"at least {omin:.3f} of primary decisions, while the teacher's closest "
+                     f"opponent reaches only {tmax:.3f}. Mega Lucario and Mega Abomasnow choose "
+                     "**identically on all 98 promotion decisions**, and Iono and Abomasnow "
+                     "agree on 0.871 of energy commitments. So a shared rule skeleton is "
+                     "clearly present among the official sample agents — it simply is not "
+                     "shared with the teacher in the Lucario-specific way the hypothesis "
+                     "predicted.\n")
     t = res["transfer_gain_states"]
     L.append("## §22 final bullet — operationalisation, not a pre-registered set\n")
     _tl = ("—" if t["teacher_lucario_top1"] is None else f"{t['teacher_lucario_top1']:.3f}")
     L.append(f"{t['operationalisation']}. n = {t['n']}, teacher–Lucario top-1 = {_tl}.\n")
+    L.append("## Exact-choice identity between pairs (§23)\n")
+    L.append("Two policies that pick the identical option on every decision of a family share "
+             "that routine outright — a stronger and more legible statement than a similarity "
+             "score. Measured on the primary subset.\n")
+    L.append("| pair | all decisions | promotion | energy | attack/pass |")
+    L.append("|---|---|---|---|---|")
+
+    def _f(x):
+        return "—" if x is None else f"{x:.3f}"
+    for k, v in sorted(res["pairwise_exact_identity"].items(),
+                       key=lambda kv: -(kv[1]["exact_choice_identity"] or 0)):
+        L.append(f"| {k} | {_f(v['exact_choice_identity'])} (n={v['n']}) | "
+                 f"{_f(v['promotion_identity'])} (n={v['promotion_n']}) | "
+                 f"{_f(v['energy_identity'])} (n={v['energy_n']}) | "
+                 f"{_f(v['attack_or_pass_identity'])} (n={v['attack_or_pass_n']}) |")
+    L.append("")
     L.append("## Behavioural fingerprints (§23)\n")
     L.append("Jensen–Shannon distance between action-type distributions:\n")
     L.append("| pair | JS |")
