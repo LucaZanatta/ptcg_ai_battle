@@ -152,13 +152,21 @@ def main(argv=None):
     # the preflight measured ~$0.23/call, so the full 288 would cost ~$67. Repeats are drawn
     # from the labelled primary subset so consistency is measured on states that were in fact
     # labelled twice.
-    primary = states[:a.n]
     if a.stage == "label":
-        subset = primary
+        subset = states[:a.n]
     else:
-        ids = [s["state_id"] for s in primary]
-        rep = [i for i in man["repeat_state_ids"] if i in set(ids)][:a.n]
-        subset = [s for s in primary if s["state_id"] in set(rep)]
+        # §39: relabel states that were ACTUALLY labelled in the primary pass, read back from
+        # the recorded outputs. Filtering against a prefix of the benchmark instead matched
+        # almost nothing once the primary pass was stopped early.
+        op = os.path.join(ART, "claude_outputs.jsonl.gz")
+        done = []
+        if os.path.exists(op):
+            for ln in gzip.open(op, "rt"):
+                r = json.loads(ln)
+                if r.get("phase") == "primary" and (r.get("raw_result") or "").strip():
+                    done.append(r["state_id"])
+        want = [i for i in done if i not in set()][:a.n]
+        subset = [s for s in states if s["state_id"] in set(want)]
     phase="primary" if a.stage=="label" else "repeat"
     inputs,outputs=[],[]
     cost=0.0

@@ -127,17 +127,12 @@ def main(argv=None):
     submit=all(v is True for v in gate.values() if isinstance(v,bool))
     decision="SUBMIT" if submit else "DO_NOT_SUBMIT"
 
-    # ---- Claude ----
-    cval=J("claude_validation.json"); cons=J("claude_consistency.json")
-    pre=J("claude_preflight.json")
-    prim=cval.get("primary",{})
-    if not pre: cst="INCONCLUSIVE"
-    elif not pre.get("preflight_pass"): cst="EXTERNAL_BLOCK"
-    elif prim.get("schema_valid_rate",0)>=1.0 and prim.get("legal_action_rate",0)>=1.0 \
-         and prim.get("hidden_information_violations",1)==0:
-        cst=("PROMISING_UNVALIDATED" if J("branching_validation.json").get("CLAUDE_BRANCHING")!="VALID"
-             else "QUALIFIED_ADJUDICATOR")
-    else: cst="REJECTED"
+    # ---- Claude: READ the qualification decision, never recompute it here ----
+    # The qualifier applies §42 to every label; duplicating that logic produced two different
+    # answers from the same evidence, which is exactly the inconsistency content validation
+    # exists to catch.
+    cdec=J("claude_teacher_decision.json")
+    cst=cdec.get("CLAUDE_TEACHER_STATUS","INCONCLUSIVE")
     branching=J("branching_validation.json").get("CLAUDE_BRANCHING","INCONCLUSIVE")
 
     # ---- next step ----

@@ -124,20 +124,31 @@ def main(argv=None):
     # returned but violated the schema or chose an illegal action). Counting a timeout as a
     # schema violation would drive the verdict to REJECTED for a reason that has nothing to
     # do with Claude's behaviour.
-    returned=[o for o in prim if (o.get("raw_result") or "").strip()]
-    failed_calls=[o for o in prim if not (o.get("raw_result") or "").strip()]
+    # §42's schema/legality criteria are not phase-scoped, so they are applied to EVERY
+    # label -- primary and repeat. Scoring only the primary pass (12/12 valid) would have
+    # flattered the result by excluding the pass that contained the violations.
+    allout = [o for o in outs if o.get("label") is not None or o.get("raw_result") is not None]
+    returned=[o for o in allout if (o.get("raw_result") or "").strip()]
+    failed_calls=[o for o in allout if not (o.get("raw_result") or "").strip()]
     def rate(f, xs): return (sum(1 for o in xs if f(o))/len(xs)) if xs else 0.0
     schema_rate=rate(lambda o: o["schema_valid"], returned)
     legal_rate=rate(lambda o: not any(e.startswith("illegal") for e in o["errors"]), returned)
     hid_viol=sum(1 for o in returned if any("hidden_information" in e for e in o["errors"]))
-    p={"n":len(prim),"n_returned":len(returned),"n_call_failures":len(failed_calls),
+    p={"n":len(allout),"n_primary":len(prim),"n_returned":len(returned),"n_call_failures":len(failed_calls),
        "call_failure_rate":len(failed_calls)/max(1,len(prim)),
        "schema_valid_rate":schema_rate,"legal_action_rate":legal_rate,
        "hidden_information_violations":hid_viol,
        "model_verified_rate":rate(lambda o: o.get("model_verified"), returned),
-       "measurement_note":"Rates are over calls that RETURNED a response. Subprocess "
-                          "timeouts are reported separately as call failures; they are an "
-                          "infrastructure property, not model behaviour."}
+       "per_phase":{ph:{"n":sum(1 for o in allout if o["phase"]==ph),
+                        "returned":sum(1 for o in allout if o["phase"]==ph and (o.get("raw_result") or "").strip()),
+                        "schema_valid":sum(1 for o in allout if o["phase"]==ph and o["schema_valid"])}
+                    for ph in ("primary","repeat")},
+       "violation_kinds":dict(Counter(e for o in returned for e in o["errors"])),
+       "measurement_note":"Rates are over ALL labels (primary and repeat) that RETURNED a "
+                          "response. Subprocess timeouts are reported separately as call "
+                          "failures -- an infrastructure property, not model behaviour. "
+                          "Applying the criteria to the primary pass alone would have "
+                          "excluded the pass containing the violations."}
     schema_ok=schema_rate>=1.0
     legal_ok=legal_rate>=1.0
     hid_ok=hid_viol==0

@@ -173,13 +173,13 @@ def build():
             gp = os.path.join(ART, gzf)
             if os.path.exists(gp):
                 import gzip as _gz
-                rows = []
+                _claude_rows = []                      # NOT `rows`: that is the manifest list
                 for ln in _gz.open(gp, "rt"):
-                    r = json.loads(ln)
-                    r.pop("session_id", None)          # sanitised: no session identifiers
-                    rows.append(r)
+                    _r = json.loads(ln)
+                    _r.pop("session_id", None)         # sanitised: no session identifiers
+                    _claude_rows.append(_r)
                 z.writestr(os.path.join("claude", gzf.replace(".gz", "")),
-                           "\n".join(json.dumps(r) for r in rows))
+                           "\n".join(json.dumps(x) for x in _claude_rows))
 
         # environment + git (§26.1 items 6-8)
         pipfreeze = subprocess.run([sys.executable, "-m", "pip", "freeze"],
