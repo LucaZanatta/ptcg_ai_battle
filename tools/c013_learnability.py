@@ -77,7 +77,8 @@ def inrun_panel(pool,ckpt,deck,rng,tag):
 def value_refit(model,opt,pool,ckpt,deck,rng,seed,outdir,n_games=1200):
     """§14 — reinitialise the value head on a deterministic seed and fit it to ACTUAL terminal
     outcomes / Monte-Carlo returns, never GAE lambda-returns alone."""
-    g=torch.Generator().manual_seed(seed)
+    # the generator must live on the same device as the tensors it initialises
+    g=torch.Generator(device=model.dev).manual_seed(seed)
     with torch.no_grad():
         for mod in (model.vW1,model.vW2):
             w=torch.empty_like(mod.weight); torch.nn.init.kaiming_uniform_(w,a=5**0.5,generator=g)

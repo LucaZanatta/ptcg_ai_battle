@@ -75,8 +75,22 @@ def classify_action(prim:Dict[str,Any],targ:Dict[str,Any],form:str,idx:int,n:int
         return "PROMOTE"
     return "OTHER"
 
-def describe_action(aid:str,prim:Dict[str,Any],targ:Dict[str,Any],atype:str)->Dict[str,Any]:
+def describe_action(aid:str,prim:Dict[str,Any],targ:Dict[str,Any],atype:str,
+                    opt_index:int=0)->Dict[str,Any]:
+    """A minority of options carry no card id in the visible encoding (positional or
+    numeric choices such as pass/zone/count selections). Those are described as exactly
+    that rather than as "choose (no card)", which reads as a missing decode."""
     pn=prim.get("card_name","(none)"); tn=targ.get("card_name")
+    if pn in ("(no card)","(none)","(unknown card)"):
+        return {"action_id":aid,"action_type":"OTHER",
+                "human_description":f"Non-card option #{opt_index} (a positional or numeric "
+                                    f"choice; the visible encoding attaches no card to it)",
+                "card_name":None,"card_text":"",
+                "source_zone":"decision option (no card)","target_description":tn or "(none)",
+                "visible_preconditions":[],
+                "visible_effect_summary":f"Selects decision option #{opt_index}. This option "
+                                         f"has no card attached in the information visible to "
+                                         f"you."}
     human={"ATTACH_ENERGY":f"Attach {pn}"+(f" to {tn}" if tn else ""),
            "EVOLVE":f"Evolve into {pn}"+(f" on {tn}" if tn else ""),
            "SEARCH":f"Play {pn}",
@@ -112,7 +126,7 @@ def serialize(t:Dict[str,Any],state_id:str,category:str,entropy=None,value=None)
         except Exception: p=q=0
         pr=card_semantics(p) if p>0 else {"card_name":"(no card)","card_type":""}
         tg=card_semantics(q) if q>0 else {}
-        actions.append(describe_action(f"a{i}",pr,tg,classify_action(pr,tg,form,i,n)))
+        actions.append(describe_action(f"a{i}",pr,tg,classify_action(pr,tg,form,i,n),i))
     g=np.asarray(feat.get("global",[])).ravel().tolist()
     return {"state_id":state_id,"category":category,
             "decision_form":form,"select_min":t.get("lo"),"select_max":t.get("hi"),
@@ -157,6 +171,9 @@ def audit(rec:Dict[str,Any])->Dict[str,Any]:
             "n_legal_actions":rec["n_legal_actions"],
             "all_actions_semantically_typed":all(a["action_type"] in ACTION_TYPES
                                                  for a in rec["legal_actions"]),
-            "all_actions_have_card_names":all(a["card_name"] for a in rec["legal_actions"]),
-            "no_raw_numeric_only_actions":all(a["human_description"] and a["card_name"]
+            "card_bearing_actions":sum(1 for a in rec["legal_actions"] if a["card_name"]),
+            "non_card_options":sum(1 for a in rec["legal_actions"] if not a["card_name"]),
+            "every_action_has_a_human_description":all(a["human_description"]
+                                                       for a in rec["legal_actions"]),
+            "no_raw_numeric_only_actions":all(a["human_description"]
                                               for a in rec["legal_actions"])}
