@@ -328,11 +328,22 @@ def validate_claude():
     p = os.path.join(ART, "claude_preflight_outputs.jsonl.gz")
     if not check("claude_outputs_exist", os.path.exists(p)):
         return
-    d = zlib.decompressobj(zlib.MAX_WBITS | 16)
-    try:
-        txt = d.decompress(open(p, "rb").read()).decode("utf-8", "ignore")
-    except Exception:  # noqa: BLE001
-        txt = ""
+    # multi-member: the repeat pass APPENDS a second gzip member, and a single decompressobj
+    # stops at the end of the first one -- which made the repeat records invisible here even
+    # though they were on disk.
+    raw = open(p, "rb").read()
+    out, pos = b"", 0
+    while pos < len(raw):
+        d = zlib.decompressobj(zlib.MAX_WBITS | 16)
+        try:
+            out += d.decompress(raw[pos:])
+        except Exception:  # noqa: BLE001
+            break
+        if d.unused_data:
+            pos = len(raw) - len(d.unused_data)
+        else:
+            break
+    txt = out.decode("utf-8", "ignore")
     rs = []
     for line in txt.split("\n"):
         if line.strip():

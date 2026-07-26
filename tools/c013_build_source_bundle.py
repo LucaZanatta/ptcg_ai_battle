@@ -41,10 +41,22 @@ ART = os.path.join(RES, "artifacts")
 LOGD = os.path.join(RES, "test_logs")
 ZIP = os.path.join(ART, "c013_python_source_bundle.zip")
 
+# Detect credential MATERIAL, not mentions of credential names.
+#
+# The first version of this matched bare identifiers such as `kaggle.json` and `KAGGLE_KEY`.
+# That fires on any code that *talks about* credentials — including earlier contracts' own
+# secret-scanner pattern lists, and including this file, which matched itself. A scanner whose
+# hits are dominated by false positives gets ignored, which is worse than no scanner. So the
+# patterns below all require a value: a key block, a token with its real prefix, or a JSON
+# field assigned a long opaque string.
 CRED = re.compile(
-    r"(kaggle\.json|KAGGLE_KEY|api[_-]?token|BEGIN [A-Z ]*PRIVATE KEY|"
-    r"sk-ant-[A-Za-z0-9\-_]{8,}|AKIA[0-9A-Z]{16}|\"key\"\s*:\s*\"[A-Za-z0-9]{20,}\")",
-    re.IGNORECASE)
+    r"(BEGIN [A-Z ]*PRIVATE KEY"
+    r"|sk-ant-[A-Za-z0-9\-_]{16,}"
+    r"|AKIA[0-9A-Z]{16}"
+    r"|gh[pousr]_[A-Za-z0-9]{20,}"
+    r"|\"key\"\s*:\s*\"[A-Za-z0-9/+=_-]{20,}\""
+    r"|\"username\"\s*:\s*\"[^\"]+\"\s*,\s*\"key\"\s*:\s*\"[^\"]+\""
+    r"|(?:password|passwd|secret|api[_-]?token)\s*[:=]\s*[\"'][^\"'\s]{12,}[\"'])")
 
 
 def sha_bytes(b: bytes) -> str:
@@ -104,8 +116,11 @@ def collect() -> List[Dict[str, Any]]:
     # decision artifacts and reports
     for f in sorted(os.listdir(ART)):
         p = os.path.join(ART, f)
+        # the manifest is written AFTER this collection and is embedded in the archive as
+        # MANIFEST.json, so including it here records a hash of the previous revision
         if os.path.isfile(p) and (f.endswith(".md") or f.endswith(".json")) \
-                and not f.startswith("claude_"):
+                and not f.startswith("claude_") \
+                and f != "c013_python_source_manifest.json":
             add(p, f"decisions/{f}", "decision")
 
     # dependency / machine snapshots
