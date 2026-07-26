@@ -127,7 +127,9 @@ def sample_opponent(rng, mixture, lagged, elite_pool, elite_weights=None):
         e = elite_pool[int(rng.choice(len(elite_pool), p=w))]
         return (("lagged", os.path.join(_REPO, e["checkpoint_path"]),
                  int(rng.integers(0, 1 << 30))), "elite", e["id"], mixture[cat])
-    return ("teacher", cat), "teacher", cat, mixture[cat]
+    # mixture keys are category names; the frozen teacher's opponent id is "dragapult"
+    opp_id = TEACHER if cat == "teacher" else cat
+    return ("teacher", opp_id), cat, opp_id, mixture[cat]
 
 
 # ---------------- in-run evaluation (§9) ----------------
@@ -140,8 +142,16 @@ def run_screen(pool, model, export_fn, cur_ckpt, cur_sha, deck, panel, rng, regi
     panel (§50).
     """
     from cg import noninf_stats as ns
+    # DEFECT REPAIRED: cg.c009_eval.sha256_file caches by PATH, and pool workers persist
+    # across evaluations. Pointing every in-run evaluation at the same rewritten cur.npz made
+    # every worker after the first return a STALE hash -> checkpoint_hash_mismatch -> score
+    # None. Each evaluation therefore gets its own immutable path.
+    import shutil
+    eval_ckpt = os.path.join(os.path.dirname(cur_ckpt), f"inrun_{cur_sha[:12]}.npz")
+    if not os.path.exists(eval_ckpt):
+        shutil.copyfile(cur_ckpt, eval_ckpt)
     cand = {"candidate_id": f"INRUN::{cur_sha[:12]}", "kind": "rl_ckpt", "arm": "INRUN",
-            "seed": None, "checkpoint_path": os.path.relpath(cur_ckpt, _REPO),
+            "seed": None, "checkpoint_path": os.path.relpath(eval_ckpt, _REPO),
             "checkpoint_sha256": cur_sha}
     jobs = []
     for opp, per_seat in panel.items():
@@ -278,6 +288,12 @@ def main(argv=None):
                       "timestamp": time.time()}
                 ev["composite"] = (0.40 * (ev["teacher"] or 0) + 0.25 * (ev["field"] or 0)) \
                     if ev["teacher"] is not None else None
+                if ev["teacher"] is None:
+                    # A registered evaluation that scores nothing must not silently disable
+                    # the curriculum gates and early stopping (see
+                    # failures/DEFECT_inrun_evaluation_stale_hash.md).
+                    stop_reason = "inrun_evaluation_returned_no_scored_games"
+                    ev["error"] = stop_reason
                 inrun_evals.append(ev)
                 emit(f"  [eval @ {completed} pt={pt}] teacher={ev['teacher']} "
                      f"field={ev['field']} n={ev['n_games']}")
