@@ -157,7 +157,10 @@ def main():
         for n in names:
             if n.endswith(".py"):
                 try:
-                    ast.parse(z.read(n).decode("utf-8", "ignore"))
+                    # utf-8-sig: the official cg/api.py carries a UTF-8 BOM. It is valid
+                    # Python (CPython strips the BOM when importing); decoding as plain
+                    # utf-8 leaves U+FEFF in the text and only the PARSER fails.
+                    ast.parse(z.read(n).decode("utf-8-sig", "ignore"))
                 except SyntaxError as e:
                     badpy.append({"member": n, "error": str(e)})
         ck("python_members_compile", not badpy, {"bad": badpy[:5]})
