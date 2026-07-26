@@ -349,8 +349,11 @@ def main(argv=None):
         recs = []
         t0 = time.time()
         for c in CANDIDATES:
+            # §17: 50 extra safe-control games when the Stage A safe rate was below 95%.
+            # All three candidates were below it (0.975 / 0.850 / 0.875), so all three get them.
             for opp, n in (("dragapult", 200), ("iono", 100), ("mega_lucario", 100),
-                           ("mega_abomasnow", 100), ("__c014__", 100), ("__c015__", 100)):
+                           ("mega_abomasnow", 100), ("__c014__", 100), ("__c015__", 100),
+                           ("__safe__", 50)):
                 recs += run_block(c, opp, n, "stage_b", SEED_BASE + 2000)
             print(f"[stage B] {c} done {time.time()-t0:.0f}s", flush=True)
         with gzip.open(os.path.join(ART, "final_gauntlet_games.jsonl.gz"), "wt") as fh:
@@ -360,7 +363,7 @@ def main(argv=None):
         for c in CANDIDATES:
             row = {"candidate_id": c}
             for opp in ("dragapult", "iono", "mega_lucario", "mega_abomasnow",
-                        "__c014__", "__c015__"):
+                        "__c014__", "__c015__", "__safe__"):
                 x = agg(recs, candidate_id=c, opponent_id=opp)
                 row[f"{opp}_games"] = x["games"]
                 row[f"{opp}_rate"] = x["score_rate"]
