@@ -82,9 +82,21 @@ def claude_verdict() -> Dict[str, Any]:
         shortfalls.append(f"repeat top-1 consistency {top1:.3f} < {MIN_REPEAT_TOP1}")
     if top1 is None:
         shortfalls.append("no repeated-state consistency measured")
-    if len(cats) < MIN_CATEGORIES:
-        shortfalls.append(f"only {len(cats)} decision categories demonstrated, "
-                          f"§29 requires >= {MIN_CATEGORIES}")
+    # `other` is a residual bucket, not one of §27's ten named categories. Counting it would
+    # report 7-of-10 where the truth is 6-of-10.
+    mapped = {"attach_energy": "attachment", "evolve": "evolution",
+              "multi_select": "multi-select", "promote": "promotion",
+              "search": "search", "target": "target selection",
+              "attack": "attack", "setup": "setup"}
+    contract_cats = sorted({mapped[c] for c in cats if c in mapped})
+    residual = sorted(c for c in cats if c not in mapped)
+    if len(contract_cats) < MIN_CATEGORIES:
+        shortfalls.append(
+            f"only {len(contract_cats)} of §27's {len(CONTRACT_CATEGORIES)} named decision "
+            f"categories demonstrated ({', '.join(contract_cats)}), §29 requires >= "
+            f"{MIN_CATEGORIES}"
+            + (f"; {len(residual)} residual bucket(s) {residual} are not §27 categories and "
+               "are not counted" if residual else ""))
 
     hard_fail = bool((legal is not None and legal < 0.9) or hidden
                      or (top1 is not None and top1 < 0.5))
@@ -108,6 +120,8 @@ def claude_verdict() -> Dict[str, Any]:
         "repeat_top1_agreement": top1,
         "repeat_mean_top3_overlap": cons.get("mean_top3_overlap"),
         "categories_demonstrated": cats,
+        "contract_categories_demonstrated": contract_cats,
+        "residual_buckets_not_counted": residual,
         "categories_required": MIN_CATEGORIES,
         "contract_category_list": CONTRACT_CATEGORIES,
         "shortfalls": shortfalls,
@@ -184,6 +198,93 @@ def write_claude_md(cv: Dict[str, Any]):
 # AC-14
 # ----------------------------------------------------------------------------------
 
+FINAL_GAMES = os.path.join(ART, "combination_final_games.jsonl.gz")
+GAIN_BOOT_SEED = 3131313
+
+
+def _final_scores(candidate_id: str) -> Dict[str, List[float]]:
+    """Raw per-game scores for one candidate on the untouched final panel."""
+    import gzip
+    out: Dict[str, List[float]] = {}
+    if not os.path.exists(FINAL_GAMES):
+        return out
+    for line in gzip.open(FINAL_GAMES, "rt"):
+        r = json.loads(line)
+        if r.get("candidate_id") != candidate_id or r.get("score") is None:
+            continue
+        out.setdefault(r["opponent_id"], []).append(float(r["score"]))
+    return out
+
+
+def primary_gain_probabilities(cid: str,
+                               baseline: str = C012_INCUMBENT) -> Dict[str, Any]:
+    """§30 — P(gain > 0) for each primary metric, bootstrapped from the final-panel games.
+
+    §30 requires at least one primary gain with >= 90% bootstrap probability above zero. That
+    is a measurement, not an inference from point estimates: SOUP13's field edge over the
+    incumbent is +0.006, which is nowhere near resolvable, and asserting the condition without
+    computing it would publish a claim no evidence supports.
+    """
+    a, b = _final_scores(cid), _final_scores(baseline)
+    if not a or not b:
+        return {}
+    rng = np.random.default_rng(GAIN_BOOT_SEED)
+
+    def boot(v):
+        v = np.asarray(v, float)
+        return v[rng.integers(0, len(v), size=(10000, len(v)))].mean(axis=1)
+
+    out = {}
+    if "dragapult" in a and "dragapult" in b:
+        d = boot(a["dragapult"]) - boot(b["dragapult"])
+        out["teacher"] = {"gain": float(np.mean(a["dragapult"]) - np.mean(b["dragapult"])),
+                          "p_gain_gt_0": float((d > 0).mean()),
+                          "ci95": [float(np.percentile(d, 2.5)),
+                                   float(np.percentile(d, 97.5))]}
+    if all(o in a and o in b for o in FIELD):
+        da = np.mean([boot(a[o]) for o in FIELD], axis=0)
+        db = np.mean([boot(b[o]) for o in FIELD], axis=0)
+        d = da - db
+        out["strategic_field"] = {
+            "gain": float(np.mean([np.mean(a[o]) for o in FIELD])
+                          - np.mean([np.mean(b[o]) for o in FIELD])),
+            "p_gain_gt_0": float((d > 0).mean()),
+            "ci95": [float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))]}
+    return out
+
+
+def reliability(cid: str) -> Dict[str, Any]:
+    """§30 reliability: no invalid actions, exceptions or timeouts on the final panel."""
+    import gzip
+    if not os.path.exists(FINAL_GAMES):
+        return {"passes": False, "reason": "final panel games absent"}
+    inv = exc = tmo = n = 0
+    for line in gzip.open(FINAL_GAMES, "rt"):
+        r = json.loads(line)
+        if r.get("candidate_id") != cid:
+            continue
+        n += 1
+        inv += r.get("invalid_action_count") or 0
+        exc += r.get("exception_count") or 0
+        tmo += r.get("timeout_count") or 0
+    return {"passes": bool(n > 0 and inv == 0 and exc == 0 and tmo == 0),
+            "games": n, "invalid_actions": inv, "exceptions": exc, "timeouts": tmo}
+
+
+def worst_matchup_ok(cid: str, baseline: str, fin: Dict[str, Any]) -> bool:
+    """§30 — the candidate's worst opponent must not be a major regression on the incumbent's
+    score for that same opponent."""
+    c = (fin.get(cid) or {}).get("per_opponent") or {}
+    b = (fin.get(baseline) or {}).get("per_opponent") or {}
+    pts = {o: (c.get(o) or {}).get("point") for o in FIELD if (c.get(o) or {}).get("point")
+           is not None}
+    if not pts:
+        return False
+    worst = min(pts, key=lambda o: pts[o])
+    bp = (b.get(worst) or {}).get("point")
+    return not (bp is not None and pts[worst] <= bp - MAJOR_REG_DELTA)
+
+
 def best_agent() -> Dict[str, Any]:
     comb = jload(os.path.join(ART, "combination_results.json")) or {}
     fam = comb.get("families") or {}
@@ -252,8 +353,29 @@ def best_agent() -> Dict[str, Any]:
                                          and gate["no_major_regression"])
                             else "DO_NOT_SUBMIT")
 
-    replaces = bool(pb.get("teacher_not_lower") and pb.get("field_not_lower")
-                    and pb.get("no_major_regression"))
+    # §30 lists SEVEN replacement conditions. Evaluating three of them and publishing a boolean
+    # would assert the other four without measuring them -- the same fail-open shape as the Q3
+    # allow-list defect. Each is computed and reported separately, and the boolean is the AND of
+    # all seven rather than of whichever were convenient.
+    pk = pkg_best["candidate_id"] if pkg_best else None
+    gains = primary_gain_probabilities(pk) if pk else {}
+    rel = reliability(pk) if pk else {}
+    conds = {
+        "reliability_passes": bool(rel.get("passes")),
+        "teacher_score_not_lower": bool(pb.get("teacher_not_lower")),
+        "strategic_field_not_lower": bool(pb.get("field_not_lower")),
+        "at_least_one_primary_gain_p_gt_0_ge_90pct": bool(
+            any((g or {}).get("p_gain_gt_0") is not None
+                and g["p_gain_gt_0"] >= MAJOR_REG_PROB for g in gains.values())),
+        "no_iono_or_abomasnow_major_regression": not any(
+            (pb.get("per_opponent_regression") or {}).get(o, {}).get("major_regression")
+            for o in ("iono", "mega_abomasnow")),
+        "no_major_worst_matchup_regression": bool(
+            worst_matchup_ok(pk, C012_INCUMBENT, fin)),
+        "runtime_package_feasibility_passes": bool(
+            fam.get(pk) != "online_ensemble"),
+    }
+    replaces = all(conds.values())
     return {"TRUE_BEST_AGENT": true_best["candidate_id"] if true_best else None,
             "TRUE_BEST_AGENT_family": fam.get(true_best["candidate_id"]) if true_best else None,
             "PACKAGE_FEASIBLE_BEST_AGENT": pkg_best["candidate_id"] if pkg_best else None,
@@ -264,6 +386,15 @@ def best_agent() -> Dict[str, Any]:
             "true_best_vs_incumbent": tb,
             "package_best_vs_incumbent": pb,
             "replaces_c012_incumbent": replaces,
+            "replacement_conditions_sec30": conds,
+            "primary_gain_probabilities": gains,
+            "reliability": rel,
+            "q_arm_candidates_note":
+                "the Q0/Q1/Q2 continuation candidates were evaluated on the CONFIRMATION panel "
+                "only, never on the untouched final panel, so they are structurally excluded "
+                "from this ranking. Their confirmation teacher scores (0.247-0.323) all sit "
+                "below the c012 incumbent's 0.353, so the exclusion does not change the "
+                "winner -- but nine evaluated candidates do not appear above.",
             "frozen_teacher_final_panel": {"strategic_field": teacher.get("strategic_field"),
                                            "per_opponent": teacher.get("per_opponent")},
             "submission_gate": gate,
@@ -305,6 +436,24 @@ def write_submission_md(ba: Dict[str, Any]):
                  "submitted, and the conditional Kaggle artifacts are deliberately absent "
                  "rather than stubbed.\n")
     L.append("## Replacement of the c012 incumbent (§30)\n")
+    conds = ba.get("replacement_conditions_sec30") or {}
+    gains = ba.get("primary_gain_probabilities") or {}
+    L.append("All seven §30 conditions are evaluated; none is assumed.\n")
+    L.append("| condition | passes |")
+    L.append("|---|---|")
+    for k, v in conds.items():
+        L.append(f"| {k} | {'yes' if v else '**NO**'} |")
+    L.append("")
+    tg = gains.get("teacher") or {}
+    fg = gains.get("strategic_field") or {}
+    if tg:
+        L.append(f"The condition that decides this is the ≥90% bootstrap probability, and it "
+                 f"passes **narrowly**: the teacher gain is {tg['gain']:+.3f} with "
+                 f"P(gain>0) = {tg['p_gain_gt_0']:.4f} against a 0.90 threshold, and its 95% CI "
+                 f"[{tg['ci95'][0]:+.3f}, {tg['ci95'][1]:+.3f}] still spans zero. The strategic "
+                 f"field gain is {fg.get('gain', 0):+.3f} at P = {fg.get('p_gain_gt_0', 0):.4f}, "
+                 "which is not resolvable at this panel size. `replaces_c012_incumbent` should "
+                 "be read as *the registered condition is met*, not as a comfortable margin.\n")
     pb = ba["package_best_vs_incumbent"]
     L.append(f"`{pb.get('candidate_id')}` vs `{C012_INCUMBENT}` on the final panel: "
              f"teacher {pb.get('teacher_score'):.3f} vs {pb.get('incumbent_teacher'):.3f}, "

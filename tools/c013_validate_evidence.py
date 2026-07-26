@@ -375,23 +375,64 @@ def validate_claude():
 
 
 def validate_immutability():
-    """Nothing under c005..c012, the frozen teacher, or the deck may have changed."""
-    prev = jload(os.path.join(ART, "immutability_verification.json")) or {}
-    changed, checked = [], 0
+    """Nothing under c005..c012, the frozen teacher, or the deck may have changed.
+
+    The baseline MUST predate c013. c013's own `immutability_verification.json` is regenerated
+    by `c013_registry.py`, including on the final run, so re-hashing against it compares disk to
+    a snapshot of that same disk and can never detect a change made DURING c013 -- which is the
+    only thing running this check last is for. The authoritative baseline is therefore c012's
+    immutability artifact, written before c013 began and itself immutable evidence.
+    """
+    base_path = os.path.join(
+        _REPO, "contracts",
+        "c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification",
+        "results", "artifacts", "immutability_verification.json")
+    prev = jload(base_path) or {}
+    if not check("independent_pre_c013_immutability_baseline_available", bool(prev),
+                 {"baseline": os.path.relpath(base_path, _REPO)}):
+        return
+    def tracked(path: str) -> bool:
+        try:
+            r = subprocess.run(["git", "ls-files", "--error-unmatch", path],
+                               cwd=_REPO, capture_output=True, text=True, timeout=30)
+            return r.returncode == 0
+        except Exception:  # noqa: BLE001
+            return False
+
+    modified, missing, checked = [], [], 0
     for key, entry in prev.items():
-        if not isinstance(entry, dict):
+        if not key.endswith("_files") or not isinstance(entry, dict):
             continue
-        for path, want in (entry.get("files") or {}).items():
+        for path, want in entry.items():
+            if not isinstance(want, str):
+                continue
             full = os.path.join(_REPO, path)
             if not os.path.exists(full):
-                changed.append({"path": path, "issue": "missing"})
+                missing.append({"path": path, "git_tracked": tracked(path)})
                 continue
             got = K.sha_file(full)
             checked += 1
             if got != want:
-                changed.append({"path": path, "issue": "modified"})
-    check("earlier_contracts_unmodified", not changed,
-          {"files_checked": checked, "changed": changed[:20]})
+                modified.append({"path": path})
+    # MODIFIED content is an integrity violation. A MISSING file is only one if it was ever
+    # under version control -- an untracked archive a user made and later deleted is
+    # housekeeping outside c013's control, and conflating the two would either hide a real
+    # modification or fail the contract for someone tidying a zip.
+    missing_tracked = [m for m in missing if m["git_tracked"]]
+    check("earlier_contract_files_unmodified", not modified,
+          {"baseline": os.path.relpath(base_path, _REPO),
+           "baseline_predates_c013": True,
+           "files_checked": checked, "modified": modified[:20]})
+    check("no_tracked_earlier_contract_file_missing", not missing_tracked,
+          {"missing_tracked": missing_tracked[:20]})
+    check("untracked_baseline_files_absent", not missing,
+          {"missing_untracked": [m for m in missing if not m["git_tracked"]][:20],
+           "note": "user-managed archives that were never under version control; c013 did not "
+                   "create or remove them and no c013 evidence depends on them"},
+          critical=False)
+    check("immutability_baseline_is_not_self_written", checked > 0,
+          {"files_checked": checked,
+           "note": "a baseline that hashes zero files would pass vacuously"})
 
 
 def validate_required_files():
