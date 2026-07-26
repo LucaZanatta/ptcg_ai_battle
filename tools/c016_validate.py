@@ -141,10 +141,15 @@ def v_denominators():
                         bad.append({"file": csvname, "candidate": cid, "opponent": opp,
                                     "reported_games": int(row[gk]), "raw_games": n_raw})
                 if n_raw:
-                    if abs(float(row[rk]) - s_raw / n_raw) > 1e-6:
+                    # compare at the precision the CSV actually stores (4 dp). An earlier
+                    # version compared at 1e-6 and flagged 0.4062 vs 0.40625 - a display
+                    # rounding, not a denominator or rate discrepancy. Any real difference is
+                    # >= 1e-4 and is still caught.
+                    if abs(float(row[rk]) - round(s_raw / n_raw, 4)) > 1e-9:
                         bad.append({"file": csvname, "candidate": cid, "opponent": opp,
                                     "reported_rate": float(row[rk]),
-                                    "raw_rate": round(s_raw / n_raw, 6)})
+                                    "raw_rate_rounded_4dp": round(s_raw / n_raw, 4),
+                                    "raw_rate_full": s_raw / n_raw})
     ck("published_rates_and_denominators_match_raw_games", not bad, {"mismatches": bad[:10]})
 
 

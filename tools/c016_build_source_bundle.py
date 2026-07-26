@@ -50,7 +50,7 @@ def collect():
 
     for f in sorted(os.listdir(os.path.join(_REPO, "tools"))):
         if f.startswith("c016_") and f.endswith(".py"):
-            add(os.path.join(_REPO, "tools", f), f"source/tools/{f}", "c014_source")
+            add(os.path.join(_REPO, "tools", f), f"source/tools/{f}", "c016_source")
     for f in sorted(os.listdir(os.path.join(_REPO, "tests"))):
         if f.startswith("test_c016") and f.endswith(".py"):
             add(os.path.join(_REPO, "tests", f), f"source/tests/{f}", "test")
@@ -159,8 +159,11 @@ def main():
                if i["archive_path"] not in names
                or hashlib.sha256(z.read(i["archive_path"])).hexdigest() != i["sha256"]]
         ck("archive_bytes_match_manifest", not bad, {"bad": bad[:10]})
-        for cat in ("c014_source", "test", "supporting_source", "contract", "command",
-                    "deck", "report", "log", "public_evidence", "candidate", "environment", "git_patch"):
+        # "deck" is superseded by "candidate": each candidate directory carries its own
+        # exact deck.csv, so a separate top-level deck category would always be empty here.
+        for cat in ("c016_source", "test", "supporting_source", "contract", "command",
+                    "report", "log", "public_evidence", "candidate", "environment",
+                    "git_patch"):
             n = sum(1 for i in items if i["category"] == cat)
             ck(f"category_nonempty:{cat}", n > 0, {"n": n})
         badpy = []
@@ -191,8 +194,18 @@ def main():
         ck("validator_bundled", "source/tools/c016_validate.py" in names)
         ck("prior_audit_bundled", "source/tools/c016_prior_audit.py" in names)
         ck("package_builder_bundled", "source/tools/c016_package.py" in names)
-        ck("submit_wrapper_bundled", "source/tools/c016_submit.py" in names)
+        # no submit wrapper exists when the competitive gate did not authorise an upload
+        gate = json.load(open(os.path.join(ART, "competitive_gate.json"))) \
+            if os.path.exists(os.path.join(ART, "competitive_gate.json")) else {}
+        if gate.get("competitive_gate") == "PASS":
+            ck("submit_wrapper_bundled", "source/tools/c016_submit.py" in names)
+        else:
+            ck("no_submit_wrapper_is_correct_without_upload",
+               not any("c016_submit" in n for n in names),
+               {"competitive_gate": gate.get("competitive_gate")})
         ck("candidate_decks_bundled", any(n.endswith("deck.csv") for n in names))
+        ck("candidate_manifests_bundled",
+           sum(1 for n in names if n.endswith("candidate_manifest.json")) >= 3)
         ck("no_submission_archive_inside",
            not any(n.endswith(".tar.gz") for n in names))
 

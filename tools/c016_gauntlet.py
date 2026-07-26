@@ -264,7 +264,7 @@ def reliability(records):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", required=True,
-                    choices=["protocol", "screen", "final", "confirm"])
+                    choices=["protocol", "screen", "final", "confirm", "confirm_topup"])
     a = ap.parse_args(argv)
     os.makedirs(ART, exist_ok=True)
     os.makedirs(LOGD, exist_ok=True)
@@ -381,6 +381,69 @@ def main(argv=None):
         with open(os.path.join(LOGD, "common_gauntlet.txt"), "a") as fh:
             fh.write("\nSTAGE B\n" + json.dumps(rows, indent=2) + "\n")
         print(json.dumps(rows, indent=2))
+        return 0
+
+    if a.stage == "confirm_topup":
+        # §18's strength paths require >=400 confirmation games vs Dragapult and >=600 field
+        # games. §17's 200/300 are FLOORS, not caps. Those counts were pre-registered in the
+        # protocol before any score existed, so topping up to them is executing the registered
+        # gate, not moving it. The full top-up is run to a FIXED target for BOTH finalists and
+        # the control in one pass - never "keep going until it passes".
+        prev = json.load(open(os.path.join(ART, "confirmation_results.json")))
+        top2 = prev["top2"]
+        recs = []
+        t0 = time.time()
+        for c in top2:
+            recs += run_block(c, "dragapult", 200, "confirm", SEED_INDEPENDENT + 20000)
+            for opp in ("iono", "mega_lucario", "mega_abomasnow"):
+                recs += run_block(c, opp, 100, "confirm", SEED_INDEPENDENT + 25000)
+            print(f"[topup] {c} done {time.time()-t0:.0f}s", flush=True)
+        for opp in ("iono", "mega_lucario", "mega_abomasnow"):
+            recs += run_block("dragapult", opp, 100, "confirm_control",
+                              SEED_INDEPENDENT + 25000)
+        old = [json.loads(l) for l in gzip.open(
+            os.path.join(ART, "confirmation_games.jsonl.gz"), "rt")]
+        allr = old + recs
+        with gzip.open(os.path.join(ART, "confirmation_games.jsonl.gz"), "wt") as fh:
+            for r in allr:
+                fh.write(json.dumps(r) + "\n")
+        rows = []
+        for c in top2:
+            d = agg(allr, candidate_id=c, opponent_id="dragapult", phase="confirm")
+            f = [agg(allr, candidate_id=c, opponent_id=o, phase="confirm")
+                 for o in ("iono", "mega_lucario", "mega_abomasnow")]
+            rows.append({"candidate_id": c,
+                         "confirm_dragapult_games": d["games"],
+                         "confirm_dragapult_rate": d["score_rate"],
+                         "confirm_dragapult_wilson_lo": d["wilson95"][0],
+                         "confirm_field_games": sum(x["games"] for x in f),
+                         "confirm_field_mean": round(sum(x["score_rate"] for x in f) / 3, 4),
+                         "confirm_iono": f[0]["score_rate"],
+                         "confirm_mega_lucario": f[1]["score_rate"],
+                         "confirm_mega_abomasnow": f[2]["score_rate"]})
+        ctrl = {o: agg(allr, candidate_id="dragapult", opponent_id=o, phase="confirm_control")
+                for o in ("iono", "mega_lucario", "mega_abomasnow")}
+        cross = [r for r in allr if r.get("phase") == "crossplay"]
+        cr = agg(cross, candidate_id=top2[0], opponent_id=top2[1]) if cross else {}
+        doc = {"top2": top2, "confirmation": rows,
+               "dragapult_control_same_seeds": ctrl,
+               "dragapult_control_field_mean": round(
+                   sum(v["score_rate"] for v in ctrl.values()) / 3, 4),
+               "crossplay": cr,
+               "topup_note": "confirmation extended to the pre-registered strength-path minimums "
+                             "(>=400 vs Dragapult, >=600 field) in a single fixed-target pass"}
+        json.dump(doc, open(os.path.join(ART, "confirmation_results.json"), "w"), indent=2)
+        rel = reliability(allr)
+        lat = [r["latency_p99_ms"] for r in allr if r.get("latency_p99_ms") is not None]
+        mx = [r["latency_max_ms"] for r in allr if r.get("latency_max_ms") is not None]
+        json.dump({"worst_p99_ms": max(lat) if lat else None,
+                   "worst_max_ms": max(mx) if mx else None, "p99_gate_ms": 250.0,
+                   "gates": {"p99_within_250ms": bool(lat and max(lat) <= 250.0)}},
+                  open(os.path.join(ART, "latency_report.json"), "w"), indent=2)
+        json.dump(rel, open(os.path.join(ART, "reliability_report.json"), "w"), indent=2)
+        with open(os.path.join(LOGD, "common_gauntlet.txt"), "a") as fh:
+            fh.write("\nCONFIRMATION TOPUP\n" + json.dumps(doc, indent=2) + "\n")
+        print(json.dumps(doc, indent=2))
         return 0
 
     if a.stage == "confirm":
