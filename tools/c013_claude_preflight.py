@@ -89,6 +89,42 @@ def parse(txt):
     try: return json.loads(txt[i:j+1])
     except Exception: return None
 
+def parse_repaired(txt):
+    """Bounded delimiter repair, applied at ANALYSIS time only.
+
+    Observed failure mode: the label is complete -- every required field present, the rationale
+    finished, the closing quote emitted -- and only the final `}` is missing, so `parse`'s
+    `rfind('}')` finds nothing and the label is scored unparseable. Counting a complete label as
+    a semantic failure understates the result; silently patching it overstates schema
+    compliance. So both are reported: `strict` is the untouched rate, `repaired` is the rate
+    after appending ONLY missing closing delimiters, and every repaired label is flagged.
+
+    The repair is deliberately incapable of inventing content: it appends `}`/`]` and nothing
+    else, and any label that still fails to parse, or that parses into something missing a
+    required field, stays a failure. The raw evidence on disk is never rewritten.
+    """
+    if not txt: return None,False
+    strict=parse(txt)
+    if strict is not None: return strict,False
+    i=txt.find("{")
+    if i<0: return None,False
+    s=txt[i:]
+    # count unclosed brackets outside string literals
+    depth=[];esc=False;instr=False
+    for ch in s:
+        if esc: esc=False; continue
+        if ch=="\\" and instr: esc=True; continue
+        if ch=='"': instr=not instr; continue
+        if instr: continue
+        if ch in "{[": depth.append(ch)
+        elif ch in "}]":
+            if depth: depth.pop()
+    if instr: s+='"'
+    for ch in reversed(depth):
+        s+="}" if ch=="{" else "]"
+    try: return json.loads(s),True
+    except Exception: return None,False
+
 def validate(lab,state):
     """§28 — legality, schema, hidden-information, and SEMANTIC GROUNDING of the rationale."""
     errs=[]
@@ -121,9 +157,100 @@ def validate(lab,state):
     if not grounded: errs.append("rationale_not_semantically_grounded")
     return errs,sem
 
+def _read_tolerant(path):
+    """The label writer flushes per record into an open gzip stream, so a run that was killed
+    leaves a stream with no end-of-stream marker. c012 lost a whole input file to exactly that.
+    Read what is there rather than discarding the run."""
+    import zlib
+    raw=open(path,"rb").read()
+    out=b"";pos=0
+    while pos<len(raw):
+        d=zlib.decompressobj(zlib.MAX_WBITS|16)
+        try: out+=d.decompress(raw[pos:])
+        except Exception: break
+        if d.unused_data:
+            pos=len(raw)-len(d.unused_data)
+        else: break
+    recs=[]
+    for line in out.decode("utf-8","ignore").split("\n"):
+        if line.strip():
+            try: recs.append(json.loads(line))
+            except Exception: pass
+    return recs
+
+def analyze(bench):
+    """§28/§39 — repair-aware scoring and the repeated-state consistency check."""
+    states={s["state_id"]:s for s in (json.loads(l) for l in gzip.open(bench,"rt"))}
+    recs=_read_tolerant(os.path.join(ART,"claude_preflight_outputs.jsonl.gz"))
+    rows=[]
+    for r in recs:
+        raw=r.get("raw_result") or ""
+        lab,repaired=parse_repaired(raw)
+        st=states.get(r["state_id"])
+        errs,sem=validate(lab,st) if st else (["state_missing"],{})
+        rows.append({**r,"label_repaired":lab,"delimiter_repaired":repaired,
+                     "errors_after_repair":errs,"schema_valid_after_repair":not errs,
+                     "semantic_after_repair":sem})
+    def rate(rs,k): return (sum(1 for x in rs if x[k])/len(rs)) if rs else None
+    out={}
+    for phase in ("primary","repeat"):
+        rs=[x for x in rows if x["phase"]==phase and (x.get("raw_result") or "").strip()]
+        if not rs: continue
+        out[phase]={
+            "n":len(rs),
+            "schema_valid_rate_strict":rate(rs,"schema_valid"),
+            "schema_valid_rate_after_delimiter_repair":rate(rs,"schema_valid_after_repair"),
+            "delimiter_repair_rate":rate(rs,"delimiter_repaired"),
+            "repair_note":"the only repair applied is appending missing closing delimiters; "
+                          "no field content is synthesised and the raw evidence is unmodified",
+            "legal_action_rate":sum(1 for x in rs if not any(
+                e.startswith("illegal") for e in x["errors_after_repair"]))/len(rs),
+            "hidden_information_violations":sum(1 for x in rs if any(
+                "hidden_information" in e for e in x["errors_after_repair"])),
+            "semantically_grounded_rate":sum(1 for x in rs if x["semantic_after_repair"].get(
+                "rationale_names_supplied_card_or_action_type"))/len(rs),
+            "model_verified_rate":rate(rs,"model_verified"),
+            "categories_covered":sorted({x["category"] for x in rs}),
+            "error_counts":dict(Counter(e for x in rs for e in x["errors_after_repair"])),
+            "total_cost_usd":round(sum(x.get("cost_usd") or 0 for x in rs),2),
+        }
+    # §39 repeated-state consistency: the repeat pass is a SEPARATE process with no session
+    # persistence, so agreement is evidence about the model, not about a warm context.
+    prim={x["state_id"]:x for x in rows if x["phase"]=="primary"}
+    rep=[x for x in rows if x["phase"]=="repeat"]
+    pairs=[]
+    for x in rep:
+        p0=prim.get(x["state_id"])
+        if not p0 or not p0["label_repaired"] or not x["label_repaired"]: continue
+        a0=p0["label_repaired"].get("selected_action_id")
+        a1=x["label_repaired"].get("selected_action_id")
+        r0=p0["label_repaired"].get("ranked_action_ids") or []
+        r1=x["label_repaired"].get("ranked_action_ids") or []
+        k=min(3,len(r0),len(r1))
+        pairs.append({"state_id":x["state_id"],"same_top1":a0==a1,
+                      "top3_overlap":(len(set(r0[:k])&set(r1[:k]))/k) if k else None,
+                      "primary_action":a0,"repeat_action":a1})
+    if pairs:
+        out["consistency"]={
+            "n_repeated":len(pairs),
+            "top1_agreement":sum(1 for p in pairs if p["same_top1"])/len(pairs),
+            "mean_top3_overlap":sum(p["top3_overlap"] for p in pairs
+                                    if p["top3_overlap"] is not None)/max(1,len(pairs)),
+            "pairs":pairs,
+            "note":"the repeat pass runs as a separate `claude -p` process with tools disabled "
+                   "and no session persistence, so this measures the model rather than a "
+                   "retained context"}
+    json.dump(out,open(os.path.join(ART,"claude_semantic_validation.json"),"w"),indent=2)
+    with open(os.path.join(LOGD,"claude_semantic_preflight.txt"),"a") as fh:
+        fh.write(json.dumps(out,indent=2)+"\n")
+    print(json.dumps({k:(v if k=="consistency" else
+                         {kk:vv for kk,vv in v.items() if kk!="error_counts"})
+                      for k,v in out.items()},indent=2,default=str)[:2500])
+    return 0
+
 def main(argv=None):
     p=argparse.ArgumentParser()
-    p.add_argument("--stage",required=True,choices=["build","label","repeat"])
+    p.add_argument("--stage",required=True,choices=["build","label","repeat","analyze"])
     p.add_argument("--n",type=int,default=30); p.add_argument("--max-cost",type=float,default=14.0)
     a=p.parse_args(argv)
     os.makedirs(ART,exist_ok=True); os.makedirs(LOGD,exist_ok=True)
@@ -180,6 +307,9 @@ def main(argv=None):
         print(json.dumps({"n_states":len(sel),"categories":dict(by),
                           "clean":all(x["clean"] for x in aud)},indent=2))
         return 0
+
+    if a.stage=="analyze":
+        return analyze(bench)
 
     states=[json.loads(l) for l in gzip.open(bench,"rt")]
     if a.stage=="label": subset=states[:a.n]; phase="primary"
