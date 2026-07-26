@@ -179,7 +179,13 @@ def main(argv=None):
                         emit(f"  [restore] next opponent/seat/seed sequence reproduced: {seq==seq2}")
             if stop: break
             games,ndec,ntr,ncomp=[],0,0,0; troll=time.time(); oc=Counter()
-            while ncomp<K.PPO_CFG["rollout_game_target"] or ndec<K.PPO_CFG["min_trainable_decisions"]:
+            # cap the rollout by the REMAINING budget. Rollouts are atomic, so a rollout that
+            # begins near the ceiling overshoots it -- the same mechanism that produced c010's
+            # rollout-granularity deviation, and the reason R0/R1 finished 112 games over §19's
+            # maximum. Enforcing the budget at rollout granularity is what makes that possible.
+            room=max(0,a.max_games-completed)
+            target=min(K.PPO_CFG["rollout_game_target"],room)
+            while ncomp<target or (ndec<K.PPO_CFG["min_trainable_decisions"] and ncomp<room):
                 batch=[]
                 for _ in range(a.nproc):
                     spec,cat,oid=draw(rng,mix,lagged,elite)
@@ -217,6 +223,23 @@ def main(argv=None):
             if completed>=2500 and completed-last_lag>=2500:
                 lp=os.path.join(ckdir,f"lagged_g{completed}.npz"); export(lp)
                 lagged.append(lp); lagged=lagged[-3:]; last_lag=completed
+        # §19 requires evaluations at 0, 2,500 AND 5,000. The evaluation block lives inside the
+        # budget loop, so a run that crosses the last registered point on its final rollout
+        # exits before evaluating it. Flush the remaining points against the FINAL policy.
+        export(cur); cur_sha=K.sha_file(cur); ct._SHA.pop(cur,None)
+        machinery["hash_refresh_distinct"].add(cur_sha)
+        while next_eval<len(EVAL_POINTS) and completed>=EVAL_POINTS[next_eval]:
+            pt=EVAL_POINTS[next_eval]; next_eval+=1
+            ev=panel(pool,cur,deck,rng,f"{a.arm}{a.seed}_g{completed}_final")
+            ev.update({"arm":a.arm,"seed":a.seed,"registered_point":pt,
+                       "completed_games":completed,"stage":stage,
+                       "trainer_state_id":f"{a.arm}{a.seed}-u{updates}-{cur_sha[:12]}",
+                       "evaluated_after_budget_loop":True})
+            evals.append(ev); machinery["nonzero_evaluations"].append(ev["scored"]>0)
+            adv,g=gates(ev,best); machinery["gate_evaluations"]+=1
+            ev["gates"]=g; ev["advance"]=adv
+            emit(f"  [eval @ {completed} pt={pt} FINAL] teacher={ev['teacher']} "
+                 f"field={ev['field']} scored={ev['scored']}/{ev['n_games']} adv={adv}")
     finally:
         pool.close(); pool.join()
     with gzip.open(os.path.join(outdir,"training_games.jsonl.gz"),"wt") as fh:

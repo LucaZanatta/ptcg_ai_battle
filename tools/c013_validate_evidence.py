@@ -249,12 +249,15 @@ def validate_budget():
     smoke = 0
     srows = []
     for arm, seed in (("R0", 1001), ("R1", 1002)):
-        p = os.path.join(ART, "curriculum_smoke", arm, f"seed{seed}",
-                         "training_games.jsonl.gz")
+        p = os.path.join(ART, "training", arm, f"seed{seed}", "training_games.jsonl.gz")
         if os.path.exists(p):
             n = sum(1 for _ in gzip.open(p, "rt"))
             smoke += n
             srows.append({"arm": arm, "raw_count": n})
+        else:
+            srows.append({"arm": arm, "status": "missing"})
+    # a cap check that passes because it located no data is worthless: require the arms first
+    check("smoke_arms_present", len([r for r in srows if "raw_count" in r]) == 2, srows)
     check("smoke_within_cap", smoke <= SMOKE_CAP, {"total": smoke, "cap": SMOKE_CAP,
                                                    "arms": srows})
     check("total_training_within_hard_maximum", total + smoke <= HARD_MAX_TRAINING,
@@ -433,6 +436,17 @@ def main():
     validate_immutability()
     validate_required_files()
 
+    # A failing check may be a KNOWN, documented deviation. It still fails -- suppressing it
+    # would defeat the point -- but the report links it to the document that explains it, so a
+    # reader can tell an acknowledged trade-off from an unexplained inconsistency.
+    fdir = os.path.join(RES, "failures")
+    devdocs = (sorted(os.listdir(fdir)) if os.path.isdir(fdir) else [])
+    ACK = {"smoke_within_cap":
+           "DEVIATION_curriculum_smoke_exceeded_its_registered_cap.md"}
+    for c in checks:
+        if not c["passed"] and c["check"] in ACK and ACK[c["check"]] in devdocs:
+            c["acknowledged_deviation"] = f"results/failures/{ACK[c['check']]}"
+
     crit_fail = [c for c in checks if c["critical"] and not c["passed"]]
     soft_fail = [c for c in checks if not c["critical"] and not c["passed"]]
     doc = {"validator_bootstrap_seed": VALIDATOR_BOOT_SEED,
@@ -443,6 +457,12 @@ def main():
            "n_critical_failures": len(crit_fail),
            "n_noncritical_failures": len(soft_fail),
            "checks": checks,
+           "unacknowledged_critical_failures": [c["check"] for c in crit_fail
+                                                if "acknowledged_deviation" not in c],
+           "acknowledged_deviations": [{"check": c["check"],
+                                        "document": c["acknowledged_deviation"]}
+                                       for c in crit_fail
+                                       if "acknowledged_deviation" in c],
            "overall": "PASS" if not crit_fail else "FAIL"}
     json.dump(doc, open(os.path.join(ART, "evidence_validation.json"), "w"),
               indent=2, default=str)
