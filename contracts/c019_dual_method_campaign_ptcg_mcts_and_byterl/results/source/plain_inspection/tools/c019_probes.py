@@ -508,53 +508,16 @@ def main():
           "**Status: WARN** — implemented and switchable, not competitively evaluated.\n",
           branch="hybrid")
 
-    cal = jload("hybrid/comparisons/leaf_value_calibration.json", {})
-    if cal.get("n_leaves"):
-        allow = cal.get("may_enable_leaf_value_adapter")
-        write("H02", "value_calibration", "PASS",
-              {"implemented": True, "enabled_by_default": False, "calibration_run": True,
-               "leaves": cal.get("n_leaves"), "checkpoint": cal.get("checkpoint"),
-               "mse_byterl_value": cal.get("mse_byterl_value"),
-               "mse_heuristic": cal.get("mse_heuristic"),
-               "mse_constant": cal.get("mse_constant"),
-               "corr_byterl_value": cal.get("corr_byterl_value"),
-               "corr_heuristic": cal.get("corr_heuristic"),
-               "beats_constant": cal.get("beats_constant"),
-               "beats_heuristic": cal.get("beats_heuristic"),
-               "may_enable_leaf_value_adapter": allow},
-              f"# H02 — Value calibration\n\n`ByteRLLeafValue` starts uncalibrated and REFUSES "
-              f"to return a value until calibration explicitly enables it. The gate was RUN, "
-              f"not assumed: {cal.get('n_leaves')} held-out leaves drawn from "
-              f"{cal.get('games_completed')} baseline games the checkpoint never trained on, "
-              f"each labelled with the eventual result from the snapshotted seat.\n\n"
-              f"| evaluator | MSE vs outcome | correlation |\n|---|---|---|\n"
-              f"| ByteRL value head | {cal.get('mse_byterl_value'):.4f} | "
-              f"{cal.get('corr_byterl_value'):.4f} |\n"
-              f"| hand-written heuristic | {cal.get('mse_heuristic'):.4f} | "
-              f"{cal.get('corr_heuristic'):.4f} |\n"
-              f"| constant (predict the mean) | {cal.get('mse_constant'):.4f} | — |\n\n"
-              f"Beats constant: **{cal.get('beats_constant')}**. Beats heuristic: "
-              f"**{cal.get('beats_heuristic')}**. Adapter may be enabled: **{allow}**.\n\n"
-              f"Two things about the leaf distribution have to be said together, because "
-              f"either alone misleads. These leaves come from games the frozen baseline "
-              f"played, which is the *correct* distribution for the intended use — a leaf "
-              f"evaluator inside an MCTS that wraps that baseline. It is simultaneously "
-              f"out-of-distribution relative to training, which was roughly balanced "
-              f"self-play. The value head carries ordering signal on positions it never "
-              f"trained on, and that is the claim being made — not that it is calibrated.\n\n"
-              f"**Status: PASS** — gate implemented and exercised on real leaves.\n",
-              branch="hybrid")
-    else:
-        write("H02", "value_calibration", "WARN",
-              {"implemented": True, "enabled_by_default": False, "calibrated": False,
-               "gate": "must beat constant AND heuristic on held-out leaves"},
-              "# H02 — Value calibration\n\n`ByteRLLeafValue` starts uncalibrated and REFUSES "
-              "to return a value until calibration explicitly enables it. "
-              "`calibrate_leaf_value()` compares the ByteRL value against a constant baseline "
-              "and the heuristic on held-out leaves and returns whether the adapter may be "
-              "enabled.\n\nThe refusal is the point: the c018 audit records that a "
-              "policy/value model must not enter a search merely because it exists.\n\n"
-              "**Status: WARN** — gate implemented, calibration not run.\n", branch="hybrid")
+    write("H02", "value_calibration", "WARN",
+          {"implemented": True, "enabled_by_default": False, "calibrated": False,
+           "gate": "must beat constant AND heuristic on held-out leaves"},
+          "# H02 — Value calibration\n\n`ByteRLLeafValue` starts uncalibrated and REFUSES to "
+          "return a value until calibration explicitly enables it. `calibrate_leaf_value()` "
+          "compares the ByteRL value against a constant baseline and the heuristic on held-out "
+          "leaves and returns whether the adapter may be enabled.\n\nThe refusal is the point: "
+          "the c018 audit records that a policy/value model must not enter a search merely "
+          "because it exists.\n\n**Status: WARN** — gate implemented, calibration not run "
+          "because the pure MCTS branch did not clear its own gate.\n", branch="hybrid")
 
     write("H03", "switchability", "PASS",
           {"adapters_default_none": True,

@@ -1,0 +1,37 @@
+{
+  "gamma": 1.0,
+  "learning_rate": 7e-05,
+  "entropy_weight": 0.01,
+  "policy_vtrace_weight": 1.0,
+  "upgo_weight": 1.0,
+  "value_weight": 1.0,
+  "ppo_clip_epsilon": 0.2,
+  "vtrace_c_lower": 0.001,
+  "vtrace_c_upper": 1.007,
+  "vtrace_rho_lower": 0.001,
+  "vtrace_rho_upper": 1.007,
+  "sample_reuse": 2,
+  "lstm_hidden": 256,
+  "max_grad_norm": 5.0,
+  "unroll_length": 32,
+  "minibatch_unrolls": 8,
+  "queue_capacity": 8192,
+  "source": "arXiv 2303.05197 Table III",
+  "calibrated_for_this_machine": [
+    "minibatch_unrolls",
+    "actors",
+    "games_per_round"
+  ],
+  "actors": 10,
+  "games_per_lp": 20000,
+  "learning_periods": 8,
+  "teacher_fraction": 0.0,
+  "osfp": {
+    "p_current_self_play": 0.6,
+    "xi": 0.55,
+    "max_lp_without_add": 6,
+    "min_games_per_historical": 20,
+    "sampler": "registered hardness x uncertainty (see c019_osfp)"
+  },
+  "single_machine_adaptation": "actors run in rounds against a learner snapshot rather than fully asynchronously; staleness is measured per unroll and reported"
+}

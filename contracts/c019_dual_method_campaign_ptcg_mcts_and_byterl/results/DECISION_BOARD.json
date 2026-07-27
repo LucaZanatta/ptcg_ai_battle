@@ -1,0 +1,35 @@
+{
+  "board": [
+    {
+      "role": "CHAMPION",
+      "id": "dragapult",
+      "basis": "externally confirmed control (~719.7 in captured evidence); no c019 candidate has beaten it on external evidence",
+      "external": true
+    },
+    {
+      "role": "CHALLENGER",
+      "id": "baseline_official_mega_lucario",
+      "basis": "accepted submission 55011215; strongest measured candidate on the c019 common panel",
+      "panel_field": 0.5833
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "ptcg_ismcts_v0",
+      "basis": "method-faithful and package-safe, but -12.5 field points below the frozen baseline; DECISION_RULES gate not met",
+      "method_fidelity": "PASS",
+      "panel_field": null
+    },
+    {
+      "role": "IN_PROGRESS",
+      "id": "ptcg_byterl_v0",
+      "basis": "training run incomplete at report time",
+      "method_fidelity": "PASS"
+    },
+    {
+      "role": "ARCHIVE",
+      "id": "c018_search_and_curriculum",
+      "basis": "root-only search and schedule-driven self-play; disproven as MCTS and as OSFP, not continued by c019"
+    }
+  ],
+  "rule": "a package existing does not make it a challenger (DECISION_RULES)"
+}

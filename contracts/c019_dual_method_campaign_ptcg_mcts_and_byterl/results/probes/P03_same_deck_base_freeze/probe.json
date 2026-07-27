@@ -1,0 +1,18 @@
+{
+  "probe_id": "P03",
+  "name": "same_deck_base_freeze",
+  "branch": "common",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "deck": "mega_lucario",
+    "frozen_for": [
+      "PTCG_ISMCTS_V0",
+      "PTCG_BYTERL_V0"
+    ],
+    "baseline_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+    "alternatives_considered": 3
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

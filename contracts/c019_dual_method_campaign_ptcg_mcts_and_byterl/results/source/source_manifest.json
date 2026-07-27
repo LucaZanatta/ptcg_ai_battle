@@ -1,0 +1,281 @@
+{
+  "contract": "c019",
+  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
+  "bundles": {
+    "complete_repository_source.zip": {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/complete_repository_source.zip",
+      "present": true,
+      "sha256": "8cb6a3229790cf79ef79bcbc86da581a8484409c125a68a0f75e878917eedea3",
+      "bytes": 1816220,
+      "note": null,
+      "files": 423
+    },
+    "c019_competition_source_bundle.zip": {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/c019_competition_source_bundle.zip",
+      "present": true,
+      "sha256": "adc4d0f7ee18c18e27676bc3454c99737f33355f001b198910697b95709fe5f1",
+      "bytes": 148054,
+      "note": null,
+      "files": 41
+    }
+  },
+  "inspection_files": [
+    {
+      "path": "cg/c019_core.py",
+      "present": true,
+      "sha256": "e577c368b9238238d288bffd91bb12341620cf85bd9be3dea9492341b2c52a3c",
+      "bytes": 9378,
+      "note": null,
+      "role": "canonical option/observation interface, hidden-information guard"
+    },
+    {
+      "path": "cg/c019_baseline.py",
+      "present": true,
+      "sha256": "c9140863f1bf99721b0a970d7cdf9a88b9ab09766e066ca2607adbb8627f3db0",
+      "bytes": 7563,
+      "note": null,
+      "role": "branch-local baseline policy memory (\u00a78.1)"
+    },
+    {
+      "path": "cg/c019_determinize.py",
+      "present": true,
+      "sha256": "843c7a4169aee91717d63c7e519c556cb308787508cc223073674f0e64fef5dd",
+      "bytes": 11725,
+      "note": null,
+      "role": "legal information-set determinization sampler (\u00a78.2)"
+    },
+    {
+      "path": "cg/c019_leaf.py",
+      "present": true,
+      "sha256": "6c5a006b95f06dada15e5b798e19d927ed099b8ed5a55b175a9bec44a78138b5",
+      "bytes": 4734,
+      "note": null,
+      "role": "PTCG heuristic leaf evaluator (\u00a78.4)"
+    },
+    {
+      "path": "cg/c019_mcts.py",
+      "present": true,
+      "sha256": "91df3ea5e1a7f8c5f09272d36d27569c5daa8021451cdfaf3185634685c4b1bd",
+      "bytes": 14620,
+      "note": null,
+      "role": "node/tree/PUCT/expansion/rollout/backup (\u00a78.3)"
+    },
+    {
+      "path": "cg/c019_ismcts.py",
+      "present": true,
+      "sha256": "955d82a588ea3a9dc96f166abef3c742c33732cafa7094b6073dd9cc476c9c47",
+      "bytes": 9010,
+      "note": null,
+      "role": "multi-determinization agent and root aggregation (\u00a78.2, M09)"
+    },
+    {
+      "path": "cg/c019_byterl_encode.py",
+      "present": true,
+      "sha256": "b2fd8e64fe02d37e7abc91ea47dc2d6daed480df79b645f444df7ecc1dee700a",
+      "bytes": 7458,
+      "note": null,
+      "role": "visible token encoder (\u00a79.2)"
+    },
+    {
+      "path": "cg/c019_byterl_model.py",
+      "present": true,
+      "sha256": "6eaffeab0614d86c90b9e2105bc487985484adf1322f81fa63cd3d4be459e2a8",
+      "bytes": 8047,
+      "note": null,
+      "role": "recurrent masked policy/value, LSTM-256 (\u00a79.2)"
+    },
+    {
+      "path": "cg/c019_byterl_actor.py",
+      "present": true,
+      "sha256": "0fc937fd0412f7264d63d7c1151e7c2b29a88a25b1b1c8c53e66476ec63d7428",
+      "bytes": 8708,
+      "note": null,
+      "role": "CPU actor and unroll schema (\u00a79.3)"
+    },
+    {
+      "path": "cg/c019_vtrace.py",
+      "present": true,
+      "sha256": "5b7b6034f97537d20c4973ec6b2d33c971404a62a926846e5cd1730b8b6b164d",
+      "bytes": 7223,
+      "note": null,
+      "role": "V-trace targets, UPGO, PPO-clipped objective (\u00a79.3)"
+    },
+    {
+      "path": "cg/c019_osfp.py",
+      "present": true,
+      "sha256": "81c112912cf5b6183da95609dd8d093ea81077814525a8cb6d165944954cfcf1",
+      "bytes": 9653,
+      "note": null,
+      "role": "OSFP Algorithm 1: H, payoff sampling, promotion (\u00a79.4)"
+    },
+    {
+      "path": "cg/c019_hybrid.py",
+      "present": true,
+      "sha256": "7ead12fa996de3bff379b97d6d848a3a0314212e26a641b3a1939ef8e904caca",
+      "bytes": 9917,
+      "note": null,
+      "role": "switchable priors/value/visit-target adapters (\u00a710)"
+    },
+    {
+      "path": "tools/c019_sources.py",
+      "present": true,
+      "sha256": "e387766f43f0c8d87b6d25370215593127861f7d3034849e89862a024275a5fc",
+      "bytes": 17222,
+      "note": null,
+      "role": null
+    },
+    {
+      "path": "tools/c019_calibrate.py",
+      "present": true,
+      "sha256": "6fcf51a22746cfa3b03d66d4b0576d705cf08a8c769804149cc4ade7529ecd80",
+      "bytes": 7810,
+      "note": null,
+      "role": null
+    },
+    {
+      "path": "tools/c019_probe_chance.py",
+      "present": true,
+      "sha256": "6534b06f1a0502e11429e6f859273f7dbbafd784a2d1121092d5e0a334e78b05",
+      "bytes": 9022,
+      "note": null,
+      "role": null
+    },
+    {
+      "path": "tools/c019_probe_m01.py",
+      "present": true,
+      "sha256": "a6b4093a53d215a4d87a8d95b1c3a6682523ceb977a8b7d8362c7901fc5a44a9",
+      "bytes": 6375,
+      "note": null,
+      "role": null
+    },
+    {
+      "path": "tools/c019_mcts_run.py",
+      "present": true,
+      "sha256": "80b8e96ab79f474b47ff975bcbbeb466bd834e38a97fa7492b64a5d1288f400b",
+      "bytes": 10416,
+      "note": null,
+      "role": "scaled MCTS evaluation and evidence capture (\u00a78.6)"
+    },
+    {
+      "path": "tools/c019_byterl_train.py",
+      "present": true,
+      "sha256": "1d530a7136f8c6adf42ca9512026bd10fc5650c1dcd291ada7fee61fd26cb553",
+      "bytes": 20516,
+      "note": null,
+      "role": "actor-learner training loop (\u00a79.3)"
+    },
+    {
+      "path": "tools/c019_panel.py",
+      "present": true,
+      "sha256": "6b9c7474fe2f4ddd177caeb13c19a01d381bace5c50633ca9c11ebe2e53969f9",
+      "bytes": 12522,
+      "note": null,
+      "role": "frozen identity-safe common panel (\u00a711)"
+    },
+    {
+      "path": "tools/c019_package.py",
+      "present": true,
+      "sha256": "ae9b5b8569ca26a6db67d7ed1bf9fbb14fc6941a1d97253acf6cf137ec89c5b4",
+      "bytes": 18807,
+      "note": null,
+      "role": "standalone package builders and clean-extraction validation (\u00a713)"
+    },
+    {
+      "path": "tools/c019_validate.py",
+      "present": true,
+      "sha256": "aa0b01d2c6d7e781fa65f5083f30aeaaa451178306eb63b0d28eb1f5ca3f1f3a",
+      "bytes": 23165,
+      "note": null,
+      "role": "method-fidelity and evidence validator (F03)"
+    },
+    {
+      "path": "tools/c019_tree.py",
+      "present": true,
+      "sha256": "8fc7fa526f3663732f8d021f1219484d2fddfa0ff7efcd5d91eb67c46f4dce2c",
+      "bytes": 18533,
+      "note": null,
+      "role": null
+    },
+    {
+      "path": "tools/c019_reports.py",
+      "present": true,
+      "sha256": "a26c23888227825ac6f70c8c8ba01ce0d30d595dca2a35b31da15d9282a26684",
+      "bytes": 22032,
+      "note": null,
+      "role": null
+    },
+    {
+      "path": "tools/c019_submit.py",
+      "present": true,
+      "sha256": "7dbb6a0e1f248d08a75dfa9a7c417c39359be3f7a3aadd32da1837f88e2ee3c5",
+      "bytes": 11053,
+      "note": null,
+      "role": "gated Kaggle submission"
+    },
+    {
+      "path": "tools/c019_probes.py",
+      "present": true,
+      "sha256": "33121bd57662a26ac4b4c56073060b3d1922080dbc21942618b9151dd6c43e1d",
+      "bytes": 37366,
+      "note": null,
+      "role": "probe directory writer"
+    },
+    {
+      "path": "tests/test_c019_fixtures.py",
+      "present": true,
+      "sha256": "e0b8c294812807d1444453c27b0dddc7a72e7f9a3621c0ea521fa145ee3917e9",
+      "bytes": 12395,
+      "note": null,
+      "role": null
+    },
+    {
+      "path": "packages/ptcg_byterl_v0/main.py",
+      "present": true,
+      "role": "package entrypoint"
+    },
+    {
+      "path": "packages/ptcg_ismcts_v0/main.py",
+      "present": true,
+      "role": "package entrypoint"
+    }
+  ],
+  "milestones": {
+    "M00_parent": {
+      "title": "resolved c018 parent and immutable start",
+      "config_hash": "44136fa355b3678a1146ad16f7e8649e"
+    },
+    "M01_shared_interface": {
+      "title": "canonical option/observation interface and deck freeze",
+      "config_hash": "44136fa355b3678a1146ad16f7e8649e"
+    },
+    "M02_mcts_faithful": {
+      "title": "method-faithful PTCG-ISMCTS",
+      "config_hash": "51bc315f9ecd223a6a4855e619f865db"
+    },
+    "M03_byterl_actor_learner": {
+      "title": "ByteRL recurrent actor-learner",
+      "config_hash": "af314fdd0aa33a437ffe0c3c002bfde1"
+    },
+    "M04_byterl_osfp": {
+      "title": "OSFP historical pool and promotions",
+      "config_hash": "cdda16e17d9e891451e6244573fd010d"
+    },
+    "M05_hybrid_adapters": {
+      "title": "switchable hybrid adapters",
+      "config_hash": "44136fa355b3678a1146ad16f7e8649e"
+    },
+    "M06_submitted_packages": {
+      "title": "packages and submission decisions",
+      "config_hash": "44136fa355b3678a1146ad16f7e8649e"
+    }
+  },
+  "hashed_files": 379,
+  "environment": {
+    "python": "3.13.13",
+    "platform": "Linux-6.17.0-40-generic-x86_64-with-glibc2.39",
+    "torch": "2.13.0+cu132",
+    "cuda": true,
+    "gpu": "NVIDIA GeForce RTX 5070"
+  }
+}

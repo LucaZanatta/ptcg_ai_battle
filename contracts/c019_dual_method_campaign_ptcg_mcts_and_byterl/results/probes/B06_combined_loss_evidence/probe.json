@@ -1,0 +1,20 @@
+{
+  "probe_id": "B06",
+  "name": "combined_loss_evidence",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "updates": 31728,
+    "updates_with_nonzero_upgo": 31728,
+    "separate_losses_logged": [
+      "policy_vtrace",
+      "upgo",
+      "value",
+      "entropy"
+    ],
+    "grad_norms_logged": true
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

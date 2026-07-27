@@ -1,0 +1,28 @@
+{
+  "rule": "DECISION_RULES.md -- MCTS credibility",
+  "config_evaluated": {
+    "simulations_per_determinization": 12,
+    "determinizations": 1,
+    "max_ms_per_decision": 120
+  },
+  "baseline_field": 0.5167,
+  "mcts_field": 0.3917,
+  "delta_field_points": -0.125,
+  "per_matchup_delta": {
+    "dragapult": 0.0,
+    "mega_lucario": -0.1334,
+    "iono": -0.2666,
+    "mega_abomasnow": -0.1
+  },
+  "clause_a_field_plus_3pts": false,
+  "clause_b_matchup_plus_5pts_without_2pt_field_regression": false,
+  "eligible_for_submission": false,
+  "games": 240,
+  "latency": {
+    "baseline_max_game_s": 1.24,
+    "mcts_max_game_s": 9.61,
+    "mcts_mean_search_match_ms": 5150.8,
+    "mcts_max_search_match_ms": 8665.2
+  },
+  "verdict": "NOT ELIGIBLE -- faithful MCTS at the package config scores -12.5 points below the frozen baseline on 240 identity-safe games. The gate requires +3."
+}

@@ -1,0 +1,251 @@
+{
+  "tag": "fixsmoke",
+  "device": "cuda",
+  "hyperparameters": {
+    "gamma": 1.0,
+    "learning_rate": 7e-05,
+    "entropy_weight": 0.01,
+    "policy_vtrace_weight": 1.0,
+    "upgo_weight": 1.0,
+    "value_weight": 1.0,
+    "ppo_clip_epsilon": 0.2,
+    "vtrace_c_lower": 0.001,
+    "vtrace_c_upper": 1.007,
+    "vtrace_rho_lower": 0.001,
+    "vtrace_rho_upper": 1.007,
+    "sample_reuse": 2,
+    "lstm_hidden": 256,
+    "max_grad_norm": 5.0,
+    "unroll_length": 32,
+    "minibatch_unrolls": 8,
+    "queue_capacity": 8192,
+    "source": "arXiv 2303.05197 Table III",
+    "calibrated_for_this_machine": [
+      "minibatch_unrolls",
+      "actors",
+      "games_per_round"
+    ]
+  },
+  "learning_periods": 9,
+  "actual_games": 360,
+  "optimizer_steps": 231,
+  "nonfinite_losses": 0,
+  "nonfinite_grads": 0,
+  "unrolls_enqueued": 930,
+  "historical_pool": 2,
+  "promotions": [
+    {
+      "add": true,
+      "reason": "FIRST_HISTORICAL",
+      "detail": "H is empty; the first checkpoint seeds the pool",
+      "lp": 0,
+      "G": [],
+      "C": [],
+      "learner_version": 26,
+      "added": {
+        "index": 0,
+        "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/fixsmoke/historical_000_lp000_v000026.pt",
+        "sha256": "62e32383306a6617a41ffeb4e840c0988933643dcd568411db0c2114cdac967f"
+      }
+    },
+    {
+      "add": false,
+      "reason": "NO_PROMOTION",
+      "sufficiently_sampled": false,
+      "lps_without_add": 0,
+      "winrates": [
+        0.3529411764705882
+      ],
+      "mean_payoffs": [
+        -0.29411764705882354
+      ],
+      "xi": 0.55,
+      "lp": 1,
+      "G": [
+        -5.0
+      ],
+      "C": [
+        17
+      ],
+      "learner_version": 52
+    },
+    {
+      "add": false,
+      "reason": "NO_PROMOTION",
+      "sufficiently_sampled": true,
+      "lps_without_add": 1,
+      "winrates": [
+        0.41379310344827586
+      ],
+      "mean_payoffs": [
+        -0.1724137931034483
+      ],
+      "xi": 0.55,
+      "lp": 2,
+      "G": [
+        -5.0
+      ],
+      "C": [
+        29
+      ],
+      "learner_version": 76
+    },
+    {
+      "add": false,
+      "reason": "NO_PROMOTION",
+      "sufficiently_sampled": true,
+      "lps_without_add": 2,
+      "winrates": [
+        0.5227272727272727
+      ],
+      "mean_payoffs": [
+        0.045454545454545456
+      ],
+      "xi": 0.55,
+      "lp": 3,
+      "G": [
+        2.0
+      ],
+      "C": [
+        44
+      ],
+      "learner_version": 102
+    },
+    {
+      "add": true,
+      "reason": "PERFORMANCE",
+      "sufficiently_sampled": true,
+      "winrates": [
+        0.564516129032258
+      ],
+      "mean_payoffs": [
+        0.12903225806451613
+      ],
+      "xi": 0.55,
+      "lp": 4,
+      "G": [
+        8.0
+      ],
+      "C": [
+        62
+      ],
+      "learner_version": 127,
+      "added": {
+        "index": 1,
+        "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/fixsmoke/historical_001_lp004_v000127.pt",
+        "sha256": "80d182a06e589f9e4ef103b78d88f14681ecee872b045a9e8bc00270b7e52064"
+      }
+    },
+    {
+      "add": false,
+      "reason": "NO_PROMOTION",
+      "sufficiently_sampled": false,
+      "lps_without_add": 0,
+      "winrates": [
+        0.5625,
+        0.375
+      ],
+      "mean_payoffs": [
+        0.125,
+        -0.25
+      ],
+      "xi": 0.55,
+      "lp": 5,
+      "G": [
+        8.0,
+        -4.0
+      ],
+      "C": [
+        64,
+        16
+      ],
+      "learner_version": 152
+    },
+    {
+      "add": false,
+      "reason": "NO_PROMOTION",
+      "sufficiently_sampled": true,
+      "lps_without_add": 1,
+      "winrates": [
+        0.5606060606060606,
+        0.5
+      ],
+      "mean_payoffs": [
+        0.12121212121212122,
+        0.0
+      ],
+      "xi": 0.55,
+      "lp": 6,
+      "G": [
+        8.0,
+        0.0
+      ],
+      "C": [
+        66,
+        28
+      ],
+      "learner_version": 178
+    },
+    {
+      "add": false,
+      "reason": "NO_PROMOTION",
+      "sufficiently_sampled": true,
+      "lps_without_add": 2,
+      "winrates": [
+        0.5571428571428572,
+        0.4473684210526316
+      ],
+      "mean_payoffs": [
+        0.11428571428571428,
+        -0.10526315789473684
+      ],
+      "xi": 0.55,
+      "lp": 7,
+      "G": [
+        8.0,
+        -4.0
+      ],
+      "C": [
+        70,
+        38
+      ],
+      "learner_version": 205
+    },
+    {
+      "add": false,
+      "reason": "NO_PROMOTION",
+      "sufficiently_sampled": true,
+      "lps_without_add": 3,
+      "winrates": [
+        0.5802469135802469,
+        0.44680851063829785
+      ],
+      "mean_payoffs": [
+        0.16049382716049382,
+        -0.10638297872340426
+      ],
+      "xi": 0.55,
+      "lp": 8,
+      "G": [
+        13.0,
+        -5.0
+      ],
+      "C": [
+        81,
+        47
+      ],
+      "learner_version": 231
+    }
+  ],
+  "immutability": {
+    "historical": 2,
+    "verified": 2,
+    "mutated_or_missing": [],
+    "all_immutable": true
+  },
+  "observed_self_play_fraction": 0.6444,
+  "final_checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_final.pt",
+  "final_sha256": "ab9dfeda8f684497bdae8a001696d0c23091cdec1b390c586de746e7bcd1678b",
+  "wall_clock_s": 109.3,
+  "initialized_from": "FRESH_RANDOM (\u00a79.1); not a c018 checkpoint"
+}

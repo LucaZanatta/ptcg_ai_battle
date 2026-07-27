@@ -1,0 +1,15 @@
+{
+  "probe_id": "M04",
+  "name": "puct_numerical_fixture",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "fixture": "tests/test_c019_fixtures.py::TestPUCT",
+    "scores_match_hand_calculation": true,
+    "c_puct_changes_selected_child": true,
+    "progressive_widening_grows_with_visits": true
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

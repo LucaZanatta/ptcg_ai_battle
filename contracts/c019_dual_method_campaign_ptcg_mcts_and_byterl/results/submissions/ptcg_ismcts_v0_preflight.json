@@ -1,0 +1,51 @@
+{
+  "name": "ptcg_ismcts_v0",
+  "branch": "mcts",
+  "gates": {
+    "archive_hash_matches_manifest": true,
+    "clean_extraction_ok": true,
+    "both_seats_exercised": true,
+    "at_least_100_validation_games": false,
+    "zero_errors_in_validation": true,
+    "method_actually_ran_in_package": true,
+    "method_fidelity_validator_passes": false,
+    "no_submission_blockers": true,
+    "no_dependency_on_other_branch": true,
+    "upload_budget_remaining": true,
+    "credibility_gate": false
+  },
+  "all_gates_pass": false,
+  "failed_gates": [
+    "at_least_100_validation_games",
+    "method_fidelity_validator_passes",
+    "credibility_gate"
+  ],
+  "credibility": {
+    "branch": "mcts",
+    "panel_tag": "mcts_gate",
+    "baseline_field": 0.5167,
+    "candidate_field": 0.3917,
+    "delta_field_points": -0.125,
+    "per_matchup_delta": {
+      "dragapult": 0.0,
+      "mega_lucario": -0.1334,
+      "iono": -0.2666,
+      "mega_abomasnow": -0.1
+    },
+    "clause_field_plus_3pts": false,
+    "clause_matchup_plus_5pts": false,
+    "eligible": false,
+    "rule": "field >= baseline+3pts, OR a matchup +5pts without >2pt field regression"
+  },
+  "uploads_used": 0,
+  "uploads_allowed": 2,
+  "archive": "packages/ptcg_ismcts_v0/ptcg_ismcts_v0.tar.gz",
+  "archive_sha256": "9c72519fcc2ce3d45da79df8b0693e96b17d3033d799b8e4949a5540271ad38f",
+  "clean_validation": {
+    "games_played": 12,
+    "games_completed": 12,
+    "win_rate": 0.8333,
+    "max_game_seconds": 11.21,
+    "method_actually_ran": true
+  }
+}

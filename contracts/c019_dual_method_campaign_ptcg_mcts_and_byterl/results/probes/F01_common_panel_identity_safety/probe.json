@@ -1,0 +1,18 @@
+{
+  "probe_id": "F01",
+  "name": "common_panel_identity_safety",
+  "branch": "common",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "panels": [
+      "mcts_full_aggregates.json",
+      "mcts_gate2_aggregates.json",
+      "mcts_gate_aggregates.json"
+    ],
+    "aggregates_recomputed_from_raw_rows": true,
+    "environment_randomness_paired": false
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

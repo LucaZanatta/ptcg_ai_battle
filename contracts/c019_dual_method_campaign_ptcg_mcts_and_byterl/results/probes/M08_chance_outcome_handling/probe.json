@@ -1,0 +1,14 @@
+{
+  "probe_id": "M08",
+  "name": "chance_outcome_handling",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "outcomes_recorded": 651547,
+    "chance_nodes": 0,
+    "precondition_probe": "probes/M08_chance_precondition/precondition.json"
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

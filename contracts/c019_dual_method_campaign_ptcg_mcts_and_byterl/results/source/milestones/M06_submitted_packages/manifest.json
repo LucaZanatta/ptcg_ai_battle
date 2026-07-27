@@ -1,0 +1,55 @@
+{
+  "milestone": "M06_submitted_packages",
+  "title": "packages and submission decisions",
+  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "git_tree": "fb8b447508597fe19ddd436a44ff3af6d6b44ba0",
+  "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
+  "sources": [
+    {
+      "path": "tools/c019_package.py",
+      "present": true,
+      "sha256": "ae9b5b8569ca26a6db67d7ed1bf9fbb14fc6941a1d97253acf6cf137ec89c5b4",
+      "bytes": 18807,
+      "note": null
+    },
+    {
+      "path": "tools/c019_submit.py",
+      "present": true,
+      "sha256": "7dbb6a0e1f248d08a75dfa9a7c417c39359be3f7a3aadd32da1837f88e2ee3c5",
+      "bytes": 11053,
+      "note": null
+    }
+  ],
+  "configs": {},
+  "config_hash": "44136fa355b3678a1146ad16f7e8649e",
+  "result_artifacts": [
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_byterl_v0/manifest.json",
+      "present": true,
+      "sha256": "ae318b6fd779e694741b2e305173166db726a31c418da643cc139a550d86af69",
+      "bytes": 4404,
+      "note": null
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_ismcts_v0/manifest.json",
+      "present": true,
+      "sha256": "3a5ce28fe89dba86df96d06b08c87bbd238de118be8c4ddbe4c1925c80a29bf7",
+      "bytes": 8844,
+      "note": null
+    }
+  ],
+  "command": "python tools/c019_package.py",
+  "packages": [
+    {
+      "name": "ptcg_byterl_v0",
+      "sha256": "ab25eba004f9a6e46a92a9cff2c35869d3822bc27eedc838c515c784a1c50f99",
+      "clean_extraction_ok": true
+    },
+    {
+      "name": "ptcg_ismcts_v0",
+      "sha256": "9c72519fcc2ce3d45da79df8b0693e96b17d3033d799b8e4949a5540271ad38f",
+      "clean_extraction_ok": true
+    }
+  ],
+  "submission": null
+}

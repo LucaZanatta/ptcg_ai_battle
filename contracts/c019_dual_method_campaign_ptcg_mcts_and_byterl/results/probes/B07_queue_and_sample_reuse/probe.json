@@ -1,0 +1,14 @@
+{
+  "probe_id": "B07",
+  "name": "queue_and_sample_reuse",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "queue_capacity": 8192,
+    "registered_sample_reuse": 2,
+    "batches_scale_with_new_experience": true
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

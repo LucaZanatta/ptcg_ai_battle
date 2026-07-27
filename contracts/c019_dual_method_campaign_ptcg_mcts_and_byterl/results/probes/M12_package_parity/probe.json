@@ -1,0 +1,21 @@
+{
+  "probe_id": "M12",
+  "name": "package_parity",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "games": 12,
+    "completed": 12,
+    "both_seats": true,
+    "method_actually_ran": true,
+    "liveness": {
+      "searched": 167,
+      "simulations": 1524,
+      "nonroot_expansions": 812,
+      "backups": 1524
+    }
+  },
+  "submission_blocker": true,
+  "raw_evidence": []
+}

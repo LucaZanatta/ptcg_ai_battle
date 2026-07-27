@@ -1,0 +1,321 @@
+{
+  "name": "ptcg_ismcts_v0",
+  "kind": "mcts",
+  "archive": "ptcg_ismcts_v0.tar.gz",
+  "sha256": "9c72519fcc2ce3d45da79df8b0693e96b17d3033d799b8e4949a5540271ad38f",
+  "bytes": 556611,
+  "n_members": 33,
+  "members": [
+    {
+      "name": "ATTRIBUTION.md",
+      "size": 695
+    },
+    {
+      "name": "_baseline_agent.py",
+      "size": 19776
+    },
+    {
+      "name": "_c019_ismcts.py",
+      "size": 9010
+    },
+    {
+      "name": "cg/__init__.py",
+      "size": 0
+    },
+    {
+      "name": "cg/api.py",
+      "size": 26933
+    },
+    {
+      "name": "cg/c009_eval.py",
+      "size": 13092
+    },
+    {
+      "name": "cg/c019_baseline.py",
+      "size": 7462
+    },
+    {
+      "name": "cg/c019_baseline.py",
+      "size": 7462
+    },
+    {
+      "name": "cg/c019_core.py",
+      "size": 9378
+    },
+    {
+      "name": "cg/c019_determinize.py",
+      "size": 11725
+    },
+    {
+      "name": "cg/c019_ismcts.py",
+      "size": 9010
+    },
+    {
+      "name": "cg/c019_leaf.py",
+      "size": 4734
+    },
+    {
+      "name": "cg/c019_mcts.py",
+      "size": 14620
+    },
+    {
+      "name": "cg/card_vocab.py",
+      "size": 6753
+    },
+    {
+      "name": "cg/control_agent.py",
+      "size": 890
+    },
+    {
+      "name": "cg/decision_taxonomy.py",
+      "size": 5882
+    },
+    {
+      "name": "cg/decoders.py",
+      "size": 3001
+    },
+    {
+      "name": "cg/episode_capture.py",
+      "size": 8965
+    },
+    {
+      "name": "cg/episode_schema.py",
+      "size": 9061
+    },
+    {
+      "name": "cg/game.py",
+      "size": 2225
+    },
+    {
+      "name": "cg/libcg.so",
+      "size": 1338304
+    },
+    {
+      "name": "cg/micrograd.py",
+      "size": 12173
+    },
+    {
+      "name": "cg/policy_data_v2.py",
+      "size": 8483
+    },
+    {
+      "name": "cg/policy_model_v2.py",
+      "size": 10269
+    },
+    {
+      "name": "cg/rl_env.py",
+      "size": 7534
+    },
+    {
+      "name": "cg/rl_policy.py",
+      "size": 10342
+    },
+    {
+      "name": "cg/safe_policy.py",
+      "size": 6942
+    },
+    {
+      "name": "cg/sim.py",
+      "size": 1966
+    },
+    {
+      "name": "cg/state_encoder_v2.py",
+      "size": 18405
+    },
+    {
+      "name": "cg/teachers.py",
+      "size": 6189
+    },
+    {
+      "name": "cg/utils.py",
+      "size": 1970
+    },
+    {
+      "name": "deck.csv",
+      "size": 305
+    },
+    {
+      "name": "main.py",
+      "size": 1492
+    }
+  ],
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "config": {
+    "simulations_per_determinization": 12,
+    "determinizations": 1,
+    "max_ms_per_decision": 120,
+    "max_match_ms": 20000
+  },
+  "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+  "source_to_package_map": [
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/deck.csv",
+      "archive_path": "deck.csv",
+      "sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee"
+    },
+    {
+      "source": "cg/__init__.py",
+      "archive_path": "cg/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "cg/api.py",
+      "archive_path": "cg/api.py",
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced"
+    },
+    {
+      "source": "cg/game.py",
+      "archive_path": "cg/game.py",
+      "sha256": "3bd3d4f4a369a11e6d2f5da9094cf15ebc410a2221835e6417b7cff4883f1fc2"
+    },
+    {
+      "source": "cg/libcg.so",
+      "archive_path": "cg/libcg.so",
+      "sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb"
+    },
+    {
+      "source": "cg/sim.py",
+      "archive_path": "cg/sim.py",
+      "sha256": "e7a804ee4cd7c5a9a3b8dc91f9581ff3585f9431633a41f33d7707194cb31191"
+    },
+    {
+      "source": "cg/utils.py",
+      "archive_path": "cg/utils.py",
+      "sha256": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b"
+    },
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/main.py",
+      "archive_path": "_baseline_agent.py",
+      "sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2"
+    },
+    {
+      "source": "cg/c019_core.py",
+      "archive_path": "cg/c019_core.py",
+      "sha256": "e577c368b9238238d288bffd91bb12341620cf85bd9be3dea9492341b2c52a3c"
+    },
+    {
+      "source": "cg/c019_baseline.py",
+      "archive_path": "cg/c019_baseline.py",
+      "sha256": "c9140863f1bf99721b0a970d7cdf9a88b9ab09766e066ca2607adbb8627f3db0"
+    },
+    {
+      "source": "cg/c019_determinize.py",
+      "archive_path": "cg/c019_determinize.py",
+      "sha256": "843c7a4169aee91717d63c7e519c556cb308787508cc223073674f0e64fef5dd"
+    },
+    {
+      "source": "cg/c019_leaf.py",
+      "archive_path": "cg/c019_leaf.py",
+      "sha256": "6c5a006b95f06dada15e5b798e19d927ed099b8ed5a55b175a9bec44a78138b5"
+    },
+    {
+      "source": "cg/c019_mcts.py",
+      "archive_path": "cg/c019_mcts.py",
+      "sha256": "91df3ea5e1a7f8c5f09272d36d27569c5daa8021451cdfaf3185634685c4b1bd"
+    },
+    {
+      "source": "cg/c019_ismcts.py",
+      "archive_path": "cg/c019_ismcts.py",
+      "sha256": "955d82a588ea3a9dc96f166abef3c742c33732cafa7094b6073dd9cc476c9c47"
+    },
+    {
+      "source": "cg/c009_eval.py",
+      "archive_path": "cg/c009_eval.py",
+      "sha256": "d0f6619af20e3539721c5494d06e9e0d4a9b3d57f24d2447d3856053d0b4d60b"
+    },
+    {
+      "source": "cg/card_vocab.py",
+      "archive_path": "cg/card_vocab.py",
+      "sha256": "8fb47945c3afd0f96d256965a1cecf5c90d270f08ea1839a437fa3f82b6b04c1"
+    },
+    {
+      "source": "cg/control_agent.py",
+      "archive_path": "cg/control_agent.py",
+      "sha256": "9ea9b59ba7da02420e8639e5ffb17ae4cfc8ca6fc03d26aec9b0feb70aea43b4"
+    },
+    {
+      "source": "cg/decision_taxonomy.py",
+      "archive_path": "cg/decision_taxonomy.py",
+      "sha256": "09e209b4ad48409c9a1f5e54bf63847503be945176fbe1dfcf543fc80eaea6ca"
+    },
+    {
+      "source": "cg/decoders.py",
+      "archive_path": "cg/decoders.py",
+      "sha256": "b9529e553fcdc2ceecb3959e1412c2db2fe6ac86578f29645b147344011d5e2a"
+    },
+    {
+      "source": "cg/episode_capture.py",
+      "archive_path": "cg/episode_capture.py",
+      "sha256": "97f024e6ed7a7f11b2d4742fb7e371fd50e35ee34a691426f79bd546799b2bc3"
+    },
+    {
+      "source": "cg/episode_schema.py",
+      "archive_path": "cg/episode_schema.py",
+      "sha256": "6be3b36052d08e83b767eb7394cae99b84c0e045503fb02cefa6a4ff76d42ebe"
+    },
+    {
+      "source": "cg/micrograd.py",
+      "archive_path": "cg/micrograd.py",
+      "sha256": "f8f81df43e3fa8f02ff1c2ebc540b7f50b6547908d58de536a61b78922c241c4"
+    },
+    {
+      "source": "cg/policy_data_v2.py",
+      "archive_path": "cg/policy_data_v2.py",
+      "sha256": "c01932fb2b7d539b6c63fbdf9ddfdfe2a640c9968e34734c8d1064e85335bcd7"
+    },
+    {
+      "source": "cg/policy_model_v2.py",
+      "archive_path": "cg/policy_model_v2.py",
+      "sha256": "fc24b038f6b9d05c25d1023cc0b0dce340fb277d17ce275b00171f2040759342"
+    },
+    {
+      "source": "cg/rl_env.py",
+      "archive_path": "cg/rl_env.py",
+      "sha256": "35c9a2f6470276ebb321a64a22928c85e5177839f8df5dc2289985e809735702"
+    },
+    {
+      "source": "cg/rl_policy.py",
+      "archive_path": "cg/rl_policy.py",
+      "sha256": "780c26453703ab3b86c869d9de35e7e38041dc18210954356e4b401114bd8d97"
+    },
+    {
+      "source": "cg/safe_policy.py",
+      "archive_path": "cg/safe_policy.py",
+      "sha256": "e429af6106b8fbe9e1af32d5f83355ea3115f99a0f01c0941e58486279815d8e"
+    },
+    {
+      "source": "cg/state_encoder_v2.py",
+      "archive_path": "cg/state_encoder_v2.py",
+      "sha256": "874c0c8c2b05774715abbc6e1b0d8f2c4900cb30fe7a6d9194b70ea370df76f6"
+    },
+    {
+      "source": "cg/teachers.py",
+      "archive_path": "cg/teachers.py",
+      "sha256": "241953f15cdaba4d13355dc8a7a98a6cbdf3d8884fd89ab9f5b491adc3658fb6"
+    },
+    {
+      "source": "cg/c019_baseline.py (baseline path rebound to the package)",
+      "archive_path": "cg/c019_baseline.py",
+      "sha256": "730bfe7fc8a5f783ea50cea014383a4565270d6ad6c297166acfb56dd2c37760"
+    },
+    {
+      "source": "cg/c019_ismcts.py",
+      "archive_path": "_c019_ismcts.py",
+      "sha256": "955d82a588ea3a9dc96f166abef3c742c33732cafa7094b6073dd9cc476c9c47"
+    },
+    {
+      "source": "generated by tools/c019_package.py",
+      "archive_path": "main.py",
+      "sha256": "e9c1b7965aee6c6e794f02ae1cd62931faffc7ab1957b2a3bad437b6d3e63bf7"
+    },
+    {
+      "source": "generated",
+      "archive_path": "ATTRIBUTION.md",
+      "sha256": "8c1777db60730559b4cebe823aae40f9a506dd94a213bdd572983faa10e1b1c2"
+    }
+  ],
+  "depends_on_other_branch": false,
+  "source_commit": "773b932fe5024a99ee1606a7065a9a4828943232",
+  "inference_only": true
+}

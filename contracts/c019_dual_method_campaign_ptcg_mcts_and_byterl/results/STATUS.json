@@ -1,0 +1,268 @@
+{
+  "contract": "c019",
+  "status": "PARTIAL",
+  "status_reason": "one or both methods are faithful and fully evidenced, but a floor is missed, a branch is incomplete, or no candidate cleared its credibility gate",
+  "method_fidelity_status": {
+    "mcts": "PASS",
+    "byterl": "PASS"
+  },
+  "competitive_status": {
+    "mcts": "NOT CREDIBLE -- -12.5 field points vs the frozen baseline",
+    "byterl": "IN PROGRESS"
+  },
+  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
+  "parent_commit": "2197214d1d9dcb93afc00ad5bfd650b2531ea6b3",
+  "mcts": {
+    "floors": [
+      {
+        "floor": "searched live decisions",
+        "actual": 7549,
+        "required": 5000,
+        "met": true
+      },
+      {
+        "floor": "simulations or native expansions",
+        "actual": 1346381,
+        "required": 500000,
+        "met": true
+      },
+      {
+        "floor": "decisions using multiple determinizations",
+        "actual": 7549,
+        "required": 1000,
+        "met": true
+      },
+      {
+        "floor": "complete sampled tree traces",
+        "actual": 116,
+        "required": 100,
+        "met": true
+      },
+      {
+        "floor": "common-panel games baseline vs MCTS",
+        "actual": 840,
+        "required": 800,
+        "met": true
+      }
+    ],
+    "missed": [],
+    "fidelity_evidence": {
+      "trees_with_nonroot_branching": 232,
+      "revisits": 973454,
+      "backups": 694834,
+      "backup_nodes": 2319821,
+      "rollout_baseline_calls": 10086419,
+      "rollout_stochastic_calls": 0,
+      "determinizations_legal": 17592,
+      "determinizations_rejected": 0,
+      "release_errors": 0,
+      "hidden_information_violations": 0,
+      "chance_outcomes_recorded": 651547,
+      "chance_nodes": 0
+    },
+    "gate": {
+      "rule": "DECISION_RULES.md -- MCTS credibility",
+      "config_evaluated": {
+        "simulations_per_determinization": 12,
+        "determinizations": 1,
+        "max_ms_per_decision": 120
+      },
+      "baseline_field": 0.5167,
+      "mcts_field": 0.3917,
+      "delta_field_points": -0.125,
+      "per_matchup_delta": {
+        "dragapult": 0.0,
+        "mega_lucario": -0.1334,
+        "iono": -0.2666,
+        "mega_abomasnow": -0.1
+      },
+      "clause_a_field_plus_3pts": false,
+      "clause_b_matchup_plus_5pts_without_2pt_field_regression": false,
+      "eligible_for_submission": false,
+      "games": 240,
+      "latency": {
+        "baseline_max_game_s": 1.24,
+        "mcts_max_game_s": 9.61,
+        "mcts_mean_search_match_ms": 5150.8,
+        "mcts_max_search_match_ms": 8665.2
+      },
+      "verdict": "NOT ELIGIBLE -- faithful MCTS at the package config scores -12.5 points below the frozen baseline on 240 identity-safe games. The gate requires +3."
+    }
+  },
+  "byterl": {
+    "floors": [
+      {
+        "floor": "actual simulator games",
+        "actual": 42880,
+        "required": 60000,
+        "met": false
+      },
+      {
+        "floor": "optimizer steps",
+        "actual": 22553,
+        "required": 20000,
+        "met": true
+      },
+      {
+        "floor": "complete OSFP learning periods",
+        "actual": 2,
+        "required": 5,
+        "met": false
+      },
+      {
+        "floor": "immutable historical additions",
+        "actual": 1,
+        "required": 2,
+        "met": false
+      },
+      {
+        "floor": "games involving historical checkpoints",
+        "actual": 9112,
+        "required": 1000,
+        "met": true
+      },
+      {
+        "floor": "common-panel/milestone evaluation games",
+        "actual": 0,
+        "required": 800,
+        "met": false
+      }
+    ],
+    "missed": [
+      "actual simulator games",
+      "complete OSFP learning periods",
+      "immutable historical additions",
+      "common-panel/milestone evaluation games"
+    ],
+    "games": 42880,
+    "completed_games": 42880,
+    "optimizer_steps": 22553,
+    "learning_periods": 2,
+    "historical_additions": 1,
+    "in_progress": true
+  },
+  "panels": {
+    "mcts_gate2": {
+      "scored": 360,
+      "results": [
+        {
+          "candidate": "baseline_official_mega_lucario",
+          "field": 0.5778,
+          "ci": [
+            0.5047,
+            0.6476
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.4222
+        },
+        {
+          "candidate": "ptcg_ismcts_v0",
+          "field": 0.4611,
+          "ci": [
+            0.3899,
+            0.534
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.3778
+        }
+      ]
+    },
+    "mcts_gate": {
+      "scored": 240,
+      "results": [
+        {
+          "candidate": "baseline_official_mega_lucario",
+          "field": 0.5167,
+          "ci": [
+            0.4281,
+            0.6042
+          ],
+          "worst": "dragapult",
+          "worst_rate": 0.3667
+        },
+        {
+          "candidate": "ptcg_ismcts_v0",
+          "field": 0.3917,
+          "ci": [
+            0.309,
+            0.4811
+          ],
+          "worst": "mega_abomasnow",
+          "worst_rate": 0.3
+        }
+      ]
+    },
+    "mcts_full": {
+      "scored": 240,
+      "results": [
+        {
+          "candidate": "baseline_official_mega_lucario",
+          "field": 0.5833,
+          "ci": [
+            0.4939,
+            0.6676
+          ],
+          "worst": "mega_abomasnow",
+          "worst_rate": 0.4
+        },
+        {
+          "candidate": "ptcg_ismcts_v0",
+          "field": 0.3833,
+          "ci": [
+            0.3012,
+            0.4727
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.3333
+        }
+      ]
+    }
+  },
+  "probes": {
+    "B01": "PASS",
+    "B02": "PASS",
+    "B03": "PASS",
+    "B04": "PASS",
+    "B05": "PASS",
+    "B06": "PASS",
+    "B07": "PASS",
+    "B08": "PASS",
+    "B09": "PASS",
+    "B10": "PASS",
+    "B11": "NOT_EXERCISED",
+    "B12": "NOT_EXERCISED",
+    "B13": "PASS",
+    "F01": "PASS",
+    "F02": "PASS",
+    "F03": "PASS",
+    "F04": "NOT_EXERCISED",
+    "H01": "WARN",
+    "H02": "WARN",
+    "H03": "PASS",
+    "M01": "PASS",
+    "M02": "PASS",
+    "M03": "PASS",
+    "M04": "PASS",
+    "M05": "PASS",
+    "M06": "PASS",
+    "M07": "PASS",
+    "M08": "PASS",
+    "M09": "PASS",
+    "M10": "PASS",
+    "M11": "WARN",
+    "M12": "PASS",
+    "P00": "PASS",
+    "P01": "PASS",
+    "P02": "PASS",
+    "P03": "PASS"
+  },
+  "validator": {
+    "overall": "PASS",
+    "n_checks": 57,
+    "n_passed": 51,
+    "n_critical_failures": 0,
+    "n_submission_blockers": 0
+  },
+  "submissions": {}
+}

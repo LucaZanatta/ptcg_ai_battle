@@ -1,0 +1,23 @@
+{
+  "c_puct": 1.5,
+  "simulations_per_determinization": 48,
+  "determinizations": 3,
+  "max_tree_depth": 16,
+  "rollout_max_steps": 24,
+  "k_pw": 1.5,
+  "alpha_pw": 0.5,
+  "baseline_prior_bonus": 3.0,
+  "min_prior": 0.02,
+  "max_ms_per_decision": 700,
+  "max_match_ms": 45000,
+  "max_nodes": 512,
+  "version": "c019.mcts.v1",
+  "tag": "scaled",
+  "games": 160,
+  "opponents": [
+    "dragapult",
+    "iono",
+    "mega_abomasnow",
+    "mega_lucario"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "decision": "DEFAULT_MEGA_LUCARIO",
+  "rule": "DECISION_RULES.md base/deck freeze; default applies unless a materially stronger already-executable package qualifies inside the two-hour window",
+  "deck": "mega_lucario",
+  "baseline_agent": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/main.py",
+  "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+  "deck_csv": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/deck.csv",
+  "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+  "external_reference": "55011215",
+  "c018_panel_field_score": 0.58,
+  "alternatives_considered": [
+    {
+      "candidate": "official_iono",
+      "executable": true,
+      "rejected_because": "no external evidence it is stronger; c018 measured it only as an OPPONENT, never as a candidate"
+    },
+    {
+      "candidate": "official_mega_abomasnow",
+      "executable": true,
+      "rejected_because": "same -- opponent-only evidence"
+    },
+    {
+      "candidate": "dragapult",
+      "executable": true,
+      "rejected_because": "externally strongest control (~719.7) but NOT an available submission package in this repo; it is a teacher opponent, and packaging it would be new deck-agent implementation, which section 4 forbids"
+    }
+  ],
+  "why_default_stands": "No already-executable package has materially stronger evidence AS A CANDIDATE. Mega Lucario is the only deck with both an accepted external submission (55011215) and a measured panel score (58.0%). Switching would trade a measured baseline for an unmeasured one and would not separate method quality from deck change, which is the stated reason for the freeze.",
+  "frozen_for": [
+    "PTCG_ISMCTS_V0",
+    "PTCG_BYTERL_V0"
+  ],
+  "no_deck_tuning": true
+}

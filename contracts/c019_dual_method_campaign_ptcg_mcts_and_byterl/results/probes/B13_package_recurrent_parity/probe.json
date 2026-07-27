@@ -1,0 +1,20 @@
+{
+  "probe_id": "B13",
+  "name": "package_recurrent_parity",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "games": 12,
+    "completed": 12,
+    "both_seats": true,
+    "liveness": {
+      "decisions": 525,
+      "policy_ok": 525,
+      "fallbacks": 0,
+      "resets": 12
+    }
+  },
+  "submission_blocker": true,
+  "raw_evidence": []
+}

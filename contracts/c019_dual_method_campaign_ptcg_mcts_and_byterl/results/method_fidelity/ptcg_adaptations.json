@@ -1,0 +1,74 @@
+{
+  "ptcg_adaptations": [
+    {
+      "id": "no_deck_building_stage",
+      "branch": "byterl",
+      "severity": "MAJOR",
+      "source": "ByteRL trains CB+BT jointly with one reward signal",
+      "ptcg": "deck frozen by CONTRACT \u00a74/\u00a79.1; battle policy only",
+      "consequence": "the CB/BT head mixture degenerates to the BT head",
+      "required_by_contract": true
+    },
+    {
+      "id": "single_machine_scale",
+      "branch": "byterl",
+      "severity": "MAJOR",
+      "source": "24 V100 GPUs, 5856 CPU cores, batch 1e4*8gpu",
+      "ptcg": "1 RTX 5070 + 12 CPU cores; batch/actor count calibrated once",
+      "consequence": "sample throughput orders of magnitude lower; all other hyperparameters held at source values",
+      "required_by_contract": true
+    },
+    {
+      "id": "atomic_select_contexts_as_autoregression",
+      "branch": "byterl",
+      "severity": "MINOR",
+      "source": "explicit autoregressive action decomposition",
+      "ptcg": "the simulator already emits sequential selection contexts; those ARE the decomposition",
+      "consequence": "no additional action factorization is invented"
+    },
+    {
+      "id": "no_transposition_sharing",
+      "branch": "mcts",
+      "severity": "MINOR",
+      "source": "identical boards share one node",
+      "ptcg": "not implemented in v0 and not claimed",
+      "consequence": "more nodes per tree; \u00a78.5 explicitly permits this and forbids falsely claiming node sharing"
+    },
+    {
+      "id": "no_virtual_loss_threads",
+      "branch": "mcts",
+      "severity": "MINOR",
+      "source": "virtual loss for multithreaded tree exploration",
+      "ptcg": "single-threaded tree; CPU reserved for ByteRL actors",
+      "consequence": "lower nodes/s per decision, no correctness impact"
+    },
+    {
+      "id": "determinization_from_public_archetypes",
+      "branch": "mcts",
+      "severity": "MINOR",
+      "source": "Hearthstone samples from known card pool",
+      "ptcg": "opponent archetype inferred from REVEALED cards only, then hidden zones sampled without replacement from that archetype's public decklist",
+      "consequence": "wrong-archetype worlds are possible and are counted, not hidden"
+    }
+  ],
+  "registered_hyperparameters": {
+    "lstm_hidden": 256,
+    "gamma": 1.0,
+    "learning_rate": 7e-05,
+    "entropy_weight": 0.01,
+    "ppo_policy_weight": 1.0,
+    "upgo_weight": 1.0,
+    "value_weight": 1.0,
+    "sample_reuse": 2,
+    "ppo_clip_epsilon": 0.2,
+    "vtrace_c_lower": 0.001,
+    "vtrace_c_upper": 1.007,
+    "vtrace_rho_lower": 0.001,
+    "vtrace_rho_upper": 1.007,
+    "osfp_p_current_self_play": 0.6,
+    "osfp_xi_promotion": 0.55,
+    "osfp_c_max_lp_without_add": 6,
+    "reference_scale": "24 V100 GPUs, 5856 CPU cores, batch 1e4 * 8gpu"
+  },
+  "source_of_registered_values": "xiao_2023_hearthstone (arXiv 2303.05197) Tables III/IV"
+}

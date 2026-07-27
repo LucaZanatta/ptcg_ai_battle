@@ -1,0 +1,78 @@
+{
+  "probe": "c019_actor_calibration",
+  "purpose": "measure recurrent-actor throughput before the learner is written, because the ByteRL floors are wall-clock bound and c018's feedforward rate does not transfer",
+  "scaling": {
+    "1": {
+      "actors": 1,
+      "games": 6,
+      "completed": 6,
+      "decisions": 130,
+      "wall_clock_s": 2.78,
+      "games_per_hour": 7758.0,
+      "decisions_per_game": 21.7,
+      "median_game_s": 0.244,
+      "encode_failures": 0,
+      "mask_checked": 130,
+      "mask_violations": 0,
+      "index_map_violations": 0,
+      "truncated_option_sets": 0
+    },
+    "8": {
+      "actors": 8,
+      "games": 48,
+      "completed": 48,
+      "decisions": 1177,
+      "wall_clock_s": 4.46,
+      "games_per_hour": 38721.1,
+      "decisions_per_game": 24.5,
+      "median_game_s": 0.245,
+      "encode_failures": 0,
+      "mask_checked": 149,
+      "mask_violations": 0,
+      "index_map_violations": 0,
+      "truncated_option_sets": 0
+    },
+    "12": {
+      "actors": 12,
+      "games": 72,
+      "completed": 71,
+      "decisions": 1978,
+      "wall_clock_s": 5.29,
+      "games_per_hour": 49012.8,
+      "decisions_per_game": 27.5,
+      "median_game_s": 0.257,
+      "encode_failures": 0,
+      "mask_checked": 216,
+      "mask_violations": 0,
+      "index_map_violations": 0,
+      "truncated_option_sets": 0
+    }
+  },
+  "best": {
+    "actors": 12,
+    "games": 72,
+    "completed": 71,
+    "decisions": 1978,
+    "wall_clock_s": 5.29,
+    "games_per_hour": 49012.8,
+    "decisions_per_game": 27.5,
+    "median_game_s": 0.257,
+    "encode_failures": 0,
+    "mask_checked": 216,
+    "mask_violations": 0,
+    "index_map_violations": 0,
+    "truncated_option_sets": 0
+  },
+  "floor_projection": {
+    "floor_games": 60000,
+    "hours_for_floor_at_best": 1.22,
+    "target_games_low": 120000,
+    "hours_for_target_low": 2.45
+  },
+  "b01_mask": {
+    "checked": 495,
+    "violations": 0,
+    "index_map_violations": 0,
+    "verdict": "PASS"
+  }
+}

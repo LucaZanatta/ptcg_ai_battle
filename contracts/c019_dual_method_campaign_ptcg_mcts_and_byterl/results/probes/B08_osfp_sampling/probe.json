@@ -1,0 +1,16 @@
+{
+  "probe_id": "B08",
+  "name": "osfp_sampling",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "current_self_play": 44848,
+    "historical_samples": 16592,
+    "observed_p": 0.7299,
+    "registered_p": 0.6,
+    "note": "p applies only once H is non-empty; LP0 has no history to sample"
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

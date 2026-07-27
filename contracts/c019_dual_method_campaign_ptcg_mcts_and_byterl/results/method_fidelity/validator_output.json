@@ -1,0 +1,756 @@
+{
+  "validator": "c019.method_fidelity.v1",
+  "mode": "interim",
+  "n_checks": 63,
+  "n_passed": 52,
+  "n_critical_failures": 0,
+  "n_submission_blockers": 0,
+  "submission_blockers": [],
+  "not_exercised": [
+    "byterl_reported_games_match_raw_rows",
+    "byterl_optimizer_steps_match_raw_updates",
+    "byterl_payoff_table_reproduces_from_raw_games",
+    "byterl_promotion_reports_both_units",
+    "byterl_historical_checkpoints_immutable",
+    "byterl_checkpoints_changed_every_lp"
+  ],
+  "by_branch": {
+    "mcts": {
+      "checks": 20,
+      "passed": 20,
+      "critical_failures": 0,
+      "submission_blockers": 0,
+      "blocker_names": [],
+      "method_fidelity": "PASS"
+    },
+    "byterl": {
+      "checks": 29,
+      "passed": 18,
+      "critical_failures": 0,
+      "submission_blockers": 0,
+      "blocker_names": [],
+      "method_fidelity": "PASS"
+    },
+    "common": {
+      "checks": 14,
+      "passed": 14,
+      "critical_failures": 0,
+      "submission_blockers": 0,
+      "blocker_names": [],
+      "method_fidelity": "PASS"
+    }
+  },
+  "overall": "PASS",
+  "checks": [
+    {
+      "check": "branch_independence_no_mcts_import_in_byterl",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "\u00a716: no MCTS training-label dependency in the primary ByteRL branch"
+      }
+    },
+    {
+      "check": "branch_independence_no_byterl_import_in_pure_mcts",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "\u00a716: no ByteRL dependency in pure MCTS; adapters are injected, not imported"
+      }
+    },
+    {
+      "check": "hidden_information_guard_raises",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "P02 -- a leak must crash, not silently return"
+      }
+    },
+    {
+      "check": "canonical_option_identity_is_by_key_not_index",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "note": "index identity breaks aggregation when option order differs"
+      }
+    },
+    {
+      "check": "deck_frozen_for_both_branches",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "deck": "mega_lucario"
+      }
+    },
+    {
+      "check": "mcts_baseline_memory_parity",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "decisions": 521,
+        "mismatches": 0,
+        "note": "c018 proved overriding a stateful baseline destroys it"
+      }
+    },
+    {
+      "check": "sources_snapshotted_with_clean_room_record",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "sources": 8,
+        "conflicts_recorded": 4
+      }
+    },
+    {
+      "check": "mcts_real_native_expansion",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 17592,
+        "step_ok": 10397192
+      }
+    },
+    {
+      "check": "mcts_expands_at_nonroot_depths",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "nonroot_expansions": 546162,
+        "note": "root-only expansion is c018's defect and is not MCTS"
+      }
+    },
+    {
+      "check": "mcts_trees_show_nonroot_branching",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "trees": 232,
+        "note": "a non-root node with >=2 real children is the M03 claim"
+      }
+    },
+    {
+      "check": "mcts_backup_present",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "backups": 694834,
+        "backup_nodes": 2319821
+      }
+    },
+    {
+      "check": "mcts_backup_covers_paths_not_just_leaves",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "nodes_per_backup": 3.34,
+        "note": "backup must update the whole selected path"
+      }
+    },
+    {
+      "check": "mcts_revisits_existing_nodes",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "revisits": 973454
+      }
+    },
+    {
+      "check": "mcts_rollout_uses_a_real_policy",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "baseline_calls": 10086419,
+        "stochastic_calls": 0,
+        "note": "repeated option index 0 is forbidden; rollouts must query a policy"
+      }
+    },
+    {
+      "check": "mcts_source_has_no_hardcoded_option_zero_continuation",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "c018 continued every deeper step with option index 0"
+      }
+    },
+    {
+      "check": "mcts_no_illegal_determinizations_used",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "legal": 17592,
+        "rejected": 0
+      }
+    },
+    {
+      "check": "mcts_determinizer_rejects_rather_than_pads",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "c018 topped up a dry pool with duplicate card ids"
+      }
+    },
+    {
+      "check": "mcts_no_search_ran_on_an_illegal_world",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "illegal_with_search": 0,
+        "determinization_records": 293
+      }
+    },
+    {
+      "check": "mcts_determinizations_record_their_sampling_pool",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "note": "a world labelled 'unknown' cannot be audited for multiplicity"
+      }
+    },
+    {
+      "check": "mcts_no_hidden_information_violation",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "mcts_native_states_released",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "mcts_puct_is_implemented_and_sensitive",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "note": "unit fixture test_c_puct_changes_the_selected_child pins the behaviour"
+      }
+    },
+    {
+      "check": "mcts_floor: searched live decisions >= 5000",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 7549,
+        "required": 5000
+      }
+    },
+    {
+      "check": "mcts_floor: simulations or native expansions >= 500000",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 1346381,
+        "required": 500000
+      }
+    },
+    {
+      "check": "mcts_floor: decisions using multiple determinizations >= 1000",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 7549,
+        "required": 1000
+      }
+    },
+    {
+      "check": "mcts_floor: complete sampled tree traces >= 100",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 116,
+        "required": 100
+      }
+    },
+    {
+      "check": "byterl_superseded_runs_are_documented",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "superseded": [
+          {
+            "tag": "smoke3",
+            "reason": "development smoke run, not a campaign run",
+            "failure_record": "DEFECT_osfp_payoff_attribution_misaligned.md"
+          },
+          {
+            "tag": "smoke2",
+            "reason": "development smoke run, not a campaign run",
+            "failure_record": "DEFECT_osfp_payoff_attribution_misaligned.md"
+          },
+          {
+            "tag": "scaled",
+            "reason": "OSFP payoff attribution was misaligned by a position-based zip over an actor-ordered result list; 19,542 of 60,960 opponent records named the wrong opponent, diluting G toward zero. Two further promotion-rule defects (xi compared against a mean payoff, forced-add off-by-one) were found in the same read.",
+            "failure_record": "DEFECT_osfp_payoff_attribution_misaligned.md"
+          },
+          {
+            "tag": "fixsmoke",
+            "reason": "development smoke run, not a campaign run",
+            "failure_record": "DEFECT_osfp_payoff_attribution_misaligned.md"
+          }
+        ]
+      }
+    },
+    {
+      "check": "byterl_games_are_real_rows",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "raw_game_rows": 960,
+        "note": "a training claim with no per-game rows on disk played no games"
+      }
+    },
+    {
+      "check": "byterl_reported_games_match_raw_rows",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "reason": "training run still in progress; no final summary to reconcile",
+        "recounted_games": 960
+      }
+    },
+    {
+      "check": "byterl_games_completed",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "completed": 960
+      }
+    },
+    {
+      "check": "byterl_optimizer_steps_match_raw_updates",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "reason": "training run still in progress",
+        "recounted_steps": 601
+      }
+    },
+    {
+      "check": "byterl_losses_finite",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "update_rows": 601
+      }
+    },
+    {
+      "check": "byterl_gradients_recorded_and_finite",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "note": "gradient evidence is required, not just a loss number"
+      }
+    },
+    {
+      "check": "byterl_vtrace_implemented_not_gae",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "targets_depend_on_importance_ratio": true,
+        "registered_clips_and_gamma": true,
+        "note": "GAE ignores pi/mu entirely; identical targets would prove this is not V-trace"
+      }
+    },
+    {
+      "check": "byterl_importance_ratios_observed",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "rho must be computed at runtime, not merely present in source"
+      }
+    },
+    {
+      "check": "byterl_vtrace_clipping_is_active",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "registered_bounds": [
+          0.001,
+          1.007
+        ]
+      }
+    },
+    {
+      "check": "byterl_upgo_is_nonzero",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "updates_with_nonzero_upgo": 601,
+        "updates": 601,
+        "note": "METHOD_FIDELITY forbids setting UPGO to zero or aliasing it to V-trace"
+      }
+    },
+    {
+      "check": "byterl_upgo_differs_from_vtrace_loss",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "identical values every step would mean UPGO is aliased"
+      }
+    },
+    {
+      "check": "byterl_no_scheduled_self_play_ramp",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "c018 raised self-play by block number; OSFP samples per game"
+      }
+    },
+    {
+      "check": "byterl_opponents_are_sampled_not_scheduled",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "current_self_play": 960,
+        "historical_samples": 0,
+        "observed_p": 1.0,
+        "registered_p": 0.6
+      }
+    },
+    {
+      "check": "byterl_payoff_attribution_matches_raw_games",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "sample_rows": 960,
+        "resolved_against_raw": 960,
+        "unresolvable_game_ids": 0,
+        "misattributed": 0,
+        "note": "each opponent-sample row must name the same opponent the raw game log records for that game_id"
+      }
+    },
+    {
+      "check": "byterl_payoff_results_match_raw_games",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "checked": 960
+      }
+    },
+    {
+      "check": "byterl_payoff_table_reproduces_from_raw_games",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "table_G": 0,
+        "table_C": 0,
+        "raw_G": 0,
+        "raw_C": 0,
+        "in_progress": true,
+        "note": "a diluted G with a correct C is the signature of misattributed results",
+        "reason": "no learning period has closed yet, so no payoff table has been written"
+      }
+    },
+    {
+      "check": "byterl_promotion_winrates_are_on_the_unit_interval",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "reported_winrates": 0,
+        "min": null,
+        "max": null,
+        "note": "comparing a mean payoff against xi=0.55 sets the bar at a 77.5% win rate"
+      }
+    },
+    {
+      "check": "byterl_promotion_reports_both_units",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "reason": "no promotion decision has been taken yet"
+      }
+    },
+    {
+      "check": "byterl_historical_checkpoints_immutable",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "reason": "immutability report is written at run completion"
+      }
+    },
+    {
+      "check": "byterl_historical_hashes_distinct",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "added": 0,
+        "distinct": 0
+      }
+    },
+    {
+      "check": "byterl_forced_add_never_labelled_performance",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "forced_additions": 0
+      }
+    },
+    {
+      "check": "byterl_checkpoints_changed_every_lp",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "reason": "no learning period has closed yet"
+      }
+    },
+    {
+      "check": "byterl_floor: actual simulator games >= 60000",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 960,
+        "required": 60000
+      }
+    },
+    {
+      "check": "byterl_floor: optimizer steps >= 20000",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 601,
+        "required": 20000
+      }
+    },
+    {
+      "check": "byterl_floor: complete OSFP learning periods >= 5",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 0,
+        "required": 5
+      }
+    },
+    {
+      "check": "byterl_floor: immutable historical additions >= 2",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 0,
+        "required": 2
+      }
+    },
+    {
+      "check": "byterl_floor: games involving historical checkpoints >= 1000",
+      "branch": "byterl",
+      "passed": false,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 0,
+        "required": 1000
+      }
+    },
+    {
+      "check": "byterl_fresh_random_initialization",
+      "branch": "byterl",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "initialized_from": null,
+        "note": "\u00a79.1 forbids continuing a c018 checkpoint"
+      }
+    },
+    {
+      "check": "package_present",
+      "branch": "common",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "packages": 2
+      }
+    },
+    {
+      "check": "package_hash_matches_manifest:ptcg_byterl_v0",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "manifest": "ab25eba004f9"
+      }
+    },
+    {
+      "check": "package_clean_extraction:ptcg_byterl_v0",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "games": 12,
+        "completed": 12
+      }
+    },
+    {
+      "check": "package_zero_illegal_or_crash:ptcg_byterl_v0",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "check": "package_hash_matches_manifest:ptcg_ismcts_v0",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "manifest": "9c72519fcc2c"
+      }
+    },
+    {
+      "check": "package_clean_extraction:ptcg_ismcts_v0",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "games": 12,
+        "completed": 12
+      }
+    },
+    {
+      "check": "package_zero_illegal_or_crash:ptcg_ismcts_v0",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "check": "no_skipped_criteria_counted_as_pass",
+      "branch": "common",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "mode": "interim",
+        "not_exercised": [
+          "byterl_reported_games_match_raw_rows",
+          "byterl_optimizer_steps_match_raw_updates",
+          "byterl_payoff_table_reproduces_from_raw_games",
+          "byterl_promotion_reports_both_units",
+          "byterl_historical_checkpoints_immutable",
+          "byterl_checkpoints_changed_every_lp"
+        ]
+      }
+    }
+  ]
+}

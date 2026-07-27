@@ -1,0 +1,16 @@
+{
+  "probe_id": "M01",
+  "name": "baseline_memory_parity",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "decisions": 521,
+    "mismatches": 0,
+    "parity_rate": 1.0,
+    "fork_independent": true,
+    "state_coverage": true
+  },
+  "submission_blocker": true,
+  "raw_evidence": []
+}

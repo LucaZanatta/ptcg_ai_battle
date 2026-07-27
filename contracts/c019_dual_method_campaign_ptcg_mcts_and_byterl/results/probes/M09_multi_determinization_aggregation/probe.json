@@ -1,0 +1,14 @@
+{
+  "probe_id": "M09",
+  "name": "multi_determinization_aggregation",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "decisions_with_multiple_determinizations": 116,
+    "legal_determinizations_per_decision": null,
+    "aggregation_key": "canonical option key, not option index"
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

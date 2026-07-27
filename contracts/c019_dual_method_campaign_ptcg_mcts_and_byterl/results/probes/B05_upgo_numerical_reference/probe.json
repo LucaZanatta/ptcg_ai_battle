@@ -1,0 +1,15 @@
+{
+  "probe_id": "B05",
+  "name": "upgo_numerical_reference",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "fixture": "tests/test_c019_fixtures.py::TestUPGO",
+    "matches_hand_calculation": true,
+    "nonzero_gradient": true,
+    "differs_from_vtrace_advantage": true
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

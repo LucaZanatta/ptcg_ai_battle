@@ -1,0 +1,63 @@
+{
+  "tag": "smoke3",
+  "device": "cuda",
+  "hyperparameters": {
+    "gamma": 1.0,
+    "learning_rate": 7e-05,
+    "entropy_weight": 0.01,
+    "policy_vtrace_weight": 1.0,
+    "upgo_weight": 1.0,
+    "value_weight": 1.0,
+    "ppo_clip_epsilon": 0.2,
+    "vtrace_c_lower": 0.001,
+    "vtrace_c_upper": 1.007,
+    "vtrace_rho_lower": 0.001,
+    "vtrace_rho_upper": 1.007,
+    "sample_reuse": 2,
+    "lstm_hidden": 256,
+    "max_grad_norm": 5.0,
+    "unroll_length": 32,
+    "minibatch_unrolls": 8,
+    "queue_capacity": 8192,
+    "source": "arXiv 2303.05197 Table III",
+    "calibrated_for_this_machine": [
+      "minibatch_unrolls",
+      "actors",
+      "games_per_round"
+    ]
+  },
+  "learning_periods": 1,
+  "actual_games": 96,
+  "optimizer_steps": 60,
+  "nonfinite_losses": 0,
+  "nonfinite_grads": 0,
+  "unrolls_enqueued": 237,
+  "historical_pool": 1,
+  "promotions": [
+    {
+      "add": true,
+      "reason": "FIRST_HISTORICAL",
+      "detail": "H is empty; the first checkpoint seeds the pool",
+      "lp": 0,
+      "G": [],
+      "C": [],
+      "learner_version": 60,
+      "added": {
+        "index": 0,
+        "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/smoke3/historical_000_lp000_v000060.pt",
+        "sha256": "20803c913e8f5bfa6c2cbd08cad5cc63f5abc1aa9ed2bd575f2910e87cf5ed6b"
+      }
+    }
+  ],
+  "immutability": {
+    "historical": 1,
+    "verified": 1,
+    "mutated_or_missing": [],
+    "all_immutable": true
+  },
+  "observed_self_play_fraction": 1.0,
+  "final_checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke3/smoke3_final.pt",
+  "final_sha256": "cba0e786d956ffcfdee92ef6496af42e73cd05e830c0f42e74accc841d6b899e",
+  "wall_clock_s": 23.9,
+  "initialized_from": "FRESH_RANDOM (\u00a79.1); not a c018 checkpoint"
+}

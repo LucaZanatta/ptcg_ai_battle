@@ -1,0 +1,183 @@
+{
+  "retrieved_utc": "2026-07-27T16:24:46.285376+00:00",
+  "retrieval_date": "2026-07-27",
+  "n_sources": 8,
+  "sources": [
+    {
+      "id": "hearthstone_ai_repo",
+      "role": "MCTS implementation patterns",
+      "url": "https://github.com/peter1591/hearthstone-ai",
+      "doc_url": "https://peter1591.github.io/hearthstone-ai/agents/include/MCTS/",
+      "retrieved": "2026-07-27",
+      "retrieval_method": "documentation page fetched and summarized; repository NOT vendored",
+      "license": "GPL (declared by the repository)",
+      "reuse_decision": "CLEAN_ROOM_ONLY",
+      "reuse_rationale": "GPL source may not be copied or line-by-line translated into a competition package without an explicit compatibility decision. Published algorithm PROPERTIES inform an original implementation.",
+      "properties_extracted": [
+        "information-set treatment of hidden information, citing Cowling et al. ISMCTS",
+        "identical game states consolidated into one node (transposition sharing)",
+        "randomness handled by creating redirect nodes",
+        "policy network prioritizes promising actions; rollout network used in simulation",
+        "value estimate used for early cutoff",
+        "virtual loss for multithreaded exploration"
+      ],
+      "adopted_in_c019": [
+        "information-set determinization (M02)",
+        "redirect/chance-outcome recording rather than overwriting a successor (M08)",
+        "prior-weighted selection and leaf-value cutoff (M04, \u00a78.4)"
+      ],
+      "deliberately_not_adopted": [
+        {
+          "property": "transposition node sharing",
+          "reason": "\u00a78.5 permits a transposition table only when a stable visible+determinization state hash is PROVEN. Claiming node sharing falsely is called out explicitly as invalidating; v0 does not share nodes and says so."
+        },
+        {
+          "property": "virtual loss / multithreaded tree",
+          "reason": "single-threaded tree per decision; CPU is spent on ByteRL actors"
+        }
+      ],
+      "snapshot_id": "d9bfe74a97d0eb88"
+    },
+    {
+      "id": "swiechowski_2018",
+      "role": "Hearthstone MCTS + supervised learning paper",
+      "url": "https://arxiv.org/abs/1808.04794",
+      "retrieved": "2026-07-27",
+      "license": "arXiv preprint; cited, not copied",
+      "reuse_decision": "CITE_ONLY",
+      "snapshot_id": "cfe114851f2aff93"
+    },
+    {
+      "id": "cowling_ismcts",
+      "role": "ISMCTS foundation",
+      "url": "https://ieeexplore.ieee.org/document/6203567",
+      "note": "linked from the Hearthstone MCTS documentation as 'Information Set Monte Carlo Tree Search' (Cowling, Powley, Whitehouse). The documentation page references the paper; the canonical IEEE TCIAIG 2012 record is used as the resolved citation.",
+      "retrieved": "2026-07-27",
+      "reuse_decision": "CITE_ONLY",
+      "properties_extracted": [
+        "search a tree of information sets rather than states",
+        "each iteration samples a determinization consistent with the information set",
+        "statistics aggregate across determinizations at shared information-set nodes"
+      ],
+      "snapshot_id": "f4e31d55bb90b969"
+    },
+    {
+      "id": "xi_2023_locm",
+      "role": "ByteRL / OSFP original (Legends of Code and Magic)",
+      "url": "https://arxiv.org/abs/2303.04096",
+      "html_mirror": "https://ar5iv.labs.arxiv.org/html/2303.04096",
+      "retrieved": "2026-07-27",
+      "retrieval_method": "ar5iv HTML mirror fetched and summarized",
+      "license": "arXiv preprint; no public reference implementation identified",
+      "reuse_decision": "IMPLEMENT_FROM_PAPER",
+      "stated_values": {
+        "entropy_weight": 0.01,
+        "learning_rate": 5e-05,
+        "gamma": 0.99,
+        "vtrace_c_clip": 1.0,
+        "vtrace_rho_clip": 1.0,
+        "osfp_p_current_self_play": 0.6,
+        "osfp_xi_promotion": 0.7,
+        "osfp_c_max_lp_without_add": 6
+      },
+      "properties_extracted": [
+        "OSFP Algorithm 1: immutable historical array H, current-self-play probability p, payoff-based sampling function f over H",
+        "G[i] accumulates +1/-1 game results vs historical model i; C[i] counts games",
+        "promotion when all G[i]/C[i] > xi; forced add when count > c",
+        "V-trace value targets with an auxiliary UPGO loss"
+      ],
+      "snapshot_id": "2c1aff9267df92bd"
+    },
+    {
+      "id": "xiao_2023_hearthstone",
+      "role": "ByteRL Hearthstone transfer -- the values c019 REGISTERS",
+      "url": "https://arxiv.org/abs/2303.05197",
+      "html_mirror": "https://ar5iv.labs.arxiv.org/html/2303.05197",
+      "retrieved": "2026-07-27",
+      "retrieval_method": "ar5iv HTML mirror fetched; Table III and Table IV read",
+      "license": "arXiv preprint; no public reference implementation identified",
+      "reuse_decision": "IMPLEMENT_FROM_PAPER",
+      "stated_values": {
+        "lstm_hidden": 256,
+        "gamma": 1.0,
+        "learning_rate": 7e-05,
+        "entropy_weight": 0.01,
+        "ppo_policy_weight": 1.0,
+        "upgo_weight": 1.0,
+        "value_weight": 1.0,
+        "sample_reuse": 2,
+        "ppo_clip_epsilon": 0.2,
+        "vtrace_c_lower": 0.001,
+        "vtrace_c_upper": 1.007,
+        "vtrace_rho_lower": 0.001,
+        "vtrace_rho_upper": 1.007,
+        "osfp_p_current_self_play": 0.6,
+        "osfp_xi_promotion": 0.55,
+        "osfp_c_max_lp_without_add": 6,
+        "reference_scale": "24 V100 GPUs, 5856 CPU cores, batch 1e4 * 8gpu"
+      },
+      "snapshot_id": "38e12c0d65b72800"
+    },
+    {
+      "id": "impala_vtrace",
+      "role": "V-trace origin",
+      "url": "https://arxiv.org/abs/1802.01561",
+      "retrieved": "2026-07-27",
+      "reuse_decision": "CITE_ONLY",
+      "snapshot_id": "d822292503a24b83"
+    },
+    {
+      "id": "ppo",
+      "role": "PPO clipping origin",
+      "url": "https://arxiv.org/abs/1707.06347",
+      "retrieved": "2026-07-27",
+      "reuse_decision": "CITE_ONLY",
+      "snapshot_id": "eead8d7aa9d254f1"
+    },
+    {
+      "id": "cog22_slides",
+      "role": "competition confirmation",
+      "url": "https://legendsofcodeandmagic.com/COG22/COG2022-slides.pdf",
+      "retrieved": "2026-07-27",
+      "reuse_decision": "CITE_ONLY",
+      "note": "reports ByteRL as double champion and states the training framework was proprietary. No official ByteRL repository is cited or assumed to exist.",
+      "snapshot_id": "8aede03998f11cd8"
+    }
+  ],
+  "source_conflicts": [
+    {
+      "parameter": "osfp_xi_promotion",
+      "locm": 0.7,
+      "hearthstone": 0.55,
+      "registered": 0.55,
+      "why": "METHOD_FIDELITY B registers xi = 0.55 explicitly"
+    },
+    {
+      "parameter": "learning_rate",
+      "locm": 5e-05,
+      "hearthstone": 7e-05,
+      "registered": 7e-05,
+      "why": "METHOD_FIDELITY B registers 7e-5"
+    },
+    {
+      "parameter": "gamma",
+      "locm": 0.99,
+      "hearthstone": 1.0,
+      "registered": 1.0,
+      "why": "METHOD_FIDELITY B registers 1.0. Note gamma=1.0 makes the V-trace recursion non-contracting, so target magnitudes are logged from the first fixture to distinguish divergence from a bug."
+    },
+    {
+      "parameter": "vtrace_clips",
+      "locm": "c=rho=1.0",
+      "hearthstone": "[0.001, 1.007] both",
+      "registered": "[0.001, 1.007]",
+      "why": "METHOD_FIDELITY B registers the Hearthstone asymmetric clipping"
+    }
+  ],
+  "clean_room_policy": {
+    "hearthstone_repo": "GPL -- inspected via public documentation only, NOT vendored, NOT line-by-line translated; original PTCG implementation",
+    "byterl": "no public reference implementation identified in the papers or the competition materials; implemented from published equations and Algorithm 1 pseudocode. No repository is invented or cited.",
+    "vendored_source_files": 0
+  },
+  "note": "URLs identify the intended algorithms; retrieval was by fetching public abstract/HTML-mirror pages. Full PDFs were not vendored into the repository."
+}

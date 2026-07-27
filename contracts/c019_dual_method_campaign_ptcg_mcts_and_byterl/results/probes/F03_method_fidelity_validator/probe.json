@@ -1,0 +1,41 @@
+{
+  "probe_id": "F03",
+  "name": "method_fidelity_validator",
+  "branch": "common",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "checks": 63,
+    "passed": 52,
+    "critical_failures": 0,
+    "submission_blockers": 0,
+    "by_branch": {
+      "mcts": {
+        "checks": 20,
+        "passed": 20,
+        "critical_failures": 0,
+        "submission_blockers": 0,
+        "blocker_names": [],
+        "method_fidelity": "PASS"
+      },
+      "byterl": {
+        "checks": 29,
+        "passed": 18,
+        "critical_failures": 0,
+        "submission_blockers": 0,
+        "blocker_names": [],
+        "method_fidelity": "PASS"
+      },
+      "common": {
+        "checks": 14,
+        "passed": 14,
+        "critical_failures": 0,
+        "submission_blockers": 0,
+        "blocker_names": [],
+        "method_fidelity": "PASS"
+      }
+    }
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

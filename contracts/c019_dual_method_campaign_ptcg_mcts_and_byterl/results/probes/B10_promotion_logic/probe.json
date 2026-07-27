@@ -1,0 +1,18 @@
+{
+  "probe_id": "B10",
+  "name": "promotion_logic",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "fixtures": "tests/test_c019_fixtures.py::TestOSFPPromotion",
+    "live_decisions": 3,
+    "reasons": {
+      "FIRST_HISTORICAL": 1,
+      "NO_PROMOTION": 2
+    },
+    "forced_never_labelled_performance": true
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

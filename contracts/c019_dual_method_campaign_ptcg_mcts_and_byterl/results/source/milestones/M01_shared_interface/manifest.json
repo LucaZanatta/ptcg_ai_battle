@@ -1,0 +1,36 @@
+{
+  "milestone": "M01_shared_interface",
+  "title": "canonical option/observation interface and deck freeze",
+  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "git_tree": "fb8b447508597fe19ddd436a44ff3af6d6b44ba0",
+  "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
+  "sources": [
+    {
+      "path": "cg/c019_core.py",
+      "present": true,
+      "sha256": "e577c368b9238238d288bffd91bb12341620cf85bd9be3dea9492341b2c52a3c",
+      "bytes": 9378,
+      "note": null
+    },
+    {
+      "path": "cg/c019_baseline.py",
+      "present": true,
+      "sha256": "c9140863f1bf99721b0a970d7cdf9a88b9ab09766e066ca2607adbb8627f3db0",
+      "bytes": 7563,
+      "note": null
+    }
+  ],
+  "configs": {},
+  "config_hash": "44136fa355b3678a1146ad16f7e8649e",
+  "result_artifacts": [
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/common/deck_freeze.json",
+      "present": true,
+      "sha256": "bc2150e6b34ba65c1fd89203ab6512df238f781ee4135cc5773344f8ac449b0d",
+      "bytes": 1936,
+      "note": null
+    }
+  ],
+  "command": "python tools/c019_probe_m01.py",
+  "m01_parity": "PASS"
+}

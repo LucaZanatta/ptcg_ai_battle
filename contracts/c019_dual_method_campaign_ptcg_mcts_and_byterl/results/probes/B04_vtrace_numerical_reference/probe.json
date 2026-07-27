@@ -1,0 +1,20 @@
+{
+  "probe_id": "B04",
+  "name": "vtrace_numerical_reference",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "fixture": "tests/test_c019_fixtures.py::TestVTrace",
+    "torch_matches_numpy_reference": true,
+    "on_policy_reduces_to_return": true,
+    "provably_not_gae": true,
+    "clip_bounds": [
+      0.001,
+      1.007
+    ],
+    "gamma": 1.0
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

@@ -1,0 +1,15 @@
+{
+  "probe_id": "B11",
+  "name": "historical_immutability",
+  "branch": "byterl",
+  "status": "NOT_EXERCISED",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "historical": null,
+    "verified": null,
+    "mutated_or_missing": null,
+    "write_protection": "chmod 0444 at add time; overwrite raises ImmutableCheckpointCollision"
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

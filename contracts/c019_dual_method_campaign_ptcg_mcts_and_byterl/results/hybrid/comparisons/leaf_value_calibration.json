@@ -1,0 +1,20 @@
+{
+  "n_leaves": 1852,
+  "constant_baseline_value": 0.1695,
+  "mse_byterl_value": 0.8750295219615007,
+  "mse_heuristic": 0.9290828421420219,
+  "mse_constant": 0.9712540059430232,
+  "corr_byterl_value": 0.3320505542194495,
+  "corr_heuristic": 0.2443940142380675,
+  "beats_constant": true,
+  "beats_heuristic": true,
+  "may_enable_leaf_value_adapter": true,
+  "rule": "DECISION_RULES: baseline priors + ByteRL value only if value calibration beats constant AND heuristic on held-out leaves",
+  "checkpoint": "scaled_v30640.pt",
+  "games_played": 400,
+  "games_completed": 400,
+  "leaves_collected": 1852,
+  "held_out": "leaves come from baseline games the checkpoint never trained on; the label is the eventual result from the snapshotted seat",
+  "seconds": 176.4,
+  "status": "PASS"
+}

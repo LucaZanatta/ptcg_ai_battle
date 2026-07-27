@@ -1,0 +1,73 @@
+{
+  "milestone": "M03_byterl_actor_learner",
+  "title": "ByteRL recurrent actor-learner",
+  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "git_tree": "fb8b447508597fe19ddd436a44ff3af6d6b44ba0",
+  "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
+  "sources": [
+    {
+      "path": "cg/c019_byterl_model.py",
+      "present": true,
+      "sha256": "6eaffeab0614d86c90b9e2105bc487985484adf1322f81fa63cd3d4be459e2a8",
+      "bytes": 8047,
+      "note": null
+    },
+    {
+      "path": "cg/c019_byterl_encode.py",
+      "present": true,
+      "sha256": "b2fd8e64fe02d37e7abc91ea47dc2d6daed480df79b645f444df7ecc1dee700a",
+      "bytes": 7458,
+      "note": null
+    },
+    {
+      "path": "cg/c019_byterl_actor.py",
+      "present": true,
+      "sha256": "0fc937fd0412f7264d63d7c1151e7c2b29a88a25b1b1c8c53e66476ec63d7428",
+      "bytes": 8708,
+      "note": null
+    },
+    {
+      "path": "cg/c019_vtrace.py",
+      "present": true,
+      "sha256": "5b7b6034f97537d20c4973ec6b2d33c971404a62a926846e5cd1730b8b6b164d",
+      "bytes": 7223,
+      "note": null
+    }
+  ],
+  "configs": {
+    "gamma": 1.0,
+    "learning_rate": 7e-05,
+    "entropy_weight": 0.01,
+    "policy_vtrace_weight": 1.0,
+    "upgo_weight": 1.0,
+    "value_weight": 1.0,
+    "ppo_clip_epsilon": 0.2,
+    "vtrace_c_lower": 0.001,
+    "vtrace_c_upper": 1.007,
+    "vtrace_rho_lower": 0.001,
+    "vtrace_rho_upper": 1.007,
+    "sample_reuse": 2,
+    "lstm_hidden": 256,
+    "max_grad_norm": 5.0,
+    "unroll_length": 32,
+    "minibatch_unrolls": 8,
+    "queue_capacity": 8192,
+    "source": "arXiv 2303.05197 Table III",
+    "calibrated_for_this_machine": [
+      "minibatch_unrolls",
+      "actors",
+      "games_per_round"
+    ]
+  },
+  "config_hash": "af314fdd0aa33a437ffe0c3c002bfde1",
+  "result_artifacts": [
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/scaled_training_summary.json",
+      "present": false,
+      "note": null
+    }
+  ],
+  "command": "python tools/c019_byterl_train.py --learning-periods 8 --games-per-lp 20000",
+  "actual_games": null,
+  "optimizer_steps": null
+}

@@ -1,0 +1,225 @@
+{
+  "branch": "mcts",
+  "checks": [
+    {
+      "check": "mcts_baseline_memory_parity",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "decisions": 521,
+        "mismatches": 0,
+        "note": "c018 proved overriding a stateful baseline destroys it"
+      }
+    },
+    {
+      "check": "mcts_real_native_expansion",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 17592,
+        "step_ok": 10397192
+      }
+    },
+    {
+      "check": "mcts_expands_at_nonroot_depths",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "nonroot_expansions": 546162,
+        "note": "root-only expansion is c018's defect and is not MCTS"
+      }
+    },
+    {
+      "check": "mcts_trees_show_nonroot_branching",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "trees": 232,
+        "note": "a non-root node with >=2 real children is the M03 claim"
+      }
+    },
+    {
+      "check": "mcts_backup_present",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "backups": 694834,
+        "backup_nodes": 2319821
+      }
+    },
+    {
+      "check": "mcts_backup_covers_paths_not_just_leaves",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "nodes_per_backup": 3.34,
+        "note": "backup must update the whole selected path"
+      }
+    },
+    {
+      "check": "mcts_revisits_existing_nodes",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "revisits": 973454
+      }
+    },
+    {
+      "check": "mcts_rollout_uses_a_real_policy",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "baseline_calls": 10086419,
+        "stochastic_calls": 0,
+        "note": "repeated option index 0 is forbidden; rollouts must query a policy"
+      }
+    },
+    {
+      "check": "mcts_source_has_no_hardcoded_option_zero_continuation",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "c018 continued every deeper step with option index 0"
+      }
+    },
+    {
+      "check": "mcts_no_illegal_determinizations_used",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "legal": 17592,
+        "rejected": 0
+      }
+    },
+    {
+      "check": "mcts_determinizer_rejects_rather_than_pads",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "c018 topped up a dry pool with duplicate card ids"
+      }
+    },
+    {
+      "check": "mcts_no_search_ran_on_an_illegal_world",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "illegal_with_search": 0,
+        "determinization_records": 293
+      }
+    },
+    {
+      "check": "mcts_determinizations_record_their_sampling_pool",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "note": "a world labelled 'unknown' cannot be audited for multiplicity"
+      }
+    },
+    {
+      "check": "mcts_no_hidden_information_violation",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "mcts_native_states_released",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "mcts_puct_is_implemented_and_sensitive",
+      "branch": "mcts",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "note": "unit fixture test_c_puct_changes_the_selected_child pins the behaviour"
+      }
+    },
+    {
+      "check": "mcts_floor: searched live decisions >= 5000",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 7549,
+        "required": 5000
+      }
+    },
+    {
+      "check": "mcts_floor: simulations or native expansions >= 500000",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 1346381,
+        "required": 500000
+      }
+    },
+    {
+      "check": "mcts_floor: decisions using multiple determinizations >= 1000",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 7549,
+        "required": 1000
+      }
+    },
+    {
+      "check": "mcts_floor: complete sampled tree traces >= 100",
+      "branch": "mcts",
+      "passed": true,
+      "critical": false,
+      "submission_blocker": false,
+      "detail": {
+        "actual": 116,
+        "required": 100
+      }
+    }
+  ],
+  "passed": 20,
+  "critical_failures": 0,
+  "submission_blockers": 0,
+  "blocker_names": [],
+  "method_fidelity": "PASS"
+}

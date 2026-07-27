@@ -1,0 +1,18 @@
+{
+  "probe_id": "M11",
+  "name": "match_clock_safety",
+  "branch": "mcts",
+  "status": "WARN",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "p50_ms": 703.3,
+    "p90_ms": 711.1,
+    "p99_ms": 753.2,
+    "mean_match_search_ms": 31246.5,
+    "max_match_search_ms": 45690.7,
+    "over_budget_decisions": 6259,
+    "package_config_mean_match_s": 4.6
+  },
+  "submission_blocker": false,
+  "raw_evidence": []
+}

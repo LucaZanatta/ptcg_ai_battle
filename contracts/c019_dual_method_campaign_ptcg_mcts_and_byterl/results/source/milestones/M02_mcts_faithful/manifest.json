@@ -1,0 +1,86 @@
+{
+  "milestone": "M02_mcts_faithful",
+  "title": "method-faithful PTCG-ISMCTS",
+  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "git_tree": "fb8b447508597fe19ddd436a44ff3af6d6b44ba0",
+  "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
+  "sources": [
+    {
+      "path": "cg/c019_mcts.py",
+      "present": true,
+      "sha256": "91df3ea5e1a7f8c5f09272d36d27569c5daa8021451cdfaf3185634685c4b1bd",
+      "bytes": 14620,
+      "note": null
+    },
+    {
+      "path": "cg/c019_ismcts.py",
+      "present": true,
+      "sha256": "955d82a588ea3a9dc96f166abef3c742c33732cafa7094b6073dd9cc476c9c47",
+      "bytes": 9010,
+      "note": null
+    },
+    {
+      "path": "cg/c019_determinize.py",
+      "present": true,
+      "sha256": "843c7a4169aee91717d63c7e519c556cb308787508cc223073674f0e64fef5dd",
+      "bytes": 11725,
+      "note": null
+    },
+    {
+      "path": "cg/c019_leaf.py",
+      "present": true,
+      "sha256": "6c5a006b95f06dada15e5b798e19d927ed099b8ed5a55b175a9bec44a78138b5",
+      "bytes": 4734,
+      "note": null
+    }
+  ],
+  "configs": {
+    "c_puct": 1.5,
+    "simulations_per_determinization": 128,
+    "determinizations": 4,
+    "max_tree_depth": 16,
+    "rollout_max_steps": 24,
+    "k_pw": 1.5,
+    "alpha_pw": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.02,
+    "max_ms_per_decision": 1500,
+    "max_match_ms": 90000,
+    "max_nodes": 512,
+    "version": "c019.mcts.v1"
+  },
+  "config_hash": "51bc315f9ecd223a6a4855e619f865db",
+  "result_artifacts": [
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/aggregate_stats/scaled_summary.json",
+      "present": true,
+      "sha256": "d5ac996c9034872b030daa3c9afc35f82531a311a5856eb8d5b2e479df5111d3",
+      "bytes": 2576,
+      "note": null
+    }
+  ],
+  "command": "python tools/c019_mcts_run.py --games 160 --sims 48 --determinizations 3",
+  "floors": {
+    "searched_decisions": 7549,
+    "simulations": 694834,
+    "native_expansions": 651547,
+    "simulations_or_expansions": 1346381,
+    "nonroot_expansions": 546162,
+    "sampled_full_traces": 116,
+    "multi_determinization_decisions": 116
+  },
+  "fidelity": {
+    "trees_with_nonroot_branching": 232,
+    "revisits": 973454,
+    "backups": 694834,
+    "backup_nodes": 2319821,
+    "rollout_baseline_calls": 10086419,
+    "rollout_stochastic_calls": 0,
+    "determinizations_legal": 17592,
+    "determinizations_rejected": 0,
+    "release_errors": 0,
+    "hidden_information_violations": 0,
+    "chance_outcomes_recorded": 651547,
+    "chance_nodes": 0
+  }
+}

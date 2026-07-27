@@ -1,0 +1,15 @@
+{
+  "probe_id": "P02",
+  "name": "shared_observation_legality",
+  "branch": "common",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "forbidden_accessors_raise": 3,
+    "leaks": 0,
+    "guard": "cg/c019_core.py VisibleObservation",
+    "byterl_encoder_uses_guard_only": true
+  },
+  "submission_blocker": true,
+  "raw_evidence": []
+}

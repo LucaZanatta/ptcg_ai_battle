@@ -1,0 +1,14 @@
+{
+  "probe_id": "M07",
+  "name": "rollout_policy_evidence",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "checks": {
+    "baseline_calls": 10086419,
+    "stochastic_calls": 0,
+    "source_has_no_option_zero_continuation": true
+  },
+  "submission_blocker": true,
+  "raw_evidence": []
+}

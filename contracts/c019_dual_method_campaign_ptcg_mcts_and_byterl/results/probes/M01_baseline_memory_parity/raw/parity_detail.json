@@ -1,0 +1,96 @@
+{
+  "probe": "M01_baseline_memory_parity",
+  "state_coverage": {
+    "declared_globals": [
+      "ability_used",
+      "plan",
+      "pre_turn"
+    ],
+    "tracked": [
+      "plan",
+      "pre_turn",
+      "ability_used"
+    ],
+    "untracked_mutable_globals": [],
+    "tracked_but_not_declared": [],
+    "covered": true
+  },
+  "games": [
+    {
+      "game": 0,
+      "opponent": "dragapult",
+      "decisions": 77,
+      "mismatch": 0,
+      "completed": true,
+      "score": 0.0
+    },
+    {
+      "game": 1,
+      "opponent": "iono",
+      "decisions": 75,
+      "mismatch": 0,
+      "completed": true,
+      "score": 1.0
+    },
+    {
+      "game": 2,
+      "opponent": "mega_abomasnow",
+      "decisions": 28,
+      "mismatch": 0,
+      "completed": true,
+      "score": 1.0
+    },
+    {
+      "game": 3,
+      "opponent": "mega_lucario",
+      "decisions": 87,
+      "mismatch": 0,
+      "completed": true,
+      "score": 1.0
+    },
+    {
+      "game": 4,
+      "opponent": "dragapult",
+      "decisions": 25,
+      "mismatch": 0,
+      "completed": true,
+      "score": 1.0
+    },
+    {
+      "game": 5,
+      "opponent": "iono",
+      "decisions": 59,
+      "mismatch": 0,
+      "completed": true,
+      "score": 0.0
+    },
+    {
+      "game": 6,
+      "opponent": "mega_abomasnow",
+      "decisions": 85,
+      "mismatch": 0,
+      "completed": true,
+      "score": 1.0
+    },
+    {
+      "game": 7,
+      "opponent": "mega_lucario",
+      "decisions": 85,
+      "mismatch": 0,
+      "completed": true,
+      "score": 0.0
+    }
+  ],
+  "decisions": 521,
+  "mismatches": 0,
+  "first_mismatches": [],
+  "fork_independence": {
+    "parent_ability_used": false,
+    "fork_ability_used": true,
+    "parent_plan_attacker": 0,
+    "fork_plan_attacker": 99,
+    "independent": true
+  },
+  "parity_rate": 1.0,
+  "status": "PASS"
+}
