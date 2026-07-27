@@ -108,11 +108,22 @@ shows it beats both a constant and the heuristic.
 
 **Competitively evaluated.** The H02 calibration gate PASSED on 1847 held-out leaves — the ByteRL value head beat both the hand-written heuristic (MSE 0.946 → 0.891) and predicting the mean (0.954), with correlation 0.169 → 0.284 — so the adapter was permitted to act rather than assumed useful.
 
-`ptcg_ismcts_hybrid_v0` is the SAME search with only the two provider arguments changed, so any delta is attributable to the adapters alone. On 160 identity-safe games it scores -40.0 field points against the frozen baseline.
+`ptcg_ismcts_hybrid_v0` is the SAME search with only the two provider arguments changed. On 160 identity-safe games it scores -40.0 field points against the frozen baseline.
 
 NOT ELIGIBLE -- ptcg_ismcts_hybrid_v0 scores -40.0 field points against the frozen baseline on 160 identity-safe games (0 incomplete). The gate requires +3, or +5 on a single matchup without a -2 field regression; its best matchup delta is -10.0.
 
-A leaf evaluator that is measurably better than the heuristic did not rescue the search. That is the useful part of the result: it separates *the value function is bad* from *the search is bad*, and the evidence points at the search.
+**That number alone is unattributable, so it was ablated.** Changing two adapters at once cannot say which one moved the result. Each was isolated against the same search at the same configuration (320 games, 0 incomplete):
+
+| arm | field | 95% CI | vs pure MCTS |
+|---|---|---|---|
+| baseline | 0.6 | — | — |
+| pure MCTS | 0.375 | [0.2769, 0.4845] | — |
+| + leaf value only | 0.35 | [0.2545, 0.4592] | -2.5 |
+| + priors only | 0.0875 | [0.043, 0.1698] | -28.7 |
+
+The priors adapter is responsible. Replacing the search's priors with the ByteRL policy costs -28.7 field points against pure MCTS, while the calibrated leaf value costs -2.5 points with heavily overlapping confidence intervals ([0.2545, 0.4592] vs [0.2769, 0.4845]) -- indistinguishable from no change at this sample size. A value head that beats the hand-written heuristic on held-out leaves is roughly neutral inside the search; a policy scoring 0.066 on its own is catastrophic as a PUCT prior, because a confidently wrong prior distorts selection at every node while a leaf value only perturbs backups.
+
+One caution on reading the value-only arm: the frozen baseline measures 0.600 on this panel, 0.5375 on `hybrid_compare` and 0.5477 on `byterl_gate` — about six points of panel-to-panel spread from environment randomness that `failures/LIMITATION_panel_cannot_pair_environment_randomness.md` records as unpairable. The value-only delta of -2.5 points sits INSIDE that spread, so the claim is 'indistinguishable from no change at this sample size' and nothing stronger. The priors delta of -28.7 points sits far outside it, and that is what the ablation actually establishes.
 
 ## 7. Probes
 
@@ -174,7 +185,7 @@ every self-play opponent seat errored. See `failures/`.
 | CHAMPION | dragapult | externally confirmed control (~719.7 in captured evidence); no c019 candidate has beaten it on external eviden |
 | CHALLENGER | baseline_official_mega_lucario | accepted submission 55011215; strongest measured candidate on the c019 common panel |
 | DIAGNOSTIC | ptcg_ismcts_v0 | method-faithful and package-safe, but -12.5 field points below the frozen baseline; DECISION_RULES gate not me |
-| DIAGNOSTIC | ptcg_byterl_v0 | see panel |
+| DIAGNOSTIC | ptcg_byterl_v0 | method-faithful and package-safe, but -48.2 field points below the frozen baseline on 880 identity-safe games; |
 | ARCHIVE | c018_search_and_curriculum | root-only search and schedule-driven self-play; disproven as MCTS and as OSFP, not continued by c019 |
 
 ## 10. Submissions

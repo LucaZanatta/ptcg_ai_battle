@@ -245,11 +245,18 @@ def board_json(doc, panels, refs):
                            % round((mg.get("delta_field_points") or 0) * 100, 1)),
                  "method_fidelity": doc["method_fidelity_status"]["mcts"],
                  "panel_field": mg.get("candidate_field")})
+    bg = jload("byterl/evaluations/byterl_gate_decision.json", {}) or {}
     rows.append({"role": "DIAGNOSTIC" if not doc["byterl"]["in_progress"] else "IN_PROGRESS",
                  "id": "ptcg_byterl_v0",
-                 "basis": ("training run incomplete at report time" if
-                           doc["byterl"]["in_progress"] else "see panel"),
-                 "method_fidelity": doc["method_fidelity_status"]["byterl"]})
+                 "basis": ("training run incomplete at report time"
+                           if doc["byterl"]["in_progress"] else
+                           ("method-faithful and package-safe, but %s field points below the "
+                            "frozen baseline on %s identity-safe games; DECISION_RULES gate not "
+                            "met" % (round((bg.get("delta_field_points") or 0) * 100, 1),
+                                     bg.get("games")))
+                           if bg else "see panel"),
+                 "method_fidelity": doc["method_fidelity_status"]["byterl"],
+                 "panel_field": bg.get("candidate_field")})
     rows.append({"role": "ARCHIVE", "id": "c018_search_and_curriculum",
                  "basis": "root-only search and schedule-driven self-play; disproven as MCTS "
                           "and as OSFP, not continued by c019"})
@@ -257,6 +264,10 @@ def board_json(doc, panels, refs):
                "rule": "a package existing does not make it a challenger (DECISION_RULES)"},
               open(os.path.join(C19, "DECISION_BOARD.json"), "w"), indent=2, default=str)
     return rows
+
+
+def _arm(abl, name, key):
+    return ((abl.get('arms') or {}).get(name) or {}).get(key)
 
 
 def summary_md(doc, P, val, m, B, mgate, panels, refs, board, bgate=None):
@@ -276,8 +287,9 @@ def summary_md(doc, P, val, m, B, mgate, panels, refs, board, bgate=None):
         f"{r['worst']} @ {r['worst_rate']} |"
         for k, p in doc["panels"].items() for r in p["results"])
     cal = jload("hybrid/comparisons/leaf_value_calibration.json", {}) or {}
+    abl = jload("hybrid/comparisons/adapter_ablation.json", {}) or {}
     hgate = jload("hybrid/comparisons/hybrid_gate_decision.json", {}) or {}
-    if hgate:
+    if hgate and abl:
         hybrid_note = (
             f"**Competitively evaluated.** The H02 calibration gate PASSED on "
             f"{cal.get('n_leaves')} held-out leaves — the ByteRL value head beat both the "
@@ -287,13 +299,32 @@ def summary_md(doc, P, val, m, B, mgate, panels, refs, board, bgate=None):
             f"{cal.get('corr_heuristic'):.3f} → {cal.get('corr_byterl_value'):.3f} — so the "
             f"adapter was permitted to act rather than assumed useful.\n\n"
             f"`ptcg_ismcts_hybrid_v0` is the SAME search with only the two provider arguments "
-            f"changed, so any delta is attributable to the adapters alone. On "
-            f"{hgate.get('games')} identity-safe games it scores "
+            f"changed. On {hgate.get('games')} identity-safe games it scores "
             f"{(hgate.get('delta_field_points') or 0) * 100:+.1f} field points against the "
             f"frozen baseline.\n\n{hgate.get('verdict', '')}\n\n"
-            f"A leaf evaluator that is measurably better than the heuristic did not rescue the "
-            f"search. That is the useful part of the result: it separates *the value function "
-            f"is bad* from *the search is bad*, and the evidence points at the search.")
+            f"**That number alone is unattributable, so it was ablated.** Changing two adapters "
+            f"at once cannot say which one moved the result. Each was isolated against the same "
+            f"search at the same configuration ({abl.get('games')} games, "
+            f"{abl.get('incomplete')} incomplete):\n\n"
+            f"| arm | field | 95% CI | vs pure MCTS |\n|---|---|---|---|\n"
+            f"| baseline | {abl.get('baseline_field')} | — | — |\n"
+            f"| pure MCTS | {_arm(abl, 'pure MCTS (no adapters)', 'field')} | "
+            f"{_arm(abl, 'pure MCTS (no adapters)', 'ci')} | — |\n"
+            f"| + leaf value only | {_arm(abl, 'ByteRL leaf value only', 'field')} | "
+            f"{_arm(abl, 'ByteRL leaf value only', 'ci')} | "
+            f"{(_arm(abl, 'ByteRL leaf value only', 'delta_vs_pure_mcts') or 0) * 100:+.1f} |\n"
+            f"| + priors only | {_arm(abl, 'ByteRL priors only', 'field')} | "
+            f"{_arm(abl, 'ByteRL priors only', 'ci')} | "
+            f"{(_arm(abl, 'ByteRL priors only', 'delta_vs_pure_mcts') or 0) * 100:+.1f} |\n\n"
+            f"{abl.get('conclusion')}\n\n"
+            f"One caution on reading the value-only arm: the frozen baseline measures 0.600 on "
+            f"this panel, 0.5375 on `hybrid_compare` and 0.5477 on `byterl_gate` — about six "
+            f"points of panel-to-panel spread from environment randomness that "
+            f"`failures/LIMITATION_panel_cannot_pair_environment_randomness.md` records as "
+            f"unpairable. The value-only delta of -2.5 points sits INSIDE that spread, so the "
+            f"claim is 'indistinguishable from no change at this sample size' and nothing "
+            f"stronger. The priors delta of -28.7 points sits far outside it, and that is what "
+            f"the ablation actually establishes.")
     else:
         hybrid_note = (
             "**Not competitively evaluated:** §10 caps hybrid work and forbids delaying pure "

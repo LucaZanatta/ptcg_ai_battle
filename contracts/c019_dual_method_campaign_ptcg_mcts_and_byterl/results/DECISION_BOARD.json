@@ -22,8 +22,9 @@
     {
       "role": "DIAGNOSTIC",
       "id": "ptcg_byterl_v0",
-      "basis": "see panel",
-      "method_fidelity": "PASS"
+      "basis": "method-faithful and package-safe, but -48.2 field points below the frozen baseline on 880 identity-safe games; DECISION_RULES gate not met",
+      "method_fidelity": "PASS",
+      "panel_field": 0.0659
     },
     {
       "role": "ARCHIVE",
