@@ -493,7 +493,19 @@ def main(argv=None):
     curric = jload(os.path.join(C17, "curriculum", "curriculum_report.json"), {})
     sub = jload(os.path.join(C17, "submissions", "baseline_submission.json"), {})
 
-    panel = final_panel(a.panel_games)
+    # --panel-games 0 means: do NOT re-run the panel, recompute from the raw records already
+    # on disk. An earlier invocation with 0 re-ran the panel with zero games and overwrote the
+    # real aggregates; the raw evidence survived only because it had been copied, which is the
+    # argument for preserving raw records separately from any aggregate.
+    if a.panel_games <= 0:
+        rows = jload(os.path.join(FINAL, "final_panel_results.json"), [])
+        n = 0
+        rp = os.path.join(FINAL, "raw_games.jsonl.gz")
+        if os.path.exists(rp):
+            n = sum(1 for _ in gzip.open(rp, "rt"))
+        panel = {"rows": rows, "games": n}
+    else:
+        panel = final_panel(a.panel_games)
     sel = select(panel, distill, curric)
     json.dump(sel, open(os.path.join(FINAL, "selection_decision.json"), "w"), indent=2,
               default=str)
