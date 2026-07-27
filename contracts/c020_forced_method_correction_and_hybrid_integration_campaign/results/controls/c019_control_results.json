@@ -1,0 +1,194 @@
+{
+  "byterl_gate": {
+    "games": 880,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "baseline_official_mega_lucario",
+        "field": 0.5477,
+        "ci": [
+          0.501,
+          0.5936
+        ]
+      },
+      {
+        "candidate": "ptcg_byterl_v0",
+        "field": 0.0659,
+        "ci": [
+          0.0463,
+          0.0931
+        ]
+      }
+    ]
+  },
+  "byterl_rehearsal": {
+    "games": 32,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "baseline_official_mega_lucario",
+        "field": 0.4375,
+        "ci": [
+          0.231,
+          0.6682
+        ]
+      },
+      {
+        "candidate": "ptcg_byterl_v0",
+        "field": 0.0,
+        "ci": [
+          0.0,
+          0.1936
+        ]
+      }
+    ]
+  },
+  "hybrid_ablation": {
+    "games": 320,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "baseline_official_mega_lucario",
+        "field": 0.6,
+        "ci": [
+          0.4905,
+          0.7004
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_v0",
+        "field": 0.375,
+        "ci": [
+          0.2769,
+          0.4845
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_value_only_v0",
+        "field": 0.35,
+        "ci": [
+          0.2545,
+          0.4592
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_priors_only_v0",
+        "field": 0.0875,
+        "ci": [
+          0.043,
+          0.1698
+        ]
+      }
+    ]
+  },
+  "hybrid_compare": {
+    "games": 240,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "baseline_official_mega_lucario",
+        "field": 0.5375,
+        "ci": [
+          0.429,
+          0.6425
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_v0",
+        "field": 0.4,
+        "ci": [
+          0.2996,
+          0.5095
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_hybrid_v0",
+        "field": 0.1375,
+        "ci": [
+          0.0785,
+          0.2297
+        ]
+      }
+    ]
+  },
+  "hybrid_smoke": {
+    "games": 8,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "ptcg_ismcts_hybrid_v0",
+        "field": 0.0,
+        "ci": [
+          0.0,
+          0.3244
+        ]
+      }
+    ]
+  },
+  "mcts_full": {
+    "games": 240,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "baseline_official_mega_lucario",
+        "field": 0.5833,
+        "ci": [
+          0.4939,
+          0.6676
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_v0",
+        "field": 0.3833,
+        "ci": [
+          0.3012,
+          0.4727
+        ]
+      }
+    ]
+  },
+  "mcts_gate2": {
+    "games": 360,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "baseline_official_mega_lucario",
+        "field": 0.5778,
+        "ci": [
+          0.5047,
+          0.6476
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_v0",
+        "field": 0.4611,
+        "ci": [
+          0.3899,
+          0.534
+        ]
+      }
+    ]
+  },
+  "mcts_gate": {
+    "games": 240,
+    "incomplete": 0,
+    "results": [
+      {
+        "candidate": "baseline_official_mega_lucario",
+        "field": 0.5167,
+        "ci": [
+          0.4281,
+          0.6042
+        ]
+      },
+      {
+        "candidate": "ptcg_ismcts_v0",
+        "field": 0.3917,
+        "ci": [
+          0.309,
+          0.4811
+        ]
+      }
+    ]
+  }
+}
