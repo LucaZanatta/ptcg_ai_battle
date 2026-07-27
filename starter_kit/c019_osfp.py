@@ -28,6 +28,10 @@ import numpy as np
 
 OSFP_VERSION = "c019.osfp.v1"
 
+
+class ImmutableCheckpointCollision(Exception):
+    """Raised rather than overwriting a promoted historical checkpoint."""
+
 # Registered source values (arXiv 2303.05197 Table IV)
 P_CURRENT_SELF_PLAY = 0.6
 XI_PROMOTION = 0.55
@@ -165,7 +169,15 @@ class OSFPScheduler:
         d["learner_version"] = learner_version
         if d["add"]:
             idx = len(self.H)
-            dst = os.path.join(self.dir, f"historical_{idx:03d}_lp{self.lp_index:03d}.pt")
+            dst = os.path.join(self.dir,
+                               f"historical_{idx:03d}_lp{self.lp_index:03d}"
+                               f"_v{learner_version:06d}.pt")
+            if os.path.exists(dst):
+                # A promoted checkpoint is immutable. Silently overwriting one would let a
+                # re-run replace history that earlier payoff numbers were measured against,
+                # which is exactly the "mutable historical checkpoints" the validator rejects.
+                raise ImmutableCheckpointCollision(
+                    f"historical checkpoint already exists and may not be overwritten: {dst}")
             shutil.copyfile(learner_path, dst)
             os.chmod(dst, 0o444)          # immutable in practice as well as in policy
             h = hashlib.sha256()
