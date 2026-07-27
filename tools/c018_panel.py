@@ -68,8 +68,11 @@ def candidate_hashes(cid):
         out["search_config"] = dict(S.DEFAULT_CFG)
         out["config_hash"] = hashlib.sha256(
             json.dumps(S.DEFAULT_CFG, sort_keys=True).encode()).hexdigest()[:32]
-    if cid in ("m04_guided_search", "m04_guided_ordering_only", "m03_curriculum_policy"):
-        ck = os.path.join(C18, "checkpoints", "m03_curriculum.npz")
+    if cid in ("m04_guided_search", "m04_guided_ordering_only", "m03_curriculum_policy",
+               "m02_distilled_policy"):
+        ck = os.path.join(C18, "checkpoints",
+                          "m02_distilled.npz" if cid == "m02_distilled_policy"
+                          else "m03_curriculum.npz")
         out["checkpoint"] = os.path.relpath(ck, _REPO)
         out["checkpoint_sha256"] = _sha(ck)
         out["guide_module_sha256"] = _sha(os.path.join(_REPO, "tools", "c018_guided.py"))
@@ -93,12 +96,16 @@ def build_agent(cid, deck, seed):
     base = T.make_fresh("mega_lucario", ce.SOURCES)
     stats = S.new_stats()
     guide = None
-    if cid in ("m04_guided_search", "m04_guided_ordering_only", "m03_curriculum_policy"):
+    LEARNED = {"m04_guided_search": "m03_curriculum.npz",
+               "m04_guided_ordering_only": "m03_curriculum.npz",
+               "m03_curriculum_policy": "m03_curriculum.npz",
+               "m02_distilled_policy": "m02_distilled.npz"}
+    if cid in LEARNED:
         import c018_guided as G
-        guide = G.Guide(os.path.join(C18, "checkpoints", "m03_curriculum.npz"),
+        guide = G.Guide(os.path.join(C18, "checkpoints", LEARNED[cid]),
                         use_learned_leaf=(cid != "m04_guided_ordering_only"))
 
-    if cid == "m03_curriculum_policy":
+    if cid in ("m03_curriculum_policy", "m02_distilled_policy"):
         # The learned policy playing directly, no search -- isolates what training alone bought.
         # This must be `RLAgent`, the exact agent the PPO curriculum trained: it uses the
         # policy's sequential without-replacement multi-select head and the STOP logit. Taking
@@ -162,9 +169,10 @@ def play_one(job):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
+    # §29's six preserved stages, in order
     ap.add_argument("--candidates", default="official_mega_lucario,m01_heuristic_search,"
-                                            "m04_guided_search,m04_guided_ordering_only,"
-                                            "m03_curriculum_policy")
+                                            "m02_distilled_policy,m03_curriculum_policy,"
+                                            "m04_guided_ordering_only,m04_guided_search")
     ap.add_argument("--games-per-pair", type=int, default=40)
     ap.add_argument("--nproc", type=int, default=8)
     ap.add_argument("--seed", type=int, default=1805)

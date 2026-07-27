@@ -533,6 +533,11 @@ Defects found and fixed during this vertical: {len(d.get('defects') or [])}.
 
 
 def main():
+    try:
+        import c018_stages as ST
+        ST.main()
+    except Exception as e:  # noqa: BLE001
+        print(f"  stage registry failed: {type(e).__name__}: {e}")
     for f in (p09, p10, p11, p12, p13, p14, p15, p16, p17, p30):
         try:
             f()
