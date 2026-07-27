@@ -112,6 +112,7 @@ TRJ = f"trajectories/{PFX}_trajectories.jsonl.gz"
 
 def p02(s, rows):
     c = s["real_search_counters"]
+    bp = jload("artifacts/branch_proof.json", {}) or {}
     tr = s["sample_traces"]
     deep = [t for t in tr if (t.get("depth_max") or 0) >= 2]
     branch = [r for r in rows if (r.get("distinct_successors") or 0) > 1]
@@ -124,8 +125,14 @@ def p02(s, rows):
         "mean_successors_per_searched_decision": round(
             c["distinct_successors"] / max(1, c["begin_ok"]), 2),
         "step_error_rate": round(c["step_errors"] / max(1, c["step_calls"]), 5),
+        "per_decision_examined": bp.get("decisions_examined"),
+        "per_decision_two_or_more_distinct_successors":
+            bp.get("decisions_with_two_or_more_distinct_successors"),
+        "per_decision_depth_gt_1": bp.get("decisions_reaching_depth_gt_1"),
+        "per_decision_distinct_leaf_values": bp.get("decisions_with_distinct_leaf_values"),
     }
-    ok = c["step_ok"] > 0 and c["max_depth_reached"] >= 2 and len(deep) > 0 and branch
+    ok = (c["step_ok"] > 0 and c["max_depth_reached"] >= 2 and len(deep) > 0 and branch
+          and (bp.get("decisions_with_two_or_more_distinct_successors") or 0) > 0)
     readme = f"""# P02 — Real successor branching
 
 Does the search actually advance the simulator, or does it score the root and stop? c017 claimed
@@ -138,13 +145,22 @@ roots — {ck['mean_successors_per_searched_decision']} per root. Maximum depth 
 traces record a chain of depth ≥ 2, and {len(branch):,} decisions saw more than one distinct
 successor — i.e. the tree genuinely branched rather than replaying one line.
 
+**Per-decision, not just in aggregate.** An aggregate successor count cannot distinguish a
+branching tree from one long line, so each decision was checked individually:
+{ck['per_decision_two_or_more_distinct_successors']:,} of {ck['per_decision_examined']:,}
+examined decisions produced **two or more distinct successor observations**, and
+{ck['per_decision_depth_gt_1']:,} reached depth > 1.
+{ck['per_decision_distinct_leaf_values']:,} produced candidates with *different* leaf values —
+i.e. the tree discriminated rather than returning a flat score list. Raw rows:
+`artifacts/branch_proof.json`.
+
 {c['step_errors']:,} steps ({ck['step_error_rate']:.4%}) returned an engine error; those nodes
 are dropped from the beam and the decision falls back rather than being recorded as searched.
 
 **Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
 """
     return write("P02", "real_successor_branching", "PASS" if ok else "FAIL_TAINTED", ck,
-                 [SUM, TRJ], [], readme, raw=[SUM, TRJ])
+                 [SUM, TRJ], [], readme, raw=[SUM, TRJ, "artifacts/branch_proof.json"])
 
 
 def p03(s, rows):
@@ -226,40 +242,59 @@ engine error, the agent degrades to the heuristic it would otherwise have played
 
 
 def p05(s, rows):
-    tr = s["sample_traces"]
-    ck = {"traces_captured": len(tr),
-          "traces_with_multi_step_chain": sum(1 for t in tr if (t.get("depth_max") or 0) >= 2),
+    fx = jload("artifacts/tactical_fixtures.json", {}) or {}
+    cats = fx.get("categories") or {}
+    ck = {"categories_covered": fx.get("categories_covered"),
+          "categories_total": fx.get("categories_total"),
+          "fixtures_per_category": cats,
+          "traces_captured": len(s["sample_traces"]),
           "distinct_root_contexts": len({r["context"] for r in rows}),
           "decisions_where_search_changed_action": sum(
               1 for r in rows if r.get("label_differs_from_baseline")),
           "change_rate_among_searched": round(
               sum(1 for r in rows if r.get("label_differs_from_baseline"))
               / max(1, sum(1 for r in rows if r.get("searched"))), 4)}
-    ok = ck["traces_captured"] > 0 and ck["traces_with_multi_step_chain"] > 0
-    readme = f"""# P05 — Tactical fixtures
+    ok = (fx.get("categories_covered") or 0) == (fx.get("categories_total") or 7)
+    rows_md = "\n".join(f"| {k} | {v} |" for k, v in cats.items())
+    readme = f"""# P05 — Tactical fixtures and traces
 
-{len(tr)} full successor traces are retained verbatim in the search summary, each recording the
-candidate actions considered at a real root, the successor observations `search_step` returned,
-and the leaf score decomposition that ranked them.
+All {ck['categories_total']} §15 categories are covered by **real captured roots**, each
+retaining the root select context and option types, every candidate select, the leaf
+decomposition per candidate, the chosen line, the dominated lines, and nodes/depth/time.
+Raw: `artifacts/tactical_fixtures.json`.
+
+| category | fixtures |
+|---|---|
+{rows_md}
+
+**Two categories needed a substantive definition, not a contextual one.** `missed_lethal` was
+first defined as an attack context with a single option — but a single-option attack is a
+*forced* move that never reaches the search, so that definition guaranteed an empty category.
+It now means an attack decision where some candidate's leaf value beats the baseline's by more
+than one prize (0.55/6 of the leaf scale), i.e. the search found a knockout the baseline missed.
+`bench_liability` likewise now means a decision taken with a bench of ≤ 1, which is where bench
+state actually creates risk, rather than only the explicit TO_BENCH context.
 
 Across {ck['distinct_root_contexts']} distinct decision contexts the search changed the baseline
-action in {ck['decisions_where_search_changed_action']:,} decisions
+action {ck['decisions_where_search_changed_action']:,} times
 ({ck['change_rate_among_searched']:.1%} of searched decisions). A search that never disagrees
-with its baseline is a very expensive identity function; a search that always disagrees is
-usually broken. Neither degenerate case is present.
+with its baseline is an expensive identity function; one that always disagrees is usually broken.
 
-**Caveat (honest).** These fixtures show the search *machinery* is real and discriminating. They
-are not evidence that the leaf evaluator's preferences are *correct* — that claim belongs to the
-gameplay panel (P17), not here.
+**What these fixtures do not show.** They demonstrate the search machinery is real and
+discriminating. They are not evidence the leaf evaluator's preferences are *correct* — that
+claim belongs to the gameplay panel (P17).
 
 **Status: {'PASS' if ok else 'WARN'}.**
 """
-    return write("P05", "tactical_fixtures", "PASS" if ok else "WARN", ck, [SUM], [], readme,
-                 raw=[SUM])
+    return write("P05", "tactical_fixtures", "PASS" if ok else "WARN", ck,
+                 [SUM, "artifacts/tactical_fixtures.json"], [], readme,
+                 raw=[SUM, "artifacts/tactical_fixtures.json"])
 
 
 def p06(s, rows):
     c = s["real_search_counters"]
+    thr = jload("artifacts/throughput.json", {}) or {}
+    life = jload("artifacts/lifecycle_extended.json", {}) or {}
     ms = sorted(r["search_ms"] for r in rows if r.get("search_ms") is not None)
     def q(p):
         return round(ms[min(len(ms) - 1, int(len(ms) * p))], 1) if ms else None
@@ -274,7 +309,14 @@ def p06(s, rows):
           "nodes_per_searched_decision": round(c["nodes"] / max(1, c["begin_ok"]), 1),
           "search_handles_released": c["release_calls"],
           "release_errors": c["release_errors"],
-          "search_end_calls": c["end_calls"]}
+          "search_end_calls": c["end_calls"],
+          "roots_per_second": thr.get("roots_per_second"),
+          "steps_per_second": thr.get("steps_per_second"),
+          "rss_mb": thr.get("rss_mb"),
+          "mean_full_match_agent_ms": thr.get("mean_full_match_agent_ms"),
+          "determinizations": thr.get("determinizations"),
+          "search_begin_input_preserved": life.get("search_begin_input_preserved"),
+          "repeated_search_stable": life.get("repeated_search_stable")}
     ok = ck["release_errors"] == 0 and (ck["p99_ms"] or 0) <= cfg["max_ms_per_decision"]
     readme = f"""# P06 — Search latency and resource safety
 
@@ -289,14 +331,25 @@ leaks across a match. {ck['search_handles_released']:,} releases and {ck['search
 manager, so an exception mid-beam still releases. This is what makes the search safe to run
 inside a submitted agent rather than only offline.
 
+**Throughput and memory.** {ck['roots_per_second']} search roots/s, {ck['steps_per_second']}
+`search_step`/s, {ck['determinizations']:,} determinizations, process RSS {ck['rss_mb']} MB, and
+a mean full-match agent time of {ck['mean_full_match_agent_ms']} ms.
+
 {ck['nodes_expanded']:,} nodes expanded, {ck['nodes_per_searched_decision']} per searched
-decision, under a per-decision node cap (c017's global cap starved 249 of 266 searches; the cap
-here is per-decision for exactly that reason).
+decision, under a per-decision node cap. That cap is per-decision for two reasons: c017's global
+cap starved 249 of 266 searches, and a *cumulative* cap that depended on a caller-maintained
+counter later left the packaged agent searching 3 of 84 decisions
+(`failures/DEFECT_packaged_agent_searched_3_of_84_decisions.md`).
+
+`search_begin_input` preserved: {ck['search_begin_input_preserved']}. Repeated searches on one
+root remained stable with zero begin/release errors: {ck['repeated_search_stable']}.
 
 **Status: {'PASS' if ok else 'WARN'}.**
 """
     return write("P06", "search_latency", "PASS" if ok else "WARN", ck, [SUM, TRJ], [], readme,
-                 raw=[SUM, TRJ], cfg_hash=hashlib.sha256(
+                 raw=[SUM, TRJ, "artifacts/throughput.json",
+                      "artifacts/lifecycle_extended.json"],
+                 cfg_hash=hashlib.sha256(
                      json.dumps(cfg, sort_keys=True).encode()).hexdigest()[:16])
 
 
