@@ -210,11 +210,25 @@ def v_byterl():
     B = "byterl"
     # Pick the run with the most raw game rows. Reading "whichever summary exists" let a stale
     # smoke summary stand in for a scaled run and report 192 games against 0 rows.
-    cands = []
+    # A run abandoned for a recorded defect keeps its artifacts on disk as the evidence for that
+    # defect, but must never be read as campaign evidence -- otherwise the largest broken run
+    # shadows the run that replaced it. The marker names the failure record, so superseding is
+    # documented rather than a silent deletion.
+    cands, superseded = [], []
     for gp in glob.glob(os.path.join(C19, "byterl", "raw_games", "*_games.jsonl.gz")):
         tag = os.path.basename(gp)[:-len("_games.jsonl.gz")]
+        mark = jload(f"byterl/raw_games/{tag}_SUPERSEDED.json")
+        if mark:
+            superseded.append({"tag": tag, **mark})
+            continue
         n = len(read_jsonl(f"byterl/raw_games/{tag}_games.jsonl.gz"))
         cands.append((n, tag))
+    if superseded:
+        ck("byterl_superseded_runs_are_documented",
+           all(os.path.exists(os.path.join(C19, "failures", m.get("failure_record", "")))
+               for m in superseded),
+           {"superseded": [{"tag": m["tag"], "reason": m.get("reason"),
+                            "failure_record": m.get("failure_record")} for m in superseded]}, B)
     if not cands:
         require("byterl_run_present", False, {"reason": "no raw ByteRL games on disk"},
                 B, blocker=True)
@@ -326,6 +340,71 @@ def v_byterl():
            {"current_self_play": cur, "historical_samples": hist,
             "observed_p": round(cur / max(1, cur + hist), 4), "registered_p": 0.6}, B)
 
+        # IDENTITY BUG -- the sampled opponent record and the game it is attributed to must be
+        # the SAME game. A round-robin actor pool returns trajectories in actor order, so
+        # pairing by list position silently attributes results to the wrong opponent and
+        # corrupts G/C while every count still looks right. This is checked against raw rows,
+        # not against the trainer's own bookkeeping.
+        by_id = {g.get("game_id"): g for g in games}
+        paired = [(o, by_id.get(o.get("game_id"))) for o in opps]
+        resolvable = [(o, g) for o, g in paired if g is not None]
+        misattributed = [o for o, g in resolvable if g.get("opponent_kind") != o.get("kind")]
+        ck("byterl_payoff_attribution_matches_raw_games",
+           bool(resolvable) and not misattributed,
+           {"sample_rows": len(opps), "resolved_against_raw": len(resolvable),
+            "unresolvable_game_ids": len(paired) - len(resolvable),
+            "misattributed": len(misattributed),
+            "note": "each opponent-sample row must name the same opponent the raw game log "
+                    "records for that game_id"},
+           B, blocker=True)
+        ck("byterl_payoff_results_match_raw_games",
+           all(abs(float(o.get("result") or 0.0)
+                   - float(g.get("result_pm_one") or 0.0)) < 1e-9 for o, g in resolvable),
+           {"checked": len(resolvable)}, B, blocker=True)
+
+        # G/C RECOMPUTED FROM RAW -- the recorded payoff table must be reproducible from the
+        # per-game rows alone. `C` is a count of completed historical games; `G` their payoff
+        # sum. Comparison is against the LAST learning period's cumulative table.
+        raw_hist = [g for g in games
+                    if g.get("opponent_kind") == "HISTORICAL_PAYOFF_SAMPLE"
+                    and g.get("completed")]
+        raw_c, raw_g = len(raw_hist), sum(float(g.get("result_pm_one") or 0.0)
+                                          for g in raw_hist)
+        last_tab = next((r.get("promotion") or {} for r in reversed(lps)
+                         if (r.get("promotion") or {}).get("C")), {})
+        tab_c, tab_g = sum(last_tab.get("C") or []), sum(last_tab.get("G") or [])
+        # the recorded table is cumulative through the LAST COMPLETED period, while raw rows may
+        # include an in-flight period, so the table may legitimately lag -- it must never exceed
+        # the raw totals, and must match exactly once the run has finished
+        agree = (abs(tab_g - raw_g) < 1e-6 and tab_c == raw_c) if not in_progress else (
+            tab_c <= raw_c and tab_g <= raw_g + 1e-6)
+        ev = {"table_G": round(tab_g, 3), "table_C": tab_c,
+              "raw_G": round(raw_g, 3), "raw_C": raw_c, "in_progress": in_progress,
+              "note": "a diluted G with a correct C is the signature of misattributed results"}
+        if in_progress and not last_tab:
+            require("byterl_payoff_table_reproduces_from_raw_games", False,
+                    {**ev, "reason": "no learning period has closed yet, so no payoff table "
+                                     "has been written"}, B)
+        else:
+            ck("byterl_payoff_table_reproduces_from_raw_games", bool(last_tab) and agree,
+               ev, B, blocker=True)
+
+    # PROMOTION THRESHOLD UNITS -- xi is a win rate on [0,1], not a mean payoff on [-1,1]
+    wr = [w for r in promos for w in (r.get("winrates") or []) if w is not None]
+    ck("byterl_promotion_winrates_are_on_the_unit_interval",
+       all(0.0 <= float(w) <= 1.0 for w in wr) if wr else len(promos) <= 1,
+       {"reported_winrates": len(wr),
+        "min": round(min(wr), 4) if wr else None, "max": round(max(wr), 4) if wr else None,
+        "note": "comparing a mean payoff against xi=0.55 sets the bar at a 77.5% win rate"},
+       B, blocker=True)
+    if in_progress and not promos:
+        require("byterl_promotion_reports_both_units", False,
+                {"reason": "no promotion decision has been taken yet"}, B)
+    else:
+        ck("byterl_promotion_reports_both_units",
+           all(("mean_payoffs" in r) for r in promos if r.get("winrates")) if promos else False,
+           {"note": "win rate and mean payoff are both recorded so the units are visible"}, B)
+
     # MUTABLE HISTORICAL CHECKPOINTS
     imm = s.get("immutability") or {}
     if in_progress and not imm:
@@ -346,8 +425,12 @@ def v_byterl():
 
     # CHECKPOINT PROGRESS
     moved = [r for r in lps if r.get("weights_changed")]
-    ck("byterl_checkpoints_changed_every_lp", bool(lps) and len(moved) == len(lps),
-       {"learning_periods": len(lps), "with_changed_weights": len(moved)}, B, blocker=True)
+    if in_progress and not lps:
+        require("byterl_checkpoints_changed_every_lp", False,
+                {"reason": "no learning period has closed yet"}, B)
+    else:
+        ck("byterl_checkpoints_changed_every_lp", bool(lps) and len(moved) == len(lps),
+           {"learning_periods": len(lps), "with_changed_weights": len(moved)}, B, blocker=True)
 
     # FLOORS
     floors = [

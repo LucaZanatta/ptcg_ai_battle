@@ -246,11 +246,53 @@ class TestOSFPPromotion(unittest.TestCase):
         self.assertFalse(d["add"])
         self.assertEqual(d["reason"], "NO_PROMOTION")
 
+    def test_xi_is_compared_against_a_win_rate_not_a_mean_payoff(self):
+        """The discriminating case, and the one the earlier tests were too extreme to catch.
+
+        `G/C` is a mean payoff in [-1, 1]; xi = 0.55 is a win rate. A 60% win rate is a mean
+        payoff of 0.2, so comparing 0.2 against 0.55 refuses a promotion the method requires.
+        Every earlier case here used |G/C| >= 0.8, where both conventions agree.
+        """
+        # 6 wins, 4 losses on each opponent -> win rate 0.60 > xi, mean payoff 0.20 < xi
+        d = self.O.promotion_decision(G=[2.0, 2.0], C=[10, 10], xi=0.55, min_games=5,
+                                      lps_without_add=0, max_lp=6)
+        self.assertEqual(d["reason"], "PERFORMANCE")
+        self.assertTrue(d["add"])
+        self.assertAlmostEqual(d["winrates"][0], 0.60, places=9)
+        self.assertAlmostEqual(d["mean_payoffs"][0], 0.20, places=9)
+
+    def test_win_rates_are_reported_on_the_unit_interval(self):
+        for G, C in ([[-10.0], [10]], [[0.0], [10]], [[10.0], [10]]):
+            d = self.O.promotion_decision(G=G, C=C, xi=0.55, min_games=5,
+                                          lps_without_add=0, max_lp=6)
+            self.assertGreaterEqual(d["winrates"][0], 0.0)
+            self.assertLessEqual(d["winrates"][0], 1.0)
+
+    def test_a_losing_record_never_promotes_even_at_the_boundary(self):
+        # win rate 0.55 exactly -- strictly-greater is required, so this must NOT promote
+        d = self.O.promotion_decision(G=[1.0], C=[10], xi=0.55, min_games=5,
+                                      lps_without_add=0, max_lp=6)
+        self.assertAlmostEqual(d["winrates"][0], 0.55, places=9)
+        self.assertEqual(d["reason"], "NO_PROMOTION")
+
     def test_forced_add_after_max_lp(self):
         d = self.O.promotion_decision(G=[0.0], C=[10], xi=0.55, min_games=5,
                                       lps_without_add=7, max_lp=6)
         self.assertTrue(d["add"])
         self.assertEqual(d["reason"], "FORCED_MAX_LP")
+
+    def test_forced_add_fires_exactly_at_max_lp(self):
+        """`c = 6` means at most 6 learning periods may pass without an addition.
+
+        Off by one here is not cosmetic: it decides whether a campaign configured for N
+        learning periods ever produces a second historical checkpoint at all.
+        """
+        at = self.O.promotion_decision(G=[0.0], C=[10], xi=0.55, min_games=5,
+                                       lps_without_add=6, max_lp=6)
+        self.assertEqual(at["reason"], "FORCED_MAX_LP")
+        before = self.O.promotion_decision(G=[0.0], C=[10], xi=0.55, min_games=5,
+                                           lps_without_add=5, max_lp=6)
+        self.assertEqual(before["reason"], "NO_PROMOTION")
 
     def test_forced_add_is_never_labelled_performance(self):
         d = self.O.promotion_decision(G=[-9.0], C=[10], xi=0.55, min_games=5,

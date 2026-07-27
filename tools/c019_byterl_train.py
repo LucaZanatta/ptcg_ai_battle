@@ -326,7 +326,25 @@ def main(argv=None):
                 results = pool.map(_actor, payload)
             trajs = [t for r in results for t in r]
 
-            for (job, opp_rec), tr in zip(jobs, trajs):
+            # Pair by game_id, NEVER by list position. `jobs` is in sampling order but `trajs`
+            # is concatenated in ACTOR order after round-robin chunking, so `zip(jobs, trajs)`
+            # attributes each result to a different game's opponent -- an identity bug that
+            # silently corrupts G/C. See failures/DEFECT_osfp_payoff_attribution_misaligned.md.
+            by_id = {t.game_id: t for t in trajs}
+            if len(by_id) != len(trajs):
+                raise RuntimeError(f"duplicate game_id in round: {len(trajs)} trajectories, "
+                                   f"{len(by_id)} unique ids")
+            missing = [j["game_id"] for j, _ in jobs if j["game_id"] not in by_id]
+            if missing:
+                raise RuntimeError(f"{len(missing)} jobs returned no trajectory, "
+                                   f"first={missing[0]}")
+
+            for job, opp_rec in jobs:
+                tr = by_id[job["game_id"]]
+                if tr.opponent_kind != opp_rec["kind"]:
+                    raise RuntimeError(f"opponent identity mismatch on {tr.game_id}: "
+                                       f"sampled {opp_rec['kind']} but actor played "
+                                       f"{tr.opponent_kind}")
                 if opp_rec.get("kind") == "HISTORICAL_PAYOFF_SAMPLE" and tr.completed:
                     osfp.record_result(opp_rec, tr.result_pm_one)
                 opp_log.write(json.dumps({**opp_rec, "game_id": tr.game_id,

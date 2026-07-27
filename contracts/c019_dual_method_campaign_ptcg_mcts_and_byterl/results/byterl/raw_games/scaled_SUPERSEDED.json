@@ -1,0 +1,7 @@
+{
+  "reason": "OSFP payoff attribution was misaligned by a position-based zip over an actor-ordered result list; 19,542 of 60,960 opponent records named the wrong opponent, diluting G toward zero. Two further promotion-rule defects (xi compared against a mean payoff, forced-add off-by-one) were found in the same read.",
+  "failure_record": "DEFECT_osfp_payoff_attribution_misaligned.md",
+  "killed_at": {"games": 60960, "optimizer_steps": 30416, "learning_period": 2},
+  "replaced_by": "scaled2",
+  "retained_because": "the artifacts are the evidence for the defect record; no campaign finding is derived from them"
+}

@@ -79,20 +79,28 @@ def promotion_decision(G: List[float], C: List[int], xi: float = XI_PROMOTION,
     if not C:
         return {"add": True, "reason": "FIRST_HISTORICAL",
                 "detail": "H is empty; the first checkpoint seeds the pool"}
-    winrates = [(G[i] / C[i]) if C[i] else None for i in range(len(C))]
+    # `G[i]/C[i]` is a MEAN PAYOFF in [-1, 1]; xi = 0.55 is a WIN RATE in [0, 1]. Comparing the
+    # two directly is a dimensional error that makes performance promotion practically
+    # unreachable (a 0.55 mean payoff is a 77.5% win rate). `sample_probabilities` already used
+    # the correct conversion, so the two halves of OSFP disagreed with each other.
+    mean_payoffs = [(G[i] / C[i]) if C[i] else None for i in range(len(C))]
+    winrates = [((m + 1.0) / 2.0) if m is not None else None for m in mean_payoffs]
     sufficiently_sampled = all(c >= min_games for c in C)
     beats_all = sufficiently_sampled and all(
         w is not None and w > xi for w in winrates)
+    common = {"winrates": winrates, "mean_payoffs": mean_payoffs, "xi": xi}
     if beats_all:
-        return {"add": True, "reason": "PERFORMANCE", "winrates": winrates,
-                "xi": xi, "sufficiently_sampled": True}
-    if lps_without_add > max_lp:
-        return {"add": True, "reason": "FORCED_MAX_LP", "winrates": winrates,
+        return {"add": True, "reason": "PERFORMANCE", "sufficiently_sampled": True, **common}
+    # "at most `max_lp` learning periods without an addition" -- the (max_lp + 1)-th must add,
+    # so the counter reaching max_lp forces it. `>` would have allowed one extra LP.
+    if lps_without_add >= max_lp:
+        return {"add": True, "reason": "FORCED_MAX_LP",
                 "lps_without_add": lps_without_add, "max_lp": max_lp,
-                "note": "implementation evidence only; carries NO strategic strength claim"}
-    return {"add": False, "reason": "NO_PROMOTION", "winrates": winrates, "xi": xi,
+                "note": "implementation evidence only; carries NO strategic strength claim",
+                **common}
+    return {"add": False, "reason": "NO_PROMOTION",
             "sufficiently_sampled": sufficiently_sampled,
-            "lps_without_add": lps_without_add}
+            "lps_without_add": lps_without_add, **common}
 
 
 @dataclass
