@@ -2,17 +2,14 @@
   "validator": "c019.method_fidelity.v1",
   "mode": "interim",
   "n_checks": 63,
-  "n_passed": 52,
+  "n_passed": 59,
   "n_critical_failures": 0,
   "n_submission_blockers": 0,
   "submission_blockers": [],
   "not_exercised": [
     "byterl_reported_games_match_raw_rows",
     "byterl_optimizer_steps_match_raw_updates",
-    "byterl_payoff_table_reproduces_from_raw_games",
-    "byterl_promotion_reports_both_units",
-    "byterl_historical_checkpoints_immutable",
-    "byterl_checkpoints_changed_every_lp"
+    "byterl_historical_checkpoints_immutable"
   ],
   "by_branch": {
     "mcts": {
@@ -25,7 +22,7 @@
     },
     "byterl": {
       "checks": 29,
-      "passed": 18,
+      "passed": 25,
       "critical_failures": 0,
       "submission_blockers": 0,
       "blocker_names": [],
@@ -356,7 +353,7 @@
       "critical": true,
       "submission_blocker": true,
       "detail": {
-        "raw_game_rows": 960,
+        "raw_game_rows": 42400,
         "note": "a training claim with no per-game rows on disk played no games"
       }
     },
@@ -368,7 +365,7 @@
       "submission_blocker": false,
       "detail": {
         "reason": "training run still in progress; no final summary to reconcile",
-        "recounted_games": 960
+        "recounted_games": 42400
       }
     },
     {
@@ -378,7 +375,7 @@
       "critical": true,
       "submission_blocker": false,
       "detail": {
-        "completed": 960
+        "completed": 42400
       }
     },
     {
@@ -389,7 +386,7 @@
       "submission_blocker": false,
       "detail": {
         "reason": "training run still in progress",
-        "recounted_steps": 601
+        "recounted_steps": 22211
       }
     },
     {
@@ -399,7 +396,7 @@
       "critical": true,
       "submission_blocker": true,
       "detail": {
-        "update_rows": 601
+        "update_rows": 22211
       }
     },
     {
@@ -454,8 +451,8 @@
       "critical": true,
       "submission_blocker": true,
       "detail": {
-        "updates_with_nonzero_upgo": 601,
-        "updates": 601,
+        "updates_with_nonzero_upgo": 22211,
+        "updates": 22211,
         "note": "METHOD_FIDELITY forbids setting UPGO to zero or aliasing it to V-trace"
       }
     },
@@ -486,9 +483,9 @@
       "critical": true,
       "submission_blocker": false,
       "detail": {
-        "current_self_play": 960,
-        "historical_samples": 0,
-        "observed_p": 1.0,
+        "current_self_play": 28697,
+        "historical_samples": 13703,
+        "observed_p": 0.6768,
         "registered_p": 0.6
       }
     },
@@ -499,8 +496,8 @@
       "critical": true,
       "submission_blocker": true,
       "detail": {
-        "sample_rows": 960,
-        "resolved_against_raw": 960,
+        "sample_rows": 42400,
+        "resolved_against_raw": 42400,
         "unresolvable_game_ids": 0,
         "misattributed": 0,
         "note": "each opponent-sample row must name the same opponent the raw game log records for that game_id"
@@ -513,23 +510,22 @@
       "critical": true,
       "submission_blocker": true,
       "detail": {
-        "checked": 960
+        "checked": 42400
       }
     },
     {
       "check": "byterl_payoff_table_reproduces_from_raw_games",
       "branch": "byterl",
-      "passed": false,
-      "critical": false,
-      "submission_blocker": false,
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
       "detail": {
-        "table_G": 0,
-        "table_C": 0,
-        "raw_G": 0,
-        "raw_C": 0,
+        "table_G": 1221.0,
+        "table_C": 12727,
+        "raw_G": 1271.0,
+        "raw_C": 13703,
         "in_progress": true,
-        "note": "a diluted G with a correct C is the signature of misattributed results",
-        "reason": "no learning period has closed yet, so no payoff table has been written"
+        "note": "a diluted G with a correct C is the signature of misattributed results"
       }
     },
     {
@@ -539,20 +535,20 @@
       "critical": true,
       "submission_blocker": true,
       "detail": {
-        "reported_winrates": 0,
-        "min": null,
-        "max": null,
+        "reported_winrates": 6,
+        "min": 0.5073,
+        "max": 0.5643,
         "note": "comparing a mean payoff against xi=0.55 sets the bar at a 77.5% win rate"
       }
     },
     {
       "check": "byterl_promotion_reports_both_units",
       "branch": "byterl",
-      "passed": false,
-      "critical": false,
+      "passed": true,
+      "critical": true,
       "submission_blocker": false,
       "detail": {
-        "reason": "no promotion decision has been taken yet"
+        "note": "win rate and mean payoff are both recorded so the units are visible"
       }
     },
     {
@@ -572,8 +568,8 @@
       "critical": true,
       "submission_blocker": false,
       "detail": {
-        "added": 0,
-        "distinct": 0
+        "added": 2,
+        "distinct": 2
       }
     },
     {
@@ -589,11 +585,12 @@
     {
       "check": "byterl_checkpoints_changed_every_lp",
       "branch": "byterl",
-      "passed": false,
-      "critical": false,
-      "submission_blocker": false,
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
       "detail": {
-        "reason": "no learning period has closed yet"
+        "learning_periods": 5,
+        "with_changed_weights": 5
       }
     },
     {
@@ -603,51 +600,51 @@
       "critical": false,
       "submission_blocker": false,
       "detail": {
-        "actual": 960,
+        "actual": 42400,
         "required": 60000
       }
     },
     {
       "check": "byterl_floor: optimizer steps >= 20000",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "critical": false,
       "submission_blocker": false,
       "detail": {
-        "actual": 601,
+        "actual": 22211,
         "required": 20000
       }
     },
     {
       "check": "byterl_floor: complete OSFP learning periods >= 5",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "critical": false,
       "submission_blocker": false,
       "detail": {
-        "actual": 0,
+        "actual": 5,
         "required": 5
       }
     },
     {
       "check": "byterl_floor: immutable historical additions >= 2",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "critical": false,
       "submission_blocker": false,
       "detail": {
-        "actual": 0,
+        "actual": 2,
         "required": 2
       }
     },
     {
       "check": "byterl_floor: games involving historical checkpoints >= 1000",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "critical": false,
       "submission_blocker": false,
       "detail": {
-        "actual": 0,
+        "actual": 13703,
         "required": 1000
       }
     },
@@ -745,10 +742,7 @@
         "not_exercised": [
           "byterl_reported_games_match_raw_rows",
           "byterl_optimizer_steps_match_raw_updates",
-          "byterl_payoff_table_reproduces_from_raw_games",
-          "byterl_promotion_reports_both_units",
-          "byterl_historical_checkpoints_immutable",
-          "byterl_checkpoints_changed_every_lp"
+          "byterl_historical_checkpoints_immutable"
         ]
       }
     }

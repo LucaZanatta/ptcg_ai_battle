@@ -2,10 +2,22 @@
   "probe_id": "B12",
   "name": "training_continuation",
   "branch": "byterl",
-  "status": "NOT_EXERCISED",
-  "source_commit": "2886e71cd4fcb67f2d7a047e6d4be53863f945d7",
+  "status": "PASS",
+  "source_commit": "2bb97e1443dd33223db862c7686520df2a0ef64b",
   "checks": {
-    "note": "resume functionality and exact stochastic continuation are reported separately; unequal hashes are never called exact"
+    "resume_functionality": "PASS",
+    "parameters_bitwise_equal": 34,
+    "parameters_total": 34,
+    "observations_checked": 24,
+    "max_abs_output_difference": 0.0,
+    "exact_stochastic_continuation": "NOT_SUPPORTED",
+    "missing_for_exactness": [
+      "learner_rng_state",
+      "actor_rng_states",
+      "optimizer_state",
+      "queue_contents"
+    ],
+    "checkpoint": "scaled2_v22211.pt"
   },
   "submission_blocker": false,
   "raw_evidence": []

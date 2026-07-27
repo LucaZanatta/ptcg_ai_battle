@@ -468,14 +468,45 @@ def main():
           f"**Status: {'PASS' if imm.get('all_immutable') else 'NOT_EXERCISED'}.**\n",
           branch="byterl")
 
-    write("B12", "training_continuation", "NOT_EXERCISED",
-          {"note": "resume functionality and exact stochastic continuation are reported "
-                   "separately; unequal hashes are never called exact"},
-          "# B12 — Training continuation\n\nNot exercised in this campaign. The matrix requires "
-          "reporting resume functionality and exact stochastic continuation SEPARATELY and "
-          "forbids calling unequal hashes exact — c018 conflated the two. Rather than run a "
-          "weak version and describe it ambiguously, this probe is recorded as not "
-          "exercised.\n\n**Status: NOT_EXERCISED.**\n", branch="byterl")
+    b12 = jload("probes/B12_training_continuation/raw/continuation_detail.json", {})
+    if b12:
+        rf = b12.get("resume_functionality") or {}
+        sc = b12.get("exact_stochastic_continuation") or {}
+        write("B12", "training_continuation", rf.get("status", "NOT_EXERCISED"),
+              {"resume_functionality": rf.get("status"),
+               "parameters_bitwise_equal": rf.get("parameters_bitwise_equal_after_load"),
+               "parameters_total": rf.get("parameters_total"),
+               "observations_checked": rf.get("observations_checked"),
+               "max_abs_output_difference": rf.get("max_abs_output_difference"),
+               "exact_stochastic_continuation": sc.get("status"),
+               "missing_for_exactness": sc.get("missing"),
+               "checkpoint": b12.get("checkpoint")},
+              f"# B12 — Training continuation\n\nThe matrix requires these two be reported "
+              f"SEPARATELY and forbids describing unequal hashes as exact continuation. They "
+              f"are answered here as two independent questions.\n\n"
+              f"**1. Resume functionality — does a checkpoint fully determine the policy?** "
+              f"`{rf.get('parameters_bitwise_equal_after_load')}` of "
+              f"`{rf.get('parameters_total')}` parameters load bitwise-equal into a freshly "
+              f"constructed model, and the two models produce identical output on "
+              f"`{rf.get('observations_checked')}` real observations (max absolute difference "
+              f"`{rf.get('max_abs_output_difference')}`). Equal weights alone would not settle "
+              f"this — behaviour depending on un-checkpointed state would still pass a weight "
+              f"comparison — so the forward pass is checked too. The freshly built model is "
+              f"confirmed to DIFFER before loading, otherwise the comparison would be "
+              f"vacuous.\n\n**Status: {rf.get('status')}.**\n\n"
+              f"**2. Exact stochastic continuation — would resuming reproduce the original "
+              f"training stream?** **No**, and this is answered from what the checkpoint "
+              f"contains rather than from a hash comparison. Missing: "
+              f"`{', '.join(sc.get('missing') or [])}`. A resumed run draws a different "
+              f"stochastic stream from its first step.\n\n"
+              f"**Status: {sc.get('status')}.**\n\nThe two are not merged, and resume is "
+              f"nowhere described as exactness.\n", branch="byterl")
+    else:
+        write("B12", "training_continuation", "NOT_EXERCISED",
+              {"note": "resume functionality and exact stochastic continuation are reported "
+                       "separately; unequal hashes are never called exact"},
+              "# B12 — Training continuation\n\nNot exercised.\n\n"
+              "**Status: NOT_EXERCISED.**\n", branch="byterl")
 
     bv = jload("packages/ptcg_byterl_v0/clean_validation.json", {})
     write("B13", "package_recurrent_parity",

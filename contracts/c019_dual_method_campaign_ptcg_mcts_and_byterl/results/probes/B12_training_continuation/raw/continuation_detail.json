@@ -1,0 +1,41 @@
+{
+  "probe": "B12_training_continuation",
+  "tag": "scaled2",
+  "checkpoint": "scaled2_v22211.pt",
+  "resume_functionality": {
+    "question": "does the checkpoint fully determine the policy?",
+    "parameters_total": 34,
+    "parameters_bitwise_equal_after_load": 34,
+    "fresh_model_differed_before_load": true,
+    "observations_checked": 24,
+    "max_abs_output_difference": 0.0,
+    "identical_forward_output": true,
+    "status": "PASS"
+  },
+  "exact_stochastic_continuation": {
+    "question": "would resuming reproduce the original training stream bit-for-bit?",
+    "answer": "NO",
+    "checkpoint_payload_keys": [
+      "cfg",
+      "state_dict",
+      "version"
+    ],
+    "required_for_exactness": {
+      "model_parameters": true,
+      "learner_rng_state": false,
+      "actor_rng_states": false,
+      "optimizer_state": false,
+      "queue_contents": false
+    },
+    "missing": [
+      "learner_rng_state",
+      "actor_rng_states",
+      "optimizer_state",
+      "queue_contents"
+    ],
+    "reason": "the payload carries cfg, state_dict, version and nothing else. Without the learner and per-actor RNG states, the optimizer moments and the queue contents, a resumed run draws a different stochastic stream from the first step. This is a deliberate scope decision, not a measurement: it is stated as unsupported rather than tested and described ambiguously.",
+    "status": "NOT_SUPPORTED"
+  },
+  "reported_separately": true,
+  "status": "PASS"
+}
