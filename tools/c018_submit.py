@@ -83,15 +83,33 @@ def preflight(name):
     evd = json.load(open(ev)) if os.path.exists(ev) else {}
     on_disk = sha_file(arch) if os.path.exists(arch) else None
     used = len(glob.glob(os.path.join(SUBD, "*_upload.json")))
+    games = val.get("games_played", 0)
+    seats = set()
+    for g in (val.get("games") or []):
+        seats.add(g.get("seat"))
     gates = {
         "archive_exists": bool(on_disk),
         "archive_hash_matches_manifest": on_disk == man.get("sha256"),
         "clean_extraction_ok": bool(val.get("clean_extraction_ok")),
         "clean_validation_all_games_completed":
-            val.get("games_played", 0) > 0
-            and val.get("games_completed") == val.get("games_played"),
+            games > 0 and val.get("games_completed") == games,
+        # §33: at least 100 BOTH-SEAT games across meaningful opponents, zero exceptions
+        "at_least_100_validation_games": games >= 100,
+        "both_seats_exercised": seats == {0, 1},
+        "zero_validation_exceptions": not (val.get("errors") or []),
+        # a policy-only package never searches; its liveness check is that the LEARNED
+        # policy, not the baseline fallback, produced the actions
+        "learned_component_actually_ran":
+            bool(val.get("learned_component_actually_ran")) if man.get("policy_only")
+            else bool(val.get("search_actually_ran_in_package")),
+        "no_hidden_information_in_package":
+            (val.get("packaged_hidden_information_violations") or 0) == 0,
         "no_evidence_submission_blockers": evd.get("n_submission_blockers") == 0,
         "inference_only": bool(man.get("inference_only")),
+        "packaged_search_module_current":
+            True if man.get("policy_only") else
+            man.get("search_module_sha256") == sha_file(
+                os.path.join(_REPO, "tools", "c018_search.py")),
         "upload_budget_remaining": used < MAX_C018_UPLOADS,
     }
     return {"name": name, "gates": gates, "all_gates_pass": all(gates.values()),
@@ -100,7 +118,11 @@ def preflight(name):
             "uploads_allowed": MAX_C018_UPLOADS,
             "clean_validation": {k: val.get(k) for k in
                                  ("games_played", "games_completed", "win_rate",
-                                  "max_game_seconds", "clean_extraction_ok")},
+                                  "max_game_seconds", "clean_extraction_ok",
+                                  "packaged_searched", "packaged_decisions",
+                                  "packaged_search_rate",
+                                  "search_actually_ran_in_package")},
+            "seats_exercised": sorted(seats),
             "evidence_blockers": evd.get("submission_blockers")}
 
 

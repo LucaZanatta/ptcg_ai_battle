@@ -21,6 +21,8 @@ import os
 import sys
 import time
 
+import subprocess
+
 import numpy as np
 
 _REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +43,38 @@ def wilson(k, n, z=1.96):
     c = p + z * z / (2 * n)
     m = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))
     return (round((c - m) / d, 4), round((c + m) / d, 4))
+
+
+def _sha(p):
+    if not os.path.exists(p):
+        return None
+    h = hashlib.sha256()
+    with open(p, "rb") as fh:
+        for c in iter(lambda: fh.read(1 << 20), b""):
+            h.update(c)
+    return h.hexdigest()
+
+
+def candidate_hashes(cid):
+    """Exact source / config / deck / checkpoint hashes for one candidate (§32)."""
+    import c018_search as S
+    base = os.path.join(_REPO, "contracts",
+                        "c016_public_agent_reproduction_gauntlet_and_champion_submission",
+                        "results", "artifacts", "candidates", "official_mega_lucario")
+    out = {"baseline_main_sha256": _sha(os.path.join(base, "main.py")),
+           "deck_sha256": _sha(os.path.join(base, "deck.csv"))}
+    if cid != "official_mega_lucario":
+        out["search_module_sha256"] = _sha(os.path.join(_REPO, "tools", "c018_search.py"))
+        out["search_config"] = dict(S.DEFAULT_CFG)
+        out["config_hash"] = hashlib.sha256(
+            json.dumps(S.DEFAULT_CFG, sort_keys=True).encode()).hexdigest()[:32]
+    if cid in ("m04_guided_search", "m04_guided_ordering_only", "m03_curriculum_policy"):
+        ck = os.path.join(C18, "checkpoints", "m03_curriculum.npz")
+        out["checkpoint"] = os.path.relpath(ck, _REPO)
+        out["checkpoint_sha256"] = _sha(ck)
+        out["guide_module_sha256"] = _sha(os.path.join(_REPO, "tools", "c018_guided.py"))
+        out["uses_learned_leaf_values"] = cid != "m04_guided_ordering_only"
+    return out
 
 
 def build_agent(cid, deck, seed):
@@ -149,6 +183,30 @@ def main(argv=None):
             for c in cands:
                 jobs.append({"candidate_id": c, "opponent_id": opp, "seat": g % 2,
                              "seed": seed, "pair_index": g})
+    # §32: freeze BEFORE the first game. Written to disk first so the schedule, seeds, seats,
+    # scoring rule and the exact source/checkpoint hashes cannot be adjusted once results exist.
+    freeze = {
+        "frozen_at_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=_REPO,
+                                           capture_output=True, text=True).stdout.strip(),
+        "candidates": cands,
+        "candidate_hashes": {c: candidate_hashes(c) for c in cands},
+        "opponents": OPPONENTS,
+        "games_per_pair": a.games_per_pair, "total_games": len(jobs),
+        "seed_base": a.seed,
+        "seed_list": sorted({j["seed"] for j in jobs}),
+        "seat_assignment": "alternating by pair index; identical across candidates",
+        "identical_schedule_across_candidates": True,
+        "scoring": "win 1.0, draw 0.5, loss 0.0; unscored when either seat is not DONE",
+        "tie_break": "overall_rate desc, then worst_matchup_rate desc (DECISION_RULES §3)",
+        "latency_protocol": ("per-decision search budget "
+                             f"{__import__('c018_search').DEFAULT_CFG['max_ms_per_decision']}"
+                             " ms with baseline fallback on overrun; full-match agent time "
+                             "recorded per game"),
+        "deck": "mega_lucario (shared by every candidate)",
+    }
+    os.makedirs(PANEL, exist_ok=True)
+    json.dump(freeze, open(os.path.join(PANEL, f"{a.out_prefix}panel_freeze.json"), "w"),
+              indent=2, default=str)
     print(f"[c018 panel] {len(jobs)} games: {len(cands)} candidates x {len(OPPONENTS)} "
           f"opponents x {a.games_per_pair}", flush=True)
 
@@ -216,6 +274,8 @@ def main(argv=None):
             "incomplete_games": sum(1 for r in rows if not r.get("completed")),
             "seed_base": a.seed, "identical_seeds_and_seats_across_candidates": True,
             "raw_file": os.path.relpath(raw, C18), "raw_sha256": h.hexdigest(),
+            "freeze_file": os.path.relpath(
+                os.path.join(PANEL, f"{a.out_prefix}panel_freeze.json"), C18),
             "wall_clock_s": round(time.time() - t0, 1),
             "ranking_rule": "overall_rate desc, then worst_matchup_rate desc (pre-registered)"}
     json.dump(meta, open(os.path.join(PANEL, f"{a.out_prefix}panel_meta.json"), "w"), indent=2, default=str)
