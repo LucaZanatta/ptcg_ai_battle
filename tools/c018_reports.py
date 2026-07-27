@@ -28,6 +28,25 @@ def git(*a):
                           text=True).stdout.strip()
 
 
+def primary_prefix(default="scaled"):
+    """The trajectory set with the most TRUSTED decisions.
+
+    Several prefixes coexist (smoke, vertical, budgetcheck, scaled, scaled2). Hardcoding one
+    means a rerun at larger scale silently keeps reporting the smaller set, so the primary set
+    is resolved from the evidence rather than named in code.
+    """
+    best, best_n = default, -1
+    for p in glob.glob(os.path.join(C18, "search", "*_search_summary.json")):
+        try:
+            d = json.load(open(p))
+        except Exception:  # noqa: BLE001
+            continue
+        n = d.get("trusted_decisions") or 0
+        if n > best_n:
+            best, best_n = os.path.basename(p)[:-len("_search_summary.json")], n
+    return best
+
+
 def probes():
     out = {}
     for p in sorted(glob.glob(os.path.join(C18, "probes", "*", "probe.json"))):
@@ -39,7 +58,7 @@ def probes():
 def build():
     ev = jload("artifacts/evidence_validation.json", {})
     bud = jload("BUDGET_EXECUTION.json", {})
-    ss = jload("search/scaled_search_summary.json", {})
+    ss = jload(f"search/{primary_prefix()}_search_summary.json", {})
     dr = jload("training/distillation_report.json", {})
     cr = jload("training/curriculum_report.json", {})
     panel = jload("final_panel/final_panel_results.json", [])

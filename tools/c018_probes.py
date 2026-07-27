@@ -105,7 +105,26 @@ def write(pid, name, status, checks, inputs, outputs, readme, taints=(), blocker
 
 # --------------------------------------------------------------------------- probes
 
-PFX = "scaled"
+def primary_prefix(default="scaled"):
+    """The trajectory set with the most TRUSTED decisions.
+
+    Several prefixes coexist (smoke, vertical, budgetcheck, scaled, scaled2). Hardcoding one
+    means a rerun at larger scale silently keeps reporting the smaller set, so the primary set
+    is resolved from the evidence rather than named in code.
+    """
+    best, best_n = default, -1
+    for p in glob.glob(os.path.join(C18, "search", "*_search_summary.json")):
+        try:
+            d = json.load(open(p))
+        except Exception:  # noqa: BLE001
+            continue
+        n = d.get("trusted_decisions") or 0
+        if n > best_n:
+            best, best_n = os.path.basename(p)[:-len("_search_summary.json")], n
+    return best
+
+
+PFX = primary_prefix()
 SUM = f"search/{PFX}_search_summary.json"
 TRJ = f"trajectories/{PFX}_trajectories.jsonl.gz"
 

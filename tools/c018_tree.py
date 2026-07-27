@@ -74,6 +74,25 @@ ROLE = {
 }
 
 
+def primary_prefix(default="scaled"):
+    """The trajectory set with the most TRUSTED decisions.
+
+    Several prefixes coexist (smoke, vertical, budgetcheck, scaled, scaled2). Hardcoding one
+    means a rerun at larger scale silently keeps reporting the smaller set, so the primary set
+    is resolved from the evidence rather than named in code.
+    """
+    best, best_n = default, -1
+    for p in glob.glob(os.path.join(C18, "search", "*_search_summary.json")):
+        try:
+            d = json.load(open(p))
+        except Exception:  # noqa: BLE001
+            continue
+        n = d.get("trusted_decisions") or 0
+        if n > best_n:
+            best, best_n = os.path.basename(p)[:-len("_search_summary.json")], n
+    return best
+
+
 def sha_file(p):
     h = hashlib.sha256()
     with open(p, "rb") as fh:
@@ -203,7 +222,8 @@ def milestone(mid, title, sources, configs, checkpoints, artifacts, command, ext
 def build_milestones():
     import c018_search as S  # noqa: E402
     out = {}
-    ss = jload("search/scaled_search_summary.json") or {}
+    PFX = primary_prefix()
+    ss = jload(f"search/{PFX}_search_summary.json") or {}
     dr = jload("training/distillation_report.json") or {}
     cr = jload("training/curriculum_report.json") or {}
     pk = sorted(glob.glob(os.path.join(C18, "packages", "*_manifest.json")))
@@ -221,11 +241,11 @@ def build_milestones():
     out["M01_real_search"] = milestone(
         "M01_real_search", "first trusted official-API multi-step planner",
         ["tools/c018_search.py", "tools/c018_trajectories.py"], S.DEFAULT_CFG, [],
-        [os.path.relpath(os.path.join(C18, "search", "scaled_search_summary.json"), _REPO),
+        [os.path.relpath(os.path.join(C18, "search", f"{PFX}_search_summary.json"), _REPO),
          os.path.relpath(os.path.join(C18, "trajectories",
-                                      "scaled_trajectories.jsonl.gz"), _REPO),
-         os.path.relpath(os.path.join(C18, "trajectories", "scaled_features.npz"), _REPO)],
-        "python tools/c018_trajectories.py --games 220 --prefix scaled",
+                                      f"{PFX}_trajectories.jsonl.gz"), _REPO),
+         os.path.relpath(os.path.join(C18, "trajectories", f"{PFX}_features.npz"), _REPO)],
+        f"python tools/c018_trajectories.py --games {ss.get('games')} --prefix {PFX}",
         {"real_search_counters": ss.get("real_search_counters"),
          "trusted_decisions": ss.get("trusted_decisions"),
          "trajectory_sha256": ss.get("trajectory_sha256")})
@@ -290,7 +310,8 @@ def build_milestones():
 # ------------------------------------------------------------------ top level
 
 def build_budget():
-    ss = jload("search/scaled_search_summary.json") or {}
+    PFX = primary_prefix()
+    ss = jload(f"search/{PFX}_search_summary.json") or {}
     c = ss.get("real_search_counters") or {}
     dr = jload("training/distillation_report.json") or {}
     cr = jload("training/curriculum_report.json") or {}
