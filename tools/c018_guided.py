@@ -39,13 +39,20 @@ class Guide:
     initialising CUDA per worker would cost more than the forwards save.
     """
 
-    def __init__(self, npz_path: str, leaf_scale: float = 1.0):
+    def __init__(self, npz_path: str, leaf_scale: float = 1.0,
+                 use_learned_leaf: bool = True):
         from cg.rl_policy import RLPolicy
         self.pol = RLPolicy.load(npz_path)
         self.path = npz_path
         self.leaf_scale = leaf_scale
+        # P10 measured the value head losing to a constant baseline (MSE 0.267 vs 0.216,
+        # correlation 0.146). Ordering and leaf valuation are therefore separable questions,
+        # and a single "guided" candidate would confound a possibly-useful policy ordering
+        # with a measurably weak value head.
+        self.use_learned_leaf = use_learned_leaf
+        self.provides_leaf_values = use_learned_leaf
         self.stats = {"order_calls": 0, "order_failed": 0, "leaf_calls": 0,
-                      "leaf_rows_ok": 0, "leaf_rows_failed": 0}
+                      "leaf_rows_ok": 0, "leaf_rows_failed": 0, "leaf_skipped": 0}
 
     # ---------------------------------------------------------------- featurization
     @staticmethod
@@ -95,6 +102,9 @@ class Guide:
 
     def leaf_values(self, leaves: List[Any], your_index: int) -> List[Optional[float]]:
         """Value-head estimate for each candidate leaf; None where featurization fails."""
+        if not self.use_learned_leaf:
+            self.stats["leaf_skipped"] += 1
+            return [None] * len(leaves)
         self.stats["leaf_calls"] += 1
         rows, slots = [], []
         for i, lf in enumerate(leaves):

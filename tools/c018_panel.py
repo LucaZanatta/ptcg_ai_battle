@@ -59,9 +59,10 @@ def build_agent(cid, deck, seed):
     base = T.make_fresh("mega_lucario", ce.SOURCES)
     stats = S.new_stats()
     guide = None
-    if cid in ("m04_guided_search", "m03_curriculum_policy"):
+    if cid in ("m04_guided_search", "m04_guided_ordering_only", "m03_curriculum_policy"):
         import c018_guided as G
-        guide = G.Guide(os.path.join(C18, "checkpoints", "m03_curriculum.npz"))
+        guide = G.Guide(os.path.join(C18, "checkpoints", "m03_curriculum.npz"),
+                        use_learned_leaf=(cid != "m04_guided_ordering_only"))
 
     if cid == "m03_curriculum_policy":
         # The learned policy playing directly, no search -- isolates what training alone bought.
@@ -128,7 +129,8 @@ def play_one(job):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--candidates", default="official_mega_lucario,m01_heuristic_search,"
-                                            "m04_guided_search,m03_curriculum_policy")
+                                            "m04_guided_search,m04_guided_ordering_only,"
+                                            "m03_curriculum_policy")
     ap.add_argument("--games-per-pair", type=int, default=40)
     ap.add_argument("--nproc", type=int, default=8)
     ap.add_argument("--seed", type=int, default=1805)

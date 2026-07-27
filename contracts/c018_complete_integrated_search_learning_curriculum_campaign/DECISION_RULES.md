@@ -105,3 +105,50 @@ provisional starting value shown before enough games have accumulated. Therefore
 
 A missed floor is reported as missed. It is never re-described as a target that was
 "substantially met".
+
+---
+
+# Amendment 1 — split guided search into ordering-only and ordering+value
+
+**Committed before the final panel was run.** No panel results existed at the time of this
+amendment; the trigger is an *offline* held-out metric, not a gameplay result.
+
+## Trigger
+
+P10's deep held-out metrics (`artifacts/heldout_metrics.json`) measured the value head against
+the honest constant baseline — predicting the training-set mean outcome:
+
+| | held-out MSE |
+|---|---|
+| learned value head | 0.267 |
+| constant baseline | 0.216 |
+
+with correlation 0.146 against the actual result. **The value head is worse than a constant.**
+
+## Why this changes the candidate set
+
+`m04_guided_search` uses the learned model twice: to order candidates at the root, and to
+evaluate leaves. Those are separate mechanisms, and P10 says one of them carries almost no
+signal. A single guided candidate would therefore confound a possibly-useful policy ordering
+with a measurably weak value head, and whatever the panel returned, the campaign could not say
+which component was responsible.
+
+## Change
+
+Add exactly one candidate, `m04_guided_ordering_only`: identical search, learned ordering at the
+root, **hand-written heuristic leaf values**. `m04_guided_search` is unchanged and keeps both
+mechanisms.
+
+The panel schedule is rebuilt with five candidates before any game runs, so every candidate
+still faces identical opponents, seeds and seats (§2 is unaffected). §3's ranking rule and §4's
+promotion gates are unchanged and apply to the new candidate exactly as written.
+
+## Why this is not post-hoc tuning
+
+The evidence used is an imitation metric computed on held-out *training* data, which §5 already
+declares is not a strength claim. It cannot tell us which candidate wins the panel. It tells us
+only that the two guidance mechanisms deserve separate measurement — a decomposition that should
+arguably have been in §1 from the start.
+
+Had this been triggered by panel results, it would be exactly the post-hoc selection §1 exists
+to prevent, and it would not have been made.

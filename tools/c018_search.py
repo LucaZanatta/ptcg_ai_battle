@@ -460,7 +460,9 @@ def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
                 "reason": f"session_failed:{type(e).__name__}"}
 
     leaf_source = "heuristic"
-    if guide is not None and scored:
+    if guide is not None and not getattr(guide, "provides_leaf_values", True):
+        leaf_source = "heuristic_by_design"   # ordering-only guidance; see P15
+    elif guide is not None and scored:
         # ONE batched forward over all candidate leaves, not one per node -- per-node inference
         # would put a model call inside the innermost loop and blow the latency budget.
         g0 = time.perf_counter()
