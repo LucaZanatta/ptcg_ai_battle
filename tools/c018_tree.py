@@ -34,7 +34,10 @@ C018_TOOLS = ["c018_search.py", "c018_trajectories.py", "c018_distill.py",
               "c018_curriculum.py", "c018_guided.py", "c018_panel.py", "c018_package.py",
               "c018_validate.py", "c018_probes.py", "c018_probes_train.py",
               "c018_diagnostics.py", "c018_vertical.py", "c018_export_check.py",
-              "c018_tree.py", "c018_submit.py"]
+              "c018_tree.py", "c018_submit.py", "c018_fixtures.py", "c018_metrics.py",
+              "c018_curriculum_audit.py", "c018_stages.py", "c018_baseline_anchor.py",
+              "c018_reports.py"]
+C018_TESTS = ["tests/test_c018.py"]
 SUPPORT = [("tools/c011_torch_model.py", "policy/value model (CUDA port)"),
            ("tools/c011_torch_ppo.py", "PPO trainer"),
            ("cg/rl_env.py", "PPO rollout (real simulator games)"),
@@ -60,6 +63,13 @@ ROLE = {
     "c018_export_check.py": "torch->numpy export round-trip gate",
     "c018_tree.py": "results tree assembler",
     "c018_submit.py": "Kaggle upload and acceptance polling",
+    "c018_fixtures.py": "tactical fixtures, per-decision branch proof, lifecycle, throughput "
+                        "(P01/P02/P05/P06)",
+    "c018_metrics.py": "held-out metric depth and trajectory integrity (P07/P08/P10)",
+    "c018_curriculum_audit.py": "§26/§27 curriculum compliance audit",
+    "c018_stages.py": "§29 stage registry with explicit non-production records",
+    "c018_baseline_anchor.py": "AC-01 baseline package and accepted-reference verification",
+    "c018_reports.py": "STATUS, README, SUMMARY and the §39 decision board",
 }
 
 
@@ -122,7 +132,13 @@ def build_bundles():
             if os.path.exists(p):
                 z.write(p, rel)
                 n_comp += 1
-        for f in ("CONTRACT.md", "PROBE_MATRIX.md", "RESULTS_SCHEMA.md"):
+        for rel in C018_TESTS:
+            p = os.path.join(_REPO, rel)
+            if os.path.exists(p):
+                z.write(p, rel)
+                n_comp += 1
+        for f in ("CONTRACT.md", "PROBE_MATRIX.md", "RESULTS_SCHEMA.md",
+                  "DECISION_RULES.md"):
             p = os.path.join(CDIR, f)
             if os.path.exists(p):
                 z.write(p, f)
@@ -147,6 +163,12 @@ def build_inspection():
         if os.path.exists(p):
             shutil.copyfile(p, os.path.join(INSP, os.path.basename(rel)))
             rows.append({**entry(p), "role": role})
+    # RESULTS_SCHEMA requires all c018-specific tests in inspection/
+    for rel in C018_TESTS:
+        p = os.path.join(_REPO, rel)
+        if os.path.exists(p):
+            shutil.copyfile(p, os.path.join(INSP, os.path.basename(rel)))
+            rows.append({**entry(p), "role": "c018 unit tests"})
     return rows
 
 
