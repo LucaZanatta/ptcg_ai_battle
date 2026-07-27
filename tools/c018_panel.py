@@ -211,6 +211,24 @@ def main(argv=None):
                              " ms with baseline fallback on overrun; full-match agent time "
                              "recorded per game"),
         "deck": "mega_lucario (shared by every candidate)",
+        # §32 names five opponent slots. Four exist as executable agents in this repo and all
+        # four are used. The fifth ("at least one additional current/meta benchmark when
+        # already available") has no candidate: the only other executable agents are c014's
+        # and c015's own custom builds, which c016 measured losing to the official agents
+        # 0.90/0.92 and which are this project's prior attempts rather than meta benchmarks.
+        # Recorded rather than left as a silently short list.
+        "opponent_coverage": {
+            "dragapult_control": "dragapult",
+            "frozen_official_mega_lucario_baseline": "mega_lucario",
+            "official_iono": "iono",
+            "official_mega_abomasnow": "mega_abomasnow",
+            "additional_current_meta_benchmark": None,
+            "additional_benchmark_reason": (
+                "no further current/meta agent is executable without broad new "
+                "infrastructure; the only other runnable agents are c014/c015 customs, "
+                "which are prior attempts of this project, not meta benchmarks, and which "
+                "c016 measured losing to the official agents 0.90/0.92"),
+        },
     }
     os.makedirs(PANEL, exist_ok=True)
     json.dump(freeze, open(os.path.join(PANEL, f"{a.out_prefix}panel_freeze.json"), "w"),
