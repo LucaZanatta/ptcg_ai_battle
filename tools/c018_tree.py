@@ -36,7 +36,7 @@ C018_TOOLS = ["c018_search.py", "c018_trajectories.py", "c018_distill.py",
               "c018_diagnostics.py", "c018_vertical.py", "c018_export_check.py",
               "c018_tree.py", "c018_submit.py", "c018_fixtures.py", "c018_metrics.py",
               "c018_curriculum_audit.py", "c018_stages.py", "c018_baseline_anchor.py",
-              "c018_reports.py", "c018_repair_pass.py"]
+              "c018_reports.py", "c018_repair_pass.py", "c018_layout.py"]
 C018_TESTS = ["tests/test_c018.py"]
 SUPPORT = [("tools/c011_torch_model.py", "policy/value model (CUDA port)"),
            ("tools/c011_torch_ppo.py", "PPO trainer"),
@@ -71,6 +71,7 @@ ROLE = {
     "c018_baseline_anchor.py": "AC-01 baseline package and accepted-reference verification",
     "c018_reports.py": "STATUS, README, SUMMARY and the §39 decision board",
     "c018_repair_pass.py": "§7 Pass B defect ranking and consolidated rerun record",
+    "c018_layout.py": "§35 results-tree layout conformance",
 }
 
 

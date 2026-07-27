@@ -664,6 +664,11 @@ Not exercised: {ne or 'none'}.
 
 def main():
     try:
+        import c018_layout as LY
+        LY.main()
+    except Exception as e:  # noqa: BLE001
+        print(f"  layout conformance failed: {type(e).__name__}: {e}")
+    try:
         import c018_repair_pass as RP
         RP.main()
     except Exception as e:  # noqa: BLE001

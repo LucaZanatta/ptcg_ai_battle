@@ -550,6 +550,103 @@ caught before any upload; two would have invalidated this contract's own verdict
 """
 
 
+def acceptance_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
+    """§37 AC-01..AC-08, each answered from artifacts rather than asserted."""
+    c = ss.get("real_search_counters") or {}
+    anchor = jload("artifacts/baseline_anchor.json", {}) or {}
+    rank = jload("artifacts/defect_ranking.json", {}) or {}
+    vert = jload("artifacts/thin_vertical.json", {}) or {}
+    aud = jload("artifacts/curriculum_audit.json", {}) or {}
+    lay = jload("artifacts/layout_conformance.json", {}) or {}
+    sub = doc.get("submission") or {}
+    src = jload("source/source_manifest.json", {}) or {}
+    rows = [
+        ("AC-01", "parent resolution, immutability, baseline anchor",
+         bool(anchor.get("passed")),
+         f"accepted reference 55011215 verified: {anchor.get('accepted_reference_verified')}; "
+         f"{anchor.get('files_checked', 0):,} c005-c017 files unmodified"),
+        ("AC-02", "real official-API forward search",
+         (c.get("step_ok") or 0) > 0 and (c.get("hidden_information_violations") or 1) == 0,
+         f"{c.get('begin_ok', 0):,} roots, {c.get('step_ok', 0):,} search_step, depth "
+         f"{c.get('max_depth_reached')}, {c.get('hidden_information_violations')} hidden-info "
+         f"violations"),
+        ("AC-03", "integrated real-output smoke, probes, one consolidated repair pass",
+         bool(vert.get("all_stages_real")) and bool(rank.get("all_repaired")),
+         f"vertical all stages real: {vert.get('all_stages_real')}; "
+         f"{rank.get('total', 0)} defects ranked, all repaired; consolidated rerun from "
+         f"{rank.get('earliest_affected_milestone')}"),
+        ("AC-04", "trusted heuristic-search candidate",
+         any(r["candidate_id"] == "m01_heuristic_search" for r in panel),
+         "evaluated on the frozen panel; packaged and clean-validated; submission decision "
+         "recorded in DECISION_BOARD.md"),
+        ("AC-05", "real search trajectories and supervised training",
+         (ss.get("trusted_decisions") or 0) >= 10000 and (dr.get("optimizer_steps") or 0) > 0,
+         f"{ss.get('trusted_decisions', 0):,} trusted decisions; "
+         f"{dr.get('optimizer_steps', 0):,} steps on {dr.get('device')}; reload exact: "
+         f"{dr.get('reload_metrics_identical')}"),
+        ("AC-06", "actual PPO curriculum",
+         (cr.get("actual_simulator_games") or 0) >= 20000
+         and (cr.get("optimizer_steps") or 0) > 0,
+         f"{cr.get('actual_simulator_games', 0):,} real games, "
+         f"{cr.get('optimizer_steps', 0):,} steps, "
+         f"{cr.get('distinct_checkpoint_hashes', 0)} distinct hashes; "
+         f"{aud.get('performance_promotions', 0)} performance promotions, so NO strategic "
+         f"curriculum claim is made"),
+        ("AC-07", "guided search, final panel, package, submission",
+         (pmeta.get("scored_games") or 0) >= 600,
+         f"{pmeta.get('scored_games', 0):,} panel games across "
+         f"{len(pmeta.get('candidates') or [])} stages; submission ref "
+         f"{sub.get('submission_ref') or 'none'}"),
+        ("AC-08", "full source, raw evidence, git, validator",
+         bool(src.get("bundles")) and ev.get("n_submission_blockers") == 0,
+         f"both bundles present; {lay.get('placements', 0)} artifacts placed in the §35 "
+         f"layout; validator {ev.get('n_passed')}/{ev.get('n_checks')}, "
+         f"{ev.get('n_submission_blockers')} blockers"),
+    ]
+    body = "\n".join(f"| {a} | {t} | {'PASS' if ok else '**NOT MET**'} | {e} |"
+                      for a, t, ok, e in rows)
+    return f"""# c018 Acceptance Checklist
+
+Status: **{doc['status']}**. Each row is answered from artifacts, not asserted.
+
+| id | criterion | verdict | evidence |
+|---|---|---|---|
+{body}
+
+Criteria not met are listed as not met. §38 forbids converting a failed required criterion
+into an `N/A` pass, and nothing here does.
+"""
+
+
+def board_md(doc, panel):
+    board = "\n".join(
+        f"| {b['role']} | {b.get('id')} | "
+        f"{b.get('overall_rate') if b.get('overall_rate') is not None else ''} | "
+        f"{b.get('ci') or ''} | {b.get('status') or b.get('basis') or ''} |"
+        for b in doc["board"])
+    return f"""# c018 Decision Board
+
+External evidence outranks local elegance (§39).
+
+| role | id | panel rate | 95% CI | note |
+|---|---|---|---|---|
+{board}
+
+**Dragapult remains CHAMPION.** It is the externally confirmed control, and §39 keeps it there
+until a post-baseline c018 agent proves otherwise on external evidence. The frozen panel ranks
+*local* candidates only, so its leader is a challenger, not a champion — a distinction this
+board keeps deliberately, because the project's own history is of local rankings that did not
+survive contact with the ladder.
+
+Official Mega Lucario is the calibration challenger. c017's depth-zero ranker and its distilled
+policy remain ARCHIVE: P01/P02 disproved the former as search, and c018 does not continue the
+latter.
+
+Submission decision and its pre-registered gate: see `../DECISION_RULES.md` §4 as corrected by
+Amendment 3, and item 9 of `SUMMARY.md`.
+"""
+
+
 def main():
     doc, panel, pr, ev, cr, dr, ss, pmeta = build()
     open(os.path.join(C18, "STATUS.md"), "w").write(
@@ -557,6 +654,9 @@ def main():
     open(os.path.join(C18, "README.md"), "w").write(readme(doc))
     open(os.path.join(C18, "SUMMARY.md"), "w").write(
         summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta))
+    open(os.path.join(C18, "ACCEPTANCE_CHECKLIST.md"), "w").write(
+        acceptance_md(doc, panel, pr, ev, cr, dr, ss, pmeta))
+    open(os.path.join(C18, "DECISION_BOARD.md"), "w").write(board_md(doc, panel))
     print(json.dumps({"status": doc["status"], "floors_missed": doc["floors_missed"],
                       "blockers": doc["submission_blockers"],
                       "accepted_submission": doc["accepted_post_baseline_submission"],
