@@ -271,6 +271,9 @@ def summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
     gl = jload("artifacts/guided_latency.json", {}) or {}
     gc = jload("artifacts/guidance_comparison.json", {}) or {}
     anchor = jload("artifacts/baseline_anchor.json", {}) or {}
+    aud = jload("artifacts/curriculum_audit.json", {}) or {}
+    hm = jload("artifacts/heldout_metrics.json", {}) or {}
+    ht = hm.get("held_out_test") or {}
     uploads = sorted(glob.glob(os.path.join(C18, "submissions", "*_upload.json")))
     ups = [json.load(open(u)) for u in uploads]
     base_row = next((r for r in panel if r["candidate_id"] == "official_mega_lucario"), None)
@@ -337,6 +340,12 @@ trusted rows only. Checkpoint hash `{(dr.get('checkpoint_sha256_before') or '')[
 `{(dr.get('checkpoint_sha256_after') or '')[:12]}`,
 {dr.get('distinct_epoch_hashes')} distinct per-epoch hashes. Exact reload verified.
 
+Held out: policy top-1 {ht.get('top1')}, top-3 {ht.get('top3')}, legal top-1 rate
+{ht.get('legal_top1_rate')}. **The value head does not beat a constant baseline** — MSE
+{ht.get('value_mse')} against {ht.get('constant_baseline_mse')} for predicting the training-set
+mean, correlation {ht.get('value_correlation')}. That is load-bearing, not cosmetic: M04's
+guided search substitutes exactly this head for the hand-written leaf heuristic.
+
 ## 6. Actual PPO games, optimizer steps, self-play stages, promotions
 
 **{cr.get('actual_simulator_games', 0):,} real simulator games**,
@@ -345,6 +354,14 @@ trusted rows only. Checkpoint hash `{(dr.get('checkpoint_sha256_before') or '')[
 {len(cr.get('history') or [])} blocks. Self-play share rose 0 → 0.7 as scheduled, with the
 realised mix recounted from raw opponent labels rather than reported from the plan. Every block
 wrote a uniquely-named lagged snapshot, so the self-play opponent genuinely advanced.
+
+**Promotions: {aud.get('performance_promotions', 0)}.** Every transition is
+`FALLBACK_SCHEDULE`-grade — the schedule advanced on block index, and no evaluation gated any
+increment. §26 caps a non-performance-gated schedule at 20–30% self-play and this run reached
+{aud.get('max_realised_self_play')}. **c018 therefore makes no strategic curriculum claim.** The
+curriculum is evidence that real PPO training ran at scale and nothing more; asserting that the
+self-play schedule *improved* the policy would need performance-gated promotions this run does
+not have. Full per-interval record: `artifacts/curriculum_audit.json`.
 
 ## 7. Did guided search use policy/value inside real trees?
 
