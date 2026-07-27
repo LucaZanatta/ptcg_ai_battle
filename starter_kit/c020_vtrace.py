@@ -143,8 +143,10 @@ def fixture_truncated_unroll() -> Dict[str, Any]:
 
 
 def fixture_clipping_bounds() -> Dict[str, Any]:
+    # exp(+5) = 148 binds the 1.007 ceiling; exp(-8) = 3.4e-4 binds the 1e-3 floor.
+    # exp(-5) = 6.7e-3 is still ABOVE the floor, so it would not exercise the lower clip.
     b = np.array([-5.0, 0.0])
-    t = np.array([0.0, -5.0])           # huge ratio, then tiny ratio
+    t = np.array([0.0, -8.0])
     r = np.array([0.0, 0.0])
     v = np.array([0.0, 0.0])
     d = np.array([1.0, 1.0])

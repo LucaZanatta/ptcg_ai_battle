@@ -1,0 +1,427 @@
+{
+  "contract": "c020",
+  "status": "PARTIAL",
+  "status_reason": "the code and evidence campaign is substantially executed, but a floor, semantic requirement, competitive gate or submission is missed (CONTRACT \u00a714)",
+  "execution_status": {
+    "mcts_floors_met": false,
+    "byterl_floors_met": false,
+    "hybrid_floors_met": false
+  },
+  "method_fidelity_status": {
+    "mcts": "PASS",
+    "byterl": "PASS",
+    "hybrid": "PASS"
+  },
+  "semantic_status": {
+    "mcts": "PASS",
+    "byterl": "PASS",
+    "hybrid": "PASS",
+    "common": "PASS"
+  },
+  "competitive_status": {
+    "C019_PIMC_PUCT_CONTROL": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C019_BYTERL_CONTROL": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C020_CORRECTED_MCTS": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C020_CORRECTED_BYTERL": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C020_H0": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C020_H1": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C020_H2": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C020_H3": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    },
+    "C020_H4": {
+      "field": null,
+      "delta_vs_baseline_points": null
+    }
+  },
+  "package_status": {
+    "c020_mcts_smoke": {
+      "clean_extraction_ok": true,
+      "method_actually_ran": true,
+      "sha256": "1859957ce456a113"
+    }
+  },
+  "submission_status": {
+    "submitted": [],
+    "references": {}
+  },
+  "git_commit": "1f16f58f47ef69cab3077b01b810022dc260a93d",
+  "branch": "contract/c020_forced_method_correction_and_hybrid_integration_campaign",
+  "parent_commit": "a1d322e291e51b86aa308410b96a7b19748060f0",
+  "controls_frozen_at": "a1d322e291e51b86aa308410b96a7b19748060f0",
+  "mcts": {
+    "floors": [
+      {
+        "floor": "live searched decisions",
+        "actual": 544,
+        "required": 5000,
+        "met": false
+      },
+      {
+        "floor": "real search_step expansions",
+        "actual": 232960,
+        "required": 500000,
+        "met": false
+      },
+      {
+        "floor": "decisions with 4 legal determinizations",
+        "actual": 544,
+        "required": 1000,
+        "met": false
+      },
+      {
+        "floor": "complete sampled tree traces",
+        "actual": 48,
+        "required": 100,
+        "met": false
+      },
+      {
+        "floor": "recorded override opportunities",
+        "actual": 544,
+        "required": 500,
+        "met": true
+      },
+      {
+        "floor": "common-panel baseline vs corrected-MCTS games",
+        "actual": 0,
+        "required": 800,
+        "met": false
+      },
+      {
+        "floor": "conservative-override ablation games",
+        "actual": 0,
+        "required": 200,
+        "met": false
+      }
+    ],
+    "missed": [
+      "live searched decisions",
+      "real search_step expansions",
+      "decisions with 4 legal determinizations",
+      "complete sampled tree traces",
+      "common-panel baseline vs corrected-MCTS games",
+      "conservative-override ablation games"
+    ],
+    "run": {
+      "tag": "mctssmoke",
+      "config": {
+        "c_puct": 1.5,
+        "determinizations": 4,
+        "simulations_total": 64,
+        "max_depth": 16,
+        "credible_alternatives": 3,
+        "max_ms_per_decision": 300,
+        "rollout_max_steps": 12,
+        "rollout_stochastic_p": 0.1,
+        "progressive_k": 1.0,
+        "progressive_alpha": 0.5,
+        "baseline_prior_bonus": 3.0,
+        "min_prior": 0.05,
+        "availability_aware": true
+      },
+      "games": 8,
+      "errors": 0,
+      "completed": 8,
+      "decisions": 594,
+      "searched_decisions": 544,
+      "simulations": 24267,
+      "step_calls": 232960,
+      "step_ok": 223629,
+      "step_errors": 9331,
+      "begin_calls": 2176,
+      "begin_errors": 0,
+      "release_calls": 225805,
+      "release_errors": 0,
+      "expansions": 22512,
+      "nonroot_expansions": 14240,
+      "rollout_steps": 201117,
+      "rollout_baseline_calls": 188035,
+      "rollout_stochastic_calls": 20932,
+      "backups": 24267,
+      "backup_nodes": 53826,
+      "leaf_evals": 24267,
+      "terminal_leaves": 0,
+      "determinizations_attempted": 2176,
+      "determinizations_legal": 2176,
+      "determinizations_rejected": 0,
+      "chance_outcomes": 0,
+      "depth_sum": 29559,
+      "max_depth_seen": 71,
+      "overrides": 5,
+      "override_opportunities": 544,
+      "vetoes": 539,
+      "infoset_shared_updates": 53826,
+      "timeouts": 0,
+      "match_search_ms": 151112,
+      "shared_action_stats_multi_det": 456,
+      "info_sets_multi_det": 222,
+      "sampled_full_traces": 48,
+      "decisions_with_4_determinizations": 544,
+      "per_opponent": {
+        "dragapult": {
+          "games": 2,
+          "rate": 0.0
+        },
+        "mega_lucario": {
+          "games": 2,
+          "rate": 0.5
+        },
+        "iono": {
+          "games": 2,
+          "rate": 0.5
+        },
+        "mega_abomasnow": {
+          "games": 2,
+          "rate": 0.5
+        }
+      },
+      "field_score": 0.375,
+      "latency": {
+        "max_match_search_ms": 25416.0,
+        "mean_match_search_ms": 18889.0,
+        "max_game_seconds": 26.26
+      },
+      "wall_clock_s": 48.9
+    }
+  },
+  "byterl": {
+    "floors": [
+      {
+        "floor": "actual simulator training games",
+        "actual": 4320,
+        "required": 100000,
+        "met": false
+      },
+      {
+        "floor": "optimizer steps",
+        "actual": 5144,
+        "required": 30000,
+        "met": false
+      },
+      {
+        "floor": "complete corrected OSFP learning periods",
+        "actual": 0,
+        "required": 6,
+        "met": false
+      },
+      {
+        "floor": "immutable historical additions",
+        "actual": 0,
+        "required": 2,
+        "met": false
+      },
+      {
+        "floor": "games involving historical checkpoints",
+        "actual": 0,
+        "required": 2000,
+        "met": false
+      },
+      {
+        "floor": "evaluation games across milestones/panels",
+        "actual": 0,
+        "required": 1000,
+        "met": false
+      }
+    ],
+    "missed": [
+      "actual simulator training games",
+      "optimizer steps",
+      "complete corrected OSFP learning periods",
+      "immutable historical additions",
+      "games involving historical checkpoints",
+      "evaluation games across milestones/panels"
+    ],
+    "tag": "c020",
+    "summary": {},
+    "midgame_state_rate": null,
+    "promotions": []
+  },
+  "hybrid": {
+    "floors": [
+      {
+        "floor": "H0-H4 all execute at smoke scale",
+        "actual": 5,
+        "required": 5,
+        "met": true
+      },
+      {
+        "floor": "final-panel games per promotable mode",
+        "actual": 0,
+        "required": 200,
+        "met": false
+      }
+    ],
+    "missed": [
+      "final-panel games per promotable mode"
+    ],
+    "modes": [
+      "H0",
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "results": {
+      "H0": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {},
+        "promotable": true
+      },
+      "H1": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 0.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 0.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 0.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 352,
+          "advance_calls": 244,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 250,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      },
+      "H2": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 384,
+          "advance_calls": 292,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 0,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      },
+      "H3": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 556,
+          "advance_calls": 354,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 391,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      },
+      "H4": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 532,
+          "advance_calls": 807,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 1484,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      }
+    },
+    "prior_admitted": false,
+    "value_admitted": false
+  },
+  "validator": {
+    "n_checks": 41,
+    "n_passed": 34,
+    "n_critical_failures": 0,
+    "n_submission_blockers": 0,
+    "n_checks_with_negative_control": 33,
+    "n_broken_checks": 0,
+    "overall": "PASS"
+  },
+  "panels": {
+    "panelsmoke": {
+      "games": 36,
+      "incomplete": 4
+    },
+    "ctrlcheck": {
+      "games": 12,
+      "incomplete": 0
+    }
+  }
+}

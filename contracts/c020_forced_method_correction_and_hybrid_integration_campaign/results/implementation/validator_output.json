@@ -2,16 +2,16 @@
   "contract": "c020",
   "final_mode": false,
   "n_checks": 41,
-  "n_passed": 27,
+  "n_passed": 34,
   "n_critical_failures": 0,
   "n_submission_blockers": 0,
-  "n_checks_with_negative_control": 27,
+  "n_checks_with_negative_control": 33,
   "n_broken_checks": 0,
   "overall": "PASS",
   "by_branch": {
     "mcts": {
       "checks": 13,
-      "passed": 10,
+      "passed": 13,
       "semantic_status": "PASS",
       "blockers": []
     },
@@ -23,7 +23,7 @@
     },
     "hybrid": {
       "checks": 6,
-      "passed": 2,
+      "passed": 6,
       "semantic_status": "PASS",
       "blockers": []
     },
@@ -40,7 +40,7 @@
       "branch": "common",
       "passed": true,
       "evidence": {
-        "changed_files": 15,
+        "changed_files": 143,
         "violations": [],
         "requirement": "CONTRACT \u00a71: do not modify c005-c019 artifacts",
         "note": "matched on owning path, not on the substring 'c019' -- c020 records the c019 controls under its OWN results tree and those files are not violations"
@@ -93,7 +93,7 @@
           "writes": 0,
           "sharing_is_real": true
         },
-        "runtime_shared_action_stats_multi_det": 0,
+        "runtime_shared_action_stats_multi_det": 456,
         "c019_defect": "one independent tree per determinization, aggregated at the root"
       },
       "submission_blocker": true,
@@ -244,32 +244,42 @@
     {
       "check": "A3_nonroot_expansion_observed",
       "branch": "mcts",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "no scaled MCTS run yet"
+        "nonroot_expansions": 14240,
+        "expansions": 22512,
+        "c019_defect": "root-only branching"
       },
-      "submission_blocker": false,
-      "critical": false
+      "submission_blocker": true,
+      "critical": false,
+      "control_rejects_defect": true,
+      "control_note": "the c019 defect was injected and this check rejected it"
     },
     {
       "check": "A5_rollout_is_baseline_guided",
       "branch": "mcts",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "no scaled MCTS run yet"
+        "baseline_calls": 188035,
+        "stochastic_calls": 20932,
+        "c019_defect": "option index 0 continuation"
       },
       "submission_blocker": false,
-      "critical": false
+      "critical": false,
+      "control_rejects_defect": true,
+      "control_note": "the c019 defect was injected and this check rejected it"
     },
     {
       "check": "A4_backup_is_root_perspective",
       "branch": "mcts",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "no scaled MCTS run yet"
+        "backup_nodes": 53826
       },
       "submission_blocker": false,
-      "critical": false
+      "critical": false,
+      "control_rejects_defect": true,
+      "control_note": "the c019 defect was injected and this check rejected it"
     },
     {
       "check": "A2_no_mutable_globals_in_branch",
@@ -277,12 +287,12 @@
       "passed": true,
       "evidence": {
         "while_installed": {
-          "plan": "<c019_official_baseline.AttackPlan object at 0x7100f06887d0>",
+          "plan": "<c019_official_baseline.AttackPlan object at 0x776fadc8c7d0>",
           "pre_turn": "0",
           "ability_used": "True"
         },
         "after": {
-          "plan": "<c019_official_baseline.AttackPlan object at 0x7100f06c86e0>",
+          "plan": "<c019_official_baseline.AttackPlan object at 0x776fadccc6e0>",
           "pre_turn": "0",
           "ability_used": "False"
         },
@@ -300,7 +310,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "max_logit_change_on_active_bench_swap": 0.000982,
+        "max_logit_change_on_active_bench_swap": 0.001521,
         "board_slots": 12,
         "slot_order": [
           "my_active",
@@ -333,7 +343,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "multiselect_records": 54,
+        "multiselect_records": 269,
         "example": {
           "game_id": "c020:lp0:v0:g30",
           "decision": 35,
@@ -410,8 +420,8 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "midgame_unrolls": 4837,
-        "with_nonzero_state": 4837,
+        "midgame_unrolls": 15474,
+        "with_nonzero_state": 15474,
         "rate": 1.0,
         "c019_defect": "learner reset recurrent state at mid-game unroll boundaries"
       },
@@ -449,11 +459,11 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "updates": 1056,
-        "updates_with_nonzero_upgo": 1056,
+        "updates": 5144,
+        "updates_with_nonzero_upgo": 5144,
         "rho_mean_range": [
-          0.9996,
-          1.0004
+          0.9889,
+          1.0156
         ]
       },
       "submission_blocker": true,
@@ -545,7 +555,7 @@
       "branch": "byterl",
       "passed": false,
       "evidence": {
-        "actual": 960,
+        "actual": 4320,
         "required": 100000
       },
       "submission_blocker": false,
@@ -556,7 +566,7 @@
       "branch": "byterl",
       "passed": false,
       "evidence": {
-        "actual": 1056,
+        "actual": 5144,
         "required": 30000
       },
       "submission_blocker": false,
@@ -645,39 +655,105 @@
     {
       "check": "C1_no_state_none_at_nonroot",
       "branch": "hybrid",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "hybrid modes have not run yet"
+        "state_none_at_nonroot": 0,
+        "advance_calls": 1697,
+        "prior_calls": 2125,
+        "value_calls": 0,
+        "modes": [
+          "H0",
+          "H1",
+          "H2",
+          "H3",
+          "H4"
+        ],
+        "c019_defect": "hybrid called recurrent ByteRL with state=None at search nodes"
       },
-      "submission_blocker": false,
-      "critical": false
+      "submission_blocker": true,
+      "critical": false,
+      "control_rejects_defect": true,
+      "control_note": "the c019 defect was injected and this check rejected it"
     },
     {
       "check": "C3_prior_admission_runs",
       "branch": "hybrid",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "not run yet"
+        "samples": 106,
+        "action_key_alignment_rate": 1.0,
+        "normalized_rate": 1.0,
+        "credible_floor_rate": 1.0,
+        "baseline_in_topk_rate": 0.5849,
+        "catastrophic_baseline_suppression": 0,
+        "mean_entropy": 1.8557,
+        "floor": 0.01,
+        "admitted": false,
+        "rule": "C3: exact key alignment, normalization, credible floor, top-k baseline coverage, no catastrophic suppression",
+        "checkpoint": "brlsmoke_final_v000088.pt"
       },
       "submission_blocker": false,
-      "critical": false
+      "critical": false,
+      "control_rejects_defect": true,
+      "control_note": "the c019 defect was injected and this check rejected it"
     },
     {
       "check": "C4_value_admission_has_four_controls",
       "branch": "hybrid",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "not run yet"
+        "controls": [
+          "constant_mean",
+          "c019_value_control",
+          "random_ranking",
+          "tactical_heuristic"
+        ],
+        "admitted": false,
+        "metrics": {
+          "c020_byterl_value": {
+            "mse": 0.94536,
+            "corr": -0.0096,
+            "brier": 0.23634
+          },
+          "tactical_heuristic": {
+            "mse": 0.86375,
+            "corr": 0.09953,
+            "brier": 0.21594
+          },
+          "c019_value_control": {
+            "mse": 0.86961,
+            "corr": 0.29497,
+            "brier": 0.2174
+          },
+          "constant_mean": {
+            "mse": 0.84688,
+            "corr": 0.0,
+            "brier": 0.21172
+          },
+          "random_ranking": {
+            "mse": 1.30882,
+            "corr": 0.00246,
+            "brier": 0.32721
+          }
+        }
       },
       "submission_blocker": false,
-      "critical": false
+      "critical": false,
+      "control_rejects_defect": true,
+      "control_note": "the c019 defect was injected and this check rejected it"
     },
     {
       "check": "hybrid_floor: H0-H4 all execute",
       "branch": "hybrid",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "not run yet"
+        "executed": [
+          "H0",
+          "H1",
+          "H2",
+          "H3",
+          "H4"
+        ]
       },
       "submission_blocker": false,
       "critical": false

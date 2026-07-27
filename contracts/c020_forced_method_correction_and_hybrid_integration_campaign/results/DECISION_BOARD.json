@@ -1,0 +1,69 @@
+{
+  "board": [
+    {
+      "role": "CHAMPION",
+      "id": "dragapult",
+      "basis": "externally confirmed control; no c020 candidate has beaten it on external evidence",
+      "external": true
+    },
+    {
+      "role": "CHALLENGER",
+      "id": "BASELINE_OFFICIAL_MEGA_LUCARIO",
+      "basis": "accepted submission 55011215; strongest measured candidate on the c020 frozen panel unless a c020 candidate clears its gate",
+      "panel_field": null
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "C020_CORRECTED_MCTS",
+      "basis": "not yet evaluated on the frozen panel",
+      "panel_field": null
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "C020_CORRECTED_BYTERL",
+      "basis": "not yet evaluated on the frozen panel",
+      "panel_field": null
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "C020_H0",
+      "basis": "not yet evaluated on the frozen panel",
+      "panel_field": null
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "C020_H1",
+      "basis": "not yet evaluated on the frozen panel",
+      "panel_field": null
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "C020_H2",
+      "basis": "not yet evaluated on the frozen panel",
+      "panel_field": null
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "C020_H3",
+      "basis": "not yet evaluated on the frozen panel",
+      "panel_field": null
+    },
+    {
+      "role": "DIAGNOSTIC",
+      "id": "C020_H4",
+      "basis": "not yet evaluated on the frozen panel",
+      "panel_field": null
+    },
+    {
+      "role": "ARCHIVE",
+      "id": "C019_PIMC_PUCT_CONTROL",
+      "basis": "separate-tree PIMC with a four-feature objective; retained as the named control c020 is measured against"
+    },
+    {
+      "role": "ARCHIVE",
+      "id": "C019_BYTERL_CONTROL",
+      "basis": "pooled board, fragment multi-select, reset mid-game recurrent state, cross-period OSFP accounting; retained as control only"
+    }
+  ],
+  "rule": "roles follow external evidence first, then frozen-panel evidence; package existence or sophistication confers nothing (DECISION_RULES)"
+}

@@ -117,7 +117,15 @@ def v_mcts():
         st = real.get(key)
         st.ensure("a").det_ids.add(d)
         real.note_visit(key, d)
-    runtime = jload("mcts/evaluations/mcts_run_summary.json", {}) or {}
+    # largest run, not a fixed filename (see tools/c020_reports.py for the rationale)
+    _runs = []
+    for _p in glob.glob(os.path.join(C20, "mcts", "evaluations", "*_summary.json")):
+        try:
+            _runs.append(json.load(open(_p)))
+        except (OSError, ValueError):
+            pass
+    runtime = max([d for d in _runs if isinstance(d, dict)],
+                  key=lambda d: d.get("searched_decisions", 0), default={}) or {}
     shared_obs = int(runtime.get("shared_action_stats_multi_det", 0) or 0)
     ck("A1_shared_infoset_stats_across_determinizations",
        real.stats()["sharing_is_real"] and (shared_obs > 0 or not runtime),
