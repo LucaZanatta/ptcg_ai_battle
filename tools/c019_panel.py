@@ -190,7 +190,19 @@ def main(argv=None):
         "games_per_pair": a.games_per_pair, "total_games": len(jobs),
         "seed_base": a.seed, "seed_list": sorted({j["seed"] for j in jobs}),
         "seat_assignment": "alternating by pair index; identical across candidates",
-        "identical_schedule_across_candidates": True,
+        # What IS controlled: every candidate faces the same opponents, the same seats and the
+        # same agent-side RNG seeds. What is NOT: the `cabt` environment exposes no seed
+        # (configuration is actTimeout/episodeSteps/runTimeout only), so deck shuffles and coin
+        # flips differ game to game and cannot be paired across candidates. Claiming identical
+        # game conditions would overstate the design; the Wilson intervals carry that variance.
+        "identical_opponent_and_seat_schedule_across_candidates": True,
+        "identical_agent_side_seeds_across_candidates": True,
+        "identical_environment_randomness_across_candidates": False,
+        "environment_seed_available": False,
+        "uncontrolled_variance_note": (
+            "kaggle_environments make('cabt') accepts no seed, so shuffle/flip randomness is "
+            "not paired between candidates. Differences smaller than the reported Wilson "
+            "intervals should not be read as method differences."),
         "scoring": "win 1.0, draw 0.5, loss 0.0; unscored unless both seats are DONE",
         "ranking": ("external score evidence, then common-panel field score, then score vs "
                     "frozen baseline/Dragapult, then worst meaningful matchup, then package "
