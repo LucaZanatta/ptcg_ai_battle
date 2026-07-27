@@ -197,3 +197,61 @@ evidence is recorded as what it is, not presented as sitting inside the band.
 
 §2's protocol, §3's ranking rule and §4's promotion gates are unchanged and apply to the new
 candidate exactly as written.
+
+---
+
+# Amendment 3 — correct §4's upload-1 gate to match CONTRACT §16 and §34
+
+**Committed before the final panel was run.** No panel results existed. This corrects a
+misreading of the contract in my own §4, not a rule I found inconvenient after seeing numbers.
+
+## The error
+
+§4 stated: *"Performance is not a gate for upload 1."* That was wrong. It generalised from §8.2
+(which lists safety and integrity blockers, and does say weak performance does not stop the
+*pipeline*) to the *submission* decision, which §16 and §34 govern separately:
+
+- **§16** gives a promotion/submission signal for heuristic search: **+3pp** on the broad field
+  with no serious matchup collapse; or **+5pp** on one pre-registered important matchup with
+  field non-inferiority; or a major reduction in registered tactical errors with no broad-field
+  regression and credible external information value.
+- **§34** requires that *"local evidence provides a meaningful improvement or credible
+  high-information challenger signal"*, and states plainly: *"Do not upload a candidate known
+  to be catastrophically weaker or tainted by a submission blocker."*
+
+So there is a performance condition. It is simply disjunctive — improvement **or** high
+information — and I collapsed it to "none".
+
+## Corrected gate for upload 1 (`SEARCH_HEURISTIC_REAL`)
+
+All safety and package gates from the original §4 still apply and are unchanged. In addition,
+exactly one of the following must hold on the frozen panel:
+
+- **(a) Improvement.** `overall_rate` ≥ `official_mega_lucario` + 0.03, and no matchup below
+  0.15. (§16 clause 1.)
+- **(b) Important-matchup improvement.** ≥ +0.05 against `dragapult` — pre-registered here as
+  the important matchup, because §39 names Dragapult the externally confirmed champion — with
+  `overall_rate` no worse than baseline − 0.02. (§16 clause 2.)
+- **(c) High-information near-parity.** `overall_rate` ≥ `official_mega_lucario` − 0.05 **and**
+  no matchup below 0.10. (§34's "credible high-information challenger signal".)
+
+Rationale for (c): this is the first agent in this project built on real official-API forward
+search, and the project has already established that the public score is a live ladder rating
+rather than a fixed evaluation. Whether an offline panel result transfers to that ladder is
+genuinely unknown and worth one upload — but only at near-parity. A candidate more than 5
+points below the baseline is "known to be catastrophically weaker" in §34's sense, and the
+information value of confirming it loses is not worth a ladder slot.
+
+## If no candidate clears any of (a), (b), (c)
+
+**No upload is made, and c018 cannot reach `PASS`** — §6.1 requires at least one accepted
+post-baseline submission. The honest status is then `PARTIAL`, which §38 explicitly provides
+for: *"training is real but does not improve gameplay."*
+
+That outcome is recorded as the finding, not as a failure to act. Uploading a candidate the
+panel says is clearly worse, purely to satisfy a floor and reach `PASS`, would be buying a
+status word with evidence pointing the other way — the precise behaviour §40 prohibits when it
+says not to submit a known catastrophically weak candidate.
+
+Upload 2's gate (§4, unchanged) still requires outranking upload 1 *and* matching the official
+baseline, so it remains strictly harder than upload 1.
