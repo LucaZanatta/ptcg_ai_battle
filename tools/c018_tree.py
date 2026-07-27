@@ -287,10 +287,21 @@ def build_budget():
     rows = [{"floor": n, "actual": a, "required": r, "met": a >= r} for n, a, r in floors]
     doc = {"floors": rows, "all_floors_met": all(r["met"] for r in rows),
            "missed": [r["floor"] for r in rows if not r["met"]],
-           "targets": {
-               "trusted_decisions_target_30k_60k": ss.get("trusted_decisions"),
-               "curriculum_games_target_40k_100k": cr.get("actual_simulator_games"),
-               "panel_games_target_1200_2000": pm.get("scored_games")},
+           "targets": [
+               {"target": "trusted search-labelled decisions 30,000-60,000",
+                "actual": ss.get("trusted_decisions"),
+                "in_band": 30000 <= (ss.get("trusted_decisions") or 0) <= 60000,
+                "note": ("floor of 10,000 met; the band was not reached because scaling to "
+                         "30,000 would have cost more than the remaining floors were worth "
+                         "and forced M02 and M03 to be re-run on top")},
+               {"target": "actual curriculum games 40,000-100,000",
+                "actual": cr.get("actual_simulator_games"),
+                "in_band": 40000 <= (cr.get("actual_simulator_games") or 0) <= 100000},
+               {"target": "final-panel games 1,200-2,000",
+                "actual": pm.get("scored_games"),
+                "in_band": 1200 <= (pm.get("scored_games") or 0) <= 2000,
+                "note": ("six §29 stages x 4 opponents x 100 games per pair exceeds the band; "
+                         "recorded as exceeded rather than presented as inside it")}],
            "uploads_used": len(glob.glob(os.path.join(C18, "submissions", "*_upload.json"))),
            "uploads_allowed": 2}
     json.dump(doc, open(os.path.join(C18, "BUDGET_EXECUTION.json"), "w"), indent=2, default=str)

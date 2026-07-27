@@ -152,3 +152,48 @@ arguably have been in §1 from the start.
 
 Had this been triggered by panel results, it would be exactly the post-hoc selection §1 exists
 to prevent, and it would not have been made.
+
+---
+
+# Amendment 2 — add the distilled policy as its own stage
+
+**Committed before the final panel was run.** Trigger is a contract requirement, not a result.
+
+## Trigger
+
+CONTRACT §29 names six stages that must be preserved, and §31's P17 lists the panel candidates
+explicitly, including *distilled policy* as separate from *best curriculum policy*. The
+candidate set in §1 (as amended) covered five of the six: `POLICY_DISTILLED_REAL_SEARCH` had no
+candidate, because the guided candidates all load the M03 curriculum checkpoint.
+
+## Change
+
+Add exactly one candidate, `m02_distilled_policy`: the M02 search-distilled checkpoint exported
+to the runtime NPZ format and played directly through the same `RLAgent` the curriculum used.
+
+The candidate set is now the six §29 stages in order:
+
+| stage | candidate |
+|---|---|
+| `BASELINE_OFFICIAL_LUCARIO` | `official_mega_lucario` |
+| `SEARCH_HEURISTIC_REAL` | `m01_heuristic_search` |
+| `POLICY_DISTILLED_REAL_SEARCH` | `m02_distilled_policy` |
+| `POLICY_CURRICULUM_BEST` | `m03_curriculum_policy` |
+| `SEARCH_POLICY_ORDERED_REAL` | `m04_guided_ordering_only` |
+| `SEARCH_POLICY_VALUE_GUIDED_REAL` | `m04_guided_search` |
+
+## Why it matters as a separate stage
+
+Without it, distillation and the PPO curriculum on top of it are measured only as a single
+combined artifact. Verified distinct before the panel: the two checkpoints differ on all 32
+tensors, maximum absolute weight delta 0.0515, and their file hashes differ — so these are two
+agents, not one candidate entered twice.
+
+## Panel size
+
+Six candidates × 4 opponents × 100 games per pair = **2,400 scored games**, which is above the
+§32 target band of 1,200–2,000 and well above the 600 floor. Exceeding a target band with more
+evidence is recorded as what it is, not presented as sitting inside the band.
+
+§2's protocol, §3's ranking rule and §4's promotion gates are unchanged and apply to the new
+candidate exactly as written.
