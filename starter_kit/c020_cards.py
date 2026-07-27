@@ -71,16 +71,31 @@ def card_of(pokemon) -> Optional[Any]:
     return card(getattr(pokemon, "id", None))
 
 
+_ATTACKS_BY_CARD: Dict[int, List[Any]] = {}
+
+
 def attacks_of(pokemon) -> List[Any]:
-    """Attack metadata for whatever this Pokemon can actually use."""
-    cd = card_of(pokemon)
-    if cd is None:
+    """Attack metadata for whatever this Pokemon can actually use.
+
+    Cached by card id: the encoder calls this once per board token per decision, and the table is
+    immutable once loaded, so recomputing it is pure waste in the actor hot path.
+    """
+    cid = getattr(pokemon, "id", None)
+    try:
+        cid = int(cid)
+    except (TypeError, ValueError):
         return []
+    hit = _ATTACKS_BY_CARD.get(cid)
+    if hit is not None:
+        return hit
+    cd = card(cid)
     out = []
-    for aid in (getattr(cd, "attacks", None) or []):
-        a = attack(aid)
-        if a is not None:
-            out.append(a)
+    if cd is not None:
+        for aid in (getattr(cd, "attacks", None) or []):
+            a = attack(aid)
+            if a is not None:
+                out.append(a)
+    _ATTACKS_BY_CARD[cid] = out
     return out
 
 
@@ -126,14 +141,34 @@ def can_pay(attached: Dict[int, int], cost: Dict[int, int]) -> bool:
     return sum(pool.values()) >= generic
 
 
+_LEGAL_CACHE: Dict[Any, List[Tuple[Any, Dict[int, int]]]] = {}
+
+
+def _energy_key(pokemon) -> Any:
+    try:
+        return (int(getattr(pokemon, "id", -1)),
+                tuple(sorted(attached_energy(pokemon).items())))
+    except (TypeError, ValueError):
+        return None
+
+
 def legal_attacks(pokemon) -> List[Tuple[Any, Dict[int, int]]]:
-    """Attacks this Pokemon can pay for RIGHT NOW, with their costs."""
+    """Attacks this Pokemon can pay for RIGHT NOW, with their costs.
+
+    Keyed by (card id, attached energy multiset) -- the only inputs that matter -- so repeated
+    board encodings of an unchanged Pokemon cost a dict lookup.
+    """
+    k = _energy_key(pokemon)
+    if k is not None and k in _LEGAL_CACHE:
+        return _LEGAL_CACHE[k]
     att = attached_energy(pokemon)
     out = []
     for a in attacks_of(pokemon):
         c = cost_of(a)
         if can_pay(att, c):
             out.append((a, c))
+    if k is not None:
+        _LEGAL_CACHE[k] = out
     return out
 
 
