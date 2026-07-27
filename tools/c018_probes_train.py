@@ -79,6 +79,7 @@ def p10():
         return write("P10", "reload_and_heldout_metrics", "NOT_EXERCISED", {}, [], [],
                      "# P10 — not exercised\n")
     t = (hm or {}).get("held_out_test") or d.get("held_out_test") or {}
+    ctrl = (jload("artifacts/heldout_metrics_11k.json", {}) or {}).get("held_out_test") or {}
     ck = {"reload_hash_matches": d.get("reload_hash_matches"),
           "reload_metrics_identical": d.get("reload_metrics_identical"),
           "held_out_n": t.get("n"), "top1": t.get("top1") or t.get("top1_agreement"),
@@ -91,6 +92,10 @@ def p10():
           "calibration_deciles": t.get("calibration_deciles"),
           "by_decision_category": t.get("by_decision_category"),
           "no_train_test_leakage": (hm or {}).get("no_train_test_leakage"),
+          "sample_size_control_11k": {k: ctrl.get(k) for k in
+                                      ("n", "top1", "top3", "value_mse",
+                                       "constant_baseline_mse", "value_correlation",
+                                       "beats_constant_baseline")} if ctrl else None,
           "metric_is_first_pick_only": True,
           "multiselect_rows": d.get("multiselect_rows")}
     # the value head failing to beat a constant is a WARN, not a PASS dressed up
@@ -144,6 +149,21 @@ load-bearing: M04's guided search replaces the hand-written leaf heuristic with 
 value head, so a value head that carries almost no signal is a direct, predicted reason for
 guided search to rank at or below unguided search on the panel. It is a negative result about
 this campaign's own most sophisticated component, not a caveat.
+
+### Was it a sample-size problem?
+
+The distillation was first run on 11,151 trusted rows and then re-run on roughly four times as
+many, giving a direct control rather than a guess:
+
+| trusted rows | policy top-1 | value MSE | constant baseline | correlation | beats constant |
+|---|---|---|---|---|---|
+| {ctrl.get('n', '—')} held-out (11,151-row training set) | {ctrl.get('top1')} | {ctrl.get('value_mse')} | {ctrl.get('constant_baseline_mse')} | {ctrl.get('value_correlation')} | {ctrl.get('beats_constant_baseline')} |
+| {ck['held_out_n']} held-out (scaled training set) | {ck['top1']} | {ck['value_mse']} | {ck['constant_baseline_mse']} | {ck['value_correlation']} | {ck['beats_constant_baseline']} |
+
+If the value head still loses to a constant at four times the data, the weakness is not sample
+size — it is that a single terminal win/loss label per game carries very little signal about any
+individual mid-game position, which is the honest conclusion and points at reward shaping or
+temporal-difference targets rather than more data.
 
 ### Calibration by predicted decile
 
