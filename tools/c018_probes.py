@@ -301,8 +301,13 @@ def p07(s, rows):
           "every_trusted_row_has_successors": all(
               (r.get("distinct_successors") or 0) > 0 for r in rows if r["trusted"]),
           "label_index_within_kmax": bool((npz["label_index"] < npz["opt_dense"].shape[1]).all()),
-          "n_options_clipped_to_kmax": int((npz["n_options"]
-                                            == npz["opt_dense"].shape[1]).sum()),
+          "k_max": int(npz["opt_dense"].shape[1]),
+          "rows_with_true_option_count_above_kmax": sum(
+              1 for r in rows if r["n_options"] > npz["opt_dense"].shape[1]),
+          "rows_mislabeled_by_kmax_clipping": sum(
+              1 for r in rows if r["label_action"]
+              and max(r["label_action"]) >= npz["opt_dense"].shape[1]),
+          "multiselect_rows": sum(1 for r in rows if len(r["label_action"]) > 1),
           "uses_c017_labels": s["uses_c017_labels"],
           "trajectory_sha256": s["trajectory_sha256"]}
     ok = all(ck[k] for k in ("rows_align_one_to_one", "trusted_index_agrees",
@@ -321,10 +326,16 @@ range. Every legal mask is exactly as long as its option list.
 `uses_c017_labels: {s['uses_c017_labels']}` — c017's depth-0 labels are not importable from the
 generator and no row here derives from them.
 
-**Known limit.** {ck['n_options_clipped_to_kmax']:,} rows had ≥ K_MAX=32 options and are
-clipped to 32 in the feature tensor; the JSONL keeps the true count. Labels beyond K_MAX map to
-index 0, so those rows carry a wrong target — they are a small, disclosed contamination of the
-feature set rather than a silent one.
+**Known limit, quantified.** The feature tensor holds K_MAX={ck['k_max']} option slots.
+{ck['rows_with_true_option_count_above_kmax']} rows had more options than that, and exactly
+{ck['rows_mislabeled_by_kmax_clipping']} rows chose an option at index ≥ K_MAX — those were
+stored with label 0, a *wrong* target rather than a truncated one. They are excluded from the
+distillation index (M02), not merely disclosed. The JSONL retains the true option count either
+way.
+
+{ck['multiselect_rows']:,} rows are multi-select. The feature label stores `label_action[0]`
+only, so any agreement metric computed against it is FIRST-PICK agreement, not whole-selection
+agreement.
 
 **Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
 """

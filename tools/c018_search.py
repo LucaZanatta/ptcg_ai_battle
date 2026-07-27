@@ -296,8 +296,13 @@ def new_stats() -> Dict[str, Any]:
 
 
 def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
-         traces: Optional[List] = None) -> Dict[str, Any]:
-    """Bounded multi-step own-turn beam search over REAL simulator successors."""
+         traces: Optional[List] = None, guide=None) -> Dict[str, Any]:
+    """Bounded multi-step own-turn beam search over REAL simulator successors.
+
+    `guide` (optional, M04) supplies learned candidate ordering and learned leaf values inside
+    THIS SAME real search tree -- the tree is identical either way, so a guided/unguided
+    comparison isolates the guidance rather than confounding it with a different searcher.
+    """
     from cg import api as A
     t0 = time.perf_counter()
     sel = obs.get("select") if isinstance(obs, dict) else None
@@ -329,8 +334,21 @@ def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
 
     # candidate generation — the baseline action is always first and is never pruned
     cands: List[List[int]] = [list(baseline_action)]
+    order = list(range(n_opt))
+    guide_ms = 0.0
+    if guide is not None:
+        # Learned ORDERING only decides which options fit inside the candidate budget; it never
+        # removes the baseline and never picks the answer. The winner is still whichever
+        # candidate the real successors score highest.
+        g0 = time.perf_counter()
+        try:
+            order = guide.order(obs, n_opt)
+            stats["guide_order_ok"] += 1
+        except Exception:  # noqa: BLE001
+            stats["guide_order_failed"] += 1
+        guide_ms += (time.perf_counter() - g0) * 1000
     if lo <= 1 <= hi:
-        for i in range(n_opt):
+        for i in order:
             if len(cands) >= cfg["max_candidates"]:
                 break
             if [i] not in cands:
@@ -371,6 +389,7 @@ def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
                 cur = root
                 depth = 0
                 val = None
+                leaf_obs = None
                 for d in range(cfg["max_depth"]):
                     sd = cur.observation.select
                     if sd is None or not sd.option:
@@ -392,18 +411,41 @@ def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
                             else "terminal").encode()).hexdigest()[:16])
                     cur = nxt
                     val = leaf_value(cur.observation.current, yi)
+                    leaf_obs = cur.observation
                     if cur.observation.select is None:
                         break
                 depth_max = max(depth_max, depth)
                 if val is None:
                     val = leaf_value(state, yi)
                 scored.append({"candidate": cand, "value": round(float(val), 6),
+                               "heuristic_value": round(float(val), 6),
                                "depth": depth, "is_baseline": cand == list(baseline_action),
-                               "index": ci})
+                               "index": ci, "_leaf": leaf_obs})
     except Exception as e:  # noqa: BLE001
         stats["fallbacks"] += 1
         return {"action": list(baseline_action), "searched": False,
                 "reason": f"session_failed:{type(e).__name__}"}
+
+    leaf_source = "heuristic"
+    if guide is not None and scored:
+        # ONE batched forward over all candidate leaves, not one per node -- per-node inference
+        # would put a model call inside the innermost loop and blow the latency budget.
+        g0 = time.perf_counter()
+        try:
+            vals = guide.leaf_values([s_["_leaf"] for s_ in scored], yi)
+            for s_, v in zip(scored, vals):
+                if v is not None:
+                    s_["learned_value"] = round(float(v), 6)
+                    s_["value"] = round(float(v), 6)
+            leaf_source = "learned" if any("learned_value" in s_ for s_ in scored) else \
+                "heuristic_guide_failed"
+            stats["guide_leaf_ok"] += 1
+        except Exception:  # noqa: BLE001
+            stats["guide_leaf_failed"] += 1
+            leaf_source = "heuristic_guide_failed"
+        guide_ms += (time.perf_counter() - g0) * 1000
+    for s_ in scored:
+        s_.pop("_leaf", None)
 
     stats["max_depth_reached"] = max(stats["max_depth_reached"], depth_max)
     stats["distinct_successors"] += len(succ_hashes)
@@ -429,4 +471,6 @@ def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
     return {"action": best["candidate"], "searched": True, "candidate_scores": scored,
             "depth_max": depth_max, "distinct_successors": len(succ_hashes),
             "determinization_archetype": det["archetype"], "ms": round(dt, 2),
+            "guided": guide is not None, "leaf_source": leaf_source,
+            "guide_ms": round(guide_ms, 3), "candidate_order": order[:8],
             "reason": "search_best"}

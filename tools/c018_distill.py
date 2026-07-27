@@ -109,9 +109,15 @@ def main(argv=None):
 
     # TRUSTED ROWS ONLY -- an untrusted (fallback) row carries a baseline action, not a
     # search verdict; training on it would teach the heuristic back to itself.
+    # Rows whose chosen option index exceeds K_MAX were stored with label 0 -- a WRONG target,
+    # not merely a truncated one. Two of 12,245 in the scaled set; excluded rather than left as
+    # disclosed label noise, because "small" is not the same as "harmless".
+    KM = int(T["opt_dense"].shape[1])
+    mislabeled = {i for i, r in enumerate(rows)
+                  if r["label_action"] and max(r["label_action"]) >= KM}
     by_split = collections.defaultdict(list)
     for i, r in enumerate(rows):
-        if i in trusted_idx:
+        if i in trusted_idx and i not in mislabeled:
             by_split[r["split"]].append(i)
     tr, va, te = by_split["train"], by_split["validation"], by_split["test"]
     if not tr:
@@ -173,8 +179,8 @@ def main(argv=None):
                 continue
             opt.step()
             steps += 1
-            ep_p += float(p_loss)
-            ep_v += float(v_loss)
+            ep_p += float(p_loss.detach())
+            ep_v += float(v_loss.detach())
             nb += 1
         vm = evaluate(va)
         h = sha_state(model.state_dict())
@@ -218,6 +224,8 @@ def main(argv=None):
         "trusted_index_agrees_with_flag": bool(agree),
         "rows_total": int(feats["global"].shape[0]),
         "rows_trusted": len(trusted_idx),
+        "rows_excluded_label_beyond_kmax": len(mislabeled),
+        "k_max": KM,
         "train_rows": len(tr), "validation_rows": len(va), "test_rows": len(te),
         "epochs": a.epochs, "batch_size": a.batch, "lr": a.lr,
         "optimizer_steps": steps,
@@ -234,6 +242,10 @@ def main(argv=None):
         "uses_c017_labels": False,
         "final_validation": evaluate(va),
         "held_out_test": test_direct,
+        "metric_note": ("top1_agreement is FIRST-PICK agreement: the stored label is "
+                        "label_action[0], so multi-select decisions are scored on their first "
+                        "chosen option only, not on the whole selection."),
+        "multiselect_rows": sum(1 for r in rows if len(r["label_action"]) > 1),
         "held_out_test_from_reload": test_reload,
         "history": hist,
         "wall_clock_s": round(time.time() - t0, 1),

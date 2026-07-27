@@ -158,36 +158,120 @@ def v_training_proof():
             "after": (d.get("checkpoint_sha256_after") or "")[:12]}, blocker=True)
         ck("distill_trained_on_trusted_rows_only",
            bool(d.get("trusted_rows_only")), {"trusted_rows_only": d.get("trusted_rows_only")})
+        # recount from the per-epoch history rather than believing the summary counter
+        h = d.get("history") or []
+        ck("distill_steps_match_history",
+           bool(h) and (h[-1].get("optimizer_steps_cumulative") == steps)
+           and sum(e.get("batches") or 0 for e in h) == steps,
+           {"reported": steps, "history_cumulative": (h[-1] if h else {}).get(
+               "optimizer_steps_cumulative"),
+            "history_batch_sum": sum(e.get("batches") or 0 for e in h)}, blocker=True)
+        ck("distill_weights_moved_every_epoch",
+           len({e.get("checkpoint_sha256") for e in h}) == len(h),
+           {"epochs": len(h), "distinct_epoch_hashes":
+               len({e.get("checkpoint_sha256") for e in h})})
+        ck("distill_reload_is_exact",
+           bool(d.get("reload_hash_matches")) and bool(d.get("reload_metrics_identical")),
+           {"reload_hash_matches": d.get("reload_hash_matches"),
+            "reload_metrics_identical": d.get("reload_metrics_identical")})
+        ck("distill_predictions_always_legal",
+           (((d.get("held_out_test") or {}).get("legal_prediction_rate")) or 0) >= 1.0,
+           {"legal_prediction_rate": (d.get("held_out_test") or {}).get(
+               "legal_prediction_rate")}, blocker=True)
+        ck("distill_does_not_continue_c017",
+           d.get("continues_c017_checkpoint") is False and d.get("uses_c017_labels") is False,
+           {"continues_c017_checkpoint": d.get("continues_c017_checkpoint")})
+        # the trusted row count must agree with the trajectory file it claims to come from
+        tj = jload(f"search/{d.get('data_prefix')}_search_summary.json") or {}
+        ck("distill_row_count_matches_trajectory_source",
+           (tj.get("trusted_decisions") or 0) == (d.get("rows_trusted") or -1),
+           {"trajectory_summary": tj.get("trusted_decisions"),
+            "distill_report": d.get("rows_trusted")})
     else:
         require("distillation_report_present", False, {"reason": "absent"}, blocker=True)
 
     c = jload("training/curriculum_report.json")
-    if c:
-        g = c.get("actual_simulator_games") or 0
-        st = c.get("optimizer_steps") or 0
-        ck("curriculum_actual_simulator_games_nonzero", g > 0,
-           {"actual_simulator_games": g,
-            "note": "c017 counted scheduled games while playing none"}, blocker=True)
-        ck("curriculum_optimizer_steps_nonzero", st > 0, {"optimizer_steps": st},
-           blocker=True)
-        ck("curriculum_checkpoint_progressed",
-           len(set(c.get("checkpoint_hashes") or [])) > 1,
-           {"distinct_checkpoint_hashes": len(set(c.get("checkpoint_hashes") or []))},
-           blocker=True)
-        ck("curriculum_losses_finite", bool(c.get("losses_finite")), critical=True)
-        pa = c.get("planned_vs_actual") or []
-        ck("planned_mix_not_reported_as_actual",
-           all("planned_fractions" in b and "actual_fractions" in b for b in pa) if pa
-           else False, {"blocks": len(pa)})
-        ck("no_game_zero_promotion",
-           all(h.get("promotion_eligible") is False
-               for h in (c.get("history") or []) if h.get("games") == 0))
-        ck("rollouts_are_raw_not_virtual",
-           bool(c.get("raw_rollout_file")) and os.path.exists(
-               os.path.join(C18, c.get("raw_rollout_file", ""))),
-           {"raw_rollout_file": c.get("raw_rollout_file")}, blocker=True)
-    else:
+    if not c:
         require("curriculum_report_present", False, {"reason": "absent"}, blocker=True)
+        return
+
+    # Everything below is RECOUNTED from the raw rows. The report's own numbers are only ever
+    # used as the claim being tested -- c017's fabricated curriculum lived entirely in fields
+    # like these, and a validator that reads them is agreeing with the liar.
+    graw = read_gz(c.get("raw_rollout_file") or "")
+    uraw = read_gz(c.get("raw_updates_file") or "")
+    ck("rollouts_are_raw_not_virtual", len(graw) > 0,
+       {"raw_rollout_file": c.get("raw_rollout_file"), "raw_game_rows": len(graw),
+        "note": "a curriculum with no per-game rows on disk played no games"}, blocker=True)
+
+    played = len(graw)
+    completed = sum(1 for r in graw if r.get("completed"))
+    ck("curriculum_actual_simulator_games_nonzero", played > 0 and completed > 0,
+       {"raw_game_rows": played, "raw_completed": completed,
+        "note": "c017 counted scheduled games while playing none"}, blocker=True)
+    ck("reported_games_match_raw_rows", (c.get("actual_simulator_games") or 0) == played,
+       {"reported": c.get("actual_simulator_games"), "recounted": played}, blocker=True)
+    ck("reported_completions_match_raw_rows", (c.get("games_completed") or 0) == completed,
+       {"reported": c.get("games_completed"), "recounted": completed})
+
+    st_raw = sum(r.get("updates_in_block") or 0 for r in uraw)
+    ck("curriculum_optimizer_steps_nonzero", st_raw > 0,
+       {"recounted_updates": st_raw, "update_rows": len(uraw)}, blocker=True)
+    ck("reported_steps_match_raw_updates", (c.get("optimizer_steps") or 0) == st_raw,
+       {"reported": c.get("optimizer_steps"), "recounted": st_raw}, blocker=True)
+    ck("curriculum_losses_finite",
+       bool(uraw) and all(r.get("losses_finite") for r in uraw),
+       {"update_rows": len(uraw)})
+
+    # Weights must actually move; an update row whose before/after hash agree did nothing.
+    moved = [r for r in uraw if r.get("sha_before") != r.get("sha_after")]
+    ck("every_update_block_moved_weights", bool(uraw) and len(moved) == len(uraw),
+       {"update_rows": len(uraw), "blocks_that_moved": len(moved)}, blocker=True)
+    ck("curriculum_checkpoint_progressed",
+       len({r.get("sha_after") for r in uraw}) > 1,
+       {"distinct_post_update_hashes": len({r.get("sha_after") for r in uraw})}, blocker=True)
+
+    # Recompute the mixture actually realised from the raw opponent labels. Checking only that
+    # both keys EXIST would pass a report with the planned numbers copied into `actual`.
+    pa = {b["block"]: b for b in (c.get("planned_vs_actual") or [])}
+    by_block = collections.defaultdict(collections.Counter)
+    for r in graw:
+        by_block[r.get("block")][r.get("opponent_category")] += 1
+    bad = []
+    for blk, cnt in by_block.items():
+        tot = sum(cnt.values())
+        recomputed = {k: round(v / tot, 4) for k, v in cnt.items()}
+        rep_actual = (pa.get(blk) or {}).get("actual_fractions") or {}
+        for k, v in recomputed.items():
+            if abs(float(rep_actual.get(k, 0.0)) - v) > 0.02:
+                bad.append({"block": blk, "category": k, "reported": rep_actual.get(k),
+                            "recounted": v})
+    ck("actual_mix_recomputed_from_raw_matches_report", bool(by_block) and not bad,
+       {"blocks": len(by_block), "mismatches": bad[:6]})
+    ck("planned_and_actual_are_distinct_fields",
+       bool(pa) and all("planned_fractions" in b and "actual_fractions" in b
+                        for b in pa.values()), {"blocks": len(pa)})
+    # self-play must genuinely rise across the schedule, not merely be scheduled to
+    lag = {blk: cnt.get("lagged", 0) / max(1, sum(cnt.values()))
+           for blk, cnt in sorted(by_block.items())}
+    ck("self_play_share_actually_increases",
+       bool(lag) and max(lag.values()) > min(lag.values()),
+       {"realised_lagged_share_by_block": {k: round(v, 3) for k, v in lag.items()}})
+
+    hist = c.get("history") or []
+    ck("history_non_empty", bool(hist), {"blocks": len(hist)})
+    ck("no_game_zero_promotion",
+       bool(hist) and all(h.get("promotion_eligible") is False
+                          for h in hist if not h.get("games_completed")),
+       {"zero_game_blocks": sum(1 for h in hist if not h.get("games_completed"))})
+    # a stale snapshot path would silently freeze the self-play opponent (rl_env caches by path)
+    snaps = [h.get("lagged_snapshot") for h in hist if h.get("lagged_snapshot")]
+    ck("lagged_snapshot_paths_unique", len(set(snaps)) == len(snaps),
+       {"snapshots": len(snaps), "distinct": len(set(snaps))})
+    ck("lagged_snapshot_contents_differ",
+       len({h.get("lagged_snapshot_sha256") for h in hist
+            if h.get("lagged_snapshot_sha256")}) == len(snaps),
+       {"note": "identical snapshot hashes mean self-play never advanced"})
 
 
 # ---------------------------------------------------------------- identity / panel
