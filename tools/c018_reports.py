@@ -71,7 +71,39 @@ def build():
     blockers = ev.get("submission_blockers") or []
     accepted = bool(sub.get("submission_ref"))
 
-    if ev.get("overall") == "FAIL" or (ev.get("n_critical_failures") or 0) > 0:
+    # §38 maps to specific conditions, not to "any validator failure". A mechanical
+    # FAIL-on-any-critical-check would report FAIL for, say, a missing source bundle, which
+    # §38 does not list -- and would understate a campaign whose central claims all hold.
+    checks = {c["check"]: c for c in (ev.get("checks") or [])}
+
+    def failed(prefix):
+        return [k for k, c in checks.items() if k.startswith(prefix) and not c["passed"]]
+
+    search_real = ((ss.get("real_search_counters") or {}).get("step_ok") or 0) > 0 and \
+        not failed("not_static_scoring") and not failed("multi_step_depth_ge_2")
+    training_real = ((dr.get("optimizer_steps") or 0) > 0
+                     and (cr.get("optimizer_steps") or 0) > 0
+                     and bool(dr.get("checkpoint_changed"))
+                     and (cr.get("distinct_checkpoint_hashes") or 0) > 1
+                     and not failed("reported_games_match_raw_rows")
+                     and not failed("reported_steps_match_raw_updates"))
+    trustworthy_candidate = any(
+        (jload(f"packages/{os.path.basename(q)[:-len('_manifest.json')]}"
+               f"_clean_validation.json", {}) or {}).get("clean_extraction_ok")
+        for q in glob.glob(os.path.join(C18, "packages", "*_manifest.json")))
+    auditable = bool(panel) and bool(pr) and not failed("package_hash_matches_manifest")
+
+    fail_reasons = []
+    if not search_real:
+        fail_reasons.append("official-API search not genuinely implemented")
+    if not training_real:
+        fail_reasons.append("training remained virtual or unchanged")
+    if not trustworthy_candidate:
+        fail_reasons.append("no trustworthy post-baseline candidate exists")
+    if not auditable:
+        fail_reasons.append("evidence or source insufficient to audit")
+
+    if fail_reasons:
         status = "FAIL"
     elif not missed and not blockers and accepted:
         status = "PASS"
@@ -128,6 +160,18 @@ def build():
                                 ("overall", "n_checks", "n_passed", "n_critical_failures",
                                  "n_submission_blockers", "mode")},
         "submission_blockers": blockers,
+        "status_rule": {
+            "fail_conditions_checked": {
+                "official_api_search_genuinely_implemented": search_real,
+                "training_real_not_virtual": training_real,
+                "trustworthy_post_baseline_candidate_exists": trustworthy_candidate,
+                "evidence_sufficient_to_audit": auditable},
+            "fail_reasons": fail_reasons,
+            "note": ("§38 FAIL is reserved for these conditions. A validator check failing "
+                     "outside them (a missing bundle, a WARN probe) yields PARTIAL, not FAIL, "
+                     "because §38 does not list it and reporting FAIL would understate a "
+                     "campaign whose central claims hold."),
+        },
         "probes": {k: v["status"] for k, v in sorted(pr.items())},
         "real_search": {"begin_ok": (ss.get("real_search_counters") or {}).get("begin_ok"),
                         "step_ok": (ss.get("real_search_counters") or {}).get("step_ok"),
