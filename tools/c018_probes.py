@@ -288,11 +288,17 @@ def p07(s, rows):
     import numpy as np
     npz = np.load(os.path.join(C18, "trajectories", f"{PFX}_features.npz"))
     n = npz["global"].shape[0]
+    # NpzFile decompresses on EVERY key access, so these must be read once, not inside a
+    # generator over 12k rows -- doing the latter turned this probe into a five-minute spin.
+    KM = int(npz["opt_dense"].shape[1])
+    npz_label = npz["label_index"]
+    npz_nopt = npz["n_options"]
+    npz_trusted = set(int(i) for i in npz["trusted_rows"])
     ck = {"trajectory_rows": len(rows), "feature_rows": int(n),
           "rows_align_one_to_one": len(rows) == n,
-          "trusted_rows_in_npz": int(npz["trusted_rows"].shape[0]),
+          "trusted_rows_in_npz": len(npz_trusted),
           "trusted_rows_in_jsonl": sum(1 for r in rows if r["trusted"]),
-          "trusted_index_agrees": set(int(i) for i in npz["trusted_rows"]) == {
+          "trusted_index_agrees": npz_trusted == {
               i for i, r in enumerate(rows) if r["trusted"]},
           "legal_mask_length_matches_options": all(
               len(r["legal_mask"]) == r["n_options"] for r in rows),
@@ -300,13 +306,12 @@ def p07(s, rows):
                                     for r in rows),
           "every_trusted_row_has_successors": all(
               (r.get("distinct_successors") or 0) > 0 for r in rows if r["trusted"]),
-          "label_index_within_kmax": bool((npz["label_index"] < npz["opt_dense"].shape[1]).all()),
-          "k_max": int(npz["opt_dense"].shape[1]),
+          "label_index_within_kmax": bool((npz_label < KM).all()),
+          "k_max": KM,
           "rows_with_true_option_count_above_kmax": sum(
-              1 for r in rows if r["n_options"] > npz["opt_dense"].shape[1]),
+              1 for r in rows if r["n_options"] > KM),
           "rows_mislabeled_by_kmax_clipping": sum(
-              1 for r in rows if r["label_action"]
-              and max(r["label_action"]) >= npz["opt_dense"].shape[1]),
+              1 for r in rows if r["label_action"] and max(r["label_action"]) >= KM),
           "multiselect_rows": sum(1 for r in rows if len(r["label_action"]) > 1),
           "uses_c017_labels": s["uses_c017_labels"],
           "trajectory_sha256": s["trajectory_sha256"]}

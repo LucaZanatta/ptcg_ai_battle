@@ -103,15 +103,29 @@ ARCHETYPES = {}
 
 
 def _load_archetypes():
+    """Public archetype decklists used to PREDICT opponent hidden cards.
+
+    In-repo these come from the teacher sources. Inside a submission package the repo helpers do
+    not exist, so a `_decks.json` sitting next to this module carries the same lists — the
+    packaged determinizer must behave identically to the evaluated one, or the panel measured a
+    different agent than the one uploaded (§8.2.6).
+    """
     global ARCHETYPES
     if ARCHETYPES:
         return ARCHETYPES
-    from cg import teachers as T, c009_eval as ce
-    for cid in ("dragapult", "mega_lucario", "iono", "mega_abomasnow"):
-        try:
-            ARCHETYPES[cid] = list(T.read_deck(cid, ce.SOURCES))
-        except Exception:  # noqa: BLE001
-            pass
+    try:
+        from cg import teachers as T, c009_eval as ce
+        for cid in ("dragapult", "mega_lucario", "iono", "mega_abomasnow"):
+            try:
+                ARCHETYPES[cid] = list(T.read_deck(cid, ce.SOURCES))
+            except Exception:  # noqa: BLE001
+                pass
+    except Exception:  # noqa: BLE001
+        pass
+    if not ARCHETYPES:
+        p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_decks.json")
+        if os.path.exists(p):
+            ARCHETYPES = {k: list(v) for k, v in json.load(open(p)).items()}
     return ARCHETYPES
 
 
