@@ -267,13 +267,16 @@ def leaf_value(state, your_index: int) -> float:
         return 0.0
 
     def hp(p):
+        # getattr, not attribute access: leaf_value runs inside the beam, and an engine object
+        # that lacks a field would otherwise raise and degrade EVERY search to a fallback --
+        # silently, since the session wrapper catches it and returns the baseline action.
         tot = cur = 0
         for z in ("active", "bench"):
             for c in (getattr(p, z, None) or []):
                 if c is None:
                     continue
-                tot += (c.maxHp or 0)
-                cur += (c.hp or 0)
+                tot += (getattr(c, "maxHp", 0) or 0)
+                cur += (getattr(c, "hp", 0) or 0)
         return (cur / tot) if tot else 0.0
 
     def energies(p):
@@ -281,10 +284,13 @@ def leaf_value(state, your_index: int) -> float:
         for z in ("active", "bench"):
             for c in (getattr(p, z, None) or []):
                 if c is not None:
-                    n += len(getattr(c, "energyCards", None) or getattr(c, "energies", None) or [])
+                    n += len(getattr(c, "energyCards", None)
+                             or getattr(c, "energies", None) or [])
         return n
-    prize = (len(op.prize or []) - len(me.prize or [])) / 6.0
-    board = (len(me.bench or []) - len(op.bench or [])) / 5.0
+    prize = (len(getattr(op, "prize", None) or [])
+             - len(getattr(me, "prize", None) or [])) / 6.0
+    board = (len(getattr(me, "bench", None) or [])
+             - len(getattr(op, "bench", None) or [])) / 5.0
     v = 0.55 * prize + 0.25 * (hp(me) - hp(op)) + 0.12 * board \
         + 0.08 * ((energies(me) - energies(op)) / 8.0)
     return max(-1.0, min(1.0, v))
