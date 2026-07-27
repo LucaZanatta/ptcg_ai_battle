@@ -335,6 +335,42 @@ def summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
         or "| _none_ | | | | |"
     tainted = [f"{k} ({v['status']})" for k, v in sorted(pr.items())
                if v["status"] in ("FAIL_TAINTED", "NOT_EXERCISED")]
+    rank = jload("artifacts/defect_ranking.json", {}) or {}
+    defects = "\n".join(
+        f"- **{d['id']}** [{d['downstream_impact']}] {d['title']} — {d['repair']}"
+        for d in (rank.get("defects_ranked_by_downstream_impact") or []))
+
+    # The next action is DERIVED from the panel, not asserted in advance. Writing the
+    # conclusion before the measurement is how a report stops being a report.
+    b, srch = rate(base_row), rate(srch_row)
+    if b is None or srch is None:
+        next_action = ("**Not determinable — the frozen panel produced no scored games**, so no "
+                       "externally relevant action can be justified from evidence yet.")
+    elif srch >= b + 0.03:
+        next_action = (
+            f"**Upload the heuristic real-search package and measure it on the live ladder.** "
+            f"The frozen panel puts `m01_heuristic_search` at {srch} against the official "
+            f"baseline's {b} over {srch_row['games']} identical games — clearing §16's +3pp "
+            f"promotion signal. Whether an offline panel margin transfers to a live ladder "
+            f"rating is the untested question, and it is answerable only externally.")
+    elif ordering_helped or value_helped:
+        best = max((x for x in (ord_row, gv_row) if x), key=lambda r: rate(r) or 0)
+        next_action = (
+            f"**Upload `{best['candidate_id']}` and measure it on the live ladder.** It is the "
+            f"strongest learned candidate at {rate(best)} and the panel shows learned guidance "
+            f"adding rather than subtracting, which no prior contract in this project has "
+            f"achieved. Its ladder behaviour is the untested variable.")
+    else:
+        next_action = (
+            f"**Submit an official-agent-based candidate for a deck other than Mega Lucario and "
+            f"measure it on the live ladder.** Every c018 candidate shares one deck and one "
+            f"baseline, so the panel can only compare search layers on top of a fixed strategy. "
+            f"On {srch_row['games']} identical games real forward search scored {srch} against "
+            f"the baseline's {b}, and neither learned ordering nor learned leaf values improved "
+            f"on it — so more search depth, more training scale and better guidance are all "
+            f"measured dead ends for this deck. c016 separately measured official agents "
+            f"beating from-scratch customs 0.90/0.92. The remaining untested external variable "
+            f"is deck choice.")
     best_pkg = None
     for pth in sorted(glob.glob(os.path.join(C18, "packages", "*_clean_validation.json"))):
         v = json.load(open(pth))
@@ -451,10 +487,12 @@ decisions searched), 0 hidden-information violations.
 
 {chr(10).join('- ' + t for t in tainted) or '- none'}
 
-Defects found and fixed, with records in `failures/`: packaged agent searched 3 of 84 decisions
-(caller-dependent node budget); guided package searched 0 of 321 (hand-listed dependency missing
-`policy_data_v2`, hidden by a safe fallback); validator returned PASS with no training present;
-validator read training claims out of the report it was judging.
+### Defects found and repaired, ranked by downstream impact
+
+{defects or '- none recorded'}
+
+Full records in `failures/` and `artifacts/defect_ranking.json`. Two were submission blockers
+caught before any upload; two would have invalidated this contract's own verdict.
 
 ## 12. Decision board
 
@@ -464,12 +502,7 @@ validator read training claims out of the report it was judging.
 
 ## 13. Exactly one next externally relevant action
 
-**Submit an official-agent-based candidate for a deck other than Mega Lucario and measure it on
-the live ladder.** Every c018 candidate shares one deck and one baseline, so the panel can only
-compare search layers on top of a fixed strategy. c016 measured official agents beating
-from-scratch customs 0.90/0.92, and c018 now shows a real, correct, safe search layer does not
-by itself overtake its own baseline. The remaining untested external variable is deck choice,
-not search depth or training scale.
+{next_action}
 """
 
 
