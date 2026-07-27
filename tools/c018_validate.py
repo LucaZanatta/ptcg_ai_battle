@@ -358,22 +358,28 @@ def v_history_and_package():
            os.path.exists(arch) and sha_file(arch) == m.get("sha256"),
            {"manifest": (m.get("sha256") or "")[:12],
             "on_disk": sha_file(arch)[:12] if os.path.exists(arch) else None}, blocker=True)
-        # the packaged search module must be the one the panel imported (S8.2.6)
+        # the packaged search module must be the one the panel imported (S8.2.6); a
+        # policy-only package ships no search module and is exempt rather than failed
         live = os.path.join(_REPO, "tools", "c018_search.py")
         ck(f"packaged_search_module_matches_source:{name}",
+           True if m.get("policy_only") else
            m.get("search_module_sha256") == (sha_file(live) if os.path.exists(live) else None),
-           {"packaged": (m.get("search_module_sha256") or "")[:12]}, blocker=True)
+           {"packaged": (m.get("search_module_sha256") or "")[:12],
+            "policy_only": bool(m.get("policy_only"))}, blocker=True)
         v = jload(f"packages/{name}_clean_validation.json")
         if v:
             ck(f"clean_extraction_ok:{name}", bool(v.get("clean_extraction_ok")),
                {"games_completed": v.get("games_completed"),
                 "games_played": v.get("games_played")}, blocker=True)
             # a safe fallback and a working search look identical unless something counts it
-            ck(f"packaged_agent_actually_searched:{name}",
-               bool(v.get("search_actually_ran_in_package")),
+            ck(f"packaged_learned_component_ran:{name}",
+               bool(v.get("learned_component_actually_ran")) if m.get("policy_only")
+               else bool(v.get("search_actually_ran_in_package")),
                {"searched": v.get("packaged_searched"),
                 "decisions": v.get("packaged_decisions"),
                 "rate": v.get("packaged_search_rate"),
+                "policy_ok": v.get("packaged_policy_ok"),
+                "policy_only": bool(m.get("policy_only")),
                 "note": "completing games proves nothing; the baseline fallback also "
                         "completes games"}, blocker=True)
             ck(f"packaged_no_hidden_information:{name}",

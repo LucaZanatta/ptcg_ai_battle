@@ -215,7 +215,10 @@ def build(name, guided, checkpoint=None, cfg_override=None, policy_only=False):
     try:
         add(os.path.join(BASE_SRC, "main.py"), "_baseline.py")
         add(os.path.join(BASE_SRC, "deck.csv"), "deck.csv")
-        add(os.path.join(_REPO, "tools", "c018_search.py"), "_c018_search.py")
+        if not policy_only:
+            # a policy-only package never searches; shipping the search module would be dead
+            # weight that still has to be hash-matched against the evaluated source
+            add(os.path.join(_REPO, "tools", "c018_search.py"), "_c018_search.py")
         for f in SDK:
             add(os.path.join(_REPO, "cg", f), f"cg/{f}")
 
@@ -300,7 +303,8 @@ def build(name, guided, checkpoint=None, cfg_override=None, policy_only=False):
            "inference_only": True, "source_commit": commit(),
            "baseline_main_sha256": sha_file(os.path.join(BASE_SRC, "main.py")),
            "deck_sha256": sha_file(os.path.join(BASE_SRC, "deck.csv")),
-           "search_module_sha256": sha_file(os.path.join(_REPO, "tools", "c018_search.py")),
+           "search_module_sha256": (None if policy_only else
+                                   sha_file(os.path.join(_REPO, "tools", "c018_search.py"))),
            "source_to_package_map": smap,
            "build_command": f"python tools/c018_package.py --name {name}"
                             f"{' --guided' if guided else ''}"}
