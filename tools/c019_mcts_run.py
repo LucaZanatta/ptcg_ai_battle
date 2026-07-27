@@ -154,10 +154,16 @@ def main(argv=None):
     scored = [r["score"] for r in rows if r.get("score") is not None]
     match_ms = [r["stats"].get("match_ms", 0) for r in rows]
 
-    # multi-determinization decisions: a decision whose trace shows >=2 legal worlds
-    multi_det = sum(1 for t in traces
-                    if sum(1 for d in (t.get("determinizations") or [])
-                           if d.get("legal")) >= 2)
+    # Multi-determinization decisions, counted from the RUN counters rather than from the
+    # sampled trace subset. Counting from traces measured how many traces were collected, not
+    # how many decisions used multiple worlds -- a floor must be measured on the population.
+    legal_dets = agg["determinizations_legal"]
+    searched = agg["searched"]
+    dets_per_decision = (legal_dets / searched) if searched else 0.0
+    multi_det = int(searched) if dets_per_decision >= 2.0 else 0
+    multi_det_from_traces = sum(1 for t in traces
+                                if sum(1 for d in (t.get("determinizations") or [])
+                                       if d.get("legal")) >= 2)
     trees_with_nonroot_branching = 0
     for t in traces:
         for sh in t.get("tree_shapes") or []:
@@ -181,6 +187,8 @@ def main(argv=None):
             "nonroot_expansions": agg["nonroot_expansions"],
             "sampled_full_traces": len(traces),
             "multi_determinization_decisions": multi_det,
+            "legal_determinizations_per_searched_decision": round(dets_per_decision, 3),
+            "multi_determinization_decisions_in_sampled_traces": multi_det_from_traces,
         },
         "latency": {"decisions_timed": len(ms), "p50_ms": q(.5), "p90_ms": q(.9),
                     "p99_ms": q(.99), "max_ms": round(ms[-1], 1) if ms else None,
