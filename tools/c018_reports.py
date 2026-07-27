@@ -276,10 +276,33 @@ def summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
     ht = hm.get("held_out_test") or {}
     uploads = sorted(glob.glob(os.path.join(C18, "submissions", "*_upload.json")))
     ups = [json.load(open(u)) for u in uploads]
-    base_row = next((r for r in panel if r["candidate_id"] == "official_mega_lucario"), None)
-    srch_row = next((r for r in panel if r["candidate_id"] == "m01_heuristic_search"), None)
+    def row_of(cid):
+        return next((r for r in panel if r["candidate_id"] == cid), None)
+    base_row, srch_row = row_of("official_mega_lucario"), row_of("m01_heuristic_search")
+    ord_row, gv_row = row_of("m04_guided_ordering_only"), row_of("m04_guided_search")
     improved = (None if not (base_row and srch_row) else
                 (srch_row["overall_rate"] or 0) > (base_row["overall_rate"] or 0))
+
+    def rate(r):
+        return (r or {}).get("overall_rate")
+    ordering_helped = (None if not (ord_row and srch_row) else
+                       rate(ord_row) > rate(srch_row))
+    value_helped = (None if not (gv_row and ord_row) else rate(gv_row) > rate(ord_row))
+    if ordering_helped is None:
+        decomp = "Not measured — the ordering-only candidate produced no scored games."
+    else:
+        decomp = (
+            f"Learned **ordering** {'helped' if ordering_helped else 'did not help'}: "
+            f"`m04_guided_ordering_only` {rate(ord_row)} vs `m01_heuristic_search` "
+            f"{rate(srch_row)} (same search, same heuristic leaves, only the candidate order "
+            f"differs). Learned **leaf values** "
+            f"{'helped' if value_helped else 'did not help'}: `m04_guided_search` "
+            f"{rate(gv_row)} vs `m04_guided_ordering_only` {rate(ord_row)} (same search, same "
+            f"ordering, only the leaf evaluator differs).")
+        if value_helped is False:
+            decomp += (" That confirms P10's offline finding — the value head loses to a "
+                       "constant baseline — in actual play, which is why the two mechanisms "
+                       "were separated before the panel ran (DECISION_RULES Amendment 1).")
     rank = "\n".join(
         f"| {i+1} | {r['candidate_id']} | {r['games']} | {r['overall_rate']} | "
         f"{r['overall_ci']} | {r['worst_matchup']} @ {r['worst_matchup_rate']} |"
@@ -323,7 +346,11 @@ attempted. Maximum depth reached {c.get('max_depth_reached', 0)};
  f"(CI {srch_row['overall_ci']}) against `official_mega_lucario` at {base_row['overall_rate']} "
  f"(CI {base_row['overall_ci']}) over identical opponents, seeds and seats."}
 The search never prunes the baseline action — it is always candidate 0 — so any gap is the leaf
-evaluator preferring a worse successor, not the search failing to consider the baseline.
+evaluator preferring a worse successor, not the search failing to consider the baseline. That
+localises the problem precisely: the machinery is correct (P01–P06) and the *evaluation of
+positions* is what falls short.
+
+{decomp}
 
 ## 4. Trajectory scale and trust status
 
@@ -371,6 +398,8 @@ shared roots compared, learned leaf values changed the chosen action on
 {gc.get('action_change_rate')} of them. Guidance cost: p90 {(gl.get('guided') or {}).get('p90')}
 ms guided vs {(gl.get('unguided') or {}).get('p90')} ms unguided, against a
 {gl.get('budget_ms')} ms budget.
+
+**Decomposition.** {decomp}
 
 ## 8. Final-panel results
 
