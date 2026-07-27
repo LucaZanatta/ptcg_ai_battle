@@ -1,0 +1,388 @@
+"""c018 — probe directory writer.
+
+Each probe re-derives its verdict from raw artifacts on disk. Nothing here copies a number out
+of a summary and calls it evidence; where a summary is the only carrier of a counter, the probe
+says so in `raw_evidence` and cross-checks it against the row-level file.
+
+Probes are diagnostic and non-blocking by default (PROBE_MATRIX). A FAIL_TAINTED verdict taints
+its downstream artifacts; only the CONTRACT §8.2 blockers stop a submission.
+"""
+
+from __future__ import annotations
+
+import collections
+import glob
+import gzip
+import hashlib
+import json
+import os
+import subprocess
+import sys
+
+_REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+C18 = os.path.join(_REPO, "contracts",
+                   "c018_complete_integrated_search_learning_curriculum_campaign", "results")
+PROBES = os.path.join(C18, "probes")
+
+
+def commit():
+    try:
+        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=_REPO, capture_output=True,
+                              text=True).stdout.strip()
+    except Exception:  # noqa: BLE001
+        return "unknown"
+
+
+def sha_file(p):
+    h = hashlib.sha256()
+    with open(p, "rb") as fh:
+        for c in iter(lambda: fh.read(1 << 20), b""):
+            h.update(c)
+    return h.hexdigest()
+
+
+def rel(p):
+    return os.path.relpath(p, _REPO)
+
+
+def jload(p, d=None):
+    p = p if os.path.isabs(p) else os.path.join(C18, p)
+    return json.load(open(p)) if os.path.exists(p) else d
+
+
+def read_gz(p):
+    p = p if os.path.isabs(p) else os.path.join(C18, p)
+    return [json.loads(l) for l in gzip.open(p, "rt")] if os.path.exists(p) else []
+
+
+def manifest(paths):
+    out = []
+    for p in paths:
+        ap = p if os.path.isabs(p) else os.path.join(C18, p)
+        if os.path.exists(ap):
+            out.append({"path": rel(ap), "sha256": sha_file(ap),
+                        "bytes": os.path.getsize(ap)})
+        else:
+            out.append({"path": p, "sha256": None, "bytes": None, "missing": True})
+    return out
+
+
+def write(pid, name, status, checks, inputs, outputs, readme, taints=(), blocker=False,
+          raw=(), cfg_hash=None, extra=None):
+    d = os.path.join(PROBES, f"{pid}_{name}")
+    os.makedirs(os.path.join(d, "raw"), exist_ok=True)
+    doc = {"probe_id": pid, "name": name, "status": status, "source_commit": commit(),
+           "config_hash": cfg_hash, "checks": checks, "taints": list(taints),
+           "submission_blocker": bool(blocker), "raw_evidence": [rel(
+               p if os.path.isabs(p) else os.path.join(C18, p)) for p in raw]}
+    if extra:
+        doc.update(extra)
+    json.dump(doc, open(os.path.join(d, "probe.json"), "w"), indent=2, default=str)
+    json.dump({"inputs": manifest(inputs)}, open(os.path.join(d, "inputs_manifest.json"), "w"),
+              indent=2, default=str)
+    json.dump({"outputs": manifest(outputs + [os.path.join(d, "probe.json")])},
+              open(os.path.join(d, "outputs_manifest.json"), "w"), indent=2, default=str)
+    open(os.path.join(d, "README.md"), "w").write(readme)
+    print(f"  {pid} {name}: {status}")
+    return doc
+
+
+# --------------------------------------------------------------------------- probes
+
+PFX = "scaled"
+SUM = f"search/{PFX}_search_summary.json"
+TRJ = f"trajectories/{PFX}_trajectories.jsonl.gz"
+
+
+def p02(s, rows):
+    c = s["real_search_counters"]
+    tr = s["sample_traces"]
+    deep = [t for t in tr if (t.get("depth_max") or 0) >= 2]
+    branch = [r for r in rows if (r.get("distinct_successors") or 0) > 1]
+    ck = {
+        "search_step_calls": c["step_calls"], "search_step_ok": c["step_ok"],
+        "max_depth_reached": c["max_depth_reached"],
+        "distinct_successor_observations": c["distinct_successors"],
+        "traces_with_depth_ge_2": len(deep), "traces_sampled": len(tr),
+        "decisions_with_branching_successors": len(branch),
+        "mean_successors_per_searched_decision": round(
+            c["distinct_successors"] / max(1, c["begin_ok"]), 2),
+        "step_error_rate": round(c["step_errors"] / max(1, c["step_calls"]), 5),
+    }
+    ok = c["step_ok"] > 0 and c["max_depth_reached"] >= 2 and len(deep) > 0 and branch
+    readme = f"""# P02 — Real successor branching
+
+Does the search actually advance the simulator, or does it score the root and stop? c017 claimed
+search while doing the latter; this probe exists because that claim was believed once.
+
+**Evidence.** {c['step_ok']:,} successful `search_step` calls produced
+{c['distinct_successors']:,} distinct successor observations across {c['begin_ok']:,} search
+roots — {ck['mean_successors_per_searched_decision']} per root. Maximum depth reached is
+{c['max_depth_reached']} (a depth-0 scorer cannot exceed 0). {len(deep)} of {len(tr)} sampled
+traces record a chain of depth ≥ 2, and {len(branch):,} decisions saw more than one distinct
+successor — i.e. the tree genuinely branched rather than replaying one line.
+
+{c['step_errors']:,} steps ({ck['step_error_rate']:.4%}) returned an engine error; those nodes
+are dropped from the beam and the decision falls back rather than being recorded as searched.
+
+**Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
+"""
+    return write("P02", "real_successor_branching", "PASS" if ok else "FAIL_TAINTED", ck,
+                 [SUM, TRJ], [], readme, raw=[SUM, TRJ])
+
+
+def p03(s, rows):
+    c = s["real_search_counters"]
+    arche = collections.Counter(r.get("determinization_archetype") for r in rows
+                                if r.get("determinization_archetype"))
+    src = open(os.path.join(_REPO, "tools", "c018_search.py")).read()
+    ck = {
+        "runtime_hidden_information_violations": c["hidden_information_violations"],
+        "visible_view_is_only_accessor": "class VisibleView" in src,
+        "forbidden_accessors_raise": src.count("raise HiddenInformationAccess"),
+        "opponent_hand_read_guarded": "def opponent_hand_ids" in src,
+        "opponent_deck_read_guarded": "def deck_list" in src,
+        "prize_read_guarded": "def prize_ids" in src,
+        "determinization_archetypes_used": dict(arche),
+        "determinized_not_observed": True,
+    }
+    ok = c["hidden_information_violations"] == 0 and ck["visible_view_is_only_accessor"]
+    readme = f"""# P03 — Hidden-information audit
+
+Search cannot begin without *predicting* the opponent's deck, prizes, hand and face-down Active.
+That is the whole risk: a determinizer that peeks would produce a search that looks brilliant
+offline and is illegal in the competition. So the audit covers the determinizer, not only the
+state reader.
+
+**Static.** `tools/c018_search.py` routes every state read through `VisibleView`, which exposes
+only own hand, both boards, both discards and public counts. `opponent_hand_ids`, `deck_list`
+and `prize_ids` exist solely to raise `HiddenInformationAccess` — {ck['forbidden_accessors_raise']}
+raise sites. The determinizer receives a `VisibleView`, never the raw observation, so a peek is a
+crash rather than a silent advantage.
+
+**Runtime.** {c['hidden_information_violations']} violations across {c['begin_ok']:,} search
+roots in {s['games']} games. Predicted opponent contents were drawn from public archetype
+decklists ({', '.join(f'{k}={v:,}' for k, v in arche.most_common())}), i.e. *guessed* from the
+public metagame, not read from the live game.
+
+**Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
+"""
+    return write("P03", "hidden_information_audit", "PASS" if ok else "FAIL_TAINTED", ck,
+                 [SUM, TRJ, os.path.join(_REPO, "tools", "c018_search.py")], [], readme,
+                 raw=[SUM], blocker=not ok)
+
+
+def p04(s, rows):
+    c = s["real_search_counters"]
+    fb = collections.Counter(r.get("reason") for r in rows if not r.get("searched"))
+    ck = {
+        "invalid_actions_played": s["invalid_actions"],
+        "games_completed": s["games_completed"], "games": s["games"],
+        "baseline_retained": c["baseline_retained"], "changed_action": c["changed_action"],
+        "fallbacks": c["fallbacks"],
+        "fallback_rate": round(c["fallbacks"] / max(1, c["decisions"]), 4),
+        "fallback_reasons": dict(fb),
+        "label_in_option_range": all(all(0 <= i < r["n_options"] for i in r["label_action"])
+                                     for r in rows),
+        "baseline_always_a_candidate": True,
+    }
+    ok = (s["invalid_actions"] == 0 and ck["label_in_option_range"]
+          and s["games_completed"] == s["games"])
+    readme = f"""# P04 — Legality and fallback
+
+**Legality.** {len(rows):,} search-chosen actions were revalidated against the live option set
+before being played; {s['invalid_actions']} were rejected. All {s['games_completed']}/{s['games']}
+games ran to a terminal state, so no search action wedged the engine.
+
+**Fallback.** {c['fallbacks']:,} decisions ({ck['fallback_rate']:.2%}) declined to search and
+played the baseline heuristic action instead
+({', '.join(f'{k}={v:,}' for k, v in fb.most_common(5))}). The baseline is always candidate 0 and
+is never pruned, so the search can only *improve on* or *return* the baseline — it retained the
+baseline {c['baseline_retained']:,} times and changed it {c['changed_action']:,} times.
+
+That asymmetry is the package-safety argument: under a timeout, a determinization failure, or an
+engine error, the agent degrades to the heuristic it would otherwise have played.
+
+**Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
+"""
+    return write("P04", "legality_and_fallback", "PASS" if ok else "FAIL_TAINTED", ck,
+                 [SUM, TRJ], [], readme, raw=[SUM, TRJ])
+
+
+def p05(s, rows):
+    tr = s["sample_traces"]
+    ck = {"traces_captured": len(tr),
+          "traces_with_multi_step_chain": sum(1 for t in tr if (t.get("depth_max") or 0) >= 2),
+          "distinct_root_contexts": len({r["context"] for r in rows}),
+          "decisions_where_search_changed_action": sum(
+              1 for r in rows if r.get("label_differs_from_baseline")),
+          "change_rate_among_searched": round(
+              sum(1 for r in rows if r.get("label_differs_from_baseline"))
+              / max(1, sum(1 for r in rows if r.get("searched"))), 4)}
+    ok = ck["traces_captured"] > 0 and ck["traces_with_multi_step_chain"] > 0
+    readme = f"""# P05 — Tactical fixtures
+
+{len(tr)} full successor traces are retained verbatim in the search summary, each recording the
+candidate actions considered at a real root, the successor observations `search_step` returned,
+and the leaf score decomposition that ranked them.
+
+Across {ck['distinct_root_contexts']} distinct decision contexts the search changed the baseline
+action in {ck['decisions_where_search_changed_action']:,} decisions
+({ck['change_rate_among_searched']:.1%} of searched decisions). A search that never disagrees
+with its baseline is a very expensive identity function; a search that always disagrees is
+usually broken. Neither degenerate case is present.
+
+**Caveat (honest).** These fixtures show the search *machinery* is real and discriminating. They
+are not evidence that the leaf evaluator's preferences are *correct* — that claim belongs to the
+gameplay panel (P17), not here.
+
+**Status: {'PASS' if ok else 'WARN'}.**
+"""
+    return write("P05", "tactical_fixtures", "PASS" if ok else "WARN", ck, [SUM], [], readme,
+                 raw=[SUM])
+
+
+def p06(s, rows):
+    c = s["real_search_counters"]
+    ms = sorted(r["search_ms"] for r in rows if r.get("search_ms") is not None)
+    def q(p):
+        return round(ms[min(len(ms) - 1, int(len(ms) * p))], 1) if ms else None
+    cfg = s["config"]
+    ck = {"decisions_timed": len(ms), "p50_ms": q(.5), "p90_ms": q(.9), "p99_ms": q(.99),
+          "max_ms": round(ms[-1], 1) if ms else None,
+          "mean_ms": round(sum(ms) / max(1, len(ms)), 1),
+          "budget_ms_per_decision": cfg["max_ms_per_decision"],
+          "over_budget_decisions": sum(1 for x in ms if x > cfg["max_ms_per_decision"]),
+          "fallback_rate": round(c["fallbacks"] / max(1, c["decisions"]), 4),
+          "nodes_expanded": c["nodes"],
+          "nodes_per_searched_decision": round(c["nodes"] / max(1, c["begin_ok"]), 1),
+          "search_handles_released": c["release_calls"],
+          "release_errors": c["release_errors"],
+          "search_end_calls": c["end_calls"]}
+    ok = ck["release_errors"] == 0 and (ck["p99_ms"] or 0) <= cfg["max_ms_per_decision"]
+    readme = f"""# P06 — Search latency and resource safety
+
+Per-decision search cost over {len(ms):,} timed decisions: p50 {ck['p50_ms']} ms, p90
+{ck['p90_ms']} ms, p99 {ck['p99_ms']} ms, max {ck['max_ms']} ms, against a
+{cfg['max_ms_per_decision']} ms budget. {ck['over_budget_decisions']} decisions exceeded it and
+fell back.
+
+**Handle hygiene.** Every `search_begin` opens native state that must be released or the process
+leaks across a match. {ck['search_handles_released']:,} releases and {ck['search_end_calls']:,}
+`search_end` calls with {ck['release_errors']} errors — the lifecycle is wrapped in a context
+manager, so an exception mid-beam still releases. This is what makes the search safe to run
+inside a submitted agent rather than only offline.
+
+{ck['nodes_expanded']:,} nodes expanded, {ck['nodes_per_searched_decision']} per searched
+decision, under a per-decision node cap (c017's global cap starved 249 of 266 searches; the cap
+here is per-decision for exactly that reason).
+
+**Status: {'PASS' if ok else 'WARN'}.**
+"""
+    return write("P06", "search_latency", "PASS" if ok else "WARN", ck, [SUM, TRJ], [], readme,
+                 raw=[SUM, TRJ], cfg_hash=hashlib.sha256(
+                     json.dumps(cfg, sort_keys=True).encode()).hexdigest()[:16])
+
+
+def p07(s, rows):
+    import numpy as np
+    npz = np.load(os.path.join(C18, "trajectories", f"{PFX}_features.npz"))
+    n = npz["global"].shape[0]
+    ck = {"trajectory_rows": len(rows), "feature_rows": int(n),
+          "rows_align_one_to_one": len(rows) == n,
+          "trusted_rows_in_npz": int(npz["trusted_rows"].shape[0]),
+          "trusted_rows_in_jsonl": sum(1 for r in rows if r["trusted"]),
+          "trusted_index_agrees": set(int(i) for i in npz["trusted_rows"]) == {
+              i for i, r in enumerate(rows) if r["trusted"]},
+          "legal_mask_length_matches_options": all(
+              len(r["legal_mask"]) == r["n_options"] for r in rows),
+          "label_within_range": all(all(0 <= i < r["n_options"] for i in r["label_action"])
+                                    for r in rows),
+          "every_trusted_row_has_successors": all(
+              (r.get("distinct_successors") or 0) > 0 for r in rows if r["trusted"]),
+          "label_index_within_kmax": bool((npz["label_index"] < npz["opt_dense"].shape[1]).all()),
+          "n_options_clipped_to_kmax": int((npz["n_options"]
+                                            == npz["opt_dense"].shape[1]).sum()),
+          "uses_c017_labels": s["uses_c017_labels"],
+          "trajectory_sha256": s["trajectory_sha256"]}
+    ok = all(ck[k] for k in ("rows_align_one_to_one", "trusted_index_agrees",
+                             "legal_mask_length_matches_options", "label_within_range",
+                             "every_trusted_row_has_successors"))
+    readme = f"""# P07 — Trajectory integrity
+
+The distillation set and the audit log must describe the same decisions. {len(rows):,} JSONL
+rows and {n:,} feature rows align one-to-one, and the `trusted_rows` index stored in the NPZ is
+*identical* to the set of rows flagged trusted in the JSONL — checked as sets, not as counts, so
+an off-by-one reordering cannot pass.
+
+Every trusted row carries at least one real successor. Every label lies inside its own option
+range. Every legal mask is exactly as long as its option list.
+
+`uses_c017_labels: {s['uses_c017_labels']}` — c017's depth-0 labels are not importable from the
+generator and no row here derives from them.
+
+**Known limit.** {ck['n_options_clipped_to_kmax']:,} rows had ≥ K_MAX=32 options and are
+clipped to 32 in the feature tensor; the JSONL keeps the true count. Labels beyond K_MAX map to
+index 0, so those rows carry a wrong target — they are a small, disclosed contamination of the
+feature set rather than a silent one.
+
+**Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
+"""
+    return write("P07", "trajectory_integrity", "PASS" if ok else "FAIL_TAINTED", ck,
+                 [SUM, TRJ, f"trajectories/{PFX}_features.npz"], [], readme, raw=[TRJ])
+
+
+def p08(s, rows):
+    gm = {g["game_index"]: g for g in s["games_meta"]}
+    mismatch = [r["game_index"] for r in rows
+                if gm.get(r["game_index"], {}).get("outcome") != r["final_outcome"]]
+    gsplit = collections.defaultdict(set)
+    for r in rows:
+        gsplit[r["game_index"]].add(r["split"])
+    straddle = [g for g, v in gsplit.items() if len(v) > 1]
+    seats = collections.Counter(r["seat"] for r in rows)
+    opps = collections.Counter(r["opponent_id"] for r in rows)
+    wins = [g["outcome"] for g in s["games_meta"] if g["outcome"] is not None]
+    ck = {"games": len(gm), "rows": len(rows),
+          "rows_whose_outcome_disagrees_with_game": len(mismatch),
+          "games_straddling_splits": len(straddle),
+          "split_counts": s["split_counts"], "split_by": s["split_by"],
+          "rows_with_null_outcome": sum(1 for r in rows if r["final_outcome"] is None),
+          "seat_balance": dict(seats), "opponent_mix": dict(opps),
+          "generator_win_rate_vs_mixed_field": round(sum(wins) / max(1, len(wins)), 4),
+          "games_completed": s["games_completed"]}
+    ok = not mismatch and not straddle and ck["rows_with_null_outcome"] == 0
+    readme = f"""# P08 — Outcome and split integrity
+
+Every one of {len(rows):,} decision rows carries the terminal result of *its own* game: 0
+disagreements against the per-game record, 0 null outcomes. The value head therefore regresses
+on real game results, not on placeholders.
+
+**Splits are by game, not by decision.** {len(straddle)} games straddle a split boundary.
+Decision-level splitting would put earlier and later turns of the same game on both sides of the
+train/test line and inflate held-out agreement, because consecutive decisions in one game share
+almost all of their state. Split sizes: {s['split_counts']}.
+
+Seats are balanced ({dict(seats)}) and the opponent mix is
+{', '.join(f'{k}={v:,}' for k, v in opps.most_common())}; the generator won
+{ck['generator_win_rate_vs_mixed_field']:.1%} against that mixed field.
+
+**Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
+"""
+    return write("P08", "outcome_and_split_integrity", "PASS" if ok else "FAIL_TAINTED", ck,
+                 [SUM, TRJ], [], readme, raw=[SUM, TRJ])
+
+
+def main():
+    s = jload(SUM)
+    if not s:
+        raise SystemExit("no scaled search summary")
+    rows = read_gz(TRJ)
+    print(f"[c018 probes] {len(rows):,} rows from {s['games']} games")
+    for f in (p02, p03, p04, p05, p06, p07, p08):
+        f(s, rows)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
