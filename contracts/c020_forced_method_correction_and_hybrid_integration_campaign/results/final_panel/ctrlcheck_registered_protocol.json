@@ -1,0 +1,39 @@
+{
+  "tag": "ctrlcheck",
+  "candidates": [
+    "BASELINE_OFFICIAL_MEGA_LUCARIO",
+    "C019_BYTERL_CONTROL",
+    "C019_PIMC_PUCT_CONTROL"
+  ],
+  "opponents": [
+    "dragapult",
+    "mega_lucario",
+    "iono",
+    "mega_abomasnow"
+  ],
+  "games_per_pair": 1,
+  "total_games": 12,
+  "frozen_at_commit": "a8bacba64095b4ffafd244e6214844ac90504a4b",
+  "config": {
+    "c020_mcts": {
+      "simulations_total": 32,
+      "determinizations": 4,
+      "max_ms_per_decision": 150
+    },
+    "c019_mcts": {
+      "simulations_per_determinization": 12,
+      "determinizations": 1,
+      "max_ms_per_decision": 120
+    },
+    "c019_byterl_checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40357.pt",
+    "c020_byterl_checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/checkpoints/brlsmoke/brlsmoke_final_v000088.pt",
+    "prior_admitted": false,
+    "value_admitted": false
+  },
+  "seat_assignment": "alternating by pair index; identical across candidates",
+  "identical_opponent_and_seat_schedule_across_candidates": true,
+  "identical_agent_side_seeds_across_candidates": true,
+  "identical_environment_randomness_across_candidates": false,
+  "environment_randomness_note": "make(\"cabt\") exposes actTimeout/episodeSteps/runTimeout but NO seed, so shuffles and coin flips are not paired between candidates. Differences smaller than the reported Wilson interval are not attributable to the candidate.",
+  "results_paired_by": "game_id (never by list position)"
+}

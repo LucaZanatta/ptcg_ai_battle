@@ -1,0 +1,14 @@
+{
+  "mode": "H4",
+  "spec": {
+    "priors": "byterl",
+    "value": "blend(alpha=0.5)"
+  },
+  "checkpoint": "brlsmoke_final_v000088.pt",
+  "prior_admission_passed": false,
+  "value_admission_passed": false,
+  "promotable": false,
+  "h4_alpha": 0.5,
+  "h4_alpha_version": "c020.h4_alpha.v1",
+  "note": "C2/C4: H2-H4 execute at smoke scale even when value admission fails, but are non-promotable until it passes"
+}

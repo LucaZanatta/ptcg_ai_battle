@@ -1,0 +1,44 @@
+{
+  "n": 115,
+  "constant_mean_value": 0.3913,
+  "metrics": {
+    "c020_byterl_value": {
+      "mse": 0.94536,
+      "corr": -0.0096,
+      "brier": 0.23634
+    },
+    "tactical_heuristic": {
+      "mse": 0.86375,
+      "corr": 0.09953,
+      "brier": 0.21594
+    },
+    "c019_value_control": {
+      "mse": 0.86961,
+      "corr": 0.29497,
+      "brier": 0.2174
+    },
+    "constant_mean": {
+      "mse": 0.84688,
+      "corr": 0.0,
+      "brier": 0.21172
+    },
+    "random_ranking": {
+      "mse": 1.30882,
+      "corr": 0.00246,
+      "brier": 0.32721
+    }
+  },
+  "admitted": false,
+  "controls": [
+    "constant_mean",
+    "c019_value_control",
+    "random_ranking",
+    "tactical_heuristic"
+  ],
+  "rule": "C4: must beat constant AND tactical heuristic on MSE, out-rank random, and not be worse than the c019 value control",
+  "checkpoint": "brlsmoke_final_v000088.pt",
+  "leaves": 115,
+  "games_played": 30,
+  "games_completed": 30,
+  "held_out": "leaves come from frozen-baseline games the checkpoint never trained on; label is the eventual result from the snapshotted seat"
+}

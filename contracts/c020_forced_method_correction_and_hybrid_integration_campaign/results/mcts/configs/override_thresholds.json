@@ -1,0 +1,38 @@
+{
+  "version": "c020.override.v2",
+  "thresholds": {
+    "min_simulations": 48,
+    "min_determinizations": 3,
+    "min_availability": 3,
+    "min_visit_share": 0.25,
+    "min_q_margin": 0.08,
+    "min_agreement": 0.6,
+    "pivotal_min_determinizations": 4
+  },
+  "vetoes": [
+    "unsupported_effect_flag",
+    "unsafe_latency_flag",
+    "insufficient_simulations",
+    "insufficient_determinizations",
+    "no_candidate",
+    "unproductive_end_turn_veto",
+    "candidate_rarely_available",
+    "visit_share",
+    "q_margin",
+    "determinization_disagreement",
+    "unstable_tie",
+    "pivotal_needs_more_determinizations"
+  ],
+  "registration": {
+    "when": "after the c020 smoke, before scaled evaluation (DECISION_RULES)",
+    "min_visit_share_basis": "uniform allocation over the credible set of 4 actions is 0.25; a candidate must exceed what even spreading would give it",
+    "smoke_distribution_visit_share_blocked": {
+      "p50": 0.182,
+      "p75": 0.22,
+      "p90": 0.25,
+      "max": 0.297
+    },
+    "not_tuned_against_panel_results": true
+  },
+  "rationale": "c018 measured that random overrides at the same rate reproduce the collapse of real search overrides (0.192 vs 0.210, against 0.596 for never overriding). The right to override is earned per decision."
+}

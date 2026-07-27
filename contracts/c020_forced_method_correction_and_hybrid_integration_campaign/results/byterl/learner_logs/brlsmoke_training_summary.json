@@ -1,0 +1,151 @@
+{
+  "tag": "brlsmoke",
+  "device": "cuda",
+  "initialized_from": "FRESH_RANDOM",
+  "init_param_sha256": "74f01142b6f52628e5a1851da040034fdc65277859af427c16cadd2cf556bc1c",
+  "learning_periods": 2,
+  "actual_games": 80,
+  "completed_games": 80,
+  "optimizer_steps": 88,
+  "multiselect_decisions": 7,
+  "multiselect_contexts_seen": 54,
+  "midgame_unrolls_logged": 278,
+  "midgame_unrolls_with_state": 278,
+  "historical_pool": 2,
+  "immutability": {
+    "historical": 2,
+    "verified": 2,
+    "mutated_or_missing": [],
+    "all_immutable": true,
+    "hashes": {
+      "0": "5e3c0d9dcde9f8c44f946dc279242003acb4ce1e9f31cecf0a735cab04afdc16",
+      "1": "16034b42b6908ccb6579d63f264e21a3ca7e1abdd3c0bdf824026ae46a8b0a3b"
+    }
+  },
+  "population": {
+    "version": "c020.osfp.v1",
+    "size": 2,
+    "models": [
+      {
+        "index": 0,
+        "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/osfp/historical_checkpoints/brlsmoke/historical_000_lp000_v000043.pt",
+        "sha256": "5e3c0d9dcde9f8c44f946dc279242003acb4ce1e9f31cecf0a735cab04afdc16",
+        "training_step": 43,
+        "learning_period": 0,
+        "creation_reason": "FIRST_HISTORICAL",
+        "payoff_row": {
+          "lp": 0,
+          "size": 0,
+          "G": [],
+          "C": [],
+          "win_rates": [],
+          "mean_payoffs": [],
+          "frozen_checkpoint_sha256": null,
+          "evaluation_games": 0,
+          "period_local": true,
+          "note": "allocated fresh at period start; c019 accumulated across periods (C019_AUDIT_FINDINGS #12)"
+        },
+        "source_evaluation_ids": []
+      },
+      {
+        "index": 1,
+        "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/osfp/historical_checkpoints/brlsmoke/historical_001_lp001_v000088.pt",
+        "sha256": "16034b42b6908ccb6579d63f264e21a3ca7e1abdd3c0bdf824026ae46a8b0a3b",
+        "training_step": 88,
+        "learning_period": 1,
+        "creation_reason": "PERFORMANCE_PROMOTION",
+        "payoff_row": {
+          "lp": 1,
+          "size": 1,
+          "G": [
+            6.0
+          ],
+          "C": [
+            40
+          ],
+          "win_rates": [
+            0.575
+          ],
+          "mean_payoffs": [
+            0.15
+          ],
+          "frozen_checkpoint_sha256": "16034b42b6908ccb6579d63f264e21a3ca7e1abdd3c0bdf824026ae46a8b0a3b",
+          "evaluation_games": 40,
+          "period_local": true,
+          "note": "allocated fresh at period start; c019 accumulated across periods (C019_AUDIT_FINDINGS #12)"
+        },
+        "source_evaluation_ids": [
+          "brlsmoke:eval:lp1:h0:g0",
+          "brlsmoke:eval:lp1:h0:g6",
+          "brlsmoke:eval:lp1:h0:g12",
+          "brlsmoke:eval:lp1:h0:g18",
+          "brlsmoke:eval:lp1:h0:g24",
+          "brlsmoke:eval:lp1:h0:g30",
+          "brlsmoke:eval:lp1:h0:g36",
+          "brlsmoke:eval:lp1:h0:g1",
+          "brlsmoke:eval:lp1:h0:g7",
+          "brlsmoke:eval:lp1:h0:g13",
+          "brlsmoke:eval:lp1:h0:g19",
+          "brlsmoke:eval:lp1:h0:g25",
+          "brlsmoke:eval:lp1:h0:g31",
+          "brlsmoke:eval:lp1:h0:g37",
+          "brlsmoke:eval:lp1:h0:g2",
+          "brlsmoke:eval:lp1:h0:g8",
+          "brlsmoke:eval:lp1:h0:g14",
+          "brlsmoke:eval:lp1:h0:g20",
+          "brlsmoke:eval:lp1:h0:g26",
+          "brlsmoke:eval:lp1:h0:g32",
+          "brlsmoke:eval:lp1:h0:g38",
+          "brlsmoke:eval:lp1:h0:g3",
+          "brlsmoke:eval:lp1:h0:g9",
+          "brlsmoke:eval:lp1:h0:g15",
+          "brlsmoke:eval:lp1:h0:g21",
+          "brlsmoke:eval:lp1:h0:g27",
+          "brlsmoke:eval:lp1:h0:g33",
+          "brlsmoke:eval:lp1:h0:g39",
+          "brlsmoke:eval:lp1:h0:g4",
+          "brlsmoke:eval:lp1:h0:g10",
+          "brlsmoke:eval:lp1:h0:g16",
+          "brlsmoke:eval:lp1:h0:g22",
+          "brlsmoke:eval:lp1:h0:g28",
+          "brlsmoke:eval:lp1:h0:g34",
+          "brlsmoke:eval:lp1:h0:g5",
+          "brlsmoke:eval:lp1:h0:g11",
+          "brlsmoke:eval:lp1:h0:g17",
+          "brlsmoke:eval:lp1:h0:g23",
+          "brlsmoke:eval:lp1:h0:g29",
+          "brlsmoke:eval:lp1:h0:g35"
+        ]
+      }
+    ],
+    "mixture": [
+      0.247833,
+      0.752167
+    ]
+  },
+  "final_checkpoint": "brlsmoke_final_v000088.pt",
+  "final_checkpoint_sha256": "4e64ca3ee74bff569282904dc76cac694244bbfa9f15cc8e182ef1323b1eab97",
+  "hyperparameters": {
+    "lstm_hidden": 256,
+    "gamma": 1.0,
+    "learning_rate": 7e-05,
+    "entropy_coef": 0.01,
+    "value_coef": 0.5,
+    "upgo_coef": 1.0,
+    "sample_reuse": 2,
+    "unroll_length": 16,
+    "minibatch_unrolls": 8,
+    "queue_capacity": 8192,
+    "grad_clip": 10.0,
+    "ppo_eps": 0.2,
+    "rho_clip": [
+      0.001,
+      1.007
+    ],
+    "p_current_self_play": 0.6,
+    "xi_promotion": 0.55,
+    "max_lp_without_add": 6,
+    "source": "arXiv 2303.05197 Table III/IV; unchanged from c019 registration"
+  },
+  "seconds": 42.3
+}

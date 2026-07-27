@@ -1,0 +1,212 @@
+{
+  "name": "c020_mcts_smoke",
+  "kind": "mcts",
+  "zip": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/packages/corrected_mcts/c020_mcts_smoke.zip",
+  "sha256": "1859957ce456a113f050fc924a5405506a0cf6633726f6c9f4ea21213924ea0a",
+  "bytes": 551699,
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "config": {
+    "mcts": {
+      "simulations_total": 48,
+      "determinizations": 4,
+      "max_ms_per_decision": 200
+    },
+    "mode": "mcts",
+    "seed": 0
+  },
+  "modules": [
+    "api",
+    "c009_eval",
+    "c019_baseline",
+    "c019_core",
+    "c019_determinize",
+    "c019_mcts",
+    "c020_agent",
+    "c020_baseline_memory",
+    "c020_cards",
+    "c020_determinize",
+    "c020_infoset",
+    "c020_ismcts",
+    "c020_override",
+    "c020_tactical_leaf",
+    "teachers"
+  ],
+  "source_map": [
+    {
+      "source": "cg/__init__.py",
+      "archive_path": "cg/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "cg/api.py",
+      "archive_path": "cg/api.py",
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced"
+    },
+    {
+      "source": "cg/game.py",
+      "archive_path": "cg/game.py",
+      "sha256": "3bd3d4f4a369a11e6d2f5da9094cf15ebc410a2221835e6417b7cff4883f1fc2"
+    },
+    {
+      "source": "cg/libcg.so",
+      "archive_path": "cg/libcg.so",
+      "sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb"
+    },
+    {
+      "source": "cg/sim.py",
+      "archive_path": "cg/sim.py",
+      "sha256": "e7a804ee4cd7c5a9a3b8dc91f9581ff3585f9431633a41f33d7707194cb31191"
+    },
+    {
+      "source": "cg/utils.py",
+      "archive_path": "cg/utils.py",
+      "sha256": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b"
+    },
+    {
+      "source": "starter_kit/api.py",
+      "archive_path": "cg/api.py",
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced"
+    },
+    {
+      "source": "starter_kit/c009_eval.py",
+      "archive_path": "cg/c009_eval.py",
+      "sha256": "d0f6619af20e3539721c5494d06e9e0d4a9b3d57f24d2447d3856053d0b4d60b"
+    },
+    {
+      "source": "starter_kit/c019_baseline.py",
+      "archive_path": "cg/c019_baseline.py",
+      "sha256": "c9140863f1bf99721b0a970d7cdf9a88b9ab09766e066ca2607adbb8627f3db0"
+    },
+    {
+      "source": "starter_kit/c019_core.py",
+      "archive_path": "cg/c019_core.py",
+      "sha256": "e577c368b9238238d288bffd91bb12341620cf85bd9be3dea9492341b2c52a3c"
+    },
+    {
+      "source": "starter_kit/c019_determinize.py",
+      "archive_path": "cg/c019_determinize.py",
+      "sha256": "843c7a4169aee91717d63c7e519c556cb308787508cc223073674f0e64fef5dd"
+    },
+    {
+      "source": "starter_kit/c019_mcts.py",
+      "archive_path": "cg/c019_mcts.py",
+      "sha256": "91df3ea5e1a7f8c5f09272d36d27569c5daa8021451cdfaf3185634685c4b1bd"
+    },
+    {
+      "source": "starter_kit/c020_agent.py",
+      "archive_path": "cg/c020_agent.py",
+      "sha256": "3bb54958ef327a380717bdd07622e8d496a54c21229367724a3c794df6e3a0b1"
+    },
+    {
+      "source": "starter_kit/c020_baseline_memory.py",
+      "archive_path": "cg/c020_baseline_memory.py",
+      "sha256": "a618a1f996a72374bd0fe72a1cba02dafd4386a10af6be8112cfb92369593e99"
+    },
+    {
+      "source": "starter_kit/c020_cards.py",
+      "archive_path": "cg/c020_cards.py",
+      "sha256": "f67286eb96638f8cf74b7313c7c203fe91e8f374b46c552d048cc4989056541e"
+    },
+    {
+      "source": "starter_kit/c020_determinize.py",
+      "archive_path": "cg/c020_determinize.py",
+      "sha256": "4ff753ccd178cf110e86808f26d9460c14487e59dd84ff5170adcc1a4577de22"
+    },
+    {
+      "source": "starter_kit/c020_infoset.py",
+      "archive_path": "cg/c020_infoset.py",
+      "sha256": "613c6063478cf2f693f1ade8a68a9740a6bc5fed7ddef170ac837362c36ed8e9"
+    },
+    {
+      "source": "starter_kit/c020_ismcts.py",
+      "archive_path": "cg/c020_ismcts.py",
+      "sha256": "6857306a717804c3de92ba7cbbe540df6efebb77bffd932683bb7c87cd79b016"
+    },
+    {
+      "source": "starter_kit/c020_override.py",
+      "archive_path": "cg/c020_override.py",
+      "sha256": "05a3ef37b3a112c9deb6f1adc2df3763a3e237d7a843dffd911a65a8efa2e7fd"
+    },
+    {
+      "source": "starter_kit/c020_tactical_leaf.py",
+      "archive_path": "cg/c020_tactical_leaf.py",
+      "sha256": "2cadabdecf31fc63c669c12732f1bb0188db10d696168fd559706853fa6ac466"
+    },
+    {
+      "source": "starter_kit/teachers.py",
+      "archive_path": "cg/teachers.py",
+      "sha256": "241953f15cdaba4d13355dc8a7a98a6cbdf3d8884fd89ab9f5b491adc3658fb6"
+    },
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/main.py",
+      "archive_path": "_baseline_agent.py",
+      "sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2"
+    },
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/deck.csv",
+      "archive_path": "deck.csv",
+      "sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee"
+    },
+    {
+      "source": "starter_kit/c019_baseline.py (baseline path rebound to package)",
+      "archive_path": "cg/c019_baseline.py",
+      "sha256": "730bfe7fc8a5f783ea50cea014383a4565270d6ad6c297166acfb56dd2c37760"
+    },
+    {
+      "source": "starter_kit/c019_determinize.py (decklists baked in)",
+      "archive_path": "cg/c019_determinize.py",
+      "sha256": "4692a1a1cdf8390bb24cf5f395ee922aecedfbdc90de5d909e698302de818774"
+    },
+    {
+      "source": "generated by tools/c020_package.py",
+      "archive_path": "main.py",
+      "sha256": "e1651e902fab59c3ce16a79576ca7ef5ead7f4daaf9257aea43e4eeff9325a48"
+    }
+  ],
+  "repo_commit": "a8bacba64095b4ffafd244e6214844ac90504a4b",
+  "validation": {
+    "clean_extraction_ok": true,
+    "raw_stderr": "",
+    "games": 3,
+    "completed": 3,
+    "wins": 2.0,
+    "errors": [],
+    "both_seats": true,
+    "stats": {
+      "decisions": 217,
+      "searched": 196,
+      "overrides": 0,
+      "fallbacks": 0,
+      "timeouts": 0,
+      "exceptions": [],
+      "counters": {
+        "decisions": 214,
+        "searched_decisions": 196,
+        "simulations": 4300,
+        "step_calls": 40624,
+        "step_ok": 39474,
+        "step_errors": 1150,
+        "begin_calls": 784,
+        "release_calls": 40258,
+        "expansions": 3966,
+        "nonroot_expansions": 2153,
+        "rollout_steps": 35508,
+        "rollout_baseline_calls": 32725,
+        "rollout_stochastic_calls": 3709,
+        "backups": 4300,
+        "backup_nodes": 8260,
+        "leaf_evals": 4300,
+        "determinizations_attempted": 784,
+        "determinizations_legal": 784,
+        "depth_sum": 3960,
+        "max_depth_seen": 5,
+        "override_opportunities": 196,
+        "vetoes": 196,
+        "infoset_shared_updates": 8260
+      }
+    },
+    "method_actually_ran": true,
+    "win_rate": 0.6667
+  }
+}

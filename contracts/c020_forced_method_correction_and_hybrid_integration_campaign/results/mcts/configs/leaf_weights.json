@@ -1,0 +1,43 @@
+{
+  "version": "c020.leaf.v1",
+  "weights": {
+    "terminal": 1.0,
+    "lethal": 0.9,
+    "ko_value": 0.22,
+    "prizes_taken": 0.26,
+    "damage_dealt": 0.12,
+    "productive_attack": 0.13,
+    "attack_enabled": 0.07,
+    "active_ready": 0.08,
+    "backup_ready": 0.045,
+    "typed_energy_ready": 0.06,
+    "energy_waste": -0.055,
+    "survival": 0.15,
+    "target_prize_value": 0.07,
+    "bench_liability": -0.08,
+    "critical_resource_cost": -0.06,
+    "future_prize_route": 0.07,
+    "flexibility": 0.035,
+    "unproductive_end_turn": -0.23
+  },
+  "features": [
+    "terminal",
+    "lethal",
+    "ko_value",
+    "prizes_taken",
+    "damage_dealt",
+    "productive_attack",
+    "attack_enabled",
+    "active_ready",
+    "backup_ready",
+    "typed_energy_ready",
+    "energy_waste",
+    "survival",
+    "target_prize_value",
+    "bench_liability",
+    "critical_resource_cost",
+    "future_prize_route",
+    "flexibility",
+    "unproductive_end_turn"
+  ]
+}

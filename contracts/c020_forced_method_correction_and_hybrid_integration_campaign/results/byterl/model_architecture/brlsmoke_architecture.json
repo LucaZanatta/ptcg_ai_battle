@@ -1,0 +1,49 @@
+{
+  "version": "c020.byterl.model.v1",
+  "cfg": {
+    "d_board": 96,
+    "d_hand": 64,
+    "d_ctx": 192,
+    "lstm_hidden": 256,
+    "d_opt": 96,
+    "version": "c020.byterl.model.v1",
+    "encoder": "c020.enc.v1"
+  },
+  "parameters": 776066,
+  "encoder": {
+    "version": "c020.enc.v1",
+    "board_slots": 12,
+    "bench_slots": 5,
+    "board_dim": 35,
+    "hand_dim": 8,
+    "global_dim": 24,
+    "opt_dim": 28,
+    "n_opt": 40,
+    "n_hand": 12,
+    "energy_types": 12,
+    "slot_order": [
+      "my_active",
+      "my_bench_1",
+      "my_bench_2",
+      "my_bench_3",
+      "my_bench_4",
+      "my_bench_5",
+      "opp_active",
+      "opp_bench_1",
+      "opp_bench_2",
+      "opp_bench_3",
+      "opp_bench_4",
+      "opp_bench_5"
+    ],
+    "null_token_index": 12,
+    "corrects": [
+      "#7 active/bench pooled",
+      "#8 energy type/status/tool/target refs"
+    ]
+  },
+  "corrects": [
+    "#7 slot pooling (slot_pos + per-slot gather)",
+    "#8 typed energy/status/tool/target (encoder + opt_src/opt_tgt)",
+    "#9 first-pick-only (select_autoregressive / joint_logp_of)"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "tag": "mctssmoke",
+  "config": {
+    "c_puct": 1.5,
+    "determinizations": 4,
+    "simulations_total": 64,
+    "max_depth": 16,
+    "credible_alternatives": 3,
+    "max_ms_per_decision": 300,
+    "rollout_max_steps": 12,
+    "rollout_stochastic_p": 0.1,
+    "progressive_k": 1.0,
+    "progressive_alpha": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.05,
+    "availability_aware": true
+  },
+  "games": 8,
+  "errors": 0,
+  "completed": 8,
+  "decisions": 594,
+  "searched_decisions": 544,
+  "simulations": 24267,
+  "step_calls": 232960,
+  "step_ok": 223629,
+  "step_errors": 9331,
+  "begin_calls": 2176,
+  "begin_errors": 0,
+  "release_calls": 225805,
+  "release_errors": 0,
+  "expansions": 22512,
+  "nonroot_expansions": 14240,
+  "rollout_steps": 201117,
+  "rollout_baseline_calls": 188035,
+  "rollout_stochastic_calls": 20932,
+  "backups": 24267,
+  "backup_nodes": 53826,
+  "leaf_evals": 24267,
+  "terminal_leaves": 0,
+  "determinizations_attempted": 2176,
+  "determinizations_legal": 2176,
+  "determinizations_rejected": 0,
+  "chance_outcomes": 0,
+  "depth_sum": 29559,
+  "max_depth_seen": 71,
+  "overrides": 5,
+  "override_opportunities": 544,
+  "vetoes": 539,
+  "infoset_shared_updates": 53826,
+  "timeouts": 0,
+  "match_search_ms": 151112,
+  "shared_action_stats_multi_det": 456,
+  "info_sets_multi_det": 222,
+  "sampled_full_traces": 48,
+  "decisions_with_4_determinizations": 544,
+  "per_opponent": {
+    "dragapult": {
+      "games": 2,
+      "rate": 0.0
+    },
+    "mega_lucario": {
+      "games": 2,
+      "rate": 0.5
+    },
+    "iono": {
+      "games": 2,
+      "rate": 0.5
+    },
+    "mega_abomasnow": {
+      "games": 2,
+      "rate": 0.5
+    }
+  },
+  "field_score": 0.375,
+  "latency": {
+    "max_match_search_ms": 25416.0,
+    "mean_match_search_ms": 18889.0,
+    "max_game_seconds": 26.26
+  },
+  "wall_clock_s": 48.9
+}
