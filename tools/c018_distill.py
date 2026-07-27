@@ -250,8 +250,11 @@ def main(argv=None):
         "history": hist,
         "wall_clock_s": round(time.time() - t0, 1),
     }
-    json.dump(rep, open(os.path.join(TRAIN, "distillation_report.json"), "w"), indent=2,
-              default=str)
+    json.dump(rep, open(os.path.join(TRAIN, f"{a.tag}_distillation_report.json"), "w"),
+              indent=2, default=str)
+    if a.tag == "m02_distilled":          # canonical alias, never written by a smoke tag
+        json.dump(rep, open(os.path.join(TRAIN, "distillation_report.json"), "w"), indent=2,
+                  default=str)
     print(json.dumps({k: rep[k] for k in
                       ("device", "optimizer_steps", "losses_finite", "checkpoint_changed",
                        "distinct_epoch_hashes", "reload_metrics_identical", "rows_trusted",

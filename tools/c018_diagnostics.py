@@ -36,7 +36,7 @@ def _quant(ms):
             "max": round(ms[-1], 2), "mean": round(sum(ms) / len(ms), 2)}
 
 
-def latency_and_guidance(policy_npz, games=6):
+def latency_and_guidance(policy_npz, games=6, prefix=""):
     """One pass that answers both P16 (cost) and P15 (effect), at the same roots."""
     from kaggle_environments import make
     from cg import teachers as T, c009_eval as ce
@@ -78,7 +78,7 @@ def latency_and_guidance(policy_npz, games=6):
     out["leaf_rows_failed"] = guide.stats["leaf_rows_failed"]
     out["order_failed"] = guide.stats["order_failed"]
     out["leaf_rows_ok"] = guide.stats["leaf_rows_ok"]
-    json.dump(out, open(os.path.join(ART, "guided_latency.json"), "w"), indent=2, default=str)
+    json.dump(out, open(os.path.join(ART, f"{prefix}guided_latency.json"), "w"), indent=2, default=str)
 
     # ---- P15: same roots, both valuations ----
     cmp_rows = []
@@ -136,7 +136,7 @@ def latency_and_guidance(policy_npz, games=6):
             "method": ("both valuations computed on identical successors inside one search "
                        "tree; no separate guided/unguided playthroughs"),
             "sample": cmp_rows[:25]}
-    json.dump(comp, open(os.path.join(ART, "guidance_comparison.json"), "w"), indent=2,
+    json.dump(comp, open(os.path.join(ART, f"{prefix}guidance_comparison.json"), "w"), indent=2,
               default=str)
     return out, comp
 
@@ -187,9 +187,10 @@ def main(argv=None):
     ap.add_argument("--policy", default=os.path.join(CKPT, "m03_curriculum.npz"))
     ap.add_argument("--games", type=int, default=6)
     ap.add_argument("--skip-continuation", action="store_true")
+    ap.add_argument("--out-prefix", default="")
     a = ap.parse_args(argv)
     os.makedirs(ART, exist_ok=True)
-    lat, comp = latency_and_guidance(a.policy, a.games)
+    lat, comp = latency_and_guidance(a.policy, a.games, a.out_prefix)
     print(json.dumps({"latency": {k: lat[k] for k in ("unguided", "guided")},
                       "guidance": {k: comp[k] for k in
                                    ("roots", "order_changed", "action_changed",

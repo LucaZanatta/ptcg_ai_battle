@@ -261,8 +261,11 @@ def main(argv=None):
         "history": history,
         "wall_clock_s": round(time.time() - t0, 1),
     }
-    json.dump(rep, open(os.path.join(TRAIN, "curriculum_report.json"), "w"), indent=2,
-              default=str)
+    json.dump(rep, open(os.path.join(TRAIN, f"{a.tag}_curriculum_report.json"), "w"),
+              indent=2, default=str)
+    if a.tag == "m03_curriculum":         # canonical alias, never written by a smoke tag
+        json.dump(rep, open(os.path.join(TRAIN, "curriculum_report.json"), "w"), indent=2,
+                  default=str)
     print(json.dumps({k: rep[k] for k in
                       ("actual_simulator_games", "games_completed", "optimizer_steps",
                        "losses_finite", "distinct_checkpoint_hashes", "wall_clock_s")},

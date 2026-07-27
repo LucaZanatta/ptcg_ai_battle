@@ -143,6 +143,9 @@ def main(argv=None):
     ap.add_argument("--games-per-pair", type=int, default=40)
     ap.add_argument("--nproc", type=int, default=8)
     ap.add_argument("--seed", type=int, default=1805)
+    ap.add_argument("--out-prefix", default="",
+                    help="namespace outputs so a smoke run cannot clobber the "
+                         "scaled panel")
     a = ap.parse_args(argv)
     cands = [c for c in a.candidates.split(",") if c]
 
@@ -171,7 +174,7 @@ def main(argv=None):
         for j in jobs:
             rows.append(play_one(j))
 
-    raw = os.path.join(PANEL, "raw_games.jsonl.gz")
+    raw = os.path.join(PANEL, f"{a.out_prefix}raw_games.jsonl.gz")
     with gzip.open(raw, "wt") as fh:
         for r in rows:
             fh.write(json.dumps(r, default=str) + "\n")
@@ -213,7 +216,7 @@ def main(argv=None):
     with open(raw, "rb") as fh:
         for c in iter(lambda: fh.read(1 << 20), b""):
             h.update(c)
-    json.dump(results, open(os.path.join(PANEL, "final_panel_results.json"), "w"), indent=2,
+    json.dump(results, open(os.path.join(PANEL, f"{a.out_prefix}final_panel_results.json"), "w"), indent=2,
               default=str)
     meta = {"probe_id": "P17", "candidates": cands, "opponents": OPPONENTS,
             "games_per_pair": a.games_per_pair, "planned_games": len(jobs),
@@ -224,7 +227,7 @@ def main(argv=None):
             "raw_file": os.path.relpath(raw, C18), "raw_sha256": h.hexdigest(),
             "wall_clock_s": round(time.time() - t0, 1),
             "ranking_rule": "overall_rate desc, then worst_matchup_rate desc (pre-registered)"}
-    json.dump(meta, open(os.path.join(PANEL, "panel_meta.json"), "w"), indent=2, default=str)
+    json.dump(meta, open(os.path.join(PANEL, f"{a.out_prefix}panel_meta.json"), "w"), indent=2, default=str)
     print(json.dumps(meta, indent=2, default=str))
     for r in results:
         print(f"  {r['candidate_id']:26s} n={r['games']:4d} overall={r['overall_rate']} "
