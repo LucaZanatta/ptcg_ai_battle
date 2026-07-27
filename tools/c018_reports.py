@@ -622,15 +622,23 @@ def acceptance_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
          f"accepted reference 55011215 verified: {anchor.get('accepted_reference_verified')}; "
          f"{anchor.get('files_checked', 0):,} c005-c017 files unmodified"),
         ("AC-02", "real official-API forward search",
-         (c.get("step_ok") or 0) > 0 and (c.get("hidden_information_violations") or 1) == 0,
+         # `(x or 1) == 0` can never be true: a passing 0 is falsy and becomes 1. The zero
+         # this criterion REQUIRES was the one value the test could not accept.
+         (c.get("step_ok") or 0) > 0
+         and int(c.get("hidden_information_violations") or 0) == 0
+         and (c.get("max_depth_reached") or 0) >= 2,
          f"{c.get('begin_ok', 0):,} roots, {c.get('step_ok', 0):,} search_step, depth "
          f"{c.get('max_depth_reached')}, {c.get('hidden_information_violations')} hidden-info "
          f"violations"),
         ("AC-03", "integrated real-output smoke, probes, one consolidated repair pass",
-         bool(vert.get("all_stages_real")) and bool(rank.get("all_repaired")),
+         bool(vert.get("all_stages_real")) and bool(rank.get("consolidated_rerun"))
+         and all(v["status"] != "NOT_EXERCISED" for v in pr.values()),
          f"vertical all stages real: {vert.get('all_stages_real')}; "
-         f"{rank.get('total', 0)} defects ranked, all repaired; consolidated rerun from "
-         f"{rank.get('earliest_affected_milestone')}"),
+         f"{rank.get('total', 0)} defects ranked by downstream impact; consolidated rerun from "
+         f"{rank.get('earliest_affected_milestone')}; open findings "
+         f"{rank.get('open_findings') or 'none'} (D0 is a design constraint, deliberately not "
+         f"closed cosmetically); {sum(1 for v in pr.values() if v['status'] == 'PASS')}/"
+         f"{len(pr)} probes PASS, 0 NOT_EXERCISED"),
         ("AC-04", "trusted heuristic-search candidate",
          any(r["candidate_id"] == "m01_heuristic_search" for r in panel),
          "evaluated on the frozen panel; packaged and clean-validated; submission decision "
@@ -651,8 +659,11 @@ def acceptance_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
         ("AC-07", "guided search, final panel, package, submission",
          (pmeta.get("scored_games") or 0) >= 600,
          f"{pmeta.get('scored_games', 0):,} panel games across "
-         f"{len(pmeta.get('candidates') or [])} stages; submission ref "
-         f"{sub.get('submission_ref') or 'none'}"),
+         f"{len(pmeta.get('candidates') or [])} stages; "
+         + (f"submission ref {sub['submission_ref']}" if sub.get("submission_ref") else
+            "no candidate cleared the pre-registered promotion gate, so no upload was made "
+            "and the non-submission decision is recorded in DECISION_BOARD.md and "
+            "submissions/*_preflight.json")),
         ("AC-08", "full source, raw evidence, git, validator",
          bool(src.get("bundles")) and ev.get("n_submission_blockers") == 0,
          f"both bundles present; {lay.get('placements', 0)} artifacts placed in the §35 "

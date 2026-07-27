@@ -220,6 +220,26 @@ def milestone(mid, title, sources, configs, checkpoints, artifacts, command, ext
     return man
 
 
+def _non_submission_record():
+    rows = []
+    for p in sorted(glob.glob(os.path.join(C18, "submissions", "*_preflight.json"))):
+        d = json.load(open(p))
+        rows.append({"package": d.get("name"),
+                     "failed_gates": d.get("failed_gates"),
+                     "promotion_gate": d.get("promotion_gate")})
+    return {
+        "outcome": "NO_UPLOAD",
+        "rule": "DECISION_RULES.md §4 as corrected by Amendment 3, enforced in "
+                "tools/c018_submit.py:promotion_gate",
+        "reason": ("no candidate cleared any of the three pre-registered promotion clauses on "
+                   "the frozen panel; §34 forbids uploading a candidate known to be "
+                   "catastrophically weaker, and §6.1's accepted-submission floor is therefore "
+                   "unmet by decision rather than by omission"),
+        "consequence": "PASS is unreachable; PARTIAL is the honest status (§38)",
+        "per_package": rows,
+    }
+
+
 def build_milestones():
     import c018_search as S  # noqa: E402
     out = {}
@@ -227,7 +247,11 @@ def build_milestones():
     ss = jload(f"search/{PFX}_search_summary.json") or {}
     dr = jload("training/distillation_report.json") or {}
     cr = jload("training/curriculum_report.json") or {}
-    pk = sorted(glob.glob(os.path.join(C18, "packages", "*_manifest.json")))
+    # smoke packages are build-pipeline artifacts, not submission candidates; M05 is the
+    # milestone the submitted package must resolve to exactly (§35.4), so it lists only
+    # genuine candidates
+    pk = sorted(p for p in glob.glob(os.path.join(C18, "packages", "*_manifest.json"))
+                if os.path.basename(p).startswith("submission_"))
     sub = jload("submissions/post_baseline_submission.json") or {}
 
     out["M00_parent"] = milestone(
@@ -304,7 +328,11 @@ def build_milestones():
         "python tools/c018_package.py && python tools/c018_submit.py",
         {"packages": [jload(p) and {k: jload(p)[k] for k in ("name", "sha256", "bytes")}
                       for p in pk],
-         "submission": sub})
+         "submission": sub or None,
+         # §35.4: the submitted package must resolve to M05 exactly. When nothing was
+         # submitted, the DECISION not to submit is the milestone's content -- with the gate
+         # that refused it, so an auditor can check the refusal rather than take it on trust.
+         "submission_decision": _non_submission_record() if not sub else "submitted"})
     return out
 
 
