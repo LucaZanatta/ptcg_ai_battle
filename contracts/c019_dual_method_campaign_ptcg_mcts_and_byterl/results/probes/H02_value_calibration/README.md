@@ -1,12 +1,12 @@
 # H02 — Value calibration
 
-`ByteRLLeafValue` starts uncalibrated and REFUSES to return a value until calibration explicitly enables it. The gate was RUN, not assumed: 1852 held-out leaves drawn from 400 baseline games the checkpoint never trained on, each labelled with the eventual result from the snapshotted seat.
+`ByteRLLeafValue` starts uncalibrated and REFUSES to return a value until calibration explicitly enables it. The gate was RUN, not assumed: 1847 held-out leaves drawn from 400 baseline games the checkpoint never trained on, each labelled with the eventual result from the snapshotted seat.
 
 | evaluator | MSE vs outcome | correlation |
 |---|---|---|
-| ByteRL value head | 0.8750 | 0.3321 |
-| hand-written heuristic | 0.9291 | 0.2444 |
-| constant (predict the mean) | 0.9713 | — |
+| ByteRL value head | 0.8914 | 0.2842 |
+| hand-written heuristic | 0.9462 | 0.1689 |
+| constant (predict the mean) | 0.9543 | — |
 
 Beats constant: **True**. Beats heuristic: **True**. Adapter may be enabled: **True**.
 

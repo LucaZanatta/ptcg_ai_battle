@@ -1,0 +1,290 @@
+{
+  "tag": "hybrid_ablation",
+  "protocol": {
+    "frozen_at_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
+    "candidates": [
+      "baseline_official_mega_lucario",
+      "ptcg_ismcts_v0",
+      "ptcg_ismcts_priors_only_v0",
+      "ptcg_ismcts_value_only_v0"
+    ],
+    "opponents": [
+      "dragapult",
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow"
+    ],
+    "games_per_pair": 20,
+    "total_games": 320,
+    "seed_base": 1990,
+    "seed_list": [
+      1990,
+      1991,
+      1992,
+      1993,
+      1994,
+      1995,
+      1996,
+      1997,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      11997,
+      11998,
+      11999,
+      12000,
+      12001,
+      12002,
+      12003,
+      12004,
+      12005,
+      12006,
+      12007,
+      12008,
+      12009,
+      12010,
+      12011,
+      12012,
+      12013,
+      12014,
+      12015,
+      12016,
+      22004,
+      22005,
+      22006,
+      22007,
+      22008,
+      22009,
+      22010,
+      22011,
+      22012,
+      22013,
+      22014,
+      22015,
+      22016,
+      22017,
+      22018,
+      22019,
+      22020,
+      22021,
+      22022,
+      22023,
+      32011,
+      32012,
+      32013,
+      32014,
+      32015,
+      32016,
+      32017,
+      32018,
+      32019,
+      32020,
+      32021,
+      32022,
+      32023,
+      32024,
+      32025,
+      32026,
+      32027,
+      32028,
+      32029,
+      32030
+    ],
+    "seat_assignment": "alternating by pair index; identical across candidates",
+    "identical_opponent_and_seat_schedule_across_candidates": true,
+    "identical_agent_side_seeds_across_candidates": true,
+    "identical_environment_randomness_across_candidates": false,
+    "environment_seed_available": false,
+    "uncontrolled_variance_note": "kaggle_environments make('cabt') accepts no seed, so shuffle/flip randomness is not paired between candidates. Differences smaller than the reported Wilson intervals should not be read as method differences.",
+    "scoring": "win 1.0, draw 0.5, loss 0.0; unscored unless both seats are DONE",
+    "ranking": "external score evidence, then common-panel field score, then score vs frozen baseline/Dragapult, then worst meaningful matchup, then package reliability and latency (\u00a711)",
+    "config": {
+      "mcts": {
+        "simulations_per_determinization": 12,
+        "determinizations": 1,
+        "max_ms_per_decision": 120
+      },
+      "byterl_checkpoint": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40357.pt",
+      "leaf_value_calibrated": true
+    },
+    "deck": "mega_lucario, frozen for both methods (\u00a74)",
+    "safe_random_agents": "not included; \u00a711 makes them reliability checks only"
+  },
+  "results": [
+    {
+      "candidate_id": "baseline_official_mega_lucario",
+      "dragapult_games": 20,
+      "dragapult_rate": 0.65,
+      "dragapult_ci": [
+        0.4329,
+        0.8188
+      ],
+      "mega_lucario_games": 20,
+      "mega_lucario_rate": 0.45,
+      "mega_lucario_ci": [
+        0.2582,
+        0.6579
+      ],
+      "iono_games": 20,
+      "iono_rate": 0.8,
+      "iono_ci": [
+        0.584,
+        0.9193
+      ],
+      "mega_abomasnow_games": 20,
+      "mega_abomasnow_rate": 0.5,
+      "mega_abomasnow_ci": [
+        0.2993,
+        0.7007
+      ],
+      "games": 80,
+      "field_score": 0.6,
+      "field_ci": [
+        0.4905,
+        0.7004
+      ],
+      "worst_matchup": "mega_lucario",
+      "worst_matchup_rate": 0.45,
+      "mean_search_match_ms": null,
+      "max_search_match_ms": null,
+      "mean_game_seconds": 0.44,
+      "max_game_seconds": 0.96,
+      "incomplete_games": 0
+    },
+    {
+      "candidate_id": "ptcg_ismcts_v0",
+      "dragapult_games": 20,
+      "dragapult_rate": 0.5,
+      "dragapult_ci": [
+        0.2993,
+        0.7007
+      ],
+      "mega_lucario_games": 20,
+      "mega_lucario_rate": 0.15,
+      "mega_lucario_ci": [
+        0.0524,
+        0.3604
+      ],
+      "iono_games": 20,
+      "iono_rate": 0.35,
+      "iono_ci": [
+        0.1812,
+        0.5671
+      ],
+      "mega_abomasnow_games": 20,
+      "mega_abomasnow_rate": 0.5,
+      "mega_abomasnow_ci": [
+        0.2993,
+        0.7007
+      ],
+      "games": 80,
+      "field_score": 0.375,
+      "field_ci": [
+        0.2769,
+        0.4845
+      ],
+      "worst_matchup": "mega_lucario",
+      "worst_matchup_rate": 0.15,
+      "mean_search_match_ms": 4874.9,
+      "max_search_match_ms": 8623.3,
+      "mean_game_seconds": 5.26,
+      "max_game_seconds": 9.36,
+      "incomplete_games": 0
+    },
+    {
+      "candidate_id": "ptcg_ismcts_value_only_v0",
+      "dragapult_games": 20,
+      "dragapult_rate": 0.45,
+      "dragapult_ci": [
+        0.2582,
+        0.6579
+      ],
+      "mega_lucario_games": 20,
+      "mega_lucario_rate": 0.2,
+      "mega_lucario_ci": [
+        0.0807,
+        0.416
+      ],
+      "iono_games": 20,
+      "iono_rate": 0.55,
+      "iono_ci": [
+        0.3421,
+        0.7418
+      ],
+      "mega_abomasnow_games": 20,
+      "mega_abomasnow_rate": 0.2,
+      "mega_abomasnow_ci": [
+        0.0807,
+        0.416
+      ],
+      "games": 80,
+      "field_score": 0.35,
+      "field_ci": [
+        0.2545,
+        0.4592
+      ],
+      "worst_matchup": "mega_lucario",
+      "worst_matchup_rate": 0.2,
+      "mean_search_match_ms": 4975.6,
+      "max_search_match_ms": 8169.9,
+      "mean_game_seconds": 5.37,
+      "max_game_seconds": 9.1,
+      "incomplete_games": 0
+    },
+    {
+      "candidate_id": "ptcg_ismcts_priors_only_v0",
+      "dragapult_games": 20,
+      "dragapult_rate": 0.1,
+      "dragapult_ci": [
+        0.0279,
+        0.301
+      ],
+      "mega_lucario_games": 20,
+      "mega_lucario_rate": 0.1,
+      "mega_lucario_ci": [
+        0.0279,
+        0.301
+      ],
+      "iono_games": 20,
+      "iono_rate": 0.1,
+      "iono_ci": [
+        0.0279,
+        0.301
+      ],
+      "mega_abomasnow_games": 20,
+      "mega_abomasnow_rate": 0.05,
+      "mega_abomasnow_ci": [
+        0.0089,
+        0.2361
+      ],
+      "games": 80,
+      "field_score": 0.0875,
+      "field_ci": [
+        0.043,
+        0.1698
+      ],
+      "worst_matchup": "mega_abomasnow",
+      "worst_matchup_rate": 0.05,
+      "mean_search_match_ms": 4150.3,
+      "max_search_match_ms": 7653.8,
+      "mean_game_seconds": 4.51,
+      "max_game_seconds": 8.39,
+      "incomplete_games": 0
+    }
+  ],
+  "played_games": 320,
+  "scored_games": 320,
+  "incomplete_games": 0,
+  "raw_file": "final_panel/hybrid_ablation_raw_games.jsonl.gz",
+  "raw_sha256": "438337e454b57e863322a9806f4aab02b0a1068c2885780ba74ca680afa97142",
+  "wall_clock_s": 131.3
+}

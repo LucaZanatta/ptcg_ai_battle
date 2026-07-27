@@ -3,16 +3,16 @@
   "name": "package_recurrent_parity",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "2bb97e1443dd33223db862c7686520df2a0ef64b",
+  "source_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
   "checks": {
-    "games": 12,
-    "completed": 12,
+    "games": 60,
+    "completed": 60,
     "both_seats": true,
     "liveness": {
-      "decisions": 525,
-      "policy_ok": 525,
+      "decisions": 2930,
+      "policy_ok": 2930,
       "fallbacks": 0,
-      "resets": 12
+      "resets": 60
     }
   },
   "submission_blocker": true,

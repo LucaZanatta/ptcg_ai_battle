@@ -82,9 +82,20 @@ def latest_mcts():
 
 
 def byterl_artifacts():
-    s = (jload("byterl/learner_logs/scaled_training_summary.json")
+    # Never hardcode a tag: it silently pinned every ByteRL probe to whichever run happened to
+    # be called "scaled", so a superseded run kept supplying the evidence after it was replaced.
+    # Select the same way the validator does -- most raw game rows among runs with no
+    # SUPERSEDED marker -- so the two cannot disagree about which run is the campaign run.
+    cands = []
+    for gp in glob.glob(os.path.join(C19, "byterl", "raw_games", "*_games.jsonl.gz")):
+        t = os.path.basename(gp)[:-len("_games.jsonl.gz")]
+        if jload(f"byterl/raw_games/{t}_SUPERSEDED.json"):
+            continue
+        cands.append((len(read_jsonl(f"byterl/raw_games/{t}_games.jsonl.gz")), t))
+    tag = max(cands)[1] if cands else "scaled2"
+    s = (jload(f"byterl/learner_logs/{tag}_training_summary.json")
          or jload("byterl/learner_logs/training_summary.json") or {})
-    tag = s.get("tag", "scaled")
+    tag = s.get("tag", tag)
     return {
         "summary": s,
         "games": read_jsonl(f"byterl/raw_games/{tag}_games.jsonl.gz"),
@@ -527,17 +538,47 @@ def main():
           branch="byterl", blocker=True)
 
     # ---------------------------------------------------------------- hybrid / final
-    write("H01", "priors_adapter", "WARN",
-          {"implemented": True, "enabled_by_default": False,
-           "maps_by": "canonical option key",
-           "evaluated_in_panel": False},
-          "# H01 — Priors adapter\n\n`ByteRLPriorProvider` maps ByteRL option probabilities onto "
-          "canonical MCTS children BY KEY, not by index, and normalizes over the legal set. It "
-          "is a constructor argument defaulting to `None`.\n\nNot evaluated on the panel: §10 "
-          "caps hybrid work at 15% and forbids delaying pure submissions, and the pure MCTS "
-          "branch did not clear its gate, so a hybrid built on it had no path to promotion.\n\n"
-          "**Status: WARN** — implemented and switchable, not competitively evaluated.\n",
-          branch="hybrid")
+    abl = jload("hybrid/comparisons/adapter_ablation.json", {})
+    if abl:
+        arms = abl.get("arms") or {}
+        pure = arms.get("pure MCTS (no adapters)", {})
+        pri = arms.get("ByteRL priors only", {})
+        val_ = arms.get("ByteRL leaf value only", {})
+        write("H01", "priors_adapter", "PASS",
+              {"implemented": True, "enabled_by_default": False,
+               "maps_by": "canonical option key",
+               "evaluated_in_panel": True,
+               "ablation_games": abl.get("games"),
+               "pure_mcts_field": pure.get("field"),
+               "priors_only_field": pri.get("field"),
+               "value_only_field": val_.get("field"),
+               "priors_delta_vs_pure_mcts": pri.get("delta_vs_pure_mcts"),
+               "value_delta_vs_pure_mcts": val_.get("delta_vs_pure_mcts")},
+              f"# H01 — Priors adapter\n\n`ByteRLPriorProvider` maps ByteRL option probabilities "
+              f"onto canonical MCTS children BY KEY, not by index, and normalizes over the legal "
+              f"set. It is a constructor argument defaulting to `None`.\n\n"
+              f"**Competitively evaluated, and ablated.** The combined hybrid injects two "
+              f"adapters at once, so a delta against pure MCTS could not be attributed to "
+              f"either. Each was therefore isolated against the same search at the same "
+              f"configuration, {abl.get('games')} games, {abl.get('incomplete')} incomplete.\n\n"
+              f"| arm | field | 95% CI | vs pure MCTS |\n|---|---|---|---|\n"
+              f"| baseline | {abl.get('baseline_field')} | — | — |\n"
+              f"| pure MCTS | {pure.get('field')} | {pure.get('ci')} | — |\n"
+              f"| + leaf value only | {val_.get('field')} | {val_.get('ci')} | "
+              f"{(val_.get('delta_vs_pure_mcts') or 0) * 100:+.1f} |\n"
+              f"| + priors only | {pri.get('field')} | {pri.get('ci')} | "
+              f"{(pri.get('delta_vs_pure_mcts') or 0) * 100:+.1f} |\n\n"
+              f"{abl.get('conclusion')}\n\n"
+              f"**Status: PASS** — implemented, switchable, and measured rather than asserted. "
+              f"The adapter is NOT enabled in any submitted package: it makes the search "
+              f"decisively worse.\n", branch="hybrid")
+    else:
+        write("H01", "priors_adapter", "WARN",
+              {"implemented": True, "enabled_by_default": False,
+               "maps_by": "canonical option key", "evaluated_in_panel": False},
+              "# H01 — Priors adapter\n\n`ByteRLPriorProvider` maps ByteRL option probabilities "
+              "onto canonical MCTS children BY KEY, not by index. Not evaluated on the "
+              "panel.\n\n**Status: WARN.**\n", branch="hybrid")
 
     cal = jload("hybrid/comparisons/leaf_value_calibration.json", {})
     if cal.get("n_leaves"):

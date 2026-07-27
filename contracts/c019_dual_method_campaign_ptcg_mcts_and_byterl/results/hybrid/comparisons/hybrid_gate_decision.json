@@ -1,0 +1,34 @@
+{
+  "rule": "DECISION_RULES.md -- hybrid (priors+value) credibility",
+  "panel_tag": "hybrid_compare",
+  "candidate": "ptcg_ismcts_hybrid_v0",
+  "baseline_field": 0.5375,
+  "candidate_field": 0.1375,
+  "baseline_field_ci": [
+    0.429,
+    0.6425
+  ],
+  "candidate_field_ci": [
+    0.0785,
+    0.2297
+  ],
+  "delta_field_points": -0.4,
+  "per_matchup_delta": {
+    "dragapult": -0.4,
+    "mega_lucario": -0.1,
+    "iono": -0.65,
+    "mega_abomasnow": -0.45
+  },
+  "clause_a_field_plus_3pts": false,
+  "clause_b_matchup_plus_5pts_without_2pt_field_regression": false,
+  "eligible_for_submission": false,
+  "games": 160,
+  "incomplete_games": 0,
+  "latency": {
+    "baseline_max_game_s": 1.0,
+    "candidate_max_game_s": 9.1,
+    "candidate_mean_search_match_ms": 3708.2,
+    "candidate_max_search_match_ms": 8202.4
+  },
+  "verdict": "NOT ELIGIBLE -- ptcg_ismcts_hybrid_v0 scores -40.0 field points against the frozen baseline on 160 identity-safe games (0 incomplete). The gate requires +3, or +5 on a single matchup without a -2 field regression; its best matchup delta is -10.0."
+}

@@ -3,9 +3,14 @@
   "name": "common_panel_identity_safety",
   "branch": "common",
   "status": "PASS",
-  "source_commit": "2bb97e1443dd33223db862c7686520df2a0ef64b",
+  "source_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
   "checks": {
     "panels": [
+      "byterl_gate_aggregates.json",
+      "byterl_rehearsal_aggregates.json",
+      "hybrid_ablation_aggregates.json",
+      "hybrid_compare_aggregates.json",
+      "hybrid_smoke_aggregates.json",
       "mcts_full_aggregates.json",
       "mcts_gate2_aggregates.json",
       "mcts_gate_aggregates.json"

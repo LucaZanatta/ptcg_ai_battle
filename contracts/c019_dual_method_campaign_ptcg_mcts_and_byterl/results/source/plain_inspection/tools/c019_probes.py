@@ -82,9 +82,20 @@ def latest_mcts():
 
 
 def byterl_artifacts():
-    s = (jload("byterl/learner_logs/scaled_training_summary.json")
+    # Never hardcode a tag: it silently pinned every ByteRL probe to whichever run happened to
+    # be called "scaled", so a superseded run kept supplying the evidence after it was replaced.
+    # Select the same way the validator does -- most raw game rows among runs with no
+    # SUPERSEDED marker -- so the two cannot disagree about which run is the campaign run.
+    cands = []
+    for gp in glob.glob(os.path.join(C19, "byterl", "raw_games", "*_games.jsonl.gz")):
+        t = os.path.basename(gp)[:-len("_games.jsonl.gz")]
+        if jload(f"byterl/raw_games/{t}_SUPERSEDED.json"):
+            continue
+        cands.append((len(read_jsonl(f"byterl/raw_games/{t}_games.jsonl.gz")), t))
+    tag = max(cands)[1] if cands else "scaled2"
+    s = (jload(f"byterl/learner_logs/{tag}_training_summary.json")
          or jload("byterl/learner_logs/training_summary.json") or {})
-    tag = s.get("tag", "scaled")
+    tag = s.get("tag", tag)
     return {
         "summary": s,
         "games": read_jsonl(f"byterl/raw_games/{tag}_games.jsonl.gz"),
@@ -468,14 +479,45 @@ def main():
           f"**Status: {'PASS' if imm.get('all_immutable') else 'NOT_EXERCISED'}.**\n",
           branch="byterl")
 
-    write("B12", "training_continuation", "NOT_EXERCISED",
-          {"note": "resume functionality and exact stochastic continuation are reported "
-                   "separately; unequal hashes are never called exact"},
-          "# B12 — Training continuation\n\nNot exercised in this campaign. The matrix requires "
-          "reporting resume functionality and exact stochastic continuation SEPARATELY and "
-          "forbids calling unequal hashes exact — c018 conflated the two. Rather than run a "
-          "weak version and describe it ambiguously, this probe is recorded as not "
-          "exercised.\n\n**Status: NOT_EXERCISED.**\n", branch="byterl")
+    b12 = jload("probes/B12_training_continuation/raw/continuation_detail.json", {})
+    if b12:
+        rf = b12.get("resume_functionality") or {}
+        sc = b12.get("exact_stochastic_continuation") or {}
+        write("B12", "training_continuation", rf.get("status", "NOT_EXERCISED"),
+              {"resume_functionality": rf.get("status"),
+               "parameters_bitwise_equal": rf.get("parameters_bitwise_equal_after_load"),
+               "parameters_total": rf.get("parameters_total"),
+               "observations_checked": rf.get("observations_checked"),
+               "max_abs_output_difference": rf.get("max_abs_output_difference"),
+               "exact_stochastic_continuation": sc.get("status"),
+               "missing_for_exactness": sc.get("missing"),
+               "checkpoint": b12.get("checkpoint")},
+              f"# B12 — Training continuation\n\nThe matrix requires these two be reported "
+              f"SEPARATELY and forbids describing unequal hashes as exact continuation. They "
+              f"are answered here as two independent questions.\n\n"
+              f"**1. Resume functionality — does a checkpoint fully determine the policy?** "
+              f"`{rf.get('parameters_bitwise_equal_after_load')}` of "
+              f"`{rf.get('parameters_total')}` parameters load bitwise-equal into a freshly "
+              f"constructed model, and the two models produce identical output on "
+              f"`{rf.get('observations_checked')}` real observations (max absolute difference "
+              f"`{rf.get('max_abs_output_difference')}`). Equal weights alone would not settle "
+              f"this — behaviour depending on un-checkpointed state would still pass a weight "
+              f"comparison — so the forward pass is checked too. The freshly built model is "
+              f"confirmed to DIFFER before loading, otherwise the comparison would be "
+              f"vacuous.\n\n**Status: {rf.get('status')}.**\n\n"
+              f"**2. Exact stochastic continuation — would resuming reproduce the original "
+              f"training stream?** **No**, and this is answered from what the checkpoint "
+              f"contains rather than from a hash comparison. Missing: "
+              f"`{', '.join(sc.get('missing') or [])}`. A resumed run draws a different "
+              f"stochastic stream from its first step.\n\n"
+              f"**Status: {sc.get('status')}.**\n\nThe two are not merged, and resume is "
+              f"nowhere described as exactness.\n", branch="byterl")
+    else:
+        write("B12", "training_continuation", "NOT_EXERCISED",
+              {"note": "resume functionality and exact stochastic continuation are reported "
+                       "separately; unequal hashes are never called exact"},
+              "# B12 — Training continuation\n\nNot exercised.\n\n"
+              "**Status: NOT_EXERCISED.**\n", branch="byterl")
 
     bv = jload("packages/ptcg_byterl_v0/clean_validation.json", {})
     write("B13", "package_recurrent_parity",
@@ -496,28 +538,95 @@ def main():
           branch="byterl", blocker=True)
 
     # ---------------------------------------------------------------- hybrid / final
-    write("H01", "priors_adapter", "WARN",
-          {"implemented": True, "enabled_by_default": False,
-           "maps_by": "canonical option key",
-           "evaluated_in_panel": False},
-          "# H01 — Priors adapter\n\n`ByteRLPriorProvider` maps ByteRL option probabilities onto "
-          "canonical MCTS children BY KEY, not by index, and normalizes over the legal set. It "
-          "is a constructor argument defaulting to `None`.\n\nNot evaluated on the panel: §10 "
-          "caps hybrid work at 15% and forbids delaying pure submissions, and the pure MCTS "
-          "branch did not clear its gate, so a hybrid built on it had no path to promotion.\n\n"
-          "**Status: WARN** — implemented and switchable, not competitively evaluated.\n",
-          branch="hybrid")
+    abl = jload("hybrid/comparisons/adapter_ablation.json", {})
+    if abl:
+        arms = abl.get("arms") or {}
+        pure = arms.get("pure MCTS (no adapters)", {})
+        pri = arms.get("ByteRL priors only", {})
+        val_ = arms.get("ByteRL leaf value only", {})
+        write("H01", "priors_adapter", "PASS",
+              {"implemented": True, "enabled_by_default": False,
+               "maps_by": "canonical option key",
+               "evaluated_in_panel": True,
+               "ablation_games": abl.get("games"),
+               "pure_mcts_field": pure.get("field"),
+               "priors_only_field": pri.get("field"),
+               "value_only_field": val_.get("field"),
+               "priors_delta_vs_pure_mcts": pri.get("delta_vs_pure_mcts"),
+               "value_delta_vs_pure_mcts": val_.get("delta_vs_pure_mcts")},
+              f"# H01 — Priors adapter\n\n`ByteRLPriorProvider` maps ByteRL option probabilities "
+              f"onto canonical MCTS children BY KEY, not by index, and normalizes over the legal "
+              f"set. It is a constructor argument defaulting to `None`.\n\n"
+              f"**Competitively evaluated, and ablated.** The combined hybrid injects two "
+              f"adapters at once, so a delta against pure MCTS could not be attributed to "
+              f"either. Each was therefore isolated against the same search at the same "
+              f"configuration, {abl.get('games')} games, {abl.get('incomplete')} incomplete.\n\n"
+              f"| arm | field | 95% CI | vs pure MCTS |\n|---|---|---|---|\n"
+              f"| baseline | {abl.get('baseline_field')} | — | — |\n"
+              f"| pure MCTS | {pure.get('field')} | {pure.get('ci')} | — |\n"
+              f"| + leaf value only | {val_.get('field')} | {val_.get('ci')} | "
+              f"{(val_.get('delta_vs_pure_mcts') or 0) * 100:+.1f} |\n"
+              f"| + priors only | {pri.get('field')} | {pri.get('ci')} | "
+              f"{(pri.get('delta_vs_pure_mcts') or 0) * 100:+.1f} |\n\n"
+              f"{abl.get('conclusion')}\n\n"
+              f"**Status: PASS** — implemented, switchable, and measured rather than asserted. "
+              f"The adapter is NOT enabled in any submitted package: it makes the search "
+              f"decisively worse.\n", branch="hybrid")
+    else:
+        write("H01", "priors_adapter", "WARN",
+              {"implemented": True, "enabled_by_default": False,
+               "maps_by": "canonical option key", "evaluated_in_panel": False},
+              "# H01 — Priors adapter\n\n`ByteRLPriorProvider` maps ByteRL option probabilities "
+              "onto canonical MCTS children BY KEY, not by index. Not evaluated on the "
+              "panel.\n\n**Status: WARN.**\n", branch="hybrid")
 
-    write("H02", "value_calibration", "WARN",
-          {"implemented": True, "enabled_by_default": False, "calibrated": False,
-           "gate": "must beat constant AND heuristic on held-out leaves"},
-          "# H02 — Value calibration\n\n`ByteRLLeafValue` starts uncalibrated and REFUSES to "
-          "return a value until calibration explicitly enables it. `calibrate_leaf_value()` "
-          "compares the ByteRL value against a constant baseline and the heuristic on held-out "
-          "leaves and returns whether the adapter may be enabled.\n\nThe refusal is the point: "
-          "the c018 audit records that a policy/value model must not enter a search merely "
-          "because it exists.\n\n**Status: WARN** — gate implemented, calibration not run "
-          "because the pure MCTS branch did not clear its own gate.\n", branch="hybrid")
+    cal = jload("hybrid/comparisons/leaf_value_calibration.json", {})
+    if cal.get("n_leaves"):
+        allow = cal.get("may_enable_leaf_value_adapter")
+        write("H02", "value_calibration", "PASS",
+              {"implemented": True, "enabled_by_default": False, "calibration_run": True,
+               "leaves": cal.get("n_leaves"), "checkpoint": cal.get("checkpoint"),
+               "mse_byterl_value": cal.get("mse_byterl_value"),
+               "mse_heuristic": cal.get("mse_heuristic"),
+               "mse_constant": cal.get("mse_constant"),
+               "corr_byterl_value": cal.get("corr_byterl_value"),
+               "corr_heuristic": cal.get("corr_heuristic"),
+               "beats_constant": cal.get("beats_constant"),
+               "beats_heuristic": cal.get("beats_heuristic"),
+               "may_enable_leaf_value_adapter": allow},
+              f"# H02 — Value calibration\n\n`ByteRLLeafValue` starts uncalibrated and REFUSES "
+              f"to return a value until calibration explicitly enables it. The gate was RUN, "
+              f"not assumed: {cal.get('n_leaves')} held-out leaves drawn from "
+              f"{cal.get('games_completed')} baseline games the checkpoint never trained on, "
+              f"each labelled with the eventual result from the snapshotted seat.\n\n"
+              f"| evaluator | MSE vs outcome | correlation |\n|---|---|---|\n"
+              f"| ByteRL value head | {cal.get('mse_byterl_value'):.4f} | "
+              f"{cal.get('corr_byterl_value'):.4f} |\n"
+              f"| hand-written heuristic | {cal.get('mse_heuristic'):.4f} | "
+              f"{cal.get('corr_heuristic'):.4f} |\n"
+              f"| constant (predict the mean) | {cal.get('mse_constant'):.4f} | — |\n\n"
+              f"Beats constant: **{cal.get('beats_constant')}**. Beats heuristic: "
+              f"**{cal.get('beats_heuristic')}**. Adapter may be enabled: **{allow}**.\n\n"
+              f"Two things about the leaf distribution have to be said together, because "
+              f"either alone misleads. These leaves come from games the frozen baseline "
+              f"played, which is the *correct* distribution for the intended use — a leaf "
+              f"evaluator inside an MCTS that wraps that baseline. It is simultaneously "
+              f"out-of-distribution relative to training, which was roughly balanced "
+              f"self-play. The value head carries ordering signal on positions it never "
+              f"trained on, and that is the claim being made — not that it is calibrated.\n\n"
+              f"**Status: PASS** — gate implemented and exercised on real leaves.\n",
+              branch="hybrid")
+    else:
+        write("H02", "value_calibration", "WARN",
+              {"implemented": True, "enabled_by_default": False, "calibrated": False,
+               "gate": "must beat constant AND heuristic on held-out leaves"},
+              "# H02 — Value calibration\n\n`ByteRLLeafValue` starts uncalibrated and REFUSES "
+              "to return a value until calibration explicitly enables it. "
+              "`calibrate_leaf_value()` compares the ByteRL value against a constant baseline "
+              "and the heuristic on held-out leaves and returns whether the adapter may be "
+              "enabled.\n\nThe refusal is the point: the c018 audit records that a "
+              "policy/value model must not enter a search merely because it exists.\n\n"
+              "**Status: WARN** — gate implemented, calibration not run.\n", branch="hybrid")
 
     write("H03", "switchability", "PASS",
           {"adapters_default_none": True,

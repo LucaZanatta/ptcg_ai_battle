@@ -1,3 +1,88 @@
+M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/ACCEPTANCE_CHECKLIST.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/DECISION_BOARD.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/EXECUTION_BUDGET.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/STATUS.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/SUMMARY.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/scaled2_losses.jsonl.gz
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/scaled2_learning_periods.jsonl
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/scaled2_opponent_samples.jsonl.gz
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/scaled2_promotion_history.jsonl
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/raw_games/scaled2_games.jsonl.gz
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/git/log.txt
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/git/status.txt
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/hybrid/comparisons/leaf_value_calibration.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/hybrid/smoke_traces/calibration_games.jsonl
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/method_fidelity/byterl_fidelity.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/method_fidelity/validator_output.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_byterl_v0/clean_validation.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_byterl_v0/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_byterl_v0/ptcg_byterl_v0.tar.gz
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B01_dynamic_option_mask/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B02_recurrent_state/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B03_actor_version_and_staleness/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B03_actor_version_and_staleness/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B04_vtrace_numerical_reference/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B05_upgo_numerical_reference/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B06_combined_loss_evidence/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B06_combined_loss_evidence/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B07_queue_and_sample_reuse/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B08_osfp_sampling/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B08_osfp_sampling/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B09_payoff_table_identity/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B09_payoff_table_identity/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B10_promotion_logic/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B10_promotion_logic/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B11_historical_immutability/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B11_historical_immutability/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B12_training_continuation/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B12_training_continuation/raw/continuation_detail.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B13_package_recurrent_parity/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/B13_package_recurrent_parity/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/F01_common_panel_identity_safety/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/F02_submission_package_identity/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/F03_method_fidelity_validator/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/F03_method_fidelity_validator/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/F04_complete_source_bundle/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/H01_priors_adapter/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/H01_priors_adapter/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/H02_value_calibration/README.md
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/H02_value_calibration/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/H03_switchability/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M01_baseline_memory_parity/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M02_legal_determinization_multiset/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M03_nonroot_expansion/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M04_puct_numerical_fixture/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M05_backup_sign_and_value/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M06_revisit_evidence/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M07_rollout_policy_evidence/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M08_chance_outcome_handling/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M09_multi_determinization_aggregation/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M10_lifecycle_and_memory/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M11_match_clock_safety/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/M12_package_parity/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/P00_git_and_parent_resolution/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/P01_canonical_action_round_trip/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/P02_shared_observation_legality/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/P03_same_deck_base_freeze/probe.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/git_diff.patch
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M00_parent/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M01_shared_interface/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M02_mcts_faithful/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M03_byterl_actor_learner/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M04_byterl_osfp/c019_osfp.py
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M04_byterl_osfp/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M05_hybrid_adapters/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/milestones/M06_submitted_packages/manifest.json
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/cg/c019_osfp.py
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/tests/test_c019_fixtures.py
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/tools/c019_byterl_train.py
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/tools/c019_panel.py
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/tools/c019_probes.py
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/tools/c019_reports.py
+ M contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/tools/c019_validate.py
+ M tools/c019_panel.py
+ M tools/c019_probes.py
+ M tools/c019_reports.py
 ?? cg
 ?? check.py
 ?? contracts/c002_reproducible_episode_capture/
@@ -105,21 +190,119 @@
 ?? contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/test_logs/
 ?? contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/
 ?? contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/ACCEPTANCE_CHECKLIST.md
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/DECISION_BOARD.json
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/EXECUTION_BUDGET.json
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/STATUS.json
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/SUMMARY.md
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/common/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/git/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/hybrid/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/method_fidelity/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/probes/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/
-?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/submissions/
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_final.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp005_end.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp006_end.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp007_end.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp008_end.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp009_end.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v22685.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v22921.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23155.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23392.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23628.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23864.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24098.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24329.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24577.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24814.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24972.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25204.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25438.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25675.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25903.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26132.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26369.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26607.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26838.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27067.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27304.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27534.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27768.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28003.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28237.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28480.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28719.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28875.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29114.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29356.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29591.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29830.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30067.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30297.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30535.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30765.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31004.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31240.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31479.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31715.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31939.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32168.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32398.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32624.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32780.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33015.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33250.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33476.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33710.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33938.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34168.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34396.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34626.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34855.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35092.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35327.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35556.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35782.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36010.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36238.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36467.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36623.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36855.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37082.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37315.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37546.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37776.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38008.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38240.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38471.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38713.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38947.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39182.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39412.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39648.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39879.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40111.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40357.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/evaluations/
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/scaled2_training_summary.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled2/historical_002_lp009_v040516.pt
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/payoff_tables/scaled2_payoff_lp005.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/payoff_tables/scaled2_payoff_lp006.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/payoff_tables/scaled2_payoff_lp007.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/payoff_tables/scaled2_payoff_lp008.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/payoff_tables/scaled2_payoff_lp009.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_gate_aggregates.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_gate_raw_games.jsonl.gz
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_gate_registered_protocol.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_rehearsal_aggregates.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_rehearsal_raw_games.jsonl.gz
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_rehearsal_registered_protocol.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_ablation_aggregates.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_ablation_raw_games.jsonl.gz
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_ablation_registered_protocol.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_compare_aggregates.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_compare_raw_games.jsonl.gz
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_compare_registered_protocol.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_smoke_aggregates.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_smoke_raw_games.jsonl.gz
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_smoke_registered_protocol.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/hybrid/comparisons/adapter_ablation.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/hybrid/comparisons/hybrid_gate_decision.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/hybrid/comparisons/ptcg_ismcts_priors_only_v0_gate_decision.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/hybrid/comparisons/ptcg_ismcts_value_only_v0_gate_decision.json
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_byterl_rehearsal/
+?? contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/plain_inspection/packages_entrypoints/ptcg_byterl_rehearsal_main.py
 ?? pokemon-tcg-ai-battle-challenge-strategy/
 ?? tmp.txt
+?? tools/c019_gate_decision.py

@@ -1,0 +1,40 @@
+{
+  "lp": 10,
+  "entries": [
+    {
+      "historical_index": 0,
+      "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled2/historical_000_lp000_v004823.pt",
+      "sha256": "1af64ca3bccb74dc16b3c2c807f72b71d00cbc87137574beebae59d63ff1771b",
+      "added_after_lp": 0,
+      "reason": "FIRST_HISTORICAL",
+      "G": 2072.0,
+      "C": 15912,
+      "winrate": 0.13021618903971846
+    },
+    {
+      "historical_index": 1,
+      "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled2/historical_001_lp002_v013178.pt",
+      "sha256": "ec9062fd9b500578a4cd5cf781f4e9202a68803da30e403c0eaa592b552d443b",
+      "added_after_lp": 2,
+      "reason": "PERFORMANCE",
+      "G": 142.0,
+      "C": 12823,
+      "winrate": 0.011073851672775482
+    },
+    {
+      "historical_index": 2,
+      "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled2/historical_002_lp009_v040516.pt",
+      "sha256": "266b297d1f11b2a23ece375769edc44ae8f21d776095c813112974b79cf116e0",
+      "added_after_lp": 9,
+      "reason": "FORCED_MAX_LP",
+      "G": 0.0,
+      "C": 0,
+      "winrate": null
+    }
+  ],
+  "sampling_probabilities": [
+    0.13181403891976898,
+    0.16770802555417103,
+    0.7004779355260601
+  ]
+}

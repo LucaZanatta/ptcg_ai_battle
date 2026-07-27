@@ -1,23 +1,23 @@
 {
   "contract": "c019",
-  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "git_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
   "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
   "bundles": {
     "complete_repository_source.zip": {
       "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/complete_repository_source.zip",
       "present": true,
-      "sha256": "8cb6a3229790cf79ef79bcbc86da581a8484409c125a68a0f75e878917eedea3",
-      "bytes": 1816220,
+      "sha256": "da3feeff1c33cdca5dba0241616fe38861ec2c825a2a1675f88517523b2c6bc5",
+      "bytes": 1830390,
       "note": null,
-      "files": 423
+      "files": 426
     },
     "c019_competition_source_bundle.zip": {
       "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/c019_competition_source_bundle.zip",
       "present": true,
-      "sha256": "adc4d0f7ee18c18e27676bc3454c99737f33355f001b198910697b95709fe5f1",
-      "bytes": 148054,
+      "sha256": "9d4eaa468f76a7caa23942989cc32fac46b94c905c199eac3beb7e9d676c3294",
+      "bytes": 156168,
       "note": null,
-      "files": 41
+      "files": 42
     }
   },
   "inspection_files": [
@@ -104,8 +104,8 @@
     {
       "path": "cg/c019_osfp.py",
       "present": true,
-      "sha256": "81c112912cf5b6183da95609dd8d093ea81077814525a8cb6d165944954cfcf1",
-      "bytes": 9653,
+      "sha256": "696be648d1c7e1148ce9c7500dc4430062007ede814113cd74670771f130921d",
+      "bytes": 10304,
       "note": null,
       "role": "OSFP Algorithm 1: H, payoff sampling, promotion (\u00a79.4)"
     },
@@ -160,16 +160,16 @@
     {
       "path": "tools/c019_byterl_train.py",
       "present": true,
-      "sha256": "1d530a7136f8c6adf42ca9512026bd10fc5650c1dcd291ada7fee61fd26cb553",
-      "bytes": 20516,
+      "sha256": "f9b247dcb193223c9155629fdce77dfeb3c658e36f785f5ce4fb9607dd4e992f",
+      "bytes": 21707,
       "note": null,
       "role": "actor-learner training loop (\u00a79.3)"
     },
     {
       "path": "tools/c019_panel.py",
       "present": true,
-      "sha256": "6b9c7474fe2f4ddd177caeb13c19a01d381bace5c50633ca9c11ebe2e53969f9",
-      "bytes": 12522,
+      "sha256": "934aa3b6ff30020976927ed94592af3c998d09e4cfe223ac99b224dbae236577",
+      "bytes": 15389,
       "note": null,
       "role": "frozen identity-safe common panel (\u00a711)"
     },
@@ -184,8 +184,8 @@
     {
       "path": "tools/c019_validate.py",
       "present": true,
-      "sha256": "aa0b01d2c6d7e781fa65f5083f30aeaaa451178306eb63b0d28eb1f5ca3f1f3a",
-      "bytes": 23165,
+      "sha256": "ba70d99d47e7a787db30e3f3aac1c5958581585b1ce9a7294cc26255672a8b4a",
+      "bytes": 28478,
       "note": null,
       "role": "method-fidelity and evidence validator (F03)"
     },
@@ -200,8 +200,8 @@
     {
       "path": "tools/c019_reports.py",
       "present": true,
-      "sha256": "a26c23888227825ac6f70c8c8ba01ce0d30d595dca2a35b31da15d9282a26684",
-      "bytes": 22032,
+      "sha256": "f75440f01e55b676e7c20862934af48867f21107078b8c1429842a112595cc19",
+      "bytes": 24735,
       "note": null,
       "role": null
     },
@@ -216,16 +216,16 @@
     {
       "path": "tools/c019_probes.py",
       "present": true,
-      "sha256": "33121bd57662a26ac4b4c56073060b3d1922080dbc21942618b9151dd6c43e1d",
-      "bytes": 37366,
+      "sha256": "4b9cc362c21c4fe2157134255d7aa5098722390382029e35786a8de09f6c2d35",
+      "bytes": 44997,
       "note": null,
       "role": "probe directory writer"
     },
     {
       "path": "tests/test_c019_fixtures.py",
       "present": true,
-      "sha256": "e0b8c294812807d1444453c27b0dddc7a72e7f9a3621c0ea521fa145ee3917e9",
-      "bytes": 12395,
+      "sha256": "5ab10ff19ba49329da2f6bf2d0fda6f8cca9c54afad4845bb3084d7b33149dd6",
+      "bytes": 14858,
       "note": null,
       "role": null
     },
@@ -236,6 +236,11 @@
     },
     {
       "path": "packages/ptcg_ismcts_v0/main.py",
+      "present": true,
+      "role": "package entrypoint"
+    },
+    {
+      "path": "packages/ptcg_byterl_rehearsal/main.py",
       "present": true,
       "role": "package entrypoint"
     }
@@ -270,7 +275,7 @@
       "config_hash": "44136fa355b3678a1146ad16f7e8649e"
     }
   },
-  "hashed_files": 379,
+  "hashed_files": 668,
   "environment": {
     "python": "3.13.13",
     "platform": "Linux-6.17.0-40-generic-x86_64-with-glibc2.39",

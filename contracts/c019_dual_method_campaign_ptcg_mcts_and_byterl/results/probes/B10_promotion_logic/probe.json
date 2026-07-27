@@ -3,13 +3,15 @@
   "name": "promotion_logic",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "2bb97e1443dd33223db862c7686520df2a0ef64b",
+  "source_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
   "checks": {
     "fixtures": "tests/test_c019_fixtures.py::TestOSFPPromotion",
-    "live_decisions": 3,
+    "live_decisions": 10,
     "reasons": {
       "FIRST_HISTORICAL": 1,
-      "NO_PROMOTION": 2
+      "NO_PROMOTION": 7,
+      "PERFORMANCE": 1,
+      "FORCED_MAX_LP": 1
     },
     "forced_never_labelled_performance": true
   },

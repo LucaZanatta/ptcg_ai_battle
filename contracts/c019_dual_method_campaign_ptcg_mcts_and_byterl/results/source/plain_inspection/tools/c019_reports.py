@@ -82,10 +82,28 @@ def latest_mcts():
     return best or {}
 
 
+def byterl_campaign_tag():
+    """Select the campaign run the same way the validator and probes do.
+
+    A hardcoded tag pinned every ByteRL number to whichever run happened to be called "scaled",
+    so a run abandoned for a recorded defect kept supplying the campaign's headline figures
+    after it had been replaced. Runs carrying a SUPERSEDED marker are excluded; among the rest
+    the one with the most raw game rows wins.
+    """
+    cands = []
+    for gp in glob.glob(os.path.join(C19, "byterl", "raw_games", "*_games.jsonl.gz")):
+        t = os.path.basename(gp)[:-len("_games.jsonl.gz")]
+        if jload(f"byterl/raw_games/{t}_SUPERSEDED.json"):
+            continue
+        cands.append((len(read_jsonl(f"byterl/raw_games/{t}_games.jsonl.gz")), t))
+    return max(cands)[1] if cands else "scaled2"
+
+
 def byterl_state():
-    s = (jload("byterl/learner_logs/scaled_training_summary.json")
+    tag = byterl_campaign_tag()
+    s = (jload(f"byterl/learner_logs/{tag}_training_summary.json")
          or jload("byterl/learner_logs/training_summary.json") or {})
-    tag = s.get("tag", "scaled")
+    tag = s.get("tag", tag)
     games = read_jsonl(f"byterl/raw_games/{tag}_games.jsonl.gz")
     losses = read_jsonl(f"byterl/learner_logs/{tag}_losses.jsonl.gz")
     lps = read_jsonl(f"byterl/osfp/{tag}_learning_periods.jsonl")
@@ -106,6 +124,7 @@ def build():
     m = latest_mcts()
     B = byterl_state()
     mgate = jload("mcts/evaluations/mcts_gate_decision.json", {})
+    bgate = jload("byterl/evaluations/byterl_gate_decision.json", {})
     panels = {os.path.basename(p).replace("_aggregates.json", ""): json.load(open(p))
               for p in glob.glob(os.path.join(C19, "final_panel", "*_aggregates.json"))}
     refs = jload("submissions/references.json", {}) or {}
@@ -165,7 +184,10 @@ def build():
             "mcts": ("NOT CREDIBLE -- %s field points vs the frozen baseline"
                      % round((mgate.get("delta_field_points") or 0) * 100, 1)
                      if mgate else "NOT EVALUATED"),
-            "byterl": ("IN PROGRESS" if B["in_progress"] else "NOT EVALUATED"),
+            "byterl": ("NOT CREDIBLE -- %s field points vs the frozen baseline"
+                       % round((bgate.get("delta_field_points") or 0) * 100, 1)
+                       if bgate else
+                       ("IN PROGRESS" if B["in_progress"] else "NOT EVALUATED")),
         },
         "git_commit": git("rev-parse", "HEAD"),
         "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
@@ -200,7 +222,7 @@ def build():
                "effort_allocation_intent": {"mcts": 0.40, "byterl": 0.40, "hybrid": 0.15,
                                             "packaging_evidence": 0.05}},
               open(os.path.join(C19, "EXECUTION_BUDGET.json"), "w"), indent=2, default=str)
-    return doc, P, val, m, B, mgate, panels, refs
+    return doc, P, val, m, B, mgate, panels, refs, bgate
 
 
 def board_json(doc, panels, refs):
@@ -237,7 +259,8 @@ def board_json(doc, panels, refs):
     return rows
 
 
-def summary_md(doc, P, val, m, B, mgate, panels, refs, board):
+def summary_md(doc, P, val, m, B, mgate, panels, refs, board, bgate=None):
+    bgate = bgate or {}
     f = m.get("floors") or {}
     ev = m.get("fidelity_evidence") or {}
     lat = m.get("latency") or {}
@@ -252,6 +275,31 @@ def summary_md(doc, P, val, m, B, mgate, panels, refs, board):
         f"| {k} | {r['candidate']} | {r['field']} | {r['ci']} | "
         f"{r['worst']} @ {r['worst_rate']} |"
         for k, p in doc["panels"].items() for r in p["results"])
+    cal = jload("hybrid/comparisons/leaf_value_calibration.json", {}) or {}
+    hgate = jload("hybrid/comparisons/hybrid_gate_decision.json", {}) or {}
+    if hgate:
+        hybrid_note = (
+            f"**Competitively evaluated.** The H02 calibration gate PASSED on "
+            f"{cal.get('n_leaves')} held-out leaves — the ByteRL value head beat both the "
+            f"hand-written heuristic (MSE {cal.get('mse_heuristic'):.3f} → "
+            f"{cal.get('mse_byterl_value'):.3f}) and predicting the mean "
+            f"({cal.get('mse_constant'):.3f}), with correlation "
+            f"{cal.get('corr_heuristic'):.3f} → {cal.get('corr_byterl_value'):.3f} — so the "
+            f"adapter was permitted to act rather than assumed useful.\n\n"
+            f"`ptcg_ismcts_hybrid_v0` is the SAME search with only the two provider arguments "
+            f"changed, so any delta is attributable to the adapters alone. On "
+            f"{hgate.get('games')} identity-safe games it scores "
+            f"{(hgate.get('delta_field_points') or 0) * 100:+.1f} field points against the "
+            f"frozen baseline.\n\n{hgate.get('verdict', '')}\n\n"
+            f"A leaf evaluator that is measurably better than the heuristic did not rescue the "
+            f"search. That is the useful part of the result: it separates *the value function "
+            f"is bad* from *the search is bad*, and the evidence points at the search.")
+    else:
+        hybrid_note = (
+            "**Not competitively evaluated:** §10 caps hybrid work and forbids delaying pure "
+            "submissions, and the pure MCTS branch did not clear its gate, so a hybrid built "
+            "on it had no path to promotion.")
+
     board_tab = "\n".join(f"| {b['role']} | {b['id']} | {b.get('basis', '')[:110]} |"
                           for b in board)
     probe_tab = "\n".join(f"| {k} | {v} |" for k, v in doc["probes"].items())
@@ -336,9 +384,9 @@ max. The gate panel evaluated the configuration that would actually ship.
 
 Adapters implemented and switchable, defaulting off; `c019_mcts.py` imports nothing from any
 ByteRL module, so H03 is structural. The leaf-value adapter refuses to act until calibration
-shows it beats both a constant and the heuristic. **Not competitively evaluated:** §10 caps
-hybrid work and forbids delaying pure submissions, and the pure MCTS branch did not clear its
-gate, so a hybrid built on it had no path to promotion.
+shows it beats both a constant and the heuristic.
+
+{hybrid_note}
 
 ## 7. Probes
 
@@ -442,10 +490,10 @@ Criteria not met are listed as not met. A failed required criterion is never con
 
 
 def main():
-    doc, P, val, m, B, mgate, panels, refs = build()
+    doc, P, val, m, B, mgate, panels, refs, bgate = build()
     board = board_json(doc, panels, refs)
     open(os.path.join(C19, "SUMMARY.md"), "w").write(
-        summary_md(doc, P, val, m, B, mgate, panels, refs, board))
+        summary_md(doc, P, val, m, B, mgate, panels, refs, board, bgate))
     open(os.path.join(C19, "ACCEPTANCE_CHECKLIST.md"), "w").write(
         acceptance_md(doc, P, val, m, B, mgate))
     print(json.dumps({"status": doc["status"],

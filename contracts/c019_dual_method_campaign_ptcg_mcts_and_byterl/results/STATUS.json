@@ -8,9 +8,9 @@
   },
   "competitive_status": {
     "mcts": "NOT CREDIBLE -- -12.5 field points vs the frozen baseline",
-    "byterl": "IN PROGRESS"
+    "byterl": "NOT CREDIBLE -- -48.2 field points vs the frozen baseline"
   },
-  "git_commit": "0417941f6769d90f3d63484298746e868af9c9f5",
+  "git_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
   "branch": "contract/c019_dual_method_campaign_ptcg_mcts_and_byterl",
   "parent_commit": "2197214d1d9dcb93afc00ad5bfd650b2531ea6b3",
   "mcts": {
@@ -94,53 +94,48 @@
     "floors": [
       {
         "floor": "actual simulator games",
-        "actual": 42880,
+        "actual": 80000,
         "required": 60000,
-        "met": false
+        "met": true
       },
       {
         "floor": "optimizer steps",
-        "actual": 22553,
+        "actual": 40516,
         "required": 20000,
         "met": true
       },
       {
         "floor": "complete OSFP learning periods",
-        "actual": 2,
+        "actual": 10,
         "required": 5,
-        "met": false
+        "met": true
       },
       {
         "floor": "immutable historical additions",
-        "actual": 1,
+        "actual": 3,
         "required": 2,
-        "met": false
+        "met": true
       },
       {
         "floor": "games involving historical checkpoints",
-        "actual": 9112,
+        "actual": 28735,
         "required": 1000,
         "met": true
       },
       {
         "floor": "common-panel/milestone evaluation games",
-        "actual": 0,
+        "actual": 912,
         "required": 800,
-        "met": false
+        "met": true
       }
     ],
-    "missed": [
-      "actual simulator games",
-      "complete OSFP learning periods",
-      "immutable historical additions",
-      "common-panel/milestone evaluation games"
-    ],
-    "games": 42880,
-    "completed_games": 42880,
-    "optimizer_steps": 22553,
-    "learning_periods": 2,
-    "historical_additions": 1,
-    "in_progress": true
+    "missed": [],
+    "games": 80000,
+    "completed_games": 80000,
+    "optimizer_steps": 40516,
+    "learning_periods": 10,
+    "historical_additions": 3,
+    "in_progress": false
   },
   "panels": {
     "mcts_gate2": {
@@ -165,6 +160,136 @@
           ],
           "worst": "mega_lucario",
           "worst_rate": 0.3778
+        }
+      ]
+    },
+    "hybrid_compare": {
+      "scored": 240,
+      "results": [
+        {
+          "candidate": "baseline_official_mega_lucario",
+          "field": 0.5375,
+          "ci": [
+            0.429,
+            0.6425
+          ],
+          "worst": "dragapult",
+          "worst_rate": 0.45
+        },
+        {
+          "candidate": "ptcg_ismcts_v0",
+          "field": 0.4,
+          "ci": [
+            0.2996,
+            0.5095
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.15
+        },
+        {
+          "candidate": "ptcg_ismcts_hybrid_v0",
+          "field": 0.1375,
+          "ci": [
+            0.0785,
+            0.2297
+          ],
+          "worst": "dragapult",
+          "worst_rate": 0.05
+        }
+      ]
+    },
+    "byterl_rehearsal": {
+      "scored": 32,
+      "results": [
+        {
+          "candidate": "baseline_official_mega_lucario",
+          "field": 0.4375,
+          "ci": [
+            0.231,
+            0.6682
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.25
+        },
+        {
+          "candidate": "ptcg_byterl_v0",
+          "field": 0.0,
+          "ci": [
+            0.0,
+            0.1936
+          ],
+          "worst": "dragapult",
+          "worst_rate": 0.0
+        }
+      ]
+    },
+    "byterl_gate": {
+      "scored": 880,
+      "results": [
+        {
+          "candidate": "baseline_official_mega_lucario",
+          "field": 0.5477,
+          "ci": [
+            0.501,
+            0.5936
+          ],
+          "worst": "mega_abomasnow",
+          "worst_rate": 0.4273
+        },
+        {
+          "candidate": "ptcg_byterl_v0",
+          "field": 0.0659,
+          "ci": [
+            0.0463,
+            0.0931
+          ],
+          "worst": "dragapult",
+          "worst_rate": 0.0182
+        }
+      ]
+    },
+    "hybrid_ablation": {
+      "scored": 320,
+      "results": [
+        {
+          "candidate": "baseline_official_mega_lucario",
+          "field": 0.6,
+          "ci": [
+            0.4905,
+            0.7004
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.45
+        },
+        {
+          "candidate": "ptcg_ismcts_v0",
+          "field": 0.375,
+          "ci": [
+            0.2769,
+            0.4845
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.15
+        },
+        {
+          "candidate": "ptcg_ismcts_value_only_v0",
+          "field": 0.35,
+          "ci": [
+            0.2545,
+            0.4592
+          ],
+          "worst": "mega_lucario",
+          "worst_rate": 0.2
+        },
+        {
+          "candidate": "ptcg_ismcts_priors_only_v0",
+          "field": 0.0875,
+          "ci": [
+            0.043,
+            0.1698
+          ],
+          "worst": "mega_abomasnow",
+          "worst_rate": 0.05
         }
       ]
     },
@@ -217,6 +342,21 @@
           "worst_rate": 0.3333
         }
       ]
+    },
+    "hybrid_smoke": {
+      "scored": 8,
+      "results": [
+        {
+          "candidate": "ptcg_ismcts_hybrid_v0",
+          "field": 0.0,
+          "ci": [
+            0.0,
+            0.3244
+          ],
+          "worst": "dragapult",
+          "worst_rate": 0.0
+        }
+      ]
     }
   },
   "probes": {
@@ -230,15 +370,15 @@
     "B08": "PASS",
     "B09": "PASS",
     "B10": "PASS",
-    "B11": "NOT_EXERCISED",
-    "B12": "NOT_EXERCISED",
+    "B11": "PASS",
+    "B12": "PASS",
     "B13": "PASS",
     "F01": "PASS",
     "F02": "PASS",
     "F03": "PASS",
-    "F04": "NOT_EXERCISED",
-    "H01": "WARN",
-    "H02": "WARN",
+    "F04": "PASS",
+    "H01": "PASS",
+    "H02": "PASS",
     "H03": "PASS",
     "M01": "PASS",
     "M02": "PASS",
@@ -259,8 +399,8 @@
   },
   "validator": {
     "overall": "PASS",
-    "n_checks": 57,
-    "n_passed": 51,
+    "n_checks": 66,
+    "n_passed": 66,
     "n_critical_failures": 0,
     "n_submission_blockers": 0
   },

@@ -6,7 +6,7 @@ A method-faithful agent that loses is a competitive failure, and saying so is th
 | | MCTS | ByteRL |
 |---|---|---|
 | **method fidelity** | PASS | PASS |
-| **competitive** | NOT CREDIBLE -- -12.5 field points vs the frozen baseline | IN PROGRESS |
+| **competitive** | NOT CREDIBLE -- -12.5 field points vs the frozen baseline | NOT CREDIBLE -- -48.2 field points vs the frozen baseline |
 
 ## 1. Did a faithful information-set MCTS beat the frozen baseline?
 
@@ -50,20 +50,20 @@ Yes, and every c018 failure mode is inverted:
 
 ## 3. ByteRL
 
-**Training was still in progress at report time.**
-42,880 actual simulator games (42,880
-completed), 22,553 optimizer steps,
-2 complete learning periods,
-1 immutable historical additions.
+
+80,000 actual simulator games (80,000
+completed), 40,516 optimizer steps,
+10 complete learning periods,
+3 immutable historical additions.
 
 | floor | actual | required | |
 |---|---|---|---|
-| actual simulator games | 42,880 | 60,000 | **MISSED** |
-| optimizer steps | 22,553 | 20,000 | met |
-| complete OSFP learning periods | 2 | 5 | **MISSED** |
-| immutable historical additions | 1 | 2 | **MISSED** |
-| games involving historical checkpoints | 9,112 | 1,000 | met |
-| common-panel/milestone evaluation games | 0 | 800 | **MISSED** |
+| actual simulator games | 80,000 | 60,000 | met |
+| optimizer steps | 40,516 | 20,000 | met |
+| complete OSFP learning periods | 10 | 5 | met |
+| immutable historical additions | 3 | 2 | met |
+| games involving historical checkpoints | 28,735 | 1,000 | met |
+| common-panel/milestone evaluation games | 912 | 800 | met |
 
 ## 4. Common panel
 
@@ -71,10 +71,22 @@ completed), 22,553 optimizer steps,
 |---|---|---|---|---|
 | mcts_gate2 | baseline_official_mega_lucario | 0.5778 | [0.5047, 0.6476] | mega_lucario @ 0.4222 |
 | mcts_gate2 | ptcg_ismcts_v0 | 0.4611 | [0.3899, 0.534] | mega_lucario @ 0.3778 |
+| hybrid_compare | baseline_official_mega_lucario | 0.5375 | [0.429, 0.6425] | dragapult @ 0.45 |
+| hybrid_compare | ptcg_ismcts_v0 | 0.4 | [0.2996, 0.5095] | mega_lucario @ 0.15 |
+| hybrid_compare | ptcg_ismcts_hybrid_v0 | 0.1375 | [0.0785, 0.2297] | dragapult @ 0.05 |
+| byterl_rehearsal | baseline_official_mega_lucario | 0.4375 | [0.231, 0.6682] | mega_lucario @ 0.25 |
+| byterl_rehearsal | ptcg_byterl_v0 | 0.0 | [0.0, 0.1936] | dragapult @ 0.0 |
+| byterl_gate | baseline_official_mega_lucario | 0.5477 | [0.501, 0.5936] | mega_abomasnow @ 0.4273 |
+| byterl_gate | ptcg_byterl_v0 | 0.0659 | [0.0463, 0.0931] | dragapult @ 0.0182 |
+| hybrid_ablation | baseline_official_mega_lucario | 0.6 | [0.4905, 0.7004] | mega_lucario @ 0.45 |
+| hybrid_ablation | ptcg_ismcts_v0 | 0.375 | [0.2769, 0.4845] | mega_lucario @ 0.15 |
+| hybrid_ablation | ptcg_ismcts_value_only_v0 | 0.35 | [0.2545, 0.4592] | mega_lucario @ 0.2 |
+| hybrid_ablation | ptcg_ismcts_priors_only_v0 | 0.0875 | [0.043, 0.1698] | mega_abomasnow @ 0.05 |
 | mcts_gate | baseline_official_mega_lucario | 0.5167 | [0.4281, 0.6042] | dragapult @ 0.3667 |
 | mcts_gate | ptcg_ismcts_v0 | 0.3917 | [0.309, 0.4811] | mega_abomasnow @ 0.3 |
 | mcts_full | baseline_official_mega_lucario | 0.5833 | [0.4939, 0.6676] | mega_abomasnow @ 0.4 |
 | mcts_full | ptcg_ismcts_v0 | 0.3833 | [0.3012, 0.4727] | mega_lucario @ 0.3333 |
+| hybrid_smoke | ptcg_ismcts_hybrid_v0 | 0.0 | [0.0, 0.3244] | dragapult @ 0.0 |
 
 **Recorded limitation.** `make("cabt")` exposes no seed, so deck shuffles and coin flips are not
 paired between candidates — only opponents, seats and agent-side RNG are. Differences inside the
@@ -92,9 +104,15 @@ max. The gate panel evaluated the configuration that would actually ship.
 
 Adapters implemented and switchable, defaulting off; `c019_mcts.py` imports nothing from any
 ByteRL module, so H03 is structural. The leaf-value adapter refuses to act until calibration
-shows it beats both a constant and the heuristic. **Not competitively evaluated:** §10 caps
-hybrid work and forbids delaying pure submissions, and the pure MCTS branch did not clear its
-gate, so a hybrid built on it had no path to promotion.
+shows it beats both a constant and the heuristic.
+
+**Competitively evaluated.** The H02 calibration gate PASSED on 1847 held-out leaves — the ByteRL value head beat both the hand-written heuristic (MSE 0.946 → 0.891) and predicting the mean (0.954), with correlation 0.169 → 0.284 — so the adapter was permitted to act rather than assumed useful.
+
+`ptcg_ismcts_hybrid_v0` is the SAME search with only the two provider arguments changed, so any delta is attributable to the adapters alone. On 160 identity-safe games it scores -40.0 field points against the frozen baseline.
+
+NOT ELIGIBLE -- ptcg_ismcts_hybrid_v0 scores -40.0 field points against the frozen baseline on 160 identity-safe games (0 incomplete). The gate requires +3, or +5 on a single matchup without a -2 field regression; its best matchup delta is -10.0.
+
+A leaf evaluator that is measurably better than the heuristic did not rescue the search. That is the useful part of the result: it separates *the value function is bad* from *the search is bad*, and the evidence points at the search.
 
 ## 7. Probes
 
@@ -110,15 +128,15 @@ gate, so a hybrid built on it had no path to promotion.
 | B08 | PASS |
 | B09 | PASS |
 | B10 | PASS |
-| B11 | NOT_EXERCISED |
-| B12 | NOT_EXERCISED |
+| B11 | PASS |
+| B12 | PASS |
 | B13 | PASS |
 | F01 | PASS |
 | F02 | PASS |
 | F03 | PASS |
-| F04 | NOT_EXERCISED |
-| H01 | WARN |
-| H02 | WARN |
+| F04 | PASS |
+| H01 | PASS |
+| H02 | PASS |
 | H03 | PASS |
 | M01 | PASS |
 | M02 | PASS |
@@ -139,7 +157,7 @@ gate, so a hybrid built on it had no path to promotion.
 
 ## 8. Validator
 
-51/57 checks, 0 critical
+66/66 checks, 0 critical
 failures, 0 submission blockers. Written before the runs it
 judges; every check recounts from raw rows.
 
@@ -156,7 +174,7 @@ every self-play opponent seat errored. See `failures/`.
 | CHAMPION | dragapult | externally confirmed control (~719.7 in captured evidence); no c019 candidate has beaten it on external eviden |
 | CHALLENGER | baseline_official_mega_lucario | accepted submission 55011215; strongest measured candidate on the c019 common panel |
 | DIAGNOSTIC | ptcg_ismcts_v0 | method-faithful and package-safe, but -12.5 field points below the frozen baseline; DECISION_RULES gate not me |
-| IN_PROGRESS | ptcg_byterl_v0 | training run incomplete at report time |
+| DIAGNOSTIC | ptcg_byterl_v0 | see panel |
 | ARCHIVE | c018_search_and_curriculum | root-only search and schedule-driven self-play; disproven as MCTS and as OSFP, not continued by c019 |
 
 ## 10. Submissions

@@ -2,13 +2,19 @@
   "probe_id": "H01",
   "name": "priors_adapter",
   "branch": "hybrid",
-  "status": "WARN",
-  "source_commit": "2bb97e1443dd33223db862c7686520df2a0ef64b",
+  "status": "PASS",
+  "source_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
   "checks": {
     "implemented": true,
     "enabled_by_default": false,
     "maps_by": "canonical option key",
-    "evaluated_in_panel": false
+    "evaluated_in_panel": true,
+    "ablation_games": 320,
+    "pure_mcts_field": 0.375,
+    "priors_only_field": 0.0875,
+    "value_only_field": 0.35,
+    "priors_delta_vs_pure_mcts": -0.2875,
+    "value_delta_vs_pure_mcts": -0.025
   },
   "submission_blocker": false,
   "raw_evidence": []

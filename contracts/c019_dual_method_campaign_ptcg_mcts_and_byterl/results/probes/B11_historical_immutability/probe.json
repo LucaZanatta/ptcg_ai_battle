@@ -2,12 +2,12 @@
   "probe_id": "B11",
   "name": "historical_immutability",
   "branch": "byterl",
-  "status": "NOT_EXERCISED",
-  "source_commit": "2bb97e1443dd33223db862c7686520df2a0ef64b",
+  "status": "PASS",
+  "source_commit": "3c916d229f44366728fec42b8f8663f817e401fe",
   "checks": {
-    "historical": null,
-    "verified": null,
-    "mutated_or_missing": null,
+    "historical": 3,
+    "verified": 3,
+    "mutated_or_missing": [],
     "write_protection": "chmod 0444 at add time; overwrite raises ImmutableCheckpointCollision"
   },
   "submission_blocker": false,

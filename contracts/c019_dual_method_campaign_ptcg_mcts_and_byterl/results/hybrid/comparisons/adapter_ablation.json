@@ -1,0 +1,40 @@
+{
+  "panel_tag": "hybrid_ablation",
+  "games": 320,
+  "incomplete": 0,
+  "question": "the combined hybrid injects two adapters at once; which one moved the result?",
+  "baseline_field": 0.6,
+  "arms": {
+    "pure MCTS (no adapters)": {
+      "candidate_id": "ptcg_ismcts_v0",
+      "field": 0.375,
+      "ci": [
+        0.2769,
+        0.4845
+      ],
+      "delta_vs_baseline": -0.225,
+      "delta_vs_pure_mcts": 0.0
+    },
+    "ByteRL leaf value only": {
+      "candidate_id": "ptcg_ismcts_value_only_v0",
+      "field": 0.35,
+      "ci": [
+        0.2545,
+        0.4592
+      ],
+      "delta_vs_baseline": -0.25,
+      "delta_vs_pure_mcts": -0.025
+    },
+    "ByteRL priors only": {
+      "candidate_id": "ptcg_ismcts_priors_only_v0",
+      "field": 0.0875,
+      "ci": [
+        0.043,
+        0.1698
+      ],
+      "delta_vs_baseline": -0.5125,
+      "delta_vs_pure_mcts": -0.2875
+    }
+  },
+  "conclusion": "The priors adapter is responsible. Replacing the search's priors with the ByteRL policy costs -28.7 field points against pure MCTS, while the calibrated leaf value costs -2.5 points with heavily overlapping confidence intervals ([0.2545, 0.4592] vs [0.2769, 0.4845]) -- indistinguishable from no change at this sample size. A value head that beats the hand-written heuristic on held-out leaves is roughly neutral inside the search; a policy scoring 0.066 on its own is catastrophic as a PUCT prior, because a confidently wrong prior distorts selection at every node while a leaf value only perturbs backups."
+}

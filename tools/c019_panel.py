@@ -36,6 +36,14 @@ FP = os.path.join(C19, "final_panel")
 OPPONENTS = ["dragapult", "mega_lucario", "iono", "mega_abomasnow"]
 
 
+def jload_local(rel):
+    try:
+        with open(os.path.join(C19, rel)) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
 def wilson(k, n, z=1.96):
     if not n:
         return (None, None)
@@ -65,6 +73,49 @@ def build_candidate(cid: str, deck, seed: int, cfg: Dict[str, Any]):
     if cid == "ptcg_ismcts_v0":
         from cg import c019_ismcts as IS
         a = IS.ISMCTSAgent(deck, cfg.get("mcts") or {}, seed=seed)
+
+        def play(obs):
+            return a.act(obs)
+        return play, a
+
+    if cid == "ptcg_ismcts_hybrid_v0":
+        # The SAME search, with the ByteRL adapters injected -- the only difference from
+        # ptcg_ismcts_v0 is the two provider arguments, so a delta between them is attributable
+        # to the adapters and to nothing else. The leaf-value adapter is enabled only because
+        # H02's calibration gate passed on held-out leaves; DECISION_RULES forbids enabling it
+        # on the grounds that the model merely exists.
+        from cg import c019_ismcts as IS, c019_hybrid as HY
+        ck = cfg.get("byterl_checkpoint")
+        cal = cfg.get("leaf_value_calibrated")
+        if not ck:
+            raise ValueError("hybrid candidate requires --byterl-checkpoint")
+        if not cal:
+            raise ValueError("hybrid candidate requires a PASSED H02 calibration; refusing to "
+                             "enable an uncalibrated leaf-value adapter")
+        a = IS.ISMCTSAgent(deck, cfg.get("mcts") or {}, seed=seed,
+                           prior_provider=HY.ByteRLPriorProvider(ck, enabled=True),
+                           value_provider=HY.ByteRLLeafValue(ck, enabled=True, calibrated=True))
+
+        def play(obs):
+            return a.act(obs)
+        return play, a
+
+    if cid in ("ptcg_ismcts_priors_only_v0", "ptcg_ismcts_value_only_v0"):
+        # Ablation. The combined hybrid injects TWO adapters at once, so a delta against pure
+        # MCTS cannot be attributed to either. These isolate one adapter each against the same
+        # search and the same config, which is the only way to say WHICH one moved the result.
+        from cg import c019_ismcts as IS, c019_hybrid as HY
+        ck = cfg.get("byterl_checkpoint")
+        if not ck:
+            raise ValueError("ablation candidates require --byterl-checkpoint")
+        priors = cid == "ptcg_ismcts_priors_only_v0"
+        if not priors and not cfg.get("leaf_value_calibrated"):
+            raise ValueError("value-only ablation requires a PASSED H02 calibration")
+        a = IS.ISMCTSAgent(
+            deck, cfg.get("mcts") or {}, seed=seed,
+            prior_provider=HY.ByteRLPriorProvider(ck, enabled=True) if priors else None,
+            value_provider=(None if priors else
+                            HY.ByteRLLeafValue(ck, enabled=True, calibrated=True)))
 
         def play(obs):
             return a.act(obs)
@@ -172,7 +223,12 @@ def main(argv=None):
     cfg = {"mcts": {"simulations_per_determinization": a.mcts_sims,
                     "determinizations": a.mcts_determinizations,
                     "max_ms_per_decision": a.mcts_max_ms},
-           "byterl_checkpoint": a.byterl_checkpoint}
+           "byterl_checkpoint": a.byterl_checkpoint,
+           # read from the H02 artefact, not from a flag -- the panel must not be able to
+           # enable the leaf-value adapter by assertion
+           "leaf_value_calibrated": bool(
+               (jload_local("hybrid/comparisons/leaf_value_calibration.json") or {})
+               .get("may_enable_leaf_value_adapter"))}
 
     jobs = []
     for oi, opp in enumerate(OPPONENTS):

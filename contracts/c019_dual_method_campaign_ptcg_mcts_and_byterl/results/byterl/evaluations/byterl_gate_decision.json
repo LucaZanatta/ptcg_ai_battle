@@ -1,0 +1,34 @@
+{
+  "rule": "DECISION_RULES.md -- ByteRL credibility",
+  "panel_tag": "byterl_gate",
+  "candidate": "ptcg_byterl_v0",
+  "baseline_field": 0.5477,
+  "candidate_field": 0.0659,
+  "baseline_field_ci": [
+    0.501,
+    0.5936
+  ],
+  "candidate_field_ci": [
+    0.0463,
+    0.0931
+  ],
+  "delta_field_points": -0.4818,
+  "per_matchup_delta": {
+    "dragapult": -0.4363,
+    "mega_lucario": -0.3364,
+    "iono": -0.7546,
+    "mega_abomasnow": -0.4
+  },
+  "clause_a_field_plus_3pts": false,
+  "clause_b_matchup_plus_5pts_without_2pt_field_regression": false,
+  "eligible_for_submission": false,
+  "games": 880,
+  "incomplete_games": 0,
+  "latency": {
+    "baseline_max_game_s": 0.9,
+    "candidate_max_game_s": 0.98,
+    "candidate_mean_search_match_ms": null,
+    "candidate_max_search_match_ms": null
+  },
+  "verdict": "NOT ELIGIBLE -- ptcg_byterl_v0 scores -48.2 field points against the frozen baseline on 880 identity-safe games (0 incomplete). The gate requires +3, or +5 on a single matchup without a -2 field regression; its best matchup delta is -33.6."
+}
