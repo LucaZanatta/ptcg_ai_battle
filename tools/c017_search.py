@@ -33,6 +33,8 @@ import sys
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
+import numpy as np
+
 _REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _REPO)
 
@@ -349,7 +351,16 @@ def generate(n_games: int, cfg: dict, out_prefix: str, opponents: List[str]) -> 
     from cg import teachers as T, c009_eval as ce
     from cg.safe_policy import validate_selection, MalformedSelection
 
+    # TorchPolicy (the project's existing CUDA model) consumes the state_encoder_v2
+    # representation. An earlier version captured cg.policy_features instead and the model
+    # rejected the batch on key "global" - the two featurisers are not interchangeable.
+    from cg import state_encoder_v2 as enc
+    from cg.episode_capture import normalize_observation
     stats = SearchStats()
+    FEAT_KEYS = ("global", "board_rows", "board_dyn", "hand_rows", "hand_dyn", "hand_mask",
+                 "disc_rows", "disc_mask", "opt_dense", "opt_rows")
+    feats: Dict[str, List] = {k: [] for k in
+                              FEAT_KEYS + ("n_options", "label_index", "final_outcome")}
     rows: List[Dict[str, Any]] = []
     games_meta = []
     audits = []
@@ -417,6 +428,32 @@ def generate(n_games: int, cfg: dict, out_prefix: str, opponents: List[str]) -> 
                 "leaf_value_at_decision": round(leaf_value(obs), 6),
                 "label_differs_from_baseline": list(chosen) != list(baseline_action),
             })
+            # Block C feature capture: the model consumes the same featurisation the project's
+            # existing policy stack uses, so no new representation is invented here.
+            try:
+                norm = normalize_observation(obs)[0]
+                fd = enc.encode(norm, None)
+                # opt_dense/opt_rows are ragged: their first dimension is the number of
+                # legal options, which varies per decision. Pad to a fixed width so the
+                # arrays stack; the legal mask (n_options) is what makes the padding inert.
+                KMAX = 32
+                for k in FEAT_KEYS:
+                    v = np.asarray(fd[k])
+                    if k in ("opt_dense", "opt_rows"):
+                        pad = np.zeros((KMAX,) + v.shape[1:], dtype=v.dtype)
+                        m = min(KMAX, v.shape[0])
+                        pad[:m] = v[:m]
+                        v = pad
+                    feats[k].append(v)
+                K = KMAX
+                li = int(chosen[0]) if chosen else 0
+                feats["n_options"].append(min(n_opt, K))
+                feats["label_index"].append(li if li < K else 0)
+                feats["final_outcome"].append(0.0)
+                decisions[-1]["_feat_row"] = len(feats["global"]) - 1
+            except Exception:  # noqa: BLE001
+                stats.fallbacks["featurize_failed"] += 1
+                decisions[-1]["_feat_row"] = None
             return chosen
 
         agents = [me, lambda o: opp(o)] if seat == 0 else [lambda o: opp(o), me]
@@ -444,6 +481,9 @@ def generate(n_games: int, cfg: dict, out_prefix: str, opponents: List[str]) -> 
         for d in decisions:
             d["final_outcome"] = outcome
             d["game_completed"] = completed
+            fr = d.get("_feat_row")
+            if fr is not None and outcome is not None:
+                feats["final_outcome"][fr] = float(outcome)
         rows.extend(decisions)
         games_meta.append({"game_index": gi, "opponent_id": opp_id, "seat": seat,
                            "statuses": st, "completed": completed, "outcome": outcome,
@@ -465,6 +505,18 @@ def generate(n_games: int, cfg: dict, out_prefix: str, opponents: List[str]) -> 
                       "validation" if r["game_index"] in va else "test")
 
     os.makedirs(TRAJ_DIR, exist_ok=True)
+    # drop decisions whose game ended without an outcome: a value target of "unknown" is not
+    # a training signal and silently coding it 0.0 would teach the model that those states
+    # are draws.
+    keep = [i for i, r in enumerate(rows) if r.get("final_outcome") is not None]
+    if feats["global"]:
+        fidx = [rows[i]["_feat_row"] for i in keep if rows[i].get("_feat_row") is not None]
+        np.savez_compressed(
+            os.path.join(TRAJ_DIR, f"{out_prefix}_features.npz"),
+            **{k: np.asarray([feats[k][j] for j in fidx]) for k in feats})
+    rows = [rows[i] for i in keep]
+    for r in rows:
+        r.pop("_feat_row", None)
     path = os.path.join(TRAJ_DIR, f"{out_prefix}_trajectories.jsonl.gz")
     with gzip.open(path, "wt") as fh:
         for r in rows:
