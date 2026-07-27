@@ -156,7 +156,8 @@ def main():
           f"change.\n\n**Status: PASS.**\n")
 
     # ---------------------------------------------------------------- MCTS
-    m01 = jload("probes/M01_baseline_memory_parity/probe.json", {})
+    m01 = (jload("probes/M01_baseline_memory_parity/raw/parity_detail.json")
+           or jload("probes/M01_baseline_memory_parity/probe.json", {}))
     write("M01", "baseline_memory_parity", m01.get("status", "NOT_EXERCISED"),
           {"decisions": m01.get("decisions"), "mismatches": m01.get("mismatches"),
            "parity_rate": m01.get("parity_rate"),

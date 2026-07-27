@@ -117,7 +117,10 @@ def main():
     out["status"] = ("PASS" if (out["mismatches"] == 0 and cov["covered"]
                                 and out["fork_independence"]["independent"]) else "FAIL")
     d = os.path.join(C19, "probes", "M01_baseline_memory_parity")
-    os.makedirs(d, exist_ok=True)
+    os.makedirs(os.path.join(d, "raw"), exist_ok=True)
+    # detailed evidence lives in raw/ so the probe-summary writer cannot overwrite it
+    json.dump(out, open(os.path.join(d, "raw", "parity_detail.json"), "w"), indent=2,
+              default=str)
     json.dump(out, open(os.path.join(d, "probe.json"), "w"), indent=2, default=str)
     print(json.dumps({"decisions": out["decisions"], "mismatches": out["mismatches"],
                       "parity_rate": out["parity_rate"],
