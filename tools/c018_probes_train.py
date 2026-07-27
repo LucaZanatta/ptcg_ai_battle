@@ -74,47 +74,95 @@ makes "the hash changed" mean *this* campaign moved *these* weights.
 
 def p10():
     d = jload(DIST)
+    hm = jload("artifacts/heldout_metrics.json")
     if not d:
         return write("P10", "reload_and_heldout_metrics", "NOT_EXERCISED", {}, [], [],
                      "# P10 — not exercised\n")
-    t = d.get("held_out_test") or {}
-    rt = d.get("held_out_test_from_reload") or {}
+    t = (hm or {}).get("held_out_test") or d.get("held_out_test") or {}
     ck = {"reload_hash_matches": d.get("reload_hash_matches"),
           "reload_metrics_identical": d.get("reload_metrics_identical"),
-          "held_out_n": t.get("n"), "top1_agreement": t.get("top1_agreement"),
-          "value_mse": t.get("value_mse"), "policy_loss": t.get("policy_loss"),
-          "legal_prediction_rate": t.get("legal_prediction_rate"),
-          "validation": d.get("final_validation"),
+          "held_out_n": t.get("n"), "top1": t.get("top1") or t.get("top1_agreement"),
+          "top3": t.get("top3"), "mean_kl_nats": t.get("mean_kl_nats"),
+          "legal_top1_rate": t.get("legal_top1_rate") or t.get("legal_prediction_rate"),
+          "value_mse": t.get("value_mse"),
+          "constant_baseline_mse": t.get("constant_baseline_mse"),
+          "beats_constant_baseline": t.get("beats_constant_baseline"),
+          "value_correlation": t.get("value_correlation"),
+          "calibration_deciles": t.get("calibration_deciles"),
+          "by_decision_category": t.get("by_decision_category"),
+          "no_train_test_leakage": (hm or {}).get("no_train_test_leakage"),
           "metric_is_first_pick_only": True,
           "multiselect_rows": d.get("multiselect_rows")}
+    # the value head failing to beat a constant is a WARN, not a PASS dressed up
     ok = bool(ck["reload_hash_matches"] and ck["reload_metrics_identical"]
-              and (ck["legal_prediction_rate"] or 0) >= 1.0)
+              and (ck["legal_top1_rate"] or 0) >= 1.0 and ck["no_train_test_leakage"])
+    value_ok = bool(ck["beats_constant_baseline"])
+    status = "PASS" if (ok and value_ok) else ("WARN" if ok else "FAIL_TAINTED")
+    cats = ck["by_decision_category"] or {}
+    cat_md = "\n".join(f"| {k} | {v['n']} | {v['top1']} | {v.get('top3')} | "
+                        f"{v['mean_kl_nats']} |" for k, v in cats.items()) or "| | | | | |"
+    calib = "\n".join(f"| {c['bin']/10:.1f}–{(c['bin']+1)/10:.1f} | {c['n']} | "
+                       f"{c['mean_predicted']} | {c['mean_actual']} |"
+                       for c in (ck["calibration_deciles"] or [])) or "| | | | |"
     ms = ck["multiselect_rows"]
     ms_txt = f"{ms:,}" if ms is not None else "the"
     readme = f"""# P10 — Exact reload and held-out metrics
 
 **Reload is exact.** The saved checkpoint was loaded into a *fresh* model and re-scored: hash
-matches (`{ck['reload_hash_matches']}`) and the held-out metrics are identical to the in-memory
-model's (`{ck['reload_metrics_identical']}`). A packaged model that scores differently from the
-evaluated one is §8.2.6 in its purest form.
+matches (`{ck['reload_hash_matches']}`), metrics identical (`{ck['reload_metrics_identical']}`).
+A packaged model that scores differently from the evaluated one is §8.2.6 in its purest form.
 
-**Held-out ({ck['held_out_n']:,} decisions from games never trained on).**
-Top-1 agreement {ck['top1_agreement']}, policy loss {ck['policy_loss']}, value MSE
-{ck['value_mse']}.
+**No leakage.** Splits are by game, and no game crosses train/validation/test
+(`{ck['no_train_test_leakage']}`).
 
-**Legality: {ck['legal_prediction_rate']}.** Every arg-max prediction lands inside the live
-option set. This is the property that matters for packaging — a model that is merely inaccurate
-plays a bad legal move, while one that is illegal forfeits.
+## Policy head — works
 
-**What this number is not.** The stored label is `label_action[0]`, so top-1 agreement is
-FIRST-PICK agreement; on {ms_txt} multi-select decisions it says nothing about the rest of the
-selection. And agreement with the search is not the same as playing well —
-that claim belongs to P17.
+Held-out ({ck['held_out_n']:,} decisions from games never trained on): top-1
+**{ck['top1']}**, top-3 **{ck['top3']}**, mean KL to the search's choice
+{ck['mean_kl_nats']} nats, legal top-1 rate **{ck['legal_top1_rate']}**.
 
-**Status: {'PASS' if ok else 'WARN'}.**
+Legality is the property that matters for packaging: an inaccurate model plays a bad legal
+move, an illegal one forfeits.
+
+### By decision category (engine `SelectContext`)
+
+| context | n | top-1 | top-3 | mean KL |
+|---|---|---|---|---|
+{cat_md}
+
+## Value head — does NOT beat a constant
+
+| | MSE |
+|---|---|
+| learned value head | **{ck['value_mse']}** |
+| constant baseline (predict the training-set mean outcome) | **{ck['constant_baseline_mse']}** |
+
+Correlation with the actual game result is **{ck['value_correlation']}**.
+
+**The value head is worse than predicting a constant.** This is stated plainly because it is
+load-bearing: M04's guided search replaces the hand-written leaf heuristic with exactly this
+value head, so a value head that carries almost no signal is a direct, predicted reason for
+guided search to rank at or below unguided search on the panel. It is a negative result about
+this campaign's own most sophisticated component, not a caveat.
+
+### Calibration by predicted decile
+
+| predicted | n | mean predicted | mean actual |
+|---|---|---|---|
+{calib}
+
+## What these numbers are not
+
+The stored label is `label_action[0]`, so top-1 is FIRST-PICK agreement; on {ms_txt}
+multi-select decisions it says nothing about the rest of the selection. And agreement with the
+search is imitation, not strength — a model that imitates perfectly inherits the search's
+mistakes. Gameplay promotion comes from P17 alone.
+
+**Status: {status}.**
 """
-    return write("P10", "reload_and_heldout_metrics", "PASS" if ok else "WARN", ck, [DIST], [],
-                 readme, raw=[DIST])
+    return write("P10", "reload_and_heldout_metrics", status, ck,
+                 [DIST, "artifacts/heldout_metrics.json"], [], readme,
+                 raw=[DIST, "artifacts/heldout_metrics.json"])
 
 
 def p11():
