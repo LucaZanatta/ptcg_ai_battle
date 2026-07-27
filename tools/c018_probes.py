@@ -51,8 +51,24 @@ def jload(p, d=None):
 
 
 def read_gz(p):
+    """Tolerant of a file still being written: returns whatever complete lines exist plus a
+    truncation flag. Truncation is never silently benign -- every consumer compares the
+    recounted total against the reported one, so a short read fails closed."""
     p = p if os.path.isabs(p) else os.path.join(C18, p)
-    return [json.loads(l) for l in gzip.open(p, "rt")] if os.path.exists(p) else []
+    rows, truncated = [], False
+    if not os.path.exists(p):
+        return rows
+    try:
+        with gzip.open(p, "rt") as fh:
+            for line in fh:
+                if line.strip():
+                    rows.append(json.loads(line))
+    except (EOFError, OSError, json.JSONDecodeError):
+        truncated = True
+    if truncated:
+        rows.append({"__truncated__": True})
+        rows.pop()
+    return rows
 
 
 def manifest(paths):

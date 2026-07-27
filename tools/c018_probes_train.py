@@ -89,6 +89,8 @@ def p10():
           "multiselect_rows": d.get("multiselect_rows")}
     ok = bool(ck["reload_hash_matches"] and ck["reload_metrics_identical"]
               and (ck["legal_prediction_rate"] or 0) >= 1.0)
+    ms = ck["multiselect_rows"]
+    ms_txt = f"{ms:,}" if ms is not None else "the"
     readme = f"""# P10 — Exact reload and held-out metrics
 
 **Reload is exact.** The saved checkpoint was loaded into a *fresh* model and re-scored: hash
@@ -105,8 +107,8 @@ option set. This is the property that matters for packaging — a model that is 
 plays a bad legal move, while one that is illegal forfeits.
 
 **What this number is not.** The stored label is `label_action[0]`, so top-1 agreement is
-FIRST-PICK agreement; on the {ck['multiselect_rows']:,} multi-select decisions it says nothing
-about the rest of the selection. And agreement with the search is not the same as playing well —
+FIRST-PICK agreement; on {ms_txt} multi-select decisions it says nothing about the rest of the
+selection. And agreement with the search is not the same as playing well —
 that claim belongs to P17.
 
 **Status: {'PASS' if ok else 'WARN'}.**
@@ -281,9 +283,12 @@ def p17():
         agg[(r["candidate_id"], r["opponent_id"])][0] += 1
         agg[(r["candidate_id"], r["opponent_id"])][1] += r["score"]
     bad = []
+    opps = set((meta or {}).get("opponents") or [])
     for row in rows:
         for k, v in list(row.items()):
-            if not k.endswith("_rate") or v is None:
+            # only per-opponent rates recompute this way; `overall_rate` and
+            # `worst_matchup_rate` also end in _rate but are not opponent names
+            if not k.endswith("_rate") or v is None or k[:-5] not in opps:
                 continue
             o = k[:-5]
             n, s = agg.get((row["candidate_id"], o), [0, 0.0])

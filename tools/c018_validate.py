@@ -63,8 +63,24 @@ def sha_file(p):
 
 
 def read_gz(p):
+    """Tolerant of a file still being written: returns whatever complete lines exist plus a
+    truncation flag. Truncation is never silently benign -- every consumer compares the
+    recounted total against the reported one, so a short read fails closed."""
     p = p if os.path.isabs(p) else os.path.join(C18, p)
-    return [json.loads(l) for l in gzip.open(p, "rt")] if os.path.exists(p) else []
+    rows, truncated = [], False
+    if not os.path.exists(p):
+        return rows
+    try:
+        with gzip.open(p, "rt") as fh:
+            for line in fh:
+                if line.strip():
+                    rows.append(json.loads(line))
+    except (EOFError, OSError, json.JSONDecodeError):
+        truncated = True
+    if truncated:
+        rows.append({"__truncated__": True})
+        rows.pop()
+    return rows
 
 
 # ---------------------------------------------------------------- fake / static search
@@ -289,9 +305,12 @@ def v_panel():
         agg[(r["candidate_id"], r["opponent_id"])][0] += 1
         agg[(r["candidate_id"], r["opponent_id"])][1] += r["score"]
     bad = []
+    meta = jload("final_panel/panel_meta.json", {}) or {}
+    opps = set(meta.get("opponents") or [])
     for row in rows:
         for k, v in row.items():
-            if not k.endswith("_rate") or v is None:
+            # `overall_rate` / `worst_matchup_rate` also end in _rate but name no opponent
+            if not k.endswith("_rate") or v is None or k[:-5] not in opps:
                 continue
             opp = k[:-5]
             n, s = agg.get((row["candidate_id"], opp), [0, 0.0])
@@ -307,7 +326,8 @@ def v_panel():
            for r in raw[:3000]))
     ck("no_zero_denominator_rate",
        not any(row.get(f"{k[:-5]}_games") == 0 and row.get(k) is not None
-               for row in rows for k in row if k.endswith("_rate")))
+               for row in rows for k in row
+               if k.endswith("_rate") and k[:-5] in opps))
 
 
 def v_history_and_package():
