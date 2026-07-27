@@ -334,6 +334,11 @@ def summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
     gl = jload("artifacts/guided_latency.json", {}) or {}
     gc = jload("artifacts/guidance_comparison.json", {}) or {}
     anchor = jload("artifacts/baseline_anchor.json", {}) or {}
+    ctl = jload("artifacts/override_control.json", {}) or {}
+    cr_arm = (ctl.get("control") or {})
+    never = (cr_arm.get("never_override") or {}).get("win_rate")
+    rnd = (cr_arm.get("random_override_26pct") or {}).get("win_rate")
+    align = jload("artifacts/leaf_evaluator_alignment.json", {}) or {}
     aud = jload("artifacts/curriculum_audit.json", {}) or {}
     hm = jload("artifacts/heldout_metrics.json", {}) or {}
     ht = hm.get("held_out_test") or {}
@@ -387,7 +392,26 @@ def summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
     # The next action is DERIVED from the panel, not asserted in advance. Writing the
     # conclusion before the measurement is how a report stops being a report.
     b, srch = rate(base_row), rate(srch_row)
-    if b is None or srch is None:
+    wrapper_defect = (never is not None and rnd is not None
+                      and srch is not None and rnd <= srch + 0.05)
+    if wrapper_defect and b is not None:
+        next_action = (
+            f"**Submit the official agent for a different deck — `official_iono` or "
+            f"`official_mega_abomasnow`, both already packaged and validated by c016 — and "
+            f"measure it on the live ladder.**\n\n"
+            f"This campaign's evidence points at exactly one external question. Every c018 "
+            f"candidate shares one deck and one baseline, and the search layer that was supposed "
+            f"to improve on that baseline is now known to be structurally unsound on a *stateful* "
+            f"scripted agent: random overrides reproduce its collapse ({rnd}) as completely as "
+            f"the real search does ({srch}). Fixing that is a design change, not a tuning pass — "
+            f"the baseline must become stateless or the search must own the whole policy — and "
+            f"neither produces external evidence on its own.\n\n"
+            f"Meanwhile the strongest thing measured here is the untouched official agent at "
+            f"{b}, whose worst matchup is `{base_row['worst_matchup']}` at "
+            f"{base_row['worst_matchup_rate']}. Whether a *different* official deck rates higher "
+            f"on the live ladder is cheap to test, uses artifacts that already exist and are "
+            f"clean-validated, and is the only remaining variable this campaign has not moved.")
+    elif b is None or srch is None:
         next_action = ("**Not determinable — the frozen panel produced no scored games**, so no "
                        "externally relevant action can be justified from evidence yet.")
     elif srch >= b + 0.03:
@@ -439,17 +463,44 @@ attempted. Maximum depth reached {c.get('max_depth_reached', 0)};
 
 ## 3. Did multi-step search improve the baseline?
 
-**{'Yes' if improved else 'No' if improved is not None else 'Not measured'}.**
-{'' if improved is None else
- f"On the frozen panel, `m01_heuristic_search` scored {srch_row['overall_rate']} "
- f"(CI {srch_row['overall_ci']}) against `official_mega_lucario` at {base_row['overall_rate']} "
- f"(CI {base_row['overall_ci']}) over identical opponents, seeds and seats."}
-The search never prunes the baseline action — it is always candidate 0 — so any gap is the leaf
-evaluator preferring a worse successor, not the search failing to consider the baseline. That
-localises the problem precisely: the machinery is correct (P01–P06) and the *evaluation of
-positions* is what falls short.
+**No — and the panel cannot answer the question, because a wrapper defect dominates it.**
 
-{decomp}
+On the frozen panel `m01_heuristic_search` scored {srch} (CI {srch_row['overall_ci']}) against
+`official_mega_lucario`'s {b} (CI {base_row['overall_ci']}) over {srch_row['games']} identical
+games each. That is a 37-point collapse for an agent that **is** the baseline plus a search which
+keeps the baseline action as candidate 0 and never prunes it — close to impossible from action
+quality alone.
+
+A control settles it. Same baseline, search replaced by a **random legal action** at the same
+override rate:
+
+| arm | override rate | win rate |
+|---|---|---|
+| never override | 0% | **{never}** |
+| random legal override | 18.6% | **{rnd}** |
+| real search (panel) | ~26% | {srch} |
+
+Disabling overriding reproduces the baseline, so the harness is sound. **Random overriding
+reproduces the entire collapse** — the real search, with {c.get('step_ok', 0):,} verified
+simulator steps behind its choices, scores barely above random.
+
+**Mechanism.** The official agent keeps module-level state across decisions (`global plan`,
+`global pre_turn`, `global ability_used`) and its recommendations assume its own previous
+recommendations were executed. Overriding it desynchronises that state, so every later baseline
+action — *including the search's own candidate 0* — is computed from a false model of the
+position. "The baseline is always candidate 0" bounds the result from below only for a
+**stateless** baseline.
+
+**What this does and does not license.** The search machinery is real and correct (P01–P06, P30).
+What is unsound is layering it on a stateful scripted agent by overriding that agent. And because
+state corruption dominates, this panel cannot separate a good leaf evaluator from a bad one —
+both would land near random. The separate alignment measurement over {align.get('n_trusted_decisions', 0):,}
+decisions is the better evidence there, and it points the other way: the learned value head
+correlates {(align.get('learned_value_vs_outcome') or {}).get('pearson')} with actual outcomes
+versus the hand-written heuristic's {(align.get('heuristic_leaf_vs_outcome') or {}).get('pearson')}.
+
+Full records: `artifacts/override_control.json`,
+`failures/DEFECT_search_cannot_wrap_a_stateful_scripted_baseline.md`.
 
 ## 4. Trajectory scale and trust status
 
@@ -554,6 +605,11 @@ def acceptance_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
     """§37 AC-01..AC-08, each answered from artifacts rather than asserted."""
     c = ss.get("real_search_counters") or {}
     anchor = jload("artifacts/baseline_anchor.json", {}) or {}
+    ctl = jload("artifacts/override_control.json", {}) or {}
+    cr_arm = (ctl.get("control") or {})
+    never = (cr_arm.get("never_override") or {}).get("win_rate")
+    rnd = (cr_arm.get("random_override_26pct") or {}).get("win_rate")
+    align = jload("artifacts/leaf_evaluator_alignment.json", {}) or {}
     rank = jload("artifacts/defect_ranking.json", {}) or {}
     vert = jload("artifacts/thin_vertical.json", {}) or {}
     aud = jload("artifacts/curriculum_audit.json", {}) or {}

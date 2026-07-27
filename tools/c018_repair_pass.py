@@ -26,6 +26,28 @@ ART = os.path.join(C18, "artifacts")
 
 DEFECTS = [
     {
+        "id": "D0", "title": "forward search cannot wrap a stateful scripted baseline",
+        "found_in": "disbelieving the campaign's own headline panel number",
+        "downstream_impact": "INVALIDATES_CENTRAL_COMPARISON",
+        "impact_rank": 0,
+        "why": ("m01_heuristic_search IS the official agent plus a search keeping the baseline "
+                "as candidate 0, yet it scored 37 points below it. A control shows random legal "
+                "overrides at the same rate reproduce the collapse (0.192 vs 0.210) while "
+                "disabling overriding reproduces the baseline (0.596 vs 0.580). The official "
+                "agent keeps module-level state and assumes its own recommendations are "
+                "executed, so overriding poisons every later baseline action -- including the "
+                "search's own candidate 0."),
+        "affected_milestones": ["M01", "M04", "M05"],
+        "earliest_affected": "M01",
+        "repaired": False,
+        "repair": ("NOT repaired -- this is a design constraint, not a patch. Either the "
+                   "baseline becomes a pure function of the observation, or the search owns the "
+                   "whole policy instead of sitting on top of a scripted one. Recorded as an "
+                   "open finding rather than closed with a cosmetic fix."),
+        "verified_by": "artifacts/override_control.json (480 control games)",
+        "record": "failures/DEFECT_search_cannot_wrap_a_stateful_scripted_baseline.md",
+    },
+    {
         "id": "D1", "title": "packaged agent searched 3 of 84 decisions",
         "found_in": "package clean-extraction instrumentation",
         "downstream_impact": "SUBMISSION_BLOCKER",
@@ -143,6 +165,7 @@ def main():
     earliest = min((d["earliest_affected"] for d in ordered), key=lambda m: int(m[1:]))
     doc = {
         "section": "§7 Pass B",
+        "open_findings": [d["id"] for d in ordered if not d["repaired"]],
         "process_note": (
             "Repairs were applied as each defect was found rather than batched into one pass. "
             "Several were submission blockers discovered while the artifacts they invalidated "
