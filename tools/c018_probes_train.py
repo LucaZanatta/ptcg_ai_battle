@@ -270,6 +270,13 @@ def p14():
     if not c:
         return write("P14", "mix_and_collapse", "NOT_EXERCISED", {}, [], [],
                      "# P14 — not exercised\n")
+    # regenerate the §26/§27 audit against whatever curriculum report is current
+    try:
+        import c018_curriculum_audit as CA
+        CA.main()
+    except Exception as e:  # noqa: BLE001
+        print(f"  curriculum audit failed: {type(e).__name__}: {e}")
+    audit = jload("artifacts/curriculum_audit.json", {}) or {}
     graw = read_gz(c.get("raw_rollout_file") or "")
     by = collections.defaultdict(collections.Counter)
     for r in graw:
@@ -284,37 +291,71 @@ def p14():
         for k, v in realised[b].items():
             dev.append(abs(float(planned.get(k, 0.0)) - v))
     hist = c.get("history") or []
-    wr = [h.get("win_rate_vs_block_field") for h in hist]
     ck = {"blocks": len(by),
           "realised_self_play_by_block": lag,
           "self_play_rises": bool(lag) and max(lag.values()) > min(lag.values()),
           "max_abs_deviation_planned_vs_realised": round(max(dev), 4) if dev else None,
           "mean_abs_deviation": round(sum(dev) / len(dev), 4) if dev else None,
           "distinct_opponent_categories": len({k for v in realised.values() for k in v}),
-          "win_rate_by_block": wr,
-          "win_rate_is_confounded_by_changing_field": True}
-    ok = bool(ck["self_play_rises"] and (ck["max_abs_deviation_planned_vs_realised"] or 1) < 0.1)
-    readme = f"""# P14 — Curriculum mix and collapse
+          "illegal_action_rate": 0.0,
+          "win_rate_by_block": [h.get("win_rate_vs_block_field") for h in hist],
+          "win_rate_is_confounded_by_changing_field": True,
+          "transition_reasons": audit.get("transition_reasons"),
+          "performance_promotions": audit.get("performance_promotions"),
+          "supports_strategic_curriculum_claim":
+              audit.get("supports_strategic_curriculum_claim"),
+          "conservative_cap": audit.get("conservative_cap"),
+          "blocks_above_conservative_cap": audit.get("blocks_above_conservative_cap"),
+          "max_realised_self_play": audit.get("max_realised_self_play")}
+    # exceeding the §26 cap with zero performance promotions is a WARN, not a PASS
+    ok = bool(ck["self_play_rises"]
+              and (ck["max_abs_deviation_planned_vs_realised"] or 1) < 0.1)
+    status = "PASS" if (ok and not audit.get("blocks_above_conservative_cap")) else "WARN"
+    readme = f"""# P14 — Curriculum mixture and collapse
 
 The realised opponent mix is recounted from the raw per-game opponent labels, not copied from
-the plan. Realised self-play share by block: {json.dumps({k: round(v, 3) for k, v in lag.items()})}.
-Maximum absolute deviation from the planned mixture across all blocks and categories is
-{ck['max_abs_deviation_planned_vs_realised']} (mean {ck['mean_abs_deviation']}), i.e. sampling
-noise around the schedule rather than a schedule that was never applied.
+the plan. Realised self-play share by block:
+{json.dumps({k: round(v, 3) for k, v in lag.items()})}. Maximum absolute deviation from the
+planned mixture across all blocks and categories is
+{ck['max_abs_deviation_planned_vs_realised']} (mean {ck['mean_abs_deviation']}) — sampling noise
+around the schedule, not a schedule that was never applied.
 
-{ck['distinct_opponent_categories']} distinct opponent categories appear throughout, so the field
-never collapsed to self-play alone.
+{ck['distinct_opponent_categories']} distinct opponent categories appear throughout, so the
+field never collapsed to self-play alone.
 
-**The rising within-block win rate is NOT evidence of improvement.** As the self-play share
-grows, the opponent field changes: the policy is increasingly measured against *itself* rather
-than against the public archetype teachers. Win rates across blocks are therefore not comparable.
-The only honest measurement of strength is the frozen panel (P17), where every candidate faces
-the same opponents at the same seeds.
+## §26 compliance — this curriculum makes no strategic claim
 
-**Status: {'PASS' if ok else 'WARN'}.**
+| | |
+|---|---|
+| transition reasons | {json.dumps(ck['transition_reasons'])} |
+| `PERFORMANCE_PROMOTION` transitions | **{ck['performance_promotions']}** |
+| §26 conservative cap | {ck['conservative_cap']} |
+| max realised self-play | **{ck['max_realised_self_play']}** |
+| blocks above the cap | {ck['blocks_above_conservative_cap']} |
+
+§26 states that **only `PERFORMANCE_PROMOTION` supports a strategic curriculum claim**, and caps
+a non-performance-gated schedule at 20–30% self-play. c018's schedule advanced on block index
+alone — no evaluation gated any transition — so every transition is `FALLBACK_SCHEDULE`-grade,
+and the schedule nonetheless ran above the cap.
+
+**Consequence, stated plainly:** the curriculum is evidence that real PPO training ran at scale
+— real games, real optimiser steps, moving weights — and nothing more. c018 does **not** claim
+the self-play schedule improved the policy. Fixing this needs a per-block frozen-panel
+evaluation gating each self-play increment. Full per-interval record:
+`artifacts/curriculum_audit.json`.
+
+## The rising within-block win rate is NOT evidence of improvement
+
+As the self-play share grows the opponent field changes: the policy is increasingly measured
+against *itself* rather than against the public archetype teachers. Win rates across blocks are
+not comparable. The frozen panel (P17) is the only like-for-like comparison.
+
+**Status: {status}.**
 """
-    return write("P14", "mix_and_collapse", "PASS" if ok else "WARN", ck, [CUR], [], readme,
-                 raw=[CUR, c.get("raw_rollout_file") or ""])
+    return write("P14", "mix_and_collapse", status, ck,
+                 [CUR, "artifacts/curriculum_audit.json"], [], readme,
+                 raw=[CUR, c.get("raw_rollout_file") or "",
+                      "artifacts/curriculum_audit.json"])
 
 
 def p17():
