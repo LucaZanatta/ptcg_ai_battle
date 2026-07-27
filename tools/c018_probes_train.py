@@ -650,6 +650,11 @@ Not exercised: {ne or 'none'}.
 
 def main():
     try:
+        import c018_repair_pass as RP
+        RP.main()
+    except Exception as e:  # noqa: BLE001
+        print(f"  defect ranking failed: {type(e).__name__}: {e}")
+    try:
         import c018_stages as ST
         ST.main()
     except Exception as e:  # noqa: BLE001
