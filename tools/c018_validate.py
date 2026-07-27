@@ -347,14 +347,37 @@ def v_history_and_package():
     ck("c005_to_c017_unmodified", not mod, {"files_checked": n, "changed": mod[:8]})
     ck("immutability_baseline_substantive", n > 1500, {"files_checked": n})
 
-    for man, arch in (("packages/submission_manifest.json", None),):
-        m = jload(man)
-        if not m:
-            continue
-        p = os.path.join(C18, m.get("archive_rel", ""))
-        ck("package_hash_matches_manifest",
-           os.path.exists(p) and sha_file(p) == m.get("sha256"),
-           {"manifest": (m.get("sha256") or "")[:12]}, blocker=True)
+    # every package manifest on disk, not a hardcoded filename that never existed
+    mans = sorted(glob.glob(os.path.join(C18, "packages", "*_manifest.json")))
+    require("package_manifest_present", bool(mans), {"manifests": len(mans)})
+    for mp in mans:
+        m = json.load(open(mp))
+        name = m.get("name") or os.path.basename(mp)
+        arch = os.path.join(C18, m.get("archive_rel", ""))
+        ck(f"package_hash_matches_manifest:{name}",
+           os.path.exists(arch) and sha_file(arch) == m.get("sha256"),
+           {"manifest": (m.get("sha256") or "")[:12],
+            "on_disk": sha_file(arch)[:12] if os.path.exists(arch) else None}, blocker=True)
+        # the packaged search module must be the one the panel imported (S8.2.6)
+        live = os.path.join(_REPO, "tools", "c018_search.py")
+        ck(f"packaged_search_module_matches_source:{name}",
+           m.get("search_module_sha256") == (sha_file(live) if os.path.exists(live) else None),
+           {"packaged": (m.get("search_module_sha256") or "")[:12]}, blocker=True)
+        v = jload(f"packages/{name}_clean_validation.json")
+        if v:
+            ck(f"clean_extraction_ok:{name}", bool(v.get("clean_extraction_ok")),
+               {"games_completed": v.get("games_completed"),
+                "games_played": v.get("games_played")}, blocker=True)
+            # a safe fallback and a working search look identical unless something counts it
+            ck(f"packaged_agent_actually_searched:{name}",
+               bool(v.get("search_actually_ran_in_package")),
+               {"searched": v.get("packaged_searched"),
+                "decisions": v.get("packaged_decisions"),
+                "rate": v.get("packaged_search_rate"),
+                "note": "completing games proves nothing; the baseline fallback also "
+                        "completes games"}, blocker=True)
+            ck(f"packaged_no_hidden_information:{name}",
+               (v.get("packaged_hidden_information_violations") or 0) == 0, blocker=True)
 
     for z in ("source/complete_repository_source.zip",
               "source/c018_competition_source_bundle.zip"):
