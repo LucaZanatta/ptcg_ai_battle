@@ -1,0 +1,40 @@
+a3cabc9 c020: fixtures, reports, and F01 complete integrated smoke
+1f16f58 c020: evaluation harness, hybrid runner, packaging, panel, admission
+a8bacba c020: forced ByteRL corrections B1-B8, hybrid C1-C5, semantic validator
+8cb858b c020: branch, controls freeze, and forced MCTS corrections A1-A8
+a1d322e c019: correct the hybrid narrative to match its own ablation
+55c14c8 c019: close out -- correct campaign-run selection, gate both branches alike, ablate the hybrid
+3c916d2 c019: measure B12 instead of recording it as not exercised
+2bb97e1 c019: run the H02 leaf-value gate instead of declaring it unexercised
+2886e71 c019: fix OSFP payoff attribution, xi units, and forced-add off-by-one
+0417941 c019: reports, and fix three defects in my own evidence tooling
+d659399 c019: materialize all 34 PROBE_MATRIX probes with derived evidence
+c42ec54 c019: correct a false panel claim -- environment randomness cannot be paired
+a214488 c019: submission gates enforced in code, per branch
+6dba4ee c019: hybrid adapters and results-tree assembler
+2c91983 c019: common panel, standalone packages for both branches, MCTS gate decision
+773b932 c019: fix agent signature capture that killed every self-play game
+2a1fb63 c019: sources, determinizer, MCTS engine, leaf evaluator, V-trace/UPGO, OSFP, fixtures
+a8116e9 c019: shared core, branch-local baseline memory, ByteRL encoder/model, calibration
+2197214 c018: fix two acceptance-checklist bugs and make M05 record the non-submission decision
+4cbae35 c018: final reports state the wrapper mechanism and derive the next action from it
+41caa5b c018: the search collapse is a wrapper defect, not a search-quality finding
+17ce268 c018: enforce the pre-registered promotion gate in code, not just in markdown
+eb9f0da c018: conform the results tree to the section 35 layout; add the required checklist and board
+ce1b081 c018: make the FAIL verdict faithful to section 38 rather than mechanical
+ca460fd c018: derive the next action and the defect list from evidence, not from prose
+a734619 c018: record why the panel has four opponents, not five
+c55afed c018: track the contract documents alongside the pre-registered decision rules
+1386c21 c018: amendment 3 -- correct the upload-1 gate to match CONTRACT sections 16 and 34
+a753478 c018: correct the value-head diagnosis -- miscalibration, not absent signal
+55cceef c018: resolve the primary trajectory set from evidence instead of hardcoding a prefix
+d488dca c018: section 7 Pass B defect ranking and consolidated rerun record
+ca2b19e c018: P17 tests whether overriding the baseline helps or hurts
+a017938 c018: report the value head against a 4x sample-size control
+a4c6a1a c018: give P90 a probe directory like every other probe
+38fa36a c018: include every c018 tool, the unit tests and DECISION_RULES in the source tree
+9bc3ab2 c018: report the guidance decomposition as a first-class result in SUMMARY
+cd87047 c018: policy-only packages ship no search module and are exempt from its hash gate
+452865f c018: amendment 2 -- the distilled policy as its own stage; honest target-band reporting
+a962b9d c018: sixth stage (distilled policy) and the section 29 stage registry
+ec8ffda c018: section 32 panel freeze, section 33 package rules, third package for the trained policy
