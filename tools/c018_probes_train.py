@@ -144,11 +144,25 @@ move, an illegal one forfeits.
 
 Correlation with the actual game result is **{ck['value_correlation']}**.
 
-**The value head is worse than predicting a constant.** This is stated plainly because it is
-load-bearing: M04's guided search replaces the hand-written leaf heuristic with exactly this
-value head, so a value head that carries almost no signal is a direct, predicted reason for
-guided search to rank at or below unguided search on the panel. It is a negative result about
-this campaign's own most sophisticated component, not a caveat.
+**The value head loses to a constant on MSE — but the reason is calibration, not absence of
+signal.** The decile table below shows predictions rising monotonically with actual outcomes,
+and correlation nearly doubled when the training set was quadrupled ({ctrl.get('value_correlation')}
+→ {ck['value_correlation']}). What it does wrong is spread predictions across the full [0, 1]
+range when true conditional outcomes span roughly [0.10, 0.42] around a base rate of
+{t.get('constant_baseline_value')}. Squared error punishes that overconfidence hard enough to
+lose to a constant, even though the ordering information is real.
+
+That distinction matters for how this result should be used. **A search leaf evaluator needs
+correct ordering, not calibrated magnitudes** — it compares candidate successors and takes the
+argmax, and any monotone transform of the values leaves that choice unchanged. So "loses to a
+constant on MSE" is the honest headline but not the decisive test for M04's use of it. The
+decisive test is whether learned leaf values rank successors better than the hand-written
+heuristic in actual play, which is exactly what the panel's `m04_guided_search` versus
+`m04_guided_ordering_only` comparison isolates.
+
+The obvious cheap fix — shrink predictions toward the base rate (Platt-style recalibration) —
+would collapse most of the MSE gap without changing any ranking. It is not applied here, because
+it would change no search decision and would only make a reported number look better.
 
 ### Was it a sample-size problem?
 
