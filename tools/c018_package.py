@@ -106,6 +106,40 @@ GUIDE_BLOCK = '''def _guide():
 '''
 
 
+def cg_closure(roots):
+    """Transitive closure of `cg.*` imports reachable from `roots`, read from the AST.
+
+    Some repo files carry a UTF-8 BOM, so they are opened with `utf-8-sig`; parsing one as
+    plain utf-8 raises on U+FEFF and would silently truncate the closure.
+    """
+    import ast
+    seen = set()
+
+    def walk(mod):
+        path = os.path.join(_REPO, "cg", f"{mod}.py")
+        if mod in seen or not os.path.exists(path):
+            return
+        seen.add(mod)
+        try:
+            tree = ast.parse(open(path, encoding="utf-8-sig").read())
+        except Exception:  # noqa: BLE001
+            return
+        for n in ast.walk(tree):
+            if isinstance(n, ast.ImportFrom) and n.module and n.module.startswith("cg"):
+                if n.module == "cg":
+                    for a in n.names:
+                        walk(a.name)
+                else:
+                    walk(n.module.split(".", 1)[1])
+            elif isinstance(n, ast.Import):
+                for a in n.names:
+                    if a.name.startswith("cg."):
+                        walk(a.name.split(".", 1)[1])
+    for r in roots:
+        walk(r)
+    return sorted(seen)
+
+
 def sha_file(p):
     h = hashlib.sha256()
     with open(p, "rb") as fh:
@@ -155,13 +189,16 @@ def build(name, guided, checkpoint=None, cfg_override=None):
 
         if guided:
             add(os.path.join(_REPO, "tools", "c018_guided.py"), "_c018_guided.py")
-            add(os.path.join(_REPO, "cg", "state_encoder_v2.py"), "cg/state_encoder_v2.py")
-            add(os.path.join(_REPO, "cg", "card_vocab.py"), "cg/card_vocab.py")
-            add(os.path.join(_REPO, "cg", "policy_model_v2.py"), "cg/policy_model_v2.py")
-            add(os.path.join(_REPO, "cg", "rl_policy.py"), "cg/rl_policy.py")
-            add(os.path.join(_REPO, "cg", "micrograd.py"), "cg/micrograd.py")
-            add(os.path.join(_REPO, "cg", "episode_capture.py"), "cg/episode_capture.py")
-            add(os.path.join(_REPO, "cg", "obs_norm.py"), "cg/obs_norm.py")
+            # Derive the cg dependency closure instead of hand-listing it. A hand-list is
+            # exactly one forgotten import away from a package whose guide raises on
+            # construction -- and because main.py falls back to the baseline on any exception,
+            # that failure is SILENT: the agent completes every game while never searching.
+            for m in cg_closure(["rl_policy", "state_encoder_v2", "episode_capture",
+                                 "card_vocab", "policy_model_v2"]):
+                src = os.path.join(_REPO, "cg", f"{m}.py")
+                if os.path.exists(src) and not os.path.exists(os.path.join(tmp, "cg",
+                                                                          f"{m}.py")):
+                    add(src, f"cg/{m}.py")
             add(checkpoint, "policy.npz")
 
         main = (MAIN_TEMPLATE
@@ -267,6 +304,11 @@ for g in range({n_games}):
     except Exception as e:
         rows.append({{"opponent": o, "seat": seat, "statuses": ["EXC","EXC"],
                      "completed": False, "score": None, "error": repr(e)}})
+# "the package runs" and "the package does what was evaluated" are different claims.
+# Falling back to the baseline on every decision is a perfectly playable agent, so game
+# completion alone cannot detect a search layer that has been silently switched off --
+# which is exactly what a caller-dependent node budget did (see failures/).
+print("C018_STATS " + json.dumps(dict(main._STATS), default=str))
 print("C018_RESULT " + json.dumps(rows))
 ''')
         # the repo is deliberately NOT on PYTHONPATH: the package must stand on its own
@@ -278,6 +320,8 @@ print("C018_RESULT " + json.dumps(rows))
             if line.startswith("C018_RESULT "):
                 out["games"] = json.loads(line[len("C018_RESULT "):])
                 out["import_ok"] = True
+            elif line.startswith("C018_STATS "):
+                out["search_stats"] = json.loads(line[len("C018_STATS "):])
         if not out["import_ok"]:
             out["stderr_tail"] = r.stderr[-2500:]
             out["stdout_tail"] = r.stdout[-1500:]
@@ -288,12 +332,29 @@ print("C018_RESULT " + json.dumps(rows))
     g = out["games"]
     done = [x for x in g if x["completed"]]
     sc = [x["score"] for x in g if x.get("score") is not None]
+    st = out.get("search_stats") or {}
+    dec = st.get("decisions") or 0
+    searched = st.get("searched") or 0
+    rate = round(searched / dec, 4) if dec else 0.0
     out.update({"games_played": len(g), "games_completed": len(done),
                 "completion_rate": round(len(done) / max(1, len(g)), 4),
                 "win_rate": round(sum(sc) / len(sc), 4) if sc else None,
                 "max_game_seconds": max([x.get("seconds", 0) for x in g], default=0),
                 "errors": [x.get("error") for x in g if x.get("error")][:3],
-                "clean_extraction_ok": bool(out["import_ok"] and len(done) == len(g) and g)})
+                "packaged_decisions": dec, "packaged_searched": searched,
+                "packaged_search_rate": rate,
+                "packaged_search_step_ok": st.get("step_ok") or 0,
+                "packaged_changed_action": st.get("changed_action") or 0,
+                "packaged_hidden_information_violations":
+                    st.get("hidden_information_violations") or 0,
+                # the package must be doing the thing it was evaluated doing, not merely
+                # surviving; half the non-forced decisions searching is a generous floor
+                "search_actually_ran_in_package": bool(
+                    searched > 0 and rate >= 0.5 and (st.get("step_ok") or 0) > 0),
+                "clean_extraction_ok": bool(
+                    out["import_ok"] and len(done) == len(g) and g
+                    and searched > 0 and rate >= 0.5
+                    and not (st.get("hidden_information_violations") or 0))})
     json.dump(out, open(os.path.join(PKG, f"{name}_clean_validation.json"), "w"), indent=2,
               default=str)
     return out
@@ -315,6 +376,10 @@ def main(argv=None):
     val = clean_validate(a.name, a.games)
     print(json.dumps({k: val[k] for k in ("import_ok", "games_played", "games_completed",
                                           "completion_rate", "win_rate", "max_game_seconds",
+                                          "packaged_decisions", "packaged_searched",
+                                          "packaged_search_rate", "packaged_search_step_ok",
+                                          "packaged_changed_action",
+                                          "search_actually_ran_in_package",
                                           "clean_extraction_ok", "errors")}, indent=2,
                      default=str))
     if not val["clean_extraction_ok"]:
