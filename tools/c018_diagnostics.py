@@ -150,7 +150,8 @@ def continuation_check(init_ckpt, games=48):
               "--nproc", "6", "--tag", "p13_uninterrupted", "--self-play-schedule", "0,0",
               "--seed", "4242"]
         CU.main(a1)
-        r1 = json.load(open(os.path.join(C18, "training", "curriculum_report.json")))
+        r1 = json.load(open(os.path.join(C18, "training",
+                                         "p13_uninterrupted_curriculum_report.json")))
         h1 = r1["checkpoint_sha256_after"]
 
         a2 = ["--init", init_ckpt, "--blocks", "1", "--games-per-block", str(games),
@@ -162,7 +163,8 @@ def continuation_check(init_ckpt, games=48):
               "--nproc", "6", "--tag", "p13_partB", "--self-play-schedule", "0", "--seed",
               "4242"]
         CU.main(a3)
-        r3 = json.load(open(os.path.join(C18, "training", "curriculum_report.json")))
+        r3 = json.load(open(os.path.join(C18, "training",
+                                         "p13_partB_curriculum_report.json")))
         h3 = r3["checkpoint_sha256_after"]
     out = {"uninterrupted_sha256": h1, "resumed_sha256": h3, "equivalent": h1 == h3,
            "games_per_block": games,
@@ -170,7 +172,8 @@ def continuation_check(init_ckpt, games=48):
                     "opponents, so bitwise equality is not expected; the check that matters "
                     "is that a reloaded checkpoint continues training at all and that the "
                     "resumed leg performs real updates.")}
-    r3b = json.load(open(os.path.join(C18, "training", "curriculum_report.json")))
+    r3b = json.load(open(os.path.join(C18, "training",
+                                      "p13_partB_curriculum_report.json")))
     out["resumed_leg_optimizer_steps"] = r3b.get("optimizer_steps")
     out["resumed_leg_games"] = r3b.get("actual_simulator_games")
     out["resumed_leg_weights_moved"] = (r3b.get("checkpoint_sha256_before")
@@ -188,8 +191,18 @@ def main(argv=None):
     ap.add_argument("--games", type=int, default=6)
     ap.add_argument("--skip-continuation", action="store_true")
     ap.add_argument("--out-prefix", default="")
+    ap.add_argument("--continuation", action="store_true")
+    ap.add_argument("--continuation-init",
+                    default=os.path.join(CKPT, "m02_distilled.pt"))
+    ap.add_argument("--continuation-games", type=int, default=48)
     a = ap.parse_args(argv)
     os.makedirs(ART, exist_ok=True)
+    if a.continuation:
+        # P13 alone: three short curriculum legs, one uninterrupted and one split by a
+        # save/reload, to show a reloaded checkpoint genuinely continues training.
+        print(json.dumps(continuation_check(a.continuation_init, a.continuation_games),
+                         indent=2, default=str))
+        return 0
     lat, comp = latency_and_guidance(a.policy, a.games, a.out_prefix)
     print(json.dumps({"latency": {k: lat[k] for k in ("unguided", "guided")},
                       "guidance": {k: comp[k] for k in
