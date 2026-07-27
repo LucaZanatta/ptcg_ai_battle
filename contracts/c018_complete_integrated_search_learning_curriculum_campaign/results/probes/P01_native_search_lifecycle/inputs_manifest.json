@@ -1,0 +1,20 @@
+{
+  "inputs": [
+    {
+      "module": "cg/api.py",
+      "functions": [
+        "to_observation_class",
+        "search_begin",
+        "search_step",
+        "search_release",
+        "search_end"
+      ]
+    },
+    {
+      "agent": "official mega_lucario"
+    },
+    {
+      "opponent": "dragapult"
+    }
+  ]
+}

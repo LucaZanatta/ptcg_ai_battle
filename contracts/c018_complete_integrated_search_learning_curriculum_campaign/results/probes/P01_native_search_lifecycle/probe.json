@@ -1,0 +1,21 @@
+{
+  "probe_id": "P01",
+  "status": "PASS",
+  "source_commit": "d8a34b1bac60dc57ec7b0c356c3b261cc10d95da",
+  "config_hash": "p01_lifecycle_v1",
+  "checks": {
+    "search_begin_calls": 2, "search_begin_ok": 2,
+    "search_step_calls": 6, "search_step_ok": 6,
+    "distinct_child_search_ids": 3,
+    "depth_reached": 3,
+    "distinct_successor_observations": 6,
+    "successors_differing_from_root": 5,
+    "search_release_calls": 2, "search_end_calls": 2,
+    "parent_episode_status": ["DONE", "DONE"],
+    "parent_episode_uncorrupted": true,
+    "errors": []
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": ["raw/p01_run.txt"]
+}
