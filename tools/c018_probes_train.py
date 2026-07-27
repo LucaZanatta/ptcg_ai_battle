@@ -405,6 +405,35 @@ def p17():
                 bad.append({"candidate": row["candidate_id"], "opponent": o,
                             "reported": v, "recounted": round(s / n, 4) if n else None,
                             "reported_games": row.get(f"{o}_games"), "raw_games": n})
+    # Does changing the baseline action help or hurt? m01_heuristic_search IS the official
+    # baseline plus a search that never prunes the baseline, so if search were neutral the two
+    # would score identically. Splitting outcomes by how often the search overrode the baseline
+    # tests the leaf evaluator directly rather than inferring it from the ranking.
+    override = {}
+    for cid in {r["candidate_id"] for r in raw}:
+        rows_c = [r for r in raw
+                  if r["candidate_id"] == cid and r.get("score") is not None
+                  and (r.get("search_stats") or {}).get("searched")]
+        if len(rows_c) < 40:
+            continue
+        fr = []
+        for r in rows_c:
+            st = r["search_stats"]
+            sd = st.get("searched") or 0
+            fr.append(((st.get("changed_action") or 0) / sd, r["score"]))
+        fr.sort(key=lambda x: x[0])
+        h = len(fr) // 2
+        lo, hi = fr[:h], fr[h:]
+        override[cid] = {
+            "games": len(fr),
+            "low_override_mean_change_rate": round(sum(x for x, _ in lo) / max(1, len(lo)), 4),
+            "low_override_win_rate": round(sum(y for _, y in lo) / max(1, len(lo)), 4),
+            "high_override_mean_change_rate": round(sum(x for x, _ in hi) / max(1, len(hi)), 4),
+            "high_override_win_rate": round(sum(y for _, y in hi) / max(1, len(hi)), 4)}
+        override[cid]["overriding_more_helps"] = (
+            override[cid]["high_override_win_rate"]
+            > override[cid]["low_override_win_rate"])
+
     seeds = collections.defaultdict(set)
     for r in raw:
         seeds[r["candidate_id"]].add((r["opponent_id"], r["seed"], r["seat"]))
@@ -418,7 +447,8 @@ def p17():
           "ranking": [{"candidate_id": r["candidate_id"], "overall_rate": r["overall_rate"],
                        "overall_ci": r["overall_ci"], "worst_matchup": r["worst_matchup"],
                        "worst_matchup_rate": r["worst_matchup_rate"]} for r in rows],
-          "ranking_rule": (meta or {}).get("ranking_rule")}
+          "ranking_rule": (meta or {}).get("ranking_rule"),
+          "baseline_override_analysis": override}
     ok = bool(ck["aggregates_recompute_exactly"] and ck["all_candidates_same_schedule"])
     lead = rows[0]
     lines = "\n".join(
@@ -440,6 +470,24 @@ Every reported rate was recomputed from the raw rows using each row's own `candi
 {lines}
 
 Ranking rule (pre-registered): {ck['ranking_rule']}.
+
+## Does overriding the baseline help?
+
+`m01_heuristic_search` **is** `official_mega_lucario` plus a search that never prunes the
+baseline action — it is always candidate 0. If the search were neutral the two would score
+identically, so any gap is attributable to the leaf evaluator preferring a worse successor,
+never to the search failing to consider the baseline.
+
+Splitting each searching candidate's games at the median rate at which the search overrode the
+baseline:
+
+| candidate | games | low-override rate → win | high-override rate → win | overriding more helps |
+|---|---|---|---|---|
+{chr(10).join(f"| {k} | {v['games']} | {v['low_override_mean_change_rate']} → {v['low_override_win_rate']} | {v['high_override_mean_change_rate']} → {v['high_override_win_rate']} | {v['overriding_more_helps']} |" for k, v in (ck['baseline_override_analysis'] or {}).items()) or "| _insufficient games_ | | | | |"}
+
+This is observational, not randomised — games where the search overrode more may simply be
+longer or more contested — so it is a diagnostic pointer, not a causal claim. It does localise
+where to look next.
 
 Leader: **{lead['candidate_id']}** at {lead['overall_rate']} (CI {lead['overall_ci']}).
 
