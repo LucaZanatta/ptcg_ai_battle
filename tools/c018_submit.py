@@ -74,6 +74,61 @@ def list_submissions():
     return rows, r
 
 
+# DECISION_RULES.md §4 as corrected by Amendment 3. Enforced HERE, in code, because a
+# pre-registered rule that lives only in a markdown file is decorative -- it constrains nothing
+# unless the tool that uploads refuses to upload.
+CANDIDATE_OF = {
+    "submission_K_official_search_v0": "m01_heuristic_search",
+    "submission_L_guided_search_v0": "m04_guided_search",
+    "submission_M_trained_policy_v0": "m03_curriculum_policy",
+}
+UPLOAD1 = "submission_K_official_search_v0"
+BASELINE = "official_mega_lucario"
+IMPORTANT_MATCHUP = "dragapult"
+
+
+def promotion_gate(name):
+    """Return (eligible, detail). Mirrors DECISION_RULES §4 + Amendment 3 exactly."""
+    pf = os.path.join(C18, "final_panel", "final_panel_results.json")
+    if not os.path.exists(pf):
+        return False, {"reason": "no frozen panel results"}
+    rows = {r["candidate_id"]: r for r in json.load(open(pf))}
+    cid = CANDIDATE_OF.get(name)
+    me, base = rows.get(cid), rows.get(BASELINE)
+    if not me or not base:
+        return False, {"reason": f"candidate {cid} or baseline absent from the panel"}
+
+    def worst(r):
+        vals = [v for k, v in r.items() if k.endswith("_rate") and v is not None
+                and k[:-5] not in ("overall", "worst_matchup")]
+        return min(vals) if vals else None
+
+    mo, bo = me.get("overall_rate") or 0.0, base.get("overall_rate") or 0.0
+    mw = worst(me)
+    mm = me.get(f"{IMPORTANT_MATCHUP}_rate")
+    bm = base.get(f"{IMPORTANT_MATCHUP}_rate")
+    clauses = {
+        "a_improvement": mo >= bo + 0.03 and (mw is not None and mw >= 0.15),
+        "b_important_matchup": (mm is not None and bm is not None
+                                and mm >= bm + 0.05 and mo >= bo - 0.02),
+        "c_high_information_near_parity": mo >= bo - 0.05 and (mw is not None and mw >= 0.10),
+    }
+    detail = {"candidate": cid, "overall": mo, "baseline_overall": bo,
+              "delta_vs_baseline": round(mo - bo, 4), "worst_matchup_rate": mw,
+              f"{IMPORTANT_MATCHUP}_rate": mm, f"baseline_{IMPORTANT_MATCHUP}_rate": bm,
+              "clauses": clauses,
+              "rule": "DECISION_RULES §4 as corrected by Amendment 3"}
+    if name != UPLOAD1:
+        # upload 2 must ALSO outrank upload 1 and match the official baseline
+        u1 = rows.get(CANDIDATE_OF.get(UPLOAD1, ""))
+        u1o = (u1 or {}).get("overall_rate") or 0.0
+        detail["upload2_extra"] = {"upload1_overall": u1o,
+                                   "outranks_upload1": mo > u1o,
+                                   "matches_official_baseline": mo >= bo}
+        return (any(clauses.values()) and mo > u1o and mo >= bo), detail
+    return any(clauses.values()), detail
+
+
 def preflight(name):
     man = json.load(open(os.path.join(PKG, f"{name}_manifest.json")))
     vp = os.path.join(PKG, f"{name}_clean_validation.json")
@@ -112,6 +167,8 @@ def preflight(name):
                 os.path.join(_REPO, "tools", "c018_search.py")),
         "upload_budget_remaining": used < MAX_C018_UPLOADS,
     }
+    promo_ok, promo = promotion_gate(name)
+    gates["pre_registered_promotion_gate"] = promo_ok
     return {"name": name, "gates": gates, "all_gates_pass": all(gates.values()),
             "archive": man["archive_rel"], "archive_sha256": on_disk,
             "manifest_sha256": man.get("sha256"), "uploads_used": used,
@@ -123,6 +180,7 @@ def preflight(name):
                                   "packaged_search_rate",
                                   "search_actually_ran_in_package")},
             "seats_exercised": sorted(seats),
+            "promotion_gate": promo,
             "evidence_blockers": evd.get("submission_blockers")}
 
 
