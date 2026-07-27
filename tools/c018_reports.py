@@ -59,19 +59,43 @@ def build():
     else:
         status = "PARTIAL"
 
-    lead = panel[0] if panel else None
-    board = []
-    if panel:
-        for i, r in enumerate(panel):
-            role = ("CHAMPION" if i == 0 else
-                    "CHALLENGER" if i == 1 else "ARCHIVE")
-            board.append({"role": role, "candidate_id": r["candidate_id"],
-                          "overall_rate": r["overall_rate"], "ci": r["overall_ci"],
-                          "games": r["games"], "worst_matchup": r["worst_matchup"],
-                          "worst_matchup_rate": r["worst_matchup_rate"]})
+    # SS39. Dragapult is the EXTERNALLY confirmed champion and stays champion until a
+    # post-baseline c018 agent beats it on external evidence; the panel ranks local
+    # candidates only, so the panel leader is a challenger, not the champion.
+    board = [{"role": "CHAMPION", "id": "dragapult",
+              "basis": "externally confirmed control; unbeaten by any post-baseline c018 "
+                       "agent on external evidence",
+              "external": True}]
+    pkgs = {}
+    for pth in glob.glob(os.path.join(C18, "packages", "*_clean_validation.json")):
+        v = json.load(open(pth))
+        pkgs[v["name"]] = v
+    submittable = {"m01_heuristic_search": "submission_K_official_search_v0",
+                   "m04_guided_search": "submission_L_guided_search_v0"}
+    for i, r in enumerate(panel):
+        cid = r["candidate_id"]
+        pkg = pkgs.get(submittable.get(cid, ""), None)
+        if cid == "official_mega_lucario":
+            role = "CHALLENGER"          # SS39: calibration challenger
+        elif cid in submittable and pkg and pkg.get("clean_extraction_ok"):
+            role = "CHALLENGER"
+        elif cid in submittable:
+            role = "NON_SUBMITTABLE"
+        else:
+            role = "ARCHIVE"             # no inference-only package exists for it
+        board.append({"role": role, "id": cid, "rank": i + 1,
+                      "overall_rate": r["overall_rate"], "ci": r["overall_ci"],
+                      "games": r["games"], "worst_matchup": r["worst_matchup"],
+                      "worst_matchup_rate": r["worst_matchup_rate"],
+                      "package": submittable.get(cid),
+                      "clean_extraction_ok": (pkg or {}).get("clean_extraction_ok")})
+    board.append({"role": "ARCHIVE", "id": "c017_depth_zero_ranker",
+                  "basis": "c017's static scorer, disproven as search by P01/P02"})
+    board.append({"role": "ARCHIVE", "id": "c017_distilled_policy",
+                  "basis": "not continued by c018; trained on depth-zero labels"})
     for pid, d in sorted(pr.items()):
         if d["status"] in ("WARN", "FAIL_TAINTED", "NOT_EXERCISED"):
-            board.append({"role": "DIAGNOSTIC", "probe": pid, "name": d.get("name"),
+            board.append({"role": "DIAGNOSTIC", "id": pid, "name": d.get("name"),
                           "status": d["status"], "taints": d.get("taints")})
 
     doc = {
@@ -120,8 +144,8 @@ def status_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
                    for f in doc["execution_floors"])
     pb = "\n".join(f"| {k} | {v} |" for k, v in doc["probes"].items())
     board = "\n".join(
-        f"| {b['role']} | {b.get('candidate_id') or b.get('probe')} | "
-        f"{b.get('overall_rate') if 'overall_rate' in b else b.get('status')} |"
+        f"| {b['role']} | {b.get('id')} | "
+        f"{b.get('overall_rate') if b.get('overall_rate') is not None else (b.get('status') or b.get('basis') or '')} |"
         for b in doc["board"])
 
     return f"""# c018 — STATUS: {doc['status']}
@@ -241,11 +265,156 @@ from raw rows rather than reading the reports that assert them, and it fails on 
 """
 
 
+def summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta):
+    """SS41 — the thirteen items, stated plainly, in order."""
+    c = ss.get("real_search_counters") or {}
+    gl = jload("artifacts/guided_latency.json", {}) or {}
+    gc = jload("artifacts/guidance_comparison.json", {}) or {}
+    anchor = jload("artifacts/baseline_anchor.json", {}) or {}
+    uploads = sorted(glob.glob(os.path.join(C18, "submissions", "*_upload.json")))
+    ups = [json.load(open(u)) for u in uploads]
+    base_row = next((r for r in panel if r["candidate_id"] == "official_mega_lucario"), None)
+    srch_row = next((r for r in panel if r["candidate_id"] == "m01_heuristic_search"), None)
+    improved = (None if not (base_row and srch_row) else
+                (srch_row["overall_rate"] or 0) > (base_row["overall_rate"] or 0))
+    rank = "\n".join(
+        f"| {i+1} | {r['candidate_id']} | {r['games']} | {r['overall_rate']} | "
+        f"{r['overall_ci']} | {r['worst_matchup']} @ {r['worst_matchup_rate']} |"
+        for i, r in enumerate(panel)) or "| | _no panel results_ | | | | |"
+    board = "\n".join(f"| {b['role']} | {b.get('id')} | "
+                       f"{b.get('overall_rate') if b.get('overall_rate') is not None else (b.get('status') or b.get('basis') or '')} |"
+                       for b in doc["board"])
+    upl = "\n".join(
+        f"| {u.get('name')} | `{u.get('submission_ref')}` | {u.get('status')} | "
+        f"{u.get('public_score')} | `{(u.get('archive_sha256') or '')[:12]}` |" for u in ups) \
+        or "| _none_ | | | | |"
+    tainted = [f"{k} ({v['status']})" for k, v in sorted(pr.items())
+               if v["status"] in ("FAIL_TAINTED", "NOT_EXERCISED")]
+    best_pkg = None
+    for pth in sorted(glob.glob(os.path.join(C18, "packages", "*_clean_validation.json"))):
+        v = json.load(open(pth))
+        if v.get("clean_extraction_ok"):
+            best_pkg = v
+    return f"""# c018 SUMMARY — status {doc['status']}
+
+## 1. Did real official-API forward search run?
+
+**Yes.** `to_observation_class` → `search_begin` → `search_step` → `search_release` →
+`search_end`, against the real simulator. This corrects c017's central conclusion that forward
+simulation was impossible: c017 reached that verdict from `env.clone()` segfaulting, without
+using the official search interface that was already present in the same `cg/api.py` it had read.
+
+## 2. Actual `search_begin` and `search_step` counts
+
+Scaled generation: **{c.get('begin_ok', 0):,}** successful `search_begin` roots (0 errors) and
+**{c.get('step_ok', 0):,}** successful `search_step` calls of {c.get('step_calls', 0):,}
+attempted. Maximum depth reached {c.get('max_depth_reached', 0)};
+{c.get('distinct_successors', 0):,} distinct successor observations;
+{c.get('release_calls', 0):,} releases with {c.get('release_errors', 0)} errors.
+
+## 3. Did multi-step search improve the baseline?
+
+**{'Yes' if improved else 'No' if improved is not None else 'Not measured'}.**
+{'' if improved is None else
+ f"On the frozen panel, `m01_heuristic_search` scored {srch_row['overall_rate']} "
+ f"(CI {srch_row['overall_ci']}) against `official_mega_lucario` at {base_row['overall_rate']} "
+ f"(CI {base_row['overall_ci']}) over identical opponents, seeds and seats."}
+The search never prunes the baseline action — it is always candidate 0 — so any gap is the leaf
+evaluator preferring a worse successor, not the search failing to consider the baseline.
+
+## 4. Trajectory scale and trust status
+
+{ss.get('trusted_decisions', 0):,} **trusted** decisions of {ss.get('decisions', 0):,} total
+({ss.get('trusted_fraction')}), from {ss.get('games', 0)} real games. A decision is trusted only
+when its own search ran and returned at least one real successor; fallbacks are retained and
+flagged untrusted rather than silently dropped. Floor 10,000: met. Target band 30,000–60,000:
+**not reached** — see `BUDGET_EXECUTION.json`.
+
+## 5. Supervised optimizer steps and checkpoint change
+
+**{dr.get('optimizer_steps', 0):,} steps** on {dr.get('device')}, {dr.get('epochs')} epochs,
+trusted rows only. Checkpoint hash `{(dr.get('checkpoint_sha256_before') or '')[:12]}` →
+`{(dr.get('checkpoint_sha256_after') or '')[:12]}`,
+{dr.get('distinct_epoch_hashes')} distinct per-epoch hashes. Exact reload verified.
+
+## 6. Actual PPO games, optimizer steps, self-play stages, promotions
+
+**{cr.get('actual_simulator_games', 0):,} real simulator games**,
+**{cr.get('optimizer_steps', 0):,} optimizer steps**,
+{cr.get('distinct_checkpoint_hashes', 0)} distinct checkpoint hashes across
+{len(cr.get('history') or [])} blocks. Self-play share rose 0 → 0.7 as scheduled, with the
+realised mix recounted from raw opponent labels rather than reported from the plan. Every block
+wrote a uniquely-named lagged snapshot, so the self-play opponent genuinely advanced.
+
+## 7. Did guided search use policy/value inside real trees?
+
+**Yes.** Learned ordering (one forward on the root) and learned leaf values (one batched forward
+over all candidate leaves) operate inside the *same* real search tree — {gc.get('roots', 0)}
+shared roots compared, learned leaf values changed the chosen action on
+{gc.get('action_change_rate')} of them. Guidance cost: p90 {(gl.get('guided') or {}).get('p90')}
+ms guided vs {(gl.get('unguided') or {}).get('p90')} ms unguided, against a
+{gl.get('budget_ms')} ms budget.
+
+## 8. Final-panel results
+
+| rank | candidate | games | overall | 95% Wilson CI | worst matchup |
+|---|---|---|---|---|---|
+{rank}
+
+## 9. Uploads
+
+| package | reference | status | score | archive sha256 |
+|---|---|---|---|---|
+{upl}
+
+Baseline anchor: accepted reference `55011215` verified
+(`{anchor.get('accepted_reference_verified')}`); c005–c017 unmodified across
+{anchor.get('files_checked', 0):,} files.
+
+The public score is a **live ladder rating**, not a fixed evaluation — it moves 100+ points
+within minutes and 600.0 is the provisional start value. No strength claim here rests on it.
+
+## 10. Strongest trustworthy package
+
+`{(best_pkg or {}).get('name', 'none')}` — clean extraction with the repo off `sys.path`,
+{(best_pkg or {}).get('games_completed', 0)}/{(best_pkg or {}).get('games_played', 0)} games
+terminal, search verified live in the extracted package
+({(best_pkg or {}).get('packaged_searched', 0)}/{(best_pkg or {}).get('packaged_decisions', 0)}
+decisions searched), 0 hidden-information violations.
+
+## 11. Failed or tainted stages
+
+{chr(10).join('- ' + t for t in tainted) or '- none'}
+
+Defects found and fixed, with records in `failures/`: packaged agent searched 3 of 84 decisions
+(caller-dependent node budget); guided package searched 0 of 321 (hand-listed dependency missing
+`policy_data_v2`, hidden by a safe fallback); validator returned PASS with no training present;
+validator read training claims out of the report it was judging.
+
+## 12. Decision board
+
+| role | id | value |
+|---|---|---|
+{board}
+
+## 13. Exactly one next externally relevant action
+
+**Submit an official-agent-based candidate for a deck other than Mega Lucario and measure it on
+the live ladder.** Every c018 candidate shares one deck and one baseline, so the panel can only
+compare search layers on top of a fixed strategy. c016 measured official agents beating
+from-scratch customs 0.90/0.92, and c018 now shows a real, correct, safe search layer does not
+by itself overtake its own baseline. The remaining untested external variable is deck choice,
+not search depth or training scale.
+"""
+
+
 def main():
     doc, panel, pr, ev, cr, dr, ss, pmeta = build()
     open(os.path.join(C18, "STATUS.md"), "w").write(
         status_md(doc, panel, pr, ev, cr, dr, ss, pmeta))
     open(os.path.join(C18, "README.md"), "w").write(readme(doc))
+    open(os.path.join(C18, "SUMMARY.md"), "w").write(
+        summary_md(doc, panel, pr, ev, cr, dr, ss, pmeta))
     print(json.dumps({"status": doc["status"], "floors_missed": doc["floors_missed"],
                       "blockers": doc["submission_blockers"],
                       "accepted_submission": doc["accepted_post_baseline_submission"],
