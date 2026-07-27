@@ -532,13 +532,61 @@ Defects found and fixed during this vertical: {len(d.get('defects') or [])}.
                  raw=["artifacts/thin_vertical.json"])
 
 
+def p90():
+    d = jload("artifacts/evidence_validation.json")
+    if not d:
+        return write("P90", "evidence_validator", "NOT_EXERCISED", {}, [], [],
+                     "# P90 — not exercised\n")
+    ok = d.get("overall") == "PASS"
+    blockers = d.get("submission_blockers") or []
+    ne = d.get("not_exercised") or []
+    fails = [c["check"] for c in (d.get("checks") or [])
+             if not c["passed"] and c.get("critical")]
+    ck = {"mode": d.get("mode"), "n_checks": d.get("n_checks"), "n_passed": d.get("n_passed"),
+          "n_critical_failures": d.get("n_critical_failures"),
+          "n_submission_blockers": d.get("n_submission_blockers"),
+          "submission_blockers": blockers, "critical_failures": fails[:12],
+          "not_exercised": ne, "overall": d.get("overall")}
+    readme = f"""# P90 — Evidence validator
+
+{d.get('n_passed')}/{d.get('n_checks')} checks passed in **{d.get('mode')}** mode,
+{d.get('n_critical_failures')} critical failures, {d.get('n_submission_blockers')} submission
+blockers.
+
+**Every check re-derives from raw artifacts.** A summary asserting a number is never accepted as
+evidence for that number — games are recounted from per-game JSONL rows, optimiser steps from
+per-update rows, and the realised opponent mix from raw opponent labels. That principle was
+violated in this validator's own first draft, which read training claims straight out of the
+report it was judging (`failures/DEFECT_validator_read_the_report_it_was_judging.md`).
+
+The validator also refuses to pass by omission: in `--final` mode an absent milestone is a
+critical failure, not a free pass. Its first run returned PASS with no training on disk at all
+(`failures/DEFECT_validator_returned_pass_with_no_training_at_all.md`).
+
+Each rejection is pinned by a unit test that constructs the fabrication and asserts refusal:
+static scoring claimed as search, virtual curriculum games, inflated game counts, planned mix
+reported as actual, stale lagged-snapshot paths, zero optimiser steps, unchanged checkpoints,
+untrusted rows marked trusted, labels outside the option range, and games straddling splits.
+
+Critical failures: {fails[:8] or 'none'}.
+Submission blockers: {blockers or 'none'}.
+Not exercised: {ne or 'none'}.
+
+**Status: {'PASS' if ok else 'FAIL_TAINTED'}.**
+"""
+    return write("P90", "evidence_validator", "PASS" if ok else "FAIL_TAINTED", ck,
+                 ["artifacts/evidence_validation.json"], [], readme,
+                 raw=["artifacts/evidence_validation.json", "test_logs/evidence_validation.txt"],
+                 blocker=bool(blockers))
+
+
 def main():
     try:
         import c018_stages as ST
         ST.main()
     except Exception as e:  # noqa: BLE001
         print(f"  stage registry failed: {type(e).__name__}: {e}")
-    for f in (p09, p10, p11, p12, p13, p14, p15, p16, p17, p30):
+    for f in (p09, p10, p11, p12, p13, p14, p15, p16, p17, p30, p90):
         try:
             f()
         except Exception as e:  # noqa: BLE001
