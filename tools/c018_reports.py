@@ -78,7 +78,8 @@ def build():
         "contract": "c018", "status": status,
         "git_commit": git("rev-parse", "HEAD"),
         "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
-        "parent_commit": "d8a34b1",
+        "parent_commit": (jload("artifacts/parent_resolution.json", {}) or {}).get(
+            "resolved_parent_commit", "d8a34b1"),
         "execution_floors": floors, "floors_missed": missed,
         "evidence_validation": {k: ev.get(k) for k in
                                 ("overall", "n_checks", "n_passed", "n_critical_failures",

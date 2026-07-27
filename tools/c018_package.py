@@ -80,6 +80,7 @@ def agent(obs_dict: dict) -> list[int]:
     sel = obs_dict.get("select") if isinstance(obs_dict, dict) else None
     if sel is None:
         return base
+    _STATS["decisions"] += 1
     try:
         r = S.plan(obs_dict, list(base), _deck(), _RNG, _CFG, _STATS, None, guide={GUIDE_ARG})
         act = r.get("action") or base

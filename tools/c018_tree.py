@@ -316,9 +316,12 @@ def build_env():
     pip = subprocess.run([os.path.join(_REPO, ".venv", "bin", "pip"), "freeze"],
                          capture_output=True, text=True)
     open(os.path.join(SRC, "dependency_lock.txt"), "w").write(pip.stdout or pip.stderr)
-    open(os.path.join(SRC, "git_diff.patch"), "w").write(
-        git("diff", "d8a34b1", "HEAD") or "")
-    return cuda
+    # the parent is resolved ONCE, in M00, and read back here -- two independent copies of the
+    # same fact drift, and this one decides what the audit patch actually contains
+    pr = jload("artifacts/parent_resolution.json", {}) or {}
+    parent = pr.get("resolved_parent_commit") or "d8a34b1"
+    open(os.path.join(SRC, "git_diff.patch"), "w").write(git("diff", parent, "HEAD") or "")
+    return {**cuda, "parent_commit_used_for_patch": parent}
 
 
 def build_hashes():
@@ -357,7 +360,8 @@ def main(argv=None):
     man = {"contract": "c018", "git_commit": git("rev-parse", "HEAD"),
            "git_tree": git("rev-parse", "HEAD^{tree}"),
            "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
-           "parent_commit": "d8a34b1",
+           "parent_commit": (jload("artifacts/parent_resolution.json", {}) or {}).get(
+               "resolved_parent_commit", "d8a34b1"),
            "bundles": bundles, "inspection_files": insp,
            "milestones": {k: {"manifest": os.path.relpath(
                os.path.join(MILE, k, "manifest.json"), _REPO),

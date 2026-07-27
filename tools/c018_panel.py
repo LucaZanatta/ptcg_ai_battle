@@ -64,26 +64,15 @@ def build_agent(cid, deck, seed):
         guide = G.Guide(os.path.join(C18, "checkpoints", "m03_curriculum.npz"))
 
     if cid == "m03_curriculum_policy":
-        # the learned policy playing directly, no search -- isolates what training alone bought
-        pol = guide.pol
-
-        def play(obs):
-            sel = obs.get("select") if isinstance(obs, dict) else None
-            if sel is None:
-                return base(obs)
-            try:
-                order = guide.order(obs, len(sel["option"]))
-                lo = int(sel.get("minCount") or 1)
-                hi = int(sel.get("maxCount") or 1)
-                n = max(lo, min(hi, 1))
-                act = sorted(order[:n])
-                from cg.safe_policy import validate_selection
-                validate_selection(list(act), len(sel["option"]), sel["minCount"],
-                                   sel["maxCount"])
-                return act
-            except Exception:  # noqa: BLE001
-                return base(obs)
-        return play, stats
+        # The learned policy playing directly, no search -- isolates what training alone bought.
+        # This must be `RLAgent`, the exact agent the PPO curriculum trained: it uses the
+        # policy's sequential without-replacement multi-select head and the STOP logit. Taking
+        # the top-k of a score ranking instead would measure a crippled agent and invite the
+        # wrong conclusion about what training bought.
+        from cg.rl_env import RLAgent
+        agent = RLAgent(guide.pol, deck, np.random.default_rng(seed), collect=False,
+                        greedy=True)
+        return (lambda o: agent(o)), stats
 
     def play(obs):
         sel = obs.get("select") if isinstance(obs, dict) else None

@@ -402,8 +402,20 @@ def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
                 return {"action": list(baseline_action), "searched": False,
                         "reason": f"search_begin_failed:{type(e).__name__}"}
 
+            nodes_here = 0
             for ci, cand in enumerate(cands):
-                if stats["nodes"] >= cfg["max_nodes"] * max(1, stats["decisions"]) or \
+                # Per-DECISION node cap, counted locally.
+                #
+                # This previously read `stats["nodes"] >= max_nodes * max(1, stats["decisions"])`
+                # -- a cumulative budget that depended on the CALLER incrementing
+                # `stats["decisions"]`. The offline harnesses did; the packaged `main.py` did
+                # not, so inside a real submission the whole match shared a 40-node budget and
+                # the agent searched 3 of 84 decisions before silently degrading to pure
+                # baseline for the rest of the game. That is c017's global-budget starvation
+                # wearing a different hat, and it made the uploaded agent a different agent
+                # from the evaluated one (S8.2.6). A local counter cannot be starved by a
+                # caller that forgets a side effect.
+                if nodes_here >= cfg["max_nodes"] or \
                         (time.perf_counter() - t0) * 1000 > cfg["max_ms_per_decision"]:
                     break
                 cur = root
@@ -425,6 +437,7 @@ def plan(obs, baseline_action: List[int], my_deck: List[int], rng, cfg, stats,
                         break
                     sess.track(nxt.searchId)
                     stats["nodes"] += 1
+                    nodes_here += 1
                     depth = d + 1
                     succ_hashes.add(hashlib.sha256(
                         str(nxt.observation.select.option if nxt.observation.select
