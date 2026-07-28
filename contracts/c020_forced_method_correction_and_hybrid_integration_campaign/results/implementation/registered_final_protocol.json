@@ -104,5 +104,17 @@
     "max_ms_per_decision": 120,
     "note": "the configuration at which c019 measured its own gate"
   },
-  "execution_note": "The panel is executed in two batches to use capacity while ByteRL training completes: batch A covers the six candidates that do not depend on the c020 ByteRL checkpoint (baseline, three c019 controls, corrected MCTS, H0), batch B the five that do. The protocol above is frozen before EITHER batch runs, aggregates are computed once from the merged raw games, and no candidate's configuration differs between batches. Environment randomness is already documented as unpairable across candidates, so batching does not remove a guarantee the panel otherwise had."
+  "execution_note": "The panel is executed in two batches to use capacity while ByteRL training completes: batch A covers the six candidates that do not depend on the c020 ByteRL checkpoint (baseline, three c019 controls, corrected MCTS, H0), batch B the five that do. The protocol above is frozen before EITHER batch runs, aggregates are computed once from the merged raw games, and no candidate's configuration differs between batches. Environment randomness is already documented as unpairable across candidates, so batching does not remove a guarantee the panel otherwise had.",
+  "execution_isolation": {
+    "requirement": "the final panel runs with torch.set_num_threads(1) per worker, a FIXED nproc, and no other c020 job executing concurrently",
+    "why": "measurements were found to depend on machine load. Contention is charged against each agent's per-decision wall-clock budget, so a search-based candidate completes fewer simulations under load -- which INVERTS the ranking for a candidate whose search is harmful. The c019 hybrid control measured 0.605 under load against 0.111 measured sequentially across three seed families, a 49-point artifact.",
+    "evidence": "failures/DEFECT_panel_results_depended_on_machine_load.md",
+    "nproc_for_final_panel": 12,
+    "concurrent_jobs_permitted": 0
+  },
+  "variance_note_revised": {
+    "earlier_claim": "the frozen baseline measured 0.525/0.595/0.5525 across three 400-game panels, sd 0.035, attributed to unpaired environment randomness",
+    "revision": "those three panels ran under different concurrent load, so an unknown and possibly dominant share of that spread was contention rather than environment randomness. sd 0.035 at n=400 is an UPPER BOUND on irreducible noise. The c019-hybrid seed study, run sequentially, showed a spread of only 0.083-0.167 across three seed families, which is far smaller than the load-driven swing.",
+    "consequence": "ablation arm sizes were increased on the basis of the inflated estimate. That was not wasted -- larger arms are still better -- but the stated justification was partly wrong."
+  }
 }
