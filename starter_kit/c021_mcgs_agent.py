@@ -51,6 +51,18 @@ REFERENCE_CFG = {
     # rewards it accumulated, which is exactly what re-rooting preserves.
     "graph_reuse": True,
     "graph_reuse_max_entries": 20000,
+    # MECHANICAL_ADAPTER: a CUMULATIVE MATCH CLOCK, in seconds of search across the whole game.
+    # The source has a per-move budget and no match budget, but PTCG competition play is governed
+    # by a cumulative clock, so this is closer to the deployment constraint than an unbounded
+    # per-move budget is.
+    #
+    # It also fixes a measured pathology: one game ran 10+ minutes at a 0.9 s per-decision budget
+    # while every other worker had finished, blocking the pool barrier. A game that reaches
+    # several hundred decisions spends its budget on each one, and a single such game stalls a
+    # whole run. Past the clock the agent still plays every decision -- it simply stops searching
+    # and takes the first legal option, exactly as a real player out of time must. Every
+    # activation is counted in `match_clock_exhausted_decisions`.
+    "match_clock_seconds": 90.0,
 }
 
 
@@ -80,7 +92,15 @@ class MCGSAgent:
         base = (self.cfg["continuing_move_seconds"] if self._first_move_done
                 else self.cfg["first_move_seconds"])
         cap = self.cfg.get("decision_seconds_cap")
-        return min(base, cap) if cap else base
+        if cap:
+            base = min(base, cap)
+        clock = float(self.cfg.get("match_clock_seconds") or 0.0)
+        if clock > 0:
+            left = clock - self.match_search_ms / 1000.0
+            if left <= 0:
+                return 0.0                       # out of time: play, do not search
+            base = min(base, left)
+        return base
 
     def act(self, obs_dict: dict) -> List[int]:
         sel = obs_dict.get("select") if isinstance(obs_dict, dict) else None
@@ -96,6 +116,11 @@ class MCGSAgent:
 
         t0 = time.monotonic()
         budget = self._budget_seconds()
+        if budget <= 0.0:
+            # Match clock exhausted. Still a legal move, just an unsearched one.
+            self.stats["match_clock_exhausted_decisions"] = (
+                self.stats.get("match_clock_exhausted_decisions", 0) + 1)
+            return K.to_select_payload([opts[0]], sel)
         deadline = t0 + budget
         search = S.MCGS(A, self.cfg, self.stats, self.rng, self.prior_provider,
                         self.transfer_arm)

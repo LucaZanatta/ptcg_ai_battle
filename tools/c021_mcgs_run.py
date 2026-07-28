@@ -64,6 +64,7 @@ def main(argv=None):
     ap.add_argument("--first-move-seconds", type=float, default=2.0)
     ap.add_argument("--continuing-move-seconds", type=float, default=1.5)
     ap.add_argument("--max-sims", type=int, default=0)
+    ap.add_argument("--match-clock-seconds", type=float, default=90.0)
     ap.add_argument("--seed", type=int, default=2101)
     ap.add_argument("--tag", default="scaled")
     ap.add_argument("--branch", default="MCGS_2019_OFFICIAL_SOURCE_PORT",
@@ -82,6 +83,7 @@ def main(argv=None):
            "continuing_move_seconds": a.continuing_move_seconds,
            "max_simulations_per_decision": a.max_sims,
            "manual_coin": not a.no_manual_coin,
+           "match_clock_seconds": a.match_clock_seconds,
            "branch": a.branch}
     full = {**AG.REFERENCE_CFG, **cfg}
     json.dump({"config": full,
