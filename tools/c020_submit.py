@@ -183,9 +183,13 @@ def main(argv=None):
                            "gate": gate}
         json.dump(refs, open(os.path.join(SUB, "references.json"), "w"), indent=2)
         print(json.dumps({"upload": "BLOCKED_BY_GATE", "candidate": a.candidate,
+                          "reason": gate.get("reason"),
                           "checks": gate.get("checks"),
-                          "delta": gate.get("delta_field_points")
-                          or gate.get("delta_vs_best_parent_points")}, indent=2))
+                          "failed_checks": [k for k, v in (gate.get("checks") or {}).items()
+                                            if v is False],
+                          "delta": gate.get("delta_field_points",
+                                            gate.get("delta_vs_best_parent_points"))},
+                         indent=2))
         return 1
 
     used = len([v for v in refs.values() if v.get("submission_ref")])

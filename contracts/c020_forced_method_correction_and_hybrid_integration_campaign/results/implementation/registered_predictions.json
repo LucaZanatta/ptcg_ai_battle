@@ -1,0 +1,70 @@
+{
+  "registered_at_commit": "c29cef562d998d01acf6d99744051e23d4540872",
+  "registered_before": "the isolated final panel produced a single game",
+  "why": "A campaign that has retracted three of its own reported results should state what it expects BEFORE measuring, so the final interpretation cannot be quietly shaped by the outcome. These are falsifiable and will be scored against the panel verbatim.",
+  "basis": {
+    "baseline": "0.55 +/- 0.05 across panels; the reference point",
+    "override_cost": "~18 points, from pooled ablation arms (to be reconfirmed pinned)",
+    "c019_controls_measured": {
+      "pimc": "0.40-0.55",
+      "byterl": "0.05-0.13",
+      "hybrid": "~0.11"
+    },
+    "c019_prior_ablation": "c019 measured its ByteRL priors at -28.7 points against pure MCTS"
+  },
+  "predictions": {
+    "BASELINE_OFFICIAL_MEGA_LUCARIO": {
+      "field": "0.52-0.60",
+      "confidence": "high"
+    },
+    "C020_CORRECTED_MCTS": {
+      "field": "0.35-0.45",
+      "confidence": "high",
+      "reason": "the search overrides ~8% of decisions and overriding costs ~18 points; the corrected machinery is neutral otherwise"
+    },
+    "C020_CORRECTED_BYTERL": {
+      "field": "0.10-0.28",
+      "confidence": "medium",
+      "reason": "better trained than the c019 control (0.05-0.13) -- working option references, 5 merit promotions, 16x more multi-select play -- but 104,000 self-play games from random init is small, and it has never seen a scripted opponent"
+    },
+    "C020_H0": {
+      "field": "0.35-0.45",
+      "confidence": "high",
+      "reason": "baseline priors + tactical heuristic; should track corrected MCTS"
+    },
+    "C020_H1": {
+      "field": "0.20-0.35",
+      "confidence": "medium",
+      "reason": "ByteRL priors replace baseline priors; c019 measured its own priors at -28.7 points, and a prior from a policy scoring ~0.2 should still hurt"
+    },
+    "C020_H2": {
+      "field": "0.33-0.45",
+      "confidence": "medium",
+      "reason": "leaf value only; c019's ablation put the value cost at -2.5 points, an order of magnitude smaller than its prior cost"
+    },
+    "C020_H3": {
+      "field": "0.18-0.33",
+      "confidence": "medium",
+      "reason": "both adapters; dominated by the prior term"
+    },
+    "C020_H4": {
+      "field": "0.25-0.40",
+      "confidence": "low",
+      "reason": "ByteRL priors with a 50/50 heuristic-value blend; the blend should recover some of what H3 loses on value but none of the prior damage"
+    }
+  },
+  "ordering_prediction": "BASELINE > {C020_CORRECTED_MCTS ~ H0 ~ H2} > H4 > {H1 ~ H3} > C020_CORRECTED_BYTERL > C019_BYTERL_CONTROL",
+  "gate_predictions": {
+    "corrected_mcts_gate": "FAIL -- requires baseline +3 points; expected ~15 points below",
+    "corrected_byterl_gate": "FAIL -- requires beating c019 ByteRL materially AND baseline +2; the first is plausible, the second is not",
+    "hybrid_gates": "FAIL for all five -- each must beat the stronger corrected pure parent by 3 points, and no adapter is expected to improve on H0",
+    "submissions_expected": 0
+  },
+  "what_would_surprise_me": [
+    "corrected MCTS above 0.50 -- would mean the override damage is smaller than the ablation says",
+    "corrected ByteRL above 0.35 -- would mean 104,000 self-play games is enough to approach a hand-written agent, contradicting c019 at 80,000",
+    "any hybrid beating H0 -- would mean a ByteRL component helps a search, which neither c019 nor c020 has yet seen",
+    "H1 or H3 above H2 -- would invert the prior-versus-value damage ordering c019 measured"
+  ],
+  "how_this_will_be_scored": "each interval is hit or missed, stated per candidate in SUMMARY.md with no re-interpretation of the interval after the fact"
+}

@@ -1,0 +1,86 @@
+{
+  "tag": "ablation_no_veto_pin --no-veto",
+  "config": {
+    "c_puct": 1.5,
+    "determinizations": 4,
+    "simulations_total": 128,
+    "max_depth": 16,
+    "credible_alternatives": 3,
+    "max_ms_per_decision": 700,
+    "rollout_max_steps": 12,
+    "rollout_stochastic_p": 0.1,
+    "progressive_k": 1.0,
+    "progressive_alpha": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.05,
+    "availability_aware": true,
+    "override_enabled": true,
+    "veto_enabled": true
+  },
+  "games": 320,
+  "errors": 0,
+  "completed": 320,
+  "decisions": 20494,
+  "searched_decisions": 18681,
+  "simulations": 2173316,
+  "step_calls": 11212557,
+  "step_ok": 11212557,
+  "step_errors": 0,
+  "begin_calls": 74724,
+  "begin_errors": 0,
+  "release_calls": 11287281,
+  "release_errors": 0,
+  "expansions": 2129718,
+  "nonroot_expansions": 1725555,
+  "rollout_steps": 9082839,
+  "rollout_baseline_calls": 8175111,
+  "rollout_stochastic_calls": 907728,
+  "backups": 2173316,
+  "backup_nodes": 6878491,
+  "leaf_evals": 2173316,
+  "terminal_leaves": 0,
+  "determinizations_attempted": 74724,
+  "determinizations_legal": 74724,
+  "determinizations_rejected": 0,
+  "chance_outcomes": 0,
+  "depth_sum": 4705175,
+  "overrides": 1532,
+  "override_opportunities": 18681,
+  "vetoes": 17149,
+  "infoset_shared_updates": 6878491,
+  "timeouts": 0,
+  "decisions_with_4_determinizations": 18681,
+  "decisions_with_2plus_determinizations": 18681,
+  "max_depth_seen": 15,
+  "max_match_search_ms": 57657.0,
+  "step_error_rate": 0.0,
+  "override_rate": 0.08201,
+  "shared_action_stats_multi_det": 6666,
+  "info_sets_multi_det": 2670,
+  "sampled_full_traces": 402,
+  "per_opponent": {
+    "dragapult": {
+      "games": 80,
+      "rate": 0.325
+    },
+    "mega_abomasnow": {
+      "games": 80,
+      "rate": 0.3625
+    },
+    "iono": {
+      "games": 80,
+      "rate": 0.5875
+    },
+    "mega_lucario": {
+      "games": 80,
+      "rate": 0.3625
+    }
+  },
+  "field_score": 0.4094,
+  "latency": {
+    "max_match_search_ms": 57657.0,
+    "mean_match_search_ms": 29581.5,
+    "max_game_seconds": 58.38
+  },
+  "wall_clock_s": 3285.6
+}
