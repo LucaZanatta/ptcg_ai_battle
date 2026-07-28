@@ -40,6 +40,30 @@ class IllegalDeck(Exception):
     """Raised rather than repaired. A silently fixed deck teaches the policy nothing."""
 
 
+CARD_TYPE_ENERGY = 5
+
+
+def is_basic_energy(cd) -> bool:
+    """Only Basic Energy is exempt from the 4-copy cap.
+
+    Structural, via the engine's own `cardType` field, NOT a name match. The first version of
+    this function tested `"energy" in name.lower()`, which classified *Energy Retrieval* -- a
+    Trainer, cardType 1 -- as uncapped, so a deck of 20 Energy Retrieval read as legal. That is
+    the same defect shape as the c020 A8 end-turn veto that substring-matched words against a
+    tuple of integers; see results/failures/DEFECT_substring_classification_recurrence.md.
+
+    `cardType == 5` selects Energy. Special Energy carries its rules text as `skills` and is
+    capped at 4, so the absence of skills is what distinguishes Basic. The shipped card database
+    holds exactly 8 energy cards (ids 1-8), all Basic, all with zero skills; the skills test is
+    kept so a future Special Energy is capped rather than silently exempted.
+    """
+    if cd is None:
+        return False
+    if int(getattr(cd, "cardType", -1) or -1) != CARD_TYPE_ENERGY:
+        return False
+    return not (getattr(cd, "skills", None) or [])
+
+
 @dataclass
 class CardPool:
     """The legal card pool for construction, derived from permitted decklists."""
@@ -66,11 +90,7 @@ class CardPool:
                 continue
             if bool(getattr(cd, "basic", False)) and int(getattr(cd, "hp", 0) or 0) > 0:
                 basics.add(cid)
-            # a basic energy has no HP and no attacks; copies of it are unrestricted
-            if (int(getattr(cd, "hp", 0) or 0) == 0
-                    and not (getattr(cd, "attacks", None) or [])
-                    and int(getattr(cd, "cardType", -1) or -1) >= 0
-                    and "energy" in str(getattr(cd, "name", "")).lower()):
+            if is_basic_energy(cd):
                 energies.add(cid)
         return CardPool(card_ids=uniq, basic_pokemon=basics, basic_energy=energies, meta=meta)
 
