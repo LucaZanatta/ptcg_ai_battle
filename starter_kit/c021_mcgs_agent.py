@@ -40,6 +40,7 @@ REFERENCE_CFG = {
     # MECHANICAL_ADAPTER: a per-decision simulation ceiling so a measurement run terminates.
     # Every activation is counted. This does not change selection, expansion, sampling or backup.
     "max_simulations_per_decision": 0,     # 0 = unbounded, source behaviour
+    "manual_coin": True,                   # A4: surfaces random effects as chance nodes
 }
 
 
@@ -89,8 +90,13 @@ class MCGSAgent:
             view = K.visible_view(o)
             det, _draw = DT.determinize(view, self.deck, self.rng)
             self.stats["begin_calls"] += 1
+            # A4: without manual_coin the engine resolves random effects silently inside the
+            # step and NO chance node can exist. With it, they surface as selects that
+            # `_make_node` marks random. Configurable so the no-chance-node arm stays runnable
+            # as an ablation rather than being lost.
             st = A.search_begin(o, det.your_deck, det.your_prize, det.opponent_deck,
-                                det.opponent_prize, det.opponent_hand, det.opponent_active)
+                                det.opponent_prize, det.opponent_hand, det.opponent_active,
+                                manual_coin=bool(self.cfg.get("manual_coin", True)))
             search._track(st.searchId)
             root_player = int(getattr(o, "yourIndex", 0) or 0)
             root = search._make_node(st, 0, None, root_player, 0)

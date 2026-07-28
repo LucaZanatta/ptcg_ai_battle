@@ -94,9 +94,31 @@ Under PIMC the source creates chance nodes for **`IsRandomHappened` only** — g
 effects — and creates none for draws or end-turns, for precisely the reason above: the deck is
 already determinized, so a draw is not a chance event.
 
-The PTCG API determinizes once per session and forbids interior re-determinization. That makes
-PIMC the branch the engine actually implements, and the faithful port is the PIMC branch of
-`CheckRandom`, not the non-PIMC branch.
+### But `PIMC` is NOT flipped, and must not be
+
+It is tempting to conclude "the engine implements PIMC, so set `NodeConfig.PIMC = true`". That
+would be wrong, and `c021_mcgs_graph.py` keeps `PIMC = False` with `test_pimc_stays_false`
+asserting it. The flag is not a local branch selector for `CheckRandom`; the source gates at
+least four unrelated behaviours on the same field:
+
+| Site | Behaviour under PIMC |
+|---|---|
+| `Node.Update` | `if (IsEndTurn && PIMC) reward *= -1` — an extra sign flip on top of the opponent flip |
+| `Node.Finalise` | disabled entirely |
+| `Node.Expand`, END_TURN block | the determinize / `ENDTURN_OPPONENT` path is `!PIMC` only |
+| `PrepareChanceNode`, RANDOMEFFECT | the `RandomOpponentHand` determinize is `!PIMC` only |
+
+Flipping the flag to justify one chance-node decision would silently change three other things,
+including double-flipping the reward sign on every end-turn backup.
+
+The honest statement is narrower, and neither branch ports cleanly:
+
+> The port is the **`!PIMC` configuration minus the interior-determinization operations the API
+> does not expose**, with chance nodes at the random surfaces the API *does* expose. The `!PIMC`
+> end-turn path is also unavailable — both of its halves require either an interior determinize
+> or an opponent information-set restore. The PIMC branch of `CheckRandom` is cited as evidence
+> that the source itself treats "no interior re-determinization" as a coherent regime, not as the
+> configuration being run.
 
 ## Probe 4 — genuine random effects ARE exposed, via `manual_coin`
 
@@ -110,9 +132,18 @@ CONTEXTS ONLY WITH manual_coin: [4, 5, 46]
    ctx 46 -> 2 options, option_types (1, 2), minCount 1, maxCount 1
 ```
 
-Context 46 is a two-outcome, exactly-one-choice select that exists only under `manual_coin` — a
-coin flip surfaced as an explicit selectable node. Contexts 4 and 5 also appeared; they are
-confirmed separately in `A4_chance_context_confirmation.md` rather than assumed here.
+A set-difference over two walks is confounded — once a coin resolves differently the trajectories
+diverge, so "only with manual_coin" can include contexts that exist in both. The direct check is
+to step **every** option from one identical state and see whether the successors differ:
+
+| ctx | options | min..max | reachable | distinct successors |
+|---|---|---|---|---|
+| 46 | 2, types (1,2) | 1..1 | 2/2 | 2 |
+| 4  | 3–5, all type 3 | 1..1 | all | 2–3 |
+| 5  | 2–5, all type 3 | 0..2 | all | 3 |
+
+**All three are genuine random surfaces**, and all three are marked. Marking only 46 would leave
+contexts 4 and 5 on the UCB path, where the search would *choose* its own random outcomes.
 
 This is the engine's own representation of `IsRandomHappened`: the random effect stops being
 resolved silently inside the step and becomes a node whose outcomes the searcher enumerates. That
@@ -121,8 +152,9 @@ is exactly a chance node, and it is what A4 is implemented against.
 ## The resulting implementation
 
 1. `search_begin(..., manual_coin=True)` in the MCGS agent, so random effects surface as nodes.
-2. `check_random()` ports the **PIMC branch**: a successor landing in a manual-coin context is
-   `IsRandomHappened`, and a `RANDOMEFFECT` chance node is created for it.
+2. A successor landing in context 4, 5 or 46 is `IsRandomHappened`; the node is marked
+   `is_random` with `random_action_type = "RANDOMEFFECT"`, which is the only type the API can
+   support.
 3. The chance node's outcomes are the coin options. It is expanded by damped sampling
    (`SampleWidth = 24`, `DampingParameter = 2.0`, `numSampleTraversed`), selected by
    `SampleChild` weighted-random on `SampleCount` rather than by UCB, and merged through
@@ -149,10 +181,21 @@ hidden card draws below the root" is false. It searches one determinization per 
 chance nodes at genuine random effects. Aggregate hidden-information coverage comes from repeated
 sessions, not from within one.
 
+## Counters that keep this honest
+
+| Counter | Meaning | Required |
+|---|---|---|
+| `manual_coin_node_ucb_selected` | a chance context reached the UCB branch | **exactly 0** |
+| `chance_nodes_created` | chance nodes marked | > 0 under `manual_coin` |
+| `chance_ctx_4` / `chance_ctx_5` / `chance_ctx_46` | per-context breakdown | — |
+| `chance_expansions` | samples drawn from chance nodes | > 0 |
+
+`test_the_ucb_guard_fires_if_a_coin_context_is_left_unmarked` injects the defect and asserts the
+counter catches it, so a zero reading means the guard works rather than that it is inert.
+
 ## Reproduce
 
-- `probe_chance.py` — Probe 1
-- `probe_chance2.py` — Probes 2 and 3
-- `probe_coin.py` — Probe 4
-
-All three are archived under `results/fidelity/probes/`.
+- `probes/probe_chance.py` — Probe 1
+- `probes/probe_chance2.py` — Probes 2 and 3
+- `probes/probe_coin.py` — Probe 4, walk-diff (confounded, kept for provenance)
+- `probes/probe_coin_direct.py` — Probe 4, direct both-options check (the one relied on)

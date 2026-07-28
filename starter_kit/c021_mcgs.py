@@ -46,7 +46,8 @@ def new_stats() -> Dict[str, Any]:
         "recursive_update_noops", "recursive_reward_updates", "recursive_visit_updates",
         "step_calls", "step_ok", "step_errors", "begin_calls", "begin_errors",
         "release_calls", "release_errors", "max_depth", "decisions", "searched_decisions",
-        "graph_reuse_reroots", "time_budget_exhausted")}
+        "graph_reuse_reroots", "time_budget_exhausted",
+        "chance_expansions", "manual_coin_node_ucb_selected")}
 
 
 class MCGS:
@@ -93,18 +94,31 @@ class MCGS:
             own = int(getattr(obs, "yourIndex", root_player) or root_player)
         except Exception:  # noqa: BLE001
             own = root_player
+        ctx = int(getattr(sel, "context", -1) or -1) if sel is not None else -1
+        # A4 `CheckRandom`. Under `manual_coin=True` the engine stops resolving a random effect
+        # silently inside the step and presents its outcomes as a select. Such a node IS the
+        # chance node: its successors are the outcomes, sampled by SampleCount, never chosen by
+        # UCB. See results/fidelity/A4_chance_node_api_constraint.md for why the source's
+        # interior-reshuffle chance types have no counterpart in this API.
+        is_random = (not terminal) and ctx in G.MANUAL_COIN_CONTEXTS
         n = G.Node(state_abstraction=AB.StateAbstraction(obs, action, None,
                                                          G.SIMPLE_ABSTRACTION),
                    search_id=int(getattr(search_state, "searchId", -1)),
                    obs=obs, depth=depth,
                    is_opponent=(own != root_player),
-                   is_random=False,
+                   is_random=is_random,
                    is_end_turn=bool(action.is_end_turn_action) if action else False,
-                   is_terminal=terminal, play_state=play, start_turn=start_turn)
+                   is_terminal=terminal, play_state=play, start_turn=start_turn,
+                   select_context=ctx,
+                   random_action_type="RANDOMEFFECT" if is_random else "FALSE")
         n.action_abstraction = action
         if not terminal:
             n.legal_options = K.canonical_options(sel)
             n.untested_action_indices = list(range(len(n.legal_options)))
+        if is_random:
+            self.stats["chance_nodes_created"] += 1
+            k = f"chance_ctx_{ctx}"
+            self.stats[k] = self.stats.get(k, 0) + 1
         self.stats["max_depth"] = max(self.stats["max_depth"], depth)
         return n
 
@@ -130,11 +144,23 @@ class MCGS:
         `Expand(out root)` boolean: a transposition merge continues the descent from the matched
         node rather than rolling out immediately.
         """
-        if not node.untested_action_indices:
+        if node.is_random:
+            # Chance node: `Node.Expand` on a random node draws a NEW SAMPLE of the same random
+            # event, so outcomes are drawn WITH REPLACEMENT -- SampleWidth = 24 draws over a
+            # two-sided coin must be able to land on heads twelve times. Untested-action
+            # bookkeeping (which empties after each outcome is seen once) is the decision-node
+            # rule and does not apply here. Repeat draws merge through TranspositionCheck's
+            # chance path, which increments the common edge's SampleCount -- and SampleCount is
+            # exactly what IsFullyExpanded sums against the damped threshold.
+            if not node.legal_options:
+                return None, False
+            idx = int(self.rng.integers(len(node.legal_options)))
+        elif not node.untested_action_indices:
             return None, False
-        # `Node.TreePolicy()`: uniform random over untested actions, then remove.
-        j = int(self.rng.integers(len(node.untested_action_indices)))
-        idx = node.untested_action_indices.pop(j)
+        else:
+            # `Node.TreePolicy()`: uniform random over untested actions, then remove.
+            j = int(self.rng.integers(len(node.untested_action_indices)))
+            idx = node.untested_action_indices.pop(j)
         if idx >= len(node.legal_options):
             return None, False
         opt = node.legal_options[idx]
@@ -151,11 +177,17 @@ class MCGS:
             return None, False
         self._track(succ.searchId)
 
-        child = self._make_node(succ, node.depth + 1, aa, root_player, start_turn)
+        # `Node` ctor: `Depth = parent.IsRandom ? parent.Depth : parent.Depth + 1`. A chance node
+        # and its samples sit at the SAME depth as the decision that led to them -- resolving a
+        # coin is not a ply, and counting it as one would distort the damping schedule.
+        child_depth = node.depth if node.is_random else node.depth + 1
+        child = self._make_node(succ, child_depth, aa, root_player, start_turn)
         if child is None:
             return None, False
         edge = G.Edge.connect(node, child, idx, traverse=True, action_abstraction=aa)
         self.stats["expansions"] += 1
+        if node.is_random:
+            self.stats["chance_expansions"] = self.stats.get("chance_expansions", 0) + 1
         if node.depth > 0:
             self.stats["nonroot_expansions"] += 1
 

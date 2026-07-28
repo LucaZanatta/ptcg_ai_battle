@@ -38,13 +38,33 @@ TRANSPOSITION = True          # NodeConfig.Transposition
 PIMC = False                  # NodeConfig.PIMC
 DO_NOT_REMOVE_UNSELECTED = True
 CHANCE_SPARSE_THRESHOLD = 5   # Node.BestChild: OutgoingEdges.Count > 5
+
+# A4. The select contexts that exist ONLY under `search_begin(manual_coin=True)` -- the engine's
+# own surfacing of a random effect as an explicit node. Each was confirmed by stepping EVERY
+# option from one identical state and observing multiple distinct successors, not by diffing two
+# separate walks (which is confounded: once outcomes diverge the trajectories differ).
+#
+#   ctx 46 -- 2 options, types (1,2), min=max=1, 2/2 reachable, 2 distinct   <- the coin itself
+#   ctx  4 -- 3..5 options, all type 3, min=max=1, all reachable, 2-3 distinct
+#   ctx  5 -- 2..5 options, all type 3, min=0 max=2, all reachable, 3 distinct
+#
+# All three MUST be marked random. A manual-coin node that reaches the UCB path lets the search
+# pick the favourable flip and become clairvoyant, overestimating every coin line; the
+# `manual_coin_node_ucb_selected` counter exists to prove that never happens and must stay 0.
+MANUAL_COIN_CONTEXTS = frozenset({4, 5, 46})
 ROLLOUT_STEP_CAP = 1000
 ROLLOUT_TURN_CAP = 45
 ROLLOUT_RETRIES = 5
 LETHAL_BACKUP_MULTIPLIER = 10.0
 TERMINAL_WON = 10.0
 TERMINAL_LOST = -10.0
-DUMMY_VISITS = 1 << 60        # C# int.MaxValue role: never selected by UCB
+# `Edge.IsDummy` setter parks VisitCount at C# int.MaxValue. That does NOT make the edge
+# unselectable: `Edge.Value` still returns `Successor.Value(0)` plus a bonus that this divisor
+# drives to ~0. What it guarantees is that a dummy edge never outranks its OWN TWIN -- the
+# already-existing edge to the same successor, which keeps a real visit count and so a strictly
+# larger bonus. A dummy edge can still outrank an edge to a genuinely worse state, and should:
+# it is a real transition into a node the graph already reaches another way.
+DUMMY_VISITS = (1 << 31) - 1  # C# int.MaxValue exactly
 
 
 @dataclass(frozen=True)
@@ -183,12 +203,16 @@ class Node:
                  "total_visit", "incoming_edges", "outgoing_edges", "last_traversed_edge",
                  "untested_action_indices", "legal_options", "is_transposition", "is_sample",
                  "is_finalised", "is_not_in_main_tree", "stashed_edges", "start_turn",
-                 "chance_outcomes", "_cached_hash", "action_abstraction")
+                 "chance_outcomes", "_cached_hash", "action_abstraction", "select_context",
+                 "random_action_type")
 
     def __init__(self, state_abstraction: Any = None, search_id: int = -1, obs: Any = None,
                  depth: int = 0, is_opponent: bool = False, is_random: bool = False,
                  is_end_turn: bool = False, is_terminal: bool = False,
-                 play_state: Optional[str] = None, start_turn: int = 0):
+                 play_state: Optional[str] = None, start_turn: int = 0,
+                 select_context: int = -1, random_action_type: str = "FALSE"):
+        self.select_context = select_context
+        self.random_action_type = random_action_type
         self.state_abstraction = state_abstraction
         self.search_id = search_id
         self.obs = obs
@@ -304,6 +328,11 @@ class Node:
             stats["chance_samples"] = stats.get("chance_samples", 0) + 1
             inc = 1 if len(self.outgoing_edges) > CHANCE_SPARSE_THRESHOLD else 0
             return child, inc
+        # A4 guard. Reaching the UCB branch below with a chance context would let the search
+        # CHOOSE its coin flips. Counted rather than silently tolerated; must remain 0.
+        if self.select_context in MANUAL_COIN_CONTEXTS:
+            stats["manual_coin_node_ucb_selected"] = (
+                stats.get("manual_coin_node_ucb_selected", 0) + 1)
         if STORE_VISITS_AT_EDGES:
             best = max(self.outgoing_edges, key=lambda e: e.value(c))
         else:
