@@ -1,0 +1,73 @@
+[
+  {
+    "iteration": 0,
+    "games": 8,
+    "completed": 8,
+    "errors": 0,
+    "win_rate": 0.5,
+    "legal_decks": 8,
+    "legal_deck_rate": 1.0,
+    "updates": 8,
+    "option_truncations": 0,
+    "max_options_seen": 20,
+    "mean_battle_steps": 86.1,
+    "elapsed_s": 6.0,
+    "pg_loss": 0.30603,
+    "upgo_loss": 0.00507,
+    "value_loss": 0.08869,
+    "entropy": 2.21918,
+    "rho_mean": 1.00042,
+    "rho_clipped_frac": 0.39365,
+    "vs_mean": 0.40117,
+    "upgo_mean": 0.25369,
+    "total": 0.33325,
+    "grad_norm": 3.50531,
+    "promoted": true,
+    "osfp": {
+      "period": 1,
+      "checkpoints": 2,
+      "period_games": 0,
+      "mean_payoffs": {},
+      "distribution": [
+        0.5,
+        0.5
+      ]
+    }
+  },
+  {
+    "iteration": 1,
+    "games": 8,
+    "completed": 8,
+    "errors": 0,
+    "win_rate": 0.375,
+    "legal_decks": 8,
+    "legal_deck_rate": 1.0,
+    "updates": 8,
+    "option_truncations": 0,
+    "max_options_seen": 22,
+    "mean_battle_steps": 89.9,
+    "elapsed_s": 11.8,
+    "pg_loss": -0.0852,
+    "upgo_loss": 0.00489,
+    "value_loss": 0.04311,
+    "entropy": 2.20002,
+    "rho_mean": 0.99958,
+    "rho_clipped_frac": 0.42138,
+    "vs_mean": 0.37356,
+    "upgo_mean": 0.40811,
+    "total": -0.08076,
+    "grad_norm": 3.17309,
+    "promoted": true,
+    "osfp": {
+      "period": 2,
+      "checkpoints": 3,
+      "period_games": 0,
+      "mean_payoffs": {},
+      "distribution": [
+        0.3333,
+        0.3333,
+        0.3333
+      ]
+    }
+  }
+]

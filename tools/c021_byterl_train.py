@@ -151,6 +151,13 @@ class _UniformActor:
         self.learn_construction = learn_construction
         self.episode = _Ep()
         self.errors = []
+        if self._deck is not None:
+            # Legality must be evaluated for the control arm too. Only `deck()` set it, and that
+            # early-returns when a fixed deck is supplied, so the control arm reported
+            # legal_deck_rate 0.0 while every one of its 64 games completed -- a false metric,
+            # not a real illegality.
+            ok, det = self.DK.legality(self._deck, self.pool)
+            self.episode.deck, self.episode.deck_legal = list(self._deck), ok
 
     def act(self, obs):
         from cg import c019_core as K
