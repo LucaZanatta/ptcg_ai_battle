@@ -41,6 +41,16 @@ REFERENCE_CFG = {
     # Every activation is counted. This does not change selection, expansion, sampling or backup.
     "max_simulations_per_decision": 0,     # 0 = unbounded, source behaviour
     "manual_coin": True,                   # A4: surfaces random effects as chance nodes
+    # A5. `MCGS.Select` re-roots onto the chosen successor with DoNotRemoveUnselectedNodes = true,
+    # so statistics survive across the sequential atomic decisions of a turn.
+    #
+    # The PTCG API cannot reuse the ENGINE STATES: `search_end` invalidates every searchId, and an
+    # interior observation carries no `search_begin_input`, so the next decision must open a fresh
+    # session. What CAN carry over is the part that matters -- the statistics keyed by state
+    # abstraction. A node whose abstraction was already searched is seeded with the visits and
+    # rewards it accumulated, which is exactly what re-rooting preserves.
+    "graph_reuse": True,
+    "graph_reuse_max_entries": 20000,
 }
 
 
@@ -63,6 +73,8 @@ class MCGSAgent:
         self.graph_snapshots: List[Dict[str, Any]] = []
         self.exceptions: List[Dict[str, Any]] = []
         self._first_move_done = False
+        # A5: abstraction -> (visit_count, rewards, total_visit), carried across decisions
+        self._reuse: Dict[int, Any] = {}
 
     def _budget_seconds(self) -> float:
         base = (self.cfg["continuing_move_seconds"] if self._first_move_done
@@ -87,6 +99,8 @@ class MCGSAgent:
         deadline = t0 + budget
         search = S.MCGS(A, self.cfg, self.stats, self.rng, self.prior_provider,
                         self.transfer_arm)
+        if self.cfg.get("graph_reuse", True):
+            search.reuse = self._reuse
         chosen = None
         try:
             o = A.to_observation_class(obs_dict)
@@ -135,6 +149,8 @@ class MCGSAgent:
                                         "type": type(e).__name__, "msg": str(e)[:240],
                                         "tb": traceback.format_exc()[-700:]})
         finally:
+            if self.cfg.get("graph_reuse", True):
+                search.harvest_reuse(int(self.cfg.get("graph_reuse_max_entries", 20000)))
             search.release_all()
             try:
                 A.search_end()
