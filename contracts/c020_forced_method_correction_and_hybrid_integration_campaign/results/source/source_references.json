@@ -1,0 +1,78 @@
+{
+  "recorded_at": "c020, after an audit found no campaign-level provenance record",
+  "authority_order": [
+    "official PTCG API and competition rules",
+    "primary papers",
+    "Hearthstone repository for non-copied patterns",
+    "c019 code as control / negative evidence only"
+  ],
+  "sources": [
+    {
+      "id": "PTCG_API",
+      "kind": "official SDK",
+      "local": "starter_kit/api.py",
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced",
+      "used_for": "search_begin/search_step/search_release/search_end; card and attack metadata (all_card_data, all_attack) used by the tactical evaluator and the encoder",
+      "licence": "competition-permitted; vendored unmodified in packages"
+    },
+    {
+      "id": "SWIECHOWSKI_2018",
+      "kind": "paper",
+      "ref": "arXiv:1808.04794",
+      "title": "Improving Hearthstone AI by Combining MCTS and Supervised Learning Algorithms",
+      "used_for": "PIMC vs ISMCTS distinction; search plus state evaluation; better evaluation improving win rate at lower computation",
+      "licence": "properties only, no code"
+    },
+    {
+      "id": "HEARTHSTONE_AI_REPO",
+      "kind": "repository",
+      "ref": "github.com/peter1591/hearthstone-ai",
+      "used_for": "architectural patterns only",
+      "licence": "GPL -- INSPECTED NOT COPIED; absent from every submission package"
+    },
+    {
+      "id": "XI_2023_LOCM",
+      "kind": "paper",
+      "ref": "arXiv:2303.04096",
+      "title": "Mastering Strategy Card Game (LOCM) via End-to-End Policy and Optimistic Smooth Fictitious Play",
+      "used_for": "OSFP structure, historical population, payoff-driven mixture, Algorithm 1",
+      "licence": "paper; no public reference implementation assumed"
+    },
+    {
+      "id": "XIAO_2023_HS",
+      "kind": "paper",
+      "ref": "arXiv:2303.05197",
+      "title": "Mastering Strategy Card Game (Hearthstone) with Improved Techniques",
+      "used_for": "registered constants: gamma 1.0, lr 7e-5, entropy 0.01, sample reuse 2, V-trace clips [0.001,1.007], p=0.6, xi=0.55, c=6 (Tables III/IV)",
+      "licence": "paper"
+    },
+    {
+      "id": "ESPEHOLT_2018_IMPALA",
+      "kind": "paper",
+      "ref": "arXiv:1802.01561",
+      "title": "IMPALA: Scalable Distributed Deep-RL with Importance Weighted Actor-Learner Architectures",
+      "used_for": "V-trace recursion and clipping semantics",
+      "licence": "paper"
+    },
+    {
+      "id": "C019_AUDIT_FINDINGS",
+      "kind": "contract input",
+      "local": "contracts/c020_forced_method_correction_and_hybrid_integration_campaign/references/C019_AUDIT_FINDINGS.md",
+      "sha256": "9248b0f00da0d27054a1af0ebd12daee047e88cfba6b8c47b750f02269f68321",
+      "used_for": "the specification itself -- every mandated correction traces to a numbered finding",
+      "licence": "own prior work"
+    }
+  ],
+  "conflicts_resolved": {
+    "xi_promotion_threshold": "LOCM registers 0.7, Hearthstone 0.55 -- contract registers 0.55",
+    "learning_rate": "LOCM 5e-5, Hearthstone 7e-5 -- contract registers 7e-5",
+    "gamma": "LOCM 0.99, Hearthstone 1.0 -- contract registers 1.0"
+  },
+  "clean_room_attestation": {
+    "gpl_source_vendored": false,
+    "gpl_source_translated": false,
+    "reference_implementation_reproduction_claimed": false,
+    "invented_repository_or_citation": false,
+    "unclear_permission_code_in_submission_archives": false
+  }
+}
