@@ -1,0 +1,85 @@
+{
+  "tag": "errcheck2",
+  "config": {
+    "c_puct": 1.5,
+    "determinizations": 4,
+    "simulations_total": 64,
+    "max_depth": 16,
+    "credible_alternatives": 3,
+    "max_ms_per_decision": 250,
+    "rollout_max_steps": 12,
+    "rollout_stochastic_p": 0.1,
+    "progressive_k": 1.0,
+    "progressive_alpha": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.05,
+    "availability_aware": true,
+    "override_enabled": true,
+    "veto_enabled": true
+  },
+  "games": 4,
+  "errors": 0,
+  "completed": 4,
+  "decisions": 292,
+  "searched_decisions": 271,
+  "simulations": 8736,
+  "step_calls": 97553,
+  "step_ok": 97553,
+  "step_errors": 0,
+  "begin_calls": 1084,
+  "begin_errors": 0,
+  "release_calls": 98637,
+  "release_errors": 0,
+  "expansions": 8405,
+  "nonroot_expansions": 5137,
+  "rollout_steps": 89148,
+  "rollout_baseline_calls": 80339,
+  "rollout_stochastic_calls": 8809,
+  "backups": 8736,
+  "backup_nodes": 19813,
+  "leaf_evals": 8736,
+  "terminal_leaves": 0,
+  "determinizations_attempted": 1084,
+  "determinizations_legal": 1084,
+  "determinizations_rejected": 0,
+  "chance_outcomes": 0,
+  "depth_sum": 11077,
+  "max_depth_seen": 35,
+  "overrides": 0,
+  "override_opportunities": 271,
+  "vetoes": 271,
+  "infoset_shared_updates": 19813,
+  "timeouts": 0,
+  "decisions_with_4_determinizations": 271,
+  "decisions_with_2plus_determinizations": 271,
+  "match_search_ms": 66664,
+  "step_error_rate": 0,
+  "shared_action_stats_multi_det": 186,
+  "info_sets_multi_det": 82,
+  "sampled_full_traces": 24,
+  "per_opponent": {
+    "dragapult": {
+      "games": 1,
+      "rate": 0.0
+    },
+    "mega_lucario": {
+      "games": 1,
+      "rate": 1.0
+    },
+    "iono": {
+      "games": 1,
+      "rate": 1.0
+    },
+    "mega_abomasnow": {
+      "games": 1,
+      "rate": 0.0
+    }
+  },
+  "field_score": 0.5,
+  "latency": {
+    "max_match_search_ms": 18624.1,
+    "mean_match_search_ms": 16666.2,
+    "max_game_seconds": 18.95
+  },
+  "wall_clock_s": 20.5
+}

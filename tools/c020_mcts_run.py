@@ -94,6 +94,10 @@ def main(argv=None):
     ap.add_argument("--max-ms", type=int, default=700)
     ap.add_argument("--seed", type=int, default=4242)
     ap.add_argument("--tag", default="scaled")
+    ap.add_argument("--no-overrides", action="store_true",
+                    help="M09 arm: search and log, but always play the baseline")
+    ap.add_argument("--no-veto", action="store_true",
+                    help="M09 arm: override gate without the conservative veto")
     a = ap.parse_args(argv)
 
     for d in ("configs", "infoset_tables", "determinizations", "tree_traces", "leaf_features",
@@ -101,7 +105,8 @@ def main(argv=None):
         os.makedirs(os.path.join(MC, d), exist_ok=True)
 
     cfg = {"simulations_total": a.sims, "determinizations": a.determinizations,
-           "max_ms_per_decision": a.max_ms}
+           "max_ms_per_decision": a.max_ms,
+           "override_enabled": not a.no_overrides, "veto_enabled": not a.no_veto}
     from cg import c020_ismcts as S, c020_override as OV, c020_tactical_leaf as TL, \
         c020_determinize as DT
     full_cfg = {**S.DEFAULT_CFG, **cfg}
@@ -127,6 +132,7 @@ def main(argv=None):
         results = [r for res in pool.map(_worker, payload) for r in res]
 
     agg = collections.Counter()
+    maxes: Dict[str, float] = {}
     per_opp = collections.defaultdict(lambda: [0, 0.0])
     games_f = gzip.open(os.path.join(MC, "raw_games", f"{a.tag}_games.jsonl.gz"), "wt")
     ov_f = gzip.open(os.path.join(MC, "override_logs", f"{a.tag}_overrides.jsonl.gz"), "wt")
@@ -141,8 +147,19 @@ def main(argv=None):
             errors.append(r)
             continue
         rep = r["report"]
+        # Max-like and rate-like fields must NOT be summed. `max_depth_seen` summed over 900
+        # games reported 11,034 against a configured max depth of 16, which reads as a runaway
+        # search rather than as a sum of per-game maxima.
+        MAXY = {"max_depth_seen", "match_search_ms"}
+        RATEY = {"override_rate", "step_error_rate"}
         for k, v in rep.items():
-            if isinstance(v, (int, float)) and k != "override_rate":
+            if not isinstance(v, (int, float)):
+                continue
+            if k in RATEY:
+                continue
+            if k in MAXY:
+                maxes[k] = max(maxes.get(k, 0), v)
+            else:
                 agg[k] += v
         if r["completed"] and r["score"] is not None:
             per_opp[r["opponent"]][0] += 1
@@ -178,6 +195,9 @@ def main(argv=None):
         "tag": a.tag, "config": full_cfg, "games": len(results), "errors": len(errors),
         "completed": sum(1 for r in results if r.get("completed")),
         **{k: int(v) for k, v in agg.items()},
+        **{f"max_{k}" if not k.startswith("max_") else k: v for k, v in maxes.items()},
+        "step_error_rate": round(agg["step_errors"] / max(1, agg["step_calls"]), 5),
+        "override_rate": round(agg["overrides"] / max(1, agg["override_opportunities"]), 5),
         "shared_action_stats_multi_det": shared_multi,
         "info_sets_multi_det": isets_multi,
         "sampled_full_traces": len(tt),

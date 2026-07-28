@@ -1,0 +1,92 @@
+{
+  "config": {
+    "c_puct": 1.5,
+    "determinizations": 4,
+    "simulations_total": 128,
+    "max_depth": 16,
+    "credible_alternatives": 3,
+    "max_ms_per_decision": 700,
+    "rollout_max_steps": 12,
+    "rollout_stochastic_p": 0.1,
+    "progressive_k": 1.0,
+    "progressive_alpha": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.05,
+    "availability_aware": true,
+    "override_enabled": false,
+    "veto_enabled": true
+  },
+  "override_thresholds": {
+    "version": "c020.override.v2",
+    "thresholds": {
+      "min_simulations": 48,
+      "min_determinizations": 3,
+      "min_availability": 3,
+      "min_visit_share": 0.25,
+      "min_q_margin": 0.08,
+      "min_agreement": 0.6,
+      "pivotal_min_determinizations": 4
+    },
+    "vetoes": [
+      "unsupported_effect_flag",
+      "unsafe_latency_flag",
+      "insufficient_simulations",
+      "insufficient_determinizations",
+      "no_candidate",
+      "unproductive_end_turn_veto",
+      "candidate_rarely_available",
+      "visit_share",
+      "q_margin",
+      "determinization_disagreement",
+      "unstable_tie",
+      "pivotal_needs_more_determinizations"
+    ],
+    "registration": {
+      "when": "after the c020 smoke, before scaled evaluation (DECISION_RULES)",
+      "min_visit_share_basis": "uniform allocation over the credible set of 4 actions is 0.25; a candidate must exceed what even spreading would give it",
+      "smoke_distribution_visit_share_blocked": {
+        "p50": 0.182,
+        "p75": 0.22,
+        "p90": 0.25,
+        "max": 0.297
+      },
+      "not_tuned_against_panel_results": true
+    },
+    "rationale": "c018 measured that random overrides at the same rate reproduce the collapse of real search overrides (0.192 vs 0.210, against 0.596 for never overriding). The right to override is earned per decision."
+  },
+  "leaf_weights": {
+    "version": "c020.leaf.v1",
+    "weights": {
+      "terminal": 1.0,
+      "lethal": 0.9,
+      "ko_value": 0.22,
+      "prizes_taken": 0.26,
+      "damage_dealt": 0.12,
+      "productive_attack": 0.13,
+      "attack_enabled": 0.07,
+      "active_ready": 0.08,
+      "backup_ready": 0.045,
+      "typed_energy_ready": 0.06,
+      "energy_waste": -0.055,
+      "survival": 0.15,
+      "target_prize_value": 0.07,
+      "bench_liability": -0.08,
+      "critical_resource_cost": -0.06,
+      "future_prize_route": 0.07,
+      "flexibility": 0.035,
+      "unproductive_end_turn": -0.23
+    }
+  },
+  "archetype_prior": {
+    "prior_version": "c020.archetype_prior.v1",
+    "prior": {
+      "dragapult": 0.22,
+      "mega_lucario": 0.22,
+      "iono": 0.22,
+      "mega_abomasnow": 0.22,
+      "unknown": 0.12
+    },
+    "identify_confidence": 0.35,
+    "note": "c019 defaulted to dragapult whenever the archetype was unidentified (C019_AUDIT_FINDINGS #5); c020 draws from this mixture per determinization"
+  }
+}

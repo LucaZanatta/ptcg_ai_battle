@@ -71,10 +71,74 @@ Defects are ranked by how much downstream evidence they invalidate:
   by the contract's own escape clause ("or every observed multi-select decision if fewer occur")
   and must be reported that way rather than as a miss.
 
-### Selected defects (max 5)
+### Selected defects (2 of a permitted 5)
 
-_To be filled from scaled output. Empty until then; an empty list is a valid outcome and is
-preferable to inventing work to fill the budget._
+Ranked from the 900-game scaled corrected-MCTS run (51,317 searched decisions, 44,142,229
+`search_step` calls, field 0.2911). Two root defects were selected; the budget is deliberately
+not filled.
+
+#### R1 — the search could not step ANY multi-select context (METHOD, MCTS)
+
+`_expand` and `_rollout` both stepped with a single option, `[opt.option_index]`. Every
+multi-select context therefore raised
+
+```
+ValueError: Must be Observation.select.minCount <= len(select) <= Observation.select.maxCount.
+```
+
+and the branch was abandoned. Measured on the scaled run: **1,318,265 failed steps out of
+44,142,229 (2.99%)**, split 508:169 rollout:expand in a single sampled game. The consequence is
+not a lost fraction of steps — it is that whole CLASSES of position, every one requiring a
+multi-card selection, were structurally unexplorable. The search reported healthy counters
+throughout, because a rejected step is indistinguishable from a leaf in the aggregate.
+
+This is the same defect family the campaign already corrected on the ByteRL side (B3, audit #9):
+c019 modelled a multi-select action as its first item. Here the search modelled it as its first
+item too, in a different module, and neither the smoke nor the counters made it visible.
+
+**Fix.** `build_payload(sel, primary, opts, priors)` constructs a payload honouring
+`minCount..maxCount`: the primary action leads, remaining slots are filled in prior order so the
+payload is deterministic given the priors rather than arbitrary. Applied at both call sites, and
+the executed payload — not the primary option — is what advances the branch-local baseline memory
+and the hybrid recurrent state, so A2 and C1 stay consistent with what the engine actually did.
+
+**Verified on identical games:** step errors **3,055 -> 0**; maximum search depth **12 -> 35**;
+non-root expansions 5,137 with 97,553 total steps.
+
+#### R2 — the run aggregator summed max-like fields (EVIDENCE)
+
+`max_depth_seen` was reported as **11,034** against a configured maximum depth of **16**, because
+the runner added every numeric field across 900 games including the per-game maxima. The number
+reads as a runaway search; it is a sum of ~12.3 averages. `step_error_rate` was summed the same
+way and reported as 0.
+
+This is an evidence defect of the family `references/C019_AUDIT_FINDINGS.md` #16/#17 describes —
+reporting that looks precise while measuring something else — and it is the second such defect
+found in c020's own tooling after the derived determinization count.
+
+**Fix.** Max-like fields (`max_depth_seen`, `match_search_ms`) take a maximum; rate-like fields
+are recomputed from their numerator and denominator after aggregation rather than averaged.
+Verified: `max_depth_seen` now reports 8 on a 4-game run.
+
+### Not selected, and why
+
+- **field 0.2911 versus a ~0.55 baseline.** This is a RESULT, not a defect, and the M09 ablation
+  is the instrument that decides whether the 5.82% override rate causes it. Re-tuning thresholds
+  because the score is low would be tuning against the outcome, which `DECISION_RULES` forbids.
+  The pre-repair number is retained as the measurement it is.
+- **7 multi-select decisions per 80 ByteRL games.** Governed by the contract's own escape clause
+  ("or every observed multi-select decision if fewer occur") and reported that way, not as a miss.
+
+### Consequence for scaling
+
+The 900-game run above was executed with R1 live, so it measures a search that could not explore
+multi-select positions. It is retained as the PRE-REPAIR measurement and as the ranking evidence
+for this pass; the post-repair scaled run supersedes it for every floor and every competitive
+claim. `CONTRACT §4` Phase 4 places scaling after the repair pass, and that ordering is why.
+
+### Second cycle
+
+None. Any defect found after this point is recorded in `failures/` and reported as outstanding.
 
 ### Second cycle
 

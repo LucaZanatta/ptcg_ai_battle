@@ -1,0 +1,86 @@
+{
+  "tag": "aggcheck",
+  "config": {
+    "c_puct": 1.5,
+    "determinizations": 4,
+    "simulations_total": 48,
+    "max_depth": 16,
+    "credible_alternatives": 3,
+    "max_ms_per_decision": 200,
+    "rollout_max_steps": 12,
+    "rollout_stochastic_p": 0.1,
+    "progressive_k": 1.0,
+    "progressive_alpha": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.05,
+    "availability_aware": true,
+    "override_enabled": true,
+    "veto_enabled": true
+  },
+  "games": 4,
+  "errors": 0,
+  "completed": 4,
+  "decisions": 272,
+  "searched_decisions": 248,
+  "simulations": 6553,
+  "step_calls": 72908,
+  "step_ok": 72908,
+  "step_errors": 0,
+  "begin_calls": 992,
+  "begin_errors": 0,
+  "release_calls": 73900,
+  "release_errors": 0,
+  "expansions": 6405,
+  "nonroot_expansions": 3758,
+  "rollout_steps": 66503,
+  "rollout_baseline_calls": 59796,
+  "rollout_stochastic_calls": 6707,
+  "backups": 6553,
+  "backup_nodes": 13563,
+  "leaf_evals": 6553,
+  "terminal_leaves": 0,
+  "determinizations_attempted": 992,
+  "determinizations_legal": 992,
+  "determinizations_rejected": 0,
+  "chance_outcomes": 0,
+  "depth_sum": 7010,
+  "overrides": 0,
+  "override_opportunities": 248,
+  "vetoes": 248,
+  "infoset_shared_updates": 13563,
+  "timeouts": 0,
+  "decisions_with_4_determinizations": 248,
+  "decisions_with_2plus_determinizations": 248,
+  "max_depth_seen": 8,
+  "max_match_search_ms": 13138.1,
+  "step_error_rate": 0.0,
+  "override_rate": 0.0,
+  "shared_action_stats_multi_det": 146,
+  "info_sets_multi_det": 60,
+  "sampled_full_traces": 24,
+  "per_opponent": {
+    "dragapult": {
+      "games": 1,
+      "rate": 1.0
+    },
+    "mega_lucario": {
+      "games": 1,
+      "rate": 0.0
+    },
+    "iono": {
+      "games": 1,
+      "rate": 1.0
+    },
+    "mega_abomasnow": {
+      "games": 1,
+      "rate": 0.0
+    }
+  },
+  "field_score": 0.5,
+  "latency": {
+    "max_match_search_ms": 13138.1,
+    "mean_match_search_ms": 12125.6,
+    "max_game_seconds": 13.62
+  },
+  "wall_clock_s": 15.2
+}

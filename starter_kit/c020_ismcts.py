@@ -46,6 +46,9 @@ DEFAULT_CFG = {
     "baseline_prior_bonus": 3.0,
     "min_prior": 0.05,
     "availability_aware": True,
+    # M09 ablation switches, ON in every submitted configuration
+    "override_enabled": True,
+    "veto_enabled": True,
 }
 
 
@@ -103,6 +106,35 @@ def make_infoset_key(obs, player: int, memory: BM.BaselineMemory) -> IS.InfoSetK
                          public_memory_signature=mem_sig)
 
 
+def select_bounds(sel) -> Tuple[int, int]:
+    lo = int(getattr(sel, "minCount", 0) or 0)
+    hi = int(getattr(sel, "maxCount", 0) or 0)
+    lo = max(1, lo)
+    hi = max(lo, hi if hi > 0 else lo)
+    return lo, hi
+
+
+def build_payload(sel, primary, opts, priors=None) -> List[int]:
+    """Environment payload honouring minCount..maxCount (A3).
+
+    Stepping a multi-select context with a single option raises
+    `minCount <= len(select) <= maxCount` and the branch is lost, so the search silently cannot
+    explore ANY multi-select position. The primary option leads; the remainder are filled by
+    prior order so the payload is deterministic given the priors, not arbitrary.
+    """
+    lo, _hi = select_bounds(sel)
+    chosen = [primary]
+    if lo > 1:
+        rest = [o for o in opts if o.key() != primary.key()]
+        if priors:
+            rest.sort(key=lambda o: -float(priors.get(o.key(), 0.0)))
+        chosen.extend(rest[:max(0, lo - 1)])
+    try:
+        return K.to_select_payload(chosen, sel)
+    except Exception:  # noqa: BLE001
+        return [o.option_index for o in chosen]
+
+
 class InfoSetSearch:
     """One decision's search: N determinizations sharing one information-set table."""
 
@@ -121,6 +153,10 @@ class InfoSetSearch:
         self.open_ids: List[int] = []
         self.traces: List[Dict[str, Any]] = []
         self.leaf_samples: List[Dict[str, Any]] = []
+        # step failures are classified rather than counted: a legal-move rejection deep in a
+        # rollout is expected, a native lifecycle error is not, and one number cannot say which
+        self.step_error_kinds: Dict[str, int] = {}
+        self.step_error_samples: List[str] = []
 
     # ---------------------------------------------------------------- lifecycle
     def _track(self, sid):
@@ -134,6 +170,13 @@ class InfoSetSearch:
             except Exception:  # noqa: BLE001
                 self.stats["release_errors"] += 1
         self.open_ids.clear()
+
+    def _note_step_error(self, e, depth, where):
+        k = f"{type(e).__name__}|{where}"
+        self.step_error_kinds[k] = self.step_error_kinds.get(k, 0) + 1
+        if len(self.step_error_samples) < 12:
+            self.step_error_samples.append(f"[d{depth}|{where}] {type(e).__name__}: "
+                                           f"{str(e)[:180]}")
 
     # ---------------------------------------------------------------- priors
     def _priors(self, node: WorldNode, opts, obs_dict) -> Tuple[Dict[Any, float], set]:
@@ -173,17 +216,21 @@ class InfoSetSearch:
         return ranked[:max(1, min(len(ranked), max(cap, grow)))]
 
     # ---------------------------------------------------------------- expansion
-    def _expand(self, node: WorldNode, action_key, opts) -> Optional[WorldNode]:
+    def _expand(self, node: WorldNode, action_key, opts, priors=None) -> Optional[WorldNode]:
         """A3: create a REAL successor through search_step, at ANY depth."""
         opt = next((o for o in opts if o.key() == action_key), None)
         if opt is None:
             return None
+        sel = getattr(node.obs, "select", None)
+        payload = build_payload(sel, opt, opts, priors) if sel is not None \
+            else [opt.option_index]
         self.stats["step_calls"] += 1
         try:
-            succ = self.A.search_step(node.search_id, [opt.option_index])
+            succ = self.A.search_step(node.search_id, payload)
             self.stats["step_ok"] += 1
-        except Exception:  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001
             self.stats["step_errors"] += 1
+            self._note_step_error(e, node.depth, "expand")
             return None
         self._track(succ.searchId)
         self.stats["expansions"] += 1
@@ -191,7 +238,7 @@ class InfoSetSearch:
             self.stats["nonroot_expansions"] += 1
         obs = getattr(succ, "observation", None) or getattr(succ, "obs", None)
         try:
-            nxt_mem = BM.advance_after_executed(_obs_dict(node.obs), [opt.option_index],
+            nxt_mem = BM.advance_after_executed(_obs_dict(node.obs), payload,
                                                 node.memory)
         except Exception:  # noqa: BLE001
             nxt_mem = BM.clone_memory(node.memory)
@@ -204,7 +251,7 @@ class InfoSetSearch:
                           memory=nxt_mem, neural=node.neural, line=line)
         if self.neural is not None:
             try:
-                child.neural = self.neural.advance(node.neural, node.obs, [opt.option_index])
+                child.neural = self.neural.advance(node.neural, node.obs, payload)
             except Exception:  # noqa: BLE001
                 child.neural = node.neural
         node.children[action_key] = child
@@ -238,12 +285,14 @@ class InfoSetSearch:
                 if pick is None:
                     pick = opts[int(self.rng.integers(len(opts)))]
                     self.stats["rollout_stochastic_calls"] += 1
+            payload = build_payload(sel, pick, opts)
             self.stats["step_calls"] += 1
             try:
-                succ = self.A.search_step(cur.search_id, [pick.option_index])
+                succ = self.A.search_step(cur.search_id, payload)
                 self.stats["step_ok"] += 1
-            except Exception:  # noqa: BLE001
+            except Exception as e:  # noqa: BLE001
                 self.stats["step_errors"] += 1
+                self._note_step_error(e, cur.depth, "rollout")
                 break
             self._track(succ.searchId)
             self.stats["rollout_steps"] += 1
@@ -251,7 +300,7 @@ class InfoSetSearch:
             line = TL.LineContext(**{**vars(cur.line)})
             _annotate_line(line, pick)
             try:
-                mem = BM.advance_after_executed(_obs_dict(cur.obs), [pick.option_index],
+                mem = BM.advance_after_executed(_obs_dict(cur.obs), payload,
                                                 cur.memory)
             except Exception:  # noqa: BLE001
                 mem = cur.memory
@@ -332,7 +381,7 @@ class InfoSetSearch:
 
             child = node.children.get(action_key)
             if child is None:
-                child = self._expand(node, action_key, opts)
+                child = self._expand(node, action_key, opts, priors)
                 if child is None:
                     value = self._evaluate(node)
                     break

@@ -1,0 +1,82 @@
+{
+  "tag": "prerepair_scaled",
+  "config": {
+    "c_puct": 1.5,
+    "determinizations": 4,
+    "simulations_total": 128,
+    "max_depth": 16,
+    "credible_alternatives": 3,
+    "max_ms_per_decision": 700,
+    "rollout_max_steps": 12,
+    "rollout_stochastic_p": 0.1,
+    "progressive_k": 1.0,
+    "progressive_alpha": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.05,
+    "availability_aware": true
+  },
+  "games": 900,
+  "errors": 0,
+  "completed": 900,
+  "decisions": 56111,
+  "searched_decisions": 51317,
+  "simulations": 4297437,
+  "step_calls": 44142229,
+  "step_ok": 42823964,
+  "step_errors": 1318265,
+  "begin_calls": 205268,
+  "begin_errors": 0,
+  "release_calls": 43029232,
+  "release_errors": 0,
+  "expansions": 4036921,
+  "nonroot_expansions": 3009498,
+  "rollout_steps": 38787043,
+  "rollout_baseline_calls": 35918302,
+  "rollout_stochastic_calls": 3993905,
+  "backups": 4297437,
+  "backup_nodes": 11859085,
+  "leaf_evals": 4297437,
+  "terminal_leaves": 0,
+  "determinizations_attempted": 205268,
+  "determinizations_legal": 205268,
+  "determinizations_rejected": 0,
+  "chance_outcomes": 0,
+  "depth_sum": 7561653,
+  "max_depth_seen": 11034,
+  "overrides": 2986,
+  "override_opportunities": 51317,
+  "vetoes": 48331,
+  "infoset_shared_updates": 11859085,
+  "timeouts": 0,
+  "match_search_ms": 34481963,
+  "shared_action_stats_multi_det": 6217,
+  "info_sets_multi_det": 2704,
+  "sampled_full_traces": 402,
+  "decisions_with_4_determinizations": 51317,
+  "per_opponent": {
+    "dragapult": {
+      "games": 225,
+      "rate": 0.1956
+    },
+    "mega_lucario": {
+      "games": 225,
+      "rate": 0.2756
+    },
+    "iono": {
+      "games": 225,
+      "rate": 0.3911
+    },
+    "mega_abomasnow": {
+      "games": 225,
+      "rate": 0.3022
+    }
+  },
+  "field_score": 0.2911,
+  "latency": {
+    "max_match_search_ms": 63277.6,
+    "mean_match_search_ms": 38313.3,
+    "max_game_seconds": 65.19
+  },
+  "wall_clock_s": 4065.2,
+  "superseded_by": "post-repair scaled run; this measurement was taken with repair-pass defect R1 live (multi-select contexts unexplorable)"
+}

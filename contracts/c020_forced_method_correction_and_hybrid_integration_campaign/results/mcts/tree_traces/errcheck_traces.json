@@ -1,0 +1,6725 @@
+[
+  {
+    "game_id": "errcheck:g0",
+    "decision": 1,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.26125,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.235,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.21563,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25062,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.21625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.235,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.21125,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24625,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2325,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.255,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.23688,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.235,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.21125,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.26125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.21625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.25,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.65521,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.21625,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.23688,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.20688,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.21625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 8,
+        "max_depth": 7,
+        "value": 0.24562,
+        "backup_nodes": 8
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40313,
+        "backup_nodes": 3
+      }
+    ],
+    "table": {
+      "info_sets": 27,
+      "info_sets_reached_by_multiple_determinizations": 1,
+      "action_stats_updated_by_multiple_determinizations": 2,
+      "reads": 255,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g0",
+    "decision": 3,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.38136,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25688,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.21625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2525,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21136,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.25688,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.225,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.25688,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.25062,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.24188,
+        "backup_nodes": 4
+      }
+    ],
+    "table": {
+      "info_sets": 24,
+      "info_sets_reached_by_multiple_determinizations": 2,
+      "action_stats_updated_by_multiple_determinizations": 6,
+      "reads": 357,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g0",
+    "decision": 5,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38136,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37261,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.235,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24125,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.27667,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25688,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22146,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37699,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.59794,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.27,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.4225,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38136,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 6,
+      "info_sets_reached_by_multiple_determinizations": 2,
+      "action_stats_updated_by_multiple_determinizations": 8,
+      "reads": 89,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g0",
+    "decision": 6,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.44182,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.26125,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40213,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24136,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40213,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39813,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40903,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.66396,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40213,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25688,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.39813,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22775,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39911,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2525,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23021,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40213,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.27,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24625,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.39813,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22824,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.2525,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2325,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.255,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.4225,
+        "backup_nodes": 2
+      }
+    ],
+    "table": {
+      "info_sets": 24,
+      "info_sets_reached_by_multiple_determinizations": 3,
+      "action_stats_updated_by_multiple_determinizations": 7,
+      "reads": 229,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g0",
+    "decision": 7,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24136,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21937,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22583,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.235,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.21937,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24136,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.235,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25688,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.255,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24136,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25688,
+        "backup_nodes": 3
+      }
+    ],
+    "table": {
+      "info_sets": 19,
+      "info_sets_reached_by_multiple_determinizations": 5,
+      "action_stats_updated_by_multiple_determinizations": 10,
+      "reads": 221,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g0",
+    "decision": 8,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.255,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.255,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25688,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.05705,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25688,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25688,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2525,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2525,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.05705,
+        "backup_nodes": 2
+      }
+    ],
+    "table": {
+      "info_sets": 20,
+      "info_sets_reached_by_multiple_determinizations": 3,
+      "action_stats_updated_by_multiple_determinizations": 9,
+      "reads": 199,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g1",
+    "decision": 1,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.19187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.19187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.66396,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19187,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25688,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.24188,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.19187,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24812,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24188,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.19187,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.24812,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24188,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.19187,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2525,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.24812,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24188,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.19187,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2525,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 8,
+        "max_depth": 7,
+        "value": 0.24812,
+        "backup_nodes": 8
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24188,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.19187,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 9,
+        "max_depth": 8,
+        "value": 0.24812,
+        "backup_nodes": 9
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24188,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.19187,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.2525,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2525,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24188,
+        "backup_nodes": 5
+      }
+    ],
+    "table": {
+      "info_sets": 26,
+      "info_sets_reached_by_multiple_determinizations": 2,
+      "action_stats_updated_by_multiple_determinizations": 3,
+      "reads": 371,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g1",
+    "decision": 3,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.68333,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23886,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.05455,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.68333,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25636,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19449,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.05017,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.68333,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.20233,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.19011,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.68333,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3442,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41303,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.68333,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3592,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16722,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.67896,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19358,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24536,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.05455,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20813,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.19358,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23011,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.05017,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20813,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": -0.02021,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.19661,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2008,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.43153,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20233,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.19011,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.0458,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41187,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 7,
+      "info_sets_reached_by_multiple_determinizations": 5,
+      "action_stats_updated_by_multiple_determinizations": 9,
+      "reads": 133,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g1",
+    "decision": 4,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3915,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4075,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.43562,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22187,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.1975,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23449,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23886,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40313,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2175,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.41625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.26125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22187,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38511,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3915,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.43562,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4075,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.44,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.195,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21687,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19712,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.3915,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.43562,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.41187,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4075,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.44,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 7,
+      "info_sets_reached_by_multiple_determinizations": 6,
+      "action_stats_updated_by_multiple_determinizations": 11,
+      "reads": 117,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g1",
+    "decision": 5,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40937,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.42,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20813,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.01479,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.53525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.43591,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21213,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.405,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21561,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.215,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40313,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.65708,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.41591,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19312,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.235,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.01042,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.00417,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.40313,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.36417,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25639,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.405,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.1975,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.35979,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.22591,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.19312,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.4075,
+        "backup_nodes": 2
+      }
+    ],
+    "table": {
+      "info_sets": 10,
+      "info_sets_reached_by_multiple_determinizations": 4,
+      "action_stats_updated_by_multiple_determinizations": 10,
+      "reads": 135,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g1",
+    "decision": 6,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40678,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21463,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40241,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23463,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40716,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40313,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22187,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.26125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.1721,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.41187,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.19062,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.42688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40678,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.4075,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.45112,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.23021,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40678,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.57521,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.4225,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40241,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.40313,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 2,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.57083,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.35542,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40678,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.27,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.18188,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24761,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.21241,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.40313,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40313,
+        "backup_nodes": 2
+      }
+    ],
+    "table": {
+      "info_sets": 23,
+      "info_sets_reached_by_multiple_determinizations": 4,
+      "action_stats_updated_by_multiple_determinizations": 6,
+      "reads": 207,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g1",
+    "decision": 7,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.72315,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.45545,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.72753,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.10409,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21163,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.71478,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40653,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.72753,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.7144,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.71029,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.16435,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.53525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.71878,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.70592,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.38049,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.7144,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.71878,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.70592,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.1771,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.50878,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.65421,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.42,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.72753,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.50878,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.72315,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.71915,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.72753,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38878,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.19854,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 9,
+      "info_sets_reached_by_multiple_determinizations": 5,
+      "action_stats_updated_by_multiple_determinizations": 7,
+      "reads": 139,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g2",
+    "decision": 1,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.26125,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23563,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.4075,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.41187,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22062,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25688,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.41625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.41187,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.23125,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.21625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40313,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.21625,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.21625,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25688,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.22062,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.2525,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.4075,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 8,
+        "max_depth": 7,
+        "value": 0.4775,
+        "backup_nodes": 8
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.25688,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.24188,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 1,
+        "path_len": 9,
+        "max_depth": 8,
+        "value": 0.21625,
+        "backup_nodes": 9
+      },
+      {
+        "det_id": 2,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.23125,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 3,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.22062,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.4075,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 10,
+        "max_depth": 9,
+        "value": 0.21625,
+        "backup_nodes": 10
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.41187,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.21625,
+        "backup_nodes": 3
+      }
+    ],
+    "table": {
+      "info_sets": 31,
+      "info_sets_reached_by_multiple_determinizations": 2,
+      "action_stats_updated_by_multiple_determinizations": 3,
+      "reads": 321,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g2",
+    "decision": 2,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.27,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2075,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.1975,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.235,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.26562,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25062,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.24188,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.19482,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.22625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24188,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.20187,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22583,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.4075,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.26125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25688,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.235,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.25688,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.22062,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24562,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2525,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.24812,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 0,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.24125,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.22125,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.20187,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.23062,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24333,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 8,
+        "max_depth": 7,
+        "value": 0.40313,
+        "backup_nodes": 8
+      }
+    ],
+    "table": {
+      "info_sets": 31,
+      "info_sets_reached_by_multiple_determinizations": 4,
+      "action_stats_updated_by_multiple_determinizations": 6,
+      "reads": 399,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g2",
+    "decision": 4,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23312,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39438,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.20875,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25062,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.255,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21402,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.255,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.06777,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.24188,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2175,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2525,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 8,
+      "info_sets_reached_by_multiple_determinizations": 6,
+      "action_stats_updated_by_multiple_determinizations": 13,
+      "reads": 131,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g2",
+    "decision": 5,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2225,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2225,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2175,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23312,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22687,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.1875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.17771,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.21812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.17902,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4075,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.4075,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2175,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.39875,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22687,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22687,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2175,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22687,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 17,
+      "info_sets_reached_by_multiple_determinizations": 8,
+      "action_stats_updated_by_multiple_determinizations": 16,
+      "reads": 227,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g2",
+    "decision": 6,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16125,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20938,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20438,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.18438,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.43304,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2525,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22437,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.14152,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20411,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25688,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22437,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.18438,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.6936,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16652,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22437,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.44179,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.43304,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.26125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16589,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.42866,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.185,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.25688,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": -0.00458,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.16652,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.43304,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.37938,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.24625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.18438,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.1525,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.14214,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.26125,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.1525,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.23125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.44179,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.2,
+        "backup_nodes": 5
+      }
+    ],
+    "table": {
+      "info_sets": 18,
+      "info_sets_reached_by_multiple_determinizations": 5,
+      "action_stats_updated_by_multiple_determinizations": 8,
+      "reads": 197,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g2",
+    "decision": 7,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2325,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.27,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.41625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20338,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.67021,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2325,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": -0.02332,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20588,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.43125,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.45491,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16489,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.22812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.26562,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.69824,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.01479,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.36417,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.01479,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.69824,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.425,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.22812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.22187,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": -0.00295,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.41625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.27,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.20438,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.22187,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.08714,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.35979,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.27,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 17,
+      "info_sets_reached_by_multiple_determinizations": 4,
+      "action_stats_updated_by_multiple_determinizations": 8,
+      "reads": 149,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g3",
+    "decision": 2,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.24812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16592,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.25062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.2375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.225,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.255,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": -0.00857,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2375,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.35384,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.255,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": -0.00857,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2375,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.23563,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.16592,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.26125,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.24812,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.40125,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.42063,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.0108,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.22062,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.42063,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.225,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.2375,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.24625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.42063,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.2375,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.24812,
+        "backup_nodes": 5
+      }
+    ],
+    "table": {
+      "info_sets": 20,
+      "info_sets_reached_by_multiple_determinizations": 1,
+      "action_stats_updated_by_multiple_determinizations": 2,
+      "reads": 187,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g3",
+    "decision": 4,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.35313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16854,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.37375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.14854,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.35313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.15917,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38125,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.15917,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40313,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.15479,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.37375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.14945,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.35313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.14354,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23813,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.36854,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.18354,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.43875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.13917,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.35313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.33375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40188,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.16354,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.20883,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40937,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.14354,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40313,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.17917,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.37375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.14354,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.35313,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39687,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.27625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.4075,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16354,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.21875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39687,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 13,
+      "info_sets_reached_by_multiple_determinizations": 7,
+      "action_stats_updated_by_multiple_determinizations": 12,
+      "reads": 199,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g3",
+    "decision": 5,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.24375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.43091,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3975,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.36625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.34875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20445,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40188,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.15917,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.34875,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.21758,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.4075,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.34875,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.42654,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.40625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.37062,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.34875,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.20445,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.67929,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.26125,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.34875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16854,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.6855,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.27,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.15383,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.31812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.37062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.34875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.15854,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.31375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.30938,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.34875,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.36938,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.11875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.455,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.34875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39687,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2675,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.41187,
+        "backup_nodes": 2
+      }
+    ],
+    "table": {
+      "info_sets": 7,
+      "info_sets_reached_by_multiple_determinizations": 6,
+      "action_stats_updated_by_multiple_determinizations": 12,
+      "reads": 193,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g3",
+    "decision": 6,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.27,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.35313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16354,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.14945,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.35313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.14354,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.42375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.35313,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.42812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.36625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.36188,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.35313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.14945,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.44625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.285,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.35313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.16354,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.42812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.35313,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.42812,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38562,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.35313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38562,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.4325,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.26125,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.25062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.35313,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.39404,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.45062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.69173,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41375,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41187,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.17917,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 8,
+      "info_sets_reached_by_multiple_determinizations": 5,
+      "action_stats_updated_by_multiple_determinizations": 13,
+      "reads": 189,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g3",
+    "decision": 7,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3925,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.34875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.15917,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.42812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.3975,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40777,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.27625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.3325,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.34875,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40777,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39027,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.38812,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.425,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40339,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.27625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.375,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.18125,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.13917,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.23312,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.2225,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38083,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.27625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.30312,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.34875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.30312,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.15917,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.39875,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.40777,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.28521,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.39875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.47125,
+        "backup_nodes": 1
+      }
+    ],
+    "table": {
+      "info_sets": 14,
+      "info_sets_reached_by_multiple_determinizations": 3,
+      "action_stats_updated_by_multiple_determinizations": 11,
+      "reads": 203,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  },
+  {
+    "game_id": "errcheck:g3",
+    "decision": 8,
+    "determinizations": 4,
+    "traces": [
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": -0.00021,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.37062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.37062,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.36812,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.42312,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3925,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.3975,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.40313,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.68642,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.27625,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.38875,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.67068,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.4075,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.31562,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 0,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40375,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.40339,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.27521,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 3,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.4625,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 0,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.40188,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 1,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.27,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 2,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.41625,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 3,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": 0.40937,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 0,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.43312,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 1,
+        "path_len": 1,
+        "max_depth": 0,
+        "value": 0.41625,
+        "backup_nodes": 1
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.40313,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.20258,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 0,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.2675,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.37062,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.4225,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 3,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.50813,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 0,
+        "path_len": 6,
+        "max_depth": 5,
+        "value": 0.3225,
+        "backup_nodes": 6
+      },
+      {
+        "det_id": 1,
+        "path_len": 4,
+        "max_depth": 3,
+        "value": -0.01521,
+        "backup_nodes": 4
+      },
+      {
+        "det_id": 2,
+        "path_len": 3,
+        "max_depth": 2,
+        "value": 0.26125,
+        "backup_nodes": 3
+      },
+      {
+        "det_id": 3,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.42688,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 0,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.31812,
+        "backup_nodes": 7
+      },
+      {
+        "det_id": 1,
+        "path_len": 2,
+        "max_depth": 1,
+        "value": 0.36312,
+        "backup_nodes": 2
+      },
+      {
+        "det_id": 2,
+        "path_len": 5,
+        "max_depth": 4,
+        "value": 0.41187,
+        "backup_nodes": 5
+      },
+      {
+        "det_id": 3,
+        "path_len": 7,
+        "max_depth": 6,
+        "value": 0.51687,
+        "backup_nodes": 7
+      }
+    ],
+    "table": {
+      "info_sets": 27,
+      "info_sets_reached_by_multiple_determinizations": 2,
+      "action_stats_updated_by_multiple_determinizations": 4,
+      "reads": 243,
+      "writes": 0,
+      "sharing_is_real": true
+    }
+  }
+]
