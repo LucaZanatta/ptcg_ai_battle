@@ -49,7 +49,32 @@ Four regression tests added, covering single-select cardinality, reaching `minCo
 prior-ordered fill, and the degenerate case where `minCount` exceeds the option set (no
 duplication).
 
-## Why the panels did not surface it
+## CONFIRMED FIRING IN PRODUCTION
+
+Panel batch A was launched before this fix and produced the direct evidence:
+
+```
+incomplete games by candidate
+  C020_CORRECTED_MCTS   15 of 400   (3.8%)
+  C020_H0               13 of 200   (6.5%)
+  BASELINE               0 of 400
+  C019_PIMC_PUCT         0 of 100
+  C019_BYTERL            0 of 100
+  C019_HYBRID            0 of 100
+```
+
+Every incomplete game belongs to one of the two override-capable c020 candidates and none to the
+baseline or any c019 control, which do not take this code path. The games terminate without
+DONE/DONE and with no exception recorded, exactly as an engine-rejected action does.
+
+This supersedes the cautious reading below. The defect was not latent; it was destroying roughly
+one game in twenty-five for override-capable candidates, and those games were being counted as
+incomplete rather than as losses -- so the affected candidates' field scores were computed over a
+biased sample of the games they happened to survive.
+
+Batch A's c020 rows are therefore tainted and the batch is re-run with the fix.
+
+## Why the panels did not surface it EARLIER
 
 The baseline action is produced by the scripted agent and already carries the correct cardinality,
 so only the ~6% of decisions that override could hit this, and only the fraction of those in a

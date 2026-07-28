@@ -1,0 +1,29 @@
+{
+  "lstm_hidden": 256,
+  "gamma": 1.0,
+  "learning_rate": 7e-05,
+  "entropy_coef": 0.01,
+  "value_coef": 0.5,
+  "upgo_coef": 1.0,
+  "sample_reuse": 2,
+  "unroll_length": 16,
+  "minibatch_unrolls": 8,
+  "queue_capacity": 8192,
+  "grad_clip": 10.0,
+  "ppo_eps": 0.2,
+  "rho_clip": [
+    0.001,
+    1.007
+  ],
+  "p_current_self_play": 0.6,
+  "xi_promotion": 0.55,
+  "max_lp_without_add": 6,
+  "source": "arXiv 2303.05197 Table III/IV; unchanged from c019 registration",
+  "device": "cuda",
+  "initialized_from": "FRESH_RANDOM",
+  "init_param_sha256": "74f01142b6f52628e5a1851da040034fdc65277859af427c16cadd2cf556bc1c",
+  "tag": "c020b",
+  "seed": 2026,
+  "learning_periods": 8,
+  "games_per_lp": 13000
+}

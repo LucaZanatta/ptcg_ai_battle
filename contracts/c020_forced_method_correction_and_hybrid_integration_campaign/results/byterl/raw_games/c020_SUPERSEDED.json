@@ -1,0 +1,8 @@
+{
+  "reason": "Trained with B2's option-to-object reference resolver INERT: build_option_refs scraped integers from the canonical key's top level and the references live in a nested tuple, so 0 of 556 options resolved a source, target, hand, card or attack reference and every option gathered the learned null token. The policy could not tell which board object an option referred to -- it could not distinguish 'attach energy to bench slot 2' from 'bench slot 3', which is the audit-#7/#8 failure c020 exists to correct.",
+  "failure_record": "DEFECT_option_object_references_were_inert_during_training.md",
+  "completed_at": {"games": 104000, "optimizer_steps": 110591, "learning_periods": 8, "historical_pool": 6},
+  "what_was_still_correct": "B1 slot-aware board (12 slots, position embeddings, typed energy, statuses, tools), B3 autoregressive multi-select joint probabilities, B4 stored h0/c0 with context assertion, B5 V-trace/UPGO over joint log-probabilities, B6 period-local OSFP with frozen-checkpoint promotion, B7 immutable population. Six performance promotions and one correct refusal were produced by this run.",
+  "replaced_by": "c020b",
+  "retained_because": "it is the evidence for the defect record, and it demonstrates the corrected recurrent and OSFP semantics on top of a partially uncorrected observation"
+}
