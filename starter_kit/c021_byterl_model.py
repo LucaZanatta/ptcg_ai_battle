@@ -220,7 +220,17 @@ class ByteRLNet(nn.Module):
         n_legal = int(legal.sum().item())
         k_max = max(1, min(int(max_count) if max_count else 1, n_legal))
         k_min = max(1, min(int(min_count) if min_count else 1, k_max))
-        for i in range(k_max):
+        # How many to take is itself a decision when min < max. The first version looped to
+        # k_max unconditionally, so the policy ALWAYS took the maximum allowed -- it could never
+        # learn to discard two cards instead of three. The count is sampled uniformly over the
+        # legal range; the papers give no distribution for it, and it is recorded in
+        # UNRESOLVED_REFERENCE_CHOICES as a Chosen decision.
+        if k_max > k_min:
+            k_target = int(rng.integers(k_min, k_max + 1)) if rng is not None else \
+                int(torch.randint(k_min, k_max + 1, (1,)).item())
+        else:
+            k_target = k_min
+        for i in range(k_target):
             if avail.sum() <= 0:
                 break
             logits = self.battle_logits(h, options, picked) / max(temperature, 1e-6)
@@ -234,8 +244,6 @@ class ByteRLNet(nn.Module):
             step[0, idx] = 1.0
             picked = picked + step
             avail = avail * (1.0 - step)
-            if len(chosen) >= k_min and len(chosen) >= k_max:
-                break
         return chosen, total
 
 

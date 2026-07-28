@@ -153,12 +153,22 @@ class ByteRLActor:
                 lg = self.net.battle_logits(h, tt["opt"])
                 lp_all = M.masked_log_softmax(lg, legal)
                 ent = float(-(lp_all.exp() * lp_all).sum().item())
-            chosen = [c for c in chosen if c < len(opts)]
-            if not chosen:
+            kept = [c for c in chosen if c < len(opts)]
+            if not kept:
                 return K.to_select_payload([opts[0]], sel)
+            if len(kept) != len(chosen):
+                # The recorded behaviour log-probability is the joint probability of the SET the
+                # policy actually sampled. If any element is dropped here, that number no longer
+                # describes the recorded action, and V-trace would divide by the wrong behaviour
+                # probability. Recompute it for the set that is actually played.
+                with torch.no_grad():
+                    logp = float(self.net.select_logprob(h, tt["opt"], legal, kept))
+                self.errors.append(f"option index filter dropped "
+                                   f"{len(chosen) - len(kept)} of {len(chosen)}")
             self.episode.steps.append(Step(
-                stage=EN.STAGE_BATTLE, enc=enc, chosen=list(chosen),
+                stage=EN.STAGE_BATTLE, enc=enc, chosen=list(kept),
                 behaviour_logp=float(logp), value=v, n_legal=n, entropy=ent))
+            chosen = kept
             return K.to_select_payload([opts[c] for c in chosen], sel)
         except Exception as e:  # noqa: BLE001
             if len(self.errors) < 40:
