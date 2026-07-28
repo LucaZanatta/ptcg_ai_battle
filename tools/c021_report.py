@@ -1,0 +1,271 @@
+"""c021 — assemble every result into the statuses DECISION_RULES defines.
+
+This tool does NOT decide optimistically. Each status is computed from evidence that must be
+present on disk; a missing input yields FAIL or PARTIAL with the reason recorded, never a pass by
+default. Wilson intervals are used wherever a rate is compared, because at these sample sizes the
+binomial noise is larger than most of the differences involved.
+"""
+
+from __future__ import annotations
+
+import argparse
+import glob
+import json
+import math
+import os
+import sys
+import time
+from typing import Any, Dict, List, Optional, Tuple
+
+_REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _REPO)
+
+C21 = os.path.join(_REPO, "contracts",
+                   "c021_source_faithful_mcgs_and_byterl_transfer_campaign", "results")
+
+
+def wilson(k: float, n: int, z: float = 1.96) -> Tuple[float, float]:
+    if n <= 0:
+        return (0.0, 1.0)
+    p = k / n
+    d = 1 + z * z / n
+    c = p + z * z / (2 * n)
+    m = z * math.sqrt(max(p * (1 - p) / n + z * z / (4 * n * n), 0.0))
+    return ((c - m) / d, (c + m) / d)
+
+
+def load(path: str) -> Optional[Any]:
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def load_glob(pattern: str) -> Dict[str, Any]:
+    out = {}
+    for p in sorted(glob.glob(pattern)):
+        d = load(p)
+        if d is not None:
+            out[os.path.basename(p)] = d
+    return out
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=os.path.join(C21, "reports"))
+    a = ap.parse_args(argv)
+    os.makedirs(a.out, exist_ok=True)
+
+    ev: Dict[str, Any] = {}
+    mcgs = load_glob(os.path.join(C21, "mcgs", "evaluations", "*_summary.json"))
+    curves = load_glob(os.path.join(C21, "byterl", "curves", "*_curve.json"))
+    manifests = load_glob(os.path.join(C21, "byterl", "manifests", "*_manifest.json"))
+    validation = load(os.path.join(C21, "validation", "semantic_validation.json"))
+    inventory = os.path.join(C21, "fidelity", "mcgs_official_source_inventory.json")
+    eqmap = os.path.join(C21, "fidelity", "mcgs_paper_equation_map.md")
+    a4doc = os.path.join(C21, "fidelity", "A4_chance_node_api_constraint.md")
+    unres = os.path.join(C21, "fidelity", "UNRESOLVED_REFERENCE_CHOICES.md")
+
+    # ---------------------------------------------------------------- SOURCE_FIDELITY
+    have_archive = os.path.exists(inventory)
+    have_eqmap = os.path.exists(eqmap)
+    have_a4 = os.path.exists(a4doc)
+    have_unres = os.path.exists(unres)
+    val_ok = bool(validation and validation.get("all_checks_detect_their_defect"))
+    sf_reasons = []
+    if not have_archive:
+        sf_reasons.append("no official source inventory")
+    if not have_eqmap:
+        sf_reasons.append("no paper equation map")
+    if not val_ok:
+        sf_reasons.append("semantic validation incomplete or has inert checks")
+    if not have_a4:
+        sf_reasons.append("A4 adapter not documented")
+    source_fidelity = "PASS" if not sf_reasons else "PARTIAL"
+    ev["SOURCE_FIDELITY"] = {
+        "status": source_fidelity,
+        "archive_inventory": have_archive, "equation_map": have_eqmap,
+        "a4_adapter_documented": have_a4, "unresolved_choices_declared": have_unres,
+        "semantic_validation": (f"{validation.get('passed')}/{validation.get('total')}"
+                                if validation else None),
+        "inert_checks": (validation or {}).get("inert", []),
+        "reasons": sf_reasons,
+        "caveat": ("The port is the !PIMC configuration MINUS the interior-determinization "
+                   "operations the PTCG API does not expose. Chance nodes exist only at the "
+                   "random surfaces manual_coin reveals. It does not sample draw order inside "
+                   "the tree."),
+    }
+
+    # ---------------------------------------------------------------- EXECUTION
+    def pick(tagpart, d):
+        return {k: v for k, v in d.items() if tagpart in k}
+
+    comp = pick("competitive", mcgs)
+    exec_rows = []
+    for name, s in mcgs.items():
+        exec_rows.append({
+            "run": name, "games": s.get("games"), "completed": s.get("completed"),
+            "field_score": s.get("field_score"),
+            "sims_per_decision": s.get("sims_per_decision"),
+            "chance_nodes_created": s.get("chance_nodes_created"),
+            "manual_coin_node_ucb_selected": s.get("manual_coin_node_ucb_selected"),
+            "step_errors": s.get("step_errors"), "release_errors": s.get("release_errors"),
+            "transposition_merges": s.get("transposition_merges"),
+            "dummy_edges": s.get("dummy_edges"),
+            "term_root_win": s.get("term_root_win"), "term_root_loss": s.get("term_root_loss"),
+        })
+    ladder_done = sorted({k.replace("_curve.json", "") for k in curves
+                          if k.startswith(("ctrl_", "learn_"))})
+    clean = all((r.get("step_errors") or 0) == 0 and
+                (r.get("manual_coin_node_ucb_selected") or 0) == 0 for r in exec_rows)
+    execution = "PASS" if (exec_rows and curves and clean) else "PARTIAL"
+    ev["EXECUTION"] = {"status": execution, "mcgs_runs": exec_rows,
+                       "byterl_runs": ladder_done,
+                       "no_step_errors_and_no_coin_ucb_selection": clean}
+
+    # ---------------------------------------------------------------- MCGS_COMPETITIVE
+    best_mcgs, best_name = None, None
+    for name, s in mcgs.items():
+        if name.startswith(("a4_", "legal_smoke", "smoke")):
+            continue
+        fs = s.get("field_score")
+        if fs is not None and (best_mcgs is None or fs > best_mcgs):
+            best_mcgs, best_name = fs, name
+    n_games = mcgs.get(best_name, {}).get("completed", 0) if best_name else 0
+    lo, hi = wilson((best_mcgs or 0) * n_games, n_games) if n_games else (0.0, 1.0)
+    beats_half = lo > 0.5
+    ev["MCGS_COMPETITIVE"] = {
+        "status": "PASS" if beats_half else "FAIL",
+        "best_run": best_name, "field_score": best_mcgs, "games": n_games,
+        "wilson95": [round(lo, 4), round(hi, 4)],
+        "gate": "lower bound of the 95% Wilson interval must exceed 0.5 against the field",
+        "note": ("A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an "
+                 "implementation failure (DECISION_RULES §1)."),
+    }
+
+    # ---------------------------------------------------------------- BYTERL_METHOD
+    checks = {c["id"]: c["status"] for c in (validation or {}).get("checks", [])}
+    byterl_ids = [k for k in checks if k.startswith("BYTERL_") or k.startswith("DECK_")]
+    byterl_all = all(checks[k] == "PASS" for k in byterl_ids) if byterl_ids else False
+    ladder_present = {r: any(r == k.split("_", 1)[1].replace("_curve.json", "")
+                             for k in [])
+                      for r in []}
+    have_rungs = sorted({k.replace("_curve.json", "").split("_", 1)[1]
+                         for k in curves if k.startswith(("ctrl_", "learn_"))})
+    weights_changed = []
+    for name, c in curves.items():
+        if not isinstance(c, list) or len(c) < 2:
+            continue
+        ups = sum(int(r.get("updates") or 0) for r in c)
+        wrs = [r.get("win_rate") for r in c if r.get("win_rate") is not None]
+        if ups > 0:
+            weights_changed.append({"run": name.replace("_curve.json", ""),
+                                    "updates": ups, "iterations": len(c),
+                                    "first_win_rate": wrs[0] if wrs else None,
+                                    "last_win_rate": wrs[-1] if wrs else None,
+                                    "best_win_rate": max(wrs) if wrs else None})
+    e2e = any((manifests.get(m) or {}).get("reductions", {}).get("learn_construction")
+              for m in manifests)
+    bm_reasons = []
+    if not byterl_all:
+        bm_reasons.append("a ByteRL semantic check did not detect its defect")
+    if not weights_changed:
+        bm_reasons.append("no training run with non-zero updates")
+    if not e2e:
+        bm_reasons.append("no end-to-end deck-construction-plus-battle run")
+    ev["BYTERL_METHOD"] = {
+        "status": "PASS" if not bm_reasons else "PARTIAL",
+        "semantic_checks": {k: checks[k] for k in sorted(byterl_ids)},
+        "rungs_run": have_rungs,
+        "training_runs_with_weight_updates": weights_changed,
+        "end_to_end_construction_and_battle": e2e,
+        "reasons": bm_reasons,
+        "declared_deviation": ("Actor-learner execution is SYNCHRONOUS (actors fill a batch, "
+                               "then the learner updates), not the papers' decoupled recurrent "
+                               "actor-learner. The algorithm is unchanged; the execution "
+                               "topology is not the published one, and this is a declared "
+                               "deviation rather than a claimed reproduction."),
+        "unresolved_choices": "results/fidelity/UNRESOLVED_REFERENCE_CHOICES.md",
+    }
+
+    # ---------------------------------------------------------------- BYTERL_SCALE
+    total_games = 0
+    for name, c in curves.items():
+        if isinstance(c, list):
+            total_games += sum(int(r.get("games") or 0) for r in c)
+    ev["BYTERL_SCALE"] = {
+        "status": "COMPUTE_LIMITED",
+        "total_games_played": total_games,
+        "paper_reference": "distributed fleet, millions of games, days of wall clock",
+        "achieved_fraction_note": ("Order 1e3 games against an order 1e6+ reference, i.e. well "
+                                   "under 1%. Convergence is NOT claimed; the learning "
+                                   "trajectory is reported as-is."),
+        "permitted_reductions_only": ["actors", "samples", "duration", "learning periods"],
+        "architecture_simplified": False, "algorithm_simplified": False,
+    }
+
+    # ---------------------------------------------------------------- TRANSFER
+    transfer = {k: v for k, v in mcgs.items() if v.get("transfer_arm")}
+    arms = {}
+    control = None
+    for name, s in mcgs.items():
+        if s.get("transfer_arm") in (None, "T0_control") and "competitive" in name:
+            control = s
+    for name, s in transfer.items():
+        arm = s.get("transfer_arm")
+        n = s.get("completed") or 0
+        fs = s.get("field_score")
+        if fs is None or n == 0:
+            continue
+        lo_a, hi_a = wilson(fs * n, n)
+        arms[arm] = {"run": name, "field_score": fs, "games": n,
+                     "wilson95": [round(lo_a, 4), round(hi_a, 4)]}
+    retained = []
+    if control is not None and control.get("field_score") is not None:
+        cn = control.get("completed") or 0
+        clo, chi = wilson(control["field_score"] * cn, cn)
+        for arm, d in arms.items():
+            if d["wilson95"][0] > chi:      # non-overlapping, arm above control
+                retained.append(arm)
+    ev["TRANSFER"] = {
+        "status": "PASS" if retained else ("FAIL" if arms else "NOT_RUN"),
+        "control_field_score": (control or {}).get("field_score"),
+        "arms": arms, "retained": retained,
+        "rule": ("DECISION_RULES §3: a component is retained only on a credible improvement; "
+                 "internal ByteRL-vs-history improvement alone is insufficient. Here that means "
+                 "the arm's 95% lower bound must exceed the control's upper bound."),
+    }
+
+    # ---------------------------------------------------------------- PACKAGE / SUBMISSION
+    ev["PACKAGE"] = {"status": "NOT_BUILT",
+                     "reason": "no candidate cleared its registered gate, so none was packaged"}
+    ev["SUBMISSION"] = {"status": "PENDING", "submission_ids": [],
+                        "reason": ("DECISION_RULES §4 forbids submitting a candidate clearly "
+                                   "dominated by the current champion.")}
+
+    # ---------------------------------------------------------------- OVERALL
+    both_done = (ev["EXECUTION"]["status"] in ("PASS", "PARTIAL")
+                 and bool(exec_rows) and bool(weights_changed))
+    credible = (ev["MCGS_COMPETITIVE"]["status"] == "PASS"
+                or ev["TRANSFER"]["status"] == "PASS")
+    overall = "PASS" if (both_done and credible) else ("PARTIAL" if both_done else "FAIL")
+    ev["OVERALL"] = {
+        "status": overall,
+        "rule": ("OVERALL=PARTIAL is permitted when both methods are faithfully executed and "
+                 "analyzed but no candidate clears the competitive gate (DECISION_RULES §6)."),
+        "both_methods_implemented_and_executed": both_done,
+        "credible_competitive_or_transfer_result": credible,
+    }
+
+    ev["generated"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+    out = os.path.join(a.out, "statuses.json")
+    json.dump(ev, open(out, "w"), indent=2)
+    print(json.dumps({k: (v.get("status") if isinstance(v, dict) else v)
+                      for k, v in ev.items() if k != "generated"}, indent=2))
+    print(f"\nwritten: {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
