@@ -1,0 +1,21 @@
+{
+  "probe_id": "F03",
+  "name": "identity_safe_final_panel",
+  "branch": "common",
+  "status": "NOT_EXERCISED",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "panels": [
+      "panelsmoke",
+      "hybctrl_check",
+      "prefinal_check",
+      "ctrlcheck",
+      "speccheck"
+    ],
+    "final_games": null,
+    "incomplete": null,
+    "paired_by": "game_id, never list position",
+    "environment_randomness_paired": false
+  },
+  "tainted_by": []
+}

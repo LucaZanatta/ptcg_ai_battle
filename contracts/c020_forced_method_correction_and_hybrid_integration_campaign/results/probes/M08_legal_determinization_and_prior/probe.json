@@ -1,0 +1,29 @@
+{
+  "probe_id": "M08",
+  "name": "legal_determinization_and_prior",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "determinizations_legal": 203216,
+    "determinizations_rejected": 0,
+    "prior": {
+      "prior_version": "c020.archetype_prior.v1",
+      "prior": {
+        "dragapult": 0.22,
+        "mega_lucario": 0.22,
+        "iono": 0.22,
+        "mega_abomasnow": 0.22,
+        "unknown": 0.12
+      },
+      "identify_confidence": 0.35,
+      "note": "c019 defaulted to dragapult whenever the archetype was unidentified (C019_AUDIT_FINDINGS #5); c020 draws from this mixture per determinization",
+      "c019_defect": "silent dragapult default when archetype unidentified"
+    },
+    "sampled_sources": {
+      "identified": 3300,
+      "prior_mixture": 700
+    }
+  },
+  "tainted_by": []
+}

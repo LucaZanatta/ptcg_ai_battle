@@ -1,0 +1,13 @@
+{
+  "probe_id": "M02",
+  "name": "shared_statistics_across_determinizations",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "action_stats_updated_by_multiple_determinizations": 5545,
+    "info_sets_multi_det": 2370,
+    "games": 900
+  },
+  "tainted_by": []
+}

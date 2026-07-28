@@ -1,0 +1,44 @@
+{
+  "probe_id": "B13",
+  "name": "requested_versus_actual_mixture",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "mixtures": [
+      {
+        "lp": 1,
+        "mixture": [
+          0.172894,
+          0.827106
+        ],
+        "population": 2,
+        "derived_from": "period_local_payoff_table"
+      },
+      {
+        "lp": 2,
+        "mixture": [
+          0.112084,
+          0.096506,
+          0.79141
+        ],
+        "population": 3,
+        "derived_from": "period_local_payoff_table"
+      },
+      {
+        "lp": 3,
+        "mixture": [
+          0.072658,
+          0.166428,
+          0.17946,
+          0.581454
+        ],
+        "population": 4,
+        "derived_from": "period_local_payoff_table"
+      }
+    ],
+    "derived_from": "period_local_payoff_table",
+    "p_current_self_play": 0.6
+  },
+  "tainted_by": []
+}

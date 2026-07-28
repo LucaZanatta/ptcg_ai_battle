@@ -1,0 +1,21 @@
+{
+  "probe_id": "M10",
+  "name": "native_lifecycle_and_match_clock",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "release_errors": 0,
+    "begin_errors": 0,
+    "step_errors": 0,
+    "step_error_rate": 0.0,
+    "latency": {
+      "max_match_search_ms": 64834.6,
+      "mean_match_search_ms": 38929.5,
+      "max_game_seconds": 65.75
+    },
+    "budget_ms": 600000,
+    "safety_margin": 0.45
+  },
+  "tainted_by": []
+}

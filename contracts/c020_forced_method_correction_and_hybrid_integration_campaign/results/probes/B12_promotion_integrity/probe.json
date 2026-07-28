@@ -1,0 +1,50 @@
+{
+  "probe_id": "B12",
+  "name": "promotion_integrity",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "promotions": [
+      {
+        "lp": 0,
+        "reason": "FIRST_HISTORICAL",
+        "win_rates": null,
+        "evaluation_games": null,
+        "frozen_sha": "7a17caa50bfa"
+      },
+      {
+        "lp": 1,
+        "reason": "PERFORMANCE_PROMOTION",
+        "win_rates": [
+          0.6375
+        ],
+        "evaluation_games": 160,
+        "frozen_sha": "31f04ffdb7f8"
+      },
+      {
+        "lp": 2,
+        "reason": "PERFORMANCE_PROMOTION",
+        "win_rates": [
+          0.75,
+          0.7875
+        ],
+        "evaluation_games": 160,
+        "frozen_sha": "beb967cc75ad"
+      },
+      {
+        "lp": 3,
+        "reason": "PERFORMANCE_PROMOTION",
+        "win_rates": [
+          0.7924528301886793,
+          0.5849056603773585,
+          0.5660377358490566
+        ],
+        "evaluation_games": 159,
+        "frozen_sha": "d9a940dd1824"
+      }
+    ],
+    "immutability": null
+  },
+  "tainted_by": []
+}

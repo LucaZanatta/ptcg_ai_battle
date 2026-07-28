@@ -1,0 +1,20 @@
+{
+  "probe_id": "B08",
+  "name": "vtrace_numerical_fixtures",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "joint_vs": [
+      -0.9076799232492596,
+      -1.0084,
+      -1.0084
+    ],
+    "first_pick_only_vs": [
+      -0.8217507741704082,
+      -1.0147587999999998,
+      -1.0084
+    ]
+  },
+  "tainted_by": []
+}

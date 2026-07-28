@@ -1,0 +1,57 @@
+{
+  "probe_id": "B05",
+  "name": "autoregressive_multiselect_joint_probability",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "multiselect_records_logged": 1984,
+    "multiselect_decisions_total": null,
+    "multiselect_contexts_seen": null,
+    "joint_equals_sum_of_steps": true,
+    "example": {
+      "game_id": "c020:lp0:v0:g30",
+      "decision": 35,
+      "k": 3,
+      "selected": [
+        4,
+        5,
+        1
+      ],
+      "payload": [
+        4,
+        5,
+        1
+      ],
+      "joint_logp": -4.787694,
+      "steps": [
+        {
+          "step": 0,
+          "chosen": 4,
+          "prob": 0.166663,
+          "logp": -1.791782,
+          "n_legal": 6
+        },
+        {
+          "step": 1,
+          "chosen": 5,
+          "prob": 0.199961,
+          "logp": -1.609632,
+          "n_legal": 5
+        },
+        {
+          "step": 2,
+          "chosen": 1,
+          "prob": 0.250004,
+          "logp": -1.38628,
+          "n_legal": 4
+        }
+      ],
+      "min_count": 3,
+      "max_count": 3,
+      "n_legal": 6,
+      "sum_of_step_logps_equals_joint": true
+    }
+  },
+  "tainted_by": []
+}

@@ -1,0 +1,24 @@
+{
+  "probe_id": "B11",
+  "name": "osfp_period_reset",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "periods": 4,
+    "per_period_C_totals": [
+      0,
+      160,
+      160,
+      159
+    ],
+    "frozen_checkpoint_shas": [
+      "",
+      "31f04ffdb7f8",
+      "beb967cc75ad",
+      "d9a940dd1824"
+    ],
+    "period_local": true
+  },
+  "tainted_by": []
+}

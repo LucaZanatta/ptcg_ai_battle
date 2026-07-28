@@ -1,0 +1,137 @@
+{
+  "probe_id": "H05",
+  "name": "controlled_value_ablation",
+  "branch": "hybrid",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "modes_executed": [
+      "H0",
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "results": {
+      "H0": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {},
+        "promotable": true
+      },
+      "H1": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 0.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 0.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 0.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 352,
+          "advance_calls": 244,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 250,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      },
+      "H2": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 384,
+          "advance_calls": 292,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 0,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      },
+      "H3": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 556,
+          "advance_calls": 354,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 391,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      },
+      "H4": {
+        "games": 2,
+        "errors": 0,
+        "field_score": 1.0,
+        "per_opponent": {
+          "dragapult": {
+            "games": 1,
+            "rate": 1.0
+          },
+          "mega_lucario": {
+            "games": 1,
+            "rate": 1.0
+          }
+        },
+        "adapter": {
+          "initial_calls": 532,
+          "advance_calls": 807,
+          "state_none_at_nonroot": 0,
+          "prior_calls": 1484,
+          "value_calls": 0,
+          "encode_errors": 0,
+          "no_state_none_at_nonroot": 2
+        },
+        "promotable": false
+      }
+    },
+    "h4_alpha": 0.5
+  },
+  "tainted_by": []
+}

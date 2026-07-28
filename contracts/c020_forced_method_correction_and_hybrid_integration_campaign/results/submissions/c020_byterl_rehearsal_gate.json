@@ -1,0 +1,24 @@
+{
+  "branch": "byterl",
+  "candidate": "C020_CORRECTED_BYTERL",
+  "baseline_field": 1.0,
+  "candidate_field": 0.0,
+  "c019_control_field": 0.0,
+  "delta_field_points": -100.0,
+  "checks": {
+    "package_reliability": true,
+    "method_actually_ran": true,
+    "legal_rate_100pct": true,
+    "materially_beats_c019_byterl": false,
+    "field_plus_2pts": false,
+    "direct_vs_baseline_at_least_55pct": false,
+    "eligible": false
+  },
+  "eligible": false,
+  "games": 8,
+  "rule": "CONTRACT \u00a710 corrected-ByteRL gate",
+  "package": "c020_byterl_rehearsal",
+  "panel_tag": "prefinal_check",
+  "package_sha256": "5c75c0d82e9e43c5ef3d08cca9ec604fff66e8a5baee7880b3e6ed87f9854dbc",
+  "checkpoint_sha256": "31f04ffdb7f8c46bfaa1b38d580ba213b371ed46ef23cbe616bba0815bf89e31"
+}

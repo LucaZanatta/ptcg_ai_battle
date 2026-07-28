@@ -1,0 +1,26 @@
+{
+  "probe_id": "M01",
+  "name": "infoset_key_privacy",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "key_fields": [
+      "legal_signature",
+      "player",
+      "public_memory_signature",
+      "select_signature",
+      "visible_hash"
+    ],
+    "forbidden_absent": [
+      "deck_order",
+      "det_id",
+      "opponent_hand",
+      "prize",
+      "sampled_hand",
+      "search_id",
+      "world"
+    ]
+  },
+  "tainted_by": []
+}

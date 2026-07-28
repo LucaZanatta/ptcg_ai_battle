@@ -1,0 +1,23 @@
+{
+  "probe_id": "M04",
+  "name": "branch_local_memory",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "while_installed": {
+      "plan": "<c019_official_baseline.AttackPlan object at 0x71c69748c7d0>",
+      "pre_turn": "0",
+      "ability_used": "True"
+    },
+    "after": {
+      "plan": "<c019_official_baseline.AttackPlan object at 0x71c6974cc6e0>",
+      "pre_turn": "0",
+      "ability_used": "False"
+    },
+    "install_actually_changed_globals": true,
+    "restored": true,
+    "unchanged": true
+  },
+  "tainted_by": []
+}

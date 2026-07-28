@@ -1,0 +1,21 @@
+{
+  "probe_id": "H02",
+  "name": "prior_action_alignment_and_floor",
+  "branch": "hybrid",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "samples": 106,
+    "action_key_alignment_rate": 1.0,
+    "normalized_rate": 1.0,
+    "credible_floor_rate": 1.0,
+    "baseline_in_topk_rate": 0.5849,
+    "catastrophic_baseline_suppression": 0,
+    "mean_entropy": 1.8557,
+    "floor": 0.01,
+    "admitted": false,
+    "rule": "C3: exact key alignment, normalization, credible floor, top-k baseline coverage, no catastrophic suppression",
+    "checkpoint": "brlsmoke_final_v000088.pt"
+  },
+  "tainted_by": []
+}

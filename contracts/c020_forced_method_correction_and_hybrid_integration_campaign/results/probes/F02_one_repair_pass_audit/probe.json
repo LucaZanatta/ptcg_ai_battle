@@ -1,0 +1,18 @@
+{
+  "probe_id": "F02",
+  "name": "one_repair_pass_audit",
+  "branch": "common",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "selected_defects": [
+      "R1 multi-select payload (METHOD)",
+      "R2 aggregator summed max-like fields (EVIDENCE)"
+    ],
+    "permitted": 5,
+    "used": 2,
+    "second_cycle": false,
+    "pre_smoke_harness_fixes": 9
+  },
+  "tainted_by": []
+}

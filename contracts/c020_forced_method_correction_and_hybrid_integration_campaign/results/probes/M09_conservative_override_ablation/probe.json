@@ -1,0 +1,19 @@
+{
+  "probe_id": "M09",
+  "name": "conservative_override_ablation",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "baseline_equivalent_overrides_disabled": 0.5583,
+    "overrides_on_veto_off": 0.3217,
+    "overrides_on_veto_on": 0.3038,
+    "override_rate": 0.06114,
+    "games": {
+      "ablation_no_veto": 120,
+      "ablation_no_overrides": 120,
+      "postrepair_scaled": 900
+    }
+  },
+  "tainted_by": []
+}

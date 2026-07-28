@@ -1,0 +1,16 @@
+{
+  "probe_id": "M05",
+  "name": "nonroot_puct_lifecycle",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "nonroot_expansions": 2725439,
+    "expansions": 3700561,
+    "max_depth_seen": 15,
+    "backups": 3790320,
+    "backup_nodes": 10504375,
+    "simulations": 3790320
+  },
+  "tainted_by": []
+}

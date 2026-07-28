@@ -1,0 +1,15 @@
+{
+  "probe_id": "M03",
+  "name": "availability_aware_accounting",
+  "branch": "mcts",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "availability": {
+      "a": 2,
+      "b": 1
+    },
+    "aware_vs_blind_differ": 1.621708
+  },
+  "tainted_by": []
+}

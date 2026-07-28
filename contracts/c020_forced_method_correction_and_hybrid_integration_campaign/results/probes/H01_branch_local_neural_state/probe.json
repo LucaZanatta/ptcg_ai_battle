@@ -1,0 +1,22 @@
+{
+  "probe_id": "H01",
+  "name": "branch_local_neural_state",
+  "branch": "hybrid",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "state_none_at_nonroot": 0,
+    "advance_calls": 1697,
+    "prior_calls": 2125,
+    "value_calls": 0,
+    "modes": [
+      "H0",
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "c019_defect": "hybrid called recurrent ByteRL with state=None at search nodes"
+  },
+  "tainted_by": []
+}

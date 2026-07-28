@@ -1,0 +1,56 @@
+{
+  "probe_id": "B14",
+  "name": "package_recurrent_action_parity",
+  "branch": "byterl",
+  "status": "PASS",
+  "checks": {
+    "ok": true,
+    "steps": 6,
+    "mismatches": 0,
+    "first_mismatch": null,
+    "checked": [
+      "legal logits",
+      "autoregressive selected payload",
+      "recurrent transition (h/c)",
+      "value output"
+    ],
+    "repo_sample": {
+      "logits": [
+        17.779102,
+        23.684065,
+        10.939815,
+        12.040819,
+        13.976415,
+        12.059453,
+        -7.768394,
+        16.258677
+      ],
+      "value": 0.999256,
+      "selected": [
+        1
+      ],
+      "h_sum": 1.56078,
+      "c_sum": 2.83934
+    },
+    "package_sample": {
+      "logits": [
+        17.779102,
+        23.684065,
+        10.939815,
+        12.040819,
+        13.976415,
+        12.059453,
+        -7.768394,
+        16.258677
+      ],
+      "value": 0.999256,
+      "selected": [
+        1
+      ],
+      "h_sum": 1.56078,
+      "c_sum": 2.83934
+    },
+    "package": "c020_byterl_rehearsal.zip",
+    "checkpoint": "c020_frozen_lp001_v026684.pt"
+  }
+}

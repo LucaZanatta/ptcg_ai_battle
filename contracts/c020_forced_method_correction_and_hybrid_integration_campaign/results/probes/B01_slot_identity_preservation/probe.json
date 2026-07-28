@@ -1,0 +1,18 @@
+{
+  "probe_id": "B01",
+  "name": "slot_identity_preservation",
+  "branch": "byterl",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "max_logit_change_on_active_bench_swap": 0.006959,
+    "board_slots": 12,
+    "slot_order": [
+      "my_active",
+      "my_bench_1",
+      "my_bench_2"
+    ],
+    "c019_defect": "active and bench pooled, destroying slot/instance identity"
+  },
+  "tainted_by": []
+}

@@ -1,0 +1,22 @@
+{
+  "probe_id": "F04",
+  "name": "package_source_identity",
+  "branch": "common",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "c020_mcts_smoke": {
+      "sha256": "1859957ce456a113",
+      "checkpoint_sha256": "",
+      "clean_extraction_ok": true,
+      "method_actually_ran": true
+    },
+    "c020_byterl_rehearsal": {
+      "sha256": "5c75c0d82e9e43c5",
+      "checkpoint_sha256": "31f04ffdb7f8c46b",
+      "clean_extraction_ok": true,
+      "method_actually_ran": true
+    }
+  },
+  "tainted_by": []
+}

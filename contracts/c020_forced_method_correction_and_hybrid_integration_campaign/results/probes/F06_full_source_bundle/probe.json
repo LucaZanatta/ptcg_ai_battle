@@ -1,0 +1,24 @@
+{
+  "probe_id": "F06",
+  "name": "full_source_bundle",
+  "branch": "common",
+  "status": "PASS",
+  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "checks": {
+    "hashed_files": 4176,
+    "bundles": {},
+    "milestones": {
+      "M00_parent": 0,
+      "M01_all_corrections_implemented": 14,
+      "M02_complete_smoke": 5,
+      "M03_repair_pass": 1,
+      "M04_scaled_mcts": 1,
+      "M05_scaled_byterl": 1,
+      "M06_hybrid_H0_H4": 2,
+      "M07_submitted_packages": 2
+    },
+    "plain_inspection_files": 41,
+    "patch_bytes": 3341277
+  },
+  "tainted_by": []
+}
