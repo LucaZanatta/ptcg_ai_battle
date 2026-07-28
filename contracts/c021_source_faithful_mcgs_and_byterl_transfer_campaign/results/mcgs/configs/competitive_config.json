@@ -12,7 +12,9 @@
     "final_move_selection": "MaxChild",
     "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT",
     "max_simulations_per_decision": 0,
-    "manual_coin": true
+    "manual_coin": true,
+    "graph_reuse": true,
+    "graph_reuse_max_entries": 20000
   },
   "source_constants": {
     "uct": 0.285,
