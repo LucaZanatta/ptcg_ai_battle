@@ -24,6 +24,7 @@ from cg import c019_core as K  # noqa: E402
 from cg import c020_determinize as DT  # noqa: E402
 from cg import c021_mcgs as S  # noqa: E402
 from cg import c021_mcgs_abstraction as AB  # noqa: E402
+from cg import c020_override as OV  # noqa: E402
 from cg import c021_mcgs_graph as G  # noqa: E402
 
 REFERENCE_CFG = {
@@ -102,6 +103,23 @@ class MCGSAgent:
             base = min(base, left)
         return base
 
+    @staticmethod
+    def _progress_option(opts):
+        """An out-of-time move that GUARANTEES the game advances.
+
+        Always taking `opts[0]` can livelock: if the first option is a repeatable action that
+        does not change state, the agent replays it forever and the game never terminates. Three
+        workers were measured pinned at 100% CPU for eighteen minutes on exactly that.
+
+        Ending the turn always advances the game, so it is preferred; otherwise a uniform random
+        legal option, which terminates with probability 1.
+        """
+        for o in opts:
+            if int(getattr(o, "option_type", -1) or -1) == OV.OPT_END:
+                return o
+        import random
+        return random.choice(opts)
+
     def act(self, obs_dict: dict) -> List[int]:
         sel = obs_dict.get("select") if isinstance(obs_dict, dict) else None
         if sel is None:
@@ -120,7 +138,7 @@ class MCGSAgent:
             # Match clock exhausted. Still a legal move, just an unsearched one.
             self.stats["match_clock_exhausted_decisions"] = (
                 self.stats.get("match_clock_exhausted_decisions", 0) + 1)
-            return K.to_select_payload([opts[0]], sel)
+            return K.to_select_payload([self._progress_option(opts)], sel)
         deadline = t0 + budget
         search = S.MCGS(A, self.cfg, self.stats, self.rng, self.prior_provider,
                         self.transfer_arm)
@@ -185,7 +203,7 @@ class MCGSAgent:
             self._first_move_done = True
 
         if chosen is None:
-            chosen = K.to_select_payload([opts[0]], sel)
+            chosen = K.to_select_payload([self._progress_option(opts)], sel)
         return list(chosen)
 
     def report(self) -> Dict[str, Any]:
