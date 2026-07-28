@@ -111,7 +111,13 @@ class CorrectedMCTSAgent:
                 self.stats["overrides"] += 1
                 opt = next((o for o in opts if o.key() == decision.selected_action), None)
                 if opt is not None:
-                    chosen = K.to_select_payload([opt], sel)
+                    # The override must honour minCount..maxCount, exactly as the search does
+                    # (repair-pass R1). `to_select_payload` does NOT pad, so emitting a single
+                    # index into a multi-select context produces an ILLEGAL action -- a §8
+                    # submission blocker -- and the priors give a deterministic fill order.
+                    priors = {o.key(): (1.0 if o.key() == decision.selected_action else 0.0)
+                              for o in opts}
+                    chosen = SEARCH.build_payload(sel, opt, opts, priors)
             else:
                 self.stats["vetoes"] += 1
             rec = decision.to_json()

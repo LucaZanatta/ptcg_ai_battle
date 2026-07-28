@@ -205,6 +205,53 @@ class TestOverrideGate(unittest.TestCase):
         self.assertIsNone(d.veto_reason)
 
 
+class TestSelectPayloadCardinality(unittest.TestCase):
+    """R1 and its live-play twin: a payload must satisfy minCount..maxCount."""
+
+    def setUp(self):
+        from cg import c020_ismcts as S
+        self.S = S
+
+    class _Sel:
+        def __init__(self, lo, hi):
+            self.minCount, self.maxCount = lo, hi
+
+    class _Opt:
+        def __init__(self, i):
+            self.option_index = i
+
+        def key(self):
+            return ("k", self.option_index)
+
+    def test_single_select_payload_is_one_index(self):
+        opts = [self._Opt(i) for i in range(4)]
+        out = self.S.build_payload(self._Sel(1, 1), opts[2], opts, None)
+        self.assertEqual(len(out), 1)
+
+    def test_multiselect_payload_reaches_min_count(self):
+        """A single index into a minCount=3 context is an ILLEGAL action, not a weak one."""
+        opts = [self._Opt(i) for i in range(6)]
+        out = self.S.build_payload(self._Sel(3, 5), opts[1], opts, None)
+        self.assertEqual(len(out), 3)
+        self.assertIn(1, out, "the chosen action must lead the payload")
+        self.assertEqual(len(set(out)), 3, "no option may be selected twice")
+
+    def test_fill_order_follows_priors_and_is_deterministic(self):
+        opts = [self._Opt(i) for i in range(6)]
+        priors = {o.key(): (0.9 if o.option_index == 5 else 0.1) for o in opts}
+        a = self.S.build_payload(self._Sel(2, 2), opts[0], opts, priors)
+        b = self.S.build_payload(self._Sel(2, 2), opts[0], opts, priors)
+        self.assertEqual(a, b)
+        self.assertEqual(a[0], 0)
+        self.assertEqual(a[1], 5, "the highest-prior remaining option fills the slot")
+
+    def test_min_count_larger_than_option_set_does_not_duplicate(self):
+        opts = [self._Opt(i) for i in range(2)]
+        out = self.S.build_payload(self._Sel(5, 5), opts[0], opts, None)
+        self.assertEqual(len(set(out)), len(out))
+        self.assertLessEqual(len(out), 2)
+
+
 class TestArchetypePrior(unittest.TestCase):
     """A7 / probe M08."""
 
