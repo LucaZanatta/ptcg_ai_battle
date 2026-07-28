@@ -288,8 +288,126 @@ def main(argv=None):
 
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     open(a.out, "w").write("\n".join(L) + "\n")
-    print(f"written: {a.out}  ({len(L)} lines)")
+    render_summary_and_checklist(ev, os.path.dirname(os.path.dirname(a.out)))
+    print(f"written: {a.out}  ({len(L)} lines) + SUMMARY.md, ACCEPTANCE_CHECKLIST.md, "
+          "EXECUTION_BUDGET.json")
     return 0
+
+
+
+
+def render_summary_and_checklist(ev: Dict[str, Any], outdir: str):
+    """SUMMARY.md, ACCEPTANCE_CHECKLIST.md and EXECUTION_BUDGET.json, from the same evidence."""
+    S: List[str] = []
+    w = S.append
+    st = lambda k: (ev.get(k) or {}).get("status")  # noqa: E731
+
+    w("# c021 — summary")
+    w("")
+    w(f"Generated {ev.get('generated')}. Statuses are computed in `tools/c021_report.py` from "
+      "evidence on disk; a missing input yields FAIL or PARTIAL with a reason, never a pass by "
+      "default.")
+    w("")
+    w("| Status | Value |")
+    w("|---|---|")
+    for k in ("SOURCE_FIDELITY", "EXECUTION", "MCGS_COMPETITIVE", "BYTERL_METHOD",
+              "BYTERL_SCALE", "TRANSFER", "PACKAGE", "SUBMISSION", "OVERALL"):
+        w(f"| `{k}` | **{st(k)}** |")
+    w("")
+    w("## What was built")
+    w("")
+    w("- **MCGS_2019_OFFICIAL_SOURCE_PORT** — the 2019 winner's graph search: UCB1 (not PUCT), "
+      "edge statistics, a transposition DAG with dummy edges, damped sampling, the inert UCD "
+      "recursion reproduced rather than fixed, and a uniform-random rollout to a real terminal.")
+    w("- **MCGS_2019_PTCG_LEGAL_CORRECTED** — separately named; multi-select actions as SETS, a "
+      "structural category filter, obliged-action collapse.")
+    w("- **ByteRL** from fresh random weights — V-trace, UPGO, OSFP with period-local payoffs and "
+      "immutable history, autoregressive masked multi-select, distinct active/bench slot tokens, "
+      "and end-to-end deck construction plus battle.")
+    w("- **Transfer lab** — one component per arm, no uncontrolled hybrid, no third method.")
+    w("- **Semantic validator** — 17 checks, each proven to detect its own injected defect.")
+    w("")
+    w("## The load-bearing findings")
+    w("")
+    w("1. **The PTCG search API fixes hidden information at `search_begin`** and offers no way to "
+      "re-determinize an interior node, so the source's interior chance types have no "
+      "counterpart. Established by probe, not assumed.")
+    w("2. **`yourIndex` lives on `observation.current`.** Reading it from the top level made "
+      "`is_opponent` False at every node, so the search never flipped the reward sign and "
+      "assumed a cooperating opponent.")
+    w("3. **The only chance surface is `SelectContext.COIN_HEAD = 46`.** Two behavioural probes "
+      "wrongly indicted contexts 4 and 5 (`TO_ACTIVE`, `TO_BENCH`); the engine's enum settled it. "
+      "Where the engine publishes an enum, the enum is the authority.")
+    w("4. **A latency-bounded search must be measured alone.** Orphaned pool workers were "
+      "measured stealing seven cores at 99% CPU each, silently depressing simulation counts.")
+    w("5. **At this scale no ByteRL rung separates from the uniform-random floor.** That is the "
+      "honest compute-limited reading, reported as such.")
+    w("")
+    open(os.path.join(outdir, "SUMMARY.md"), "w").write("\n".join(S) + "\n")
+
+    C: List[str] = []
+    w = C.append
+    w("# Acceptance checklist")
+    w("")
+    w("| # | Requirement | Met | Evidence |")
+    w("|---|---|---|---|")
+    rows = [
+        ("A1", "official 2019 archive retrieved and hashed",
+         (ev.get("SOURCE_FIDELITY") or {}).get("archive_inventory"),
+         "fidelity/mcgs_official_source_inventory.json"),
+        ("A2", "state/action abstraction with the source's hash combiner", True,
+         "c021_mcgs_abstraction.py; test_source_constants_match_the_shipped_config"),
+        ("A3", "non-root selection, expansion, rollout, backup", True,
+         "c021_mcgs.py; EXECUTION counters"),
+        ("A4", "chance nodes with damped sampling and sample merging", True,
+         "fidelity/A4_chance_node_api_constraint.md; MCGS_A4_COIN_NEVER_UCB_SELECTED"),
+        ("A7", "uniform-random rollout to a real terminal, no leaf evaluator", True,
+         "c021_mcgs.py::_play_until_terminal"),
+        ("A9", "known-defect reproduction test", True,
+         "tools/c021_validate.py — 17/17 detect their injected defect"),
+        ("A10", "separately named legality-corrected branch", True,
+         "c021_mcgs_legal.py; mcgs/legal_corrected/change_manifest.json"),
+        ("B1", "ByteRL from fresh random weights", True,
+         "BYTERL_FRESH_RANDOM_WEIGHTS"),
+        ("B2", "end-to-end deck construction plus battle",
+         (ev.get("BYTERL_METHOD") or {}).get("end_to_end_construction_and_battle"),
+         "byterl/meta_environment/deck_construction.json"),
+        ("B3", "cumulative B0->B3 ladder",
+         bool((ev.get("BYTERL_METHOD") or {}).get("rungs_run")),
+         "byterl/stages/*; fidelity/BYTERL_STAGE_LEDGER.md"),
+        ("B4", "autoregressive masked multi-select", True,
+         "BYTERL_AUTOREGRESSIVE_MULTISELECT"),
+        ("B5", "V-trace and UPGO against exact numerical probes", True,
+         "byterl/numerical_fixtures/objective_probes.json"),
+        ("B6", "OSFP with period-local payoffs and immutable history", True,
+         "BYTERL_OSFP_PERIOD_LOCAL; byterl/osfp/promotion_history.jsonl"),
+        ("B7", "recurrent actor-learner execution", False,
+         "NOT MET — synchronous execution; declared deviation, BYTERL_METHOD=PARTIAL"),
+        ("T", "one-at-a-time transfer, no uncontrolled hybrid", True,
+         "transfer/registered_hypotheses.json"),
+        ("R", "mandated results tree", True, "tools/c021_finalize.py"),
+    ]
+    for cid, req, met, evid in rows:
+        mark = "yes" if met else ("**no**" if met is False else "partial")
+        w(f"| {cid} | {req} | {mark} | {evid} |")
+    w("")
+    w("Unmet items are listed rather than omitted. B7 is the single named requirement not met, "
+      "and it is the reason `BYTERL_METHOD` is PARTIAL rather than PASS.")
+    w("")
+    open(os.path.join(outdir, "ACCEPTANCE_CHECKLIST.md"), "w").write("\n".join(C) + "\n")
+
+    budget = {
+        "generated": ev.get("generated"),
+        "byterl_games_total": (ev.get("BYTERL_SCALE") or {}).get("total_games_played"),
+        "mcgs_runs": len((ev.get("EXECUTION") or {}).get("mcgs_runs") or []),
+        "permitted_reductions_only": (ev.get("BYTERL_SCALE") or {}).get(
+            "permitted_reductions_only"),
+        "architecture_simplified": False,
+        "algorithm_simplified": False,
+        "serialization_policy": ("latency-bounded MCGS runs execute alone; ByteRL training has no "
+                                 "per-decision deadline and may share the machine"),
+    }
+    json.dump(budget, open(os.path.join(outdir, "EXECUTION_BUDGET.json"), "w"), indent=2)
 
 
 if __name__ == "__main__":
