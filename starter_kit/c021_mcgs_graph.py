@@ -430,7 +430,8 @@ def backup_edges(node: Node, reward: float, stats: Dict[str, int]) -> int:
         n += 1
         if terminal:
             terminal = cur.finalise()
-            stats["finalised"] = stats.get("finalised", 0) + 1
+            if terminal:
+                stats["finalised"] = stats.get("finalised", 0) + 1
         e = cur.last_traversed_edge
         if e is None:
             break
@@ -440,12 +441,26 @@ def backup_edges(node: Node, reward: float, stats: Dict[str, int]) -> int:
 
 
 def backup_ucd(node: Node, reward: float, params: UCDParams, stats: Dict[str, int]) -> int:
-    """`MCGS.BackupUCD`: UCD update at each node on the traversed path."""
+    """`MCGS.BackupUCD`: UCD update at each node on the traversed path.
+
+    The terminal / `Finalise` block is the SAME one `BackupEdges` carries -- the source repeats it
+    verbatim in both. An earlier version of this function omitted it, and because `UCD` is the
+    active selection strategy that meant `Node.Finalise` never ran at all: the lethal-sequence
+    collapse, which prunes a parent onto a proven winning edge, was dead code in the configuration
+    actually being executed.
+    """
+    terminal = (node.is_terminal and not node.is_finalised
+                and not getattr(node.action_abstraction, "is_end_turn_action", False)
+                and node.play_state == "WON")
     n = 0
     cur = node
     while True:
         cur.ucd_update(reward, params, stats)
         n += 1
+        if terminal:
+            terminal = cur.finalise()
+            if terminal:
+                stats["finalised"] = stats.get("finalised", 0) + 1
         e = cur.last_traversed_edge
         if e is None:
             break

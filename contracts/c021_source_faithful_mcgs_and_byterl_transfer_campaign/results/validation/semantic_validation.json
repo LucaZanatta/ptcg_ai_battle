@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-28T23:47:31",
-  "total": 17,
-  "passed": 17,
+  "generated": "2026-07-29T00:30:28",
+  "total": 18,
+  "passed": 18,
   "inert": [],
   "failed": [],
   "all_checks_detect_their_defect": true,
@@ -160,6 +160,16 @@
       "id": "BYTERL_FRESH_RANDOM_WEIGHTS",
       "origin": "B1/B3: ByteRL must start from fresh random weights, seeded reproducibly",
       "description": "the same seed must reproduce weights and different seeds must not",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_FINALISE_RUNS_UNDER_UCD",
+      "origin": "c021: BackupUCD omitted the Finalise block, so with UCD active it was dead code",
+      "description": "a proven win must collapse its parent onto the winning edge during a UCD backup",
       "clean_pass": true,
       "injected_pass": false,
       "detects_defect": true,
