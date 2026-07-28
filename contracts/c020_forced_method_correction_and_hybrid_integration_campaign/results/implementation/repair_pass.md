@@ -227,3 +227,34 @@ its own previous recommendations were executed.
 
 No threshold was re-tuned in response to these numbers. Doing so would be tuning against the
 outcome, and the conclusion would converge on the overrides-disabled arm that is already measured.
+
+
+## Part 6 — the ablation, pooled at proper scale
+
+Part 5 reported the veto as not helping, on 160-game arms. That conclusion was drawn at a sample
+size the campaign's own variance data says cannot support it: the deterministic frozen baseline
+measured 0.525 / 0.595 / 0.5525 across three 400-game panels (sd 0.035), implying sd ~0.056 at
+n=160 — larger than the effect being tested.
+
+All arms re-run at n=320 and pooled with the earlier runs, derived from raw games:
+
+| arm | n | field | 95% Wilson CI |
+|---|---|---|---|
+| overrides disabled | 560 | **0.5536** | [0.5122, 0.5942] |
+| overrides on, veto ON | 480 | **0.3729** | [0.3308, 0.4170] |
+| overrides on, veto OFF | 480 | **0.3521** | [0.3107, 0.3958] |
+
+**Override cost: 18.1 points.** The disabled and enabled intervals do not overlap and are not
+close to overlapping. This is the campaign's firmest MCTS result, and the disabled arm at 0.5536
+sits inside the baseline's own range (mean 0.5575 across three panels), so the corrected machinery
+reproduces the baseline when it does not override.
+
+**Veto value: +2.1 points**, with heavily overlapping intervals. The direction is consistent
+across both sample sizes and the override rate falls from 8.84% to 7.93%, so the veto is doing
+something — it is simply far too small an effect for 480 games per arm to establish. The honest
+statement is that the veto's contribution is **not resolved at this sample size**, which is
+different from both "it does not help" (Part 5, wrong) and "it helps" (unsupported).
+
+To distinguish +2.1 points from zero at 95% confidence would need roughly 4,000 games per arm.
+That is not a good use of the remaining budget when the effect it would resolve is an order of
+magnitude smaller than the 18-point finding it sits inside.

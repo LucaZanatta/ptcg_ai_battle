@@ -1,0 +1,86 @@
+{
+  "tag": "ablation_with_veto_big",
+  "config": {
+    "c_puct": 1.5,
+    "determinizations": 4,
+    "simulations_total": 128,
+    "max_depth": 16,
+    "credible_alternatives": 3,
+    "max_ms_per_decision": 700,
+    "rollout_max_steps": 12,
+    "rollout_stochastic_p": 0.1,
+    "progressive_k": 1.0,
+    "progressive_alpha": 0.5,
+    "baseline_prior_bonus": 3.0,
+    "min_prior": 0.05,
+    "availability_aware": true,
+    "override_enabled": true,
+    "veto_enabled": true
+  },
+  "games": 320,
+  "errors": 0,
+  "completed": 320,
+  "decisions": 19634,
+  "searched_decisions": 17911,
+  "simulations": 2045615,
+  "step_calls": 10439251,
+  "step_ok": 10439251,
+  "step_errors": 0,
+  "begin_calls": 71644,
+  "begin_errors": 0,
+  "release_calls": 10510895,
+  "release_errors": 0,
+  "expansions": 2003300,
+  "nonroot_expansions": 1619996,
+  "rollout_steps": 8435951,
+  "rollout_baseline_calls": 7591835,
+  "rollout_stochastic_calls": 844116,
+  "backups": 2045615,
+  "backup_nodes": 6454930,
+  "leaf_evals": 2045615,
+  "terminal_leaves": 0,
+  "determinizations_attempted": 71644,
+  "determinizations_legal": 71644,
+  "determinizations_rejected": 0,
+  "chance_outcomes": 0,
+  "depth_sum": 4409315,
+  "overrides": 1420,
+  "override_opportunities": 17911,
+  "vetoes": 16491,
+  "infoset_shared_updates": 6454930,
+  "timeouts": 0,
+  "decisions_with_4_determinizations": 17911,
+  "decisions_with_2plus_determinizations": 17911,
+  "max_depth_seen": 15,
+  "max_match_search_ms": 55378.9,
+  "step_error_rate": 0.0,
+  "override_rate": 0.07928,
+  "shared_action_stats_multi_det": 6102,
+  "info_sets_multi_det": 2487,
+  "sampled_full_traces": 400,
+  "per_opponent": {
+    "dragapult": {
+      "games": 80,
+      "rate": 0.3625
+    },
+    "mega_lucario": {
+      "games": 80,
+      "rate": 0.3
+    },
+    "iono": {
+      "games": 80,
+      "rate": 0.7125
+    },
+    "mega_abomasnow": {
+      "games": 80,
+      "rate": 0.25
+    }
+  },
+  "field_score": 0.4062,
+  "latency": {
+    "max_match_search_ms": 55378.9,
+    "mean_match_search_ms": 29065.4,
+    "max_game_seconds": 56.25
+  },
+  "wall_clock_s": 2917.4
+}
