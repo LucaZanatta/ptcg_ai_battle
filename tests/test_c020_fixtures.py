@@ -212,6 +212,68 @@ class TestOverrideGate(unittest.TestCase):
         self.assertIsNone(d.veto_reason)
 
 
+class TestPerOptionGather(unittest.TestCase):
+    """B2/B03 — the source/target gather must be per-option and must not leak.
+
+    A scorer that mixed option representations together would still show a nonzero change when
+    an option's source is redirected, while destroying exactly the instance identity B1/B2 exist
+    to preserve. Nothing else in the suite tests for that.
+    """
+
+    def setUp(self):
+        import torch
+        from cg import c020_byterl_model as M, c020_byterl_encode as E
+        self.torch, self.M, self.E = torch, M, E
+        self.m = M.PTCGByteRL()
+        self.m.eval()
+        self.K = 5
+
+    def _logits(self, src, tgt, seed=0):
+        E, M = self.E, self.M
+        r = np.random.RandomState(seed)
+        K = self.K
+        f = {"board": r.rand(E.BOARD_SLOTS, E.BOARD_DIM).astype("float32"),
+             "hand": r.rand(E.N_HAND, E.HAND_DIM).astype("float32"),
+             "global": r.rand(E.GLOBAL_DIM).astype("float32"),
+             "opt": r.rand(E.N_OPT, E.OPT_DIM).astype("float32"),
+             "opt_mask": np.array([1.] * K + [0.] * (E.N_OPT - K), dtype="float32"),
+             "opt_src": np.array(list(src) + [E.BOARD_SLOTS] * (E.N_OPT - K)),
+             "opt_tgt": np.array(list(tgt) + [E.BOARD_SLOTS] * (E.N_OPT - K)),
+             "n_options": np.int64(K), "min_count": np.int64(1), "max_count": np.int64(1)}
+        with self.torch.no_grad():
+            lg, _v, _s = self.m.forward(M.to_torch(f), None)
+        return lg[0, :K].numpy()
+
+    def test_redirecting_one_source_changes_only_that_option(self):
+        src, tgt = [0, 1, 2, 6, 7], [6, 7, 8, 0, 1]
+        base = self._logits(src, tgt)
+        moved = list(src)
+        moved[2] = 9
+        out = self._logits(moved, tgt)
+        self.assertGreater(abs(out[2] - base[2]), 1e-4, "the gather must be used")
+        others = [0, 1, 3, 4]
+        self.assertLess(float(np.abs(out[others] - base[others]).max()), 1e-6,
+                        "changing one option's source must not move any other option's logit")
+
+    def test_null_source_is_distinguishable_from_a_real_slot(self):
+        E = self.E
+        src, tgt = [0, 1, 2, 6, 7], [6, 7, 8, 0, 1]
+        base = self._logits(src, tgt)
+        nulled = list(src)
+        nulled[0] = E.BOARD_SLOTS
+        out = self._logits(nulled, tgt)
+        self.assertGreater(abs(out[0] - base[0]), 1e-4)
+
+    def test_target_gather_is_also_per_option(self):
+        src, tgt = [0, 1, 2, 6, 7], [6, 7, 8, 0, 1]
+        base = self._logits(src, tgt)
+        moved = list(tgt)
+        moved[4] = 11
+        out = self._logits(src, moved)
+        self.assertGreater(abs(out[4] - base[4]), 1e-4)
+        self.assertLess(float(np.abs(out[:4] - base[:4]).max()), 1e-6)
+
+
 class TestStructuralActionTyping(unittest.TestCase):
     """A6/A8 — end-turn and attack must be recognised STRUCTURALLY.
 

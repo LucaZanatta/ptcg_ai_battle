@@ -17,71 +17,70 @@
     "override_enabled": true,
     "veto_enabled": false
   },
-  "games": 120,
+  "games": 160,
   "errors": 0,
-  "completed": 115,
-  "decisions": 7282,
-  "searched_decisions": 6705,
-  "simulations": 460282,
-  "step_calls": 5391388,
-  "step_ok": 5391388,
+  "completed": 160,
+  "decisions": 9769,
+  "searched_decisions": 8910,
+  "simulations": 1025156,
+  "step_calls": 5316441,
+  "step_ok": 5316441,
   "step_errors": 0,
-  "begin_calls": 26820,
+  "begin_calls": 35640,
   "begin_errors": 0,
-  "release_calls": 5418208,
+  "release_calls": 5352081,
   "release_errors": 0,
-  "expansions": 446651,
-  "nonroot_expansions": 323631,
-  "rollout_steps": 4944737,
-  "rollout_baseline_calls": 4451765,
-  "rollout_stochastic_calls": 492972,
-  "backups": 460282,
-  "backup_nodes": 1248919,
-  "leaf_evals": 460282,
+  "expansions": 1007593,
+  "nonroot_expansions": 816722,
+  "rollout_steps": 4308848,
+  "rollout_baseline_calls": 3878077,
+  "rollout_stochastic_calls": 430771,
+  "backups": 1025156,
+  "backup_nodes": 3225749,
+  "leaf_evals": 1025156,
   "terminal_leaves": 0,
-  "determinizations_attempted": 26820,
-  "determinizations_legal": 26820,
+  "determinizations_attempted": 35640,
+  "determinizations_legal": 35640,
   "determinizations_rejected": 0,
   "chance_outcomes": 0,
-  "depth_sum": 788640,
-  "overrides": 356,
-  "override_opportunities": 6705,
-  "vetoes": 6349,
-  "infoset_shared_updates": 1248919,
+  "depth_sum": 2200593,
+  "overrides": 769,
+  "override_opportunities": 8910,
+  "vetoes": 8141,
+  "infoset_shared_updates": 3225749,
   "timeouts": 0,
-  "decisions_with_4_determinizations": 6705,
-  "decisions_with_2plus_determinizations": 6705,
+  "decisions_with_4_determinizations": 8910,
+  "decisions_with_2plus_determinizations": 8910,
   "max_depth_seen": 15,
-  "max_match_search_ms": 56828.3,
+  "max_match_search_ms": 53795.4,
   "step_error_rate": 0.0,
-  "override_rate": 0.05309,
-  "shared_action_stats_multi_det": 5369,
-  "info_sets_multi_det": 2333,
-  "sampled_full_traces": 405,
+  "override_rate": 0.08631,
+  "shared_action_stats_multi_det": 6212,
+  "info_sets_multi_det": 2620,
+  "sampled_full_traces": 402,
   "per_opponent": {
     "dragapult": {
-      "games": 28,
-      "rate": 0.2143
-    },
-    "mega_abomasnow": {
-      "games": 28,
-      "rate": 0.2143
+      "games": 40,
+      "rate": 0.275
     },
     "iono": {
-      "games": 30,
-      "rate": 0.4667
+      "games": 40,
+      "rate": 0.525
     },
     "mega_lucario": {
-      "games": 29,
-      "rate": 0.3793
+      "games": 40,
+      "rate": 0.35
+    },
+    "mega_abomasnow": {
+      "games": 40,
+      "rate": 0.175
     }
   },
-  "field_score": 0.3217,
+  "field_score": 0.3312,
   "latency": {
-    "max_match_search_ms": 56828.3,
-    "mean_match_search_ms": 38521.0,
-    "max_game_seconds": 57.98
+    "max_match_search_ms": 53795.4,
+    "mean_match_search_ms": 28957.9,
+    "max_game_seconds": 54.9
   },
-  "wall_clock_s": 1595.9,
-  "superseded_by": "measured with the A8 end-turn veto INERT (looks_like_end_turn substring-matched a tuple of integers and never returned True); see failures/DEFECT_end_turn_veto_and_line_features_were_inert.md"
+  "wall_clock_s": 2635.4
 }

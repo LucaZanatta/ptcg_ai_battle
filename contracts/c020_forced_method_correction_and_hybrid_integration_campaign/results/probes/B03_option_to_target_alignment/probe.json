@@ -3,11 +3,27 @@
   "name": "option_to_target_alignment",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
   "checks": {
-    "energy_types": 12,
-    "null_token_index": 12,
-    "c019_defect": "no energy type, status, tool or option-to-target relationship"
-  },
-  "tainted_by": []
+    "checkpoint": "c020b_frozen_lp000_v010968.pt",
+    "trials": 4,
+    "reassignments": 288,
+    "own_logit_change_on_source_reassignment": {
+      "mean": 1.21893,
+      "max": 4.46744,
+      "pct_above_0.01": 99.6
+    },
+    "own_logit_change_when_source_becomes_null": {
+      "mean": 1.98533,
+      "max": 4.34063
+    },
+    "cross_option_leakage": {
+      "max": 0.0,
+      "mean": 0.0
+    },
+    "gather_is_used": true,
+    "gather_is_per_option": true,
+    "null_is_distinguishable": true,
+    "note": "cross-option leakage is the check nothing else in the campaign performs: a scorer that mixed option representations would still show a nonzero own-logit change while destroying the instance identity B1/B2 exist to preserve",
+    "status": "PASS"
+  }
 }

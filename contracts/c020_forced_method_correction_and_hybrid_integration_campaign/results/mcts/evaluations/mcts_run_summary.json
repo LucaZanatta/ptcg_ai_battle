@@ -1,5 +1,5 @@
 {
-  "tag": "ablation_no_overrides_b",
+  "tag": "ablation_no_veto",
   "config": {
     "c_puct": 1.5,
     "determinizations": 4,
@@ -14,73 +14,73 @@
     "baseline_prior_bonus": 3.0,
     "min_prior": 0.05,
     "availability_aware": true,
-    "override_enabled": false,
-    "veto_enabled": true
+    "override_enabled": true,
+    "veto_enabled": false
   },
-  "games": 120,
+  "games": 160,
   "errors": 0,
-  "completed": 120,
-  "decisions": 7869,
-  "searched_decisions": 7227,
-  "simulations": 506157,
-  "step_calls": 5825114,
-  "step_ok": 5825114,
+  "completed": 160,
+  "decisions": 9769,
+  "searched_decisions": 8910,
+  "simulations": 1025156,
+  "step_calls": 5316441,
+  "step_ok": 5316441,
   "step_errors": 0,
-  "begin_calls": 28908,
+  "begin_calls": 35640,
   "begin_errors": 0,
-  "release_calls": 5854022,
+  "release_calls": 5352081,
   "release_errors": 0,
-  "expansions": 486567,
-  "nonroot_expansions": 356207,
-  "rollout_steps": 5338547,
-  "rollout_baseline_calls": 4806470,
-  "rollout_stochastic_calls": 532077,
-  "backups": 506157,
-  "backup_nodes": 1415446,
-  "leaf_evals": 506157,
+  "expansions": 1007593,
+  "nonroot_expansions": 816722,
+  "rollout_steps": 4308848,
+  "rollout_baseline_calls": 3878077,
+  "rollout_stochastic_calls": 430771,
+  "backups": 1025156,
+  "backup_nodes": 3225749,
+  "leaf_evals": 1025156,
   "terminal_leaves": 0,
-  "determinizations_attempted": 28908,
-  "determinizations_legal": 28908,
+  "determinizations_attempted": 35640,
+  "determinizations_legal": 35640,
   "determinizations_rejected": 0,
   "chance_outcomes": 0,
-  "depth_sum": 909289,
-  "overrides": 0,
-  "override_opportunities": 7227,
-  "vetoes": 7227,
-  "infoset_shared_updates": 1415446,
+  "depth_sum": 2200593,
+  "overrides": 769,
+  "override_opportunities": 8910,
+  "vetoes": 8141,
+  "infoset_shared_updates": 3225749,
   "timeouts": 0,
-  "decisions_with_4_determinizations": 7227,
-  "decisions_with_2plus_determinizations": 7227,
+  "decisions_with_4_determinizations": 8910,
+  "decisions_with_2plus_determinizations": 8910,
   "max_depth_seen": 15,
-  "max_match_search_ms": 58775.8,
+  "max_match_search_ms": 53795.4,
   "step_error_rate": 0.0,
-  "override_rate": 0.0,
-  "shared_action_stats_multi_det": 5476,
-  "info_sets_multi_det": 2371,
+  "override_rate": 0.08631,
+  "shared_action_stats_multi_det": 6212,
+  "info_sets_multi_det": 2620,
   "sampled_full_traces": 402,
   "per_opponent": {
     "dragapult": {
-      "games": 30,
-      "rate": 0.3667
-    },
-    "mega_abomasnow": {
-      "games": 30,
-      "rate": 0.4
+      "games": 40,
+      "rate": 0.275
     },
     "iono": {
-      "games": 30,
-      "rate": 0.8333
+      "games": 40,
+      "rate": 0.525
     },
     "mega_lucario": {
-      "games": 30,
-      "rate": 0.4333
+      "games": 40,
+      "rate": 0.35
+    },
+    "mega_abomasnow": {
+      "games": 40,
+      "rate": 0.175
     }
   },
-  "field_score": 0.5083,
+  "field_score": 0.3312,
   "latency": {
-    "max_match_search_ms": 58775.8,
-    "mean_match_search_ms": 41400.6,
-    "max_game_seconds": 59.74
+    "max_match_search_ms": 53795.4,
+    "mean_match_search_ms": 28957.9,
+    "max_game_seconds": 54.9
   },
-  "wall_clock_s": 1733.8
+  "wall_clock_s": 2635.4
 }
