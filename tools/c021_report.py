@@ -138,6 +138,10 @@ def main(argv=None):
             continue          # pre-COIN_HEAD runs are diagnostic only, never a competitive read
         if not s.get("manual_coin_contexts_are_coin_head_only", True):
             continue
+        if s.get("transfer_arm") and s.get("transfer_arm") != "T0_control":
+            continue      # a transfer arm is not the standalone MCGS competitive candidate
+        if s.get("manual_coin") is False:
+            continue      # the no-chance-node ablation is not a competitive candidate
         fs = s.get("field_score")
         if fs is not None and (best_mcgs is None or fs > best_mcgs):
             best_mcgs, best_name = fs, name
@@ -243,10 +247,16 @@ def main(argv=None):
     arms = {}
     control = None
     for name, s in mcgs.items():
-        if s.get("transfer_arm") in (None, "T0_control") and "competitive" in name:
-            control = s
+        if s.get("transfer_arm") == "T0_control":
+            control = s            # the arm that shares the transfer harness but uses no prior
+    if control is None:
+        for name, s in mcgs.items():
+            if "competitive" in name and not s.get("transfer_arm"):
+                control = s
     for name, s in transfer.items():
         arm = s.get("transfer_arm")
+        if arm == "T0_control":
+            continue               # the control is reported separately, not as an arm
         n = s.get("completed") or 0
         fs = s.get("field_score")
         if fs is None or n == 0:
