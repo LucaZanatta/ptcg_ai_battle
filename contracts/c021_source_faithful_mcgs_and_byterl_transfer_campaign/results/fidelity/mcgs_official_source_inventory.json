@@ -1,0 +1,260 @@
+{
+  "retrieved_utc": "2026-07-28T20:39:02Z",
+  "archive": {
+    "url": "https://hearthstoneai.github.io/files/bots/UserCreatedDeckPlaying2019/2019_UCDP_MCGS.zip",
+    "sha256": "f00a54f310a8f868deb59964c17e71357d67ecfcedba01c0245053dcc5aa920a",
+    "bytes": 64230,
+    "http_status": 200,
+    "server_last_modified": "Mon, 08 Feb 2021 09:09:28 GMT"
+  },
+  "paper": {
+    "url": "https://ieee-cog.org/2020/papers2019/paper_257.pdf",
+    "sha256": "c994b91340c71fab289ea158af7ada22f451ed23c1e6b74a6eb69e96261ff73d",
+    "bytes": 225113
+  },
+  "files": [
+    {
+      "path": "Agent.cs",
+      "bytes": 6173,
+      "sha256": "a04f091f89dc1450d28557baa3a592503890da87fc8fae582caaad4dd011ed61",
+      "lines": 217
+    },
+    {
+      "path": "AgentUtils.cs",
+      "bytes": 8796,
+      "sha256": "b13b2fb19bcc07503c78b1864fb46dad93801e50e117df54e29ea37448c3982e",
+      "lines": 332
+    },
+    {
+      "path": "PremadeDeck.cs",
+      "bytes": 1449,
+      "sha256": "4fe58b21ee9f8b33fc21f4c780651d5d1e76e12dc89579e5e3ca758a0fb8e028",
+      "lines": 45
+    },
+    {
+      "path": "src/Edge.cs",
+      "bytes": 5094,
+      "sha256": "d07b0e12760b3de1ccafa970ac656fe6b9450a464c0ee7217cb755d49a435b20",
+      "lines": 179
+    },
+    {
+      "path": "src/Enums.cs",
+      "bytes": 874,
+      "sha256": "25cc35ae94e6915eafa7e2e5bfd86362d76458446a5e4a4ab3e480b0e9814b9d",
+      "lines": 36
+    },
+    {
+      "path": "src/Information.cs",
+      "bytes": 7315,
+      "sha256": "996e566a5a80ed35191026aac51c8bacb4b95844088e4327564ce35e03f9abbf",
+      "lines": 214
+    },
+    {
+      "path": "src/MCGS.cs",
+      "bytes": 17604,
+      "sha256": "cadd8ab87093e357e51340988204c8c38b010c58c4a8a4a8385c75e8d66e64b7",
+      "lines": 516
+    },
+    {
+      "path": "src/Node.Expand.cs",
+      "bytes": 10980,
+      "sha256": "a02c1868c4be2f672aa92df496f018c2b8de50b5be9f91dbdcf7c0494eaeea76",
+      "lines": 289
+    },
+    {
+      "path": "src/Node.cs",
+      "bytes": 18791,
+      "sha256": "ad7f96546135ac5663bcc56fbf95319d5a2b18a81bd87793ab7c9a3bec26ade3",
+      "lines": 523
+    },
+    {
+      "path": "src/NodeConfig.cs",
+      "bytes": 2072,
+      "sha256": "d17d90a5b563369fbbf5f76b630bd09d7d167ab5df90b7313c2d816448539000",
+      "lines": 60
+    },
+    {
+      "path": "src/SearchConfig.cs",
+      "bytes": 5989,
+      "sha256": "44a93dc5d6d95d63c9dd64290531a96c68a69521cacab209106c78d9616435be",
+      "lines": 217
+    },
+    {
+      "path": "src/SearchStatistics.cs",
+      "bytes": 5670,
+      "sha256": "6e4c98f8f6a0ad3324751124b25b9f44e6526d3a4b28a456942b587e830cef4b",
+      "lines": 114
+    },
+    {
+      "path": "src/Abstraction/ActionAbstraction.cs",
+      "bytes": 18077,
+      "sha256": "96005a8dcbf1f189ac5e4c04607023681cfd791180bf9aaf7a45f67699772044",
+      "lines": 442
+    },
+    {
+      "path": "src/Abstraction/StateAbstraction.cs",
+      "bytes": 32118,
+      "sha256": "28500b08d9e8b659da9e47f6d25f7ba6a45c34eea30da1f1ba596ba0d0b7c92d",
+      "lines": 842
+    },
+    {
+      "path": "src/Algorithms/DampedSamping.cs",
+      "bytes": 220,
+      "sha256": "51e7272c6a59124b1ccbdeea480189a32f8d3d86c854d05eeef75291baab1d86",
+      "lines": 9
+    },
+    {
+      "path": "src/Algorithms/DoubleProgressiveWidening.cs",
+      "bytes": 935,
+      "sha256": "a95b82727e896ac42ac4afa174f8f373e1662b034554f91e6538ea7bd993edb2",
+      "lines": 44
+    },
+    {
+      "path": "src/Algorithms/PIMC.cs",
+      "bytes": 2125,
+      "sha256": "b4c5f6c2f2d16bd2dc5076424f7986627edab33041b5b7479a1547e87da92866",
+      "lines": 65
+    },
+    {
+      "path": "src/Algorithms/UCD.cs",
+      "bytes": 1036,
+      "sha256": "e3254cd27c54659dd5af3c67cd47819fb993a983a34da940da13621ce2a96602",
+      "lines": 55
+    },
+    {
+      "path": "src/Heuristics/CardCategory.cs",
+      "bytes": 33471,
+      "sha256": "8d01137bdb7327cc48402818e5dce33009d55ff8dc26946848f80920847c5b66",
+      "lines": 765
+    },
+    {
+      "path": "src/Heuristics/Filter.cs",
+      "bytes": 7270,
+      "sha256": "baa595d444af5e9fdbec6804785aa88623dae5852dc66f837a7c9c1b61fb7879",
+      "lines": 260
+    },
+    {
+      "path": "src/Heuristics/TreePhasePruning.cs",
+      "bytes": 10667,
+      "sha256": "84911013a589f948c4525c8c89ddd1e4e56cbca2ce865f44ee149b21af5fdc32",
+      "lines": 256
+    },
+    {
+      "path": "src/Utils/CommonUtils.cs",
+      "bytes": 5734,
+      "sha256": "3852385b646d478b5be2a0f439fa847cbafa6e21e527f19c3d6786f0bee99ef2",
+      "lines": 180
+    },
+    {
+      "path": "src/Utils/IntArrayComparer.cs",
+      "bytes": 2607,
+      "sha256": "51c995fe1cd72de1d5e66192f8ac372ab7f5d16109c143b9133921fbdb62b389",
+      "lines": 96
+    },
+    {
+      "path": "src/Utils/IntSet.cs",
+      "bytes": 929,
+      "sha256": "cf778268c66a87d016205e5aa803342fc688272fbe9efb63b2acf977fcb506db",
+      "lines": 47
+    },
+    {
+      "path": "src/DefaultPolicy/Policy.cs",
+      "bytes": 1176,
+      "sha256": "accb154abe49880e57eb74627eca848519d2ec0442bc0a8ec0f27c0c1d888966",
+      "lines": 41
+    },
+    {
+      "path": "src/DefaultPolicy/UniformRandomRollout.cs",
+      "bytes": 1069,
+      "sha256": "226f9b5e8b6ffddcf616310262d4ed62079590994e770861f43cd97af4763f0b",
+      "lines": 38
+    },
+    {
+      "path": "src/SabberHelpers/SabberUtils.cs",
+      "bytes": 10002,
+      "sha256": "f333d5e08b3428c32bf7bd874556481f3cfc32470dff3a303a4f208af2638355",
+      "lines": 234
+    },
+    {
+      "path": "src/SabberHelpers/SendOption.cs",
+      "bytes": 1865,
+      "sha256": "b3638acf7aa1ac6d4f45e1c23c0bad57b1ddbfa7e676c68c595bf1a57b3d9fef",
+      "lines": 53
+    },
+    {
+      "path": "src/SabberHelpers/Options/AttackOption.cs",
+      "bytes": 4915,
+      "sha256": "c0b9484fea505d2fe52fc0b5909e37d31a79284aad8eada279ac2b284312a8c9",
+      "lines": 136
+    },
+    {
+      "path": "src/SabberHelpers/Options/GetOptions.cs",
+      "bytes": 15928,
+      "sha256": "95689962f06fc90306fec8cbcae1810b55beba11ec68cb31fff588d42be84519",
+      "lines": 395
+    },
+    {
+      "path": "src/SabberHelpers/Options/HeroPowerOption.cs",
+      "bytes": 2912,
+      "sha256": "45b5902e123ea138cb719d91f6e18fad4830357218817d44dc2c66fc0ed4943c",
+      "lines": 83
+    },
+    {
+      "path": "src/SabberHelpers/Options/Options.cs",
+      "bytes": 9985,
+      "sha256": "4463257e64d46f33cf68dbd012fda7cb1ec523a442175eb2884bc459b4753a68",
+      "lines": 287
+    },
+    {
+      "path": "src/SabberHelpers/Options/PlayCardOption.cs",
+      "bytes": 6884,
+      "sha256": "ca94e6caba26b4043c9a8fcd2bbe7525d5c53e90c93c3dcb4c17794314e4f7f6",
+      "lines": 191
+    }
+  ],
+  "file_count": 33,
+  "total_lines": 7261,
+  "key_components": {
+    "selection": "src/Algorithms/UCD.cs, src/Edge.cs (Value)",
+    "graph_dag": "src/MCGS.cs (TranspositionCheck), src/Node.cs",
+    "expansion": "src/Node.Expand.cs",
+    "chance_sparse_damped": "src/Node.cs (SampleChild, BestChild), src/Algorithms/DampedSamping.cs",
+    "abstraction": "src/Abstraction/StateAbstraction.cs, ActionAbstraction.cs",
+    "expert_knowledge": "src/Heuristics/Filter.cs, CardCategory.cs, TreePhasePruning.cs",
+    "rollout": "src/DefaultPolicy/UniformRandomRollout.cs, Policy.cs",
+    "config": "src/NodeConfig.cs, src/SearchConfig.cs",
+    "entry": "Agent.cs, AgentUtils.cs"
+  },
+  "extracted_constants": {
+    "UCTConstant": 0.285,
+    "SampleWidth": 24,
+    "DampingParameter": 2,
+    "DeterminizationNumber": 200,
+    "FirstMoveDurationSeconds": 15,
+    "ContinuousMoveDurationSeconds": 10,
+    "UCDParams_default": {
+      "d1": 1,
+      "d2": 0
+    },
+    "SimpleAbstraction": true,
+    "Transposition": true,
+    "StoreVisitsAtEdges": true,
+    "DampedSampling": true,
+    "PIMC": false,
+    "DoNotRemoveUnselectedNodes": true,
+    "chance_sparse_threshold_outgoing_edges": 5,
+    "rollout_step_cap": 1000,
+    "rollout_turn_cap": 45,
+    "rollout_retries": 5,
+    "terminal_node_value": {
+      "WON": 10,
+      "LOST": -10,
+      "other": 0
+    },
+    "rollout_reward": {
+      "win": 1.0,
+      "loss": 0.0
+    },
+    "lethal_backup_multiplier": 10
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "frozen_at_commit": "275f4308f052bdcb4361d9ec5e555d0c3e956734",
+  "c020_final_panel_games": 2300,
+  "controls": {
+    "BASELINE_OFFICIAL_MEGA_LUCARIO": {
+      "role": "frozen official baseline; the competitive bar",
+      "files_sha256": {
+        "MANIFEST.json": "81064ca961fde585c57f8b144933da9a941d19908f067c02da59784a132e5cb0",
+        "REPRODUCTION_NOTES.md": "893b9247c5df6ca5aa4205bf46b97caa4ea2e110dd9380e19af0a2f4d82b2a11",
+        "attribution.md": "a3ae26ecc1fe9dc945b9e7975b142d24949b512593d2de381956ea241a4129e7",
+        "candidate_manifest.json": "66c2e327388facd202a78c98882032a0f3ca98da92a8b4afe6cc82a60589914f",
+        "deck.csv": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+        "main.py": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+        "reproduction_fidelity.json": "308a40c2def02ec6eb40ba3dc360fe25db3d3314e45e5a9bdb5c058ef642253e",
+        "smoke_results.json": "9b254f07fbcb801deacb0648798f2e037066cfe331b0798b04ef2b6755d1850f",
+        "static_dependency_report.json": "e3e5f0f1eb1508ce22647666157a0126ff2d6783e8ab0d6f351f2477d5714248",
+        "__pycache__/main.cpython-313.pyc": "249d9c227f19ee62ff471c7c37de0ee7a62881c24b809df881fba364d6939618"
+      },
+      "c020_panel_field": 0.5837,
+      "c020_panel_ci": [
+        0.5349,
+        0.631
+      ],
+      "live_ladder_score_observed": 632.3,
+      "kaggle_submission_ref": 55011215
+    },
+    "CHAMPION_C005_DRAGAPULT": {
+      "role": "externally confirmed champion; the role-board reference",
+      "dir": null,
+      "files_sha256": {},
+      "live_ladder_score_observed": 719.7,
+      "note": "used as a panel OPPONENT throughout c019/c020; no c020 candidate beat it"
+    },
+    "C020_CORRECTED_MCTS_CONTROL": {
+      "role": "c020 PUCT/override search; NEGATIVE evidence and comparison, not an authority",
+      "honest_label": "PUCT with a handcrafted tactical leaf evaluator and a conservative baseline-override gate. NOT MCGS: no graph/DAG, no transposition table, no chance nodes, no UCD, no source rollout.",
+      "source_sha256": {
+        "starter_kit/c020_ismcts.py": "37ed65f45e978f152ae984c371f95f0ac828ebb7b1861e783b42e360e7ab4a22",
+        "starter_kit/c020_infoset.py": "613c6063478cf2f693f1ade8a68a9740a6bc5fed7ddef170ac837362c36ed8e9",
+        "starter_kit/c020_agent.py": "336f1a9f14d02df37a7a0c4d59ec381e5a8c10f3d1fbb2b5fb4c82b0db3b95c8",
+        "starter_kit/c020_tactical_leaf.py": "2cadabdecf31fc63c669c12732f1bb0188db10d696168fd559706853fa6ac466",
+        "starter_kit/c020_override.py": "294a944f06846a305cca6e861518a88bc65e814a2453986ec53d392dffe44e22",
+        "starter_kit/c020_determinize.py": "4ff753ccd178cf110e86808f26d9460c14487e59dd84ff5170adcc1a4577de22"
+      },
+      "c020_panel_field": 0.4275,
+      "c020_panel_ci": [
+        0.3799,
+        0.4764
+      ]
+    },
+    "C020_CORRECTED_BYTERL_CONTROL": {
+      "role": "c020 ByteRL final checkpoint; the improvement bar for c021 ByteRL",
+      "checkpoint": "contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/checkpoints/c020b/c020b_final_v097649.pt",
+      "checkpoint_sha256": "597d15bec90e89d324982b5baf71b38c1e3b741f6062efcfa3f4a52c189f1d43",
+      "training": {
+        "actual_games": 104000,
+        "optimizer_steps": 97649,
+        "learning_periods": 8,
+        "historical_pool": 5
+      },
+      "c020_panel_field": 0.275,
+      "c020_panel_ci": [
+        0.2178,
+        0.3407
+      ],
+      "must_not_initialize_c021": true,
+      "note": "FIDELITY_RULES \u00a74 forbids c019/c020 weights as initialization"
+    },
+    "C020_H1_PRIOR_HYBRID_CONTROL": {
+      "role": "c020's best candidate: corrected ByteRL priors + tactical heuristic",
+      "c020_panel_field": 0.4875,
+      "c020_panel_ci": [
+        0.4191,
+        0.5564
+      ],
+      "promotable_in_c020": false,
+      "why_not": "prior admission failed on 130 catastrophic baseline suppressions; value admission failed against the constant predictor",
+      "note": "the one c020 signal suggesting ByteRL priors can help a search; c021 transfer tests must verify runtime call counts rather than trusting the label"
+    }
+  }
+}
