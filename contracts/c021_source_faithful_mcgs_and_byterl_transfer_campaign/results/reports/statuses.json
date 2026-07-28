@@ -11,60 +11,15 @@
     "caveat": "The port is the !PIMC configuration MINUS the interior-determinization operations the PTCG API does not expose. Chance nodes exist only at the random surfaces manual_coin reveals. It does not sample draw order inside the tree."
   },
   "EXECUTION": {
-    "status": "PASS",
-    "mcgs_runs": [
-      {
-        "run": "a4_fast_summary.json",
-        "games": 2,
-        "completed": 2,
-        "field_score": 0.5,
-        "sims_per_decision": 41.5,
-        "chance_nodes_created": 8,
-        "manual_coin_node_ucb_selected": 0,
-        "step_errors": 0,
-        "release_errors": 0,
-        "transposition_merges": 168,
-        "dummy_edges": 2,
-        "term_root_win": null,
-        "term_root_loss": null
-      },
-      {
-        "run": "a4_fixed_summary.json",
-        "games": 4,
-        "completed": 4,
-        "field_score": 0.25,
-        "sims_per_decision": 55.7,
-        "chance_nodes_created": 32,
-        "manual_coin_node_ucb_selected": 0,
-        "step_errors": 0,
-        "release_errors": 0,
-        "transposition_merges": 247,
-        "dummy_edges": 0,
-        "term_root_win": 353,
-        "term_root_loss": 3520
-      },
-      {
-        "run": "a4_persp_summary.json",
-        "games": 6,
-        "completed": 6,
-        "field_score": 0.0,
-        "sims_per_decision": 25.7,
-        "chance_nodes_created": 210,
-        "manual_coin_node_ucb_selected": 0,
-        "step_errors": 0,
-        "release_errors": 0,
-        "transposition_merges": 351,
-        "dummy_edges": 27,
-        "term_root_win": 2193,
-        "term_root_loss": 2707
-      }
-    ],
+    "status": "PARTIAL",
+    "mcgs_runs": [],
     "byterl_runs": [
       "ctrl_b0",
       "ctrl_b1",
       "ctrl_b1_5",
       "ctrl_b2",
-      "ctrl_b3"
+      "ctrl_b3",
+      "learn_b0"
     ],
     "no_step_errors_and_no_coin_ucb_selection": true
   },
@@ -105,6 +60,9 @@
         "run": "b15_smoke",
         "updates": 24,
         "iterations": 2,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
         "first_win_rate": 0.0,
         "last_win_rate": 0.0833,
         "best_win_rate": 0.0833
@@ -113,6 +71,9 @@
         "run": "b3_smoke",
         "updates": 16,
         "iterations": 2,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
         "first_win_rate": 0.5,
         "last_win_rate": 0.375,
         "best_win_rate": 0.5
@@ -121,6 +82,9 @@
         "run": "ctrl_b1_5",
         "updates": 1280,
         "iterations": 20,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
         "first_win_rate": 0.0312,
         "last_win_rate": 0.0312,
         "best_win_rate": 0.0938
@@ -129,6 +93,9 @@
         "run": "ctrl_b2",
         "updates": 1280,
         "iterations": 20,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
         "first_win_rate": 0.0312,
         "last_win_rate": 0.0156,
         "best_win_rate": 0.1094
@@ -137,6 +104,9 @@
         "run": "ctrl_b3",
         "updates": 1280,
         "iterations": 20,
+        "opponent": "frozen self-play checkpoints (OSFP)",
+        "win_rate_is_self_play": true,
+        "comparable_to_field": false,
         "first_win_rate": 0.4219,
         "last_win_rate": 0.4531,
         "best_win_rate": 0.6484
@@ -147,11 +117,12 @@
       "actor-learner execution is synchronous, not the papers' decoupled recurrent actor-learner (declared deviation against a named requirement)"
     ],
     "declared_deviation": "Actor-learner execution is SYNCHRONOUS (actors fill a batch, then the learner updates), not the papers' decoupled recurrent actor-learner. The algorithm is unchanged; the execution topology is not the published one, and this is a declared deviation rather than a claimed reproduction.",
-    "unresolved_choices": "results/fidelity/UNRESOLVED_REFERENCE_CHOICES.md"
+    "unresolved_choices": "results/fidelity/UNRESOLVED_REFERENCE_CHOICES.md",
+    "self_play_warning": "B3's win rate is measured against frozen checkpoints of itself and sits near 0.5 by construction. It is not a field result and must not be compared with the other rungs; DECISION_RULES \u00a74 forbids submitting a checkpoint selected only on self-play."
   },
   "BYTERL_SCALE": {
     "status": "COMPUTE_LIMITED",
-    "total_games_played": 8768,
+    "total_games_played": 10048,
     "paper_reference": "distributed fleet, millions of games, days of wall clock",
     "achieved_fraction_note": "Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.",
     "permitted_reductions_only": [
@@ -180,10 +151,10 @@
     "reason": "DECISION_RULES \u00a74 forbids submitting a candidate clearly dominated by the current champion."
   },
   "OVERALL": {
-    "status": "PARTIAL",
+    "status": "FAIL",
     "rule": "OVERALL=PARTIAL is permitted when both methods are faithfully executed and analyzed but no candidate clears the competitive gate (DECISION_RULES \u00a76).",
-    "both_methods_implemented_and_executed": true,
+    "both_methods_implemented_and_executed": false,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-29T00:00:00"
+  "generated": "2026-07-29T00:01:36"
 }

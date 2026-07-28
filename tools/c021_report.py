@@ -164,8 +164,18 @@ def main(argv=None):
         ups = sum(int(r.get("updates") or 0) for r in c)
         wrs = [r.get("win_rate") for r in c if r.get("win_rate") is not None]
         if ups > 0:
-            weights_changed.append({"run": name.replace("_curve.json", ""),
+            run_name = name.replace("_curve.json", "")
+            # B3 plays FROZEN CHECKPOINTS OF ITSELF. Its win rate is a mirror-match rate and sits
+            # near 0.5 by construction; it is NOT comparable to the rungs that play the scripted
+            # field, and DECISION_RULES §4 forbids submitting a checkpoint selected only on
+            # self-play. Marked here so the number cannot be read as strength.
+            selfplay = run_name.endswith("b3")
+            weights_changed.append({"run": run_name,
                                     "updates": ups, "iterations": len(c),
+                                    "opponent": ("frozen self-play checkpoints (OSFP)"
+                                                 if selfplay else "scripted field"),
+                                    "win_rate_is_self_play": selfplay,
+                                    "comparable_to_field": not selfplay,
                                     "first_win_rate": wrs[0] if wrs else None,
                                     "last_win_rate": wrs[-1] if wrs else None,
                                     "best_win_rate": max(wrs) if wrs else None})
@@ -196,6 +206,10 @@ def main(argv=None):
                                "topology is not the published one, and this is a declared "
                                "deviation rather than a claimed reproduction."),
         "unresolved_choices": "results/fidelity/UNRESOLVED_REFERENCE_CHOICES.md",
+        "self_play_warning": ("B3's win rate is measured against frozen checkpoints of itself and "
+                              "sits near 0.5 by construction. It is not a field result and must "
+                              "not be compared with the other rungs; DECISION_RULES §4 forbids "
+                              "submitting a checkpoint selected only on self-play."),
     }
 
     # ---------------------------------------------------------------- BYTERL_SCALE
