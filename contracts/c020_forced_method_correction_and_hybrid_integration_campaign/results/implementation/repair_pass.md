@@ -126,8 +126,13 @@ Verified: `max_depth_seen` now reports 8 on a 4-game run.
   is the instrument that decides whether the 5.82% override rate causes it. Re-tuning thresholds
   because the score is low would be tuning against the outcome, which `DECISION_RULES` forbids.
   The pre-repair number is retained as the measurement it is.
-- **7 multi-select decisions per 80 ByteRL games.** Governed by the contract's own escape clause
-  ("or every observed multi-select decision if fewer occur") and reported that way, not as a miss.
+- **ByteRL multi-select frequency.** The smoke saw 7 multi-select decisions in 80 games, which
+  looked like a case for the contract's escape clause ("or every observed multi-select decision
+  if fewer occur"). The scaled run settles it the other way: **1,229 multi-select decisions and
+  12,838 multi-select contexts in the first 26,000 games**, so the 1,000-decision floor is met on
+  its own terms and the escape clause is not invoked. Recorded here because the smoke-scale
+  reading was wrong and the correction matters -- B3 is exercised on real cases, not on a
+  handful.
 
 ### Consequence for scaling
 

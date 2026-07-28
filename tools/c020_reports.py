@@ -76,6 +76,9 @@ def build() -> Dict[str, Any]:
     mruns = [json.load(open(p_)) for p_ in
              glob.glob(os.path.join(C20, "mcts", "evaluations", "*_summary.json"))]
     mruns = [d for d in mruns if isinstance(d, dict)]
+    # a run explicitly marked superseded (e.g. taken with a repair-pass defect live)
+    # must never supply campaign evidence, no matter how large it is
+    mruns = [d for d in mruns if not d.get("superseded_by")]
     mrun = max(mruns, key=lambda d: d.get("searched_decisions", 0), default={}) or {}
     tag = campaign_tag()
     bsum = jload(f"byterl/learner_logs/{tag}_training_summary.json", {}) or {}

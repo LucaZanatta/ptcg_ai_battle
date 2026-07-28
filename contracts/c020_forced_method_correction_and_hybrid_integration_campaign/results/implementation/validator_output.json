@@ -2,10 +2,10 @@
   "contract": "c020",
   "final_mode": false,
   "n_checks": 41,
-  "n_passed": 34,
+  "n_passed": 37,
   "n_critical_failures": 0,
   "n_submission_blockers": 0,
-  "n_checks_with_negative_control": 33,
+  "n_checks_with_negative_control": 34,
   "n_broken_checks": 0,
   "overall": "PASS",
   "by_branch": {
@@ -17,7 +17,7 @@
     },
     "byterl": {
       "checks": 19,
-      "passed": 12,
+      "passed": 15,
       "semantic_status": "PASS",
       "blockers": []
     },
@@ -40,7 +40,7 @@
       "branch": "common",
       "passed": true,
       "evidence": {
-        "changed_files": 143,
+        "changed_files": 291,
         "violations": [],
         "requirement": "CONTRACT \u00a71: do not modify c005-c019 artifacts",
         "note": "matched on owning path, not on the substring 'c019' -- c020 records the c019 controls under its OWN results tree and those files are not violations"
@@ -93,7 +93,7 @@
           "writes": 0,
           "sharing_is_real": true
         },
-        "runtime_shared_action_stats_multi_det": 456,
+        "runtime_shared_action_stats_multi_det": 5387,
         "c019_defect": "one independent tree per determinization, aggregated at the root"
       },
       "submission_blocker": true,
@@ -246,8 +246,8 @@
       "branch": "mcts",
       "passed": true,
       "evidence": {
-        "nonroot_expansions": 14240,
-        "expansions": 22512,
+        "nonroot_expansions": 347886,
+        "expansions": 479543,
         "c019_defect": "root-only branching"
       },
       "submission_blocker": true,
@@ -260,8 +260,8 @@
       "branch": "mcts",
       "passed": true,
       "evidence": {
-        "baseline_calls": 188035,
-        "stochastic_calls": 20932,
+        "baseline_calls": 4703291,
+        "stochastic_calls": 521753,
         "c019_defect": "option index 0 continuation"
       },
       "submission_blocker": false,
@@ -274,7 +274,7 @@
       "branch": "mcts",
       "passed": true,
       "evidence": {
-        "backup_nodes": 53826
+        "backup_nodes": 1385710
       },
       "submission_blocker": false,
       "critical": false,
@@ -287,12 +287,12 @@
       "passed": true,
       "evidence": {
         "while_installed": {
-          "plan": "<c019_official_baseline.AttackPlan object at 0x776fadc8c7d0>",
+          "plan": "<c019_official_baseline.AttackPlan object at 0x71c69748c7d0>",
           "pre_turn": "0",
           "ability_used": "True"
         },
         "after": {
-          "plan": "<c019_official_baseline.AttackPlan object at 0x776fadccc6e0>",
+          "plan": "<c019_official_baseline.AttackPlan object at 0x71c6974cc6e0>",
           "pre_turn": "0",
           "ability_used": "False"
         },
@@ -310,7 +310,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "max_logit_change_on_active_bench_swap": 0.001521,
+        "max_logit_change_on_active_bench_swap": 0.006959,
         "board_slots": 12,
         "slot_order": [
           "my_active",
@@ -343,7 +343,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "multiselect_records": 269,
+        "multiselect_records": 1229,
         "example": {
           "game_id": "c020:lp0:v0:g30",
           "decision": 35,
@@ -420,8 +420,8 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "midgame_unrolls": 15474,
-        "with_nonzero_state": 15474,
+        "midgame_unrolls": 15520,
+        "with_nonzero_state": 15520,
         "rate": 1.0,
         "c019_defect": "learner reset recurrent state at mid-game unroll boundaries"
       },
@@ -459,11 +459,11 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "updates": 5144,
-        "updates_with_nonzero_upgo": 5144,
+        "updates": 26684,
+        "updates_with_nonzero_upgo": 26684,
         "rho_mean_range": [
-          0.9889,
-          1.0156
+          0.9149,
+          1.232
         ]
       },
       "submission_blocker": true,
@@ -478,7 +478,9 @@
       "evidence": {
         "per_period_C_totals": [
           0,
-          40
+          40,
+          0,
+          160
         ],
         "c019_defect": "G/C accumulated across periods and across changing policies"
       },
@@ -492,10 +494,12 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "periods": 2,
+        "periods": 4,
         "shas": [
           "",
-          "16034b42b690"
+          "16034b42b690",
+          "",
+          "31f04ffdb7f8"
         ]
       },
       "submission_blocker": true,
@@ -528,12 +532,23 @@
     {
       "check": "B7_mixture_derives_from_payoff_table",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "reason": "no completed period yet"
+        "mixtures": 2,
+        "last": {
+          "lp": 1,
+          "mixture": [
+            0.172894,
+            0.827106
+          ],
+          "population": 2,
+          "derived_from": "period_local_payoff_table"
+        }
       },
       "submission_blocker": false,
-      "critical": false
+      "critical": false,
+      "control_rejects_defect": true,
+      "control_note": "the c019 defect was injected and this check rejected it"
     },
     {
       "check": "B8_no_c019_weight_load",
@@ -555,7 +570,7 @@
       "branch": "byterl",
       "passed": false,
       "evidence": {
-        "actual": 4320,
+        "actual": 26000,
         "required": 100000
       },
       "submission_blocker": false,
@@ -566,7 +581,7 @@
       "branch": "byterl",
       "passed": false,
       "evidence": {
-        "actual": 5144,
+        "actual": 26684,
         "required": 30000
       },
       "submission_blocker": false,
@@ -577,7 +592,7 @@
       "branch": "byterl",
       "passed": false,
       "evidence": {
-        "actual": 0,
+        "actual": 2,
         "required": 6
       },
       "submission_blocker": false,
@@ -586,9 +601,9 @@
     {
       "check": "byterl_floor: immutable historical additions",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "actual": 0,
+        "actual": 2,
         "required": 2
       },
       "submission_blocker": false,
@@ -597,9 +612,9 @@
     {
       "check": "byterl_floor: games involving historical checkpoints",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "actual": 0,
+        "actual": 5078,
         "required": 2000
       },
       "submission_blocker": false,
