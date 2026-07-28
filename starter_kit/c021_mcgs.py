@@ -70,6 +70,17 @@ class MCGS:
     def _track(self, sid: int):
         self.open_ids.append(int(sid))
 
+    def _release_rollout(self, sid: Optional[int]):
+        """Free a state the rollout has stepped past. Never called on a tree node's state."""
+        if sid is None:
+            return
+        self.stats["release_calls"] += 1
+        self.stats["rollout_releases"] = self.stats.get("rollout_releases", 0) + 1
+        try:
+            self.A.search_release(sid)
+        except Exception:  # noqa: BLE001
+            self.stats["release_errors"] += 1
+
     def release_all(self):
         for sid in reversed(self.open_ids):
             self.stats["release_calls"] += 1
@@ -90,10 +101,7 @@ class MCGS:
         play = None
         if terminal:
             play = self._terminal_playstate(obs, root_player)
-        try:
-            own = int(getattr(obs, "yourIndex", root_player) or root_player)
-        except Exception:  # noqa: BLE001
-            own = root_player
+        own = self._your_index(obs, root_player)
         ctx = int(getattr(sel, "context", -1) or -1) if sel is not None else -1
         # A4 `CheckRandom`. Under `manual_coin=True` the engine stops resolving a random effect
         # silently inside the step and presents its outcomes as a select. Such a node IS the
@@ -123,17 +131,56 @@ class MCGS:
         return n
 
     @staticmethod
-    def _terminal_playstate(obs, root_player: int) -> Optional[str]:
+    def _your_index(obs, default: int = 0) -> int:
+        """Whose observation this is.
+
+        `yourIndex` lives on `observation.current`, NOT at the top level. Reading
+        `getattr(obs, "yourIndex", default)` always misses and silently returns the default --
+        which made `is_opponent` False for EVERY node, so `Node.Update`'s opponent sign flip
+        never fired and the search maximised the same objective at both players' nodes, i.e. it
+        assumed the opponent would cooperate. It also pinned the root player to seat 0, so every
+        seat-1 game was scored from the wrong side.
+        """
+        st = getattr(obs, "current", None)
+        if st is None:
+            st = obs
+        v = getattr(st, "yourIndex", None)
+        return default if v is None else int(v)
+
+    @staticmethod
+    def _winner_index(obs) -> Optional[int]:
+        """Which PLAYER INDEX won, in absolute terms.
+
+        `visible_view(obs, None)` resolves "my" against the observation's OWN `yourIndex`, and at
+        a rollout terminal the owner is whoever happens to be to act -- which is not the search's
+        root player. Reading `my_prize == 0` as "the root player won" therefore inverts the reward
+        on every terminal the opponent owns. Measured effect: rollouts returned 2142 wins against
+        48 losses (97.8%), which uniform-random play cannot produce.
+
+        So the winner is resolved to a player index here, and the caller compares it to the root.
+        """
         try:
-            v = K.visible_view(obs, None)
-            c = v.counts()
-            if c["my_prize"] == 0:
-                return "WON"
-            if c["opp_prize"] == 0:
-                return "LOST"
+            owner = MCGS._your_index(obs)
+            c = K.visible_view(obs, owner).counts()
         except Exception:  # noqa: BLE001
-            pass
+            return None
+        if c["my_prize"] == 0:            # the owner took all their prizes
+            return owner
+        if c["opp_prize"] == 0:
+            return 1 - owner
+        my_out, opp_out = c["my_deck"] == 0, c["opp_deck"] == 0
+        if opp_out and not my_out:        # a player who cannot draw loses
+            return owner
+        if my_out and not opp_out:
+            return 1 - owner
         return None
+
+    @staticmethod
+    def _terminal_playstate(obs, root_player: int) -> Optional[str]:
+        w = MCGS._winner_index(obs)
+        if w is None:
+            return None
+        return "WON" if w == root_player else "LOST"
 
     # ---------------------------------------------------------------- expansion (A3)
     def expand(self, node: G.Node, root_player: int, start_turn: int
@@ -281,10 +328,10 @@ class MCGS:
             self.stats["tree_policy_steps"] += 1
 
     # ---------------------------------------------------------------- rollout (A7)
-    def rollout(self, leaf: G.Node, deadline: float) -> float:
+    def rollout(self, leaf: G.Node, deadline: float, root_player: int = 0) -> float:
         """`SingleThreadRollout` + `PlayUntilTerminal`, uniform random, retry while value < 0."""
         for attempt in range(G.ROLLOUT_RETRIES):
-            v = self._play_until_terminal(leaf, deadline)
+            v = self._play_until_terminal(leaf, deadline, root_player)
             if v >= 0:
                 self.stats["rollouts"] += 1
                 return v
@@ -292,7 +339,8 @@ class MCGS:
         self.stats["rollout_aborts"] += 1
         return 0.0
 
-    def _play_until_terminal(self, leaf: G.Node, deadline: float) -> float:
+    def _play_until_terminal(self, leaf: G.Node, deadline: float,
+                             root_player: int = 0) -> float:
         """`PlayUntilTerminal`. NO time check inside the rollout.
 
         The source bounds a rollout by a 1000-step cap and a turn cap, never by the move clock:
@@ -303,14 +351,25 @@ class MCGS:
         sid = leaf.search_id
         obs = leaf.obs
         count = 0
+        # Rollout states are walked once and never revisited, so each is released as soon as the
+        # rollout steps past it. Keeping them alive to the end of the decision -- which the first
+        # version did, via `_track` on every rollout step -- pinned one live engine state per
+        # rollout step: at ~120 simulations per decision against a 1000-step rollout cap that is
+        # tens of thousands of states, and workers were measured at 1.2-1.3 GB each with 28.6 GB
+        # resident across the pool and 1 GB of system memory free. The leaf's OWN state belongs
+        # to the tree and is never released here.
+        prev_rollout_sid: Optional[int] = None
         while True:
             if count > G.ROLLOUT_STEP_CAP:
                 self.stats["rollout_aborts"] += 1
+                self._release_rollout(prev_rollout_sid)
                 return -1.0
             sel = getattr(obs, "select", None)
             if sel is None:
                 self.stats["rollout_terminals"] = self.stats.get("rollout_terminals", 0) + 1
-                return self._terminal_reward(obs)
+                r = self._terminal_reward(obs, root_player)
+                self._release_rollout(prev_rollout_sid)
+                return r
             opts = K.canonical_options(sel)
             if not opts:
                 # SEMANTIC_ADAPTER. The engine signals a finished game by offering a select with
@@ -320,7 +379,9 @@ class MCGS:
                 # Reading the engine's own terminal state here is not a leaf evaluator: no
                 # position is scored, only a finished game's winner is decided by the rules.
                 self.stats["rollout_terminals"] = self.stats.get("rollout_terminals", 0) + 1
-                return self._terminal_reward(obs)
+                r = self._terminal_reward(obs, root_player)
+                self._release_rollout(prev_rollout_sid)
+                return r
             pick = opts[int(self.rng.integers(len(opts)))]      # UNIFORM RANDOM (source policy)
             payload = self._payload(sel, pick, opts)
             self.stats["step_calls"] += 1
@@ -329,46 +390,40 @@ class MCGS:
                 self.stats["step_ok"] += 1
             except Exception:  # noqa: BLE001
                 self.stats["step_errors"] += 1
+                self._release_rollout(prev_rollout_sid)
                 return -1.0
-            self._track(succ.searchId)
+            self._release_rollout(prev_rollout_sid)
+            prev_rollout_sid = int(succ.searchId)
             sid = succ.searchId
             obs = getattr(succ, "observation", None)
             if obs is None:
+                self._release_rollout(prev_rollout_sid)
                 return 0.0
             self.stats["rollout_steps"] += 1
             count += 1
 
-    def _terminal_reward(self, obs) -> float:
-        """`PlayUntilTerminal`'s `isWinner ? 1.0 : 0.0`, decided by PTCG's own win conditions.
+    def _terminal_reward(self, obs, root_player: int) -> float:
+        """`PlayUntilTerminal`'s `isWinner ? 1.0 : 0.0`, FROM THE ROOT PLAYER'S PERSPECTIVE.
 
-        Order matters and follows the rules: prizes first, then deck-out. Only a genuinely
-        undecidable state returns the source's draw value.
+        The root perspective is what the source uses and what `Node.Update`'s opponent sign flip
+        assumes; resolving the winner against the terminal observation's owner instead inverts
+        the reward on roughly half of all terminals.
         """
-        try:
-            c = K.visible_view(obs, None).counts()
-        except Exception:  # noqa: BLE001
-            return -1.0
-        if c["my_prize"] == 0:
-            self.stats["term_prize_win"] = self.stats.get("term_prize_win", 0) + 1
-            return 1.0
-        if c["opp_prize"] == 0:
-            self.stats["term_prize_loss"] = self.stats.get("term_prize_loss", 0) + 1
+        w = self._winner_index(obs)
+        if w is None:
+            self.stats["term_undecided"] = self.stats.get("term_undecided", 0) + 1
             return 0.0
-        my_out, opp_out = c["my_deck"] == 0, c["opp_deck"] == 0
-        if opp_out and not my_out:
-            self.stats["term_deckout_win"] = self.stats.get("term_deckout_win", 0) + 1
+        if w == root_player:
+            self.stats["term_root_win"] = self.stats.get("term_root_win", 0) + 1
             return 1.0
-        if my_out and not opp_out:
-            self.stats["term_deckout_loss"] = self.stats.get("term_deckout_loss", 0) + 1
-            return 0.0
-        self.stats["term_undecided"] = self.stats.get("term_undecided", 0) + 1
+        self.stats["term_root_loss"] = self.stats.get("term_root_loss", 0) + 1
         return 0.0
 
     # ---------------------------------------------------------------- one search
     def search(self, root: G.Node, root_player: int, start_turn: int, deadline: float):
         leaf = self.tree_policy(root, self.cfg.get("uct_constant", G.UCT_CONSTANT),
                                 root_player, start_turn, deadline)
-        reward = self.rollout(leaf, deadline)
+        reward = self.rollout(leaf, deadline, root_player)
         reward = G.apply_lethal_bonus(leaf, reward, self.stats)
         if self.cfg.get("selection_strategy", "UCD") == "UCD":
             n = G.backup_ucd(leaf, reward, self.ucd, self.stats)

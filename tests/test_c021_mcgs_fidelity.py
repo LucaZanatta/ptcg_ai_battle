@@ -206,3 +206,45 @@ def test_dummy_edge_blocks_recursive_update():
     e.is_dummy = True
     e.recursive_update(1.0, 5, 5, stats)
     assert p.rewards == 0.0 and p.total_visit == 0
+
+
+# ------------------------------------------------------------------ perspective regressions
+class _Cur:
+    def __init__(self, yi):
+        self.yourIndex = yi
+
+
+class _Obs:
+    """Mimics the engine Observation: `yourIndex` lives on `.current`, not at the top level."""
+
+    def __init__(self, yi):
+        self.current = _Cur(yi)
+
+
+def test_your_index_reads_through_current_not_the_top_level():
+    """Regression, and the reason it mattered.
+
+    `getattr(obs, "yourIndex", default)` always missed, so `is_opponent` was False for every
+    node and `Node.Update`'s opponent sign flip never fired -- the search maximised the same
+    objective at both players' nodes, i.e. assumed the opponent would cooperate. It also pinned
+    the root player to seat 0, scoring every seat-1 game from the wrong side.
+    """
+    assert not hasattr(_Obs(1), "yourIndex"), "fixture must reproduce the real attribute layout"
+    assert S.MCGS._your_index(_Obs(0), default=9) == 0
+    assert S.MCGS._your_index(_Obs(1), default=9) == 1
+    # the naive form silently returns the default -- this is the bug being guarded against
+    assert int(getattr(_Obs(1), "yourIndex", 9)) == 9
+
+
+def test_your_index_falls_back_only_when_genuinely_absent():
+    class Bare:
+        pass
+    assert S.MCGS._your_index(Bare(), default=1) == 1
+
+
+def test_opponent_nodes_are_detected_for_both_seats():
+    """`is_opponent` must be True exactly when the node's owner differs from the root player."""
+    for root in (0, 1):
+        for owner in (0, 1):
+            own = S.MCGS._your_index(_Obs(owner), root)
+            assert (own != root) == (owner != root)

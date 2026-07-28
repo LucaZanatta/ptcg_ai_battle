@@ -52,7 +52,7 @@ OPPONENTS = ["dragapult", "mega_lucario", "iono", "mega_abomasnow"]
 # ====================================================================== actor worker
 def _play_games(payload):
     """Run a batch of episodes in a worker and return trajectories."""
-    jobs, cfg, weights, seed = payload
+    jobs, cfg, weights, seed, opp_weights = payload
     sys.path.insert(0, _REPO)
     import torch
     torch.set_num_threads(1)          # WITHOUT THIS, workers contend and timings invert
@@ -81,7 +81,22 @@ def _play_games(payload):
                                fixed_deck=fixed)
         if not feats["network"]:
             actor = _UniformActor(pool, rng_seed, cfg["learn_construction"], fixed)
-        opp = T.make_fresh(job["opponent"], ce.SOURCES)
+        # B3: OSFP plays the LEARNER against a FROZEN CHECKPOINT of itself, not against the
+        # scripted teachers. Without this the rung is B2 with an extra logging dict, and the
+        # manifest's `osfp: True` would be a false method claim.
+        if job.get("opponent_checkpoint") is not None and opp_weights is not None:
+            onet = M.fresh(dims["global_dim"], dims["slot_dim"], dims["option_dim"], pool.size(),
+                           width=cfg["width"], blocks=cfg["blocks"], seed=cfg["seed"])
+            onet.load_state_dict({k: torch.as_tensor(v)
+                                  for k, v in opp_weights[job["opponent_checkpoint"]].items()})
+            onet.eval()
+            ofixed = None if cfg["learn_construction"] else DK.greedy_reference_deck(pool)
+            opp = AC.ByteRLActor(onet, pool, seed=rng_seed + 555,
+                                 temperature=cfg["temperature"],
+                                 learn_construction=cfg["learn_construction"],
+                                 fixed_deck=ofixed).act
+        else:
+            opp = T.make_fresh(job["opponent"], ce.SOURCES)
         seat = int(job["seat"])
 
         def mk(a):
@@ -119,6 +134,7 @@ def _play_games(payload):
                     "n_battle": ep.battle_steps(),
                     "encode_stats": ep.info.get("encode_stats", {}),
                     "errors": ep.info.get("errors", []),
+                    "opponent_checkpoint": job.get("opponent_checkpoint"),
                     "trajectory": _pack(ep) if feats["vtrace"] else None})
     return out
 
@@ -263,7 +279,12 @@ def main(argv=None):
     ap.add_argument("--rho-bar", type=float, default=1.0)
     ap.add_argument("--c-bar", type=float, default=1.0)
     ap.add_argument("--max-grad-norm", type=float, default=10.0)
-    ap.add_argument("--learn-construction", type=int, default=1)
+    ap.add_argument("--learn-construction", type=int, default=1,
+                    help="1 = learned construction (B2). 0 = frozen permitted deck: the CONTROL "
+                         "arm, which separates 'could not learn battle play' from 'learned "
+                         "battle play but could not build a deck'.")
+    ap.add_argument("--promote-threshold", type=float, default=0.55)
+    ap.add_argument("--promote-min-games", type=int, default=48)
     ap.add_argument("--seed", type=int, default=2100)
     ap.add_argument("--tag", default=None)
     a = ap.parse_args(argv)
@@ -298,6 +319,8 @@ def main(argv=None):
             "kind": "permitted by FIDELITY_RULES §4 (actors, samples, duration, periods only)",
             "actors": a.nproc, "games_per_iteration": a.games_per_iter,
             "iterations": a.iterations,
+            "learn_construction": bool(a.learn_construction),
+            "arm": "learned_construction" if a.learn_construction else "control_fixed_deck",
             "architecture_simplified": False, "algorithm_simplified": False,
         },
         "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -309,14 +332,28 @@ def main(argv=None):
     for it in range(a.iterations):
         weights = ({k: v.detach().cpu().numpy() for k, v in net.state_dict().items()}
                    if feats["network"] else None)
-        jobs = [{"game_id": f"{tag}:i{it}:g{g}",
+        jobs = []
+        opp_weights = None
+        if osfp is not None:
+            # seed period 0 with the initial weights so there is always something to play
+            if not osfp.checkpoints:
+                osfp.add_checkpoint({k: v.detach().cpu().numpy()
+                                     for k, v in net.state_dict().items()}, f"{tag}_init")
+            opp_weights = [c["state"] for c in osfp.checkpoints]
+        rng_j = np.random.default_rng(a.seed + it)
+        for g in range(a.games_per_iter):
+            j = {"game_id": f"{tag}:i{it}:g{g}",
                  "opponent": OPPONENTS[(it * a.games_per_iter + g) % len(OPPONENTS)],
-                 "seat": (it * a.games_per_iter + g) % 2}
-                for g in range(a.games_per_iter)]
+                 "seat": (it * a.games_per_iter + g) % 2,
+                 "opponent_checkpoint": None}
+            if osfp is not None:
+                j["opponent_checkpoint"] = osfp.sample_opponent(rng_j)
+                j["opponent"] = f"osfp_ck{j['opponent_checkpoint']}"
+            jobs.append(j)
         chunks = [[] for _ in range(a.nproc)]
         for i, j in enumerate(jobs):
             chunks[i % a.nproc].append(j)
-        payload = [(ch, cfg, weights, a.seed + it * 1013 + k * 97)
+        payload = [(ch, cfg, weights, a.seed + it * 1013 + k * 97, opp_weights)
                    for k, ch in enumerate(chunks) if ch]
         with mp.get_context("spawn").Pool(len(payload)) as pool_:
             res = [r for rr in pool_.map(_play_games, payload) for r in rr]
@@ -348,8 +385,16 @@ def main(argv=None):
             if v:
                 row[k] = round(float(np.mean(v)), 5)
         if osfp is not None:
+            for r in ok:
+                ck = r.get("opponent_checkpoint")
+                if ck is not None and r.get("completed"):
+                    osfp.record(int(ck), float(r["score"]))
+            # min_games is a real guard. Passing min_games=len(done) made it len(done) >=
+            # len(done), i.e. always true, disabling the sample-size condition that
+            # test_osfp_promotion_requires_both_winrate_and_sample_size exists to enforce.
             if wr is not None and osfp.should_promote(wr, len(done),
-                                                     threshold=0.55, min_games=len(done)):
+                                                     threshold=a.promote_threshold,
+                                                     min_games=a.promote_min_games):
                 osfp.add_checkpoint({k: v.detach().cpu().numpy().tolist()
                                      for k, v in net.state_dict().items()},
                                     f"{tag}_it{it}")

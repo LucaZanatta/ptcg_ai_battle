@@ -98,7 +98,7 @@ class MCGSAgent:
                                 det.opponent_prize, det.opponent_hand, det.opponent_active,
                                 manual_coin=bool(self.cfg.get("manual_coin", True)))
             search._track(st.searchId)
-            root_player = int(getattr(o, "yourIndex", 0) or 0)
+            root_player = S.MCGS._your_index(o, 0)
             root = search._make_node(st, 0, None, root_player, 0)
             if root is not None:
                 search.tt.add(root.state_abstraction, root)
