@@ -17,8 +17,16 @@ def _worker(payload):
     from cg import c021_mcgs_agent as AG
     deck = D19.archetype_decks()["mega_lucario"]
     out = []
+    provider, arm = None, None
+    if jobs and jobs[0].get("transfer_arm"):
+        from cg import c021_transfer as TR
+        arm = TR.arm_config(jobs[0]["transfer_arm"])
+        ck = jobs[0].get("byterl_checkpoint")
+        if ck and any(arm.values()):
+            provider = TR.ByteRLPriorProvider(ck)
     for ji, job in enumerate(jobs):
-        ag = AG.MCGSAgent(deck, cfg, seed=seed + ji)
+        ag = AG.MCGSAgent(deck, cfg, seed=seed + ji,
+                          prior_provider=provider, transfer_arm=arm)
         opp = T.make_fresh(job["opponent"], ce.SOURCES)
         seat = int(job["seat"])
         def mk(a):
@@ -58,6 +66,11 @@ def main(argv=None):
     ap.add_argument("--max-sims", type=int, default=0)
     ap.add_argument("--seed", type=int, default=2101)
     ap.add_argument("--tag", default="scaled")
+    ap.add_argument("--branch", default="MCGS_2019_OFFICIAL_SOURCE_PORT",
+                    choices=["MCGS_2019_OFFICIAL_SOURCE_PORT",
+                             "MCGS_2019_PTCG_LEGAL_CORRECTED"])
+    ap.add_argument("--transfer-arm", default=None)
+    ap.add_argument("--byterl-checkpoint", default=None)
     ap.add_argument("--no-manual-coin", action="store_true",
                     help="Ablation arm: random effects stay hidden inside the step, so NO chance "
                          "node can exist. Not the competitive configuration.")
@@ -68,7 +81,8 @@ def main(argv=None):
     cfg = {"first_move_seconds": a.first_move_seconds,
            "continuing_move_seconds": a.continuing_move_seconds,
            "max_simulations_per_decision": a.max_sims,
-           "manual_coin": not a.no_manual_coin}
+           "manual_coin": not a.no_manual_coin,
+           "branch": a.branch}
     full = {**AG.REFERENCE_CFG, **cfg}
     json.dump({"config": full,
                "source_constants": {"uct": G.UCT_CONSTANT, "sample_width": G.SAMPLE_WIDTH,
@@ -79,7 +93,8 @@ def main(argv=None):
                                   "as a registered MECHANICAL_ADAPTER for the PTCG cumulative "
                                   "match clock; see benchmarks/scheduling_analysis.md"},
               open(os.path.join(MC, "configs", f"{a.tag}_config.json"), "w"), indent=2)
-    jobs = [{"game_id": f"{a.tag}:g{i}", "opponent": OPPONENTS[i % 4], "seat": i % 2}
+    jobs = [{"game_id": f"{a.tag}:g{i}", "opponent": OPPONENTS[i % 4], "seat": i % 2,
+             "transfer_arm": a.transfer_arm, "byterl_checkpoint": a.byterl_checkpoint}
             for i in range(a.games)]
     chunks = [[] for _ in range(a.nproc)]
     for i, j in enumerate(jobs):
@@ -117,6 +132,8 @@ def main(argv=None):
     tot_n = sum(v[0] for v in per.values()); tot_s = sum(v[1] for v in per.values())
     summary = {"tag": a.tag, "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT", "config": full,
                "manual_coin": bool(full.get("manual_coin", True)),
+               "transfer_arm": a.transfer_arm,
+               "byterl_checkpoint": a.byterl_checkpoint,
                "chance_nodes_possible": bool(full.get("manual_coin", True)),
                "games": len(res), "completed": sum(1 for r in res if r.get("completed")),
                **{k: int(v) for k, v in agg.items()},

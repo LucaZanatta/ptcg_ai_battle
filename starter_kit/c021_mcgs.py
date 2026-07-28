@@ -66,6 +66,7 @@ class MCGS:
         self.prior_provider = prior_provider     # transfer lab only; None in the reference
         # {} means every transfer switch is off, i.e. exact source behaviour
         self.transfer_arm = dict(transfer_arm or {})
+        self.legal_corrected = (cfg.get("branch") == "MCGS_2019_PTCG_LEGAL_CORRECTED")
         self.traces: List[Dict[str, Any]] = []
 
     # ---------------------------------------------------------------- lifecycle
@@ -123,8 +124,21 @@ class MCGS:
                    random_action_type="RANDOMEFFECT" if is_random else "FALSE")
         n.action_abstraction = action
         if not terminal:
-            n.legal_options = K.canonical_options(sel)
-            n.untested_action_indices = list(range(len(n.legal_options)))
+            opts = K.canonical_options(sel)
+            if self.legal_corrected:
+                from cg import c021_mcgs_legal as LG
+                if self.cfg.get("C2_category_filter", True):
+                    opts = LG.category_filter(opts, self.stats)
+                n.legal_options = opts
+                if self.cfg.get("C1_multiselect_sets", True):
+                    n.action_sets = LG.combinations(sel, opts, self.rng, self.stats)
+                else:
+                    n.action_sets = [[i] for i in range(len(opts))]
+                n.untested_action_indices = list(range(len(n.action_sets)))
+            else:
+                n.legal_options = opts
+                n.action_sets = None
+                n.untested_action_indices = list(range(len(opts)))
         if is_random:
             self.stats["chance_nodes_created"] += 1
             k = f"chance_ctx_{ctx}"
@@ -216,12 +230,21 @@ class MCGS:
             if j < 0:
                 return None, False
             idx = node.untested_action_indices.pop(j)
-        if idx >= len(node.legal_options):
-            return None, False
-        opt = node.legal_options[idx]
         sel = getattr(node.obs, "select", None)
-        aa = AB.action_abstraction_of(opt, sel)
-        payload = self._payload(sel, opt, node.legal_options)
+        if self.legal_corrected and getattr(node, "action_sets", None):
+            if idx >= len(node.action_sets):
+                return None, False
+            from cg import c021_mcgs_legal as LG
+            combo = node.action_sets[idx]
+            opt = node.legal_options[combo[0]]
+            aa = AB.action_abstraction_of(opt, sel)
+            payload = LG.payload_for(sel, node.legal_options, combo)
+        else:
+            if idx >= len(node.legal_options):
+                return None, False
+            opt = node.legal_options[idx]
+            aa = AB.action_abstraction_of(opt, sel)
+            payload = self._payload(sel, opt, node.legal_options)
 
         self.stats["step_calls"] += 1
         try:

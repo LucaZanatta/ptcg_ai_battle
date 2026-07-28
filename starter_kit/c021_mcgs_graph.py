@@ -204,7 +204,7 @@ class Node:
                  "untested_action_indices", "legal_options", "is_transposition", "is_sample",
                  "is_finalised", "is_not_in_main_tree", "stashed_edges", "start_turn",
                  "chance_outcomes", "_cached_hash", "action_abstraction", "select_context",
-                 "random_action_type")
+                 "random_action_type", "action_sets")
 
     def __init__(self, state_abstraction: Any = None, search_id: int = -1, obs: Any = None,
                  depth: int = 0, is_opponent: bool = False, is_random: bool = False,
@@ -213,6 +213,7 @@ class Node:
                  select_context: int = -1, random_action_type: str = "FALSE"):
         self.select_context = select_context
         self.random_action_type = random_action_type
+        self.action_sets = None      # A10 branch only: multi-select combinations as actions
         self.state_abstraction = state_abstraction
         self.search_id = search_id
         self.obs = obs

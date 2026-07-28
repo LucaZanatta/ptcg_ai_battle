@@ -196,3 +196,18 @@ def test_osfp_checkpoint_buffer_is_bounded():
         o.add_checkpoint({}, f"ck{i}")
     assert len(o.checkpoints) == 3
     assert [c["label"] for c in o.checkpoints] == ["ck3", "ck4", "ck5"]
+
+
+def test_osfp_history_is_immutable_even_when_the_buffer_evicts():
+    """`checkpoints` is a bounded sampling buffer; `history` is append-only and audit-grade."""
+    o = L.OSFP(max_checkpoints=2)
+    for i in range(5):
+        o.add_checkpoint({}, f"ck{i}")
+    assert len(o.checkpoints) == 2
+    labels = [h["label"] for h in o.history_log()]
+    for i in range(5):
+        assert f"ck{i}" in labels, "a promotion vanished from the history"
+    assert [h["index"] for h in o.history_log()] == list(range(len(o.history_log())))
+    before = o.history_log()
+    o.history_log().append({"label": "tampered"})
+    assert o.history_log() == before, "history_log must hand back a copy"

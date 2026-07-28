@@ -186,6 +186,10 @@ class OSFP:
         self.G: Dict[int, float] = {}
         self.C: Dict[int, int] = {}
         self.period = 0
+        # IMMUTABLE HISTORY. `checkpoints` is a bounded SAMPLING buffer -- old entries are
+        # evicted so the meta-distribution does not go stale. `history` is append-only and is
+        # never evicted or rewritten, so the promotion record stays auditable even after the
+        # weights it refers to have left the buffer.
         self.history: List[Dict[str, Any]] = []
 
     def reset_period(self):
@@ -195,9 +199,17 @@ class OSFP:
         self.period += 1
 
     def add_checkpoint(self, state: Dict[str, Any], label: str):
-        self.checkpoints.append({"state": state, "label": label, "period": self.period})
+        entry = {"state": state, "label": label, "period": self.period}
+        self.checkpoints.append(entry)
+        self.history.append({"label": label, "period": self.period,
+                             "index": len(self.history),
+                             "payoffs": {str(i): round(self.mean_payoff(i), 4)
+                                         for i in sorted(self.C)},
+                             "period_games": int(sum(self.C.values()))})
         if len(self.checkpoints) > self.max_checkpoints:
-            self.checkpoints.pop(0)
+            evicted = self.checkpoints.pop(0)
+            self.history.append({"label": evicted["label"], "period": evicted["period"],
+                                 "index": len(self.history), "evicted_from_buffer": True})
 
     def record(self, opponent_index: int, payoff: float):
         self.G[opponent_index] = self.G.get(opponent_index, 0.0) + float(payoff)
@@ -231,8 +243,13 @@ class OSFP:
                        min_games: int = 200) -> bool:
         return games >= min_games and win_rate >= threshold
 
+    def history_log(self) -> List[Dict[str, Any]]:
+        """Append-only promotion record. Never rewritten."""
+        return [dict(h) for h in self.history]
+
     def snapshot(self) -> Dict[str, Any]:
         return {"period": self.period, "checkpoints": len(self.checkpoints),
+                "history_entries": len(self.history),
                 "period_games": int(sum(self.C.values())),
                 "mean_payoffs": {str(i): round(self.mean_payoff(i), 4) for i in self.C},
                 "distribution": [round(float(x), 4) for x in self.opponent_distribution()]}
