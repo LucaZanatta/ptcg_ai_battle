@@ -248,3 +248,45 @@ def test_opponent_nodes_are_detected_for_both_seats():
         for owner in (0, 1):
             own = S.MCGS._your_index(_Obs(owner), root)
             assert (own != root) == (owner != root)
+
+
+# ------------------------------------------------------------------ negamax frame (reproduced)
+def test_values_are_stored_in_the_movers_frame_and_best_child_does_not_negate():
+    """A reproduced SOURCE property, not a port defect. Recorded because it has consequences.
+
+    `Node.Update` negates the reward at opponent nodes, so each node's `Rewards` are in the frame
+    of the player to move there. `Node.BestChild` then takes `ArgMax(edge.Value(c))` with NO
+    negation. Mixing frames in one argmax means a child whose mover is the opponent -- in PTCG
+    and Hearthstone alike, that is the END-TURN successor -- is ranked by the negation of its
+    value to the root player.
+
+    Concretely: an end-turn line that is GOOD for the root player stores a NEGATIVE value and so
+    looks worse than a mediocre same-turn action.
+
+    `FIDELITY_RULES §5` requires reproducing the source rather than 'fixing' it, so this is
+    asserted, not corrected. Note the source's own PIMC branch adds a SECOND flip for end-turn
+    nodes (`if (IsEndTurn && NodeConfig.PIMC) reward *= -1`), which would double-negate them back
+    into the root frame -- suggestive that the authors were aware of the framing.
+    """
+    root_child_mine = G.Node(is_opponent=False)
+    root_child_opp = G.Node(is_opponent=True)
+    for n in (root_child_mine, root_child_opp):
+        n.update(1.0)                      # the SAME root-frame reward: the root player won
+    assert root_child_mine.rewards == 1.0
+    assert root_child_opp.rewards == -1.0          # stored in the opponent's frame
+    assert root_child_mine.value(0.0) > root_child_opp.value(0.0)
+
+    p = G.Node()
+    p.total_visit = 10
+    e_mine = G.Edge.connect(p, root_child_mine, 0); e_mine.visit_count = 1
+    e_opp = G.Edge.connect(p, root_child_opp, 1); e_opp.visit_count = 1
+    stats = S.new_stats()
+    best, _ = p.best_child(0.0, np.random.default_rng(0), stats)
+    # both children represent a root-player WIN, yet the opponent-mover child is ranked last
+    assert best is root_child_mine
+
+
+def test_the_second_end_turn_flip_is_gated_on_pimc_and_therefore_inactive():
+    n = G.Node(is_opponent=False, is_end_turn=True)
+    n.update(1.0)
+    assert n.rewards == 1.0, "with PIMC False the end-turn flip must not fire"
