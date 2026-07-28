@@ -249,7 +249,10 @@ def main(argv=None):
                 jobs.append({"candidate_id": c, "opponent_id": opp, "seat": g % 2,
                              "seed": a.seed + oi * 1000 + g,   # depends on pair only
                              "pair_index": g,
-                             "game_id": f"{a.tag}:{c}:{opp}:{g}"})
+                             # the SEED is part of the identity: without it a later --append
+                             # batch reuses indices 0..N and its rows REPLACE the earlier ones
+                             # instead of accumulating, silently discarding games
+                             "game_id": f"{a.tag}:{c}:{opp}:s{a.seed}:{g}"})
 
     protocol = {
         "tag": a.tag, "candidates": cands, "opponents": OPPONENTS,

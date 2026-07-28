@@ -1,8 +1,6 @@
 {
   "tag": "final",
   "candidates": [
-    "BASELINE_OFFICIAL_MEGA_LUCARIO",
-    "C020_CORRECTED_MCTS",
     "C019_PIMC_PUCT_CONTROL",
     "C019_BYTERL_CONTROL",
     "C019_HYBRID_CONTROL",
@@ -15,15 +13,13 @@
     "mega_abomasnow"
   ],
   "games_per_pair": {
-    "BASELINE_OFFICIAL_MEGA_LUCARIO": 100,
-    "C020_CORRECTED_MCTS": 100,
-    "C019_PIMC_PUCT_CONTROL": 25,
-    "C019_BYTERL_CONTROL": 25,
-    "C019_HYBRID_CONTROL": 25,
+    "C019_PIMC_PUCT_CONTROL": 50,
+    "C019_BYTERL_CONTROL": 50,
+    "C019_HYBRID_CONTROL": 50,
     "C020_H0": 50
   },
-  "total_games": 1300,
-  "frozen_at_commit": "1b4448cc950503e4583b873e87884326f475af1e",
+  "total_games": 800,
+  "frozen_at_commit": "7df4962845109d2b1424dbbd7419c8dd4164ca0b",
   "config": {
     "c020_mcts": {
       "simulations_total": 128,
