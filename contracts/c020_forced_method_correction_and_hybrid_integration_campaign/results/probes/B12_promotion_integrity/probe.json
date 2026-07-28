@@ -3,7 +3,7 @@
   "name": "promotion_integrity",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
   "checks": {
     "promotions": [
       {
@@ -42,9 +42,72 @@
         ],
         "evaluation_games": 159,
         "frozen_sha": "d9a940dd1824"
+      },
+      {
+        "lp": 4,
+        "reason": "NO_PROMOTION",
+        "win_rates": [
+          0.775,
+          0.75,
+          0.45,
+          0.55
+        ],
+        "evaluation_games": 160,
+        "frozen_sha": "5df1b640159c"
+      },
+      {
+        "lp": 5,
+        "reason": "PERFORMANCE_PROMOTION",
+        "win_rates": [
+          0.725,
+          0.7,
+          0.7,
+          0.675
+        ],
+        "evaluation_games": 160,
+        "frozen_sha": "4aa7fe31b307"
+      },
+      {
+        "lp": 6,
+        "reason": "NO_PROMOTION",
+        "win_rates": [
+          0.75,
+          0.84375,
+          0.4375,
+          0.6875,
+          0.5
+        ],
+        "evaluation_games": 160,
+        "frozen_sha": "5d9f21def012"
+      },
+      {
+        "lp": 7,
+        "reason": "PERFORMANCE_PROMOTION",
+        "win_rates": [
+          0.875,
+          0.875,
+          0.8125,
+          0.5625,
+          0.625
+        ],
+        "evaluation_games": 160,
+        "frozen_sha": "6f681c5f1ece"
       }
     ],
-    "immutability": null
+    "immutability": {
+      "historical": 6,
+      "verified": 6,
+      "mutated_or_missing": [],
+      "all_immutable": true,
+      "hashes": {
+        "0": "7a17caa50bfa4f058c91a213853c543ab96b771776b35dd11f52d52188115cc8",
+        "1": "31f04ffdb7f8c46bfaa1b38d580ba213b371ed46ef23cbe616bba0815bf89e31",
+        "2": "beb967cc75addea80157d2f593de54ca4b522f3909787986fe068e15f3a0f36d",
+        "3": "d9a940dd182467e8035b07358899ce9a69ded9f832f31cb5c8ea289373245ad1",
+        "4": "4aa7fe31b3071c454c457603973cb89c6acfca4738cf58f031a49e4a97e118de",
+        "5": "6f681c5f1ece3b7f1f07433d4b4518701c318571a4c3a0ff364b93fd1a73d10b"
+      }
+    }
   },
   "tainted_by": []
 }

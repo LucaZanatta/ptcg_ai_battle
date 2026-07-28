@@ -3,7 +3,7 @@
   "name": "evaluator_anti_reward_hacking",
   "branch": "mcts",
   "status": "PASS",
-  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
   "checks": {
     "veto_fixture": {
       "veto_reason": "unproductive_end_turn_veto",
@@ -11,8 +11,8 @@
       "c019_would_have_played": "END_TURN",
       "c019_defect": "many sampled overrides selected end turn over productive card play"
     },
-    "no_veto_field": 0.3217,
-    "with_veto_field": 0.3038
+    "no_veto_field": 0.3312,
+    "with_veto_field": 0.3312
   },
   "tainted_by": []
 }

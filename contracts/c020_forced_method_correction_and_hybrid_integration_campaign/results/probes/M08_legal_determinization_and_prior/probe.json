@@ -3,9 +3,9 @@
   "name": "legal_determinization_and_prior",
   "branch": "mcts",
   "status": "PASS",
-  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
   "checks": {
-    "determinizations_legal": 203216,
+    "determinizations_legal": 35640,
     "determinizations_rejected": 0,
     "prior": {
       "prior_version": "c020.archetype_prior.v1",
@@ -21,8 +21,8 @@
       "c019_defect": "silent dragapult default when archetype unidentified"
     },
     "sampled_sources": {
-      "identified": 3300,
-      "prior_mixture": 700
+      "prior_mixture": 684,
+      "identified": 3316
     }
   },
   "tainted_by": []

@@ -3,10 +3,19 @@
   "name": "full_source_bundle",
   "branch": "common",
   "status": "PASS",
-  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
   "checks": {
-    "hashed_files": 4176,
-    "bundles": {},
+    "hashed_files": 4528,
+    "bundles": {
+      "complete_repository_source.zip": {
+        "bytes": 1900223270,
+        "sha256": "057df18f1a3fc25b0906a415f5d3fb373663fb80688da6d7f5085352b2c000e0"
+      },
+      "c020_competition_source_bundle.zip": {
+        "bytes": 229810,
+        "sha256": "1c303fae29426aa333569149b76993c9d734342a5d21d46e0331a1bda81d31a8"
+      }
+    },
     "milestones": {
       "M00_parent": 0,
       "M01_all_corrections_implemented": 14,
@@ -17,8 +26,8 @@
       "M06_hybrid_H0_H4": 2,
       "M07_submitted_packages": 2
     },
-    "plain_inspection_files": 41,
-    "patch_bytes": 3341277
+    "plain_inspection_files": 44,
+    "patch_bytes": 41863663
   },
   "tainted_by": []
 }

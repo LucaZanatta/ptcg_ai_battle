@@ -56,7 +56,7 @@
   {
     "id": "B10",
     "name": "fresh_initialization",
-    "status": "NOT_EXERCISED",
+    "status": "PASS",
     "branch": "byterl"
   },
   {
@@ -98,7 +98,7 @@
   {
     "id": "F03",
     "name": "identity_safe_final_panel",
-    "status": "NOT_EXERCISED",
+    "status": "PASS",
     "branch": "common"
   },
   {
@@ -116,6 +116,12 @@
   {
     "id": "F06",
     "name": "full_source_bundle",
+    "status": "PASS",
+    "branch": "common"
+  },
+  {
+    "id": "F07",
+    "name": "branch_invariant_audit",
     "status": "PASS",
     "branch": "common"
   },

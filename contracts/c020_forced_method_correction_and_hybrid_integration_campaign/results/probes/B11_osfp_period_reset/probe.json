@@ -3,20 +3,28 @@
   "name": "osfp_period_reset",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "e2e371b108096b70df43997f3305d99801bceed0",
+  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
   "checks": {
-    "periods": 4,
+    "periods": 8,
     "per_period_C_totals": [
       0,
       160,
       160,
-      159
+      159,
+      160,
+      160,
+      160,
+      160
     ],
     "frozen_checkpoint_shas": [
       "",
       "31f04ffdb7f8",
       "beb967cc75ad",
-      "d9a940dd1824"
+      "d9a940dd1824",
+      "5df1b640159c",
+      "4aa7fe31b307",
+      "5d9f21def012",
+      "6f681c5f1ece"
     ],
     "period_local": true
   },

@@ -1,0 +1,79 @@
+{
+  "probe_id": "F07",
+  "name": "branch_invariant_audit",
+  "branch": "common",
+  "status": "PASS",
+  "why": "Nine mechanisms in this campaign were found INERT by asking whether a number moves in production. This audit asks the complementary question of all three branches: given that each mechanism runs, does it obey the invariants it is supposed to obey?",
+  "mcts": {
+    "baseline_action_always_in_credible_set": true,
+    "native_id_accounting": {
+      "begin": 252,
+      "step_ok": 18963,
+      "release": 19215,
+      "exact": "begin + step_ok == release; zero leaked search ids"
+    },
+    "release_errors": 0,
+    "begin_errors": 0,
+    "match_clock_within_safety_budget": true,
+    "match_search_ms": 13045.2,
+    "every_override_cleared_every_registered_threshold": true,
+    "threshold_violations": 0,
+    "infoset_key_equal_for_identical_visible_state": true,
+    "infoset_key_differs_when_legal_set_changes": true,
+    "action_visits_never_exceed_infoset_visits": true,
+    "infosets_checked": 939
+  },
+  "byterl": {
+    "self_play_actors_have_independent_recurrent_state": true,
+    "every_action_respects_min_max_cardinality": true,
+    "cardinality_violations": 0,
+    "decisions_checked": 73,
+    "only_the_first_unroll_starts_from_zero_state": true,
+    "bootstrap_value_zero_iff_terminal": true,
+    "unrolls_checked": 10,
+    "joint_logp_equals_sum_of_step_logps": true,
+    "no_option_selected_twice_in_one_multiselect": true,
+    "every_pick_drawn_from_the_legal_mask": true,
+    "historical_checkpoints_load_and_produce_finite_output": true,
+    "masked_options_carry_zero_probability": true,
+    "legal_probabilities_sum_to_one": true
+  },
+  "hybrid": {
+    "sibling_states_independent_after_clone": true,
+    "clone_is_not_aliased_to_parent": true,
+    "root_state_is_none_and_only_the_root": true,
+    "advance_produces_and_changes_state": true,
+    "depth_increments_per_advance": true,
+    "value_provider_refuses_when_unadmitted": true,
+    "value_provider_returns_in_range_when_admitted": true,
+    "h4_blend_differs_from_h2": {
+      "h2": 0.19799,
+      "h4": 0.599
+    },
+    "promotability_depends_on_the_right_adapter": true,
+    "mode_wiring_matches_the_contract_spec": {
+      "H0": {
+        "prior": false,
+        "value": false
+      },
+      "H1": {
+        "prior": true,
+        "value": false
+      },
+      "H2": {
+        "prior": false,
+        "value": true
+      },
+      "H3": {
+        "prior": true,
+        "value": true
+      },
+      "H4": {
+        "prior": true,
+        "value": true
+      }
+    }
+  },
+  "result": "31 invariants across the three branches, all holding. No new defect found by this pass -- which is a different and weaker statement than 'there are no bugs', and is worth exactly as much as the invariants chosen.",
+  "notable": "The native-id accounting is exact rather than approximate: 252 begins plus 18,963 successful steps equals 19,215 releases. A search that leaked ids would still play legal games and would still pass every gameplay check."
+}
