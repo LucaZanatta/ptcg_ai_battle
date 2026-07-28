@@ -153,6 +153,13 @@ class TestOverrideGate(unittest.TestCase):
             def __init__(self, actions):
                 self.actions = actions
         self.St, self.Root = St, Root
+        # REAL canonical keys: (select_type, select_context, option_type, fields, card, attack).
+        # These tests originally used the strings "END_TURN" and "play", which passed only
+        # because the detector substring-matched -- i.e. the test exercised the bug rather than
+        # the engine's actual key format, and went green while the veto was inert in production.
+        self.END = (0, 0, OV.OPT_END, (-1,), -1, -1)
+        self.PLAY = (1, 3, 7, (-1,), -1, -1)
+        self.ALT = (1, 3, 8, (-1,), -1, -1)
 
     def _ctx(self, **kw):
         base = {"simulations": 200, "determinizations": 4, "agreement": {}, "pivotal": False}
@@ -160,49 +167,102 @@ class TestOverrideGate(unittest.TestCase):
         return base
 
     def test_end_turn_over_productive_play_is_vetoed(self):
-        root = self.Root({"END_TURN": self.St(200, 0.95, 8), "play": self.St(5, 0.1, 8)})
-        d = self.OV.decide_override(root, "play",
-                                    self._ctx(agreement={"END_TURN": 1.0},
+        root = self.Root({self.END: self.St(200, 0.95, 8), self.PLAY: self.St(5, 0.1, 8)})
+        d = self.OV.decide_override(root, self.PLAY,
+                                    self._ctx(agreement={self.END: 1.0},
                                               baseline_productive=True))
         self.assertFalse(d.override)
         self.assertEqual(d.veto_reason, "unproductive_end_turn_veto")
 
     def test_end_turn_allowed_when_tactically_justified(self):
-        root = self.Root({"END_TURN": self.St(200, 0.95, 8), "play": self.St(5, 0.1, 8)})
-        d = self.OV.decide_override(root, "play",
-                                    self._ctx(agreement={"END_TURN": 1.0},
+        root = self.Root({self.END: self.St(200, 0.95, 8), self.PLAY: self.St(5, 0.1, 8)})
+        d = self.OV.decide_override(root, self.PLAY,
+                                    self._ctx(agreement={self.END: 1.0},
                                               baseline_productive=True,
                                               tactical_end_turn_justified=True))
         self.assertTrue(d.override)
 
     def test_thin_q_margin_retains_baseline(self):
-        root = self.Root({"alt": self.St(80, 0.90, 8), "base": self.St(20, 0.88, 8)})
-        d = self.OV.decide_override(root, "base", self._ctx(agreement={"alt": 1.0},
+        root = self.Root({self.ALT: self.St(80, 0.90, 8), self.PLAY: self.St(20, 0.88, 8)})
+        d = self.OV.decide_override(root, self.PLAY, self._ctx(agreement={self.ALT: 1.0},
                                                             baseline_productive=True))
         self.assertFalse(d.override)
         self.assertEqual(d.veto_reason, "q_margin")
 
     def test_determinization_disagreement_retains_baseline(self):
-        root = self.Root({"alt": self.St(80, 0.95, 8), "base": self.St(20, 0.10, 8)})
-        d = self.OV.decide_override(root, "base", self._ctx(agreement={"alt": 0.25},
+        root = self.Root({self.ALT: self.St(80, 0.95, 8), self.PLAY: self.St(20, 0.10, 8)})
+        d = self.OV.decide_override(root, self.PLAY, self._ctx(agreement={self.ALT: 0.25},
                                                             baseline_productive=True))
         self.assertFalse(d.override)
         self.assertEqual(d.veto_reason, "determinization_disagreement")
 
     def test_rarely_available_candidate_retains_baseline(self):
-        root = self.Root({"alt": self.St(80, 0.95, 1), "base": self.St(20, 0.10, 8)})
-        d = self.OV.decide_override(root, "base", self._ctx(agreement={"alt": 1.0},
+        root = self.Root({self.ALT: self.St(80, 0.95, 1), self.PLAY: self.St(20, 0.10, 8)})
+        d = self.OV.decide_override(root, self.PLAY, self._ctx(agreement={self.ALT: 1.0},
                                                             baseline_productive=True))
         self.assertFalse(d.override)
         self.assertEqual(d.veto_reason, "candidate_rarely_available")
 
     def test_a_clearly_better_candidate_does_override(self):
         """The gate must be conservative, not inert. A gate that never fires is not a gate."""
-        root = self.Root({"alt": self.St(80, 0.95, 8), "base": self.St(20, 0.10, 8)})
-        d = self.OV.decide_override(root, "base", self._ctx(agreement={"alt": 1.0},
+        root = self.Root({self.ALT: self.St(80, 0.95, 8), self.PLAY: self.St(20, 0.10, 8)})
+        d = self.OV.decide_override(root, self.PLAY, self._ctx(agreement={self.ALT: 1.0},
                                                             baseline_productive=True))
         self.assertTrue(d.override)
         self.assertIsNone(d.veto_reason)
+
+
+class TestStructuralActionTyping(unittest.TestCase):
+    """A6/A8 — end-turn and attack must be recognised STRUCTURALLY.
+
+    The first version substring-matched "end"/"pass" against str(action_key). The key is a tuple
+    of integers, so it never matched: the mandatory end-turn veto was inert and the leaf features
+    productive_attack and unproductive_end_turn sat at zero across 36,000 sampled leaves.
+    """
+
+    def setUp(self):
+        from cg import c020_override as OV
+        self.OV = OV
+        # (select_type, select_context, option_type, fields, card_id, attack_id)
+        self.k_end = (0, 0, OV.OPT_END, (-1,), -1, -1)
+        self.k_attack = (6, 35, OV.OPT_ATTACK, (-1,), -1, -1)
+        self.k_play = (1, 3, 7, (-1,), -1, -1)
+
+    def test_end_turn_is_detected_from_option_type(self):
+        self.assertTrue(self.OV.looks_like_end_turn(self.k_end))
+        self.assertFalse(self.OV.looks_like_end_turn(self.k_attack))
+        self.assertFalse(self.OV.looks_like_end_turn(self.k_play))
+
+    def test_a_key_of_integers_would_defeat_substring_matching(self):
+        """The negative control: the old approach cannot work on this key."""
+        s = str(self.k_end).lower()
+        for hint in ("end", "pass", "finish"):
+            self.assertNotIn(hint, s)
+
+    def test_attack_is_detected_from_option_type(self):
+        self.assertTrue(self.OV.looks_like_attack(self.k_attack))
+        self.assertFalse(self.OV.looks_like_attack(self.k_end))
+
+    def test_productive_covers_the_acting_option_types(self):
+        for t in (7, 8, 9, 10, 12, 13):
+            self.assertTrue(self.OV.is_productive((1, 1, t, (-1,), -1, -1)))
+        self.assertFalse(self.OV.is_productive(self.k_end))
+
+    def test_veto_fires_on_a_structurally_typed_end_turn(self):
+        class St:
+            def __init__(self, n, q, av):
+                self.n, self.q, self.availability = n, q, av
+
+        class Root:
+            def __init__(self, a):
+                self.actions = a
+        root = Root({self.k_end: St(200, 0.95, 8), self.k_play: St(5, 0.1, 8)})
+        d = self.OV.decide_override(root, self.k_play,
+                                    {"simulations": 200, "determinizations": 4,
+                                     "agreement": {self.k_end: 1.0},
+                                     "baseline_productive": True})
+        self.assertFalse(d.override)
+        self.assertEqual(d.veto_reason, "unproductive_end_turn_veto")
 
 
 class TestOptionReferenceResolution(unittest.TestCase):

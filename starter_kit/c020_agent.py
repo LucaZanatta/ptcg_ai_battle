@@ -247,7 +247,9 @@ class CorrectedMCTSAgent:
         for k in set(prefs):
             agree[k] = prefs.count(k) / max(1, len(prefs))
 
-        baseline_productive = base_key is not None and not OV.looks_like_end_turn(
+        # "productive" means the baseline is doing something, read from the engine's OptionType
+        # (PLAY/ATTACH/EVOLVE/ABILITY/RETREAT/ATTACK) rather than by not-looking-like-end-turn
+        baseline_productive = base_key is not None and OV.is_productive(
             base_key, next((o for o in opts if o.key() == base_key), None))
         ctx = {
             "simulations": sum(a.n for a in shared.actions.values()),

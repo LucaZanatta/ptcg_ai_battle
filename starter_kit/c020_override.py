@@ -39,7 +39,13 @@ THRESHOLDS: Dict[str, float] = {
 }
 THRESHOLDS_VERSION = "c020.override.v2"
 
-END_TURN_HINTS = ("end", "endturn", "end_turn", "pass", "finish")
+# cg.api.OptionType. The canonical key is
+# (select_type, select_context, option_type, fields, card_id, attack_id), so the option type is
+# readable from the key itself -- which is what the gate is handed.
+OPT_END = 14
+OPT_ATTACK = 13
+OPT_PRODUCTIVE = {7, 8, 9, 10, 12, 13}     # PLAY, ATTACH, EVOLVE, ABILITY, RETREAT, ATTACK
+KEY_OPTION_TYPE_POS = 2
 
 
 @dataclass
@@ -74,16 +80,38 @@ class OverrideDecision:
                 "thresholds_version": self.thresholds_version}
 
 
+def option_type_of(action_key, option=None) -> int:
+    """The engine's OptionType for an action, read structurally."""
+    t = getattr(option, "option_type", None)
+    if isinstance(t, int):
+        return t
+    if isinstance(action_key, (list, tuple)) and len(action_key) > KEY_OPTION_TYPE_POS:
+        v = action_key[KEY_OPTION_TYPE_POS]
+        if isinstance(v, int):
+            return v
+    return -1
+
+
 def looks_like_end_turn(action_key, option=None) -> bool:
-    """Recognise an end-turn action from its canonical key or option metadata."""
-    s = str(action_key).lower()
-    if any(h in s for h in END_TURN_HINTS):
-        return True
-    for attr in ("name", "text", "label"):
-        v = str(getattr(option, attr, "") or "").lower()
-        if v and any(h in v for h in END_TURN_HINTS):
-            return True
-    return False
+    """Recognise an end-turn action STRUCTURALLY.
+
+    The first version substring-matched "end"/"pass"/"finish" against `str(action_key)`. The key
+    is a tuple of integers and `CanonicalOption` carries no name or text, so the match never
+    succeeded and this function returned False for every action ever passed to it -- which made
+    the MANDATORY end-turn veto (A8, the correction aimed squarely at audit #4) inert, and left
+    the leaf features `productive_attack` and `unproductive_end_turn` at zero across 36,000
+    sampled leaves.
+    """
+    return option_type_of(action_key, option) == OPT_END
+
+
+def looks_like_attack(action_key, option=None) -> bool:
+    return option_type_of(action_key, option) == OPT_ATTACK
+
+
+def is_productive(action_key, option=None) -> bool:
+    """A baseline action that DOES something, as opposed to ending the turn."""
+    return option_type_of(action_key, option) in OPT_PRODUCTIVE
 
 
 def decide_override(root_stats, baseline_action, context: Dict[str, Any],
