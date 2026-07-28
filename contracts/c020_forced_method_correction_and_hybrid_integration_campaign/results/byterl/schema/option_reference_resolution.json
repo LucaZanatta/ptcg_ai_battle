@@ -1,0 +1,62 @@
+{
+  "games": 8,
+  "options": 4105,
+  "any_reference_pct": 55.23,
+  "source_pct": 13.28,
+  "target_pct": 39.9,
+  "hand_pct": 41.75,
+  "card_id_pct": 41.95,
+  "attack_id_pct": 5.92,
+  "encode_errors": 0,
+  "by_select_context": {
+    "-1": {
+      "options": 3233,
+      "with_reference_pct": 59.3
+    },
+    "7": {
+      "options": 447,
+      "with_reference_pct": 0.0
+    },
+    "21": {
+      "options": 140,
+      "with_reference_pct": 100.0
+    },
+    "3": {
+      "options": 78,
+      "with_reference_pct": 100.0
+    },
+    "8": {
+      "options": 64,
+      "with_reference_pct": 100.0
+    },
+    "22": {
+      "options": 50,
+      "with_reference_pct": 0.0
+    },
+    "4": {
+      "options": 36,
+      "with_reference_pct": 100.0
+    },
+    "1": {
+      "options": 13,
+      "with_reference_pct": 100.0
+    },
+    "30": {
+      "options": 11,
+      "with_reference_pct": 100.0
+    },
+    "43": {
+      "options": 10,
+      "with_reference_pct": 0.0
+    },
+    "41": {
+      "options": 8,
+      "with_reference_pct": 0.0
+    },
+    "38": {
+      "options": 8,
+      "with_reference_pct": 0.0
+    }
+  },
+  "note": "100% is the wrong target -- end turn, pass and deck/prize selections reference no board or hand object. A rate of 0 means the resolver is inert, which is what it was until audited (failures/DEFECT_option_object_references_were_inert_during_training.md)."
+}

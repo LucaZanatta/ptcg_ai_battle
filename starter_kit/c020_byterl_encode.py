@@ -190,45 +190,86 @@ def _board_list(view) -> List[Tuple[Optional[Any], bool, bool, int]]:
     return out
 
 
-def build_option_refs(sel, view, board) -> List[OptionRef]:
-    """Resolve each canonical option to the board/hand objects it references (B2)."""
+# Positions of the fields we resolve, inside CanonicalOption.fields (c019_core.OPTION_FIELDS).
+# Read by NAME here rather than by literal index so a reordering of OPTION_FIELDS cannot silently
+# repoint them at the wrong values.
+_F = {n: i for i, n in enumerate(K.OPTION_FIELDS)}
+
+# cg.api.AreaType
+AREA_ACTIVE, AREA_BENCH, AREA_HAND, AREA_DISCARD = 4, 5, 2, 3
+
+
+def _slot_index(area: int, idx: int, player_is_mine: bool) -> int:
+    """Board-token index for (area, index, owner). Layout is fixed by `_board_list`:
+
+        0                = our active
+        1..5             = our bench 1..5
+        6                = opponent active
+        7..11            = opponent bench 1..5
+    """
+    base = 0 if player_is_mine else (1 + BENCH_SLOTS)
+    if area == AREA_ACTIVE:
+        return base
+    if area == AREA_BENCH:
+        if 0 <= idx < BENCH_SLOTS:
+            return base + 1 + idx
+    return -1
+
+
+def build_option_refs(sel, view, board, your_index: Optional[int] = None) -> List[OptionRef]:
+    """Resolve each canonical option to the board/hand objects it references (B2).
+
+    The engine gives this structurally -- `area`, `index`, `playerIndex`, `inPlayArea`,
+    `inPlayIndex`, `cardId`, `attackId` -- so it is read directly. An earlier version scraped
+    integers out of the canonical key's top level and resolved 0 of 556 options, because the
+    key nests those values inside a tuple that an `isinstance(x, int)` filter skips. The mechanism
+    existed and was inert, which is exactly the failure mode
+    `references/C019_AUDIT_FINDINGS.md` #17 warns about.
+    """
     opts = K.canonical_options(sel)
     hand = view.my_hand()
     hand_ids = [int(getattr(c, "id", -1) or -1) for c in hand]
-    refs = []
-    st = int(getattr(sel, "selectType", -1) or -1)
+    me = int(your_index if your_index is not None else getattr(view, "_yi", 0) or 0)
+
+    st = int(getattr(sel, "selectType", None) or getattr(sel, "type", -1) or -1)
     ctx = int(getattr(sel, "context", -1) or -1)
     mn = int(getattr(sel, "minCount", 0) or 0)
     mx = int(getattr(sel, "maxCount", 1) or 1)
+
+    refs = []
     for o in opts:
-        r = OptionRef(option_index=int(o.option_index), key=o.key(), select_type=st, context=ctx,
-                      remaining=max(mn, mx))
-        raw = getattr(o, "raw", None) or {}
-        # canonical key layout carries the engine's own reference ids
-        kk = list(o.key()) if isinstance(o.key(), (list, tuple)) else []
-        nums = [int(x) for x in kk if isinstance(x, int)]
-        # hand card
-        for hi, hid in enumerate(hand_ids):
-            if hid >= 0 and hid in nums:
-                r.hand_index, r.card_id = hi, hid
-                break
-        # board source/target by card id present among the option numbers
-        for bi, (pk, _mine, _act, _slot) in enumerate(board):
-            if pk is None:
-                continue
-            pid = int(getattr(pk, "id", -1) or -1)
-            if pid >= 0 and pid in nums:
-                if r.source_index < 0:
-                    r.source_index = bi
-                elif r.target_index < 0 and bi != r.source_index:
-                    r.target_index = bi
-        # attack id, if the option names one this Pokemon owns
-        if r.source_index >= 0 and board[r.source_index][0] is not None:
-            for a in CD.attacks_of(board[r.source_index][0]):
-                aid = int(getattr(a, "attackId", -1) or -1)
-                if aid in nums:
-                    r.attack_id = aid
-                    break
+        f = o.fields
+        def fld(name, default=-1):
+            i = _F.get(name)
+            return int(f[i]) if (i is not None and i < len(f)) else default
+
+        area = fld("area")
+        idx = fld("index")
+        owner = fld("playerIndex")
+        in_area = fld("inPlayArea")
+        in_idx = fld("inPlayIndex")
+        mine = (owner < 0) or (owner == me)
+
+        r = OptionRef(option_index=int(o.option_index), key=o.key(), select_type=st,
+                      context=ctx, remaining=max(mn, mx),
+                      card_id=int(o.referenced_card_id or -1),
+                      attack_id=int(o.referenced_attack_id or -1),
+                      ordinal=0)
+        # SOURCE: where the option acts FROM -- a hand card, or a board slot
+        if area == AREA_HAND and idx >= 0:
+            r.hand_index = idx if idx < N_HAND else -1
+            if r.card_id < 0 and 0 <= idx < len(hand_ids):
+                r.card_id = hand_ids[idx]
+        else:
+            r.source_index = _slot_index(area, idx, mine)
+        # TARGET: the in-play object the option acts ON
+        if in_area >= 0:
+            r.target_index = _slot_index(in_area, in_idx, mine)
+        # an attack names its own attacker when no explicit source was given
+        if r.source_index < 0 and r.attack_id >= 0:
+            r.source_index = _slot_index(AREA_ACTIVE, 0, True)
+        # energy type, when the option names one
+        r.energy_type = fld("energyIndex")
         refs.append(r)
     return refs
 
@@ -284,7 +325,8 @@ def encode(observation, your_index: Optional[int] = None) -> Dict[str, np.ndarra
     g[15] = sum(1 for p, _m, _a, _s in board[1 + BENCH_SLOTS:] if p is not None) / 6.0
 
     sel = getattr(observation, "select", None)
-    refs = build_option_refs(sel, v, board) if sel is not None else []
+    refs = (build_option_refs(sel, v, board, getattr(v, '_yi', None))
+            if sel is not None else [])
     n_opt = min(len(refs), N_OPT)
     ot = np.zeros((N_OPT, OPT_DIM), dtype=np.float32)
     src = np.full(N_OPT, BOARD_SLOTS, dtype=np.int64)      # BOARD_SLOTS = learned null token
@@ -316,7 +358,7 @@ def option_refs(observation, your_index: Optional[int] = None) -> List[OptionRef
     sel = getattr(observation, "select", None)
     if sel is None:
         return []
-    return build_option_refs(sel, v, _board_list(v))
+    return build_option_refs(sel, v, _board_list(v), getattr(v, "_yi", None))
 
 
 def schema() -> Dict[str, Any]:

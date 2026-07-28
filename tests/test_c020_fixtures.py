@@ -205,6 +205,47 @@ class TestOverrideGate(unittest.TestCase):
         self.assertIsNone(d.veto_reason)
 
 
+class TestOptionReferenceResolution(unittest.TestCase):
+    """B2 — the resolver must read STRUCTURED fields, not scrape the canonical key.
+
+    The scraping version resolved 0 of 556 options because the references live inside a nested
+    tuple that an isinstance(x, int) filter skips, and it passed every source-level check.
+    """
+
+    def setUp(self):
+        from cg import c020_byterl_encode as E
+        from cg import c019_core as K
+        self.E, self.K = E, K
+
+    def test_field_positions_are_resolved_by_name(self):
+        for name in ("area", "index", "playerIndex", "inPlayArea", "inPlayIndex",
+                     "energyIndex"):
+            self.assertIn(name, self.E._F)
+            self.assertEqual(self.E._F[name], self.K.OPTION_FIELDS.index(name))
+
+    def test_slot_mapping_matches_the_board_layout(self):
+        E = self.E
+        self.assertEqual(E._slot_index(E.AREA_ACTIVE, 0, True), 0)
+        self.assertEqual(E._slot_index(E.AREA_BENCH, 0, True), 1)
+        self.assertEqual(E._slot_index(E.AREA_BENCH, 4, True), 5)
+        self.assertEqual(E._slot_index(E.AREA_ACTIVE, 0, False), 6)
+        self.assertEqual(E._slot_index(E.AREA_BENCH, 0, False), 7)
+        self.assertEqual(E._slot_index(E.AREA_BENCH, 4, False), 11)
+
+    def test_out_of_range_bench_slot_is_not_resolved(self):
+        E = self.E
+        self.assertEqual(E._slot_index(E.AREA_BENCH, 9, True), -1)
+        self.assertEqual(E._slot_index(E.AREA_HAND, 0, True), -1)
+
+    def test_every_board_slot_is_reachable_and_distinct(self):
+        E = self.E
+        slots = {E._slot_index(a, i, m)
+                 for m in (True, False)
+                 for a, i in [(E.AREA_ACTIVE, 0)] + [(E.AREA_BENCH, k)
+                                                     for k in range(E.BENCH_SLOTS)]}
+        self.assertEqual(slots, set(range(E.BOARD_SLOTS)))
+
+
 class TestSelectPayloadCardinality(unittest.TestCase):
     """R1 and its live-play twin: a payload must satisfy minCount..maxCount."""
 
