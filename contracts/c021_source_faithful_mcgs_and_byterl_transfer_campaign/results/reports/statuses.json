@@ -62,7 +62,9 @@
     "byterl_runs": [
       "ctrl_b0",
       "ctrl_b1",
-      "ctrl_b1_5"
+      "ctrl_b1_5",
+      "ctrl_b2",
+      "ctrl_b3"
     ],
     "no_step_errors_and_no_coin_ucb_selection": true
   },
@@ -79,7 +81,7 @@
     "note": "A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an implementation failure (DECISION_RULES \u00a71)."
   },
   "BYTERL_METHOD": {
-    "status": "PASS",
+    "status": "PARTIAL",
     "semantic_checks": {
       "BYTERL_AUTOREGRESSIVE_MULTISELECT": "PASS",
       "BYTERL_FRESH_RANDOM_WEIGHTS": "PASS",
@@ -94,7 +96,9 @@
     "rungs_run": [
       "b0",
       "b1",
-      "b1_5"
+      "b1_5",
+      "b2",
+      "b3"
     ],
     "training_runs_with_weight_updates": [
       {
@@ -120,16 +124,34 @@
         "first_win_rate": 0.0312,
         "last_win_rate": 0.0312,
         "best_win_rate": 0.0938
+      },
+      {
+        "run": "ctrl_b2",
+        "updates": 1280,
+        "iterations": 20,
+        "first_win_rate": 0.0312,
+        "last_win_rate": 0.0156,
+        "best_win_rate": 0.1094
+      },
+      {
+        "run": "ctrl_b3",
+        "updates": 1280,
+        "iterations": 20,
+        "first_win_rate": 0.4219,
+        "last_win_rate": 0.4531,
+        "best_win_rate": 0.6484
       }
     ],
     "end_to_end_construction_and_battle": true,
-    "reasons": [],
+    "reasons": [
+      "actor-learner execution is synchronous, not the papers' decoupled recurrent actor-learner (declared deviation against a named requirement)"
+    ],
     "declared_deviation": "Actor-learner execution is SYNCHRONOUS (actors fill a batch, then the learner updates), not the papers' decoupled recurrent actor-learner. The algorithm is unchanged; the execution topology is not the published one, and this is a declared deviation rather than a claimed reproduction.",
     "unresolved_choices": "results/fidelity/UNRESOLVED_REFERENCE_CHOICES.md"
   },
   "BYTERL_SCALE": {
     "status": "COMPUTE_LIMITED",
-    "total_games_played": 6208,
+    "total_games_played": 8768,
     "paper_reference": "distributed fleet, millions of games, days of wall clock",
     "achieved_fraction_note": "Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.",
     "permitted_reductions_only": [
@@ -163,5 +185,5 @@
     "both_methods_implemented_and_executed": true,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-28T23:53:47"
+  "generated": "2026-07-29T00:00:00"
 }

@@ -129,6 +129,10 @@ def main(argv=None):
     for name, s in mcgs.items():
         if name.startswith(("a4_", "legal_smoke", "smoke")):
             continue
+        if s.get("SUPERSEDED"):
+            continue          # pre-COIN_HEAD runs are diagnostic only, never a competitive read
+        if not s.get("manual_coin_contexts_are_coin_head_only", True):
+            continue
         fs = s.get("field_score")
         if fs is not None and (best_mcgs is None or fs > best_mcgs):
             best_mcgs, best_name = fs, name
@@ -168,6 +172,11 @@ def main(argv=None):
     e2e = any((manifests.get(m) or {}).get("reductions", {}).get("learn_construction")
               for m in manifests)
     bm_reasons = []
+    # DECISION_RULES §2 names "recurrent actor-learner execution". The implementation is
+    # synchronous. That is a declared deviation against a named requirement, so the status is
+    # PARTIAL -- a caveat in a field the reader may skip is not the same as a downgraded status.
+    bm_reasons.append("actor-learner execution is synchronous, not the papers' decoupled "
+                      "recurrent actor-learner (declared deviation against a named requirement)")
     if not byterl_all:
         bm_reasons.append("a ByteRL semantic check did not detect its defect")
     if not weights_changed:

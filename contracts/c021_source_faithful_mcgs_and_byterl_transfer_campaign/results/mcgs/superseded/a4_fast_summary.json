@@ -80,5 +80,7 @@
     }
   },
   "field_score": 0.5,
-  "wall_clock_s": 14.7
+  "wall_clock_s": 14.7,
+  "SUPERSEDED": true,
+  "superseded_reason": "Run predates the COIN_HEAD correction: MANUAL_COIN_CONTEXTS held {4,5,46}, so SelectContext.TO_ACTIVE and TO_BENCH were treated as chance nodes and the search SAMPLED its own Pokemon placement instead of optimising it. Diagnostic value only -- never a competitive, conformance or A4 runtime read. In particular the '210 chance nodes' reading came almost entirely from these mismarked decision nodes."
 }

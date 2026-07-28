@@ -132,6 +132,9 @@ def main(argv=None):
     tot_n = sum(v[0] for v in per.values()); tot_s = sum(v[1] for v in per.values())
     summary = {"tag": a.tag, "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT", "config": full,
                "manual_coin": bool(full.get("manual_coin", True)),
+               "manual_coin_contexts": sorted(G.MANUAL_COIN_CONTEXTS),
+               "manual_coin_contexts_are_coin_head_only":
+                   sorted(G.MANUAL_COIN_CONTEXTS) == [G.COIN_HEAD_CONTEXT],
                "transfer_arm": a.transfer_arm,
                "byterl_checkpoint": a.byterl_checkpoint,
                "chance_nodes_possible": bool(full.get("manual_coin", True)),
