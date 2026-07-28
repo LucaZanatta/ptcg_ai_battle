@@ -109,8 +109,9 @@
     "requirement": "the final panel runs with torch.set_num_threads(1) per worker, a FIXED nproc, and no other c020 job executing concurrently",
     "why": "measurements were found to depend on machine load. Contention is charged against each agent's per-decision wall-clock budget, so a search-based candidate completes fewer simulations under load -- which INVERTS the ranking for a candidate whose search is harmful. The c019 hybrid control measured 0.605 under load against 0.111 measured sequentially across three seed families, a 49-point artifact.",
     "evidence": "failures/DEFECT_panel_results_depended_on_machine_load.md",
-    "nproc_for_final_panel": 12,
-    "concurrent_jobs_permitted": 0
+    "nproc_for_final_panel": 16,
+    "concurrent_jobs_permitted": 0,
+    "nproc_rationale": "Registered at 16 BEFORE any final-panel result exists. With torch.set_num_threads(1) each worker is one thread, so 16 workers on 24 cores leaves the machine under-subscribed -- which is the condition that matters, not the worker count itself. 12 was chosen before the thread pinning fix, when each worker could spawn a full pool; that reason no longer applies."
   },
   "variance_note_revised": {
     "earlier_claim": "the frozen baseline measured 0.525/0.595/0.5525 across three 400-game panels, sd 0.035, attributed to unpaired environment randomness",
