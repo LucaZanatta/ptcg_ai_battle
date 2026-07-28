@@ -191,3 +191,39 @@ is recorded instead: a faithful information-set MCTS with a tactical evaluator, 
 stateful scripted baseline, does not improve it by overriding it.
 
 No second repair cycle was opened for this.
+
+
+## Part 5 — the override ablation, re-measured with a veto that actually fires
+
+The M09 numbers reported before `failures/DEFECT_end_turn_veto_and_line_features_were_inert.md`
+compared veto-INERT against veto-disabled — the same configuration twice. Re-measured with the
+structural detector in place:
+
+| arm | field | overrides | rate |
+|---|---|---|---|
+| overrides disabled (A) | 0.5583 | 0 / 7,243 | 0% |
+| overrides disabled (B, replication) | 0.5083 | 0 / 7,227 | 0% |
+| overrides on, **veto ON** | 0.3063 | 720 / 8,826 | 8.16% |
+| overrides on, veto OFF | 0.3312 | 769 / 8,910 | 8.63% |
+
+Two findings, and the second is the one the contract asked for.
+
+**Overriding costs about 21 field points.** Pooled over 240 games the disabled arms give ~0.533
+against a baseline measured at 0.525-0.595; the override-enabled arms sit at 0.306-0.331. This
+survives every correction the campaign made to the search.
+
+**The mandatory conservative veto does not help.** Now that it genuinely fires, it blocks 49 of
+769 overrides — a 5.5% relative reduction — and the field score does not improve
+(0.3063 with, 0.3312 without, on 160 games each, a difference well inside the Wilson interval at
+that sample size). `MANDATORY_CHANGES A8` requires the veto and it is implemented and exercised;
+what it does not do is recover the loss that overriding causes.
+
+The reason is visible in the rate: the end-turn veto targets one specific bad override, and the
+damage is spread across overrides generally. c018 measured the same thing from the other
+direction — random overrides at the same rate reproduced the loss almost exactly (0.192 versus
+0.210 for real search, against 0.596 for never overriding). The problem is not which action the
+search substitutes; it is substituting at all into a stateful scripted agent whose plan assumes
+its own previous recommendations were executed.
+
+No threshold was re-tuned in response to these numbers. Doing so would be tuning against the
+outcome, and the conclusion would converge on the overrides-disabled arm that is already measured.
