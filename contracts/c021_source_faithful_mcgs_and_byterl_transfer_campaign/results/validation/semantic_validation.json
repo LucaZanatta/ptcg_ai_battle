@@ -1,0 +1,180 @@
+{
+  "generated": "2026-07-28T23:45:06",
+  "total": 17,
+  "passed": 17,
+  "inert": [],
+  "failed": [],
+  "all_checks_detect_their_defect": true,
+  "checks": [
+    {
+      "id": "MCGS_UCB1_NOT_PUCT",
+      "origin": "c020 substituted PUCT for the source's UCB1",
+      "description": "Edge.Value must be Q + c*sqrt(2 ln N / n) with no prior term",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_UCD_USES_TOTAL_VISIT",
+      "origin": "source Edge.Value divides by Predecessor.TotalVisit",
+      "description": "under UCD the exploration term uses TotalVisit, not the predecessor's own VisitCount",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_UCD_DEFAULT_IS_INERT",
+      "origin": "FIDELITY_RULES \u00a75: reproduce, do not 'fix'",
+      "description": "at the source default (1, 0) RecursiveUpdate must do nothing",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_DAMPED_SAMPLING",
+      "origin": "c021 port bug 3: damping keyed on depth, not samples traversed",
+      "description": "ReduceFunction must divide SampleWidth by DampingParameter^numSampleTraversed",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_A4_COIN_NEVER_UCB_SELECTED",
+      "origin": "A4: a searched coin flip makes the agent clairvoyant",
+      "description": "manual-coin contexts must be sampled, never chosen by UCB, and the counter must fire",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_YOURINDEX_THROUGH_CURRENT",
+      "origin": "c021: is_opponent was False for every node, so the search assumed a cooperating opponent",
+      "description": "yourIndex must be read from observation.current, not the top level",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_DUMMY_EDGE_LOSES_TO_TWIN",
+      "origin": "transposition: a dummy edge must not outrank its twin",
+      "description": "setting IsDummy must park VisitCount so the twin keeps the larger exploration bonus",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "DECK_ENERGY_CAP_IS_STRUCTURAL",
+      "origin": "c021: 'energy' in name classified Energy Retrieval (a Trainer) as uncapped",
+      "description": "only cardType 5 with no skills is exempt from the 4-copy limit",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "DECK_ACE_SPEC_CATEGORY_LIMIT",
+      "origin": "c021: the engine returned INVALID for every generated deck",
+      "description": "at most ONE ACE SPEC card in total, across the whole category",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "BYTERL_MASK_INSIDE_DISTRIBUTION",
+      "origin": "masking after sampling leaves probability mass on illegal actions",
+      "description": "illegal options must carry exactly zero probability",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "BYTERL_AUTOREGRESSIVE_MULTISELECT",
+      "origin": "c019/c020 scored a k-element select as a single pick, biasing every V-trace ratio",
+      "description": "the joint log-probability must be the sum of per-element conditionals",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "BYTERL_VTRACE_CLIPS",
+      "origin": "V-trace without rho-bar/c-bar clipping is not V-trace",
+      "description": "importance ratios must be clipped at rho_bar and c_bar",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "BYTERL_UPGO_CUTS_TO_BASELINE",
+      "origin": "UPGO that always follows the trajectory is plain Monte-Carlo",
+      "description": "the return must bootstrap from V when the one-step return underperforms it",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "BYTERL_OSFP_PERIOD_LOCAL",
+      "origin": "c019/c020 accumulated OSFP payoffs globally across all periods",
+      "description": "G and C must be cleared at each promotion",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "BYTERL_OSFP_PROMOTION_GUARD",
+      "origin": "c021: min_games was passed len(done), making the guard always true",
+      "description": "promotion needs both a win-rate threshold and a real sample-size floor",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "BYTERL_FRESH_RANDOM_WEIGHTS",
+      "origin": "B1/B3: ByteRL must start from fresh random weights, seeded reproducibly",
+      "description": "the same seed must reproduce weights and different seeds must not",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    },
+    {
+      "id": "MCGS_PIMC_STAYS_FALSE",
+      "origin": "PIMC also gates a reward sign flip, Node.Finalise and the END_TURN expansion path",
+      "description": "the port runs the !PIMC configuration",
+      "clean_pass": true,
+      "injected_pass": false,
+      "detects_defect": true,
+      "inert": false,
+      "status": "PASS"
+    }
+  ]
+}

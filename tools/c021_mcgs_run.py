@@ -58,13 +58,17 @@ def main(argv=None):
     ap.add_argument("--max-sims", type=int, default=0)
     ap.add_argument("--seed", type=int, default=2101)
     ap.add_argument("--tag", default="scaled")
+    ap.add_argument("--no-manual-coin", action="store_true",
+                    help="Ablation arm: random effects stay hidden inside the step, so NO chance "
+                         "node can exist. Not the competitive configuration.")
     a = ap.parse_args(argv)
     for d in ("configs", "graph_traces", "raw_games", "evaluations", "latency", "fixtures"):
         os.makedirs(os.path.join(MC, d), exist_ok=True)
     from cg import c021_mcgs_agent as AG, c021_mcgs_graph as G
     cfg = {"first_move_seconds": a.first_move_seconds,
            "continuing_move_seconds": a.continuing_move_seconds,
-           "max_simulations_per_decision": a.max_sims}
+           "max_simulations_per_decision": a.max_sims,
+           "manual_coin": not a.no_manual_coin}
     full = {**AG.REFERENCE_CFG, **cfg}
     json.dump({"config": full,
                "source_constants": {"uct": G.UCT_CONSTANT, "sample_width": G.SAMPLE_WIDTH,
@@ -112,6 +116,8 @@ def main(argv=None):
     json.dump(lat, open(os.path.join(MC, "latency", f"{a.tag}_latency.json"), "w"), indent=2)
     tot_n = sum(v[0] for v in per.values()); tot_s = sum(v[1] for v in per.values())
     summary = {"tag": a.tag, "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT", "config": full,
+               "manual_coin": bool(full.get("manual_coin", True)),
+               "chance_nodes_possible": bool(full.get("manual_coin", True)),
                "games": len(res), "completed": sum(1 for r in res if r.get("completed")),
                **{k: int(v) for k, v in agg.items()},
                **{f"max_{k}": v for k, v in maxes.items()},
