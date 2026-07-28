@@ -48,13 +48,15 @@ class MCGSAgent:
     """Plays one seat with the source-faithful graph search."""
 
     def __init__(self, deck: List[int], cfg: Optional[Dict[str, Any]] = None, seed: int = 0,
-                 prior_provider=None, mode: str = "MCGS_2019_OFFICIAL_SOURCE_PORT"):
+                 prior_provider=None, mode: str = "MCGS_2019_OFFICIAL_SOURCE_PORT",
+                 transfer_arm: Optional[Dict[str, bool]] = None):
         self.deck = list(deck)
         self.cfg = {**REFERENCE_CFG, **(cfg or {})}
         self.rng = np.random.default_rng(seed)
         self.stats = S.new_stats()
         self.mode = mode
         self.prior_provider = prior_provider
+        self.transfer_arm = dict(transfer_arm or {})
         self.decision_index = 0
         self.match_search_ms = 0.0
         self.decisions_log: List[Dict[str, Any]] = []
@@ -83,7 +85,8 @@ class MCGSAgent:
         t0 = time.monotonic()
         budget = self._budget_seconds()
         deadline = t0 + budget
-        search = S.MCGS(A, self.cfg, self.stats, self.rng, self.prior_provider)
+        search = S.MCGS(A, self.cfg, self.stats, self.rng, self.prior_provider,
+                        self.transfer_arm)
         chosen = None
         try:
             o = A.to_observation_class(obs_dict)
@@ -153,6 +156,7 @@ class MCGSAgent:
             s["searches"] / max(1, s["searched_decisions"]), 1)
         s["steps_per_decision"] = round(
             s["step_calls"] / max(1, s["searched_decisions"]), 1)
+        s["transfer_arm"] = self.transfer_arm
         s["ucd_recursion_active"] = G.UCDParams(
             self.cfg["ucd_d1"], self.cfg["ucd_d2"]).recursion_is_active
         return s

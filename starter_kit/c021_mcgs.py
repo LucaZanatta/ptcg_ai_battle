@@ -54,7 +54,7 @@ class MCGS:
     """One decision's graph search. The graph is REUSED across atomic decisions (A5)."""
 
     def __init__(self, api, cfg: Dict[str, Any], stats: Dict[str, Any], rng,
-                 prior_provider=None):
+                 prior_provider=None, transfer_arm: Optional[Dict[str, bool]] = None):
         self.A = api
         self.cfg = cfg
         self.stats = stats
@@ -64,6 +64,8 @@ class MCGS:
         self.open_ids: List[int] = []
         self.root: Optional[G.Node] = None
         self.prior_provider = prior_provider     # transfer lab only; None in the reference
+        # {} means every transfer switch is off, i.e. exact source behaviour
+        self.transfer_arm = dict(transfer_arm or {})
         self.traces: List[Dict[str, Any]] = []
 
     # ---------------------------------------------------------------- lifecycle
@@ -206,7 +208,13 @@ class MCGS:
             return None, False
         else:
             # `Node.TreePolicy()`: uniform random over untested actions, then remove.
-            j = int(self.rng.integers(len(node.untested_action_indices)))
+            # Under transfer arm T1 the ByteRL policy supplies the distribution instead; the
+            # UCB1 selection formula is NOT touched.
+            from cg import c021_transfer as TR
+            j = TR.sample_untested(self.rng, self.prior_provider, node,
+                                   self.transfer_arm, self.stats)
+            if j < 0:
+                return None, False
             idx = node.untested_action_indices.pop(j)
         if idx >= len(node.legal_options):
             return None, False
@@ -382,7 +390,10 @@ class MCGS:
                 r = self._terminal_reward(obs, root_player)
                 self._release_rollout(prev_rollout_sid)
                 return r
-            pick = opts[int(self.rng.integers(len(opts)))]      # UNIFORM RANDOM (source policy)
+            # UNIFORM RANDOM is the source default policy; arm T2 swaps in the ByteRL policy.
+            from cg import c021_transfer as TR
+            pick = opts[TR.rollout_pick(self.rng, self.prior_provider, obs, opts,
+                                        self.transfer_arm, self.stats)]
             payload = self._payload(sel, pick, opts)
             self.stats["step_calls"] += 1
             try:
