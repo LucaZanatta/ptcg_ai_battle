@@ -1,0 +1,5 @@
+{
+  "produced": false,
+  "reason": "Actor-learner execution is SYNCHRONOUS: actors fill a batch, then the learner updates. There is no decoupled recurrent actor-learner queue, so there are no recurrent unroll records. This is the declared deviation behind BYTERL_METHOD=PARTIAL.",
+  "generated": "2026-07-29T00:19:42"
+}

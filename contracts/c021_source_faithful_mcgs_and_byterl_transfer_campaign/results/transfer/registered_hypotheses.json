@@ -1,0 +1,33 @@
+{
+  "arms": {
+    "T0_control": {
+      "expansion_prior": false,
+      "rollout_policy": false
+    },
+    "T1_policy_prior": {
+      "expansion_prior": true,
+      "rollout_policy": false
+    },
+    "T2_rollout_policy": {
+      "expansion_prior": false,
+      "rollout_policy": true
+    },
+    "T3_prior_and_rollout": {
+      "expansion_prior": true,
+      "rollout_policy": true
+    }
+  },
+  "hypotheses": {
+    "T1_policy_prior": "A ByteRL policy prior over which untested action to expand first improves MCGS field score under a finite budget.",
+    "T2_rollout_policy": "A ByteRL default policy in the rollout improves MCGS field score over uniform random.",
+    "T3_prior_and_rollout": "Both together, the only combination arm."
+  },
+  "selection_rule": "DECISION_RULES \u00a73: retained only on a credible improvement; the arm's 95% Wilson lower bound must exceed the control's upper bound.",
+  "forbidden": [
+    "neural value replacing the rollout return",
+    "baseline override gate",
+    "PUCT prior term in Edge.Value",
+    "uncontrolled full hybrid",
+    "a third method"
+  ]
+}

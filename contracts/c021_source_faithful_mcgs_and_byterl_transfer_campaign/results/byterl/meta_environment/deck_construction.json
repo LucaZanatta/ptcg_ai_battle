@@ -1,0 +1,37 @@
+{
+  "pool_size": 52,
+  "deck_size": 60,
+  "construction_steps": 60,
+  "max_copies": 4,
+  "ace_spec_limit": 1,
+  "ace_spec_cards": [
+    1080,
+    1110,
+    1126,
+    1159
+  ],
+  "basic_energy_uncapped": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "basic_pokemon": [
+    119,
+    140,
+    184,
+    235,
+    265,
+    268,
+    270,
+    673,
+    675,
+    676,
+    677,
+    721,
+    722,
+    1071
+  ],
+  "episode": "construct -> validate -> battle -> terminal reward reaching BOTH stages"
+}

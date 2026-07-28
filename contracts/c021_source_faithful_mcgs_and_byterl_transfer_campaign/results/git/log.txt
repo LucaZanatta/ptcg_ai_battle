@@ -1,0 +1,60 @@
+28ffe52 c021: pin the negamax frame property the source has and its consequence
+68bc394 c021: report prefers the single-code-version ladder and labels the mixed one
+2372778 c021: two ByteRL action-sampling defects
+9868be6 c021: generate FINAL_REPORT.md from statuses.json, and flag B3's self-play rate
+7cc0d08 c021: quarantine pre-COIN_HEAD runs, serialize all MCGS runs, downgrade BYTERL_METHOD
+f17fd24 c021: the engine's enum overrules my probes -- chance surface is COIN_HEAD only
+7977c44 c021: status report generator against DECISION_RULES
+4ddc80f c021: A10 legality-corrected branch, and immutable OSFP history
+d3dc79b c021: transfer lab -- ByteRL into MCGS, one component per arm
+2310490 c021: declare every unresolved ByteRL reference choice; fix control-arm legality metric
+8214c89 c021: semantic validator -- 17 checks, each proven to detect its own defect
+6e3d201 c021: three defects that each invalidated MCGS results, and real OSFP self-play
+200c5d4 c021: rebuild select masks functionally so multi-select gradients flow
+efaafde c021: ACE SPEC deck rule found by the engine, plus actor, encoder and B0-B3 ladder
+f8a7b79 c021: ByteRL network (B1) and V-trace/UPGO/OSFP learner (B5/B6)
+590327c c021: A4 chance nodes at the engine's real random surfaces, plus 39 fidelity tests
+30f7022 c021: A4 chance-node API constraint measured, and a structural energy-cap fix
+d963585 c021: deck-construction meta-environment (B2) and scaled MCGS runner
+59c1402 c021: MCGS official-source port, and six defects found by re-reading the source
+d06d35f c021: Phase 1 throughput benchmarks -- the official time budget is affordable
+f552b8d c021: Phase 0 -- branch, controls, official MCGS source acquired and audited
+275f430 c021-prep / c020: final panel, gates, and close-out
+653bd52 c020: record source provenance -- a Phase 0 requirement that had no campaign-level artifact
+9e6e625 c020: register falsifiable predictions before the final panel runs
+c29cef5 c020: register final-panel nproc at 16 before any result exists
+82f3134 c020: seed study proves the 41-point swing was load, not variance -- protocol updated
+2186f9c c020: panel results depended on machine load -- torch threads were not pinned
+3b03cfe c020: --append replaced panel rows instead of accumulating them
+7df4962 c020: pooled ablation at n=480-560 -- and a correction to "the veto does not help"
+b673ba6 c020: the ablation arms were too small to resolve their own effect
+56e2760 c020: branch invariant audit across MCTS, ByteRL and hybrid -- 31 invariants, all hold
+b770cc0 c020: re-measure M09 with a veto that fires, and audit two more mechanisms
+f3ae336 c020: dive into the flagged null token -- it is load-bearing, and the gather is exact
+1d623a3 c020: multi-select override fix confirmed; re-run everything measured with the inert veto
+1b4448c c020: the mandatory end-turn veto never fired, and four leaf features were always zero
+23b57ec c020: supersede training run 1, retrain with the working encoder, parallelize
+a086f18 c020: B2's option-to-object references were INERT -- 0 of 556 options resolved
+040982a c020: fix an illegal payload emitted when an override lands in a multi-select context
+50d09c8 c020: add the Phase 0 file map and populate the baseline control package
+88cf106 c020: close four RESULTS_SCHEMA gaps and parallelize the panel
+8db4a43 c020: make the source bundle auditable, and count frozen evaluations correctly
+267ca81 c020: materialize the full probe matrix from real evidence
+e2e371b c020: complete the 11-candidate panel and add per-candidate game counts
+fad2824 c020: post-repair scaled MCTS, and the override finding it settles
+35ed74b c020: fix packaged ByteRL carrying recurrent state across games
+e758664 c020: M09 override ablation, and supersede markers for non-campaign MCTS runs
+64e79df c020: consolidated repair pass -- 2 root defects of a permitted 5
+7025a94 c020: submission gates, source bundles, repair-pass ledger, continuation plan
+a3cabc9 c020: fixtures, reports, and F01 complete integrated smoke
+1f16f58 c020: evaluation harness, hybrid runner, packaging, panel, admission
+a8bacba c020: forced ByteRL corrections B1-B8, hybrid C1-C5, semantic validator
+8cb858b c020: branch, controls freeze, and forced MCTS corrections A1-A8
+a1d322e c019: correct the hybrid narrative to match its own ablation
+55c14c8 c019: close out -- correct campaign-run selection, gate both branches alike, ablate the hybrid
+3c916d2 c019: measure B12 instead of recording it as not exercised
+2bb97e1 c019: run the H02 leaf-value gate instead of declaring it unexercised
+2886e71 c019: fix OSFP payoff attribution, xi units, and forced-add off-by-one
+0417941 c019: reports, and fix three defects in my own evidence tooling
+d659399 c019: materialize all 34 PROBE_MATRIX probes with derived evidence
+c42ec54 c019: correct a false panel claim -- environment randomness cannot be paired

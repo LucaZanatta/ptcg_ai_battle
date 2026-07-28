@@ -1,0 +1,18 @@
+{
+  "dims": {
+    "global_dim": 24,
+    "slot_dim": 35,
+    "option_dim": 28,
+    "board_slots": 12,
+    "max_options": 128,
+    "bench_slots": 5
+  },
+  "width": 192,
+  "blocks": 3,
+  "parameters": 552055,
+  "separate_value_heads_per_stage": true,
+  "distinct_active_and_bench_slot_tokens": true,
+  "autoregressive_multiselect": true,
+  "masking_inside_distribution": true,
+  "fresh_random_weights": true
+}

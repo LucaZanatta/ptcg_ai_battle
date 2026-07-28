@@ -1,0 +1,18 @@
+{
+  "opponents": [
+    "dragapult",
+    "mega_lucario",
+    "iono",
+    "mega_abomasnow"
+  ],
+  "seats": "alternating, balanced by construction",
+  "games_per_arm": 40,
+  "budget": {
+    "first_move_seconds": 1.5,
+    "continuing_move_seconds": 1.2
+  },
+  "statistic": "field score with a 95% Wilson interval",
+  "gate": "the lower bound must exceed 0.5 to claim a competitive result",
+  "preregistered": true,
+  "serialized": "arms run one at a time; no concurrent CPU load"
+}

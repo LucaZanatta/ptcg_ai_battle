@@ -1,0 +1,5 @@
+{
+  "suite": "tests/test_c021_byterl_learn.py",
+  "note": "V-trace, UPGO and OSFP checked against hand-derived values: on-policy V-trace with zero baselines equals the Monte-Carlo return, V-trace is a fixed point when the value is already correct, ratios clip at rho_bar, the advantage uses vs_{t+1}, and UPGO cuts to the baseline exactly when the trajectory underperforms.",
+  "pytest_tail": []
+}

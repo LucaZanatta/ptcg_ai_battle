@@ -1,0 +1,7 @@
+{
+  "cpu_count": 24,
+  "torch_threads_per_worker": 1,
+  "why_one_thread": "Without torch.set_num_threads(1) workers contend and the contention is charged against per-decision wall-clock budgets. In c019 that inverted rankings: a harmful search measured 0.605 under load against 0.111 sequentially.",
+  "serialization_policy": "All latency-bounded MCGS runs execute in ONE serialized queue; nothing runs concurrently with them.",
+  "memory_note": "Rollout states are released as the rollout advances. Holding them to the end of a decision measured 1.2-1.3 GB per worker and 28.6 GB resident, and 4 games did not finish in 14 minutes; after the fix the same 4 games took 14.7 s."
+}
