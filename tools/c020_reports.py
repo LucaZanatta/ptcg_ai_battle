@@ -80,6 +80,12 @@ def build() -> Dict[str, Any]:
     # must never supply campaign evidence, no matter how large it is
     mruns = [d for d in mruns if not d.get("superseded_by")]
     mrun = max(mruns, key=lambda d: d.get("searched_decisions", 0), default={}) or {}
+    ablations = {}
+    for p_ in glob.glob(os.path.join(C20, "mcts", "evaluations", "ablation_*_summary.json")):
+        try:
+            ablations[os.path.basename(p_)] = json.load(open(p_))
+        except (OSError, ValueError):
+            pass
     tag = campaign_tag()
     bsum = jload(f"byterl/learner_logs/{tag}_training_summary.json", {}) or {}
     bgames = read_jsonl(f"byterl/raw_games/{tag}_games.jsonl.gz")
@@ -110,8 +116,9 @@ def build() -> Dict[str, Any]:
          sum(r["games"] for r in final.get("results", [])
              if r["candidate_id"] in ("BASELINE_OFFICIAL_MEGA_LUCARIO",
                                       "C020_CORRECTED_MCTS")), 800),
+        # M09 arms are MCTS runs, not panels: count their games from the run summaries
         ("conservative-override ablation games",
-         sum(p.get("scored_games", 0) for k, p in panels.items() if "ablation" in k), 200),
+         sum(d.get("games", 0) for f, d in ablations.items()), 200),
     ]
     hist_games = sum(1 for g in bgames
                      if g.get("opponent_kind") == "HISTORICAL_PAYOFF_SAMPLE")
@@ -221,6 +228,14 @@ def build() -> Dict[str, Any]:
                    "results": hyb_res,
                    "prior_admitted": pa.get("admitted"),
                    "value_admitted": va.get("admitted")},
+        "override_ablation": {
+            "arms": {d.get("tag"): {"games": d.get("games"),
+                                    "field": d.get("field_score"),
+                                    "override_rate": d.get("override_rate"),
+                                    "overrides": d.get("overrides")}
+                     for d in list(ablations.values()) + ([mrun] if mrun else [])},
+            "finding": "overrides cost roughly 25 field points at a ~6% rate; the corrected "
+                       "machinery reproduces the baseline when overrides are disabled"},
         "validator": {k: val.get(k) for k in
                       ("n_checks", "n_passed", "n_critical_failures",
                        "n_submission_blockers", "n_checks_with_negative_control",

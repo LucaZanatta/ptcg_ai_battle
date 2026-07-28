@@ -2,7 +2,7 @@
 
 **Status: PARTIAL** — the code and evidence campaign is substantially executed, but a floor, semantic requirement, competitive gate or submission is missed (CONTRACT §14)
 
-Parent `a1d322e291e5`, branch `contract/c020_forced_method_correction_and_hybrid_integration_campaign`, head `1f16f58f47ef`.
+Parent `a1d322e291e5`, branch `contract/c020_forced_method_correction_and_hybrid_integration_campaign`, head `35ed74b3a829`.
 Controls frozen at `a1d322e291e5` before any c020 code ran.
 
 ## 1. Statuses, kept separate (§14)
@@ -12,30 +12,30 @@ Controls frozen at `a1d322e291e5` before any c020 code ran.
 | execution | {"mcts_floors_met": false, "byterl_floors_met": false, "hybrid_floors_met": false} |
 | method fidelity | {"mcts": "PASS", "byterl": "PASS", "hybrid": "PASS"} |
 | semantic | {"mcts": "PASS", "byterl": "PASS", "hybrid": "PASS", "common": "PASS"} |
-| packages | 1 built |
+| packages | 2 built |
 | submissions | none |
 
 ## 2. Corrected MCTS floors
 
 | floor | actual | required | |
 |---|---|---|---|
-| live searched decisions | 544 | 5,000 | **MISSED** |
-| real search_step expansions | 232,960 | 500,000 | **MISSED** |
-| decisions with 4 legal determinizations | 544 | 1,000 | **MISSED** |
-| complete sampled tree traces | 48 | 100 | **MISSED** |
-| recorded override opportunities | 544 | 500 | met |
+| live searched decisions | 50,804 | 5,000 | met |
+| real search_step expansions | 45,269,777 | 500,000 | met |
+| decisions with 4 legal determinizations | 50,804 | 1,000 | met |
+| complete sampled tree traces | 401 | 100 | met |
+| recorded override opportunities | 50,804 | 500 | met |
 | common-panel baseline vs corrected-MCTS games | 0 | 800 | **MISSED** |
-| conservative-override ablation games | 0 | 200 | **MISSED** |
+| conservative-override ablation games | 240 | 200 | met |
 
 ## 3. Corrected ByteRL floors
 
 | floor | actual | required | |
 |---|---|---|---|
-| actual simulator training games | 4,320 | 100,000 | **MISSED** |
-| optimizer steps | 5,144 | 30,000 | **MISSED** |
-| complete corrected OSFP learning periods | 0 | 6 | **MISSED** |
-| immutable historical additions | 0 | 2 | **MISSED** |
-| games involving historical checkpoints | 0 | 2,000 | **MISSED** |
+| actual simulator training games | 39,000 | 100,000 | **MISSED** |
+| optimizer steps | 39,778 | 30,000 | met |
+| complete corrected OSFP learning periods | 3 | 6 | **MISSED** |
+| immutable historical additions | 3 | 2 | met |
+| games involving historical checkpoints | 10,158 | 2,000 | met |
 | evaluation games across milestones/panels | 0 | 1,000 | **MISSED** |
 
 Mid-game unrolls carrying stored recurrent state: **None**
@@ -66,9 +66,9 @@ Prior admission: **False**. Value admission: **False**.
 
 ## 6. Validator
 
-34/41 checks, 0 critical
+37/41 checks, 0 critical
 failures, 0 submission blockers,
-**33 checks carrying a negative control**, and
+**34 checks carrying a negative control**, and
 0 broken checks.
 
 Audit findings #16/#17 are the reason for that middle number: the c019 validator passed while

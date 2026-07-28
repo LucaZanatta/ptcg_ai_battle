@@ -61,13 +61,18 @@
       "clean_extraction_ok": true,
       "method_actually_ran": true,
       "sha256": "1859957ce456a113"
+    },
+    "c020_byterl_rehearsal": {
+      "clean_extraction_ok": true,
+      "method_actually_ran": true,
+      "sha256": "5c75c0d82e9e43c5"
     }
   },
   "submission_status": {
     "submitted": [],
     "references": {}
   },
-  "git_commit": "1f16f58f47ef69cab3077b01b810022dc260a93d",
+  "git_commit": "35ed74b3a8299458ce56871c0228a43f8929325b",
   "branch": "contract/c020_forced_method_correction_and_hybrid_integration_campaign",
   "parent_commit": "a1d322e291e51b86aa308410b96a7b19748060f0",
   "controls_frozen_at": "a1d322e291e51b86aa308410b96a7b19748060f0",
@@ -75,31 +80,31 @@
     "floors": [
       {
         "floor": "live searched decisions",
-        "actual": 544,
+        "actual": 50804,
         "required": 5000,
-        "met": false
+        "met": true
       },
       {
         "floor": "real search_step expansions",
-        "actual": 232960,
+        "actual": 45269777,
         "required": 500000,
-        "met": false
+        "met": true
       },
       {
         "floor": "decisions with 4 legal determinizations",
-        "actual": 544,
+        "actual": 50804,
         "required": 1000,
-        "met": false
+        "met": true
       },
       {
         "floor": "complete sampled tree traces",
-        "actual": 48,
+        "actual": 401,
         "required": 100,
-        "met": false
+        "met": true
       },
       {
         "floor": "recorded override opportunities",
-        "actual": 544,
+        "actual": 50804,
         "required": 500,
         "met": true
       },
@@ -111,132 +116,132 @@
       },
       {
         "floor": "conservative-override ablation games",
-        "actual": 0,
+        "actual": 240,
         "required": 200,
-        "met": false
+        "met": true
       }
     ],
     "missed": [
-      "live searched decisions",
-      "real search_step expansions",
-      "decisions with 4 legal determinizations",
-      "complete sampled tree traces",
-      "common-panel baseline vs corrected-MCTS games",
-      "conservative-override ablation games"
+      "common-panel baseline vs corrected-MCTS games"
     ],
     "run": {
-      "tag": "mctssmoke",
+      "tag": "postrepair_scaled",
       "config": {
         "c_puct": 1.5,
         "determinizations": 4,
-        "simulations_total": 64,
+        "simulations_total": 128,
         "max_depth": 16,
         "credible_alternatives": 3,
-        "max_ms_per_decision": 300,
+        "max_ms_per_decision": 700,
         "rollout_max_steps": 12,
         "rollout_stochastic_p": 0.1,
         "progressive_k": 1.0,
         "progressive_alpha": 0.5,
         "baseline_prior_bonus": 3.0,
         "min_prior": 0.05,
-        "availability_aware": true
+        "availability_aware": true,
+        "override_enabled": true,
+        "veto_enabled": true
       },
-      "games": 8,
+      "games": 900,
       "errors": 0,
-      "completed": 8,
-      "decisions": 594,
-      "searched_decisions": 544,
-      "simulations": 24267,
-      "step_calls": 232960,
-      "step_ok": 223629,
-      "step_errors": 9331,
-      "begin_calls": 2176,
+      "completed": 846,
+      "decisions": 55275,
+      "searched_decisions": 50804,
+      "simulations": 3790320,
+      "step_calls": 45269777,
+      "step_ok": 45269777,
+      "step_errors": 0,
+      "begin_calls": 203216,
       "begin_errors": 0,
-      "release_calls": 225805,
+      "release_calls": 45472993,
       "release_errors": 0,
-      "expansions": 22512,
-      "nonroot_expansions": 14240,
-      "rollout_steps": 201117,
-      "rollout_baseline_calls": 188035,
-      "rollout_stochastic_calls": 20932,
-      "backups": 24267,
-      "backup_nodes": 53826,
-      "leaf_evals": 24267,
+      "expansions": 3700561,
+      "nonroot_expansions": 2725439,
+      "rollout_steps": 41569216,
+      "rollout_baseline_calls": 37411029,
+      "rollout_stochastic_calls": 4158187,
+      "backups": 3790320,
+      "backup_nodes": 10504375,
+      "leaf_evals": 3790320,
       "terminal_leaves": 0,
-      "determinizations_attempted": 2176,
-      "determinizations_legal": 2176,
+      "determinizations_attempted": 203216,
+      "determinizations_legal": 203216,
       "determinizations_rejected": 0,
       "chance_outcomes": 0,
-      "depth_sum": 29559,
-      "max_depth_seen": 71,
-      "overrides": 5,
-      "override_opportunities": 544,
-      "vetoes": 539,
-      "infoset_shared_updates": 53826,
+      "depth_sum": 6714055,
+      "overrides": 3106,
+      "override_opportunities": 50804,
+      "vetoes": 47698,
+      "infoset_shared_updates": 10504375,
       "timeouts": 0,
-      "match_search_ms": 151112,
-      "shared_action_stats_multi_det": 456,
-      "info_sets_multi_det": 222,
-      "sampled_full_traces": 48,
-      "decisions_with_4_determinizations": 544,
+      "decisions_with_4_determinizations": 50804,
+      "decisions_with_2plus_determinizations": 50804,
+      "max_depth_seen": 15,
+      "max_match_search_ms": 64834.6,
+      "step_error_rate": 0.0,
+      "override_rate": 0.06114,
+      "shared_action_stats_multi_det": 5545,
+      "info_sets_multi_det": 2370,
+      "sampled_full_traces": 401,
       "per_opponent": {
         "dragapult": {
-          "games": 2,
-          "rate": 0.0
-        },
-        "mega_lucario": {
-          "games": 2,
-          "rate": 0.5
+          "games": 205,
+          "rate": 0.1756
         },
         "iono": {
-          "games": 2,
-          "rate": 0.5
+          "games": 216,
+          "rate": 0.3333
+        },
+        "mega_lucario": {
+          "games": 210,
+          "rate": 0.3524
         },
         "mega_abomasnow": {
-          "games": 2,
-          "rate": 0.5
+          "games": 215,
+          "rate": 0.3488
         }
       },
-      "field_score": 0.375,
+      "field_score": 0.3038,
       "latency": {
-        "max_match_search_ms": 25416.0,
-        "mean_match_search_ms": 18889.0,
-        "max_game_seconds": 26.26
+        "max_match_search_ms": 64834.6,
+        "mean_match_search_ms": 38929.5,
+        "max_game_seconds": 65.75
       },
-      "wall_clock_s": 48.9
+      "wall_clock_s": 6284.1
     }
   },
   "byterl": {
     "floors": [
       {
         "floor": "actual simulator training games",
-        "actual": 4320,
+        "actual": 39000,
         "required": 100000,
         "met": false
       },
       {
         "floor": "optimizer steps",
-        "actual": 5144,
+        "actual": 39778,
         "required": 30000,
-        "met": false
+        "met": true
       },
       {
         "floor": "complete corrected OSFP learning periods",
-        "actual": 0,
+        "actual": 3,
         "required": 6,
         "met": false
       },
       {
         "floor": "immutable historical additions",
-        "actual": 0,
+        "actual": 3,
         "required": 2,
-        "met": false
+        "met": true
       },
       {
         "floor": "games involving historical checkpoints",
-        "actual": 0,
+        "actual": 10158,
         "required": 2000,
-        "met": false
+        "met": true
       },
       {
         "floor": "evaluation games across milestones/panels",
@@ -247,16 +252,29 @@
     ],
     "missed": [
       "actual simulator training games",
-      "optimizer steps",
       "complete corrected OSFP learning periods",
-      "immutable historical additions",
-      "games involving historical checkpoints",
       "evaluation games across milestones/panels"
     ],
     "tag": "c020",
     "summary": {},
     "midgame_state_rate": null,
-    "promotions": []
+    "promotions": [
+      {
+        "lp": 0,
+        "reason": "FIRST_HISTORICAL",
+        "add": true
+      },
+      {
+        "lp": 1,
+        "reason": "PERFORMANCE_PROMOTION",
+        "add": true
+      },
+      {
+        "lp": 2,
+        "reason": "PERFORMANCE_PROMOTION",
+        "add": true
+      }
+    ]
   },
   "hybrid": {
     "floors": [
@@ -405,12 +423,35 @@
     "prior_admitted": false,
     "value_admitted": false
   },
+  "override_ablation": {
+    "arms": {
+      "ablation_no_veto": {
+        "games": 120,
+        "field": 0.3217,
+        "override_rate": 0.05309,
+        "overrides": 356
+      },
+      "ablation_no_overrides": {
+        "games": 120,
+        "field": 0.5583,
+        "override_rate": 0.0,
+        "overrides": 0
+      },
+      "postrepair_scaled": {
+        "games": 900,
+        "field": 0.3038,
+        "override_rate": 0.06114,
+        "overrides": 3106
+      }
+    },
+    "finding": "overrides cost roughly 25 field points at a ~6% rate; the corrected machinery reproduces the baseline when overrides are disabled"
+  },
   "validator": {
     "n_checks": 41,
-    "n_passed": 34,
+    "n_passed": 37,
     "n_critical_failures": 0,
     "n_submission_blockers": 0,
-    "n_checks_with_negative_control": 33,
+    "n_checks_with_negative_control": 34,
     "n_broken_checks": 0,
     "overall": "PASS"
   },

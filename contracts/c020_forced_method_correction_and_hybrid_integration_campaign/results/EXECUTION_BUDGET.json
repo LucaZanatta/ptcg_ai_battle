@@ -2,31 +2,31 @@
   "mcts_floors": [
     {
       "floor": "live searched decisions",
-      "actual": 544,
+      "actual": 50804,
       "required": 5000,
-      "met": false
+      "met": true
     },
     {
       "floor": "real search_step expansions",
-      "actual": 232960,
+      "actual": 45269777,
       "required": 500000,
-      "met": false
+      "met": true
     },
     {
       "floor": "decisions with 4 legal determinizations",
-      "actual": 544,
+      "actual": 50804,
       "required": 1000,
-      "met": false
+      "met": true
     },
     {
       "floor": "complete sampled tree traces",
-      "actual": 48,
+      "actual": 401,
       "required": 100,
-      "met": false
+      "met": true
     },
     {
       "floor": "recorded override opportunities",
-      "actual": 544,
+      "actual": 50804,
       "required": 500,
       "met": true
     },
@@ -38,41 +38,41 @@
     },
     {
       "floor": "conservative-override ablation games",
-      "actual": 0,
+      "actual": 240,
       "required": 200,
-      "met": false
+      "met": true
     }
   ],
   "byterl_floors": [
     {
       "floor": "actual simulator training games",
-      "actual": 4320,
+      "actual": 39000,
       "required": 100000,
       "met": false
     },
     {
       "floor": "optimizer steps",
-      "actual": 5144,
+      "actual": 39778,
       "required": 30000,
-      "met": false
+      "met": true
     },
     {
       "floor": "complete corrected OSFP learning periods",
-      "actual": 0,
+      "actual": 3,
       "required": 6,
       "met": false
     },
     {
       "floor": "immutable historical additions",
-      "actual": 0,
+      "actual": 3,
       "required": 2,
-      "met": false
+      "met": true
     },
     {
       "floor": "games involving historical checkpoints",
-      "actual": 0,
+      "actual": 10158,
       "required": 2000,
-      "met": false
+      "met": true
     },
     {
       "floor": "evaluation games across milestones/panels",

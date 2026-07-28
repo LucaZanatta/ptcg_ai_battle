@@ -149,3 +149,45 @@ None. Any defect found after this point is recorded in `failures/` and reported 
 
 Forbidden by `CONTRACT §12`. If a defect is discovered after this pass, it is recorded in
 `failures/` and reported as an outstanding defect in `SUMMARY.md`, not fixed.
+
+
+## Part 4 — post-repair measurement, and what it settled
+
+The post-repair 900-game run at the identical registered configuration:
+
+| | pre-repair | post-repair |
+|---|---|---|
+| searched decisions | 51,317 | 50,804 |
+| `search_step` calls | 44,142,229 | 45,269,777 |
+| **step errors** | **1,318,265 (2.99%)** | **0** |
+| rollout steps | 38,787,043 | 41,569,216 |
+| `max_depth_seen` | 11,034 *(summed)* | 15 *(true max)* |
+| override rate | 5.82% | 6.11% |
+| **field score** | **0.2911** | **0.3038** |
+
+R1 did exactly what it was diagnosed to do — every multi-select context is now steppable and the
+error rate is zero — and it moved the field score by **1.3 points**. That is worth stating
+plainly: the defect was real, its repair was necessary for the search to be what the contract
+requires, and it was NOT the reason the corrected MCTS scores below the baseline.
+
+The M09 ablation identifies what is:
+
+| arm | field |
+|---|---|
+| overrides disabled | **0.5583** |
+| overrides on, conservative veto ON (post-repair scaled) | 0.3038 |
+| overrides on, veto OFF | 0.3217 |
+
+Overriding costs roughly **25 field points** at a ~6% override rate, and the conservative veto
+recovers almost none of it (0.3038 with the veto against 0.3217 without — a difference inside the
+noise of these sample sizes). The corrected machinery is not the problem: with overrides disabled
+the agent reproduces the baseline at 0.5583, which is the control that makes the rest
+interpretable.
+
+**This is a result, and it is not repaired.** `DECISION_RULES` forbids tuning thresholds against
+outcomes, and raising them until overrides stop firing would be exactly that — it would also
+converge on the overrides-disabled arm, which is already measured and reported. The honest finding
+is recorded instead: a faithful information-set MCTS with a tactical evaluator, wrapped around this
+stateful scripted baseline, does not improve it by overriding it.
+
+No second repair cycle was opened for this.
