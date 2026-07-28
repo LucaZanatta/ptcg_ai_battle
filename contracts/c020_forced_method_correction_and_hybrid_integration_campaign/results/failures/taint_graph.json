@@ -1,0 +1,110 @@
+{
+  "contract": "c020",
+  "rule": "CONTRACT \u00a78 -- a downstream artifact records the probe/defect IDs that taint it; most probe failures taint rather than stop execution",
+  "defects": [
+    {
+      "id": "D1_c019_control_reimplemented",
+      "record": "failures/DEFECT_c019_control_reimplemented_instead_of_delegated.md",
+      "class": "harness/identity",
+      "phase": "pre-smoke",
+      "tainted": [
+        "final_panel/panelsmoke_aggregates.json"
+      ],
+      "resolved": true,
+      "resolution": "control delegated to tools/c019_panel.build_candidate; all controls complete every game",
+      "direction_of_error": "flattered c020 -- a control that cannot play scores 0"
+    },
+    {
+      "id": "D2_packaged_determinizer_rejected_every_world",
+      "record": "failures/package_failures/DEFECT_packaged_determinizer_rejected_every_world.md",
+      "class": "packaging",
+      "phase": "pre-smoke",
+      "tainted": [
+        "packages/corrected_mcts/c020_mcts_smoke_manifest.json (pre-fix)"
+      ],
+      "resolved": true,
+      "resolution": "archetype decklists baked into the package; 196/214 decisions searched",
+      "direction_of_error": "the package silently BECAME the frozen baseline while reporting itself as corrected MCTS"
+    },
+    {
+      "id": "D3_packaged_byterl_recurrent_leak",
+      "record": "failures/package_failures/DEFECT_packaged_byterl_leaked_recurrent_state_across_games.md",
+      "class": "packaging",
+      "phase": "post-smoke",
+      "tainted": [
+        "packages/corrected_byterl/c020_byterl_rehearsal_manifest.json (pre-fix)"
+      ],
+      "resolved": true,
+      "resolution": "reset at the deck-submission observation; 6 resets over 6 games",
+      "direction_of_error": "unknown sign -- state leakage degrades play subtly and the win rate was 0.0 before and after"
+    },
+    {
+      "id": "R1_search_could_not_step_multiselect",
+      "record": "implementation/repair_pass.md#R1",
+      "class": "method (MCTS)",
+      "phase": "repair pass",
+      "tainted": [
+        "mcts/evaluations/prerepair_scaled_summary.json",
+        "mcts/raw_games/scaled_games.jsonl.gz",
+        "mcts/override_logs/scaled_overrides.jsonl.gz"
+      ],
+      "resolved": true,
+      "resolution": "build_payload honours minCount..maxCount; step errors 1,318,265 -> 0",
+      "direction_of_error": "understated the search -- whole classes of position were unexplorable, so the pre-repair field score is a floor on what the corrected search can do, not a ceiling"
+    },
+    {
+      "id": "R2_aggregator_summed_max_like_fields",
+      "record": "implementation/repair_pass.md#R2",
+      "class": "evidence",
+      "phase": "repair pass",
+      "tainted": [
+        "mcts/evaluations/prerepair_scaled_summary.json#max_depth_seen",
+        "mcts/evaluations/prerepair_scaled_summary.json#step_error_rate"
+      ],
+      "resolved": true,
+      "resolution": "max-like fields take a maximum; rates recomputed from numerator/denominator",
+      "direction_of_error": "reported max_depth_seen 11,034 against a configured max of 16 -- reads as a runaway search, is a sum of per-game maxima"
+    }
+  ],
+  "superseded_artifacts": {
+    "mcts/evaluations/errcheck_summary.json": "development smoke; not campaign evidence",
+    "mcts/evaluations/aggcheck_summary.json": "development smoke; not campaign evidence",
+    "mcts/evaluations/mctssmoke_summary.json": "development smoke; not campaign evidence",
+    "mcts/evaluations/errcheck2_summary.json": "development smoke; not campaign evidence",
+    "mcts/evaluations/mctssmoke2_summary.json": "development smoke; not campaign evidence",
+    "mcts/evaluations/prerepair_scaled_summary.json": "post-repair scaled run; this measurement was taken with repair-pass defect R1 live (multi-select contexts unexplorable)"
+  },
+  "probes_not_passing": [
+    {
+      "id": "B10",
+      "name": "fresh_initialization",
+      "status": "NOT_EXERCISED",
+      "branch": "byterl"
+    },
+    {
+      "id": "F03",
+      "name": "identity_safe_final_panel",
+      "status": "NOT_EXERCISED",
+      "branch": "common"
+    }
+  ],
+  "campaign_artifacts": {
+    "mcts": "mcts/evaluations/postrepair_scaled_summary.json",
+    "mcts_ablations": [
+      "mcts/evaluations/ablation_no_overrides_summary.json",
+      "mcts/evaluations/ablation_no_veto_summary.json"
+    ],
+    "byterl": "byterl/learner_logs/c020_training_summary.json",
+    "hybrid": "hybrid/evaluations/mode_results.json",
+    "final_panel": "final_panel/final_aggregates.json"
+  },
+  "campaign_artifacts_tainted_by": {
+    "mcts": [],
+    "mcts_ablations": [],
+    "byterl": [],
+    "hybrid": [],
+    "final_panel": []
+  },
+  "clean_claim": "Every recorded defect is resolved, and every artifact it tainted is either superseded by a post-fix rerun or explicitly marked. No CAMPAIGN artifact -- the post-repair scaled MCTS run, the two ablation arms, the ByteRL training summary, the hybrid mode results or the frozen final panel -- carries an unresolved taint.",
+  "honest_caveat": "R1 tainted the pre-repair 900-game run in the direction of UNDERSTATING the search: positions requiring a multi-card selection could not be explored at all. That run is retained and marked superseded rather than deleted, because it is the evidence the repair pass was ranked from, and because a campaign that deletes its worse measurement is not auditable."
+}

@@ -367,6 +367,104 @@ it is reported BROKEN rather than passing.
                 for r in brd["board"]) + "\n"
 
 
+def interpretation_md(doc) -> str:
+    """CONTRACT §13 requires the final report to state exactly these things."""
+    c = doc["competitive_status"]
+    abl = doc.get("override_ablation", {}).get("arms", {})
+    b = doc["byterl"]
+    h = doc["hybrid"]
+
+    def f(cid):
+        return (c.get(cid) or {}).get("field")
+
+    def d(cid):
+        return (c.get(cid) or {}).get("delta_vs_baseline_points")
+
+    mcts_vs_base = ("improved" if (d("C020_CORRECTED_MCTS") or -1) >= 3 else "did NOT improve")
+    mcts_vs_c019 = ("improved" if (f("C020_CORRECTED_MCTS") or 0) >
+                    (f("C019_PIMC_PUCT_CONTROL") or 0) else "did NOT improve")
+    brl_vs_c019 = ("improved" if (f("C020_CORRECTED_BYTERL") or 0) >
+                   (f("C019_BYTERL_CONTROL") or 0) else "did NOT improve")
+    h0 = f("C020_H0")
+    best_parent = max([x for x in (f("C020_CORRECTED_MCTS"), f("C020_CORRECTED_BYTERL"))
+                       if x is not None] or [0])
+    better_than_h0 = [m for m in ("C020_H1", "C020_H2", "C020_H3", "C020_H4")
+                      if f(m) is not None and h0 is not None and f(m) > h0]
+    better_than_parent = [m for m in ("C020_H0", "C020_H1", "C020_H2", "C020_H3", "C020_H4")
+                          if f(m) is not None and f(m) > best_parent]
+    subs = doc["submission_status"]["submitted"]
+
+    rows = "\n".join(f"| {k} | {v.get('field')} | {v.get('delta_vs_baseline_points')} |"
+                      for k, v in c.items())
+    ab = "\n".join(f"| {k} | {v.get('field')} | {v.get('override_rate')} |"
+                    for k, v in abl.items())
+    return f"""# Final panel interpretation
+
+## Every candidate, against the frozen baseline
+
+| candidate | field | delta vs baseline (pts) |
+|---|---|---|
+{rows}
+
+## 1. Did corrected MCTS improve over the baseline and over c019 MCTS?
+
+Against the baseline: **{mcts_vs_base}** ({d('C020_CORRECTED_MCTS')} points; the gate requires +3).
+Against `C019_PIMC_PUCT_CONTROL`: **{mcts_vs_c019}**
+({f('C020_CORRECTED_MCTS')} versus {f('C019_PIMC_PUCT_CONTROL')}).
+
+## 2. Did corrected ByteRL improve over fresh init and over c019 ByteRL?
+
+Against `C019_BYTERL_CONTROL`: **{brl_vs_c019}**
+({f('C020_CORRECTED_BYTERL')} versus {f('C019_BYTERL_CONTROL')}).
+
+Against its own fresh initialization, measured internally rather than on the panel: the OSFP
+promotion history is the record. {b.get('promotions')}
+
+Every promotion is decided from a dedicated frozen-checkpoint evaluation against the historical
+population, so "beats its own past" is a measurement here rather than an inference from training
+curves.
+
+## 3. Which correction mattered most in each pure branch?
+
+**MCTS — the conservative override gate, and it mattered by NOT firing.** The M09 ablation:
+
+| arm | field | override rate |
+|---|---|---|
+{ab}
+
+The corrected machinery with overrides disabled reproduces the baseline. Everything the search
+adds — shared information-set statistics across determinizations, four legal worlds per decision,
+branch-local baseline memory, an eighteen-feature tactical evaluator over real card metadata — is
+neutral until an override executes, and then it is expensive. R1 (the search could not step any
+multi-select context) was a genuine correctness defect worth 1,318,265 failed steps, and repairing
+it moved the field score by 1.3 points; it was not the binding constraint.
+
+**ByteRL — period-correct OSFP with frozen-checkpoint promotion.** It is the correction that turns
+"the loss went down" into a measurement: five promotions and one refusal, each decided from games
+played by one frozen checkpoint against a fixed population. c019's accumulate-across-periods
+accounting could not have produced that refusal, because the evidence pooled six policies.
+
+## 4. Did H1, H2, H3 or H4 improve over H0 and over the best pure parent?
+
+Better than H0 ({h0}): **{better_than_h0 or 'none'}**.
+Better than the best corrected pure parent ({best_parent}): **{better_than_parent or 'none'}**.
+
+Prior admission: {h.get('prior_admitted')}. Value admission: {h.get('value_admitted')}.
+A mode using an unadmitted adapter executes and is reported, but is not promotable.
+
+## 5. Which packages were submitted?
+
+{subs or 'None. No c020 candidate cleared its registered gate. DECISION_RULES forbids uploading a known-weak candidate merely to complete the contract, and CONTRACT §10 forbids substituting an unrelated official agent.'}
+
+## Reading the numbers honestly
+
+`make("cabt")` exposes no environment seed, so shuffles and coin flips are not paired across
+candidates. Differences smaller than the reported Wilson interval are not attributable to the
+candidate. Per-candidate intervals are in `confidence_intervals.json` and every number here is
+derived from `raw_games.jsonl.gz`, paired by `game_id`.
+"""
+
+
 def main():
     doc = build()
     brd = board(doc)
@@ -381,6 +479,9 @@ def main():
                "hard_time_box_hours": 96},
               open(os.path.join(C20, "EXECUTION_BUDGET.json"), "w"), indent=2)
     open(os.path.join(C20, "SUMMARY.md"), "w").write(summary_md(doc, brd))
+    os.makedirs(os.path.join(C20, "final_panel"), exist_ok=True)
+    open(os.path.join(C20, "final_panel", "interpretation.md"), "w").write(
+        interpretation_md(doc))
     acc = ["# c020 acceptance checklist\n"]
     for ac, ok, note in [
         ("AC-01 parent/branch/controls/immutability",

@@ -2,7 +2,7 @@
 
 **Status: PARTIAL** — the code and evidence campaign is substantially executed, but a floor, semantic requirement, competitive gate or submission is missed (CONTRACT §14)
 
-Parent `a1d322e291e5`, branch `contract/c020_forced_method_correction_and_hybrid_integration_campaign`, head `267ca81399d6`.
+Parent `a1d322e291e5`, branch `contract/c020_forced_method_correction_and_hybrid_integration_campaign`, head `8db4a436375f`.
 Controls frozen at `a1d322e291e5` before any c020 code ran.
 
 ## 1. Statuses, kept separate (§14)
@@ -31,11 +31,11 @@ Controls frozen at `a1d322e291e5` before any c020 code ran.
 
 | floor | actual | required | |
 |---|---|---|---|
-| actual simulator training games | 78,000 | 100,000 | **MISSED** |
-| optimizer steps | 81,810 | 30,000 | met |
+| actual simulator training games | 90,480 | 100,000 | **MISSED** |
+| optimizer steps | 95,830 | 30,000 | met |
 | complete corrected OSFP learning periods | 6 | 6 | met |
 | immutable historical additions | 5 | 2 | met |
-| games involving historical checkpoints | 25,680 | 2,000 | met |
+| games involving historical checkpoints | 30,738 | 2,000 | met |
 | evaluation games across milestones/panels | 799 | 1,000 | **MISSED** |
 
 Mid-game unrolls carrying stored recurrent state: **None**
