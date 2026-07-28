@@ -130,6 +130,13 @@ def build(cid: str, deck, seed: int, cfg: Dict[str, Any]):
 def _worker(payload):
     jobs, cfg, deck = payload
     sys.path.insert(0, _REPO)
+    import torch
+    # One thread per worker. Without this, N panel processes each spawn a full torch thread pool,
+    # and the resulting contention eats the per-decision time budget -- so a search-based
+    # candidate completes fewer simulations under load and deviates LESS from its baseline
+    # fallback. A search that is bad because it searches then scores BETTER when starved, which
+    # makes every measurement a function of machine load. c019's panel sets this; ours did not.
+    torch.set_num_threads(1)
     from kaggle_environments import make
     from cg import teachers as T, c009_eval as ce
     out = []
