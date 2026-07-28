@@ -1,0 +1,42 @@
+{
+  "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario",
+  "files": {
+    "REPRODUCTION_NOTES.md": {
+      "sha256": "893b9247c5df6ca5aa4205bf46b97caa4ea2e110dd9380e19af0a2f4d82b2a11",
+      "bytes": 1227
+    },
+    "static_dependency_report.json": {
+      "sha256": "e3e5f0f1eb1508ce22647666157a0126ff2d6783e8ab0d6f351f2477d5714248",
+      "bytes": 202
+    },
+    "deck.csv": {
+      "sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "bytes": 305
+    },
+    "candidate_manifest.json": {
+      "sha256": "66c2e327388facd202a78c98882032a0f3ca98da92a8b4afe6cc82a60589914f",
+      "bytes": 4550
+    },
+    "smoke_results.json": {
+      "sha256": "9b254f07fbcb801deacb0648798f2e037066cfe331b0798b04ef2b6755d1850f",
+      "bytes": 1274
+    },
+    "reproduction_fidelity.json": {
+      "sha256": "308a40c2def02ec6eb40ba3dc360fe25db3d3314e45e5a9bdb5c058ef642253e",
+      "bytes": 424
+    },
+    "main.py": {
+      "sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "bytes": 19776
+    },
+    "attribution.md": {
+      "sha256": "a3ae26ecc1fe9dc945b9e7975b142d24949b512593d2de381956ea241a4129e7",
+      "bytes": 491
+    },
+    "__pycache__/main.cpython-313.pyc": {
+      "sha256": "249d9c227f19ee62ff471c7c37de0ee7a62881c24b809df881fba364d6939618",
+      "bytes": 20952
+    }
+  },
+  "note": "the frozen baseline agent, copied byte-identical; it is both the control and the rollout/prior source for the corrected search (CONTRACT \u00a72)"
+}

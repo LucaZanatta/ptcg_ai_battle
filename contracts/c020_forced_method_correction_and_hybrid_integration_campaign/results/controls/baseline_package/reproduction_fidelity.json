@@ -1,0 +1,14 @@
+{
+  "fidelity": "EXACT",
+  "checks": {
+    "source_decoded_without_truncation": true,
+    "deck_hash_matches_documented_source": true,
+    "deck_is_60_cards": true,
+    "source_byte_identical_to_official": true,
+    "implementation_is_rich_not_a_priority_table": true,
+    "no_static_priority_replacement": true,
+    "only_compatibility_adapters": true,
+    "smoke_games_legal": true,
+    "no_network_dependency": true
+  }
+}

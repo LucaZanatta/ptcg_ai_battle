@@ -1,8 +1,8 @@
 {
   "contract": "c020",
-  "final_mode": false,
+  "final_mode": true,
   "n_checks": 41,
-  "n_passed": 37,
+  "n_passed": 39,
   "n_critical_failures": 0,
   "n_submission_blockers": 0,
   "n_checks_with_negative_control": 34,
@@ -17,7 +17,7 @@
     },
     "byterl": {
       "checks": 19,
-      "passed": 15,
+      "passed": 17,
       "semantic_status": "PASS",
       "blockers": []
     },
@@ -40,13 +40,13 @@
       "branch": "common",
       "passed": true,
       "evidence": {
-        "changed_files": 291,
+        "changed_files": 621,
         "violations": [],
         "requirement": "CONTRACT \u00a71: do not modify c005-c019 artifacts",
         "note": "matched on owning path, not on the substring 'c019' -- c020 records the c019 controls under its OWN results tree and those files are not violations"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -64,7 +64,7 @@
         "frozen_at_commit": "a1d322e291e51b86aa308410b96a7b19748060f0"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -76,7 +76,7 @@
         "honest_label": "PIMC-like: one independent tree per determinization, aggregated at the root only. NOT shared-statistics ISMCTS (C019_AUDIT_FINDINGS #1)."
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -93,11 +93,11 @@
           "writes": 0,
           "sharing_is_real": true
         },
-        "runtime_shared_action_stats_multi_det": 5387,
+        "runtime_shared_action_stats_multi_det": 5545,
         "c019_defect": "one independent tree per determinization, aggregated at the root"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -124,7 +124,7 @@
         ]
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -140,7 +140,7 @@
         "aware_vs_blind_differ": 1.621708
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -155,7 +155,7 @@
         "c019_defect": "prize/HP/energy/bench only; no lethal, attack legality or typed energy"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -171,7 +171,7 @@
         "requirement": "A6: do not infer attack readiness from total energy count"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -186,7 +186,7 @@
         "c019_defect": "counted total energy, so wrong-type energy looked like readiness"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -201,7 +201,7 @@
         "c019_defect": "many sampled overrides selected end turn over productive card play"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -215,7 +215,7 @@
         "threshold": 0.08
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -237,7 +237,7 @@
         "c019_defect": "silent dragapult default when archetype unidentified"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -246,12 +246,12 @@
       "branch": "mcts",
       "passed": true,
       "evidence": {
-        "nonroot_expansions": 347886,
-        "expansions": 479543,
+        "nonroot_expansions": 2725439,
+        "expansions": 3700561,
         "c019_defect": "root-only branching"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -260,12 +260,12 @@
       "branch": "mcts",
       "passed": true,
       "evidence": {
-        "baseline_calls": 4703291,
-        "stochastic_calls": 521753,
+        "baseline_calls": 37411029,
+        "stochastic_calls": 4158187,
         "c019_defect": "option index 0 continuation"
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -274,10 +274,10 @@
       "branch": "mcts",
       "passed": true,
       "evidence": {
-        "backup_nodes": 1385710
+        "backup_nodes": 10504375
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -287,12 +287,12 @@
       "passed": true,
       "evidence": {
         "while_installed": {
-          "plan": "<c019_official_baseline.AttackPlan object at 0x71c69748c7d0>",
+          "plan": "<c019_official_baseline.AttackPlan object at 0x7d212ad607d0>",
           "pre_turn": "0",
           "ability_used": "True"
         },
         "after": {
-          "plan": "<c019_official_baseline.AttackPlan object at 0x71c6974cc6e0>",
+          "plan": "<c019_official_baseline.AttackPlan object at 0x7d212ada06e0>",
           "pre_turn": "0",
           "ability_used": "False"
         },
@@ -301,7 +301,7 @@
         "unchanged": true
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -310,7 +310,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "max_logit_change_on_active_bench_swap": 0.006959,
+        "max_logit_change_on_active_bench_swap": 0.006074,
         "board_slots": 12,
         "slot_order": [
           "my_active",
@@ -320,7 +320,7 @@
         "c019_defect": "active and bench pooled, destroying slot/instance identity"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -334,7 +334,7 @@
         "c019_defect": "no energy type, status, tool or option-to-target relationship"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -343,7 +343,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "multiselect_records": 1229,
+        "multiselect_records": 2804,
         "example": {
           "game_id": "c020:lp0:v0:g30",
           "decision": 35,
@@ -390,7 +390,7 @@
         "c019_defect": "stored/trained only the first selection and its probability"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -411,7 +411,7 @@
         ]
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -426,7 +426,7 @@
         "c019_defect": "learner reset recurrent state at mid-game unroll boundaries"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -438,7 +438,7 @@
         "note": "learner initializes from the recorded h0/c0 and asserts the actor's context fingerprints before computing any ratio"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -450,7 +450,7 @@
         "c019_defect": "target and behavior probabilities compared under different recurrent contexts"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -459,15 +459,15 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "updates": 26684,
-        "updates_with_nonzero_upgo": 26684,
+        "updates": 96424,
+        "updates_with_nonzero_upgo": 96424,
         "rho_mean_range": [
-          0.9149,
-          1.232
+          0.8624,
+          8.2555
         ]
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -480,12 +480,17 @@
           0,
           40,
           0,
+          160,
+          160,
+          159,
+          160,
+          160,
           160
         ],
         "c019_defect": "G/C accumulated across periods and across changing policies"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -494,16 +499,21 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "periods": 4,
+        "periods": 9,
         "shas": [
           "",
           "16034b42b690",
           "",
-          "31f04ffdb7f8"
+          "31f04ffdb7f8",
+          "beb967cc75ad",
+          "d9a940dd1824",
+          "5df1b640159c",
+          "4aa7fe31b307",
+          "5d9f21def012"
         ]
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -515,7 +525,7 @@
         "c019_defect": "promotion evidence pooled games from multiple evolving checkpoints"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -534,19 +544,22 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "mixtures": 2,
+        "mixtures": 7,
         "last": {
-          "lp": 1,
+          "lp": 6,
           "mixture": [
-            0.172894,
-            0.827106
+            0.10903,
+            0.075002,
+            0.380023,
+            0.139937,
+            0.296009
           ],
-          "population": 2,
+          "population": 5,
           "derived_from": "period_local_payoff_table"
         }
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -561,7 +574,7 @@
         "requirement": "CONTRACT \u00a72/\u00a76: corrected ByteRL starts from fresh random weights"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -570,7 +583,7 @@
       "branch": "byterl",
       "passed": false,
       "evidence": {
-        "actual": 26000,
+        "actual": 91000,
         "required": 100000
       },
       "submission_blocker": false,
@@ -579,9 +592,9 @@
     {
       "check": "byterl_floor: optimizer steps",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "actual": 26684,
+        "actual": 96424,
         "required": 30000
       },
       "submission_blocker": false,
@@ -590,9 +603,9 @@
     {
       "check": "byterl_floor: complete OSFP learning periods",
       "branch": "byterl",
-      "passed": false,
+      "passed": true,
       "evidence": {
-        "actual": 2,
+        "actual": 7,
         "required": 6
       },
       "submission_blocker": false,
@@ -603,7 +616,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "actual": 2,
+        "actual": 5,
         "required": 2
       },
       "submission_blocker": false,
@@ -614,7 +627,7 @@
       "branch": "byterl",
       "passed": true,
       "evidence": {
-        "actual": 5078,
+        "actual": 30933,
         "required": 2000
       },
       "submission_blocker": false,
@@ -651,7 +664,7 @@
         "h4_alpha_version": "c020.h4_alpha.v1"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -663,7 +676,7 @@
         "c019_defect": "called recurrent ByteRL with state=None at every search node"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -686,7 +699,7 @@
         "c019_defect": "hybrid called recurrent ByteRL with state=None at search nodes"
       },
       "submission_blocker": true,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -708,7 +721,7 @@
         "checkpoint": "brlsmoke_final_v000088.pt"
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },
@@ -753,7 +766,7 @@
         }
       },
       "submission_blocker": false,
-      "critical": false,
+      "critical": true,
       "control_rejects_defect": true,
       "control_note": "the c019 defect was injected and this check rejected it"
     },

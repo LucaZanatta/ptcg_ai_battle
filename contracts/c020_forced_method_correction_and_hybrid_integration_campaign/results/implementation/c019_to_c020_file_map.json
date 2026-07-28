@@ -1,0 +1,142 @@
+{
+  "contract": "c020",
+  "parent": "a1d322e291e51b86aa308410b96a7b19748060f0",
+  "files": [
+    {
+      "c019": "starter_kit/c019_mcts.py",
+      "c020": "starter_kit/c020_ismcts.py",
+      "status": "REPLACED",
+      "requirements": "A1/A3/A4/A5",
+      "note": "one SearchTree per determinization, root-only branching, option-0 continuation -> shared InfoSetTable, non-root expansion via search_step, baseline-guided rollout",
+      "c019_sha256": "91df3ea5e1a7f8c5f09272d36d27569c5daa8021451cdfaf3185634685c4b1bd",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "12377b3af8534b4b29539ac60e9c72bf3825db54bfb2a84f4335baf41c4998db"
+    },
+    {
+      "c019": "starter_kit/c019_ismcts.py",
+      "c020": "starter_kit/c020_agent.py",
+      "status": "REPLACED",
+      "requirements": "A1/A7/A8",
+      "note": "root aggregation across independent trees -> N determinizations against ONE shared table plus the conservative override gate",
+      "c019_sha256": "955d82a588ea3a9dc96f166abef3c742c33732cafa7094b6073dd9cc476c9c47",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "676be41ec51e81bd50e157238de01edbb39e4f6fec6135d92c079544ce73b421"
+    },
+    {
+      "c019": null,
+      "c020": "starter_kit/c020_infoset.py",
+      "status": "NEW",
+      "requirements": "A1",
+      "note": "InfoSetKey / SharedActionStats / SharedInfoSetStats / InfoSetTable; c019 had no shared table",
+      "c020_sha256": "613c6063478cf2f693f1ade8a68a9740a6bc5fed7ddef170ac837362c36ed8e9"
+    },
+    {
+      "c019": "starter_kit/c019_baseline.py",
+      "c020": "starter_kit/c020_baseline_memory.py",
+      "status": "EXTENDED",
+      "requirements": "A2",
+      "note": "c019 snapshot mechanism retained and verified; adds recommend / advance_after_executed / clone_memory so an overridden action advances memory along what was EXECUTED",
+      "c019_sha256": "c9140863f1bf99721b0a970d7cdf9a88b9ab09766e066ca2607adbb8627f3db0",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "a618a1f996a72374bd0fe72a1cba02dafd4386a10af6be8112cfb92369593e99"
+    },
+    {
+      "c019": "starter_kit/c019_leaf.py",
+      "c020": "starter_kit/c020_tactical_leaf.py",
+      "status": "REPLACED",
+      "requirements": "A6",
+      "note": "four features led by prize_race 0.55 -> eighteen features incl. lethal, KO, typed-energy readiness, target prize value, bench liability, unproductive-end-turn",
+      "c019_sha256": "6c5a006b95f06dada15e5b798e19d927ed099b8ed5a55b175a9bec44a78138b5",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "2cadabdecf31fc63c669c12732f1bb0188db10d696168fd559706853fa6ac466"
+    },
+    {
+      "c019": null,
+      "c020": "starter_kit/c020_cards.py",
+      "status": "NEW",
+      "requirements": "A6",
+      "note": "exact card/attack metadata (1,267 cards, 1,556 attacks) with typed-cost payment; c019 inferred readiness from an energy count",
+      "c020_sha256": "f67286eb96638f8cf74b7313c7c203fe91e8f374b46c552d048cc4989056541e"
+    },
+    {
+      "c019": "starter_kit/c019_determinize.py",
+      "c020": "starter_kit/c020_determinize.py",
+      "status": "EXTENDED",
+      "requirements": "A7",
+      "note": "multiplicity/rejection machinery reused UNCHANGED so the archetype change is attributable; silent Dragapult default replaced by a recorded five-way prior mixture",
+      "c019_sha256": "843c7a4169aee91717d63c7e519c556cb308787508cc223073674f0e64fef5dd",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "4ff753ccd178cf110e86808f26d9460c14487e59dd84ff5170adcc1a4577de22"
+    },
+    {
+      "c019": null,
+      "c020": "starter_kit/c020_override.py",
+      "status": "NEW",
+      "requirements": "A8",
+      "note": "conservative gate with the mandatory end-turn veto; c019 had no gate",
+      "c020_sha256": "5f1b7a653afbf06b87d8dbf2c4ab086021105d385a287f5374254d25a0fdef7b"
+    },
+    {
+      "c019": "starter_kit/c019_byterl_encode.py",
+      "c020": "starter_kit/c020_byterl_encode.py",
+      "status": "REPLACED",
+      "requirements": "B1/B2",
+      "note": "pooled board -> 12 fixed slots with position embeddings, typed energy, status, tool, and per-option source/target indices",
+      "c019_sha256": "b2fd8e64fe02d37e7abc91ea47dc2d6daed480df79b645f444df7ecc1dee700a",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "7e5b1ebd8c75a5f965e0a0c271742f29ef999451c7bdd4647d45ed58005f41d3"
+    },
+    {
+      "c019": "starter_kit/c019_byterl_model.py",
+      "c020": "starter_kit/c020_byterl_model.py",
+      "status": "REPLACED",
+      "requirements": "B2/B3",
+      "note": "option scoring against a pooled summary -> gathered source/target with a learned null token; adds select_autoregressive and joint_logp_of",
+      "c019_sha256": "6eaffeab0614d86c90b9e2105bc487985484adf1322f81fa63cd3d4be459e2a8",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "d871f83ca5f06a84d874e50b6204d8f52c79636e5545adad153b7f6a67529531"
+    },
+    {
+      "c019": "starter_kit/c019_byterl_actor.py",
+      "c020": "starter_kit/c020_byterl_actor.py",
+      "status": "REPLACED",
+      "requirements": "B3/B4",
+      "note": "first-pick-only records and discarded unroll state -> MultiSelectRecord with joint log probability, and Unroll storing h0/c0 plus a per-timestep context fingerprint",
+      "c019_sha256": "0fc937fd0412f7264d63d7c1151e7c2b29a88a25b1b1c8c53e66476ec63d7428",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "0eecce94f5cefcc9e32708108dbca4731250384d45eb9df5237a2e33c31c62c5"
+    },
+    {
+      "c019": "starter_kit/c019_vtrace.py",
+      "c020": "starter_kit/c020_vtrace.py",
+      "status": "WRAPPED",
+      "requirements": "B5",
+      "note": "recursion REUSED deliberately (fixture-verified; the audit faults the inputs, not the math); adds joint-probability inputs, assert_same_context, and six fixtures",
+      "c019_sha256": "5b7b6034f97537d20c4973ec6b2d33c971404a62a926846e5cd1730b8b6b164d",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "7dcf7d3a9d6653b7fefeb5d0357c143181428d2a70086ab168742e427123ab92"
+    },
+    {
+      "c019": "starter_kit/c019_osfp.py",
+      "c020": "starter_kit/c020_osfp.py",
+      "status": "REPLACED",
+      "requirements": "B6/B7",
+      "note": "accumulate-across-periods G/C and training-data promotion -> PeriodLocalPayoff refusing mixed checkpoints, frozen-checkpoint evaluation, read-only immutable population",
+      "c019_sha256": "696be648d1c7e1148ce9c7500dc4430062007ede814113cd74670771f130921d",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "dbc41c657c27ca71b48a0f7d32032f050862b9714174738bb20f48774ccb0438"
+    },
+    {
+      "c019": "starter_kit/c019_hybrid.py",
+      "c020": "starter_kit/c020_hybrid.py",
+      "status": "REPLACED",
+      "requirements": "C1-C4",
+      "note": "state=None at every node -> HybridNodeState cloned per node and advanced through the exact simulated transition; exactly five modes; four-control value admission",
+      "c019_sha256": "7ead12fa996de3bff379b97d6d848a3a0314212e26a641b3a1939ef8e904caca",
+      "c019_retained_unmodified": true,
+      "c020_sha256": "9ce47195e48f8b69925aaf61b0598e7c81af0ed08d0dea564287f079ab3ea0e3"
+    }
+  ],
+  "c019_files_modified": 0,
+  "policy": "c019 modules are retained byte-identical as the named controls; every c020 change lives in a c020_* file (CONTRACT \u00a71)."
+}
