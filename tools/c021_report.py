@@ -115,8 +115,13 @@ def main(argv=None):
             "dummy_edges": s.get("dummy_edges"),
             "term_root_win": s.get("term_root_win"), "term_root_loss": s.get("term_root_loss"),
         })
+    # `fctrl_`/`flearn_` are the FINAL ladder, measured end to end on one code version.
+    # `ctrl_`/`learn_` straddled the sample_select fix and are retained only as history.
+    FINAL_PFX = ("fctrl_", "flearn_")
+    have_final = any(k.startswith(FINAL_PFX) for k in curves)
+    ladder_pfx = FINAL_PFX if have_final else ("ctrl_", "learn_")
     ladder_done = sorted({k.replace("_curve.json", "") for k in curves
-                          if k.startswith(("ctrl_", "learn_"))})
+                          if k.startswith(ladder_pfx)})
     clean = all((r.get("step_errors") or 0) == 0 and
                 (r.get("manual_coin_node_ucb_selected") or 0) == 0 for r in exec_rows)
     execution = "PASS" if (exec_rows and curves and clean) else "PARTIAL"
@@ -156,10 +161,12 @@ def main(argv=None):
                              for k in [])
                       for r in []}
     have_rungs = sorted({k.replace("_curve.json", "").split("_", 1)[1]
-                         for k in curves if k.startswith(("ctrl_", "learn_"))})
+                         for k in curves if k.startswith(ladder_pfx)})
     weights_changed = []
     for name, c in curves.items():
         if not isinstance(c, list) or len(c) < 2:
+            continue
+        if not name.startswith(ladder_pfx):
             continue
         ups = sum(int(r.get("updates") or 0) for r in c)
         wrs = [r.get("win_rate") for r in c if r.get("win_rate") is not None]
@@ -199,6 +206,9 @@ def main(argv=None):
         "rungs_run": have_rungs,
         "training_runs_with_weight_updates": weights_changed,
         "end_to_end_construction_and_battle": e2e,
+        "ladder_version": ("final, single code version" if have_final else
+                           "MIXED CODE VERSIONS -- straddles the sample_select fix; "
+                           "superseded by the fctrl_/flearn_ ladder"),
         "reasons": bm_reasons,
         "declared_deviation": ("Actor-learner execution is SYNCHRONOUS (actors fill a batch, "
                                "then the learner updates), not the papers' decoupled recurrent "
