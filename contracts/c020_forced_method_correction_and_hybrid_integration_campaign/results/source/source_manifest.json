@@ -1,27 +1,29 @@
 {
   "contract": "c020",
-  "commit": "a3cabc984f1929e8428b74b3df603397ef1fb638",
-  "hashed_files": 4176,
+  "commit": "267ca81399d6ea3fc85d155f57ada92b119edf77",
+  "hashed_files": 4496,
   "c020_source_hashes": {
     "tests/test_c020_fixtures.py": "584e4dfd61366a2fb877b1a7192cde44271dc6afc8b49681981e281e244babcf",
-    "tools/c020_package.py": "81658b45697a9fbd8138cae8c89f2eca0aca392945832fce93ca74eb8d0c0a36",
-    "tools/c020_validate.py": "6dfa9f97bf44a0a8d7943867560f6d99e675d13e9c67c1b5c4a5f9d78bb60cff",
-    "tools/c020_reports.py": "d55d0ecefd7f4e852c365f2a520adf854fc814364e4a0ea2027ecfc955f8dd53",
-    "tools/c020_mcts_run.py": "a787883a4457a005a96bf8554c1450835c5a44b15ada7efeebf2f44014991228",
+    "tools/c020_package.py": "f2f148d3366010d6a05385522bec39599eb85af08e588731a7077f897c17b75e",
+    "tools/c020_validate.py": "5c3889ff1578aeb50130e41d038b2b4c58e4efe644be1c5d0570ed532813b61d",
+    "tools/c020_reports.py": "0d4cdb602ffc2394e77c73b0c6420e923f14650488ad4a8ce8bddb2931892bed",
+    "tools/c020_mcts_run.py": "b68839247bf9a8887e713a9d5aa56c581274e127a568d1b3892bde8b2e9efc93",
     "tools/c020_byterl_train.py": "df746eff64ed4f28a65de01f442dd16add8948ba1d519b587506b365d23b8e93",
     "tools/c020_controls.py": "03da4303c00863035517233b034d80dc8f477c362f84212881d4fba95c3e024a",
     "tools/c020_submit.py": "7c76b1593f188f6b225303a80b36ae895b0be0f8c6b81df27a92134954337b15",
-    "tools/c020_panel.py": "1d248741da6f7413f83650a4a357484004a11a7e901387343123a4b2385e5d13",
+    "tools/c020_panel.py": "6002873b35bc729d61ff03e32b711647b17db5b3cd1a02637fe077909d7b262a",
     "tools/c020_admission.py": "09c0bf6ea25bf211780c7a0080a0f7b52959e467694df339859bc31e70781f37",
+    "tools/c020_probe_b04_b14.py": "bb29c3b1759ae7baaafd0edb95480b545e066a6e1b00624d5b38a8e3b2f71f70",
+    "tools/c020_probes.py": "1a7c5e508f13abbe328f3faf46a519d6f59eb283d45c6a523de110898359f0f0",
     "tools/c020_hybrid_run.py": "be2a970740b51f5d56434ef56fcd5ed6816c2d55c41165013477b7bf4f803f48",
-    "tools/c020_tree.py": "08fe85f26103b0a31d5b79bd7efd64e8dc94f3976f4c87d049d4a3ec165fe6fc",
+    "tools/c020_tree.py": "0c87a67ddf083190b79266570e801b7df29c68d9652f2ffba162ede1fb9cf3e1",
     "starter_kit/c020_tactical_leaf.py": "2cadabdecf31fc63c669c12732f1bb0188db10d696168fd559706853fa6ac466",
-    "starter_kit/c020_override.py": "05a3ef37b3a112c9deb6f1adc2df3763a3e237d7a843dffd911a65a8efa2e7fd",
+    "starter_kit/c020_override.py": "5f1b7a653afbf06b87d8dbf2c4ab086021105d385a287f5374254d25a0fdef7b",
     "starter_kit/c020_byterl_model.py": "d871f83ca5f06a84d874e50b6204d8f52c79636e5545adad153b7f6a67529531",
-    "starter_kit/c020_agent.py": "6dbee0b850e649a76ae5b7af08a225890537756f3b899d39f2e6b246ad4c1686",
+    "starter_kit/c020_agent.py": "676be41ec51e81bd50e157238de01edbb39e4f6fec6135d92c079544ce73b421",
     "starter_kit/c020_infoset.py": "613c6063478cf2f693f1ade8a68a9740a6bc5fed7ddef170ac837362c36ed8e9",
     "starter_kit/c020_baseline_memory.py": "a618a1f996a72374bd0fe72a1cba02dafd4386a10af6be8112cfb92369593e99",
-    "starter_kit/c020_ismcts.py": "fdba83a549365cefc669f9bd5548a83dac7b6906230a1032662de4df6a367706",
+    "starter_kit/c020_ismcts.py": "12377b3af8534b4b29539ac60e9c72bf3825db54bfb2a84f4335baf41c4998db",
     "starter_kit/c020_byterl_actor.py": "0eecce94f5cefcc9e32708108dbca4731250384d45eb9df5237a2e33c31c62c5",
     "starter_kit/c020_cards.py": "f67286eb96638f8cf74b7313c7c203fe91e8f374b46c552d048cc4989056541e",
     "starter_kit/c020_hybrid.py": "9ce47195e48f8b69925aaf61b0598e7c81af0ed08d0dea564287f079ab3ea0e3",
@@ -31,7 +33,7 @@
     "starter_kit/c020_byterl_encode.py": "7e5b1ebd8c75a5f965e0a0c271742f29ef999451c7bdd4647d45ed58005f41d3"
   },
   "plain_inspection": {
-    "plain_inspection/starter_kit/c020_agent.py": "6dbee0b850e649a76ae5b7af08a225890537756f3b899d39f2e6b246ad4c1686",
+    "plain_inspection/starter_kit/c020_agent.py": "676be41ec51e81bd50e157238de01edbb39e4f6fec6135d92c079544ce73b421",
     "plain_inspection/starter_kit/c020_baseline_memory.py": "a618a1f996a72374bd0fe72a1cba02dafd4386a10af6be8112cfb92369593e99",
     "plain_inspection/starter_kit/c020_byterl_actor.py": "0eecce94f5cefcc9e32708108dbca4731250384d45eb9df5237a2e33c31c62c5",
     "plain_inspection/starter_kit/c020_byterl_encode.py": "7e5b1ebd8c75a5f965e0a0c271742f29ef999451c7bdd4647d45ed58005f41d3",
@@ -40,9 +42,9 @@
     "plain_inspection/starter_kit/c020_determinize.py": "4ff753ccd178cf110e86808f26d9460c14487e59dd84ff5170adcc1a4577de22",
     "plain_inspection/starter_kit/c020_hybrid.py": "9ce47195e48f8b69925aaf61b0598e7c81af0ed08d0dea564287f079ab3ea0e3",
     "plain_inspection/starter_kit/c020_infoset.py": "613c6063478cf2f693f1ade8a68a9740a6bc5fed7ddef170ac837362c36ed8e9",
-    "plain_inspection/starter_kit/c020_ismcts.py": "fdba83a549365cefc669f9bd5548a83dac7b6906230a1032662de4df6a367706",
+    "plain_inspection/starter_kit/c020_ismcts.py": "12377b3af8534b4b29539ac60e9c72bf3825db54bfb2a84f4335baf41c4998db",
     "plain_inspection/starter_kit/c020_osfp.py": "dbc41c657c27ca71b48a0f7d32032f050862b9714174738bb20f48774ccb0438",
-    "plain_inspection/starter_kit/c020_override.py": "05a3ef37b3a112c9deb6f1adc2df3763a3e237d7a843dffd911a65a8efa2e7fd",
+    "plain_inspection/starter_kit/c020_override.py": "5f1b7a653afbf06b87d8dbf2c4ab086021105d385a287f5374254d25a0fdef7b",
     "plain_inspection/starter_kit/c020_tactical_leaf.py": "2cadabdecf31fc63c669c12732f1bb0188db10d696168fd559706853fa6ac466",
     "plain_inspection/starter_kit/c020_vtrace.py": "7dcf7d3a9d6653b7fefeb5d0357c143181428d2a70086ab168742e427123ab92",
     "plain_inspection/cg/c019_baseline.py": "c9140863f1bf99721b0a970d7cdf9a88b9ab09766e066ca2607adbb8627f3db0",
@@ -61,16 +63,19 @@
     "plain_inspection/tools/c020_byterl_train.py": "df746eff64ed4f28a65de01f442dd16add8948ba1d519b587506b365d23b8e93",
     "plain_inspection/tools/c020_controls.py": "03da4303c00863035517233b034d80dc8f477c362f84212881d4fba95c3e024a",
     "plain_inspection/tools/c020_hybrid_run.py": "be2a970740b51f5d56434ef56fcd5ed6816c2d55c41165013477b7bf4f803f48",
-    "plain_inspection/tools/c020_mcts_run.py": "a787883a4457a005a96bf8554c1450835c5a44b15ada7efeebf2f44014991228",
-    "plain_inspection/tools/c020_package.py": "81658b45697a9fbd8138cae8c89f2eca0aca392945832fce93ca74eb8d0c0a36",
-    "plain_inspection/tools/c020_panel.py": "1d248741da6f7413f83650a4a357484004a11a7e901387343123a4b2385e5d13",
-    "plain_inspection/tools/c020_reports.py": "d55d0ecefd7f4e852c365f2a520adf854fc814364e4a0ea2027ecfc955f8dd53",
+    "plain_inspection/tools/c020_mcts_run.py": "b68839247bf9a8887e713a9d5aa56c581274e127a568d1b3892bde8b2e9efc93",
+    "plain_inspection/tools/c020_package.py": "f2f148d3366010d6a05385522bec39599eb85af08e588731a7077f897c17b75e",
+    "plain_inspection/tools/c020_panel.py": "6002873b35bc729d61ff03e32b711647b17db5b3cd1a02637fe077909d7b262a",
+    "plain_inspection/tools/c020_probe_b04_b14.py": "bb29c3b1759ae7baaafd0edb95480b545e066a6e1b00624d5b38a8e3b2f71f70",
+    "plain_inspection/tools/c020_probes.py": "1a7c5e508f13abbe328f3faf46a519d6f59eb283d45c6a523de110898359f0f0",
+    "plain_inspection/tools/c020_reports.py": "0d4cdb602ffc2394e77c73b0c6420e923f14650488ad4a8ce8bddb2931892bed",
     "plain_inspection/tools/c020_submit.py": "7c76b1593f188f6b225303a80b36ae895b0be0f8c6b81df27a92134954337b15",
-    "plain_inspection/tools/c020_tree.py": "08fe85f26103b0a31d5b79bd7efd64e8dc94f3976f4c87d049d4a3ec165fe6fc",
-    "plain_inspection/tools/c020_validate.py": "6dfa9f97bf44a0a8d7943867560f6d99e675d13e9c67c1b5c4a5f9d78bb60cff",
+    "plain_inspection/tools/c020_tree.py": "0c87a67ddf083190b79266570e801b7df29c68d9652f2ffba162ede1fb9cf3e1",
+    "plain_inspection/tools/c020_validate.py": "5c3889ff1578aeb50130e41d038b2b4c58e4efe644be1c5d0570ed532813b61d",
     "plain_inspection/tools/c019_panel.py": "934aa3b6ff30020976927ed94592af3c998d09e4cfe223ac99b224dbae236577",
     "plain_inspection/tests/test_c020_fixtures.py": "584e4dfd61366a2fb877b1a7192cde44271dc6afc8b49681981e281e244babcf",
     "plain_inspection/tests/test_c019_fixtures.py": "5ab10ff19ba49329da2f6bf2d0fda6f8cca9c54afad4845bb3084d7b33149dd6",
+    "plain_inspection/package_entrypoints/c020_byterl_rehearsal_main.py": "d0b9af84b3436bd89396eeec1cb97f83b12c58aba5f1a2ab8c75b0bb47b9e16e",
     "plain_inspection/package_entrypoints/c020_mcts_smoke_main.py": "e1651e902fab59c3ce16a79576ca7ef5ead7f4daaf9257aea43e4eeff9325a48"
   },
   "milestones": {
@@ -96,7 +101,7 @@
       },
       {
         "file": "starter_kit/c020_ismcts.py",
-        "sha256": "fdba83a549365cefc669f9bd5548a83dac7b6906230a1032662de4df6a367706"
+        "sha256": "12377b3af8534b4b29539ac60e9c72bf3825db54bfb2a84f4335baf41c4998db"
       },
       {
         "file": "starter_kit/c020_tactical_leaf.py",
@@ -104,7 +109,7 @@
       },
       {
         "file": "starter_kit/c020_override.py",
-        "sha256": "05a3ef37b3a112c9deb6f1adc2df3763a3e237d7a843dffd911a65a8efa2e7fd"
+        "sha256": "5f1b7a653afbf06b87d8dbf2c4ab086021105d385a287f5374254d25a0fdef7b"
       },
       {
         "file": "starter_kit/c020_determinize.py",
@@ -116,7 +121,7 @@
       },
       {
         "file": "starter_kit/c020_agent.py",
-        "sha256": "6dbee0b850e649a76ae5b7af08a225890537756f3b899d39f2e6b246ad4c1686"
+        "sha256": "676be41ec51e81bd50e157238de01edbb39e4f6fec6135d92c079544ce73b421"
       },
       {
         "file": "starter_kit/c020_byterl_encode.py",
@@ -146,7 +151,7 @@
     "M02_complete_smoke": [
       {
         "file": "tools/c020_mcts_run.py",
-        "sha256": "a787883a4457a005a96bf8554c1450835c5a44b15ada7efeebf2f44014991228"
+        "sha256": "b68839247bf9a8887e713a9d5aa56c581274e127a568d1b3892bde8b2e9efc93"
       },
       {
         "file": "tools/c020_byterl_train.py",
@@ -158,23 +163,23 @@
       },
       {
         "file": "tools/c020_panel.py",
-        "sha256": "1d248741da6f7413f83650a4a357484004a11a7e901387343123a4b2385e5d13"
+        "sha256": "6002873b35bc729d61ff03e32b711647b17db5b3cd1a02637fe077909d7b262a"
       },
       {
         "file": "tools/c020_package.py",
-        "sha256": "81658b45697a9fbd8138cae8c89f2eca0aca392945832fce93ca74eb8d0c0a36"
+        "sha256": "f2f148d3366010d6a05385522bec39599eb85af08e588731a7077f897c17b75e"
       }
     ],
     "M03_repair_pass": [
       {
         "file": "tools/c020_validate.py",
-        "sha256": "6dfa9f97bf44a0a8d7943867560f6d99e675d13e9c67c1b5c4a5f9d78bb60cff"
+        "sha256": "5c3889ff1578aeb50130e41d038b2b4c58e4efe644be1c5d0570ed532813b61d"
       }
     ],
     "M04_scaled_mcts": [
       {
         "file": "tools/c020_mcts_run.py",
-        "sha256": "a787883a4457a005a96bf8554c1450835c5a44b15ada7efeebf2f44014991228"
+        "sha256": "b68839247bf9a8887e713a9d5aa56c581274e127a568d1b3892bde8b2e9efc93"
       }
     ],
     "M05_scaled_byterl": [
@@ -196,7 +201,7 @@
     "M07_submitted_packages": [
       {
         "file": "tools/c020_package.py",
-        "sha256": "81658b45697a9fbd8138cae8c89f2eca0aca392945832fce93ca74eb8d0c0a36"
+        "sha256": "f2f148d3366010d6a05385522bec39599eb85af08e588731a7077f897c17b75e"
       },
       {
         "file": "tools/c020_submit.py",
@@ -204,6 +209,15 @@
       }
     ]
   },
-  "bundles": {},
-  "patch_bytes": 3341277
+  "bundles": {
+    "complete_repository_source.zip": {
+      "bytes": 2310135712,
+      "sha256": "f4ad104bb47830bc7fd727ef18ae7f0c5f6fb6860f5758ff16262e296641df08"
+    },
+    "c020_competition_source_bundle.zip": {
+      "bytes": 229550,
+      "sha256": "9587acaf25ebb3d8e39a4dd6d3bb9cefc4fff37a729e4947eaff7215832828b7"
+    }
+  },
+  "patch_bytes": 41863663
 }

@@ -1,0 +1,3547 @@
+{
+  "excluded": [
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results.zip",
+      "bytes": 168247660,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/combination_final_games.jsonl.gz",
+      "bytes": 314979,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q0_training_games.jsonl.gz",
+      "bytes": 672703,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/evaluation_games.jsonl.gz",
+      "bytes": 2293880,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q2_training_games.jsonl.gz",
+      "bytes": 1145945,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/claude_preflight_inputs.jsonl.gz",
+      "bytes": 19630,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/combination_confirmation_games.jsonl.gz",
+      "bytes": 1558355,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q1_training_games.jsonl.gz",
+      "bytes": 691857,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/c013_python_source_bundle.zip",
+      "bytes": 986727,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/identical_state_policy_actions.jsonl.gz",
+      "bytes": 248964,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/combination_selection_games.jsonl.gz",
+      "bytes": 421396,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/semantic_state_benchmark.jsonl.gz",
+      "bytes": 11186,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/claude_preflight_outputs.jsonl.gz",
+      "bytes": 15622,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/updates.jsonl.gz",
+      "bytes": 4857,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/training_games.jsonl.gz",
+      "bytes": 672703,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/trainer_g5184.pt",
+      "bytes": 9590131,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/trainer_g10320.pt",
+      "bytes": 9590557,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/updates.jsonl.gz",
+      "bytes": 5060,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/training_games.jsonl.gz",
+      "bytes": 691857,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/trainer_g5184.pt",
+      "bytes": 9590131,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/trainer_g10256.pt",
+      "bytes": 9590493,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/R0/seed1001/updates.jsonl.gz",
+      "bytes": 1168,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/R0/seed1001/training_games.jsonl.gz",
+      "bytes": 285242,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/R0/seed1001/checkpoints/trainer_g2592.pt",
+      "bytes": 9590003,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/updates.jsonl.gz",
+      "bytes": 4204,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/training_games.jsonl.gz",
+      "bytes": 569525,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/trainer_g5152.pt",
+      "bytes": 9590451,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/R1/seed1002/updates.jsonl.gz",
+      "bytes": 1395,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/R1/seed1002/training_games.jsonl.gz",
+      "bytes": 285184,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/R1/seed1002/checkpoints/trainer_g2528.pt",
+      "bytes": 9590003,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/updates.jsonl.gz",
+      "bytes": 4226,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/training_games.jsonl.gz",
+      "bytes": 576853,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/trainer_g5200.pt",
+      "bytes": 9590515,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c009_amendment_c008/results/artifacts/corrected_games.jsonl.gz",
+      "bytes": 172713,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/evaluation_games.jsonl.gz",
+      "bytes": 972711,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/seed_633_training_games.jsonl.gz",
+      "bytes": 2256929,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/seed_622_training_games.jsonl.gz",
+      "bytes": 2252947,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/seed_622_updates.jsonl.gz",
+      "bytes": 71231,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/seed_633_updates.jsonl.gz",
+      "bytes": 70454,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/seed_611_training_games.jsonl.gz",
+      "bytes": 2263696,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/hardware_utilization.jsonl.gz",
+      "bytes": 4710,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/c011_python_source_bundle.zip",
+      "bytes": 649165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/seed_611_updates.jsonl.gz",
+      "bytes": 70545,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/updates.jsonl.gz",
+      "bytes": 70454,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/training_games.jsonl.gz",
+      "bytes": 2256929,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g20224.pt",
+      "bytes": 9594333,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g30176.pt",
+      "bytes": 9594461,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g5376.pt",
+      "bytes": 9593651,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g40064.pt",
+      "bytes": 9594525,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g10224.pt",
+      "bytes": 9593885,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g15040.pt",
+      "bytes": 9594141,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/updates.jsonl.gz",
+      "bytes": 71231,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/training_games.jsonl.gz",
+      "bytes": 2252947,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g39983_terminal.pt",
+      "bytes": 9596055,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g20032.pt",
+      "bytes": 9594397,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g30319.pt",
+      "bytes": 9594461,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g15296.pt",
+      "bytes": 9594141,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g5328.pt",
+      "bytes": 9593715,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g10096.pt",
+      "bytes": 9593885,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/updates.jsonl.gz",
+      "bytes": 70545,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/training_games.jsonl.gz",
+      "bytes": 2263696,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/trainer_g15120.pt",
+      "bytes": 9594013,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/trainer_g40127.pt",
+      "bytes": 9594461,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/trainer_g30223.pt",
+      "bytes": 9594333,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/trainer_g10320.pt",
+      "bytes": 9593821,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/trainer_g20287.pt",
+      "bytes": 9594269,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/trainer_g5440.pt",
+      "bytes": 9593587,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/smoke/seed999/updates.jsonl.gz",
+      "bytes": 2156,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/smoke/seed999/training_games.jsonl.gz",
+      "bytes": 51514,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/smoke/seed999/checkpoints/trainer_g912_terminal.pt",
+      "bytes": 9594691,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results.zip",
+      "bytes": 13329579,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/strategic_gauntlet_games.jsonl.gz",
+      "bytes": 2406873,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/submission_A_teacher.tar.gz",
+      "bytes": 500422,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_dataset/test.jsonl.gz",
+      "bytes": 647713,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_dataset/train.jsonl.gz",
+      "bytes": 3945697,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_dataset/validation.jsonl.gz",
+      "bytes": 867378,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/frozen_teacher/cg/libcg.so",
+      "bytes": 1338304,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_abomasnow/submission.tar.gz",
+      "bytes": 496935,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_abomasnow/cg/libcg.so",
+      "bytes": 1338304,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_lucario/submission.tar.gz",
+      "bytes": 498154,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_lucario/cg/libcg.so",
+      "bytes": 1338304,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/iono/submission.tar.gz",
+      "bytes": 497632,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/iono/cg/libcg.so",
+      "bytes": 1338304,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult/submission.tar.gz",
+      "bytes": 500419,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult/cg/libcg.so",
+      "bytes": 1338304,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_B_training_games.jsonl.gz",
+      "bytes": 1253528,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_C_updates.jsonl.gz",
+      "bytes": 61977,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_C_training_games.jsonl.gz",
+      "bytes": 3354931,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/evaluation_games.jsonl.gz",
+      "bytes": 1107301,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_B_updates.jsonl.gz",
+      "bytes": 75228,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_A_training_games.jsonl.gz",
+      "bytes": 2015412,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_A_updates.jsonl.gz",
+      "bytes": 120283,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed522/updates.jsonl.gz",
+      "bytes": 21429,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed522/training_games.jsonl.gz",
+      "bytes": 1121686,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/updates.jsonl.gz",
+      "bytes": 21480,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/training_games.jsonl.gz",
+      "bytes": 1127071,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/updates.jsonl.gz",
+      "bytes": 21060,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/training_games.jsonl.gz",
+      "bytes": 1107751,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/updates.jsonl.gz",
+      "bytes": 40751,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/training_games.jsonl.gz",
+      "bytes": 671820,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/updates.jsonl.gz",
+      "bytes": 40770,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/training_games.jsonl.gz",
+      "bytes": 672927,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/updates.jsonl.gz",
+      "bytes": 40705,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/training_games.jsonl.gz",
+      "bytes": 672218,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_B/seed411/updates.jsonl.gz",
+      "bytes": 25728,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_B/seed411/training_games.jsonl.gz",
+      "bytes": 418540,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_B/seed433/updates.jsonl.gz",
+      "bytes": 25789,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_B/seed433/training_games.jsonl.gz",
+      "bytes": 418648,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_B/seed422/updates.jsonl.gz",
+      "bytes": 25712,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_B/seed422/training_games.jsonl.gz",
+      "bytes": 417894,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c003_episode_lineage_and_semantic_replay/results.zip",
+      "bytes": 880950,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c003_episode_lineage_and_semantic_replay/results/artifacts/validation_run/episodes_v2.jsonl.gz",
+      "bytes": 385374,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results.zip",
+      "bytes": 211850007,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/rl_strategic_games.jsonl.gz",
+      "bytes": 1316,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/rl_teacher_games.jsonl.gz",
+      "bytes": 584,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c004_competitive_baseline_gauntlet/results.zip",
+      "bytes": 807925,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c004_competitive_baseline_gauntlet/results/artifacts/gauntlet_games.jsonl.gz",
+      "bytes": 707148,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results.zip",
+      "bytes": 2047433,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/final_gauntlet_games.jsonl.gz",
+      "bytes": 62104,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/c016_python_source_bundle.zip",
+      "bytes": 348301,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/confirmation_games.jsonl.gz",
+      "bytes": 79791,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/screening_games.jsonl.gz",
+      "bytes": 10458,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/local_games.jsonl.gz",
+      "bytes": 24709,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/decision_trace_samples.jsonl.gz",
+      "bytes": 53482,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/submission_H_public_meta_v0.tar.gz",
+      "bytes": 500271,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/c014_python_source_bundle.zip",
+      "bytes": 1485647,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/improvement_labels.jsonl.gz",
+      "bytes": 50,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/submission_C_hybrid_NOT_FOR_SUBMISSION.tar.gz",
+      "bytes": 3985118,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/hybrid_strategic_games.jsonl.gz",
+      "bytes": 23151,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/on_policy_states.jsonl.gz",
+      "bytes": 10528,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/h2_teacher_games.jsonl.gz",
+      "bytes": 23399,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/v2_dataset/control.jsonl.gz",
+      "bytes": 1209209,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/v2_dataset/test.jsonl.gz",
+      "bytes": 2909571,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/v2_dataset/train.jsonl.gz",
+      "bytes": 14254742,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/v2_dataset/validation.jsonl.gz",
+      "bytes": 3099247,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results.z03",
+      "bytes": 314572800,
+      "reason": "exceeds 64 MB"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results.z02",
+      "bytes": 314572800,
+      "reason": "exceeds 64 MB"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results.z01",
+      "bytes": 314572800,
+      "reason": "exceeds 64 MB"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_curriculum_40k_updates.jsonl.gz",
+      "bytes": 7096,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/p13_uninterrupted_updates.jsonl.gz",
+      "bytes": 567,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/p13_uninterrupted_games.jsonl.gz",
+      "bytes": 1442,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/p13_partA_updates.jsonl.gz",
+      "bytes": 396,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_curriculum_games.jsonl.gz",
+      "bytes": 680525,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/p13_partA_games.jsonl.gz",
+      "bytes": 867,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/p13_partB_updates.jsonl.gz",
+      "bytes": 394,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_smoke_games.jsonl.gz",
+      "bytes": 478,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/vertical_curric_updates.jsonl.gz",
+      "bytes": 560,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_smoke_updates.jsonl.gz",
+      "bytes": 563,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_curriculum_updates.jsonl.gz",
+      "bytes": 13841,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/vertical_curric_games.jsonl.gz",
+      "bytes": 2058,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_curriculum_40k_games.jsonl.gz",
+      "bytes": 341418,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/p13_partB_games.jsonl.gz",
+      "bytes": 853,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/m03_curriculum_40k_updates.jsonl.gz",
+      "bytes": 7096,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/p13_uninterrupted_updates.jsonl.gz",
+      "bytes": 567,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/p13_uninterrupted_games.jsonl.gz",
+      "bytes": 1442,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/p13_partA_updates.jsonl.gz",
+      "bytes": 396,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/m03_curriculum_games.jsonl.gz",
+      "bytes": 680525,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/p13_partA_games.jsonl.gz",
+      "bytes": 867,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/p13_partB_updates.jsonl.gz",
+      "bytes": 394,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/m03_smoke_games.jsonl.gz",
+      "bytes": 478,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/vertical_curric_updates.jsonl.gz",
+      "bytes": 560,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/m03_smoke_updates.jsonl.gz",
+      "bytes": 563,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/m03_curriculum_updates.jsonl.gz",
+      "bytes": 13841,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/vertical_curric_games.jsonl.gz",
+      "bytes": 2058,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/m03_curriculum_40k_games.jsonl.gz",
+      "bytes": 341418,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/raw_rollouts/p13_partB_games.jsonl.gz",
+      "bytes": 853,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_trajectories.jsonl.gz",
+      "bytes": 1537604,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled_trajectories.jsonl.gz",
+      "bytes": 346457,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/smoke_trajectories.jsonl.gz",
+      "bytes": 10676,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/budgetcheck_trajectories.jsonl.gz",
+      "bytes": 7341,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/vertical_trajectories.jsonl.gz",
+      "bytes": 9302,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/ratecheck_trajectories.jsonl.gz",
+      "bytes": 37261,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/diagnostic/smoke_trajectories.jsonl.gz",
+      "bytes": 10676,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/diagnostic/budgetcheck_trajectories.jsonl.gz",
+      "bytes": 7341,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/diagnostic/ratecheck_trajectories.jsonl.gz",
+      "bytes": 37261,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/trusted/scaled2_trajectories.jsonl.gz",
+      "bytes": 1537604,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/trusted/scaled_trajectories.jsonl.gz",
+      "bytes": 346457,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/trusted/vertical_trajectories.jsonl.gz",
+      "bytes": 9302,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/submission_L_guided_search_v0.tar.gz",
+      "bytes": 4171838,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/submission_M_trained_policy_v0.tar.gz",
+      "bytes": 4170060,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/vertical_package_smoke.tar.gz",
+      "bytes": 505266,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/submission_K_official_search_v0.tar.gz",
+      "bytes": 505273,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/c018_competition_source_bundle.zip",
+      "bytes": 180025,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/complete_repository_source.zip",
+      "bytes": 18621798,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/p13_uninterrupted.pt",
+      "bytes": 5042502,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled_11k.pt",
+      "bytes": 2526570,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_40k.pt",
+      "bytes": 5042321,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.pt",
+      "bytes": 5042321,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/p13_partB.pt",
+      "bytes": 5042126,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/vertical_curric.pt",
+      "bytes": 5042424,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/vertical_distill.pt",
+      "bytes": 2526687,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_smoke.pt",
+      "bytes": 2526414,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled.pt",
+      "bytes": 2526570,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_smoke.pt",
+      "bytes": 5042126,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/p13_partA.pt",
+      "bytes": 5042126,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/final_panel/raw_games.jsonl.gz",
+      "bytes": 69155,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/final_panel/vertical_raw_games.jsonl.gz",
+      "bytes": 916,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/final_panel/probe_raw_games.jsonl.gz",
+      "bytes": 1289,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/raw_games/raw_games.jsonl.gz",
+      "bytes": 69155,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/raw_games/vertical_raw_games.jsonl.gz",
+      "bytes": 916,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/raw_games/probe_raw_games.jsonl.gz",
+      "bytes": 1289,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/models/distillation/m02_distilled_11k.pt",
+      "bytes": 2526570,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/models/distillation/m02_smoke.pt",
+      "bytes": 2526414,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/models/distillation/m02_distilled.pt",
+      "bytes": 2526570,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/models/curriculum/m03_curriculum_40k.pt",
+      "bytes": 5042321,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/models/curriculum/m03_curriculum.pt",
+      "bytes": 5042321,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/cross_play_games.jsonl.gz",
+      "bytes": 26906,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/P1_training_games.jsonl.gz",
+      "bytes": 5441053,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/P0_updates.jsonl.gz",
+      "bytes": 40736,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/evaluation_games.jsonl.gz",
+      "bytes": 1332322,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/c011_confirmation_games.jsonl.gz",
+      "bytes": 578339,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/c012_python_source_bundle.zip",
+      "bytes": 744162,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/curriculum_evaluation_games.jsonl.gz",
+      "bytes": 756430,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/P1_updates.jsonl.gz",
+      "bytes": 44183,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/claude_outputs.jsonl.gz",
+      "bytes": 6586,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/claude_inputs.jsonl.gz",
+      "bytes": 3085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/P0_training_games.jsonl.gz",
+      "bytes": 5204566,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/hard_state_benchmark.jsonl.gz",
+      "bytes": 14828,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/updates.jsonl.gz",
+      "bytes": 14235,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/training_games.jsonl.gz",
+      "bytes": 1742564,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g25152.pt",
+      "bytes": 9593565,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g15408.pt",
+      "bytes": 9592349,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g20048.pt",
+      "bytes": 9592989,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g10320.pt",
+      "bytes": 9591517,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g5200.pt",
+      "bytes": 9590259,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/updates.jsonl.gz",
+      "bytes": 14160,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/training_games.jsonl.gz",
+      "bytes": 1740145,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g25280.pt",
+      "bytes": 9593565,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g15056.pt",
+      "bytes": 9592093,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g10368.pt",
+      "bytes": 9591453,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g5200.pt",
+      "bytes": 9590259,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g20192.pt",
+      "bytes": 9592925,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/updates.jsonl.gz",
+      "bytes": 14044,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/training_games.jsonl.gz",
+      "bytes": 1723516,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g10304.pt",
+      "bytes": 9591453,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g5216.pt",
+      "bytes": 9590259,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g20144.pt",
+      "bytes": 9592925,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g15040.pt",
+      "bytes": 9592093,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g25296.pt",
+      "bytes": 9593565,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/updates.jsonl.gz",
+      "bytes": 15362,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/training_games.jsonl.gz",
+      "bytes": 1807326,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/trainer_g15088.pt",
+      "bytes": 9592157,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/trainer_g20096.pt",
+      "bytes": 9593053,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/trainer_g10128.pt",
+      "bytes": 9591581,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/trainer_g25104.pt",
+      "bytes": 9593629,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/trainer_g5120.pt",
+      "bytes": 9590323,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed811/updates.jsonl.gz",
+      "bytes": 15313,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed811/training_games.jsonl.gz",
+      "bytes": 1815049,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed811/checkpoints/trainer_g20224.pt",
+      "bytes": 9592989,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed811/checkpoints/trainer_g15200.pt",
+      "bytes": 9592413,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed811/checkpoints/trainer_g25216.pt",
+      "bytes": 9593629,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed811/checkpoints/trainer_g10128.pt",
+      "bytes": 9591517,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed811/checkpoints/trainer_g5120.pt",
+      "bytes": 9590323,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/updates.jsonl.gz",
+      "bytes": 15349,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/training_games.jsonl.gz",
+      "bytes": 1820535,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/trainer_g10176.pt",
+      "bytes": 9591517,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/trainer_g20224.pt",
+      "bytes": 9592989,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/trainer_g25280.pt",
+      "bytes": 9593629,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/trainer_g15232.pt",
+      "bytes": 9592413,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/trainer_g5136.pt",
+      "bytes": 9590323,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/training/checkpoints/c017_policy_value.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/training/checkpoints/eval_g2000_be9d1e5da2ca.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/training/checkpoints/eval_g0_be9d1e5da2ca.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/training/checkpoints/eval_g1000_be9d1e5da2ca.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/trajectories/featprobe_trajectories.jsonl.gz",
+      "bytes": 27456,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/trajectories/scaled_trajectories.jsonl.gz",
+      "bytes": 211568,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/trajectories/probe_trajectories.jsonl.gz",
+      "bytes": 41816,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/packages/submission_J_official_mega_lucario_baseline.tar.gz",
+      "bytes": 498392,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/source/c017_competition_source_bundle.zip",
+      "bytes": 155075,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/source/complete_repository_source.zip",
+      "bytes": 1267907,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/final_panel/raw_games.jsonl.gz",
+      "bytes": 4084,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/final_panel/final_panel_games.jsonl.gz",
+      "bytes": 4084,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/search/fallback_events.jsonl.gz",
+      "bytes": 47,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/curriculum/fallback_events.jsonl.gz",
+      "bytes": 191,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/c017_policy_value.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g2000_be9d1e5da2ca.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g0_be9d1e5da2ca.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g1000_be9d1e5da2ca.pt",
+      "bytes": 2526726,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results.z02",
+      "bytes": 419430400,
+      "reason": "exceeds 64 MB"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results.z01",
+      "bytes": 419430400,
+      "reason": "exceeds 64 MB"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results.zip",
+      "bytes": 269029949,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/raw_games/calib_games.jsonl.gz",
+      "bytes": 1407,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/raw_games/lat_s20d2_games.jsonl.gz",
+      "bytes": 2313,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/raw_games/scaled_games.jsonl.gz",
+      "bytes": 18070,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/raw_games/lat_s32d2_games.jsonl.gz",
+      "bytes": 2288,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/raw_games/lat_s12d1_games.jsonl.gz",
+      "bytes": 2268,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/determinizations/lat_s20d2_determinizations.jsonl.gz",
+      "bytes": 58,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/determinizations/lat_s32d2_determinizations.jsonl.gz",
+      "bytes": 58,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/determinizations/scaled_determinizations.jsonl.gz",
+      "bytes": 24452,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/determinizations/calib_determinizations.jsonl.gz",
+      "bytes": 3424,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/determinizations/lat_s12d1_determinizations.jsonl.gz",
+      "bytes": 58,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/sampled_full_traces/scaled_traces.jsonl.gz",
+      "bytes": 260318,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/sampled_full_traces/calib_traces.jsonl.gz",
+      "bytes": 28277,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/sampled_full_traces/lat_s12d1_traces.jsonl.gz",
+      "bytes": 48,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/sampled_full_traces/lat_s32d2_traces.jsonl.gz",
+      "bytes": 48,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/mcts/sampled_full_traces/lat_s20d2_traces.jsonl.gz",
+      "bytes": 48,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_byterl_v0/ptcg_byterl_v0.tar.gz",
+      "bytes": 3451064,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_ismcts_v0/ptcg_ismcts_v0.tar.gz",
+      "bytes": 556611,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/packages/ptcg_byterl_rehearsal/ptcg_byterl_rehearsal.tar.gz",
+      "bytes": 3451074,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/c019_competition_source_bundle.zip",
+      "bytes": 156672,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/source/complete_repository_source.zip",
+      "bytes": 1830894,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/raw_games/smoke3_games.jsonl.gz",
+      "bytes": 1138,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/raw_games/smoke2_games.jsonl.gz",
+      "bytes": 716,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/raw_games/scaled_games.jsonl.gz",
+      "bytes": 527996,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/raw_games/scaled2_games.jsonl.gz",
+      "bytes": 700659,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/raw_games/fixsmoke_games.jsonl.gz",
+      "bytes": 4516,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/smoke3_opponent_samples.jsonl.gz",
+      "bytes": 525,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/fixsmoke_opponent_samples.jsonl.gz",
+      "bytes": 2658,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/opponent_samples.jsonl.gz",
+      "bytes": 66235,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/scaled2_opponent_samples.jsonl.gz",
+      "bytes": 320977,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/smoke2_opponent_samples.jsonl.gz",
+      "bytes": 501,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/scaled_opponent_samples.jsonl.gz",
+      "bytes": 216156,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled2/historical_000_lp000_v004823.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled2/historical_002_lp009_v040516.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled2/historical_001_lp002_v013178.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/fixsmoke/historical_001_lp004_v000127.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/fixsmoke/historical_000_lp000_v000026.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/smoke/historical_000_lp000_v000006.pt",
+      "bytes": 3445245,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/smoke3/historical_000_lp000_v000060.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/scaled/historical_000_lp000_v011208.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/osfp/historical_checkpoints/smoke2/historical_000_lp000_v000012.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/smoke2_losses.jsonl.gz",
+      "bytes": 1748,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/fixsmoke_losses.jsonl.gz",
+      "bytes": 28500,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/smoke3_losses.jsonl.gz",
+      "bytes": 7614,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/losses.jsonl.gz",
+      "bytes": 294001,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/scaled2_losses.jsonl.gz",
+      "bytes": 4842440,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/learner_logs/scaled_losses.jsonl.gz",
+      "bytes": 3792987,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke_lp000_end.pt",
+      "bytes": 3445245,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke_v0000.pt",
+      "bytes": 3445085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke_final.pt",
+      "bytes": 3445085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v17780.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38240.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v11818.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28003.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v17060.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24329.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25675.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36010.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32780.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32398.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33250.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v15722.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v15957.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35092.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v21038.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32624.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v16901.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23628.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31479.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v19916.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp007_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25438.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v6419.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33710.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v8730.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30765.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v7464.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36467.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v4365.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v8978.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v15006.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v15485.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31240.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v17536.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v13862.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v18252.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v32168.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v22443.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v0900.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31715.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp009_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36623.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35782.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39879.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v5896.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v5366.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v4642.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34626.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28875.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp000_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v10379.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38008.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27534.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v1794.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v19207.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v11331.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v18014.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v2664.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30535.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v15248.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24577.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v10628.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v22685.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29830.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v3809.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31939.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27768.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v8227.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v10866.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v4087.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25903.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39412.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v6159.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v16196.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp006_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v21741.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35556.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36238.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v2954.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v8483.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37315.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24972.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37546.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_final.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v12781.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v19443.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v18485.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v22211.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v12544.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29114.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v14087.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38947.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v5095.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v13641.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v3235.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29591.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v6940.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v21984.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33476.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v13411.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v31004.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v1500.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp003_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v2082.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30067.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40111.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v13015.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33015.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v6683.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v4823.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v33938.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37082.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v22921.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34855.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v7202.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v5629.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v11574.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v14318.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23864.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26369.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23155.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v12301.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp005_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v7970.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v0000.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v37776.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp008_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24814.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v21511.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v20160.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp004_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28480.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v13178.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39648.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28719.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v9626.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v0301.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v21269.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v17298.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34168.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v18719.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v10123.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v35327.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v9874.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38471.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27067.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v23392.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v9130.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26132.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v7717.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26838.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40357.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v20640.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v0601.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v2375.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v20400.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v28237.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v34396.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v12064.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v14544.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v30297.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v9382.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v14775.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v38713.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp002_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v36855.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v26607.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v29356.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v18965.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v11097.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v20882.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v24098.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v27304.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v39182.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v19684.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_lp001_end.pt",
+      "bytes": 3445325,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v1202.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v25204.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v16665.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v3525.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v16431.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0039.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0012.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0178.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0076.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0026.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0127.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0165.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0052.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp004_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0218.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp003_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp005_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0115.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0089.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp000_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp007_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp001_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0205.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp002_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0064.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_final.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0102.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp008_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0191.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0152.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_lp006_end.pt",
+      "bytes": 3445365,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0000.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/fixsmoke/fixsmoke_v0140.pt",
+      "bytes": 3445205,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke/smoke_lp000_end.pt",
+      "bytes": 3445245,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke/smoke_v0006.pt",
+      "bytes": 3445085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke/smoke_v0000.pt",
+      "bytes": 3445085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke/smoke_final.pt",
+      "bytes": 3445085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke/smoke_v0003.pt",
+      "bytes": 3445085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke/smoke_v0009.pt",
+      "bytes": 3445085,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke/smoke_lp001_end.pt",
+      "bytes": 3445245,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke3/smoke3_final.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke3/smoke3_v0000.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke3/smoke3_v0030.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke3/smoke3_lp000_end.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v3527.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v8837.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v11450.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v22086.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v20050.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v16481.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v31728.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v19122.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v5209.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v12421.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v14828.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v16722.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v23756.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v26377.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v22553.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v14124.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v26849.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v5478.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v12175.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v10806.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v4378.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v0000.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v8583.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v6797.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v30185.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_lp001_end.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v24447.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v5745.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v24213.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v29720.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v17913.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v11052.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v15063.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v2652.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v25167.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v23277.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v27087.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v6010.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v25647.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v12664.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v29018.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v14600.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v29488.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v15779.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v30640.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v8333.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v21148.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v6274.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v4659.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v31032.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v30416.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v15541.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v23514.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v2362.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v3243.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v24921.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v19350.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v9083.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v27336.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v4097.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v28291.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v13395.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v10069.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v8078.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v11208.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v11686.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v18149.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v0294.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v24683.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v18636.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v19820.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_lp000_end.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v30874.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v4931.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v2068.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v20284.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v21617.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v15306.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v26611.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v10563.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v16245.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v9821.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v28051.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v9335.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v27576.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v7825.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v20994.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v11934.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v17206.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v12911.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v18880.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v9577.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v16013.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v28530.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v7311.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v25410.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v29948.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v1774.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v22802.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v3815.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v23986.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v13641.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v31262.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v29252.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v17677.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v13881.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v17442.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v7055.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v28776.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v31488.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v0889.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v14362.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v25893.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v0593.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v20758.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v26135.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v1481.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v27818.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_lp002_end.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v19582.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v6538.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v7568.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v21854.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v21382.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v1183.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v23048.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v22316.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v13153.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v16964.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v20520.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v2948.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v10321.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled/scaled_v18392.pt",
+      "bytes": 3445165,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke2/smoke2_v0000.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke2/smoke2_final.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke2/smoke2_v0006.pt",
+      "bytes": 3445125,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/smoke2/smoke2_lp000_end.pt",
+      "bytes": 3445285,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_rehearsal_raw_games.jsonl.gz",
+      "bytes": 513,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_ablation_raw_games.jsonl.gz",
+      "bytes": 3945,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/mcts_gate2_raw_games.jsonl.gz",
+      "bytes": 4131,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/mcts_full_raw_games.jsonl.gz",
+      "bytes": 3000,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_smoke_raw_games.jsonl.gz",
+      "bytes": 377,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/mcts_gate_raw_games.jsonl.gz",
+      "bytes": 2850,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/hybrid_compare_raw_games.jsonl.gz",
+      "bytes": 2938,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/final_panel/byterl_gate_raw_games.jsonl.gz",
+      "bytes": 6662,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c015_anti_meta_deck_agent_v0/results/artifacts/local_games.jsonl.gz",
+      "bytes": 25904,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c015_anti_meta_deck_agent_v0/results/artifacts/decision_trace_samples.jsonl.gz",
+      "bytes": 125613,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c015_anti_meta_deck_agent_v0/results/artifacts/submission_I_anti_meta_v0.tar.gz",
+      "bytes": 500577,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c015_anti_meta_deck_agent_v0/results/artifacts/c015_python_source_bundle.zip",
+      "bytes": 266416,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c006_distilled_policy_baseline/results/artifacts/submission_B_student_NOT_FOR_SUBMISSION.tar.gz",
+      "bytes": 1685452,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c006_distilled_policy_baseline/results/artifacts/student_strategic_gauntlet.jsonl.gz",
+      "bytes": 72346,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c006_distilled_policy_baseline/results/artifacts/model_smoke_games.jsonl.gz",
+      "bytes": 8002,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c006_distilled_policy_baseline/results/artifacts/student_teacher_games.jsonl.gz",
+      "bytes": 36858,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c006_distilled_policy_baseline/results/artifacts/sequence_dataset/test.jsonl.gz",
+      "bytes": 668807,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c006_distilled_policy_baseline/results/artifacts/sequence_dataset/train.jsonl.gz",
+      "bytes": 4076198,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "contracts/c006_distilled_policy_baseline/results/artifacts/sequence_dataset/validation.jsonl.gz",
+      "bytes": 896256,
+      "reason": "prior-contract binary artifact"
+    },
+    {
+      "path": "pokemon-tcg-ai-battle-challenge-strategy/Card_ID List_JP.pdf",
+      "bytes": 182284028,
+      "reason": "exceeds 64 MB"
+    },
+    {
+      "path": "pokemon-tcg-ai-battle-challenge-strategy/Card_ID List_EN.pdf",
+      "bytes": 137654485,
+      "reason": "exceeds 64 MB"
+    }
+  ],
+  "excluded_count": 708,
+  "excluded_bytes": 4848882602,
+  "policy": "RESULTS_SCHEMA permits excluding unrelated large historical datasets; c020's own checkpoints, raw games and evidence are included in full, and prior contracts keep their source and reports but not their binaries"
+}

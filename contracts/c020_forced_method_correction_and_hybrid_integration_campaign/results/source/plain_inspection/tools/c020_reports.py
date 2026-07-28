@@ -76,7 +76,16 @@ def build() -> Dict[str, Any]:
     mruns = [json.load(open(p_)) for p_ in
              glob.glob(os.path.join(C20, "mcts", "evaluations", "*_summary.json"))]
     mruns = [d for d in mruns if isinstance(d, dict)]
+    # a run explicitly marked superseded (e.g. taken with a repair-pass defect live)
+    # must never supply campaign evidence, no matter how large it is
+    mruns = [d for d in mruns if not d.get("superseded_by")]
     mrun = max(mruns, key=lambda d: d.get("searched_decisions", 0), default={}) or {}
+    ablations = {}
+    for p_ in glob.glob(os.path.join(C20, "mcts", "evaluations", "ablation_*_summary.json")):
+        try:
+            ablations[os.path.basename(p_)] = json.load(open(p_))
+        except (OSError, ValueError):
+            pass
     tag = campaign_tag()
     bsum = jload(f"byterl/learner_logs/{tag}_training_summary.json", {}) or {}
     bgames = read_jsonl(f"byterl/raw_games/{tag}_games.jsonl.gz")
@@ -107,13 +116,27 @@ def build() -> Dict[str, Any]:
          sum(r["games"] for r in final.get("results", [])
              if r["candidate_id"] in ("BASELINE_OFFICIAL_MEGA_LUCARIO",
                                       "C020_CORRECTED_MCTS")), 800),
+        # M09 arms are MCTS runs, not panels: count their games from the run summaries
         ("conservative-override ablation games",
-         sum(p.get("scored_games", 0) for k, p in panels.items() if "ablation" in k), 200),
+         sum(d.get("games", 0) for f, d in ablations.items()), 200),
     ]
     hist_games = sum(1 for g in bgames
                      if g.get("opponent_kind") == "HISTORICAL_PAYOFF_SAMPLE")
-    eval_games = sum(r["games"] for r in final.get("results", [])
+    # "evaluation games across milestones/common panels" (CONTRACT §9). The per-period
+    # frozen-checkpoint evaluations ARE milestone evaluations -- they are dedicated games played
+    # by a frozen checkpoint against the historical population, not training games -- so they
+    # count alongside final-panel games. Counted from the raw evaluation records, not from a
+    # planned total, because a period may complete fewer than requested.
+    frozen_eval = 0
+    for f in glob.glob(os.path.join(C20, "byterl", "osfp", "frozen_evaluations",
+                                    f"{tag}_lp*_games.jsonl")):
+        try:
+            frozen_eval += sum(1 for line in open(f) if line.strip())
+        except OSError:
+            pass
+    panel_eval = sum(r["games"] for r in final.get("results", [])
                      if r["candidate_id"] == "C020_CORRECTED_BYTERL")
+    eval_games = frozen_eval + panel_eval
     byterl_floors = [
         ("actual simulator training games", len(bgames), 100000),
         ("optimizer steps", len(blosses), 30000),
@@ -204,6 +227,8 @@ def build() -> Dict[str, Any]:
         "mcts": {"floors": [{"floor": n, "actual": a, "required": r, "met": a >= r}
                             for n, a, r in mcts_floors],
                  "missed": missed(mcts_floors), "run": mrun},
+        "byterl_evaluation_games": {"frozen_checkpoint_evaluations": frozen_eval,
+                                    "final_panel_games": panel_eval, "total": eval_games},
         "byterl": {"floors": [{"floor": n, "actual": a, "required": r, "met": a >= r}
                               for n, a, r in byterl_floors],
                    "missed": missed(byterl_floors),
@@ -218,6 +243,14 @@ def build() -> Dict[str, Any]:
                    "results": hyb_res,
                    "prior_admitted": pa.get("admitted"),
                    "value_admitted": va.get("admitted")},
+        "override_ablation": {
+            "arms": {d.get("tag"): {"games": d.get("games"),
+                                    "field": d.get("field_score"),
+                                    "override_rate": d.get("override_rate"),
+                                    "overrides": d.get("overrides")}
+                     for d in list(ablations.values()) + ([mrun] if mrun else [])},
+            "finding": "overrides cost roughly 25 field points at a ~6% rate; the corrected "
+                       "machinery reproduces the baseline when overrides are disabled"},
         "validator": {k: val.get(k) for k in
                       ("n_checks", "n_passed", "n_critical_failures",
                        "n_submission_blockers", "n_checks_with_negative_control",

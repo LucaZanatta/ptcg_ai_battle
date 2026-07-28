@@ -122,8 +122,21 @@ def build() -> Dict[str, Any]:
     ]
     hist_games = sum(1 for g in bgames
                      if g.get("opponent_kind") == "HISTORICAL_PAYOFF_SAMPLE")
-    eval_games = sum(r["games"] for r in final.get("results", [])
+    # "evaluation games across milestones/common panels" (CONTRACT §9). The per-period
+    # frozen-checkpoint evaluations ARE milestone evaluations -- they are dedicated games played
+    # by a frozen checkpoint against the historical population, not training games -- so they
+    # count alongside final-panel games. Counted from the raw evaluation records, not from a
+    # planned total, because a period may complete fewer than requested.
+    frozen_eval = 0
+    for f in glob.glob(os.path.join(C20, "byterl", "osfp", "frozen_evaluations",
+                                    f"{tag}_lp*_games.jsonl")):
+        try:
+            frozen_eval += sum(1 for line in open(f) if line.strip())
+        except OSError:
+            pass
+    panel_eval = sum(r["games"] for r in final.get("results", [])
                      if r["candidate_id"] == "C020_CORRECTED_BYTERL")
+    eval_games = frozen_eval + panel_eval
     byterl_floors = [
         ("actual simulator training games", len(bgames), 100000),
         ("optimizer steps", len(blosses), 30000),
@@ -214,6 +227,8 @@ def build() -> Dict[str, Any]:
         "mcts": {"floors": [{"floor": n, "actual": a, "required": r, "met": a >= r}
                             for n, a, r in mcts_floors],
                  "missed": missed(mcts_floors), "run": mrun},
+        "byterl_evaluation_games": {"frozen_checkpoint_evaluations": frozen_eval,
+                                    "final_panel_games": panel_eval, "total": eval_games},
         "byterl": {"floors": [{"floor": n, "actual": a, "required": r, "met": a >= r}
                               for n, a, r in byterl_floors],
                    "missed": missed(byterl_floors),

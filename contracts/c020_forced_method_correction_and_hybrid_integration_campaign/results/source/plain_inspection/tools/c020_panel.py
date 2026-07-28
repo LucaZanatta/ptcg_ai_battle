@@ -77,6 +77,19 @@ def build(cid: str, deck, seed: int, cfg: Dict[str, Any]):
                                {"byterl_checkpoint": cfg["c019_byterl_checkpoint"]})
         return play, handle
 
+    if cid == "C019_HYBRID_CONTROL":
+        # c019's hybrid, delegated to c019's own builder for the same reason as the ByteRL
+        # control: the artifact must be the code being controlled for. c019's hybrid is the one
+        # that called the recurrent model with state=None at every node (audit #14), which is
+        # exactly the behaviour C1 corrects, so it belongs on the panel as the contrast.
+        sys.path.insert(0, _REPO)
+        from tools.c019_panel import build_candidate as build19h
+        play, handle = build19h("ptcg_ismcts_hybrid_v0", deck, seed,
+                                {"mcts": cfg.get("c019_mcts") or {},
+                                 "byterl_checkpoint": cfg["c019_byterl_checkpoint"],
+                                 "leaf_value_calibrated": True})
+        return play, handle
+
     if cid == "C020_CORRECTED_MCTS":
         from cg import c020_agent as AG
         a = AG.CorrectedMCTSAgent(deck, cfg.get("c020_mcts") or {}, seed=seed,
@@ -215,11 +228,22 @@ def main(argv=None):
                                .get("admitted")),
     }
 
-    cands = [c for c in a.candidates.split(",") if c]
+    # per-candidate game counts: "NAME:N" overrides --games-per-pair for that candidate.
+    # The floors differ per candidate (800 baseline-vs-corrected-MCTS games, 200 per promotable
+    # hybrid mode, 40 diagnostic for non-promotable), and running every candidate at the largest
+    # count would spend hours of search time producing games no floor asks for.
+    spec = {}
+    cands = []
+    for tok in a.candidates.split(","):
+        if not tok:
+            continue
+        name, _, n = tok.partition(":")
+        cands.append(name)
+        spec[name] = int(n) if n else a.games_per_pair
     jobs = []
     for c in cands:
         for oi, opp in enumerate(OPPONENTS):
-            for g in range(a.games_per_pair):
+            for g in range(spec[c]):
                 jobs.append({"candidate_id": c, "opponent_id": opp, "seat": g % 2,
                              "seed": a.seed + oi * 1000 + g,   # depends on pair only
                              "pair_index": g,
@@ -227,7 +251,7 @@ def main(argv=None):
 
     protocol = {
         "tag": a.tag, "candidates": cands, "opponents": OPPONENTS,
-        "games_per_pair": a.games_per_pair, "total_games": len(jobs),
+        "games_per_pair": spec, "total_games": len(jobs),
         "frozen_at_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=_REPO,
                                            capture_output=True, text=True).stdout.strip(),
         "config": cfg,

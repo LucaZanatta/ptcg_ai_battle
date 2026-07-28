@@ -151,15 +151,51 @@ def main(argv=None):
     if not a.skip_bundles:
         # complete repository source
         zp = os.path.join(SRC, "complete_repository_source.zip")
+        skipped = []
         with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
             for p in walk_repo():
                 rel = os.path.relpath(p, _REPO)
                 if rel.startswith("contracts/c020") and "/source/" in rel:
                     continue
+                # RESULTS_SCHEMA excludes "unrelated large historical datasets". PRIOR contracts'
+                # model checkpoints and raw-game archives are exactly that: c020's own evidence is
+                # kept in full, earlier contracts keep their source and reports but not their
+                # binaries. Without this the archive is 3.95 GB and unusable for the line-by-line
+                # audit it exists to enable. Every exclusion is listed in the manifest.
+                prior = (rel.startswith("contracts/c0")
+                         and not rel.startswith("contracts/c020"))
+                # c020's own PER-ROUND checkpoints are actor-synchronisation snapshots written
+                # every 480 games, not evidence. RESULTS_SCHEMA asks for "full final and promoted
+                # checkpoints", which are kept: *_final_*.pt, *_frozen_lp*.pt and every
+                # historical_*.pt. ~220 round snapshots at 3.4 MB each are excluded and listed.
+                base = os.path.basename(rel)
+                if (rel.endswith(".pt") and "/checkpoints/" in rel
+                        and rel.startswith("contracts/c020")
+                        and "frozen_lp" not in base and "_final_" not in base
+                        and not base.startswith("historical_")):
+                    skipped.append({"path": rel, "bytes": os.path.getsize(p),
+                                    "reason": "per-round actor-sync snapshot; final, frozen "
+                                              "per-period and promoted checkpoints are kept"})
+                    continue
+                if prior and os.path.splitext(rel)[1] in (".pt", ".gz", ".zip", ".npy",
+                                                          ".pth", ".bin", ".so"):
+                    skipped.append({"path": rel, "bytes": os.path.getsize(p),
+                                    "reason": "prior-contract binary artifact"})
+                    continue
                 if os.path.getsize(p) > 64 * 1024 * 1024:
+                    skipped.append({"path": rel, "bytes": os.path.getsize(p),
+                                    "reason": "exceeds 64 MB"})
                     continue
                 z.write(p, rel)
         bundles["complete_repository_source.zip"] = os.path.getsize(zp)
+        json.dump({"excluded": skipped,
+                   "excluded_count": len(skipped),
+                   "excluded_bytes": sum(x["bytes"] for x in skipped),
+                   "policy": "RESULTS_SCHEMA permits excluding unrelated large historical "
+                             "datasets; c020's own checkpoints, raw games and evidence are "
+                             "included in full, and prior contracts keep their source and "
+                             "reports but not their binaries"},
+                  open(os.path.join(SRC, "bundle_exclusions.json"), "w"), indent=2)
 
         # focused c020 bundle: everything needed to reproduce the corrected blocks
         zp2 = os.path.join(SRC, "c020_competition_source_bundle.zip")

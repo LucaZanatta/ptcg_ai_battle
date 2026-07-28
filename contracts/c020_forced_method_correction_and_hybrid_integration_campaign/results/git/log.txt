@@ -1,3 +1,10 @@
+267ca81 c020: materialize the full probe matrix from real evidence
+e2e371b c020: complete the 11-candidate panel and add per-candidate game counts
+fad2824 c020: post-repair scaled MCTS, and the override finding it settles
+35ed74b c020: fix packaged ByteRL carrying recurrent state across games
+e758664 c020: M09 override ablation, and supersede markers for non-campaign MCTS runs
+64e79df c020: consolidated repair pass -- 2 root defects of a permitted 5
+7025a94 c020: submission gates, source bundles, repair-pass ledger, continuation plan
 a3cabc9 c020: fixtures, reports, and F01 complete integrated smoke
 1f16f58 c020: evaluation harness, hybrid runner, packaging, panel, admission
 a8bacba c020: forced ByteRL corrections B1-B8, hybrid C1-C5, semantic validator
@@ -31,10 +38,3 @@ a753478 c018: correct the value-head diagnosis -- miscalibration, not absent sig
 d488dca c018: section 7 Pass B defect ranking and consolidated rerun record
 ca2b19e c018: P17 tests whether overriding the baseline helps or hurts
 a017938 c018: report the value head against a 4x sample-size control
-a4c6a1a c018: give P90 a probe directory like every other probe
-38fa36a c018: include every c018 tool, the unit tests and DECISION_RULES in the source tree
-9bc3ab2 c018: report the guidance decomposition as a first-class result in SUMMARY
-cd87047 c018: policy-only packages ship no search module and are exempt from its hash gate
-452865f c018: amendment 2 -- the distilled policy as its own stage; honest target-band reporting
-a962b9d c018: sixth stage (distilled policy) and the section 29 stage registry
-ec8ffda c018: section 32 panel freeze, section 33 package rules, third package for the trained policy

@@ -70,9 +70,74 @@
   },
   "submission_status": {
     "submitted": [],
-    "references": {}
+    "references": {
+      "c020_mcts_smoke": {
+        "branch": "hybrid",
+        "candidate": "C020_H3",
+        "submission_ref": null,
+        "status": "BLOCKED_BY_GATE",
+        "gate": {
+          "branch": "hybrid",
+          "candidate": "C020_H3",
+          "best_parent": "C020_CORRECTED_MCTS",
+          "best_parent_field": 0.5,
+          "candidate_field": 0.25,
+          "delta_vs_best_parent_points": -25.0,
+          "per_matchup_delta": {
+            "dragapult": -1.0,
+            "mega_lucario": -1.0,
+            "iono": 0.0,
+            "mega_abomasnow": 1.0
+          },
+          "checks": {
+            "adapters_admitted": false,
+            "package_reliability": true,
+            "beats_best_parent_by_3pts": false,
+            "matchup_plus_5_without_2pt_regression": false,
+            "strength_retained_at_30pct_lower_cost": false,
+            "eligible": false
+          },
+          "eligible": false,
+          "rule": "CONTRACT \u00a710 hybrid gate -- must beat the stronger corrected pure parent; a more complex hybrid that only ties a parent at higher runtime is rejected",
+          "package": "c020_mcts_smoke",
+          "panel_tag": "prefinal_check",
+          "package_sha256": "1859957ce456a113f050fc924a5405506a0cf6633726f6c9f4ea21213924ea0a",
+          "checkpoint_sha256": null
+        }
+      },
+      "c020_byterl_rehearsal": {
+        "branch": "byterl",
+        "candidate": "C020_CORRECTED_BYTERL",
+        "submission_ref": null,
+        "status": "BLOCKED_BY_GATE",
+        "gate": {
+          "branch": "byterl",
+          "candidate": "C020_CORRECTED_BYTERL",
+          "baseline_field": 1.0,
+          "candidate_field": 0.0,
+          "c019_control_field": 0.0,
+          "delta_field_points": -100.0,
+          "checks": {
+            "package_reliability": true,
+            "method_actually_ran": true,
+            "legal_rate_100pct": true,
+            "materially_beats_c019_byterl": false,
+            "field_plus_2pts": false,
+            "direct_vs_baseline_at_least_55pct": false,
+            "eligible": false
+          },
+          "eligible": false,
+          "games": 8,
+          "rule": "CONTRACT \u00a710 corrected-ByteRL gate",
+          "package": "c020_byterl_rehearsal",
+          "panel_tag": "prefinal_check",
+          "package_sha256": "5c75c0d82e9e43c5ef3d08cca9ec604fff66e8a5baee7880b3e6ed87f9854dbc",
+          "checkpoint_sha256": "31f04ffdb7f8c46bfaa1b38d580ba213b371ed46ef23cbe616bba0815bf89e31"
+        }
+      }
+    }
   },
-  "git_commit": "35ed74b3a8299458ce56871c0228a43f8929325b",
+  "git_commit": "267ca81399d6ea3fc85d155f57ada92b119edf77",
   "branch": "contract/c020_forced_method_correction_and_hybrid_integration_campaign",
   "parent_commit": "a1d322e291e51b86aa308410b96a7b19748060f0",
   "controls_frozen_at": "a1d322e291e51b86aa308410b96a7b19748060f0",
@@ -211,48 +276,52 @@
       "wall_clock_s": 6284.1
     }
   },
+  "byterl_evaluation_games": {
+    "frozen_checkpoint_evaluations": 799,
+    "final_panel_games": 0,
+    "total": 799
+  },
   "byterl": {
     "floors": [
       {
         "floor": "actual simulator training games",
-        "actual": 39000,
+        "actual": 78000,
         "required": 100000,
         "met": false
       },
       {
         "floor": "optimizer steps",
-        "actual": 39778,
+        "actual": 81810,
         "required": 30000,
         "met": true
       },
       {
         "floor": "complete corrected OSFP learning periods",
-        "actual": 3,
+        "actual": 6,
         "required": 6,
-        "met": false
+        "met": true
       },
       {
         "floor": "immutable historical additions",
-        "actual": 3,
+        "actual": 5,
         "required": 2,
         "met": true
       },
       {
         "floor": "games involving historical checkpoints",
-        "actual": 10158,
+        "actual": 25680,
         "required": 2000,
         "met": true
       },
       {
         "floor": "evaluation games across milestones/panels",
-        "actual": 0,
+        "actual": 799,
         "required": 1000,
         "met": false
       }
     ],
     "missed": [
       "actual simulator training games",
-      "complete corrected OSFP learning periods",
       "evaluation games across milestones/panels"
     ],
     "tag": "c020",
@@ -271,6 +340,21 @@
       },
       {
         "lp": 2,
+        "reason": "PERFORMANCE_PROMOTION",
+        "add": true
+      },
+      {
+        "lp": 3,
+        "reason": "PERFORMANCE_PROMOTION",
+        "add": true
+      },
+      {
+        "lp": 4,
+        "reason": "NO_PROMOTION",
+        "add": false
+      },
+      {
+        "lp": 5,
         "reason": "PERFORMANCE_PROMOTION",
         "add": true
       }
@@ -460,7 +544,19 @@
       "games": 36,
       "incomplete": 4
     },
+    "hybctrl_check": {
+      "games": 4,
+      "incomplete": 0
+    },
+    "prefinal_check": {
+      "games": 40,
+      "incomplete": 0
+    },
     "ctrlcheck": {
+      "games": 12,
+      "incomplete": 0
+    },
+    "speccheck": {
       "games": 12,
       "incomplete": 0
     }

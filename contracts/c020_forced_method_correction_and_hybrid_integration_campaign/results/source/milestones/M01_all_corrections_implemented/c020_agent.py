@@ -58,6 +58,8 @@ class CorrectedMCTSAgent:
         self.match_search_ms = 0.0
         self.decision_index = 0
         self.exceptions: List[Dict[str, Any]] = []
+        self.step_error_kinds: Dict[str, int] = {}
+        self.step_error_samples: List[str] = []
 
     # ---------------------------------------------------------------- entry point
     def act(self, obs_dict: dict) -> List[int]:
@@ -101,6 +103,10 @@ class CorrectedMCTSAgent:
         if result is not None:
             decision, chosen_key = result
             self.stats["override_opportunities"] += 1
+            if not self.cfg.get("override_enabled", True):
+                # M09 arm: search runs and is logged, but the baseline action is always played
+                decision.override = False
+                decision.veto_reason = "overrides_disabled_ablation"
             if decision.override:
                 self.stats["overrides"] += 1
                 opt = next((o for o in opts if o.key() == decision.selected_action), None)
@@ -245,6 +251,8 @@ class CorrectedMCTSAgent:
             "pivotal": len(opts) > 6,
             "unsafe_latency": self.match_search_ms > 600_000 * 0.5,
             "candidate_option": None,
+            # M09 ablation switches; both default ON and are never off in a submitted config
+            "veto_enabled": bool(self.cfg.get("veto_enabled", True)),
         }
         decision = OV.decide_override(shared, base_key, ctx)
 
@@ -260,6 +268,11 @@ class CorrectedMCTSAgent:
                                      "table": search.table.stats()})
         if len(self.leaf_samples) < 1500:
             self.leaf_samples.extend(search.leaf_samples[:40])
+        for k, v in search.step_error_kinds.items():
+            self.step_error_kinds[k] = self.step_error_kinds.get(k, 0) + v
+        for smp in search.step_error_samples[:3]:
+            if len(self.step_error_samples) < 30:
+                self.step_error_samples.append(smp)
         return decision, decision.selected_action
 
     # ---------------------------------------------------------------- reporting
@@ -268,4 +281,6 @@ class CorrectedMCTSAgent:
         s["mode"] = self.mode
         s["match_search_ms"] = round(self.match_search_ms, 1)
         s["override_rate"] = round(s["overrides"] / max(1, s["override_opportunities"]), 4)
+        s["step_error_kinds"] = dict(self.step_error_kinds)
+        s["step_error_rate"] = round(s["step_errors"] / max(1, s["step_calls"]), 5)
         return s

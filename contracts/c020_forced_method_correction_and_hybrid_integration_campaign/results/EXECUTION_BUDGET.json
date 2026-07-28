@@ -46,37 +46,37 @@
   "byterl_floors": [
     {
       "floor": "actual simulator training games",
-      "actual": 39000,
+      "actual": 78000,
       "required": 100000,
       "met": false
     },
     {
       "floor": "optimizer steps",
-      "actual": 39778,
+      "actual": 81810,
       "required": 30000,
       "met": true
     },
     {
       "floor": "complete corrected OSFP learning periods",
-      "actual": 3,
+      "actual": 6,
       "required": 6,
-      "met": false
+      "met": true
     },
     {
       "floor": "immutable historical additions",
-      "actual": 3,
+      "actual": 5,
       "required": 2,
       "met": true
     },
     {
       "floor": "games involving historical checkpoints",
-      "actual": 10158,
+      "actual": 25680,
       "required": 2000,
       "met": true
     },
     {
       "floor": "evaluation games across milestones/panels",
-      "actual": 0,
+      "actual": 799,
       "required": 1000,
       "met": false
     }

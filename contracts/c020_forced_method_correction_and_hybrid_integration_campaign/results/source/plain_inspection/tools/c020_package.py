@@ -100,13 +100,21 @@ def _actor():
                                      map_location="cpu")["state_dict"])
         m.eval()
         _A["actor"] = AC.ByteRLActor(m, _DECK, version=-1, greedy=True, seed=0)
-        STATS["resets"] += 1
     return _A["actor"]
 
 
 def agent(observation):
+    # A recurrent policy must reset at TRUE episode boundaries only (B7). The no-select
+    # observation IS the deck-submission step that starts a game, so it is the boundary: without
+    # this the cached actor carries hidden state from the previous game into the next one, which
+    # CONTRACT §8 lists as a packaged-ByteRL blocker.
+    sel = observation.get("select") if isinstance(observation, dict) else None
+    a = _actor()
+    if sel is None:
+        a.reset()
+        STATS["resets"] += 1
     STATS["decisions"] += 1
-    out = _actor().act(observation)
+    out = a.act(observation)
     STATS["policy_ok"] += 1
     return out
 '''

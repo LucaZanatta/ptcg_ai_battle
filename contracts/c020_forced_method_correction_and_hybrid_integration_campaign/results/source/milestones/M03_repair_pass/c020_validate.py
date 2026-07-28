@@ -124,6 +124,7 @@ def v_mcts():
             _runs.append(json.load(open(_p)))
         except (OSError, ValueError):
             pass
+    _runs = [d for d in _runs if isinstance(d, dict) and not d.get("superseded_by")]
     runtime = max([d for d in _runs if isinstance(d, dict)],
                   key=lambda d: d.get("searched_decisions", 0), default={}) or {}
     shared_obs = int(runtime.get("shared_action_stats_multi_det", 0) or 0)

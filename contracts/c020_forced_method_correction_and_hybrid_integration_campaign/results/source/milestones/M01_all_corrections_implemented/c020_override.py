@@ -142,7 +142,10 @@ def decide_override(root_stats, baseline_action, context: Dict[str, Any],
     # THE mandatory veto (A8, audit #4). An end-turn override while the baseline has a productive
     # action is exactly the c019 failure, so it is rejected unless the line proves a tactical
     # reason -- deliberate resource preservation with no legal attack benefit.
-    if looks_like_end_turn(cand, context.get("candidate_option")) and \
+    # `veto_enabled=False` exists ONLY for the M09 ablation arm that measures what the veto is
+    # worth; it is never used by a submitted configuration.
+    if context.get("veto_enabled", True) and \
+            looks_like_end_turn(cand, context.get("candidate_option")) and \
             context.get("baseline_productive"):
         if not context.get("tactical_end_turn_justified"):
             return retain("unproductive_end_turn_veto", cand, st)
