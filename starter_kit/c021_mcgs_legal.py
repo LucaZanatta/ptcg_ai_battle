@@ -22,12 +22,12 @@ the SET the action, so distinct combinations are distinct edges.
 
 `Filters.CategoryBasedFilter` drops options whose target is on the wrong side: a card harmful to
 its target may not aim at your own characters, one beneficial to its target may not aim at the
-opponent's. The Hearthstone card-ID sets do not transfer, but the STRUCTURE does, and PTCG exposes
-the target's side directly through the option's in-play area. C2 prunes options whose target side
-contradicts the option's own type.
+opponent's. The Hearthstone card-ID sets do not transfer, but the STRUCTURE does. PTCG names the
+valence in `api.SelectContext` (DAMAGE, DAMAGE_COUNTER, HEAL, REMOVE_DAMAGE_COUNTER) and the
+target's owner in the option's `playerIndex`, so C2 uses those two fields and fires nowhere else.
 
-Pruning is capped: if filtering would empty the option list the filter is skipped entirely, which
-is the source's behaviour when every target would be removed.
+If filtering would empty the option list the filter is skipped entirely, which is the source's
+behaviour when every target would be removed.
 
 ## C3 — obliged actions
 
@@ -77,41 +77,59 @@ def is_obliged(sel, opts: Sequence[Any]) -> bool:
     return lo >= len(opts) and hi >= len(opts)
 
 
-def _target_side(opt) -> Optional[int]:
-    """Which side the option's target sits on: 0 = mine, 1 = opponent, None = unknown."""
+# Contexts whose target is unambiguously HARMFUL to the Pokemon it names, and contexts whose
+# target is unambiguously BENEFICIAL. Taken from `api.SelectContext`, which documents each one.
+HARMFUL_CONTEXTS = {13, 14, 15}      # DAMAGE_COUNTER, DAMAGE_COUNTER_ANY, DAMAGE
+BENEFICIAL_CONTEXTS = {16, 17}       # REMOVE_DAMAGE_COUNTER, HEAL
+
+
+def _target_owner(opt) -> Optional[int]:
+    """Which PLAYER owns the option's target, from the engine's `playerIndex` field.
+
+    An earlier version read `inPlayArea` and mapped low values to "mine". That was wrong:
+    `api.AreaType` enumerates the ZONE -- DECK, HAND, DISCARD, ACTIVE, BENCH, PRIZE, ... -- and
+    carries no ownership at all, so the filter was pruning on a meaningless criterion. It removed
+    866 legal options in a single game. `playerIndex` is the field that names the owner.
+    """
     from cg import c020_byterl_encode as E
-    i = E._F.get("inPlayArea")
+    i = E._F.get("playerIndex")
     if i is None:
         return None
     f = getattr(opt, "fields", None)
     if not f or i >= len(f):
         return None
-    area = int(f[i])
-    if area < 0:
-        return None
-    # engine areas are enumerated per side; the low bit distinguishes owner in this encoding
-    return 0 if area in (0, 1, 2, 3) else 1
+    pi = int(f[i])
+    return None if pi < 0 else pi
 
 
-def category_filter(opts: List[Any], stats: Optional[Dict[str, Any]] = None) -> List[Any]:
-    """C2. Drop options whose target side contradicts the option's type.
+def category_filter(opts: List[Any], sel=None, your_index: Optional[int] = None,
+                    stats: Optional[Dict[str, Any]] = None) -> List[Any]:
+    """C2. Drop options whose target OWNER contradicts what the select context does.
 
-    Structural, via `option_type` and the target's in-play area -- never a name match.
+    Structural throughout: the context comes from `api.SelectContext` and the owner from the
+    option's `playerIndex`. Never a name match, and never an inference from zone type.
+
+    The filter is deliberately narrow. It fires only for contexts whose valence is unambiguous
+    from the engine's own documentation -- placing damage, dealing damage, removing damage
+    counters, healing -- and is a no-op everywhere else. A wider filter would need PTCG card
+    semantics the source's Hearthstone card-ID sets cannot supply, and pruning a legal option the
+    search should have considered is strictly worse than not pruning at all.
     """
-    from cg import c020_override as OV
-    if len(opts) <= 1:
+    if len(opts) <= 1 or sel is None or your_index is None:
         return list(opts)
-    harmful = {getattr(OV, "OPT_ATTACK", 7)}
-    beneficial = {getattr(OV, "OPT_ATTACH", 8), getattr(OV, "OPT_RETREAT", 9)}
+    ctx = int(getattr(sel, "context", -1) or -1)
+    if ctx not in HARMFUL_CONTEXTS and ctx not in BENEFICIAL_CONTEXTS:
+        return list(opts)
+    harmful = ctx in HARMFUL_CONTEXTS
     kept = []
     for o in opts:
-        t = int(getattr(o, "option_type", -1) or -1)
-        side = _target_side(o)
-        if side is not None:
-            if t in harmful and side == 0:
-                continue                      # an attack aimed at my own Pokemon
-            if t in beneficial and side == 1:
-                continue                      # attach/retreat aimed at the opponent's
+        owner = _target_owner(o)
+        if owner is not None:
+            mine = (owner == your_index)
+            if harmful and mine:
+                continue          # do not place damage on my own Pokemon
+            if (not harmful) and (not mine):
+                continue          # do not heal the opponent's Pokemon
         kept.append(o)
     if not kept:
         # the source skips the filter entirely rather than emptying the option list
@@ -119,8 +137,7 @@ def category_filter(opts: List[Any], stats: Optional[Dict[str, Any]] = None) -> 
             stats["legal_filter_skipped_empty"] = stats.get("legal_filter_skipped_empty", 0) + 1
         return list(opts)
     if stats is not None and len(kept) < len(opts):
-        stats["legal_filter_pruned"] = stats.get("legal_filter_pruned", 0) + (len(opts)
-                                                                              - len(kept))
+        stats["legal_filter_pruned"] = stats.get("legal_filter_pruned", 0) + len(opts) - len(kept)
         stats["legal_filter_activations"] = stats.get("legal_filter_activations", 0) + 1
     return kept
 

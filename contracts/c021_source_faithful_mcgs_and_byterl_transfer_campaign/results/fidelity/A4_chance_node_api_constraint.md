@@ -132,18 +132,37 @@ CONTEXTS ONLY WITH manual_coin: [4, 5, 46]
    ctx 46 -> 2 options, option_types (1, 2), minCount 1, maxCount 1
 ```
 
-A set-difference over two walks is confounded — once a coin resolves differently the trajectories
-diverge, so "only with manual_coin" can include contexts that exist in both. The direct check is
-to step **every** option from one identical state and see whether the successors differ:
+### Corrected: the chance surface is context 46 ONLY, and the enum settles it
 
-| ctx | options | min..max | reachable | distinct successors |
-|---|---|---|---|---|
-| 46 | 2, types (1,2) | 1..1 | 2/2 | 2 |
-| 4  | 3–5, all type 3 | 1..1 | all | 2–3 |
-| 5  | 2–5, all type 3 | 0..2 | all | 3 |
+I first marked contexts **4, 5 and 46** as chance surfaces. That was wrong, and the way the
+reasoning failed is worth recording because both arguments looked like evidence.
 
-**All three are genuine random surfaces**, and all three are marked. Marking only 46 would leave
-contexts 4 and 5 on the UCB path, where the search would *choose* its own random outcomes.
+**Bad argument 1 — the set-difference above.** It is confounded. Once a coin resolves differently
+the two walks diverge, so contexts that exist in *both* configurations appear as "only with
+manual_coin".
+
+**Bad argument 2 — the "direct check".** I then stepped every option from one identical state and
+found several distinct successors for contexts 4, 5 and 46, and treated that as confirmation.
+It confirms nothing: **every decision node has distinct successors per option.** The check
+measured branching, not randomness, and could never have separated a chance node from an ordinary
+choice.
+
+The engine's own enum settles it in one line:
+
+```python
+api.SelectContext.COIN_HEAD = 46   # "YesNo. Do you want to choose heads?"
+api.SelectContext.TO_ACTIVE = 4    # "Select the Pokemon to put into your Active Spot."
+api.SelectContext.TO_BENCH  = 5    # "Select the Pokemon to put onto your Bench."
+```
+
+Contexts 4 and 5 are ordinary player decisions. Marking them random made the search **sample its
+own Pokemon placement instead of optimising it** — it discarded the decision at exactly the nodes
+where board development is decided.
+
+`MANUAL_COIN_CONTEXTS` is therefore `{46}`, defined as `COIN_HEAD_CONTEXT` against the enum rather
+than inferred from behaviour. The lesson generalises: where the engine publishes an enum, the enum
+is the authority, and a behavioural probe that cannot distinguish the hypothesis from its negation
+is not evidence.
 
 This is the engine's own representation of `IsRandomHappened`: the random effect stops being
 resolved silently inside the step and becomes a node whose outcomes the searcher enumerates. That
@@ -152,7 +171,7 @@ is exactly a chance node, and it is what A4 is implemented against.
 ## The resulting implementation
 
 1. `search_begin(..., manual_coin=True)` in the MCGS agent, so random effects surface as nodes.
-2. A successor landing in context 4, 5 or 46 is `IsRandomHappened`; the node is marked
+2. A successor landing in context 46 (`COIN_HEAD`) is `IsRandomHappened`; the node is marked
    `is_random` with `random_action_type = "RANDOMEFFECT"`, which is the only type the API can
    support.
 3. The chance node's outcomes are the coin options. It is expanded by damped sampling
@@ -187,7 +206,7 @@ sessions, not from within one.
 |---|---|---|
 | `manual_coin_node_ucb_selected` | a chance context reached the UCB branch | **exactly 0** |
 | `chance_nodes_created` | chance nodes marked | > 0 under `manual_coin` |
-| `chance_ctx_4` / `chance_ctx_5` / `chance_ctx_46` | per-context breakdown | — |
+| `chance_ctx_46` | per-context breakdown, kept so a stray context would show | — |
 | `chance_expansions` | samples drawn from chance nodes | > 0 |
 
 `test_the_ucb_guard_fires_if_a_coin_context_is_left_unmarked` injects the defect and asserts the

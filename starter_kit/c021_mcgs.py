@@ -128,7 +128,7 @@ class MCGS:
             if self.legal_corrected:
                 from cg import c021_mcgs_legal as LG
                 if self.cfg.get("C2_category_filter", True):
-                    opts = LG.category_filter(opts, self.stats)
+                    opts = LG.category_filter(opts, sel, own, self.stats)
                 n.legal_options = opts
                 if self.cfg.get("C1_multiselect_sets", True):
                     n.action_sets = LG.combinations(sel, opts, self.rng, self.stats)

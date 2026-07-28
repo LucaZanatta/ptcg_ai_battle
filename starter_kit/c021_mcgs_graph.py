@@ -39,19 +39,32 @@ PIMC = False                  # NodeConfig.PIMC
 DO_NOT_REMOVE_UNSELECTED = True
 CHANCE_SPARSE_THRESHOLD = 5   # Node.BestChild: OutgoingEdges.Count > 5
 
-# A4. The select contexts that exist ONLY under `search_begin(manual_coin=True)` -- the engine's
-# own surfacing of a random effect as an explicit node. Each was confirmed by stepping EVERY
-# option from one identical state and observing multiple distinct successors, not by diffing two
-# separate walks (which is confounded: once outcomes diverge the trajectories differ).
+# A4. The chance-node surface, taken from the ENGINE'S OWN ENUM rather than inferred.
 #
-#   ctx 46 -- 2 options, types (1,2), min=max=1, 2/2 reachable, 2 distinct   <- the coin itself
-#   ctx  4 -- 3..5 options, all type 3, min=max=1, all reachable, 2-3 distinct
-#   ctx  5 -- 2..5 options, all type 3, min=0 max=2, all reachable, 3 distinct
+#     api.SelectContext.COIN_HEAD = 46   # "YesNo. Do you want to choose heads?"
 #
-# All three MUST be marked random. A manual-coin node that reaches the UCB path lets the search
-# pick the favourable flip and become clairvoyant, overestimating every coin line; the
-# `manual_coin_node_ucb_selected` counter exists to prove that never happens and must stay 0.
-MANUAL_COIN_CONTEXTS = frozenset({4, 5, 46})
+# Under `search_begin(manual_coin=True)` the engine stops resolving a coin flip silently inside
+# the step and presents it as this select. It is the only genuine chance surface the API exposes.
+#
+# This set previously also held contexts 4 and 5. Both were wrong. They are
+# `SelectContext.TO_ACTIVE` and `SelectContext.TO_BENCH` -- ordinary player decisions about where
+# to put a Pokemon. Marking them random made the search SAMPLE its own placement decisions
+# instead of optimising them.
+#
+# They were included on two bad arguments, both worth recording because the reasoning failed in a
+# way that looked like evidence:
+#   1. a set-difference between a manual_coin walk and a normal walk. That is confounded: once a
+#      coin resolves differently the trajectories diverge, so contexts that exist in both runs
+#      show up as "only with manual_coin".
+#   2. a "direct check" that stepped every option from one state and found several distinct
+#      successors. That property holds for EVERY decision node -- it demonstrates branching, not
+#      randomness, and could never have distinguished a chance node from a normal choice.
+# The engine's enum settles it in one line, and is the authority used here.
+#
+# A manual-coin node that reaches the UCB path lets the search pick the favourable flip and become
+# clairvoyant; `manual_coin_node_ucb_selected` proves that never happens and must stay 0.
+COIN_HEAD_CONTEXT = 46
+MANUAL_COIN_CONTEXTS = frozenset({COIN_HEAD_CONTEXT})
 ROLLOUT_STEP_CAP = 1000
 ROLLOUT_TURN_CAP = 45
 ROLLOUT_RETRIES = 5
