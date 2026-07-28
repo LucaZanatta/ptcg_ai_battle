@@ -197,8 +197,15 @@ class ByteRLNet(nn.Module):
             logits = self.battle_logits(h, options, picked)
             lp = masked_log_softmax(logits, avail)
             total = total + lp[0, a]
-            picked[0, a] = 1.0
-            avail[0, a] = 0.0                       # no PTCG select repeats an option
+            # Rebuild the masks instead of writing into them. `picked` feeds the option-summary
+            # term inside `battle_logits`, so its backward pass needs the tensor it actually saw;
+            # an in-place `picked[0, a] = 1.0` bumps the version counter and autograd refuses the
+            # earlier step's gradient ("variable needed for gradient computation has been
+            # modified by an inplace operation").
+            step = torch.zeros_like(legal)
+            step[0, a] = 1.0
+            picked = picked + step
+            avail = avail * (1.0 - step)            # no PTCG select repeats an option
         return total
 
     @torch.no_grad()
@@ -223,8 +230,10 @@ class ByteRLNet(nn.Module):
                 int(rng.choice(len(p), p=(p / p.sum()).cpu().numpy()))
             total += float(lp[0, idx].item())
             chosen.append(idx)
-            picked[0, idx] = 1.0
-            avail[0, idx] = 0.0
+            step = torch.zeros_like(legal)
+            step[0, idx] = 1.0
+            picked = picked + step
+            avail = avail * (1.0 - step)
             if len(chosen) >= k_min and len(chosen) >= k_max:
                 break
         return chosen, total
