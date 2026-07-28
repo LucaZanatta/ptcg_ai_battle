@@ -35,6 +35,19 @@ MAX_COPIES = 4                 # standard construction rule for non-basic-energy
 MIN_BASIC_POKEMON = 1
 CONSTRUCTION_STEPS = DECK_SIZE  # one card chosen per step: an autoregressive construction episode
 
+# A deck may contain at most ONE ACE SPEC card IN TOTAL -- not one of each. The limit is on the
+# whole ACE SPEC category, so Unfair Stamp plus Max Rod is already illegal.
+#
+# This was found empirically, not assumed: the first version of this module omitted it, and the
+# engine returned INVALID for every generated deck while accepting the reference deck. Isolating
+# it one rule at a time gave
+#     1 ACE SPEC              -> DONE
+#     2 distinct ACE SPEC     -> INVALID
+#     2 copies of one         -> INVALID
+# and 0 of 20 sampled decks satisfied the limit, which is why 100% were rejected. The permitted
+# pool holds 4 ACE SPEC cards: Unfair Stamp, Max Rod, Precious Trolley and Hero's Cape.
+ACE_SPEC_LIMIT = 1
+
 
 class IllegalDeck(Exception):
     """Raised rather than repaired. A silently fixed deck teaches the policy nothing."""
@@ -71,6 +84,7 @@ class CardPool:
     card_ids: List[int]
     basic_pokemon: set
     basic_energy: set
+    ace_spec: set = field(default_factory=set)
     meta: Dict[int, Any] = field(default_factory=dict)
 
     @staticmethod
@@ -82,7 +96,7 @@ class CardPool:
         for a in names:
             ids.extend(int(x) for x in decks.get(a, []))
         uniq = sorted(set(ids))
-        basics, energies, meta = set(), set(), {}
+        basics, energies, aces, meta = set(), set(), set(), {}
         for cid in uniq:
             cd = CD.card(cid)
             meta[cid] = cd
@@ -92,7 +106,10 @@ class CardPool:
                 basics.add(cid)
             if is_basic_energy(cd):
                 energies.add(cid)
-        return CardPool(card_ids=uniq, basic_pokemon=basics, basic_energy=energies, meta=meta)
+            if bool(getattr(cd, "aceSpec", False)):
+                aces.add(cid)
+        return CardPool(card_ids=uniq, basic_pokemon=basics, basic_energy=energies,
+                        ace_spec=aces, meta=meta)
 
     def size(self) -> int:
         return len(self.card_ids)
@@ -105,15 +122,17 @@ def legality(deck: List[int], pool: CardPool) -> Tuple[bool, Dict[str, Any]]:
     over = {c: n for c, n in counts.items()
             if n > MAX_COPIES and c not in pool.basic_energy}
     basics = sum(n for c, n in counts.items() if c in pool.basic_pokemon)
+    aces = sum(n for c, n in counts.items() if c in pool.ace_spec)
     detail = {
         "size": len(deck), "size_ok": len(deck) == DECK_SIZE,
         "distinct": len(counts),
         "unknown_cards": unknown[:8], "unknown_ok": not unknown,
         "over_copy_limit": over, "copies_ok": not over,
         "basic_pokemon": basics, "basics_ok": basics >= MIN_BASIC_POKEMON,
+        "ace_spec": aces, "ace_spec_ok": aces <= ACE_SPEC_LIMIT,
     }
     detail["legal"] = all(detail[k] for k in
-                          ("size_ok", "unknown_ok", "copies_ok", "basics_ok"))
+                          ("size_ok", "unknown_ok", "copies_ok", "basics_ok", "ace_spec_ok"))
     return detail["legal"], detail
 
 
@@ -127,7 +146,12 @@ def legal_mask(partial: List[int], pool: CardPool) -> np.ndarray:
     remaining = DECK_SIZE - len(partial)
     mask = np.zeros(len(pool.card_ids), dtype=np.float32)
     need_basic = sum(n for c, n in counts.items() if c in pool.basic_pokemon) < MIN_BASIC_POKEMON
+    ace_used = sum(n for c, n in counts.items() if c in pool.ace_spec) >= ACE_SPEC_LIMIT
     for i, cid in enumerate(pool.card_ids):
+        # the ACE SPEC limit is on the CATEGORY: once one is in the deck, every ACE SPEC is
+        # closed off, not merely further copies of the one already chosen
+        if ace_used and cid in pool.ace_spec:
+            continue
         if cid not in pool.basic_energy and counts.get(cid, 0) >= MAX_COPIES:
             continue
         # if the last slots are the only chance left to satisfy the basic-Pokemon rule,

@@ -78,3 +78,34 @@ def test_mask_forces_a_basic_on_the_final_slot(pool):
 def test_serialize_rejects_short_deck(pool):
     with pytest.raises(D.IllegalDeck):
         D.serialize([1, 2, 3])
+
+
+# ---------------------------------------------------------------- ACE SPEC (engine-verified)
+def test_ace_spec_limit_is_on_the_category_not_per_card(pool):
+    """The engine returned INVALID for 2 DISTINCT ACE SPEC as well as 2 copies of one."""
+    assert len(pool.ace_spec) >= 2, "pool should contain several ACE SPEC cards"
+    a, b = sorted(pool.ace_spec)[:2]
+    e = sorted(pool.basic_energy)[0]
+    bp = sorted(pool.basic_pokemon)[0]
+    ok, det = D.legality([a] + [e] * 55 + [bp] * 4, pool)
+    assert ok, det
+    ok2, det2 = D.legality([a, b] + [e] * 54 + [bp] * 4, pool)
+    assert not ok2 and not det2["ace_spec_ok"] and det2["ace_spec"] == 2
+    ok3, det3 = D.legality([a, a] + [e] * 54 + [bp] * 4, pool)
+    assert not ok3 and not det3["ace_spec_ok"]
+
+
+def test_mask_closes_every_ace_spec_once_one_is_chosen(pool):
+    a = sorted(pool.ace_spec)[0]
+    m = D.legal_mask([a], pool)
+    for cid in pool.ace_spec:
+        assert m[pool.card_ids.index(cid)] == 0.0, f"{cid} still legal after an ACE SPEC"
+
+
+@pytest.mark.parametrize("seed", list(range(20)))
+def test_sampled_decks_respect_the_ace_spec_limit(pool, seed):
+    import collections
+    deck, _ = D.sample_deck(pool, np.random.default_rng(seed))
+    c = collections.Counter(deck)
+    assert sum(v for k, v in c.items() if k in pool.ace_spec) <= D.ACE_SPEC_LIMIT
+    assert D.legality(deck, pool)[0]
