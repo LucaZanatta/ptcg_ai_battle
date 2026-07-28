@@ -3,7 +3,7 @@
   "name": "promotion_integrity",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
+  "source_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "checks": {
     "promotions": [
       {
@@ -11,101 +11,100 @@
         "reason": "FIRST_HISTORICAL",
         "win_rates": null,
         "evaluation_games": null,
-        "frozen_sha": "7a17caa50bfa"
+        "frozen_sha": "65caadd20805"
       },
       {
         "lp": 1,
         "reason": "PERFORMANCE_PROMOTION",
         "win_rates": [
-          0.6375
+          0.64375
         ],
         "evaluation_games": 160,
-        "frozen_sha": "31f04ffdb7f8"
+        "frozen_sha": "6f4168689f94"
       },
       {
         "lp": 2,
         "reason": "PERFORMANCE_PROMOTION",
         "win_rates": [
           0.75,
-          0.7875
+          0.675
         ],
         "evaluation_games": 160,
-        "frozen_sha": "beb967cc75ad"
+        "frozen_sha": "1931ed4bb17c"
       },
       {
         "lp": 3,
         "reason": "PERFORMANCE_PROMOTION",
         "win_rates": [
-          0.7924528301886793,
-          0.5849056603773585,
-          0.5660377358490566
+          0.6792452830188679,
+          0.6792452830188679,
+          0.6037735849056604
         ],
         "evaluation_games": 159,
-        "frozen_sha": "d9a940dd1824"
+        "frozen_sha": "8226950f25e2"
       },
       {
         "lp": 4,
         "reason": "NO_PROMOTION",
         "win_rates": [
+          0.7,
+          0.625,
           0.775,
-          0.75,
-          0.45,
-          0.55
+          0.4875
         ],
         "evaluation_games": 160,
-        "frozen_sha": "5df1b640159c"
+        "frozen_sha": "67e87ead7677"
       },
       {
         "lp": 5,
         "reason": "PERFORMANCE_PROMOTION",
         "win_rates": [
           0.725,
-          0.7,
-          0.7,
-          0.675
+          0.675,
+          0.6,
+          0.725
         ],
         "evaluation_games": 160,
-        "frozen_sha": "4aa7fe31b307"
+        "frozen_sha": "5581687b6bb4"
       },
       {
         "lp": 6,
         "reason": "NO_PROMOTION",
         "win_rates": [
           0.75,
-          0.84375,
-          0.4375,
-          0.6875,
-          0.5
+          0.75,
+          0.53125,
+          0.5625,
+          0.46875
         ],
         "evaluation_games": 160,
-        "frozen_sha": "5d9f21def012"
+        "frozen_sha": "58eff4ce914a"
       },
       {
         "lp": 7,
-        "reason": "PERFORMANCE_PROMOTION",
+        "reason": "NO_PROMOTION",
         "win_rates": [
-          0.875,
-          0.875,
           0.8125,
-          0.5625,
+          0.75,
+          0.578125,
+          0.46875,
           0.625
         ],
         "evaluation_games": 160,
-        "frozen_sha": "6f681c5f1ece"
+        "frozen_sha": "4bc886e7586f"
       }
     ],
     "immutability": {
-      "historical": 6,
-      "verified": 6,
+      "historical": 5,
+      "verified": 5,
       "mutated_or_missing": [],
       "all_immutable": true,
       "hashes": {
-        "0": "7a17caa50bfa4f058c91a213853c543ab96b771776b35dd11f52d52188115cc8",
-        "1": "31f04ffdb7f8c46bfaa1b38d580ba213b371ed46ef23cbe616bba0815bf89e31",
-        "2": "beb967cc75addea80157d2f593de54ca4b522f3909787986fe068e15f3a0f36d",
-        "3": "d9a940dd182467e8035b07358899ce9a69ded9f832f31cb5c8ea289373245ad1",
-        "4": "4aa7fe31b3071c454c457603973cb89c6acfca4738cf58f031a49e4a97e118de",
-        "5": "6f681c5f1ece3b7f1f07433d4b4518701c318571a4c3a0ff364b93fd1a73d10b"
+        "0": "65caadd2080505e00e6a02b87630dbda4361169d84cee035bc4b54e8fd020abf",
+        "1": "6f4168689f94cf3b0ba6b72a5609a378edd574bc4ad1308379a733e5598de938",
+        "2": "1931ed4bb17ca65c98b51da73d0696ea0e02bd4fad19d9b6b09581b5226ec1af",
+        "3": "8226950f25e2f7e882e94dad3e337352c7a7848e66a77a3aa3edf7d1bf9df8fb",
+        "4": "5581687b6bb4a3bf461122eddf2a15346f60b7b8a64984b96b898eeba6e0e102"
       }
     }
   },

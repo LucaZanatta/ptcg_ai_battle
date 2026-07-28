@@ -1,3 +1,22 @@
+653bd52 c020: record source provenance -- a Phase 0 requirement that had no campaign-level artifact
+9e6e625 c020: register falsifiable predictions before the final panel runs
+c29cef5 c020: register final-panel nproc at 16 before any result exists
+82f3134 c020: seed study proves the 41-point swing was load, not variance -- protocol updated
+2186f9c c020: panel results depended on machine load -- torch threads were not pinned
+3b03cfe c020: --append replaced panel rows instead of accumulating them
+7df4962 c020: pooled ablation at n=480-560 -- and a correction to "the veto does not help"
+b673ba6 c020: the ablation arms were too small to resolve their own effect
+56e2760 c020: branch invariant audit across MCTS, ByteRL and hybrid -- 31 invariants, all hold
+b770cc0 c020: re-measure M09 with a veto that fires, and audit two more mechanisms
+f3ae336 c020: dive into the flagged null token -- it is load-bearing, and the gather is exact
+1d623a3 c020: multi-select override fix confirmed; re-run everything measured with the inert veto
+1b4448c c020: the mandatory end-turn veto never fired, and four leaf features were always zero
+23b57ec c020: supersede training run 1, retrain with the working encoder, parallelize
+a086f18 c020: B2's option-to-object references were INERT -- 0 of 556 options resolved
+040982a c020: fix an illegal payload emitted when an override lands in a multi-select context
+50d09c8 c020: add the Phase 0 file map and populate the baseline control package
+88cf106 c020: close four RESULTS_SCHEMA gaps and parallelize the panel
+8db4a43 c020: make the source bundle auditable, and count frozen evaluations correctly
 267ca81 c020: materialize the full probe matrix from real evidence
 e2e371b c020: complete the 11-candidate panel and add per-candidate game counts
 fad2824 c020: post-repair scaled MCTS, and the override finding it settles
@@ -19,22 +38,3 @@ d659399 c019: materialize all 34 PROBE_MATRIX probes with derived evidence
 c42ec54 c019: correct a false panel claim -- environment randomness cannot be paired
 a214488 c019: submission gates enforced in code, per branch
 6dba4ee c019: hybrid adapters and results-tree assembler
-2c91983 c019: common panel, standalone packages for both branches, MCTS gate decision
-773b932 c019: fix agent signature capture that killed every self-play game
-2a1fb63 c019: sources, determinizer, MCTS engine, leaf evaluator, V-trace/UPGO, OSFP, fixtures
-a8116e9 c019: shared core, branch-local baseline memory, ByteRL encoder/model, calibration
-2197214 c018: fix two acceptance-checklist bugs and make M05 record the non-submission decision
-4cbae35 c018: final reports state the wrapper mechanism and derive the next action from it
-41caa5b c018: the search collapse is a wrapper defect, not a search-quality finding
-17ce268 c018: enforce the pre-registered promotion gate in code, not just in markdown
-eb9f0da c018: conform the results tree to the section 35 layout; add the required checklist and board
-ce1b081 c018: make the FAIL verdict faithful to section 38 rather than mechanical
-ca460fd c018: derive the next action and the defect list from evidence, not from prose
-a734619 c018: record why the panel has four opponents, not five
-c55afed c018: track the contract documents alongside the pre-registered decision rules
-1386c21 c018: amendment 3 -- correct the upload-1 gate to match CONTRACT sections 16 and 34
-a753478 c018: correct the value-head diagnosis -- miscalibration, not absent signal
-55cceef c018: resolve the primary trajectory set from evidence instead of hardcoding a prefix
-d488dca c018: section 7 Pass B defect ranking and consolidated rerun record
-ca2b19e c018: P17 tests whether overriding the baseline helps or hurts
-a017938 c018: report the value head against a 4x sample-size control

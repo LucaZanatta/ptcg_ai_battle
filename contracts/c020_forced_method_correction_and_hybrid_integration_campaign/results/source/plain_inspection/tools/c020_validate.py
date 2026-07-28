@@ -320,6 +320,25 @@ def v_byterl():
     has = {"energy_types": sch["energy_types"] >= 9, "opt_src_tgt": "opt_src" in sch.get(
         "slot_order", []) or True}
     src_enc = src("starter_kit/c020_byterl_encode.py")
+    # RUNTIME check, not a source check. The previous B2 check asserted that opt_src/opt_tgt and
+    # OptionRef appear in the source and that twelve energy types are encoded -- all true while
+    # the resolver returned -1 for every option and every gather hit the null token. A mechanism
+    # that is present and inert passes a source check and fails this one.
+    res_rate = None
+    try:
+        rr = jload("byterl/schema/option_reference_resolution.json", {}) or {}
+        res_rate = rr.get("any_reference_pct")
+    except Exception:  # noqa: BLE001
+        rr = {}
+    if res_rate is None:
+        require("B2_option_references_actually_resolve", False,
+                {"reason": "resolution rate not measured yet; run tools/c020_probe_refs.py"}, B)
+    else:
+        ck("B2_option_references_actually_resolve", float(res_rate) > 5.0,
+           {**rr, "note": "a resolution rate of 0 means every option gathered the null token; "
+                          "the c020 resolver did exactly that until it was audited"},
+           B, blocker=True, control=True)
+
     ck("B2_option_carries_source_and_target",
        "opt_src" in src_enc and "opt_tgt" in src_enc and "OptionRef" in src_enc
        and sch["energy_types"] >= 9,

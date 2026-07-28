@@ -2,43 +2,43 @@
   "mcts_floors": [
     {
       "floor": "live searched decisions",
-      "actual": 50804,
+      "actual": 19758,
       "required": 5000,
       "met": true
     },
     {
       "floor": "real search_step expansions",
-      "actual": 45269777,
+      "actual": 11365961,
       "required": 500000,
       "met": true
     },
     {
       "floor": "decisions with 4 legal determinizations",
-      "actual": 50804,
+      "actual": 19758,
       "required": 1000,
       "met": true
     },
     {
       "floor": "complete sampled tree traces",
-      "actual": 401,
+      "actual": 402,
       "required": 100,
       "met": true
     },
     {
       "floor": "recorded override opportunities",
-      "actual": 50804,
+      "actual": 19758,
       "required": 500,
       "met": true
     },
     {
       "floor": "common-panel baseline vs corrected-MCTS games",
-      "actual": 0,
+      "actual": 800,
       "required": 800,
-      "met": false
+      "met": true
     },
     {
       "floor": "conservative-override ablation games",
-      "actual": 240,
+      "actual": 2480,
       "required": 200,
       "met": true
     }
@@ -46,19 +46,19 @@
   "byterl_floors": [
     {
       "floor": "actual simulator training games",
-      "actual": 90480,
+      "actual": 104000,
       "required": 100000,
-      "met": false
+      "met": true
     },
     {
       "floor": "optimizer steps",
-      "actual": 95830,
+      "actual": 97649,
       "required": 30000,
       "met": true
     },
     {
       "floor": "complete corrected OSFP learning periods",
-      "actual": 6,
+      "actual": 8,
       "required": 6,
       "met": true
     },
@@ -70,15 +70,15 @@
     },
     {
       "floor": "games involving historical checkpoints",
-      "actual": 30738,
+      "actual": 36151,
       "required": 2000,
       "met": true
     },
     {
       "floor": "evaluation games across milestones/panels",
-      "actual": 799,
+      "actual": 1319,
       "required": 1000,
-      "met": false
+      "met": true
     }
   ],
   "hybrid_floors": [
@@ -90,9 +90,9 @@
     },
     {
       "floor": "final-panel games per promotable mode",
-      "actual": 0,
+      "actual": 200,
       "required": 200,
-      "met": false
+      "met": true
     }
   ],
   "target_allocation": {

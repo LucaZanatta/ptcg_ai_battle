@@ -3,16 +3,16 @@
   "name": "native_lifecycle_and_match_clock",
   "branch": "mcts",
   "status": "PASS",
-  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
+  "source_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "checks": {
     "release_errors": 0,
     "begin_errors": 0,
     "step_errors": 0,
     "step_error_rate": 0.0,
     "latency": {
-      "max_match_search_ms": 53795.4,
-      "mean_match_search_ms": 28957.9,
-      "max_game_seconds": 54.9
+      "max_match_search_ms": 50843.3,
+      "mean_match_search_ms": 32085.5,
+      "max_game_seconds": 51.78
     },
     "budget_ms": 600000,
     "safety_margin": 0.45

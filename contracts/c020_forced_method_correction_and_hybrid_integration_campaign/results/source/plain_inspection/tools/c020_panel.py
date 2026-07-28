@@ -130,6 +130,13 @@ def build(cid: str, deck, seed: int, cfg: Dict[str, Any]):
 def _worker(payload):
     jobs, cfg, deck = payload
     sys.path.insert(0, _REPO)
+    import torch
+    # One thread per worker. Without this, N panel processes each spawn a full torch thread pool,
+    # and the resulting contention eats the per-decision time budget -- so a search-based
+    # candidate completes fewer simulations under load and deviates LESS from its baseline
+    # fallback. A search that is bad because it searches then scores BETTER when starved, which
+    # makes every measurement a function of machine load. c019's panel sets this; ours did not.
+    torch.set_num_threads(1)
     from kaggle_environments import make
     from cg import teachers as T, c009_eval as ce
     out = []
@@ -189,6 +196,8 @@ def main(argv=None):
     ap.add_argument("--determinizations", type=int, default=4)
     ap.add_argument("--max-ms", type=int, default=700)
     ap.add_argument("--tag", default="final")
+    ap.add_argument("--append", action="store_true",
+                    help="merge with an existing raw file for this tag")
     a = ap.parse_args(argv)
 
     from cg import c019_determinize as D19
@@ -247,7 +256,10 @@ def main(argv=None):
                 jobs.append({"candidate_id": c, "opponent_id": opp, "seat": g % 2,
                              "seed": a.seed + oi * 1000 + g,   # depends on pair only
                              "pair_index": g,
-                             "game_id": f"{a.tag}:{c}:{opp}:{g}"})
+                             # the SEED is part of the identity: without it a later --append
+                             # batch reuses indices 0..N and its rows REPLACE the earlier ones
+                             # instead of accumulating, silently discarding games
+                             "game_id": f"{a.tag}:{c}:{opp}:s{a.seed}:{g}"})
 
     protocol = {
         "tag": a.tag, "candidates": cands, "opponents": OPPONENTS,
@@ -282,7 +294,21 @@ def main(argv=None):
     by_id = {r["game_id"]: r for r in rows}
     ordered = [by_id[j["game_id"]] for j in jobs if j["game_id"] in by_id]
 
+    # Batches append to ONE raw file and aggregates are computed from the union, so a panel run
+    # in two batches produces exactly the artifact a single run would. The registered protocol is
+    # frozen before either batch, and no candidate's configuration differs between them.
     raw_path = os.path.join(FP, f"{a.tag}_raw_games.jsonl.gz")
+    prior = []
+    if a.append and os.path.exists(raw_path):
+        try:
+            with gzip.open(raw_path, "rt") as f:
+                prior = [json.loads(l) for l in f if l.strip()]
+        except (EOFError, OSError, ValueError):
+            prior = []
+    seen = {r.get("game_id") for r in ordered}
+    ordered = [r for r in prior if r.get("game_id") not in seen] + ordered
+    cands = sorted({r["candidate_id"] for r in ordered},
+                   key=lambda c: (c not in cands, cands.index(c) if c in cands else 0))
     with gzip.open(raw_path, "wt") as f:
         for r in ordered:
             f.write(json.dumps(r) + "\n")

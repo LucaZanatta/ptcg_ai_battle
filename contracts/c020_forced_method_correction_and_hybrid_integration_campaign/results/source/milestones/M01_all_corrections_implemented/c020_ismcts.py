@@ -243,7 +243,9 @@ class InfoSetSearch:
         except Exception:  # noqa: BLE001
             nxt_mem = BM.clone_memory(node.memory)
         line = TL.LineContext(**{**vars(node.line)})
-        _annotate_line(line, opt)
+        from cg import c020_override as _OV
+        _annotate_line(line, opt,
+                       productive_available=any(_OV.is_productive(o.key(), o) for o in opts))
         child = WorldNode(search_id=int(succ.searchId), obs=obs, det_id=node.det_id,
                           depth=node.depth + 1,
                           player=int(getattr(obs, "yourIndex", node.player) or node.player)
@@ -298,7 +300,10 @@ class InfoSetSearch:
             self.stats["rollout_steps"] += 1
             obs = getattr(succ, "observation", None) or getattr(succ, "obs", None)
             line = TL.LineContext(**{**vars(cur.line)})
-            _annotate_line(line, pick)
+            from cg import c020_override as _OV2
+            _annotate_line(line, pick,
+                           productive_available=any(_OV2.is_productive(o.key(), o)
+                                                    for o in opts))
             try:
                 mem = BM.advance_after_executed(_obs_dict(cur.obs), payload,
                                                 cur.memory)
@@ -402,15 +407,23 @@ class InfoSetSearch:
         return value
 
 
-def _annotate_line(line: TL.LineContext, opt) -> None:
-    """Record what the simulated line DID, which the leaf position cannot show."""
-    name = f"{getattr(opt, 'select_type', '')}|{getattr(opt, 'option_index', '')}|{opt.key()}"
-    s = str(name).lower()
+def _annotate_line(line: TL.LineContext, opt, productive_available: bool = False) -> None:
+    """Record what the simulated line DID, which the leaf position cannot show.
+
+    Read from the engine's OptionType rather than by matching words against a tuple of integers,
+    which is what the first version did and why `attacked` and `ended_turn` were never set.
+    """
     from cg import c020_override as OV
-    if OV.looks_like_end_turn(opt.key(), opt):
+    t = OV.option_type_of(opt.key(), opt)
+    if t == OV.OPT_END:
         line.ended_turn = True
-    if "attack" in s:
+    elif t == OV.OPT_ATTACK:
         line.attacked = True
+        line.damage_dealt = max(line.damage_dealt, 1)
+    if t in (7, 9, 10):          # PLAY, EVOLVE, ABILITY consume real resources
+        line.critical_resources_used += 1
+    if productive_available:
+        line.productive_action_was_available = True
 
 
 def _obs_dict(observation) -> dict:

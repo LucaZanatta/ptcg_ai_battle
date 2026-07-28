@@ -3,17 +3,23 @@
   "name": "conservative_override_ablation",
   "branch": "mcts",
   "status": "PASS",
-  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
+  "source_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "checks": {
     "baseline_equivalent_overrides_disabled": 0.5583,
     "overrides_on_veto_off": 0.3312,
-    "overrides_on_veto_on": 0.3312,
-    "override_rate": 0.08631,
+    "overrides_on_veto_on": 0.5687,
+    "override_rate": 0.0,
     "games": {
+      "ablation_no_overrides_big": 320,
+      "ablation_no_veto_variance_replicate": 320,
       "ablation_no_veto": 160,
       "ablation_no_overrides": 120,
       "ablation_no_overrides_b": 120,
-      "ablation_with_veto": 160
+      "ablation_with_veto": 160,
+      "ablation_with_veto_variance_replicate": 320,
+      "ablation_no_overrides_variance_replicate": 320,
+      "ablation_with_veto_big": 320,
+      "ablation_no_veto_big": 320
     }
   },
   "tainted_by": []

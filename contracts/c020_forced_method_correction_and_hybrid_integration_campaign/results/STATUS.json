@@ -3,9 +3,9 @@
   "status": "PARTIAL",
   "status_reason": "the code and evidence campaign is substantially executed, but a floor, semantic requirement, competitive gate or submission is missed (CONTRACT \u00a714)",
   "execution_status": {
-    "mcts_floors_met": false,
-    "byterl_floors_met": false,
-    "hybrid_floors_met": false
+    "mcts_floors_met": true,
+    "byterl_floors_met": true,
+    "hybrid_floors_met": true
   },
   "method_fidelity_status": {
     "mcts": "PASS",
@@ -20,40 +20,40 @@
   },
   "competitive_status": {
     "C019_PIMC_PUCT_CONTROL": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.45,
+      "delta_vs_baseline_points": -13.4
     },
     "C019_BYTERL_CONTROL": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.06,
+      "delta_vs_baseline_points": -52.4
     },
     "C020_CORRECTED_MCTS": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.4275,
+      "delta_vs_baseline_points": -15.6
     },
     "C020_CORRECTED_BYTERL": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.275,
+      "delta_vs_baseline_points": -30.9
     },
     "C020_H0": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.42,
+      "delta_vs_baseline_points": -16.4
     },
     "C020_H1": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.4875,
+      "delta_vs_baseline_points": -9.6
     },
     "C020_H2": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.445,
+      "delta_vs_baseline_points": -13.9
     },
     "C020_H3": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.42,
+      "delta_vs_baseline_points": -16.4
     },
     "C020_H4": {
-      "field": null,
-      "delta_vs_baseline_points": null
+      "field": 0.465,
+      "delta_vs_baseline_points": -11.9
     }
   },
   "package_status": {
@@ -66,6 +66,11 @@
       "clean_extraction_ok": true,
       "method_actually_ran": true,
       "sha256": "5c75c0d82e9e43c5"
+    },
+    "c020_corrected_byterl": {
+      "clean_extraction_ok": true,
+      "method_actually_ran": true,
+      "sha256": "165d14f95c9f8c68"
     }
   },
   "submission_status": {
@@ -73,34 +78,35 @@
     "references": {
       "c020_mcts_smoke": {
         "branch": "hybrid",
-        "candidate": "C020_H3",
+        "candidate": "C020_H4",
         "submission_ref": null,
         "status": "BLOCKED_BY_GATE",
         "gate": {
           "branch": "hybrid",
-          "candidate": "C020_H3",
+          "candidate": "C020_H4",
           "best_parent": "C020_CORRECTED_MCTS",
-          "best_parent_field": 0.5,
-          "candidate_field": 0.25,
-          "delta_vs_best_parent_points": -25.0,
+          "best_parent_field": 0.4275,
+          "candidate_field": 0.465,
+          "delta_vs_best_parent_points": 3.8,
           "per_matchup_delta": {
-            "dragapult": -1.0,
-            "mega_lucario": -1.0,
-            "iono": 0.0,
-            "mega_abomasnow": 1.0
+            "dragapult": 0.07,
+            "mega_lucario": 0.03,
+            "iono": -0.04,
+            "mega_abomasnow": 0.09
           },
           "checks": {
             "adapters_admitted": false,
             "package_reliability": true,
-            "beats_best_parent_by_3pts": false,
-            "matchup_plus_5_without_2pt_regression": false,
+            "beats_best_parent_by_3pts": true,
+            "matchup_plus_5_without_2pt_regression": true,
             "strength_retained_at_30pct_lower_cost": false,
+            "rejected_as_tie_at_no_lower_cost": false,
             "eligible": false
           },
           "eligible": false,
           "rule": "CONTRACT \u00a710 hybrid gate -- must beat the stronger corrected pure parent; a more complex hybrid that only ties a parent at higher runtime is rejected",
           "package": "c020_mcts_smoke",
-          "panel_tag": "prefinal_check",
+          "panel_tag": "final",
           "package_sha256": "1859957ce456a113f050fc924a5405506a0cf6633726f6c9f4ea21213924ea0a",
           "checkpoint_sha256": null
         }
@@ -134,10 +140,40 @@
           "package_sha256": "5c75c0d82e9e43c5ef3d08cca9ec604fff66e8a5baee7880b3e6ed87f9854dbc",
           "checkpoint_sha256": "31f04ffdb7f8c46bfaa1b38d580ba213b371ed46ef23cbe616bba0815bf89e31"
         }
+      },
+      "c020_corrected_byterl": {
+        "branch": "byterl",
+        "candidate": "C020_CORRECTED_BYTERL",
+        "submission_ref": null,
+        "status": "BLOCKED_BY_GATE",
+        "gate": {
+          "branch": "byterl",
+          "candidate": "C020_CORRECTED_BYTERL",
+          "baseline_field": 0.5837,
+          "candidate_field": 0.275,
+          "c019_control_field": 0.06,
+          "delta_field_points": -30.9,
+          "checks": {
+            "package_reliability": true,
+            "method_actually_ran": true,
+            "legal_rate_100pct": true,
+            "materially_beats_c019_byterl": true,
+            "field_plus_2pts": false,
+            "direct_vs_baseline_at_least_55pct": false,
+            "eligible": false
+          },
+          "eligible": false,
+          "games": 600,
+          "rule": "CONTRACT \u00a710 corrected-ByteRL gate",
+          "package": "c020_corrected_byterl",
+          "panel_tag": "final",
+          "package_sha256": "165d14f95c9f8c683a3fd66370ccdca331b3052866e579aefab272c4fbf6c076",
+          "checkpoint_sha256": "597d15bec90e89d324982b5baf71b38c1e3b741f6062efcfa3f4a52c189f1d43"
+        }
       }
     }
   },
-  "git_commit": "8db4a436375f3a9b98cd4ffde9b8a1b70b633fb6",
+  "git_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "branch": "contract/c020_forced_method_correction_and_hybrid_integration_campaign",
   "parent_commit": "a1d322e291e51b86aa308410b96a7b19748060f0",
   "controls_frozen_at": "a1d322e291e51b86aa308410b96a7b19748060f0",
@@ -145,52 +181,50 @@
     "floors": [
       {
         "floor": "live searched decisions",
-        "actual": 50804,
+        "actual": 19758,
         "required": 5000,
         "met": true
       },
       {
         "floor": "real search_step expansions",
-        "actual": 45269777,
+        "actual": 11365961,
         "required": 500000,
         "met": true
       },
       {
         "floor": "decisions with 4 legal determinizations",
-        "actual": 50804,
+        "actual": 19758,
         "required": 1000,
         "met": true
       },
       {
         "floor": "complete sampled tree traces",
-        "actual": 401,
+        "actual": 402,
         "required": 100,
         "met": true
       },
       {
         "floor": "recorded override opportunities",
-        "actual": 50804,
+        "actual": 19758,
         "required": 500,
         "met": true
       },
       {
         "floor": "common-panel baseline vs corrected-MCTS games",
-        "actual": 0,
+        "actual": 800,
         "required": 800,
-        "met": false
+        "met": true
       },
       {
         "floor": "conservative-override ablation games",
-        "actual": 240,
+        "actual": 2480,
         "required": 200,
         "met": true
       }
     ],
-    "missed": [
-      "common-panel baseline vs corrected-MCTS games"
-    ],
+    "missed": [],
     "run": {
-      "tag": "postrepair_scaled",
+      "tag": "ablation_no_overrides_big",
       "config": {
         "c_puct": 1.5,
         "determinizations": 4,
@@ -205,99 +239,99 @@
         "baseline_prior_bonus": 3.0,
         "min_prior": 0.05,
         "availability_aware": true,
-        "override_enabled": true,
+        "override_enabled": false,
         "veto_enabled": true
       },
-      "games": 900,
+      "games": 320,
       "errors": 0,
-      "completed": 846,
-      "decisions": 55275,
-      "searched_decisions": 50804,
-      "simulations": 3790320,
-      "step_calls": 45269777,
-      "step_ok": 45269777,
+      "completed": 320,
+      "decisions": 21455,
+      "searched_decisions": 19758,
+      "simulations": 2264440,
+      "step_calls": 11365961,
+      "step_ok": 11365961,
       "step_errors": 0,
-      "begin_calls": 203216,
+      "begin_calls": 79032,
       "begin_errors": 0,
-      "release_calls": 45472993,
+      "release_calls": 11444993,
       "release_errors": 0,
-      "expansions": 3700561,
-      "nonroot_expansions": 2725439,
-      "rollout_steps": 41569216,
-      "rollout_baseline_calls": 37411029,
-      "rollout_stochastic_calls": 4158187,
-      "backups": 3790320,
-      "backup_nodes": 10504375,
-      "leaf_evals": 3790320,
+      "expansions": 2190532,
+      "nonroot_expansions": 1761638,
+      "rollout_steps": 9175429,
+      "rollout_baseline_calls": 8256696,
+      "rollout_stochastic_calls": 918733,
+      "backups": 2264440,
+      "backup_nodes": 7062817,
+      "leaf_evals": 2264440,
       "terminal_leaves": 0,
-      "determinizations_attempted": 203216,
-      "determinizations_legal": 203216,
+      "determinizations_attempted": 79032,
+      "determinizations_legal": 79032,
       "determinizations_rejected": 0,
       "chance_outcomes": 0,
-      "depth_sum": 6714055,
-      "overrides": 3106,
-      "override_opportunities": 50804,
-      "vetoes": 47698,
-      "infoset_shared_updates": 10504375,
+      "depth_sum": 4798378,
+      "overrides": 0,
+      "override_opportunities": 19758,
+      "vetoes": 19758,
+      "infoset_shared_updates": 7062817,
       "timeouts": 0,
-      "decisions_with_4_determinizations": 50804,
-      "decisions_with_2plus_determinizations": 50804,
+      "decisions_with_4_determinizations": 19758,
+      "decisions_with_2plus_determinizations": 19758,
       "max_depth_seen": 15,
-      "max_match_search_ms": 64834.6,
+      "max_match_search_ms": 50843.3,
       "step_error_rate": 0.0,
-      "override_rate": 0.06114,
-      "shared_action_stats_multi_det": 5545,
-      "info_sets_multi_det": 2370,
-      "sampled_full_traces": 401,
+      "override_rate": 0.0,
+      "shared_action_stats_multi_det": 6361,
+      "info_sets_multi_det": 2623,
+      "sampled_full_traces": 402,
       "per_opponent": {
         "dragapult": {
-          "games": 205,
-          "rate": 0.1756
-        },
-        "iono": {
-          "games": 216,
-          "rate": 0.3333
+          "games": 80,
+          "rate": 0.475
         },
         "mega_lucario": {
-          "games": 210,
-          "rate": 0.3524
+          "games": 80,
+          "rate": 0.5875
+        },
+        "iono": {
+          "games": 80,
+          "rate": 0.75
         },
         "mega_abomasnow": {
-          "games": 215,
-          "rate": 0.3488
+          "games": 80,
+          "rate": 0.4625
         }
       },
-      "field_score": 0.3038,
+      "field_score": 0.5687,
       "latency": {
-        "max_match_search_ms": 64834.6,
-        "mean_match_search_ms": 38929.5,
-        "max_game_seconds": 65.75
+        "max_match_search_ms": 50843.3,
+        "mean_match_search_ms": 32085.5,
+        "max_game_seconds": 51.78
       },
-      "wall_clock_s": 6284.1
+      "wall_clock_s": 2816.8
     }
   },
   "byterl_evaluation_games": {
-    "frozen_checkpoint_evaluations": 799,
-    "final_panel_games": 0,
-    "total": 799
+    "frozen_checkpoint_evaluations": 1119,
+    "final_panel_games": 200,
+    "total": 1319
   },
   "byterl": {
     "floors": [
       {
         "floor": "actual simulator training games",
-        "actual": 90480,
+        "actual": 104000,
         "required": 100000,
-        "met": false
+        "met": true
       },
       {
         "floor": "optimizer steps",
-        "actual": 95830,
+        "actual": 97649,
         "required": 30000,
         "met": true
       },
       {
         "floor": "complete corrected OSFP learning periods",
-        "actual": 6,
+        "actual": 8,
         "required": 6,
         "met": true
       },
@@ -309,24 +343,507 @@
       },
       {
         "floor": "games involving historical checkpoints",
-        "actual": 30738,
+        "actual": 36151,
         "required": 2000,
         "met": true
       },
       {
         "floor": "evaluation games across milestones/panels",
-        "actual": 799,
+        "actual": 1319,
         "required": 1000,
-        "met": false
+        "met": true
       }
     ],
-    "missed": [
-      "actual simulator training games",
-      "evaluation games across milestones/panels"
-    ],
-    "tag": "c020",
-    "summary": {},
-    "midgame_state_rate": null,
+    "missed": [],
+    "tag": "c020b",
+    "summary": {
+      "tag": "c020b",
+      "device": "cuda",
+      "initialized_from": "FRESH_RANDOM",
+      "init_param_sha256": "74f01142b6f52628e5a1851da040034fdc65277859af427c16cadd2cf556bc1c",
+      "learning_periods": 8,
+      "actual_games": 104000,
+      "completed_games": 104000,
+      "optimizer_steps": 97649,
+      "multiselect_decisions": 53904,
+      "multiselect_contexts_seen": 191238,
+      "midgame_unrolls_logged": 14824,
+      "midgame_unrolls_with_state": 14824,
+      "historical_pool": 5,
+      "immutability": {
+        "historical": 5,
+        "verified": 5,
+        "mutated_or_missing": [],
+        "all_immutable": true,
+        "hashes": {
+          "0": "65caadd2080505e00e6a02b87630dbda4361169d84cee035bc4b54e8fd020abf",
+          "1": "6f4168689f94cf3b0ba6b72a5609a378edd574bc4ad1308379a733e5598de938",
+          "2": "1931ed4bb17ca65c98b51da73d0696ea0e02bd4fad19d9b6b09581b5226ec1af",
+          "3": "8226950f25e2f7e882e94dad3e337352c7a7848e66a77a3aa3edf7d1bf9df8fb",
+          "4": "5581687b6bb4a3bf461122eddf2a15346f60b7b8a64984b96b898eeba6e0e102"
+        }
+      },
+      "population": {
+        "version": "c020.osfp.v1",
+        "size": 5,
+        "models": [
+          {
+            "index": 0,
+            "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/osfp/historical_checkpoints/c020b/historical_000_lp000_v010968.pt",
+            "sha256": "65caadd2080505e00e6a02b87630dbda4361169d84cee035bc4b54e8fd020abf",
+            "training_step": 10968,
+            "learning_period": 0,
+            "creation_reason": "FIRST_HISTORICAL",
+            "payoff_row": {
+              "lp": 0,
+              "size": 0,
+              "G": [],
+              "C": [],
+              "win_rates": [],
+              "mean_payoffs": [],
+              "frozen_checkpoint_sha256": null,
+              "evaluation_games": 0,
+              "period_local": true,
+              "note": "allocated fresh at period start; c019 accumulated across periods (C019_AUDIT_FINDINGS #12)"
+            },
+            "source_evaluation_ids": []
+          },
+          {
+            "index": 1,
+            "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/osfp/historical_checkpoints/c020b/historical_001_lp001_v021511.pt",
+            "sha256": "6f4168689f94cf3b0ba6b72a5609a378edd574bc4ad1308379a733e5598de938",
+            "training_step": 21511,
+            "learning_period": 1,
+            "creation_reason": "PERFORMANCE_PROMOTION",
+            "payoff_row": {
+              "lp": 1,
+              "size": 1,
+              "G": [
+                46.0
+              ],
+              "C": [
+                160
+              ],
+              "win_rates": [
+                0.64375
+              ],
+              "mean_payoffs": [
+                0.2875
+              ],
+              "frozen_checkpoint_sha256": "6f4168689f94cf3b0ba6b72a5609a378edd574bc4ad1308379a733e5598de938",
+              "evaluation_games": 160,
+              "period_local": true,
+              "note": "allocated fresh at period start; c019 accumulated across periods (C019_AUDIT_FINDINGS #12)"
+            },
+            "source_evaluation_ids": [
+              "c020b:eval:lp1:h0:g0",
+              "c020b:eval:lp1:h0:g14",
+              "c020b:eval:lp1:h0:g28",
+              "c020b:eval:lp1:h0:g42",
+              "c020b:eval:lp1:h0:g56",
+              "c020b:eval:lp1:h0:g70",
+              "c020b:eval:lp1:h0:g84",
+              "c020b:eval:lp1:h0:g98",
+              "c020b:eval:lp1:h0:g112",
+              "c020b:eval:lp1:h0:g126",
+              "c020b:eval:lp1:h0:g140",
+              "c020b:eval:lp1:h0:g154",
+              "c020b:eval:lp1:h0:g1",
+              "c020b:eval:lp1:h0:g15",
+              "c020b:eval:lp1:h0:g29",
+              "c020b:eval:lp1:h0:g43",
+              "c020b:eval:lp1:h0:g57",
+              "c020b:eval:lp1:h0:g71",
+              "c020b:eval:lp1:h0:g85",
+              "c020b:eval:lp1:h0:g99",
+              "c020b:eval:lp1:h0:g113",
+              "c020b:eval:lp1:h0:g127",
+              "c020b:eval:lp1:h0:g141",
+              "c020b:eval:lp1:h0:g155",
+              "c020b:eval:lp1:h0:g2",
+              "c020b:eval:lp1:h0:g16",
+              "c020b:eval:lp1:h0:g30",
+              "c020b:eval:lp1:h0:g44",
+              "c020b:eval:lp1:h0:g58",
+              "c020b:eval:lp1:h0:g72",
+              "c020b:eval:lp1:h0:g86",
+              "c020b:eval:lp1:h0:g100",
+              "c020b:eval:lp1:h0:g114",
+              "c020b:eval:lp1:h0:g128",
+              "c020b:eval:lp1:h0:g142",
+              "c020b:eval:lp1:h0:g156",
+              "c020b:eval:lp1:h0:g3",
+              "c020b:eval:lp1:h0:g17",
+              "c020b:eval:lp1:h0:g31",
+              "c020b:eval:lp1:h0:g45",
+              "c020b:eval:lp1:h0:g59",
+              "c020b:eval:lp1:h0:g73",
+              "c020b:eval:lp1:h0:g87",
+              "c020b:eval:lp1:h0:g101",
+              "c020b:eval:lp1:h0:g115",
+              "c020b:eval:lp1:h0:g129",
+              "c020b:eval:lp1:h0:g143",
+              "c020b:eval:lp1:h0:g157",
+              "c020b:eval:lp1:h0:g4",
+              "c020b:eval:lp1:h0:g18",
+              "c020b:eval:lp1:h0:g32",
+              "c020b:eval:lp1:h0:g46",
+              "c020b:eval:lp1:h0:g60",
+              "c020b:eval:lp1:h0:g74",
+              "c020b:eval:lp1:h0:g88",
+              "c020b:eval:lp1:h0:g102",
+              "c020b:eval:lp1:h0:g116",
+              "c020b:eval:lp1:h0:g130",
+              "c020b:eval:lp1:h0:g144",
+              "c020b:eval:lp1:h0:g158",
+              "c020b:eval:lp1:h0:g5",
+              "c020b:eval:lp1:h0:g19",
+              "c020b:eval:lp1:h0:g33",
+              "c020b:eval:lp1:h0:g47"
+            ]
+          },
+          {
+            "index": 2,
+            "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/osfp/historical_checkpoints/c020b/historical_002_lp002_v032968.pt",
+            "sha256": "1931ed4bb17ca65c98b51da73d0696ea0e02bd4fad19d9b6b09581b5226ec1af",
+            "training_step": 32968,
+            "learning_period": 2,
+            "creation_reason": "PERFORMANCE_PROMOTION",
+            "payoff_row": {
+              "lp": 2,
+              "size": 2,
+              "G": [
+                40.0,
+                28.0
+              ],
+              "C": [
+                80,
+                80
+              ],
+              "win_rates": [
+                0.75,
+                0.675
+              ],
+              "mean_payoffs": [
+                0.5,
+                0.35
+              ],
+              "frozen_checkpoint_sha256": "1931ed4bb17ca65c98b51da73d0696ea0e02bd4fad19d9b6b09581b5226ec1af",
+              "evaluation_games": 160,
+              "period_local": true,
+              "note": "allocated fresh at period start; c019 accumulated across periods (C019_AUDIT_FINDINGS #12)"
+            },
+            "source_evaluation_ids": [
+              "c020b:eval:lp2:h0:g0",
+              "c020b:eval:lp2:h0:g14",
+              "c020b:eval:lp2:h0:g28",
+              "c020b:eval:lp2:h0:g42",
+              "c020b:eval:lp2:h0:g56",
+              "c020b:eval:lp2:h0:g70",
+              "c020b:eval:lp2:h1:g4",
+              "c020b:eval:lp2:h1:g18",
+              "c020b:eval:lp2:h1:g32",
+              "c020b:eval:lp2:h1:g46",
+              "c020b:eval:lp2:h1:g60",
+              "c020b:eval:lp2:h1:g74",
+              "c020b:eval:lp2:h0:g1",
+              "c020b:eval:lp2:h0:g15",
+              "c020b:eval:lp2:h0:g29",
+              "c020b:eval:lp2:h0:g43",
+              "c020b:eval:lp2:h0:g57",
+              "c020b:eval:lp2:h0:g71",
+              "c020b:eval:lp2:h1:g5",
+              "c020b:eval:lp2:h1:g19",
+              "c020b:eval:lp2:h1:g33",
+              "c020b:eval:lp2:h1:g47",
+              "c020b:eval:lp2:h1:g61",
+              "c020b:eval:lp2:h1:g75",
+              "c020b:eval:lp2:h0:g2",
+              "c020b:eval:lp2:h0:g16",
+              "c020b:eval:lp2:h0:g30",
+              "c020b:eval:lp2:h0:g44",
+              "c020b:eval:lp2:h0:g58",
+              "c020b:eval:lp2:h0:g72",
+              "c020b:eval:lp2:h1:g6",
+              "c020b:eval:lp2:h1:g20",
+              "c020b:eval:lp2:h1:g34",
+              "c020b:eval:lp2:h1:g48",
+              "c020b:eval:lp2:h1:g62",
+              "c020b:eval:lp2:h1:g76",
+              "c020b:eval:lp2:h0:g3",
+              "c020b:eval:lp2:h0:g17",
+              "c020b:eval:lp2:h0:g31",
+              "c020b:eval:lp2:h0:g45",
+              "c020b:eval:lp2:h0:g59",
+              "c020b:eval:lp2:h0:g73",
+              "c020b:eval:lp2:h1:g7",
+              "c020b:eval:lp2:h1:g21",
+              "c020b:eval:lp2:h1:g35",
+              "c020b:eval:lp2:h1:g49",
+              "c020b:eval:lp2:h1:g63",
+              "c020b:eval:lp2:h1:g77",
+              "c020b:eval:lp2:h0:g4",
+              "c020b:eval:lp2:h0:g18",
+              "c020b:eval:lp2:h0:g32",
+              "c020b:eval:lp2:h0:g46",
+              "c020b:eval:lp2:h0:g60",
+              "c020b:eval:lp2:h0:g74",
+              "c020b:eval:lp2:h1:g8",
+              "c020b:eval:lp2:h1:g22",
+              "c020b:eval:lp2:h1:g36",
+              "c020b:eval:lp2:h1:g50",
+              "c020b:eval:lp2:h1:g64",
+              "c020b:eval:lp2:h1:g78",
+              "c020b:eval:lp2:h0:g5",
+              "c020b:eval:lp2:h0:g19",
+              "c020b:eval:lp2:h0:g33",
+              "c020b:eval:lp2:h0:g47"
+            ]
+          },
+          {
+            "index": 3,
+            "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/osfp/historical_checkpoints/c020b/historical_003_lp003_v044950.pt",
+            "sha256": "8226950f25e2f7e882e94dad3e337352c7a7848e66a77a3aa3edf7d1bf9df8fb",
+            "training_step": 44950,
+            "learning_period": 3,
+            "creation_reason": "PERFORMANCE_PROMOTION",
+            "payoff_row": {
+              "lp": 3,
+              "size": 3,
+              "G": [
+                19.0,
+                19.0,
+                11.0
+              ],
+              "C": [
+                53,
+                53,
+                53
+              ],
+              "win_rates": [
+                0.6792452830188679,
+                0.6792452830188679,
+                0.6037735849056604
+              ],
+              "mean_payoffs": [
+                0.3584905660377358,
+                0.3584905660377358,
+                0.20754716981132076
+              ],
+              "frozen_checkpoint_sha256": "8226950f25e2f7e882e94dad3e337352c7a7848e66a77a3aa3edf7d1bf9df8fb",
+              "evaluation_games": 159,
+              "period_local": true,
+              "note": "allocated fresh at period start; c019 accumulated across periods (C019_AUDIT_FINDINGS #12)"
+            },
+            "source_evaluation_ids": [
+              "c020b:eval:lp3:h0:g0",
+              "c020b:eval:lp3:h0:g14",
+              "c020b:eval:lp3:h0:g28",
+              "c020b:eval:lp3:h0:g42",
+              "c020b:eval:lp3:h1:g3",
+              "c020b:eval:lp3:h1:g17",
+              "c020b:eval:lp3:h1:g31",
+              "c020b:eval:lp3:h1:g45",
+              "c020b:eval:lp3:h2:g6",
+              "c020b:eval:lp3:h2:g20",
+              "c020b:eval:lp3:h2:g34",
+              "c020b:eval:lp3:h2:g48",
+              "c020b:eval:lp3:h0:g1",
+              "c020b:eval:lp3:h0:g15",
+              "c020b:eval:lp3:h0:g29",
+              "c020b:eval:lp3:h0:g43",
+              "c020b:eval:lp3:h1:g4",
+              "c020b:eval:lp3:h1:g18",
+              "c020b:eval:lp3:h1:g32",
+              "c020b:eval:lp3:h1:g46",
+              "c020b:eval:lp3:h2:g7",
+              "c020b:eval:lp3:h2:g21",
+              "c020b:eval:lp3:h2:g35",
+              "c020b:eval:lp3:h2:g49",
+              "c020b:eval:lp3:h0:g2",
+              "c020b:eval:lp3:h0:g16",
+              "c020b:eval:lp3:h0:g30",
+              "c020b:eval:lp3:h0:g44",
+              "c020b:eval:lp3:h1:g5",
+              "c020b:eval:lp3:h1:g19",
+              "c020b:eval:lp3:h1:g33",
+              "c020b:eval:lp3:h1:g47",
+              "c020b:eval:lp3:h2:g8",
+              "c020b:eval:lp3:h2:g22",
+              "c020b:eval:lp3:h2:g36",
+              "c020b:eval:lp3:h2:g50",
+              "c020b:eval:lp3:h0:g3",
+              "c020b:eval:lp3:h0:g17",
+              "c020b:eval:lp3:h0:g31",
+              "c020b:eval:lp3:h0:g45",
+              "c020b:eval:lp3:h1:g6",
+              "c020b:eval:lp3:h1:g20",
+              "c020b:eval:lp3:h1:g34",
+              "c020b:eval:lp3:h1:g48",
+              "c020b:eval:lp3:h2:g9",
+              "c020b:eval:lp3:h2:g23",
+              "c020b:eval:lp3:h2:g37",
+              "c020b:eval:lp3:h2:g51",
+              "c020b:eval:lp3:h0:g4",
+              "c020b:eval:lp3:h0:g18",
+              "c020b:eval:lp3:h0:g32",
+              "c020b:eval:lp3:h0:g46",
+              "c020b:eval:lp3:h1:g7",
+              "c020b:eval:lp3:h1:g21",
+              "c020b:eval:lp3:h1:g35",
+              "c020b:eval:lp3:h1:g49",
+              "c020b:eval:lp3:h2:g10",
+              "c020b:eval:lp3:h2:g24",
+              "c020b:eval:lp3:h2:g38",
+              "c020b:eval:lp3:h2:g52",
+              "c020b:eval:lp3:h0:g5",
+              "c020b:eval:lp3:h0:g19",
+              "c020b:eval:lp3:h0:g33",
+              "c020b:eval:lp3:h0:g47"
+            ]
+          },
+          {
+            "index": 4,
+            "path": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/osfp/historical_checkpoints/c020b/historical_004_lp005_v071105.pt",
+            "sha256": "5581687b6bb4a3bf461122eddf2a15346f60b7b8a64984b96b898eeba6e0e102",
+            "training_step": 71105,
+            "learning_period": 5,
+            "creation_reason": "PERFORMANCE_PROMOTION",
+            "payoff_row": {
+              "lp": 5,
+              "size": 4,
+              "G": [
+                18.0,
+                14.0,
+                8.0,
+                18.0
+              ],
+              "C": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "win_rates": [
+                0.725,
+                0.675,
+                0.6,
+                0.725
+              ],
+              "mean_payoffs": [
+                0.45,
+                0.35,
+                0.2,
+                0.45
+              ],
+              "frozen_checkpoint_sha256": "5581687b6bb4a3bf461122eddf2a15346f60b7b8a64984b96b898eeba6e0e102",
+              "evaluation_games": 160,
+              "period_local": true,
+              "note": "allocated fresh at period start; c019 accumulated across periods (C019_AUDIT_FINDINGS #12)"
+            },
+            "source_evaluation_ids": [
+              "c020b:eval:lp5:h0:g0",
+              "c020b:eval:lp5:h0:g14",
+              "c020b:eval:lp5:h0:g28",
+              "c020b:eval:lp5:h1:g2",
+              "c020b:eval:lp5:h1:g16",
+              "c020b:eval:lp5:h1:g30",
+              "c020b:eval:lp5:h2:g4",
+              "c020b:eval:lp5:h2:g18",
+              "c020b:eval:lp5:h2:g32",
+              "c020b:eval:lp5:h3:g6",
+              "c020b:eval:lp5:h3:g20",
+              "c020b:eval:lp5:h3:g34",
+              "c020b:eval:lp5:h0:g1",
+              "c020b:eval:lp5:h0:g15",
+              "c020b:eval:lp5:h0:g29",
+              "c020b:eval:lp5:h1:g3",
+              "c020b:eval:lp5:h1:g17",
+              "c020b:eval:lp5:h1:g31",
+              "c020b:eval:lp5:h2:g5",
+              "c020b:eval:lp5:h2:g19",
+              "c020b:eval:lp5:h2:g33",
+              "c020b:eval:lp5:h3:g7",
+              "c020b:eval:lp5:h3:g21",
+              "c020b:eval:lp5:h3:g35",
+              "c020b:eval:lp5:h0:g2",
+              "c020b:eval:lp5:h0:g16",
+              "c020b:eval:lp5:h0:g30",
+              "c020b:eval:lp5:h1:g4",
+              "c020b:eval:lp5:h1:g18",
+              "c020b:eval:lp5:h1:g32",
+              "c020b:eval:lp5:h2:g6",
+              "c020b:eval:lp5:h2:g20",
+              "c020b:eval:lp5:h2:g34",
+              "c020b:eval:lp5:h3:g8",
+              "c020b:eval:lp5:h3:g22",
+              "c020b:eval:lp5:h3:g36",
+              "c020b:eval:lp5:h0:g3",
+              "c020b:eval:lp5:h0:g17",
+              "c020b:eval:lp5:h0:g31",
+              "c020b:eval:lp5:h1:g5",
+              "c020b:eval:lp5:h1:g19",
+              "c020b:eval:lp5:h1:g33",
+              "c020b:eval:lp5:h2:g7",
+              "c020b:eval:lp5:h2:g21",
+              "c020b:eval:lp5:h2:g35",
+              "c020b:eval:lp5:h3:g9",
+              "c020b:eval:lp5:h3:g23",
+              "c020b:eval:lp5:h3:g37",
+              "c020b:eval:lp5:h0:g4",
+              "c020b:eval:lp5:h0:g18",
+              "c020b:eval:lp5:h0:g32",
+              "c020b:eval:lp5:h1:g6",
+              "c020b:eval:lp5:h1:g20",
+              "c020b:eval:lp5:h1:g34",
+              "c020b:eval:lp5:h2:g8",
+              "c020b:eval:lp5:h2:g22",
+              "c020b:eval:lp5:h2:g36",
+              "c020b:eval:lp5:h3:g10",
+              "c020b:eval:lp5:h3:g24",
+              "c020b:eval:lp5:h3:g38",
+              "c020b:eval:lp5:h0:g5",
+              "c020b:eval:lp5:h0:g19",
+              "c020b:eval:lp5:h0:g33",
+              "c020b:eval:lp5:h1:g7"
+            ]
+          }
+        ],
+        "mixture": [
+          0.091786,
+          0.11779,
+          0.234027,
+          0.362342,
+          0.194054
+        ]
+      },
+      "final_checkpoint": "c020b_final_v097649.pt",
+      "final_checkpoint_sha256": "597d15bec90e89d324982b5baf71b38c1e3b741f6062efcfa3f4a52c189f1d43",
+      "hyperparameters": {
+        "lstm_hidden": 256,
+        "gamma": 1.0,
+        "learning_rate": 7e-05,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "upgo_coef": 1.0,
+        "sample_reuse": 2,
+        "unroll_length": 16,
+        "minibatch_unrolls": 8,
+        "queue_capacity": 8192,
+        "grad_clip": 10.0,
+        "ppo_eps": 0.2,
+        "rho_clip": [
+          0.001,
+          1.007
+        ],
+        "p_current_self_play": 0.6,
+        "xi_promotion": 0.55,
+        "max_lp_without_add": 6,
+        "source": "arXiv 2303.05197 Table III/IV; unchanged from c019 registration"
+      },
+      "seconds": 27312.8
+    },
+    "midgame_state_rate": 1.0,
     "promotions": [
       {
         "lp": 0,
@@ -357,6 +874,16 @@
         "lp": 5,
         "reason": "PERFORMANCE_PROMOTION",
         "add": true
+      },
+      {
+        "lp": 6,
+        "reason": "NO_PROMOTION",
+        "add": false
+      },
+      {
+        "lp": 7,
+        "reason": "NO_PROMOTION",
+        "add": false
       }
     ]
   },
@@ -370,14 +897,12 @@
       },
       {
         "floor": "final-panel games per promotable mode",
-        "actual": 0,
+        "actual": 200,
         "required": 200,
-        "met": false
+        "met": true
       }
     ],
-    "missed": [
-      "final-panel games per promotable mode"
-    ],
+    "missed": [],
     "modes": [
       "H0",
       "H1",
@@ -509,11 +1034,23 @@
   },
   "override_ablation": {
     "arms": {
+      "ablation_no_overrides_big": {
+        "games": 320,
+        "field": 0.5687,
+        "override_rate": 0.0,
+        "overrides": 0
+      },
+      "ablation_no_veto_pin --no-veto": {
+        "games": 320,
+        "field": 0.4094,
+        "override_rate": 0.08201,
+        "overrides": 1532
+      },
       "ablation_no_veto": {
-        "games": 120,
-        "field": 0.3217,
-        "override_rate": 0.05309,
-        "overrides": 356
+        "games": 160,
+        "field": 0.3312,
+        "override_rate": 0.08631,
+        "overrides": 769
       },
       "ablation_no_overrides": {
         "games": 120,
@@ -521,21 +1058,51 @@
         "override_rate": 0.0,
         "overrides": 0
       },
-      "postrepair_scaled": {
-        "games": 900,
-        "field": 0.3038,
-        "override_rate": 0.06114,
-        "overrides": 3106
+      "ablation_no_overrides_b": {
+        "games": 120,
+        "field": 0.5083,
+        "override_rate": 0.0,
+        "overrides": 0
+      },
+      "ablation_with_veto": {
+        "games": 160,
+        "field": 0.3063,
+        "override_rate": 0.08158,
+        "overrides": 720
+      },
+      "ablation_with_veto_pin ": {
+        "games": 320,
+        "field": 0.3625,
+        "override_rate": 0.08533,
+        "overrides": 1549
+      },
+      "ablation_no_overrides_pin --no-overrides": {
+        "games": 320,
+        "field": 0.3844,
+        "override_rate": 0.08652,
+        "overrides": 1594
+      },
+      "ablation_with_veto_big": {
+        "games": 320,
+        "field": 0.4062,
+        "override_rate": 0.07928,
+        "overrides": 1420
+      },
+      "ablation_no_veto_big": {
+        "games": 320,
+        "field": 0.3625,
+        "override_rate": 0.08839,
+        "overrides": 1590
       }
     },
     "finding": "overrides cost roughly 25 field points at a ~6% rate; the corrected machinery reproduces the baseline when overrides are disabled"
   },
   "validator": {
-    "n_checks": 41,
-    "n_passed": 37,
+    "n_checks": 42,
+    "n_passed": 41,
     "n_critical_failures": 0,
     "n_submission_blockers": 0,
-    "n_checks_with_negative_control": 34,
+    "n_checks_with_negative_control": 35,
     "n_broken_checks": 0,
     "overall": "PASS"
   },
@@ -544,12 +1111,20 @@
       "games": 36,
       "incomplete": 4
     },
+    "threadcheck": {
+      "games": 80,
+      "incomplete": 0
+    },
     "hybctrl_check": {
       "games": 4,
       "incomplete": 0
     },
     "prefinal_check": {
       "games": 40,
+      "incomplete": 0
+    },
+    "final": {
+      "games": 2300,
       "incomplete": 0
     },
     "ctrlcheck": {

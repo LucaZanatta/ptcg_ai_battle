@@ -1,3 +1,3 @@
 # M05 — Non-root PUCT lifecycle
 
-**816,722** non-root expansions of 1,007,593 total, maximum observed depth 15, 1,025,156 simulations each ending in a backup. c019's search branched only at the root.
+**1,761,638** non-root expansions of 2,190,532 total, maximum observed depth 15, 2,264,440 simulations each ending in a backup. c019's search branched only at the root.

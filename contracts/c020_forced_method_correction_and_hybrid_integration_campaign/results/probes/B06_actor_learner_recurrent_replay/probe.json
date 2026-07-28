@@ -3,10 +3,10 @@
   "name": "actor_learner_recurrent_replay",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
+  "source_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "checks": {
-    "midgame_unrolls": 15520,
-    "with_stored_state": 15520,
+    "midgame_unrolls": 14824,
+    "with_stored_state": 14824,
     "rate": 1.0,
     "context_assertion": "c020_vtrace.assert_same_context raises on mismatch"
   },

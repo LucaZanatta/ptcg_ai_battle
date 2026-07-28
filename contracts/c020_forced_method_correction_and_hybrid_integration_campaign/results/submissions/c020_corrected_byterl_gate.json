@@ -1,6 +1,22 @@
 {
+  "branch": "byterl",
+  "candidate": "C020_CORRECTED_BYTERL",
+  "baseline_field": 0.5837,
+  "candidate_field": 0.275,
+  "c019_control_field": 0.06,
+  "delta_field_points": -30.9,
+  "checks": {
+    "package_reliability": true,
+    "method_actually_ran": true,
+    "legal_rate_100pct": true,
+    "materially_beats_c019_byterl": true,
+    "field_plus_2pts": false,
+    "direct_vs_baseline_at_least_55pct": false,
+    "eligible": false
+  },
   "eligible": false,
-  "reason": "candidate or baseline absent from the panel",
+  "games": 600,
+  "rule": "CONTRACT \u00a710 corrected-ByteRL gate",
   "package": "c020_corrected_byterl",
   "panel_tag": "final",
   "package_sha256": "165d14f95c9f8c683a3fd66370ccdca331b3052866e579aefab272c4fbf6c076",

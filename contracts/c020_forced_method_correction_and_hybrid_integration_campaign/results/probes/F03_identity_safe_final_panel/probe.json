@@ -3,17 +3,18 @@
   "name": "identity_safe_final_panel",
   "branch": "common",
   "status": "PASS",
-  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
+  "source_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "checks": {
     "panels": [
       "panelsmoke",
+      "threadcheck",
       "hybctrl_check",
       "prefinal_check",
       "final",
       "ctrlcheck",
       "speccheck"
     ],
-    "final_games": 1300,
+    "final_games": 2300,
     "incomplete": 0,
     "paired_by": "game_id, never list position",
     "environment_randomness_paired": false

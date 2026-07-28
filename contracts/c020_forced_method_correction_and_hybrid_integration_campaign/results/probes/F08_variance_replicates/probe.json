@@ -1,0 +1,16 @@
+{
+  "probe": "F08_variance_replicates",
+  "what": "Three INDEPENDENT 320-game runs of an identical configuration (overrides enabled, veto enabled), torch threads pinned, produced accidentally by a zsh word-splitting bug that swallowed each arm's flag into its tag.",
+  "field_scores": [
+    0.3844,
+    0.4094,
+    0.3625
+  ],
+  "n_per_run": 320,
+  "mean": 0.3854,
+  "sd": 0.0235,
+  "range": 0.0469,
+  "binomial_sd_expected": 0.0272,
+  "finding": "observed sd sits at the binomial floor, so with torch.set_num_threads(1) the panel's run-to-run variance is essentially pure sampling noise. The earlier estimate of sd 0.035 at n=400 -- derived from three baseline panels run under DIFFERENT concurrent load -- was inflated by contention, exactly as failures/DEFECT_panel_results_depended_on_machine_load.md predicted.",
+  "consequence": "at n=320 a 95% interval is about +/-0.053, so differences below ~5 points are not resolvable and are reported as unresolved rather than interpreted."
+}

@@ -3,7 +3,7 @@
   "name": "package_source_identity",
   "branch": "common",
   "status": "PASS",
-  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
+  "source_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "checks": {
     "c020_mcts_smoke": {
       "sha256": "1859957ce456a113",
@@ -14,6 +14,12 @@
     "c020_byterl_rehearsal": {
       "sha256": "5c75c0d82e9e43c5",
       "checkpoint_sha256": "31f04ffdb7f8c46b",
+      "clean_extraction_ok": true,
+      "method_actually_ran": true
+    },
+    "c020_corrected_byterl": {
+      "sha256": "165d14f95c9f8c68",
+      "checkpoint_sha256": "597d15bec90e89d3",
       "clean_extraction_ok": true,
       "method_actually_ran": true
     }

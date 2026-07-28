@@ -1,10 +1,17 @@
 {
   "tag": "final",
   "candidates": [
+    "BASELINE_OFFICIAL_MEGA_LUCARIO",
+    "C020_CORRECTED_MCTS",
     "C019_PIMC_PUCT_CONTROL",
     "C019_BYTERL_CONTROL",
     "C019_HYBRID_CONTROL",
-    "C020_H0"
+    "C020_CORRECTED_BYTERL",
+    "C020_H0",
+    "C020_H1",
+    "C020_H2",
+    "C020_H3",
+    "C020_H4"
   ],
   "opponents": [
     "dragapult",
@@ -13,13 +20,20 @@
     "mega_abomasnow"
   ],
   "games_per_pair": {
-    "C019_PIMC_PUCT_CONTROL": 50,
-    "C019_BYTERL_CONTROL": 50,
-    "C019_HYBRID_CONTROL": 50,
-    "C020_H0": 50
+    "BASELINE_OFFICIAL_MEGA_LUCARIO": 100,
+    "C020_CORRECTED_MCTS": 100,
+    "C019_PIMC_PUCT_CONTROL": 25,
+    "C019_BYTERL_CONTROL": 25,
+    "C019_HYBRID_CONTROL": 25,
+    "C020_CORRECTED_BYTERL": 50,
+    "C020_H0": 50,
+    "C020_H1": 50,
+    "C020_H2": 50,
+    "C020_H3": 50,
+    "C020_H4": 50
   },
-  "total_games": 800,
-  "frozen_at_commit": "7df4962845109d2b1424dbbd7419c8dd4164ca0b",
+  "total_games": 2300,
+  "frozen_at_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "config": {
     "c020_mcts": {
       "simulations_total": 128,
@@ -32,7 +46,7 @@
       "max_ms_per_decision": 120
     },
     "c019_byterl_checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40357.pt",
-    "c020_byterl_checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/checkpoints/c020/c020_final_v110591.pt",
+    "c020_byterl_checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/byterl/checkpoints/c020b/c020b_final_v097649.pt",
     "prior_admitted": false,
     "value_admitted": false
   },

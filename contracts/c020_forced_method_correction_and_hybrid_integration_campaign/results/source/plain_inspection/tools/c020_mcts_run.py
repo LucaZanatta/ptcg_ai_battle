@@ -33,6 +33,10 @@ OPPONENTS = ["dragapult", "mega_lucario", "iono", "mega_abomasnow"]
 def _worker(payload):
     jobs, cfg, seed = payload
     sys.path.insert(0, _REPO)
+    import torch
+    # one thread per worker -- see tools/c020_panel.py and
+    # failures/DEFECT_panel_results_depended_on_machine_load.md
+    torch.set_num_threads(1)
     from kaggle_environments import make
     from cg import teachers as T, c009_eval as ce, c019_determinize as D19
     from cg import c020_agent as AG

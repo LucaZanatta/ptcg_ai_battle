@@ -3,17 +3,17 @@
   "name": "requested_versus_actual_mixture",
   "branch": "byterl",
   "status": "PASS",
-  "source_commit": "b770cc00a80fb3ec00a91f32b6e933730b12bfe3",
+  "source_commit": "653bd52784ebe8509c56117be4cbb19dc7d08ed3",
   "checks": {
     "mixtures": [
       {
         "lp": 5,
         "mixture": [
-          0.096693,
-          0.106844,
-          0.106844,
-          0.118063,
-          0.571555
+          0.092768,
+          0.11327,
+          0.15284,
+          0.092768,
+          0.548354
         ],
         "population": 5,
         "derived_from": "period_local_payoff_table"
@@ -21,11 +21,11 @@
       {
         "lp": 6,
         "mixture": [
-          0.10903,
-          0.075002,
-          0.380023,
-          0.139937,
-          0.296009
+          0.104306,
+          0.104306,
+          0.249934,
+          0.22059,
+          0.320864
         ],
         "population": 5,
         "derived_from": "period_local_payoff_table"
@@ -33,14 +33,13 @@
       {
         "lp": 7,
         "mixture": [
-          0.050196,
-          0.050196,
-          0.064407,
-          0.174799,
-          0.136169,
-          0.524233
+          0.091786,
+          0.11779,
+          0.234027,
+          0.362342,
+          0.194054
         ],
-        "population": 6,
+        "population": 5,
         "derived_from": "period_local_payoff_table"
       }
     ],

@@ -1,34 +1,35 @@
 {
   "c020_mcts_smoke": {
     "branch": "hybrid",
-    "candidate": "C020_H3",
+    "candidate": "C020_H4",
     "submission_ref": null,
     "status": "BLOCKED_BY_GATE",
     "gate": {
       "branch": "hybrid",
-      "candidate": "C020_H3",
+      "candidate": "C020_H4",
       "best_parent": "C020_CORRECTED_MCTS",
-      "best_parent_field": 0.5,
-      "candidate_field": 0.25,
-      "delta_vs_best_parent_points": -25.0,
+      "best_parent_field": 0.4275,
+      "candidate_field": 0.465,
+      "delta_vs_best_parent_points": 3.8,
       "per_matchup_delta": {
-        "dragapult": -1.0,
-        "mega_lucario": -1.0,
-        "iono": 0.0,
-        "mega_abomasnow": 1.0
+        "dragapult": 0.07,
+        "mega_lucario": 0.03,
+        "iono": -0.04,
+        "mega_abomasnow": 0.09
       },
       "checks": {
         "adapters_admitted": false,
         "package_reliability": true,
-        "beats_best_parent_by_3pts": false,
-        "matchup_plus_5_without_2pt_regression": false,
+        "beats_best_parent_by_3pts": true,
+        "matchup_plus_5_without_2pt_regression": true,
         "strength_retained_at_30pct_lower_cost": false,
+        "rejected_as_tie_at_no_lower_cost": false,
         "eligible": false
       },
       "eligible": false,
       "rule": "CONTRACT \u00a710 hybrid gate -- must beat the stronger corrected pure parent; a more complex hybrid that only ties a parent at higher runtime is rejected",
       "package": "c020_mcts_smoke",
-      "panel_tag": "prefinal_check",
+      "panel_tag": "final",
       "package_sha256": "1859957ce456a113f050fc924a5405506a0cf6633726f6c9f4ea21213924ea0a",
       "checkpoint_sha256": null
     }
@@ -69,8 +70,24 @@
     "submission_ref": null,
     "status": "BLOCKED_BY_GATE",
     "gate": {
+      "branch": "byterl",
+      "candidate": "C020_CORRECTED_BYTERL",
+      "baseline_field": 0.5837,
+      "candidate_field": 0.275,
+      "c019_control_field": 0.06,
+      "delta_field_points": -30.9,
+      "checks": {
+        "package_reliability": true,
+        "method_actually_ran": true,
+        "legal_rate_100pct": true,
+        "materially_beats_c019_byterl": true,
+        "field_plus_2pts": false,
+        "direct_vs_baseline_at_least_55pct": false,
+        "eligible": false
+      },
       "eligible": false,
-      "reason": "candidate or baseline absent from the panel",
+      "games": 600,
+      "rule": "CONTRACT \u00a710 corrected-ByteRL gate",
       "package": "c020_corrected_byterl",
       "panel_tag": "final",
       "package_sha256": "165d14f95c9f8c683a3fd66370ccdca331b3052866e579aefab272c4fbf6c076",

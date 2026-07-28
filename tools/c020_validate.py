@@ -202,23 +202,33 @@ def v_mcts():
         def __init__(self, actions):
             self.actions = actions
 
-    root = _Root({"END_TURN": _St(90, 0.9, 8), "play_card": _St(10, 0.1, 8)})
-    veto = OV.decide_override(root, "play_card",
+    # REAL canonical keys (select_type, context, option_type, fields, card, attack). The string
+    # "END_TURN" only ever worked against the substring detector this check exists to police --
+    # the same way the unit tests were validating the bug.
+    K_END = (0, 0, OV.OPT_END, (-1,), -1, -1)
+    K_PLAY = (1, 3, 7, (-1,), -1, -1)
+    root = _Root({K_END: _St(90, 0.9, 8), K_PLAY: _St(10, 0.1, 8)})
+    veto = OV.decide_override(root, K_PLAY,
                               {"simulations": 200, "determinizations": 4,
-                               "agreement": {"END_TURN": 1.0}, "baseline_productive": True})
+                               "agreement": {K_END: 1.0}, "baseline_productive": True})
     # negative control: c019 had no gate -- highest visits wins
     c019_pick = max(root.actions.items(), key=lambda kv: kv[1].n)[0]
     ck("A8_end_turn_veto_rejects_c019_failure",
        (not veto.override) and veto.veto_reason == "unproductive_end_turn_veto",
        {"veto_reason": veto.veto_reason, "override": veto.override,
-        "c019_would_have_played": c019_pick,
+        "c019_would_have_played": str(c019_pick),
+        "note": "checked with a REAL integer-tuple key; the substring detector this replaced "
+                "returned False for every action the engine actually produces",
         "c019_defect": "many sampled overrides selected end turn over productive card play"},
-       B, blocker=True, control=(c019_pick == "END_TURN"))
+       # the negative control: c019's rule was "most visits wins", which WOULD have played the
+       # end-turn action here. Compared against the real key, not the old string literal.
+       B, blocker=True, control=(c019_pick == K_END))
 
-    root2 = _Root({"alt": _St(60, 0.90, 8), "base": _St(40, 0.88, 8)})
-    thin = OV.decide_override(root2, "base",
+    K_ALT = (1, 3, 8, (-1,), -1, -1)
+    root2 = _Root({K_ALT: _St(60, 0.90, 8), K_PLAY: _St(40, 0.88, 8)})
+    thin = OV.decide_override(root2, K_PLAY,
                               {"simulations": 200, "determinizations": 4,
-                               "agreement": {"alt": 1.0}, "baseline_productive": True})
+                               "agreement": {K_ALT: 1.0}, "baseline_productive": True})
     ck("A8_q_margin_blocks_thin_overrides",
        (not thin.override) and thin.veto_reason == "q_margin",
        {"veto_reason": thin.veto_reason, "q_margin": thin.q_margin,

@@ -142,8 +142,18 @@ def gate_hybrid(panel, cid, pkg) -> Dict[str, Any]:
             any(v >= 0.05 for v in per.values()) and d >= -0.02),
         "strength_retained_at_30pct_lower_cost": bool(cheaper),
     }
+    # CONTRACT §10, stated explicitly and not previously implemented: "A more complex hybrid
+    # that only TIES a pure parent at HIGHER runtime is rejected." Without this, a hybrid can
+    # clear clause B on a single lucky matchup while adding cost and no strength -- which is how
+    # H0 first evaluated as eligible at -0.75 points and 68.0s against its parent's 65.2s.
+    parent_ms = best.get("max_search_match_ms") or 0
+    cand_ms = cand.get("max_search_match_ms") or 0
+    ties = abs(d) < 0.03
+    not_cheaper = cand_ms >= parent_ms * 0.7
+    checks["rejected_as_tie_at_no_lower_cost"] = bool(ties and not_cheaper)
     checks["eligible"] = bool(
         checks["adapters_admitted"] and checks["package_reliability"]
+        and not checks["rejected_as_tie_at_no_lower_cost"]
         and (checks["beats_best_parent_by_3pts"]
              or checks["matchup_plus_5_without_2pt_regression"]
              or checks["strength_retained_at_30pct_lower_cost"]))
@@ -183,9 +193,13 @@ def main(argv=None):
                            "gate": gate}
         json.dump(refs, open(os.path.join(SUB, "references.json"), "w"), indent=2)
         print(json.dumps({"upload": "BLOCKED_BY_GATE", "candidate": a.candidate,
+                          "reason": gate.get("reason"),
                           "checks": gate.get("checks"),
-                          "delta": gate.get("delta_field_points")
-                          or gate.get("delta_vs_best_parent_points")}, indent=2))
+                          "failed_checks": [k for k, v in (gate.get("checks") or {}).items()
+                                            if v is False],
+                          "delta": gate.get("delta_field_points",
+                                            gate.get("delta_vs_best_parent_points"))},
+                         indent=2))
         return 1
 
     used = len([v for v in refs.values() if v.get("submission_ref")])
