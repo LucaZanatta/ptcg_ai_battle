@@ -130,6 +130,17 @@ def main(argv=None):
                        "no_step_errors_and_no_coin_ucb_selection": clean}
 
     # ---------------------------------------------------------------- MCGS_COMPETITIVE
+    # `competitive` and `transfer_T0_control` are the SAME configuration -- the source port with
+    # every transfer switch off. Reporting whichever scored higher would be selection on exactly
+    # the run-to-run noise this campaign measured, so they are POOLED.
+    pool_names = ("competitive_summary.json", "transfer_T0_control_summary.json")
+    pool_k, pool_n = 0.0, 0
+    for nm in pool_names:
+        d = mcgs.get(nm)
+        if d and d.get("field_score") is not None and not d.get("SUPERSEDED"):
+            pool_k += d["field_score"] * (d.get("completed") or 0)
+            pool_n += int(d.get("completed") or 0)
+
     best_mcgs, best_name = None, None
     for name, s in mcgs.items():
         if name.startswith(("a4_", "legal_smoke", "smoke")):
@@ -145,12 +156,22 @@ def main(argv=None):
         fs = s.get("field_score")
         if fs is not None and (best_mcgs is None or fs > best_mcgs):
             best_mcgs, best_name = fs, name
-    n_games = mcgs.get(best_name, {}).get("completed", 0) if best_name else 0
+    if pool_n > 0:
+        best_name = " + ".join(n.replace("_summary.json", "") for n in pool_names
+                               if mcgs.get(n))
+        best_mcgs = pool_k / pool_n
+        n_games = pool_n
+    else:
+        n_games = mcgs.get(best_name, {}).get("completed", 0) if best_name else 0
     lo, hi = wilson((best_mcgs or 0) * n_games, n_games) if n_games else (0.0, 1.0)
     beats_half = lo > 0.5
     ev["MCGS_COMPETITIVE"] = {
         "status": "PASS" if beats_half else "FAIL",
         "best_run": best_name, "field_score": best_mcgs, "games": n_games,
+        "pooled": pool_n > 0,
+        "pooling_note": ("competitive and transfer_T0_control are the same configuration; they "
+                         "are pooled rather than max-selected, because reporting the higher of "
+                         "two identical runs is selection on the measured noise."),
         "wilson95": [round(lo, 4), round(hi, 4)],
         "gate": "lower bound of the 95% Wilson interval must exceed 0.5 against the field",
         "note": ("A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an "
@@ -275,6 +296,9 @@ def main(argv=None):
         "status": "PASS" if retained else ("FAIL" if arms else "NOT_RUN"),
         "control_field_score": (control or {}).get("field_score"),
         "arms": arms, "retained": retained,
+        "interpretation": ("NOT RETAINED, and NOT REJECTED. The arm-to-control differences are "
+                           "smaller than the measured run-to-run resolution limit, so the test "
+                           "lacks the power to separate them. Treat the components as UNTESTED."),
         "rule": ("DECISION_RULES §3: a component is retained only on a credible improvement; "
                  "internal ByteRL-vs-history improvement alone is insufficient. Here that means "
                  "the arm's 95% lower bound must exceed the control's upper bound."),

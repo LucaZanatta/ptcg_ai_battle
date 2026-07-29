@@ -134,6 +134,25 @@ def main(argv=None):
     w("")
 
     # ---------------------------------------------------------------- §5.3
+    lc = next((r for r in rows if r.get("run", "").startswith("legal_corrected")), None)
+    ctl = next((r for r in rows if r.get("run", "").startswith("transfer_T0")), None)
+    if lc and ctl and lc.get("sims_per_decision") and ctl.get("sims_per_decision"):
+        w("### A10 carries a throughput confound and must not be read as 'the corrections hurt'")
+        w("")
+        w(f"`legal_corrected` scored {fmt(lc.get('field_score'))} against "
+          f"{fmt(ctl.get('field_score'))} for the control, but it also ran at "
+          f"**{lc.get('sims_per_decision')} simulations per decision against "
+          f"{ctl.get('sims_per_decision')}** — roughly "
+          f"{(ctl.get('sims_per_decision') or 1) / max(lc.get('sims_per_decision') or 1, 1):.1f}x "
+          "fewer. C1 expands a multi-select node into up to `MAX_COMBINATIONS` distinct action "
+          "sets, so each decision costs far more engine steps.")
+        w("")
+        w("The two explanations — *the legality corrections are harmful* and *the corrected "
+          "branch is simulation-starved at an equal time budget* — are **not separated by this "
+          "experiment**. Separating them needs an equal-simulation rather than equal-time "
+          "comparison. Until then A10's deficit is reported as confounded, not as evidence "
+          "against the corrections.")
+        w("")
     w("## 3. Were the MCGS defects algorithmic, adaptation-related or throughput-related?")
     w("")
     w("| defect | class | evidence |")
@@ -224,6 +243,24 @@ def main(argv=None):
         w("")
     w(f"> {bm.get('self_play_warning')}")
     w("")
+    b3 = [r for r in runs if r.get("win_rate_is_self_play")]
+    if b3:
+        vals = ", ".join(f"`{r['run']}` {fmt(r.get('best_win_rate'))}" for r in b3)
+        w("### The sharpest ByteRL result, stated directly")
+        w("")
+        w("The promotion gate is a win rate of 0.55 over at least 48 games. **No rung reached "
+          "it**, so no promotion ever fired, and B3 therefore played the seeded period-0 "
+          "checkpoint — *its own random initial weights* — for every iteration.")
+        w("")
+        w(f"Best self-play rates: {vals}. Both sit at or below 0.5 against that frozen random "
+          "initialization.")
+        w("")
+        w("So the finding supported by this data is stronger and more specific than "
+          "\"no rung separates from B0\": **after 768 games of V-trace plus UPGO, the policy "
+          "does not beat its own random initialization.** That is the direct evidence for "
+          "`BYTERL_SCALE = COMPUTE_LIMITED` — the algorithm is implemented and running, and the "
+          "sample budget is orders of magnitude short of what the published method needs.")
+        w("")
     w("**No rung separates from the B0 uniform-random floor at this scale.** All field-facing "
       "rungs sit within binomial noise of one another. That is the honest reading of a "
       "compute-limited run and is reported as such rather than dressed up: with order 1e3 games "
