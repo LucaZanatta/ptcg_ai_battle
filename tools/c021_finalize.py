@@ -336,6 +336,10 @@ def main(argv=None):
             "opponents": ["dragapult", "mega_lucario", "iono", "mega_abomasnow"]},
             open(cmani, "w"), indent=2)
 
+    # NOTE: only written when absent. c021_bench.py produces the real measurements into
+    # benchmarks/; this stub previously occupied the mandated hardware/ slot with prose while
+    # the numbers sat in a directory no reader checks. The two are now merged in place, so this
+    # branch must never overwrite an existing file.
     env = os.path.join(R, "hardware", "environment_throughput.json")
     if not os.path.exists(env):
         json.dump({"cpu_count": os.cpu_count(),

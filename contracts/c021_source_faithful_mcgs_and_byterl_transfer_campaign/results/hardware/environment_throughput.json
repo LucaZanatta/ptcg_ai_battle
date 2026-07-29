@@ -1,7 +1,101 @@
 {
-  "cpu_count": 24,
-  "torch_threads_per_worker": 1,
-  "why_one_thread": "Without torch.set_num_threads(1) workers contend and the contention is charged against per-decision wall-clock budgets. In c019 that inverted rankings: a harmful search measured 0.605 under load against 0.111 sequentially.",
-  "serialization_policy": "All latency-bounded MCGS runs execute in ONE serialized queue; nothing runs concurrently with them.",
-  "memory_note": "Rollout states are released as the rollout advances. Holding them to the end of a decision measured 1.2-1.3 GB per worker and 28.6 GB resident, and 4 games did not finish in 14 minutes; after the fix the same 4 games took 14.7 s."
+  "note": "scheduling input only; no algorithm depends on these",
+  "cpu_logical": 24,
+  "scales": {
+    "1": {
+      "workers": 1,
+      "wall_s": 2.4,
+      "total_search_steps": 288,
+      "total_decisions": 12,
+      "steps_per_sec": 120.5,
+      "steps_per_sec_per_worker": 120.5,
+      "scaling_efficiency_vs_1w": 1.0
+    },
+    "2": {
+      "workers": 2,
+      "wall_s": 2.4,
+      "total_search_steps": 576,
+      "total_decisions": 24,
+      "steps_per_sec": 235.2,
+      "steps_per_sec_per_worker": 117.6,
+      "scaling_efficiency_vs_1w": 0.976
+    },
+    "4": {
+      "workers": 4,
+      "wall_s": 2.9,
+      "total_search_steps": 1152,
+      "total_decisions": 48,
+      "steps_per_sec": 400.5,
+      "steps_per_sec_per_worker": 100.1,
+      "scaling_efficiency_vs_1w": 0.831
+    },
+    "8": {
+      "workers": 8,
+      "wall_s": 2.9,
+      "total_search_steps": 2304,
+      "total_decisions": 96,
+      "steps_per_sec": 789.4,
+      "steps_per_sec_per_worker": 98.7,
+      "scaling_efficiency_vs_1w": 0.819
+    },
+    "12": {
+      "workers": 12,
+      "wall_s": 3.1,
+      "total_search_steps": 3454,
+      "total_decisions": 144,
+      "steps_per_sec": 1102.6,
+      "steps_per_sec_per_worker": 91.9,
+      "scaling_efficiency_vs_1w": 0.763
+    }
+  },
+  "primitive_costs_single_worker": {
+    "begin": {
+      "n": 12,
+      "mean_us": 201.6,
+      "p50_us": 145.0,
+      "p95_us": 215.6
+    },
+    "step": {
+      "n": 286,
+      "mean_us": 83.9,
+      "p50_us": 74.7,
+      "p95_us": 135.2
+    },
+    "release": {
+      "n": 12,
+      "mean_us": 1.1,
+      "p50_us": 0.9,
+      "p95_us": 1.3
+    },
+    "hash": {
+      "n": 12,
+      "mean_us": 37.5,
+      "p50_us": 38.0,
+      "p95_us": 45.8
+    },
+    "options": {
+      "n": 12,
+      "mean_us": 12.4,
+      "p50_us": 13.1,
+      "p95_us": 19.0
+    },
+    "decisions": 12,
+    "step_errors": 0
+  },
+  "primitive_wall_s": 2.3,
+  "official_budget_feasibility": {
+    "source_first_move_seconds": 15,
+    "source_continuing_move_seconds": 10,
+    "measured_search_step_mean_us": 83.9,
+    "steps_affordable_in_10s_single_worker": 119189,
+    "c020_reference_steps_per_decision": 891,
+    "comment": "the source's 10s budget buys this many native steps on one worker; MCGS simulations cost several steps each, so the achievable simulation count per decision follows from this number and the graph's branching"
+  },
+  "_schema_note": "RESULTS_SCHEMA places environment_throughput.json under hardware/. This slot previously held a hand-written prose stub written by the finalizer while the ACTUAL measurements sat in benchmarks/ -- a non-schema directory no reader would check. The mandated hardware artifact therefore contained no numbers. Merged: the measurements are authoritative and the operating policy is retained below.",
+  "operating_policy": {
+    "torch_threads_per_worker": 1,
+    "why_one_thread": "Without torch.set_num_threads(1) workers contend and the contention is charged against per-decision wall-clock budgets. In c019 that inverted rankings: a harmful search measured 0.605 under load against 0.111 sequentially.",
+    "serialization_policy": "All latency-bounded MCGS runs execute in ONE serialized queue; nothing runs concurrently with them.",
+    "memory_note": "Rollout states are released as the rollout advances. Holding them to the end of a decision measured 1.2-1.3 GB per worker and 28.6 GB resident, and 4 games did not finish in 14 minutes; after the fix the same 4 games took 14.7 s."
+  }
 }

@@ -276,7 +276,8 @@
     ],
     "byterl_runs": [
       "big_ctrl_b1_5",
-      "big_ctrl_b2"
+      "big_ctrl_b2",
+      "big_ctrl_b3"
     ],
     "no_step_errors_and_no_coin_ucb_selection": true
   },
@@ -311,7 +312,8 @@
     },
     "rungs_run": [
       "ctrl_b1_5",
-      "ctrl_b2"
+      "ctrl_b2",
+      "ctrl_b3"
     ],
     "training_runs_with_weight_updates": [
       {
@@ -339,6 +341,19 @@
         "first_win_rate": 0.0391,
         "last_win_rate": 0.0859,
         "best_win_rate": 0.125
+      },
+      {
+        "run": "big_ctrl_b3",
+        "updates": 15360,
+        "iterations": 120,
+        "actor_errors": 0,
+        "actor_error_rate": null,
+        "opponent": "frozen self-play checkpoints (OSFP)",
+        "win_rate_is_self_play": true,
+        "comparable_to_field": false,
+        "first_win_rate": 0.4844,
+        "last_win_rate": 0.3359,
+        "best_win_rate": 0.7812
       }
     ],
     "end_to_end_construction_and_battle": true,
@@ -361,7 +376,7 @@
   },
   "BYTERL_SCALE": {
     "status": "COMPUTE_LIMITED",
-    "total_games_played": 49728,
+    "total_games_played": 65088,
     "paper_reference": "distributed fleet, millions of games, days of wall clock",
     "achieved_fraction_note": "Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.",
     "permitted_reductions_only": [
@@ -415,5 +430,5 @@
     "both_methods_implemented_and_executed": true,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-29T10:55:56"
+  "generated": "2026-07-29T11:23:41"
 }
