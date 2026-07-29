@@ -152,6 +152,7 @@ class OptionRef:
     hand_index: int = -1
     attack_id: int = -1
     energy_type: int = -1
+    energy_index: int = -1
     card_id: int = -1
     ordinal: int = 0
     remaining: int = 0
@@ -174,6 +175,9 @@ class OptionRef:
         v[11 + N_ENERGY_TYPES] = min(self.ordinal, 8) / 8.0
         v[12 + N_ENERGY_TYPES] = min(self.remaining, 8) / 8.0
         v[13 + N_ENERGY_TYPES] = min(self.option_index, 60) / 60.0
+        # v[26], v[27] were never written by any code path -- two permanently-zero inputs.
+        v[14 + N_ENERGY_TYPES] = 1.0 if self.energy_index >= 0 else 0.0
+        v[15 + N_ENERGY_TYPES] = min(max(self.energy_index, 0), 8) / 8.0
         return v
 
 
@@ -268,8 +272,24 @@ def build_option_refs(sel, view, board, your_index: Optional[int] = None) -> Lis
         # an attack names its own attacker when no explicit source was given
         if r.source_index < 0 and r.attack_id >= 0:
             r.source_index = _slot_index(AREA_ACTIVE, 0, True)
-        # energy type, when the option names one
-        r.energy_type = fld("energyIndex")
+        # ENERGY TYPE, from the referenced CARD -- not `energyIndex`, which is a POSITION in an
+        # energy list and carries no type information. Wiring the type feature to the index left
+        # the whole 12-wide one-hot dead: over 1059 sampled option refs it was -1 in 1055 and 0
+        # in 4, so the policy could not tell a Fire energy from a Water one while choosing what
+        # to attach. Same defect family as the c020 B2 option references that resolved 0/556:
+        # a feature that looks populated and is not.
+        r.energy_index = fld("energyIndex")          # kept: position is a real, separate signal
+        r.energy_type = -1
+        if r.card_id >= 0:
+            cd = CD.card(r.card_id)
+            if cd is not None:
+                et = int(getattr(cd, "energyType", -1) or -1)
+                if 0 <= et < N_ENERGY_TYPES:
+                    r.energy_type = et
+        # ORDINAL: this option's position among options sharing its type, which disambiguates
+        # otherwise-identical choices. It was hardcoded to 0 and therefore a dead feature.
+        r.ordinal = sum(1 for q in refs if q.select_type == r.select_type
+                        and q.card_id == r.card_id)
         refs.append(r)
     return refs
 
