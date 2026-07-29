@@ -123,11 +123,13 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 > B3's win rate is measured against frozen checkpoints of itself and sits near 0.5 by construction. It is not a field result and must not be compared with the other rungs; DECISION_RULES §4 forbids submitting a checkpoint selected only on self-play.
 
-### OSFP worked; the self-play rate says nothing about absolute strength
+### B3's self-play number is uninformative, and an audit found the reason
 
-An earlier draft of this report claimed no rung reached the 0.55 promotion gate and that B3 therefore played its own random initialization throughout. **That was wrong**, and the run data on disk contradicts it: `fctrl_b3` promoted at iterations 7, 9, 10 and 14 (5 checkpoints, period 4) and `flearn_b3` at 0, 1, 4, 5, 6 and 8 (7 checkpoints, period 6). Promotion fired, the opponent pool was rebuilt from promoted checkpoints each iteration, and the period-local payoff bookkeeping advanced with it.
+OSFP itself worked: promotion fired (`fctrl_b3` at iterations 7, 9, 10, 14; `flearn_b3` at 0, 1, 4, 5, 6, 8), the period-local payoff bookkeeping advanced, and the history is append-only.
 
-Self-play rates (`fctrl_b3` best 0.6250, `flearn_b3` best 0.6250) sit near 0.5 — which is what self-play against a pool that improves alongside the learner is *supposed* to produce. It is a statement about the opponent tracking the learner, not about strength, and it must not be read as either.
+But the seeded period-0 checkpoint was stored as `tensor.detach().cpu().numpy()`, **which shares storage with the live parameter**. Without an explicit copy that "frozen" checkpoint mutated on every optimizer step, so for as long as checkpoint 0 was in the opponent pool B3 was playing a mirror of its *current* self rather than a frozen past self. A mirror match returns 0.5 by construction — which is exactly where these rates sit (`fctrl_b3` best 0.6250, `flearn_b3` best 0.6250).
+
+So the earlier reading — *B3 does not beat its own random initialization* — was **not supported**: it never played its random initialization. The bug is fixed (`.copy()`, with a regression test that the fixture only passes if `.numpy()` really does alias), and these B3 rates should be read as **uninformative**, not as evidence either way. The promotion path was always correct, because it copied via `.tolist()`.
 
 **No rung separates from the B0 uniform-random floor at this scale.** All field-facing rungs sit within binomial noise of one another. That is the honest reading of a compute-limited run and is reported as such rather than dressed up: with order 1e3 games the standard error on a win rate near 0.05 is about 0.006, and the rung-to-rung differences are smaller than that. The ladder demonstrates that each component is correctly implemented and running, not that it helps at this budget.
 

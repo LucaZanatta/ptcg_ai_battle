@@ -211,3 +211,36 @@ def test_osfp_history_is_immutable_even_when_the_buffer_evicts():
     before = o.history_log()
     o.history_log().append({"label": "tampered"})
     assert o.history_log() == before, "history_log must hand back a copy"
+
+
+def test_osfp_checkpoints_must_be_copies_not_views():
+    """Regression: a `.numpy()` snapshot SHARES storage with the live parameter.
+
+    Without an explicit copy the "frozen" checkpoint mutates on every optimizer step, so
+    self-play runs against a mirror of the CURRENT policy rather than a frozen past one -- which
+    pins the self-play rate near 0.5 by construction and makes it uninformative.
+    """
+    import torch.nn as nn
+    net = nn.Linear(4, 4)
+    opt = torch.optim.Adam(net.parameters(), lr=1.0)
+
+    view = {k: v.detach().cpu().numpy() for k, v in net.state_dict().items()}
+    copied = {k: v.detach().cpu().numpy().copy() for k, v in net.state_dict().items()}
+    view_before = view["weight"].copy()
+    copied_before = copied["weight"].copy()
+
+    net(torch.randn(2, 4)).sum().backward()
+    opt.step()
+
+    assert not np.allclose(view_before, view["weight"]), \
+        "fixture is wrong: .numpy() should share storage"
+    assert np.allclose(copied_before, copied["weight"]), \
+        "a copied checkpoint must not change when the live network updates"
+
+
+def test_osfp_add_checkpoint_stores_what_it_was_given():
+    o = L.OSFP()
+    state = {"w": np.zeros(3)}
+    o.add_checkpoint({k: v.copy() for k, v in state.items()}, "ck")
+    state["w"][0] = 99.0
+    assert o.checkpoints[0]["state"]["w"][0] == 0.0

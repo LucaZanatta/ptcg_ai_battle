@@ -344,7 +344,13 @@ def main(argv=None):
         if osfp is not None:
             # seed period 0 with the initial weights so there is always something to play
             if not osfp.checkpoints:
-                osfp.add_checkpoint({k: v.detach().cpu().numpy()
+                # .copy() is LOAD-BEARING. `tensor.detach().cpu().numpy()` SHARES STORAGE with
+                # the live parameter, so without it this "frozen" checkpoint mutates on every
+                # optimizer step and B3 plays a mirror of its CURRENT self instead of a frozen
+                # past self -- which pins the self-play rate at ~0.5 by construction and makes
+                # the number say nothing at all. The promotion path below already copies, via
+                # .tolist(); this path did not.
+                osfp.add_checkpoint({k: v.detach().cpu().numpy().copy()
                                      for k, v in net.state_dict().items()}, f"{tag}_init")
             opp_weights = [c["state"] for c in osfp.checkpoints]
         rng_j = np.random.default_rng(a.seed + it)
