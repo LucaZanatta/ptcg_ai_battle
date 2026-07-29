@@ -276,3 +276,54 @@ def test_actor_error_counter_detects_a_fully_broken_policy():
     assert ep.info["n_errors"] == 10
     assert ep.info["n_errors"] / max(1, ep.info["n_decisions"]) == 1.0
     assert ep.battle_steps() == 0
+
+
+# ------------------------------------------------------------------ masking (mutation-driven)
+def test_masking_gives_illegal_actions_exactly_zero_probability():
+    """Added after a mutation test: deleting the masked_fill from masked_log_softmax left all
+    97 tests passing. Masking is the load-bearing legality guarantee -- an unmasked policy can
+    sample an illegal action and, worse, every gradient flowing through that mass is wrong.
+    """
+    import os
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from cg import c021_byterl_model as M
+
+    torch.manual_seed(0)
+    logits = torch.randn(1, 20) * 5.0          # large, so an unmasked softmax spreads widely
+    mask = torch.zeros(1, 20)
+    mask[0, :3] = 1.0
+    p = M.masked_log_softmax(logits, mask).exp()
+
+    illegal_mass = float((p * (mask <= 0)).sum())
+    assert illegal_mass == 0.0, f"illegal actions carry {illegal_mass} probability"
+    assert abs(float(p.sum()) - 1.0) < 1e-5, "legal probabilities must still sum to 1"
+    assert float(p[0, 3:].max()) == 0.0
+
+    # the argmax must never be an illegal action even when it has the largest raw logit
+    forced = torch.full((1, 6), -10.0)
+    forced[0, 5] = 100.0                        # illegal but overwhelmingly the largest logit
+    m2 = torch.zeros(1, 6)
+    m2[0, 0] = 1.0
+    q = M.masked_log_softmax(forced, m2).exp()
+    assert int(q.argmax()) == 0, "masking must beat a dominant illegal logit"
+    assert float(q[0, 5]) == 0.0
+
+
+def test_sampled_action_is_always_legal_under_a_sparse_mask():
+    import os
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from cg import c021_byterl_model as M
+
+    net = M.fresh(24, 35, 28, 52, width=64, blocks=1, seed=1)
+    h = torch.randn(1, 64)
+    o = torch.randn(1, 30, 28) * 3.0
+    legal = torch.zeros(1, 30)
+    legal[0, [2, 7, 19]] = 1.0
+    for seed in range(30):
+        chosen, _ = net.sample_select(h, o, legal, min_count=1, max_count=2,
+                                      rng=np.random.default_rng(seed))
+        assert chosen, "must pick something"
+        for c in chosen:
+            assert legal[0, c] == 1.0, f"sampled illegal option {c}"

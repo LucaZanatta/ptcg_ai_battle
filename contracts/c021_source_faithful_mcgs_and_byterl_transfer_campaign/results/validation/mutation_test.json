@@ -1,0 +1,20 @@
+{
+  "purpose": "Test the instrument. 97 passing tests mean nothing unless a broken implementation makes them fail; a test that passes either way is the exact defect that let c020's end-turn veto ship while never firing.",
+  "method": "Apply a targeted source mutation, run the full c021 suite, restore. A mutant that SURVIVES is a defect the suite cannot see.",
+  "result": {"mutants": 11, "killed": 11, "survived": 0},
+  "mutants": [
+    {"target": "Edge.value", "mutation": "UCB1 exploration constant 2 -> 1", "outcome": "killed"},
+    {"target": "Edge.value", "mutation": "UCD divisor TotalVisit -> VisitCount", "outcome": "killed"},
+    {"target": "Node.reduce_function", "mutation": "damping exponent off-by-one", "outcome": "killed"},
+    {"target": "Node.update", "mutation": "opponent reward sign flip removed", "outcome": "killed"},
+    {"target": "vtrace", "mutation": "rho clipping removed", "outcome": "killed"},
+    {"target": "upgo_returns", "mutation": "never cuts to the baseline", "outcome": "killed"},
+    {"target": "OSFP.reset_period", "mutation": "period reset removed", "outcome": "killed"},
+    {"target": "masked_log_softmax", "mutation": "masked_fill removed", "outcome": "SURVIVED, then killed",
+     "note": "The one real hole this found. Deleting the mask left all 97 tests green, so the load-bearing legality guarantee was untested in pytest -- an unmasked policy can sample an illegal action, and every gradient through that mass is wrong. Two tests added: illegal actions must carry exactly zero probability even when an illegal option holds the dominant logit, and 30 sampled actions under a sparse mask must all be legal. Now killed."},
+    {"target": "legality", "mutation": "ACE SPEC limit disabled", "outcome": "killed"},
+    {"target": "is_basic_energy", "mutation": "every card treated as uncapped energy", "outcome": "killed"},
+    {"target": "MCGS._your_index", "mutation": "always returns the default", "outcome": "killed"}
+  ],
+  "caveat": "11 hand-chosen mutants over the components this contract's claims rest on. It is evidence the suite detects THESE defect classes, not proof it detects all of them. Whole-file mutation coverage was not run."
+}
