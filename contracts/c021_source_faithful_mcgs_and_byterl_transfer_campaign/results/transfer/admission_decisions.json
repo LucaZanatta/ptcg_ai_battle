@@ -1,8 +1,27 @@
 {
-  "status": "NOT_RUN",
+  "status": "FAIL",
   "retained": [],
-  "arms": {},
-  "control_field_score": null,
+  "arms": {
+    "T1_policy_prior": {
+      "run": "transfer_T1_policy_prior_summary.json",
+      "field_score": 0.1667,
+      "games": 24,
+      "wilson95": [
+        0.0668,
+        0.3586
+      ]
+    },
+    "T2_rollout_policy": {
+      "run": "transfer_T2_rollout_policy_summary.json",
+      "field_score": 0.1739,
+      "games": 23,
+      "wilson95": [
+        0.0698,
+        0.3714
+      ]
+    }
+  },
+  "control_field_score": 0.1905,
   "rule": "DECISION_RULES \u00a73: a component is retained only on a credible improvement; internal ByteRL-vs-history improvement alone is insufficient. Here that means the arm's 95% lower bound must exceed the control's upper bound.",
   "power_caveat": "The arms query the ctrl_b2 checkpoint, whose curve is statistically indistinguishable from the untrained B0 floor. T1/T2 therefore compare MCGS with a near-random prior against MCGS with uniform random -- close to a null test by construction. No component is REJECTED on this evidence; it is UNTESTED."
 }

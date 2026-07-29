@@ -1,18 +1,18 @@
 # c021 — summary
 
-Generated 2026-07-29T00:01:36. Statuses are computed in `tools/c021_report.py` from evidence on disk; a missing input yields FAIL or PARTIAL with a reason, never a pass by default.
+Generated 2026-07-29T02:57:26. Statuses are computed in `tools/c021_report.py` from evidence on disk; a missing input yields FAIL or PARTIAL with a reason, never a pass by default.
 
 | Status | Value |
 |---|---|
 | `SOURCE_FIDELITY` | **PASS** |
-| `EXECUTION` | **PARTIAL** |
+| `EXECUTION` | **PASS** |
 | `MCGS_COMPETITIVE` | **FAIL** |
 | `BYTERL_METHOD` | **PARTIAL** |
 | `BYTERL_SCALE` | **COMPUTE_LIMITED** |
-| `TRANSFER` | **NOT_RUN** |
+| `TRANSFER` | **FAIL** |
 | `PACKAGE` | **NOT_BUILT** |
 | `SUBMISSION` | **PENDING** |
-| `OVERALL` | **FAIL** |
+| `OVERALL` | **PARTIAL** |
 
 ## What was built
 

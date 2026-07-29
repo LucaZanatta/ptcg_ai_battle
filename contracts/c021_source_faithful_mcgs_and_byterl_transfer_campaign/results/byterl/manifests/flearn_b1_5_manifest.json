@@ -1,0 +1,39 @@
+{
+  "rung": "B1_5",
+  "features": {
+    "network": true,
+    "vtrace": true,
+    "upgo": false,
+    "osfp": false
+  },
+  "config": {
+    "rung": "B1_5",
+    "width": 192,
+    "blocks": 3,
+    "seed": 2100,
+    "temperature": 1.0,
+    "learn_construction": true,
+    "value_coef": 0.5,
+    "entropy_coef": 0.01,
+    "rho_bar": 1.0,
+    "c_bar": 1.0,
+    "max_grad_norm": 10.0
+  },
+  "params": 552055,
+  "fresh_random_weights": true,
+  "reductions": {
+    "kind": "permitted by FIDELITY_RULES \u00a74 (actors, samples, duration, periods only)",
+    "actors": 12,
+    "games_per_iteration": 48,
+    "iterations": 16,
+    "learn_construction": true,
+    "arm": "learned_construction",
+    "architecture_simplified": false,
+    "algorithm_simplified": false
+  },
+  "started": "2026-07-29T02:46:45",
+  "finished": "2026-07-29T02:49:35",
+  "wall_clock_s": 169.6,
+  "final_win_rate": 0.0,
+  "best_win_rate": 0.1042
+}

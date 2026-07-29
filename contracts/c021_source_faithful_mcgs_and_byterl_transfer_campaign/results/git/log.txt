@@ -1,3 +1,16 @@
+eabc2c4 c021: one process per game with a hard timeout, so a stalemate cannot stall an arm
+c4d32a3 c021: out-of-time fallback must guarantee progress, not livelock
+5ba91be c021: the search believes it wins 96% while losing 5 of 6 games -- mechanism, not correlation
+beaf0bc c021: cumulative match clock -- fixes a stalled run and matches deployment
+6274b45 c021: record T2's expected simulation starvation before the arm runs
+220583b c021: checklist covers A5, A6 and A8
+2c56b75 c021: a transfer arm must not be eligible as the standalone MCGS competitive candidate
+1cb5421 c021: defect log -- 14 defects, each with what it corrupted and what prevents its return
+d96b3ef c021: A5 graph reuse across atomic decisions
+c9a2ff7 c021: BackupUCD was missing the Finalise block, making it dead code where it matters
+d5e117d c021: generate SUMMARY, ACCEPTANCE_CHECKLIST and EXECUTION_BUDGET from the evidence
+e792a45 c021: adaptation ledger, ByteRL equation map, stage ledger, source-to-PTCG map
+66cab94 c021: materialise the mandated results tree, and record an unproduced slot honestly
 28ffe52 c021: pin the negamax frame property the source has and its consequence
 68bc394 c021: report prefers the single-code-version ladder and labels the mixed one
 2372778 c021: two ByteRL action-sampling defects
@@ -45,16 +58,3 @@ fad2824 c020: post-repair scaled MCTS, and the override finding it settles
 35ed74b c020: fix packaged ByteRL carrying recurrent state across games
 e758664 c020: M09 override ablation, and supersede markers for non-campaign MCTS runs
 64e79df c020: consolidated repair pass -- 2 root defects of a permitted 5
-7025a94 c020: submission gates, source bundles, repair-pass ledger, continuation plan
-a3cabc9 c020: fixtures, reports, and F01 complete integrated smoke
-1f16f58 c020: evaluation harness, hybrid runner, packaging, panel, admission
-a8bacba c020: forced ByteRL corrections B1-B8, hybrid C1-C5, semantic validator
-8cb858b c020: branch, controls freeze, and forced MCTS corrections A1-A8
-a1d322e c019: correct the hybrid narrative to match its own ablation
-55c14c8 c019: close out -- correct campaign-run selection, gate both branches alike, ablate the hybrid
-3c916d2 c019: measure B12 instead of recording it as not exercised
-2bb97e1 c019: run the H02 leaf-value gate instead of declaring it unexercised
-2886e71 c019: fix OSFP payoff attribution, xi units, and forced-add off-by-one
-0417941 c019: reports, and fix three defects in my own evidence tooling
-d659399 c019: materialize all 34 PROBE_MATRIX probes with derived evidence
-c42ec54 c019: correct a false panel claim -- environment randomness cannot be paired

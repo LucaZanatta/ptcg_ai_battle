@@ -1,26 +1,26 @@
 # c021 — source-faithful MCGS and ByteRL transfer campaign: final report
 
-Generated 2026-07-29T00:01:36 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
+Generated 2026-07-29T02:57:26 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
 
 ## Statuses
 
 | Status | Value |
 |---|---|
 | `SOURCE_FIDELITY` | **PASS** |
-| `EXECUTION` | **PARTIAL** |
+| `EXECUTION` | **PASS** |
 | `MCGS_COMPETITIVE` | **FAIL** |
 | `BYTERL_METHOD` | **PARTIAL** |
 | `BYTERL_SCALE` | **COMPUTE_LIMITED** |
-| `TRANSFER` | **NOT_RUN** |
+| `TRANSFER` | **FAIL** |
 | `PACKAGE` | **NOT_BUILT** |
 | `SUBMISSION` | **PENDING** |
-| `OVERALL` | **FAIL** |
+| `OVERALL` | **PARTIAL** |
 
 ## 1. Was MCGS source-faithful?
 
 **PASS.** The official 2019 archive was retrieved and hashed, inventoried file by file, and its formulas transcribed into a paper equation map. Selection is UCB1 with no prior term, statistics live on edges, `Edge.Value` divides by `TotalVisit` under UCD, terminals are ±10 while rollouts return 1/0, and `UCDParams(1, 0)` leaves `RecursiveUpdate` inert — reproduced rather than 'fixed'.
 
-Semantic validation: **17/17** checks, each of which injects the real defect and is required to reject it. Inert checks (pass clean *and* pass injected) are counted as failures: none.
+Semantic validation: **18/18** checks, each of which injects the real defect and is required to reject it. Inert checks (pass clean *and* pass injected) are counted as failures: none.
 
 **Where it is not faithful, and why:**
 
@@ -30,9 +30,24 @@ The PTCG API fixes hidden information at `search_begin` and exposes no way to re
 
 ## 2. Did executed search actions help or hurt?
 
-No non-superseded MCGS run has completed, so no competitive claim is made.
+Best non-superseded MCGS run `transfer_T0_control_summary.json`: field score **0.1905** over 21 completed games, 95% Wilson interval [0.0767, 0.4].
+
+Gate: lower bound of the 95% Wilson interval must exceed 0.5 against the field → **FAIL**.
 
 > A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an implementation failure (DECISION_RULES §1).
+
+| run | games | done | field | sims/dec | chance nodes | coin UCB | step err |
+|---|---|---|---|---|---|---|---|
+| `ablation_nochance_summary.json` | 24 | 24 | 0.1250 | 329.0 | 0 | 0 | 0 |
+| `competitive_summary.json` | 24 | 22 | 0.1364 | 364.5 | 46 | 0 | 0 |
+| `legal_corrected_summary.json` | 24 | 19 | 0.0526 | 58.8 | 90 | 0 | 0 |
+| `transfer_T0_control_summary.json` | 24 | 21 | 0.1905 | 953.3 | 84 | 0 | 0 |
+| `transfer_T1_policy_prior_summary.json` | 24 | 24 | 0.1667 | 770.9 | 58 | 0 | 0 |
+| `transfer_T2_rollout_policy_summary.json` | 24 | 23 | 0.1739 | 806.5 | 5 | 0 | 0 |
+
+### The noise floor, measured rather than assumed
+
+`competitive` and `transfer_T0_control` are the SAME configuration -- the source port with every transfer switch off. Run independently they scored **0.1364** and **0.1905** (22 and 21 games). That 5.4-point spread between identical configurations is the resolution limit of a ~24-game arm, and every comparison below must be read against it. No difference smaller than this is interpretable, which is precisely why the transfer arms are reported as UNTESTED rather than rejected.
 
 Across three contracts the same result has now reproduced: overriding a stateful scripted agent with a search costs roughly 18 points regardless of the search's quality, because the scripted opponent's line is internally consistent and a search that departs from it part-way inherits neither plan. The measured constraint is early-game credit assignment, not search depth.
 
@@ -77,7 +92,7 @@ Unresolved reference choices are declared in `results/fidelity/UNRESOLVED_REFERE
 
 ## 5. Achieved scale relative to the published reference
 
-**COMPUTE_LIMITED.** 10048 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
+**COMPUTE_LIMITED.** 19008 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
 
 > Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.
 
@@ -87,11 +102,12 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 | run | opponent | iters | updates | first | last | best | field-comparable |
 |---|---|---|---|---|---|---|---|
-| `b15_smoke` | scripted field | 2 | 24 | 0.0000 | 0.0833 | 0.0833 | yes |
-| `b3_smoke` | scripted field | 2 | 16 | 0.5000 | 0.3750 | 0.5000 | yes |
-| `ctrl_b1_5` | scripted field | 20 | 1280 | 0.0312 | 0.0312 | 0.0938 | yes |
-| `ctrl_b2` | scripted field | 20 | 1280 | 0.0312 | 0.0156 | 0.1094 | yes |
-| `ctrl_b3` | frozen self-play checkpoints (OSFP) | 20 | 1280 | 0.4219 | 0.4531 | 0.6484 | **no — self-play** |
+| `fctrl_b1_5` | scripted field | 16 | 768 | 0.0417 | 0.0417 | 0.1250 | yes |
+| `fctrl_b2` | scripted field | 16 | 768 | 0.0417 | 0.0208 | 0.1250 | yes |
+| `fctrl_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.4375 | 0.3542 | 0.5625 | **no — self-play** |
+| `flearn_b1_5` | scripted field | 16 | 768 | 0.0417 | 0.0000 | 0.1042 | yes |
+| `flearn_b2` | scripted field | 16 | 768 | 0.0417 | 0.0625 | 0.1250 | yes |
+| `flearn_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.5208 | 0.4375 | 0.5625 | **no — self-play** |
 
 > B3's win rate is measured against frozen checkpoints of itself and sits near 0.5 by construction. It is not a field result and must not be compared with the other rungs; DECISION_RULES §4 forbids submitting a checkpoint selected only on self-play.
 
@@ -99,7 +115,12 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 ## 7. Which components transferred, and which were rejected?
 
-**NOT_RUN.** Control field score n/a.
+**FAIL.** Control field score 0.1905.
+
+| arm | field score | games | 95% Wilson |
+|---|---|---|---|
+| `T1_policy_prior` | 0.1667 | 24 | [0.0668, 0.3586] |
+| `T2_rollout_policy` | 0.1739 | 23 | [0.0698, 0.3714] |
 
 Retained: **none**.
 
@@ -109,7 +130,7 @@ Retained: **none**.
 
 ## 8. Strongest trustworthy local candidate, and submission
 
-No candidate has a non-superseded field measurement.
+Strongest measured local candidate: `transfer_T0_control_summary.json` at 0.1905 — which does **not** clear its registered gate.
 
 `PACKAGE` = **NOT_BUILT** — no candidate cleared its registered gate, so none was packaged
 
@@ -119,11 +140,11 @@ The live ladder score is known to move 150+ points within minutes, so no champio
 
 ## 9. Overall
 
-**FAIL.**
+**PARTIAL.**
 
 > OVERALL=PARTIAL is permitted when both methods are faithfully executed and analyzed but no candidate clears the competitive gate (DECISION_RULES §6).
 
-- both methods implemented and executed: `False`
+- both methods implemented and executed: `True`
 - credible competitive or transfer result: `False`
 
 ## 10. Exactly one next action

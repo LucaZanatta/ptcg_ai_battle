@@ -108,6 +108,24 @@ def main(argv=None):
               f"{r.get('chance_nodes_created')} | {r.get('manual_coin_node_ucb_selected')} | "
               f"{r.get('step_errors')} |")
         w("")
+    # a direct, empirical noise floor: two runs of the SAME configuration
+    same = [(n, r) for n, r in
+            [(x.get("run"), x) for x in (ex.get("mcgs_runs") or [])]
+            if n in ("competitive_summary.json", "transfer_T0_control_summary.json")]
+    if len(same) == 2:
+        a_, b_ = same[0][1], same[1][1]
+        w("### The noise floor, measured rather than assumed")
+        w("")
+        w(f"`competitive` and `transfer_T0_control` are the SAME configuration -- the source port "
+          f"with every transfer switch off. Run independently they scored "
+          f"**{fmt(a_.get('field_score'))}** and **{fmt(b_.get('field_score'))}** "
+          f"({a_.get('completed')} and {b_.get('completed')} games). That "
+          f"{abs((a_.get('field_score') or 0) - (b_.get('field_score') or 0))*100:.1f}-point "
+          "spread between identical configurations is the resolution limit of a ~24-game arm, and "
+          "every comparison below must be read against it. No difference smaller than this is "
+          "interpretable, which is precisely why the transfer arms are reported as UNTESTED "
+          "rather than rejected.")
+        w("")
     w("Across three contracts the same result has now reproduced: overriding a stateful scripted "
       "agent with a search costs roughly 18 points regardless of the search's quality, because "
       "the scripted opponent's line is internally consistent and a search that departs from it "

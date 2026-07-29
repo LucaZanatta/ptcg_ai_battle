@@ -5,32 +5,127 @@
     "equation_map": true,
     "a4_adapter_documented": true,
     "unresolved_choices_declared": true,
-    "semantic_validation": "17/17",
+    "semantic_validation": "18/18",
     "inert_checks": [],
     "reasons": [],
     "caveat": "The port is the !PIMC configuration MINUS the interior-determinization operations the PTCG API does not expose. Chance nodes exist only at the random surfaces manual_coin reveals. It does not sample draw order inside the tree."
   },
   "EXECUTION": {
-    "status": "PARTIAL",
-    "mcgs_runs": [],
+    "status": "PASS",
+    "mcgs_runs": [
+      {
+        "run": "ablation_nochance_summary.json",
+        "games": 24,
+        "completed": 24,
+        "field_score": 0.125,
+        "sims_per_decision": 329.0,
+        "chance_nodes_created": 0,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 5278,
+        "dummy_edges": 117,
+        "term_root_win": 261809,
+        "term_root_loss": 30004
+      },
+      {
+        "run": "competitive_summary.json",
+        "games": 24,
+        "completed": 22,
+        "field_score": 0.1364,
+        "sims_per_decision": 364.5,
+        "chance_nodes_created": 46,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 5614,
+        "dummy_edges": 167,
+        "term_root_win": 280887,
+        "term_root_loss": 21849
+      },
+      {
+        "run": "legal_corrected_summary.json",
+        "games": 24,
+        "completed": 19,
+        "field_score": 0.0526,
+        "sims_per_decision": 58.8,
+        "chance_nodes_created": 90,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 3769,
+        "dummy_edges": 92,
+        "term_root_win": 20034,
+        "term_root_loss": 18646
+      },
+      {
+        "run": "transfer_T0_control_summary.json",
+        "games": 24,
+        "completed": 21,
+        "field_score": 0.1905,
+        "sims_per_decision": 953.3,
+        "chance_nodes_created": 84,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 6415,
+        "dummy_edges": 188,
+        "term_root_win": 645630,
+        "term_root_loss": 22246
+      },
+      {
+        "run": "transfer_T1_policy_prior_summary.json",
+        "games": 24,
+        "completed": 24,
+        "field_score": 0.1667,
+        "sims_per_decision": 770.9,
+        "chance_nodes_created": 58,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 3865,
+        "dummy_edges": 255,
+        "term_root_win": 598441,
+        "term_root_loss": 21191
+      },
+      {
+        "run": "transfer_T2_rollout_policy_summary.json",
+        "games": 24,
+        "completed": 23,
+        "field_score": 0.1739,
+        "sims_per_decision": 806.5,
+        "chance_nodes_created": 5,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 1694,
+        "dummy_edges": 5,
+        "term_root_win": 462711,
+        "term_root_loss": 4057
+      }
+    ],
     "byterl_runs": [
-      "ctrl_b0",
-      "ctrl_b1",
-      "ctrl_b1_5",
-      "ctrl_b2",
-      "ctrl_b3",
-      "learn_b0"
+      "fctrl_b0",
+      "fctrl_b1",
+      "fctrl_b1_5",
+      "fctrl_b2",
+      "fctrl_b3",
+      "flearn_b0",
+      "flearn_b1",
+      "flearn_b1_5",
+      "flearn_b2",
+      "flearn_b3"
     ],
     "no_step_errors_and_no_coin_ucb_selection": true
   },
   "MCGS_COMPETITIVE": {
     "status": "FAIL",
-    "best_run": null,
-    "field_score": null,
-    "games": 0,
+    "best_run": "transfer_T0_control_summary.json",
+    "field_score": 0.1905,
+    "games": 21,
     "wilson95": [
-      0.0,
-      1.0
+      0.0767,
+      0.4
     ],
     "gate": "lower bound of the 95% Wilson interval must exceed 0.5 against the field",
     "note": "A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an implementation failure (DECISION_RULES \u00a71)."
@@ -57,62 +152,74 @@
     ],
     "training_runs_with_weight_updates": [
       {
-        "run": "b15_smoke",
-        "updates": 24,
-        "iterations": 2,
+        "run": "fctrl_b1_5",
+        "updates": 768,
+        "iterations": 16,
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.0,
-        "last_win_rate": 0.0833,
-        "best_win_rate": 0.0833
+        "first_win_rate": 0.0417,
+        "last_win_rate": 0.0417,
+        "best_win_rate": 0.125
       },
       {
-        "run": "b3_smoke",
-        "updates": 16,
-        "iterations": 2,
+        "run": "fctrl_b2",
+        "updates": 768,
+        "iterations": 16,
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.5,
-        "last_win_rate": 0.375,
-        "best_win_rate": 0.5
+        "first_win_rate": 0.0417,
+        "last_win_rate": 0.0208,
+        "best_win_rate": 0.125
       },
       {
-        "run": "ctrl_b1_5",
-        "updates": 1280,
-        "iterations": 20,
-        "opponent": "scripted field",
-        "win_rate_is_self_play": false,
-        "comparable_to_field": true,
-        "first_win_rate": 0.0312,
-        "last_win_rate": 0.0312,
-        "best_win_rate": 0.0938
-      },
-      {
-        "run": "ctrl_b2",
-        "updates": 1280,
-        "iterations": 20,
-        "opponent": "scripted field",
-        "win_rate_is_self_play": false,
-        "comparable_to_field": true,
-        "first_win_rate": 0.0312,
-        "last_win_rate": 0.0156,
-        "best_win_rate": 0.1094
-      },
-      {
-        "run": "ctrl_b3",
-        "updates": 1280,
-        "iterations": 20,
+        "run": "fctrl_b3",
+        "updates": 768,
+        "iterations": 16,
         "opponent": "frozen self-play checkpoints (OSFP)",
         "win_rate_is_self_play": true,
         "comparable_to_field": false,
-        "first_win_rate": 0.4219,
-        "last_win_rate": 0.4531,
-        "best_win_rate": 0.6484
+        "first_win_rate": 0.4375,
+        "last_win_rate": 0.3542,
+        "best_win_rate": 0.5625
+      },
+      {
+        "run": "flearn_b1_5",
+        "updates": 768,
+        "iterations": 16,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
+        "first_win_rate": 0.0417,
+        "last_win_rate": 0.0,
+        "best_win_rate": 0.1042
+      },
+      {
+        "run": "flearn_b2",
+        "updates": 768,
+        "iterations": 16,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
+        "first_win_rate": 0.0417,
+        "last_win_rate": 0.0625,
+        "best_win_rate": 0.125
+      },
+      {
+        "run": "flearn_b3",
+        "updates": 768,
+        "iterations": 16,
+        "opponent": "frozen self-play checkpoints (OSFP)",
+        "win_rate_is_self_play": true,
+        "comparable_to_field": false,
+        "first_win_rate": 0.5208,
+        "last_win_rate": 0.4375,
+        "best_win_rate": 0.5625
       }
     ],
     "end_to_end_construction_and_battle": true,
+    "ladder_version": "final, single code version",
     "reasons": [
       "actor-learner execution is synchronous, not the papers' decoupled recurrent actor-learner (declared deviation against a named requirement)"
     ],
@@ -122,7 +229,7 @@
   },
   "BYTERL_SCALE": {
     "status": "COMPUTE_LIMITED",
-    "total_games_played": 10048,
+    "total_games_played": 19008,
     "paper_reference": "distributed fleet, millions of games, days of wall clock",
     "achieved_fraction_note": "Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.",
     "permitted_reductions_only": [
@@ -135,9 +242,28 @@
     "algorithm_simplified": false
   },
   "TRANSFER": {
-    "status": "NOT_RUN",
-    "control_field_score": null,
-    "arms": {},
+    "status": "FAIL",
+    "control_field_score": 0.1905,
+    "arms": {
+      "T1_policy_prior": {
+        "run": "transfer_T1_policy_prior_summary.json",
+        "field_score": 0.1667,
+        "games": 24,
+        "wilson95": [
+          0.0668,
+          0.3586
+        ]
+      },
+      "T2_rollout_policy": {
+        "run": "transfer_T2_rollout_policy_summary.json",
+        "field_score": 0.1739,
+        "games": 23,
+        "wilson95": [
+          0.0698,
+          0.3714
+        ]
+      }
+    },
     "retained": [],
     "rule": "DECISION_RULES \u00a73: a component is retained only on a credible improvement; internal ByteRL-vs-history improvement alone is insufficient. Here that means the arm's 95% lower bound must exceed the control's upper bound."
   },
@@ -151,10 +277,10 @@
     "reason": "DECISION_RULES \u00a74 forbids submitting a candidate clearly dominated by the current champion."
   },
   "OVERALL": {
-    "status": "FAIL",
+    "status": "PARTIAL",
     "rule": "OVERALL=PARTIAL is permitted when both methods are faithfully executed and analyzed but no candidate clears the competitive gate (DECISION_RULES \u00a76).",
-    "both_methods_implemented_and_executed": false,
+    "both_methods_implemented_and_executed": true,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-29T00:01:36"
+  "generated": "2026-07-29T02:57:26"
 }
