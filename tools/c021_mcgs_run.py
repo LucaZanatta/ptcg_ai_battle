@@ -49,9 +49,9 @@ def _one_game(job, cfg, seed, q):
     q.put({"game_id": job["game_id"], "opponent": job["opponent"], "seat": seat,
            "completed": completed, "score": score,
            "seconds": round(time.time()-t0, 2), "report": ag.report(),
-           "decisions_log": ag.decisions_log[:60],
-           "graph_snapshots": ag.graph_snapshots[:4],
-           "exceptions": ag.exceptions[:2]})
+           "decisions_log": ag.decisions_log[:6],
+           "graph_snapshots": ag.graph_snapshots[:1],
+           "exceptions": ag.exceptions[:1]})
 
 
 def main(argv=None):
@@ -110,6 +110,22 @@ def main(argv=None):
     def _reap(block: bool):
         for item in list(running):
             pr, q, job, started = item
+            # DRAIN FIRST, regardless of liveness. A child that has finished and called q.put()
+            # with a large payload blocks on the pipe buffer (~64 KB on Linux) until the parent
+            # reads it -- so it stays `is_alive()`, trips the deadline, and gets recorded as
+            # abandoned even though it completed. Gating the read on `not is_alive()` therefore
+            # manufactures fake timeouts, and it does so more often for arms whose payloads are
+            # larger, which is exactly the kind of differential bias that corrupts a comparison.
+            try:
+                r = q.get_nowait()
+                res.append(r)
+                pr.join(10)
+                if pr.is_alive():
+                    pr.terminate(); pr.join(5)
+                running.remove(item)
+                continue
+            except Exception:  # noqa: BLE001
+                pass
             alive = pr.is_alive()
             over = (time.time() - started) > cap
             if alive and not over and not block:
@@ -177,6 +193,7 @@ def main(argv=None):
     tot_n = sum(v[0] for v in per.values()); tot_s = sum(v[1] for v in per.values())
     summary = {"tag": a.tag, "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT", "config": full,
                "manual_coin": bool(full.get("manual_coin", True)),
+               "drain_fixed": True,
                "manual_coin_contexts": sorted(G.MANUAL_COIN_CONTEXTS),
                "manual_coin_contexts_are_coin_head_only":
                    sorted(G.MANUAL_COIN_CONTEXTS) == [G.COIN_HEAD_CONTEXT],

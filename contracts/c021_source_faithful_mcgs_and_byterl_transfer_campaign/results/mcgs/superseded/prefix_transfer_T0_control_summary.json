@@ -99,5 +99,7 @@
     }
   },
   "field_score": 0.1905,
-  "wall_clock_s": 201.7
+  "wall_clock_s": 201.7,
+  "SUPERSEDED": true,
+  "superseded_reason": "Run predates the queue-drain fix. The parent only read a child's result after the child died, so a child that had FINISHED but was blocked writing its payload to the pipe (~64 KB buffer) stayed alive, tripped the deadline, and was recorded as 'abandoned' and excluded. Those were completed games with real outcomes being discarded, and the rate differed by arm (0/24 to 5/24), so the exclusion was differentially biased. After the fix the same configuration returns 12/12 completed, 0 abandoned, in 45s instead of 154s."
 }
