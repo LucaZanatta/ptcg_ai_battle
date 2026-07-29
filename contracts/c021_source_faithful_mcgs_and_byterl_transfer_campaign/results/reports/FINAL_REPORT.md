@@ -1,6 +1,6 @@
 # c021 — source-faithful MCGS and ByteRL transfer campaign: final report
 
-Generated 2026-07-29T04:04:39 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
+Generated 2026-07-29T04:15:23 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
 
 ## Statuses
 
@@ -45,17 +45,23 @@ Gate: lower bound of the 95% Wilson interval must exceed 0.5 against the field, 
 | `transfer_T1_policy_prior_summary.json` | 40 | 32 | 0.1562 | 884.6 | 83 | 0 | 0 |
 | `transfer_T2_rollout_policy_summary.json` | 40 | 38 | 0.1053 | 530.3 | 7 | 0 | 0 |
 
-### The noise floor, measured rather than assumed
+### The reproducibility bound, measured rather than assumed
 
-`competitive` and `transfer_T0_control` are the SAME configuration -- the source port with every transfer switch off. Run independently they scored **0.1471** and **0.0833** (34 and 36 games). That 6.4-point spread between identical configurations is the resolution limit of a ~24-game arm, and every comparison below must be read against it. No difference smaller than this is interpretable, which is precisely why the transfer arms are reported as UNTESTED rather than rejected.
+`competitive` and `transfer_T0_control` are the SAME configuration -- the source port with every transfer switch off. Run independently they scored **0.1471** and **0.0833** (34 and 36 games). That 6.4-point spread is the resolution limit of an arm this size, and every comparison below must be read against it.
+
+It is worth being precise about what kind of variation this is. Both runs use the same `--seed`, the same per-game seed derivation, and the same opponent and seat assignment, so this is **not** sampling variance over different games — it is **non-determinism between identical runs**. The dominant source is structural: the search is bounded by wall clock, not by simulation count, so the same position explored under slightly different machine timing yields a different number of simulations and therefore a different move. A time-budgeted search is not reproducible by construction.
+
+The consequence is that **no difference smaller than this bound is interpretable**, which is exactly why the transfer arms are reported as UNTESTED rather than rejected. A future campaign wanting attributable comparisons should budget by simulation count rather than by time, accepting the unrealistic latency, and measure the time cost separately.
 
 Across three contracts the same result has now reproduced: overriding a stateful scripted agent with a search costs roughly 18 points regardless of the search's quality, because the scripted opponent's line is internally consistent and a search that departs from it part-way inherits neither plan. The measured constraint is early-game credit assignment, not search depth.
 
-### A10 carries a throughput confound and must not be read as 'the corrections hurt'
+### A10, and a measurement artifact that briefly inverted the answer
 
-`legal_corrected` scored 0.1818 against 0.0833 for the control, but it also ran at **809.1 simulations per decision against 158.7** — roughly 0.2x fewer. C1 expands a multi-select node into up to `MAX_COMBINATIONS` distinct action sets, so each decision costs far more engine steps.
+`legal_corrected` scored 0.1818 at 809.1 simulations per decision, against 0.0833 at 158.7 for the control.
 
-The two explanations — *the legality corrections are harmful* and *the corrected branch is simulation-starved at an equal time budget* — are **not separated by this experiment**. Separating them needs an equal-simulation rather than equal-time comparison. Until then A10's deficit is reported as confounded, not as evidence against the corrections.
+An earlier run put this arm at 0.0526 with 58.8 simulations per decision, and it was on the way to being reported as evidence that the legality corrections hurt, with a throughput confound as the caveat. **Both readings were artifacts.** That run predated two fixes: a 150 s per-game cap that truncated this arm hardest because its decisions are more expensive, and a parent that read a child's result only after the child died — so children blocked writing large payloads into the pipe were recorded as abandoned. With both fixed and the cap at 300 s, the arm has the *most* simulations per decision and the *fewest* abandonments of any arm.
+
+The lesson is the one this contract keeps re-learning: a measurement harness defect does not announce itself as a harness defect. It arrives as a plausible result about the thing under test.
 
 ## 3. Were the MCGS defects algorithmic, adaptation-related or throughput-related?
 
@@ -117,13 +123,11 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 > B3's win rate is measured against frozen checkpoints of itself and sits near 0.5 by construction. It is not a field result and must not be compared with the other rungs; DECISION_RULES §4 forbids submitting a checkpoint selected only on self-play.
 
-### The sharpest ByteRL result, stated directly
+### OSFP worked; the self-play rate says nothing about absolute strength
 
-The promotion gate is a win rate of 0.55 over at least 48 games. **No rung reached it**, so no promotion ever fired, and B3 therefore played the seeded period-0 checkpoint — *its own random initial weights* — for every iteration.
+An earlier draft of this report claimed no rung reached the 0.55 promotion gate and that B3 therefore played its own random initialization throughout. **That was wrong**, and the run data on disk contradicts it: `fctrl_b3` promoted at iterations 7, 9, 10 and 14 (5 checkpoints, period 4) and `flearn_b3` at 0, 1, 4, 5, 6 and 8 (7 checkpoints, period 6). Promotion fired, the opponent pool was rebuilt from promoted checkpoints each iteration, and the period-local payoff bookkeeping advanced with it.
 
-Best self-play rates: `fctrl_b3` 0.6250, `flearn_b3` 0.6250. Both sit at or below 0.5 against that frozen random initialization.
-
-So the finding supported by this data is stronger and more specific than "no rung separates from B0": **after 768 games of V-trace plus UPGO, the policy does not beat its own random initialization.** That is the direct evidence for `BYTERL_SCALE = COMPUTE_LIMITED` — the algorithm is implemented and running, and the sample budget is orders of magnitude short of what the published method needs.
+Self-play rates (`fctrl_b3` best 0.6250, `flearn_b3` best 0.6250) sit near 0.5 — which is what self-play against a pool that improves alongside the learner is *supposed* to produce. It is a statement about the opponent tracking the learner, not about strength, and it must not be read as either.
 
 **No rung separates from the B0 uniform-random floor at this scale.** All field-facing rungs sit within binomial noise of one another. That is the honest reading of a compute-limited run and is reported as such rather than dressed up: with order 1e3 games the standard error on a win rate near 0.05 is about 0.006, and the rung-to-rung differences are smaller than that. The ladder demonstrates that each component is correctly implemented and running, not that it helps at this budget.
 

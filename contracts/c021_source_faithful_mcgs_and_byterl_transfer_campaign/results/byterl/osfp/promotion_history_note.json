@@ -1,5 +1,5 @@
 {
-  "produced": false,
-  "reason": "No OSFP promotion fired: the promotion gate requires a win rate of 0.55 over at least 48 games and no rung reached it at this scale. The B3 run therefore played the seeded period-0 checkpoint throughout. The empty file is the honest record.",
-  "generated": "2026-07-29T00:19:41"
+  "produced": true,
+  "note": "Reconstructed from the per-iteration curves, which record every promotion and the OSFP snapshot. The in-training dump was written under a path that the run did not create; the curves are the primary record and agree with the checkpoint counts.",
+  "promotions": 10
 }
