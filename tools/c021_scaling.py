@@ -27,7 +27,13 @@ def main(argv=None):
     if a.scaling:
         # M16: identical work at 1/2/4/8/12 workers. Each run is measured ALONE.
         ms = []
-        for n in (1, 2, 4, 8, 12):
+        # 20 and 24 added deliberately: M16 is the mandated scaling probe AND the calibration
+        # for how many workers the other latency-bounded runs may safely use. On a 24-core box
+        # with torch.set_num_threads(1) per worker, workers <= cores should mean no
+        # oversubscription and a FLAT sims_per_decision -- but that is a hypothesis, and the
+        # whole point of this probe is to test it rather than assume it. The high-worker points
+        # are the cheap ones.
+        for n in (1, 2, 4, 8, 12, 20, 24):
             # 12 games per point let game-length variance swamp the contention signal: the
             # first run gave sims/decision of 73 / 1003 / 566 at 4 / 8 / 12 workers, which is
             # noise, not scaling. Same game COUNT at every point, more of them.
@@ -39,9 +45,15 @@ def main(argv=None):
                        "field_score": d.get("field_score")})
             print(json.dumps(ms[-1]), flush=True)
         base = next((m["games_per_minute"] for m in ms if m["workers"] == 1), None)
+        s1 = next((m["sims_per_decision"] for m in ms if m["workers"] == 1), None)
         for m in ms:
             m["speedup_vs_1_worker"] = (round(m["games_per_minute"] / base, 2)
                                         if base else None)
+            # THE contention test: this must stay ~flat. If it falls as workers are added, the
+            # per-decision wall-clock budget is being eaten and every field score at that worker
+            # count is biased downward.
+            m["sims_per_decision_vs_1_worker"] = (round(m["sims_per_decision"] / s1, 3)
+                                                  if s1 else None)
         os.makedirs(os.path.join(C21, "hardware"), exist_ok=True)
         json.dump({"measurements": ms,
                    "note": ("Each point measured ALONE on an otherwise idle machine, with "
