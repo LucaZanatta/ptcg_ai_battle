@@ -8,54 +8,51 @@ C21 = os.path.join(_REPO, "contracts",
 MC = os.path.join(C21, "mcgs")
 OPPONENTS = ["dragapult", "mega_lucario", "iono", "mega_abomasnow"]
 
-def _worker(payload):
-    jobs, cfg, seed = payload
+def _one_game(job, cfg, seed, q):
+    """Play ONE game in its own process, so a stalemate cannot stall a whole arm."""
     sys.path.insert(0, _REPO)
     import torch; torch.set_num_threads(1)
     from kaggle_environments import make
     from cg import teachers as T, c009_eval as ce, c019_determinize as D19
     from cg import c021_mcgs_agent as AG
     deck = D19.archetype_decks()["mega_lucario"]
-    out = []
     provider, arm = None, None
-    if jobs and jobs[0].get("transfer_arm"):
+    if job.get("transfer_arm"):
         from cg import c021_transfer as TR
-        arm = TR.arm_config(jobs[0]["transfer_arm"])
-        ck = jobs[0].get("byterl_checkpoint")
+        arm = TR.arm_config(job["transfer_arm"])
+        ck = job.get("byterl_checkpoint")
         if ck and any(arm.values()):
             provider = TR.ByteRLPriorProvider(ck)
-    for ji, job in enumerate(jobs):
-        ag = AG.MCGSAgent(deck, cfg, seed=seed + ji,
-                          prior_provider=provider, transfer_arm=arm)
-        opp = T.make_fresh(job["opponent"], ce.SOURCES)
-        seat = int(job["seat"])
-        def mk(a):
-            def f(o): return a.act(o)
-            return f
-        def mo(o):
-            def f(x): return o(x)
-            return f
-        agents = [mk(ag), mo(opp)] if seat == 0 else [mo(opp), mk(ag)]
-        t0 = time.time(); completed, score = False, None
-        try:
-            env = make("cabt"); env.run(agents)
-            last = env.steps[-1]
-            if [s.status for s in last] == ["DONE", "DONE"]:
-                rw = [s.reward for s in last]
-                if rw[seat] is not None:
-                    completed = True
-                    score = (1.0 if rw[seat] > rw[1-seat]
-                             else (0.5 if rw[seat] == rw[1-seat] else 0.0))
-        except Exception as e:
-            out.append({"game_id": job["game_id"], "error": f"{type(e).__name__}: {e}"[:200]})
-            continue
-        out.append({"game_id": job["game_id"], "opponent": job["opponent"], "seat": seat,
-                    "completed": completed, "score": score,
-                    "seconds": round(time.time()-t0, 2), "report": ag.report(),
-                    "decisions_log": ag.decisions_log[:60],
-                    "graph_snapshots": ag.graph_snapshots[:4],
-                    "exceptions": ag.exceptions[:2]})
-    return out
+    ag = AG.MCGSAgent(deck, cfg, seed=seed, prior_provider=provider, transfer_arm=arm)
+    opp = T.make_fresh(job["opponent"], ce.SOURCES)
+    seat = int(job["seat"])
+    def mk(a):
+        def f(o): return a.act(o)
+        return f
+    def mo(o):
+        def f(x): return o(x)
+        return f
+    agents = [mk(ag), mo(opp)] if seat == 0 else [mo(opp), mk(ag)]
+    t0 = time.time(); completed, score = False, None
+    try:
+        env = make("cabt"); env.run(agents)
+        last = env.steps[-1]
+        if [s.status for s in last] == ["DONE", "DONE"]:
+            rw = [s.reward for s in last]
+            if rw[seat] is not None:
+                completed = True
+                score = (1.0 if rw[seat] > rw[1-seat]
+                         else (0.5 if rw[seat] == rw[1-seat] else 0.0))
+    except Exception as e:  # noqa: BLE001
+        q.put({"game_id": job["game_id"], "error": f"{type(e).__name__}: {e}"[:200]})
+        return
+    q.put({"game_id": job["game_id"], "opponent": job["opponent"], "seat": seat,
+           "completed": completed, "score": score,
+           "seconds": round(time.time()-t0, 2), "report": ag.report(),
+           "decisions_log": ag.decisions_log[:60],
+           "graph_snapshots": ag.graph_snapshots[:4],
+           "exceptions": ag.exceptions[:2]})
+
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
@@ -65,6 +62,7 @@ def main(argv=None):
     ap.add_argument("--continuing-move-seconds", type=float, default=1.5)
     ap.add_argument("--max-sims", type=int, default=0)
     ap.add_argument("--match-clock-seconds", type=float, default=90.0)
+    ap.add_argument("--game-timeout-seconds", type=float, default=300.0)
     ap.add_argument("--seed", type=int, default=2101)
     ap.add_argument("--tag", default="scaled")
     ap.add_argument("--branch", default="MCGS_2019_OFFICIAL_SOURCE_PORT",
@@ -84,6 +82,7 @@ def main(argv=None):
            "max_simulations_per_decision": a.max_sims,
            "manual_coin": not a.no_manual_coin,
            "match_clock_seconds": a.match_clock_seconds,
+           "game_timeout_seconds": a.game_timeout_seconds,
            "branch": a.branch}
     full = {**AG.REFERENCE_CFG, **cfg}
     json.dump({"config": full,
@@ -98,18 +97,62 @@ def main(argv=None):
     jobs = [{"game_id": f"{a.tag}:g{i}", "opponent": OPPONENTS[i % 4], "seat": i % 2,
              "transfer_arm": a.transfer_arm, "byterl_checkpoint": a.byterl_checkpoint}
             for i in range(a.games)]
-    chunks = [[] for _ in range(a.nproc)]
-    for i, j in enumerate(jobs):
-        chunks[i % a.nproc].append(j)
-    payload = [(ch, cfg, a.seed + k*97) for k, ch in enumerate(chunks) if ch]
     t0 = time.time()
-    with mp.get_context("spawn").Pool(len(payload)) as pool:
-        res = [r for rr in pool.map(_worker, payload) for r in rr]
+    # One PROCESS PER GAME with a hard join timeout, at most `nproc` at a time. A chunked Pool
+    # cannot do this: pool workers are daemonic and may not spawn children, so a game that
+    # stalls inside `env.run` is uninterruptible and blocks the whole arm. A stalemate grinding
+    # toward deck-out was measured pinning a worker for 21 minutes while every other game
+    # finished in about two.
+    ctx = mp.get_context("spawn")
+    cap = float(cfg.get("game_timeout_seconds") or 300.0)
+    res, running = [], []          # running: (proc, queue, job, started)
+
+    def _reap(block: bool):
+        for item in list(running):
+            pr, q, job, started = item
+            alive = pr.is_alive()
+            over = (time.time() - started) > cap
+            if alive and not over and not block:
+                continue
+            if alive and over:
+                # COUNTED and EXCLUDED from the field score -- never scored as a loss, which
+                # would bias the result toward whichever arm stalls least.
+                pr.terminate(); pr.join(5)
+                if pr.is_alive():
+                    pr.kill(); pr.join(5)
+                res.append({"game_id": job["game_id"], "opponent": job["opponent"],
+                            "abandoned": True, "reason": f"exceeded {cap:.0f}s wall clock"})
+                running.remove(item)
+                continue
+            if alive:
+                continue
+            pr.join(1)
+            try:
+                res.append(q.get_nowait())
+            except Exception:  # noqa: BLE001
+                res.append({"game_id": job["game_id"], "error": "no result returned"})
+            running.remove(item)
+
+    for ji, job in enumerate(jobs):
+        while len(running) >= a.nproc:
+            _reap(False)
+            if len(running) >= a.nproc:
+                time.sleep(0.5)
+        q = ctx.Queue()
+        pr = ctx.Process(target=_one_game, args=(job, cfg, a.seed + ji * 97, q))
+        pr.start()
+        running.append((pr, q, job, time.time()))
+    while running:
+        _reap(False)
+        if running:
+            time.sleep(0.5)
     agg = collections.Counter(); maxes = {}
     per = collections.defaultdict(lambda: [0, 0.0]); lat = []
     gf = gzip.open(os.path.join(MC, "raw_games", f"{a.tag}_games.jsonl.gz"), "wt")
     traces = []
     for r in res:
+        if r.get("abandoned"):
+            agg["abandoned"] += 1; continue
         if r.get("error"):
             agg["errors"] += 1; continue
         rep = r["report"]
@@ -141,6 +184,9 @@ def main(argv=None):
                "byterl_checkpoint": a.byterl_checkpoint,
                "chance_nodes_possible": bool(full.get("manual_coin", True)),
                "games": len(res), "completed": sum(1 for r in res if r.get("completed")),
+               "abandoned": int(agg.get("abandoned", 0)),
+               "abandoned_note": ("games exceeding the per-game wall clock; EXCLUDED from the "
+                                  "field score rather than scored as losses"),
                **{k: int(v) for k, v in agg.items()},
                **{f"max_{k}": v for k, v in maxes.items()},
                "sims_per_decision": round(agg["searches"]/max(1, agg["searched_decisions"]), 1),
