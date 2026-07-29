@@ -104,9 +104,25 @@ def main(argv=None):
     comp = pick("competitive", mcgs)
     exec_rows = []
     for name, s in mcgs.items():
+        # Abandoned games are excluded from the field score, which is defensible but not free:
+        # abandonment correlates with game length and length correlates with how the game was
+        # going, so exclusion biases in an unknown direction. Bound it explicitly by scoring the
+        # abandoned games all-losses and all-wins; the truth lies inside.
+        comp = int(s.get("completed") or 0)
+        ab = int(s.get("abandoned") or 0)
+        fs = s.get("field_score")
+        if fs is not None and (comp + ab) > 0:
+            wins = fs * comp
+            lo_b = wins / (comp + ab)
+            hi_b = (wins + ab) / (comp + ab)
+        else:
+            lo_b = hi_b = None
         exec_rows.append({
             "run": name, "games": s.get("games"), "completed": s.get("completed"),
+            "abandoned": ab,
             "field_score": s.get("field_score"),
+            "field_score_bounds_if_abandoned_counted": (
+                [round(lo_b, 4), round(hi_b, 4)] if lo_b is not None else None),
             "sims_per_decision": s.get("sims_per_decision"),
             "chance_nodes_created": s.get("chance_nodes_created"),
             "manual_coin_node_ucb_selected": s.get("manual_coin_node_ucb_selected"),
@@ -163,8 +179,14 @@ def main(argv=None):
         n_games = pool_n
     else:
         n_games = mcgs.get(best_name, {}).get("completed", 0) if best_name else 0
+    pool_ab = sum(int((mcgs.get(n) or {}).get("abandoned") or 0) for n in pool_names
+                  if mcgs.get(n))
     lo, hi = wilson((best_mcgs or 0) * n_games, n_games) if n_games else (0.0, 1.0)
-    beats_half = lo > 0.5
+    # the gate is judged on the PESSIMISTIC treatment of abandoned games, so exclusion can never
+    # manufacture a pass
+    lo_pess, _ = (wilson((best_mcgs or 0) * n_games, n_games + pool_ab)
+                  if n_games else (0.0, 1.0))
+    beats_half = lo_pess > 0.5
     ev["MCGS_COMPETITIVE"] = {
         "status": "PASS" if beats_half else "FAIL",
         "best_run": best_name, "field_score": best_mcgs, "games": n_games,
@@ -173,7 +195,11 @@ def main(argv=None):
                          "are pooled rather than max-selected, because reporting the higher of "
                          "two identical runs is selection on the measured noise."),
         "wilson95": [round(lo, 4), round(hi, 4)],
-        "gate": "lower bound of the 95% Wilson interval must exceed 0.5 against the field",
+        "abandoned": pool_ab,
+        "wilson95_lower_if_abandoned_are_losses": round(lo_pess, 4),
+        "gate": ("lower bound of the 95% Wilson interval must exceed 0.5 against the field, "
+                 "judged with abandoned games counted as losses so exclusion cannot manufacture "
+                 "a pass"),
         "note": ("A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an "
                  "implementation failure (DECISION_RULES §1)."),
     }
