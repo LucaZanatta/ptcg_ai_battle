@@ -1,6 +1,6 @@
 # c021 — source-faithful MCGS and ByteRL transfer campaign: final report
 
-Generated 2026-07-29T04:15:23 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
+Generated 2026-07-29T04:21:02 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
 
 ## Statuses
 
