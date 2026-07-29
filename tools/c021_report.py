@@ -221,6 +221,8 @@ def main(argv=None):
             continue
         ups = sum(int(r.get("updates") or 0) for r in c)
         wrs = [r.get("win_rate") for r in c if r.get("win_rate") is not None]
+        ae = sum(int(r.get("actor_errors") or 0) for r in c)
+        ad = sum(int(r.get("n_decisions") or 0) for r in c) or None
         if ups > 0:
             run_name = name.replace("_curve.json", "")
             # B3 plays FROZEN CHECKPOINTS OF ITSELF. Its win rate is a mirror-match rate and sits
@@ -230,6 +232,8 @@ def main(argv=None):
             selfplay = run_name.endswith("b3")
             weights_changed.append({"run": run_name,
                                     "updates": ups, "iterations": len(c),
+                                    "actor_errors": ae,
+                                    "actor_error_rate": (round(ae / ad, 4) if ad else None),
                                     "opponent": ("frozen self-play checkpoints (OSFP)"
                                                  if selfplay else "scripted field"),
                                     "win_rate_is_self_play": selfplay,
