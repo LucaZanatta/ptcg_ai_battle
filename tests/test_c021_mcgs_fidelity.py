@@ -318,3 +318,91 @@ def test_finalise_is_counted_only_when_it_actually_collapses():
     lone = G.Node(is_terminal=True, play_state="WON")   # no parent -> nothing to collapse
     G.backup_ucd(lone, 1.0, G.UCDParams(1, 0), stats)
     assert stats["finalised"] == 0
+
+
+# ------------------------------------------------------------------ transfer x A10 interaction
+def test_transfer_prior_maps_action_set_indices_not_option_indices():
+    """Regression: the two features are each correct alone and were wrong together.
+
+    On the reference port `untested_action_indices` indexes `legal_options`. On the A10 corrected
+    branch it indexes `action_sets`, whose entries are TUPLES of option indices. The prior is
+    option-indexed in both cases, so looking an action-set index up directly mis-maps it -- and
+    a node with more action sets than options would silently get probability 0 for the excess,
+    making those combinations unexpandable-first.
+    """
+    from cg import c021_transfer as TR
+
+    class Provider:
+        def option_scores(self, obs, k):
+            # option 3 is overwhelmingly preferred
+            p = np.full(4, 0.01); p[3] = 0.97
+            return p / p.sum()
+
+    stats = S.new_stats()
+    node = G.Node()
+    node.obs = object()
+    node.legal_options = [0, 1, 2, 3]
+    # six 2-element combinations over 4 options: MORE sets than options
+    node.action_sets = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]
+    node.untested_action_indices = list(range(len(node.action_sets)))
+    arm = TR.arm_config("T1_policy_prior")
+    picks = [TR.sample_untested(np.random.default_rng(s), Provider(), node, arm, stats)
+             for s in range(200)]
+    assert max(picks) <= 5, "returned an index outside the action-set space"
+    # sets containing option 3 are indices 2, 4, 5 -- they must dominate
+    containing = sum(1 for i in picks if 3 in node.action_sets[i])
+    assert containing > 150, f"prior did not follow the option it prefers: {containing}/200"
+    assert stats["transfer_prior_used"] > 0
+
+
+def test_transfer_prior_still_indexes_options_on_the_reference_port():
+    from cg import c021_transfer as TR
+
+    class Provider:
+        def option_scores(self, obs, k):
+            p = np.full(4, 0.01); p[3] = 0.97
+            return p / p.sum()
+
+    stats = S.new_stats()
+    node = G.Node()
+    node.obs = object()
+    node.legal_options = [0, 1, 2, 3]
+    node.action_sets = None                       # reference port
+    node.untested_action_indices = [0, 1, 2, 3]
+    arm = TR.arm_config("T1_policy_prior")
+    picks = [TR.sample_untested(np.random.default_rng(s), Provider(), node, arm, stats)
+             for s in range(200)]
+    assert picks.count(3) > 150, f"option 3 should dominate, got {picks.count(3)}/200"
+
+
+def test_reuse_cache_cannot_fuse_two_states_that_merely_collide():
+    """Regression: the A5 reuse cache was keyed by hash() alone.
+
+    At the 20,000-entry bound a 32-bit-masked hash collides with ~4.5% probability, and a
+    collision there silently transfers visit counts and rewards between unrelated positions --
+    totals still look right, only the attribution is wrong. The abstraction implements __eq__,
+    so the cache keys on the object and compares structurally.
+    """
+    class Colliding:
+        """Two distinct states that deliberately share a hash."""
+        def __init__(self, tag):
+            self.tag = tag
+
+        def __hash__(self):
+            return 12345
+
+        def __eq__(self, other):
+            return isinstance(other, Colliding) and other.tag == self.tag
+
+    a, b = Colliding("a"), Colliding("b")
+    assert hash(a) == hash(b) and a != b
+    cache = {}
+    cache[a] = (10, 5.0, 10)
+    cache[b] = (99, 1.0, 99)
+    assert cache[a] == (10, 5.0, 10), "an object-keyed cache must not fuse colliding states"
+    assert len(cache) == 2
+    # the defective form keeps only one entry
+    bad = {}
+    bad[hash(a)] = (10, 5.0, 10)
+    bad[hash(b)] = (99, 1.0, 99)
+    assert len(bad) == 1 and bad[hash(a)] == (99, 1.0, 99)

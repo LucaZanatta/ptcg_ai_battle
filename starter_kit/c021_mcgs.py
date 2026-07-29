@@ -144,7 +144,7 @@ class MCGS:
         if self.reuse is not None:
             # A5 re-rooting: a state already searched this match resumes with the statistics it
             # earned, instead of starting from zero visits every atomic decision.
-            prev = self.reuse.get(hash(n.state_abstraction))
+            prev = self.reuse.get(n.state_abstraction)
             if prev is not None:
                 n.visit_count, n.rewards, n.total_visit = prev
                 self.stats["graph_reuse_reroots"] += 1
@@ -483,10 +483,16 @@ class MCGS:
         """Store this decision's statistics for the next decision of the same match (A5)."""
         if self.reuse is None:
             return
+        # Keyed by the StateAbstraction OBJECT, not by hash(). The abstraction implements
+        # __eq__, so a dict keyed on it compares structurally and cannot fuse two states that
+        # merely collide. Keying on the 32-bit-masked hash alone gave a 4.5% chance of at least
+        # one collision at the 20,000-entry bound -- and a collision there silently transfers
+        # visit counts and rewards between unrelated positions, which is the failure mode where
+        # the totals still look right and only the attribution is wrong.
         for key, node in self.tt.table.items():
             if node.visit_count <= 0:
                 continue
-            self.reuse[hash(key)] = (node.visit_count, node.rewards, node.total_visit)
+            self.reuse[key] = (node.visit_count, node.rewards, node.total_visit)
         if len(self.reuse) > max_entries:
             # bounded: drop the least-visited entries rather than growing without limit
             keep = sorted(self.reuse.items(), key=lambda kv: -kv[1][0])[:max_entries]

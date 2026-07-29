@@ -127,7 +127,27 @@ def sample_untested(rng, provider, node, arm: Dict[str, bool],
     if p_all is None:
         stats["transfer_prior_fallbacks"] = stats.get("transfer_prior_fallbacks", 0) + 1
         return int(rng.integers(len(untested)))
-    p = np.asarray([p_all[i] if i < len(p_all) else 0.0 for i in untested], dtype=np.float64)
+
+    # `untested_action_indices` indexes a DIFFERENT space depending on the branch:
+    #   reference port : an index into `legal_options`
+    #   A10 corrected  : an index into `action_sets`, each of which is a TUPLE of option indices
+    # `p_all` is option-indexed in both cases. Looking an action-set index up directly in an
+    # option-indexed array is a silent mis-mapping -- and because a node can have more action
+    # sets than options, the out-of-range guard below would quietly assign probability 0, making
+    # those combinations unexpandable-first rather than merely mis-scored. The two features are
+    # each correct alone and wrong together, which is why this never surfaced: no arm ran T1 on
+    # the corrected branch.
+    sets = getattr(node, "action_sets", None)
+
+    def score(idx: int) -> float:
+        if sets:
+            combo = sets[idx] if idx < len(sets) else ()
+            # a SET's prior is the mean prior of the options it contains
+            vals = [p_all[j] for j in combo if j < len(p_all)]
+            return float(sum(vals) / len(vals)) if vals else 0.0
+        return float(p_all[idx]) if idx < len(p_all) else 0.0
+
+    p = np.asarray([score(i) for i in untested], dtype=np.float64)
     if p.sum() <= 0:
         stats["transfer_prior_fallbacks"] = stats.get("transfer_prior_fallbacks", 0) + 1
         return int(rng.integers(len(untested)))
