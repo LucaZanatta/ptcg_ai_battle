@@ -103,8 +103,7 @@ class MCGSAgent:
             base = min(base, left)
         return base
 
-    @staticmethod
-    def _progress_option(opts):
+    def _progress_option(self, opts):
         """An out-of-time move that GUARANTEES the game advances.
 
         Always taking `opts[0]` can livelock: if the first option is a repeatable action that
@@ -117,8 +116,11 @@ class MCGSAgent:
         for o in opts:
             if int(getattr(o, "option_type", -1) or -1) == OV.OPT_END:
                 return o
-        import random
-        return random.choice(opts)
+        # self.rng, NOT the unseeded global `random`. Every other stochastic choice in this
+        # agent draws from the seeded generator; a bare random.choice here injected
+        # non-determinism into runs that were otherwise identically seeded, which is one of the
+        # sources behind two same-configuration runs differing by 6.4 points.
+        return opts[int(self.rng.integers(len(opts)))]
 
     def act(self, obs_dict: dict) -> List[int]:
         sel = obs_dict.get("select") if isinstance(obs_dict, dict) else None

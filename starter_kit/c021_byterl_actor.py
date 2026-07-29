@@ -191,45 +191,8 @@ class ByteRLActor:
         self.episode.info["errors"] = self.errors[:8]
         return self.episode
 
-
-def episode_to_tensors(ep: Episode, net: M.ByteRLNet, device: str = "cpu"
-                       ) -> Optional[Dict[str, torch.Tensor]]:
-    """Recompute target log-probabilities and values under the CURRENT weights.
-
-    Behaviour log-probabilities come from the episode (the policy that acted); target ones are
-    computed here. Their ratio is what V-trace corrects with, so conflating them would make every
-    ratio 1.
-    """
-    if not ep.steps:
-        return None
-    target_logps, values, entropies, behaviour = [], [], [], []
-    for s in ep.steps:
-        tt = EN.to_torch(s.enc, device)
-        h = net.encode(tt["global"], tt["board"], tt["roles"], tt["indices"],
-                       tt["sides"], tt["stage"])
-        if s.stage == EN.STAGE_CONSTRUCTION:
-            mask = torch.from_numpy(s.enc["pool_mask"]).unsqueeze(0).to(device)
-            lp = M.masked_log_softmax(net.construction_logits(h), mask)
-            target_logps.append(lp[0, s.chosen[0]])
-            entropies.append(-(lp.exp() * lp).sum())
-        else:
-            legal = tt["opt_mask"].clone()
-            legal[:, int(s.enc["n_options"]):] = 0.0
-            target_logps.append(net.select_logprob(h, tt["opt"], legal, s.chosen))
-            lg = net.battle_logits(h, tt["opt"])
-            lp_all = M.masked_log_softmax(lg, legal)
-            entropies.append(-(lp_all.exp() * lp_all).sum())
-        values.append(net.value(h, tt["stage"]).squeeze(0))
-        behaviour.append(s.behaviour_logp)
-
-    T = len(ep.steps)
-    rewards = torch.zeros(T, device=device)
-    rewards[-1] = float(ep.reward)           # terminal reward only; no shaping
-    return {"target_logp": torch.stack(target_logps),
-            "behaviour_logp": torch.tensor(behaviour, dtype=torch.float32, device=device),
-            "values": torch.stack(values),
-            "entropy": torch.stack(entropies),
-            "rewards": rewards,
-            "discounts": torch.ones(T, device=device),
-            "bootstrap": torch.zeros((), device=device),
-            "stages": torch.tensor([s.stage for s in ep.steps], device=device)}
+# `episode_to_tensors` used to live here: a second implementation of the learner's tensor
+# construction, called by nothing. The trainer builds its tensors from the packed cross-process
+# dicts instead. Two copies of the same logic drift -- the behaviour-log-probability fix for the
+# option-index filter landed in the actor and would NOT have landed here -- so the dead copy is
+# removed rather than left as a trap.
