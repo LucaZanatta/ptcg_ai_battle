@@ -104,9 +104,25 @@ def main(argv=None):
     comp = pick("competitive", mcgs)
     exec_rows = []
     for name, s in mcgs.items():
+        # Abandoned games are excluded from the field score, which is defensible but not free:
+        # abandonment correlates with game length and length correlates with how the game was
+        # going, so exclusion biases in an unknown direction. Bound it explicitly by scoring the
+        # abandoned games all-losses and all-wins; the truth lies inside.
+        comp = int(s.get("completed") or 0)
+        ab = int(s.get("abandoned") or 0)
+        fs = s.get("field_score")
+        if fs is not None and (comp + ab) > 0:
+            wins = fs * comp
+            lo_b = wins / (comp + ab)
+            hi_b = (wins + ab) / (comp + ab)
+        else:
+            lo_b = hi_b = None
         exec_rows.append({
             "run": name, "games": s.get("games"), "completed": s.get("completed"),
+            "abandoned": ab,
             "field_score": s.get("field_score"),
+            "field_score_bounds_if_abandoned_counted": (
+                [round(lo_b, 4), round(hi_b, 4)] if lo_b is not None else None),
             "sims_per_decision": s.get("sims_per_decision"),
             "chance_nodes_created": s.get("chance_nodes_created"),
             "manual_coin_node_ucb_selected": s.get("manual_coin_node_ucb_selected"),
@@ -130,6 +146,17 @@ def main(argv=None):
                        "no_step_errors_and_no_coin_ucb_selection": clean}
 
     # ---------------------------------------------------------------- MCGS_COMPETITIVE
+    # `competitive` and `transfer_T0_control` are the SAME configuration -- the source port with
+    # every transfer switch off. Reporting whichever scored higher would be selection on exactly
+    # the run-to-run noise this campaign measured, so they are POOLED.
+    pool_names = ("competitive_summary.json", "transfer_T0_control_summary.json")
+    pool_k, pool_n = 0.0, 0
+    for nm in pool_names:
+        d = mcgs.get(nm)
+        if d and d.get("field_score") is not None and not d.get("SUPERSEDED"):
+            pool_k += d["field_score"] * (d.get("completed") or 0)
+            pool_n += int(d.get("completed") or 0)
+
     best_mcgs, best_name = None, None
     for name, s in mcgs.items():
         if name.startswith(("a4_", "legal_smoke", "smoke")):
@@ -138,17 +165,41 @@ def main(argv=None):
             continue          # pre-COIN_HEAD runs are diagnostic only, never a competitive read
         if not s.get("manual_coin_contexts_are_coin_head_only", True):
             continue
+        if s.get("transfer_arm") and s.get("transfer_arm") != "T0_control":
+            continue      # a transfer arm is not the standalone MCGS competitive candidate
+        if s.get("manual_coin") is False:
+            continue      # the no-chance-node ablation is not a competitive candidate
         fs = s.get("field_score")
         if fs is not None and (best_mcgs is None or fs > best_mcgs):
             best_mcgs, best_name = fs, name
-    n_games = mcgs.get(best_name, {}).get("completed", 0) if best_name else 0
+    if pool_n > 0:
+        best_name = " + ".join(n.replace("_summary.json", "") for n in pool_names
+                               if mcgs.get(n))
+        best_mcgs = pool_k / pool_n
+        n_games = pool_n
+    else:
+        n_games = mcgs.get(best_name, {}).get("completed", 0) if best_name else 0
+    pool_ab = sum(int((mcgs.get(n) or {}).get("abandoned") or 0) for n in pool_names
+                  if mcgs.get(n))
     lo, hi = wilson((best_mcgs or 0) * n_games, n_games) if n_games else (0.0, 1.0)
-    beats_half = lo > 0.5
+    # the gate is judged on the PESSIMISTIC treatment of abandoned games, so exclusion can never
+    # manufacture a pass
+    lo_pess, _ = (wilson((best_mcgs or 0) * n_games, n_games + pool_ab)
+                  if n_games else (0.0, 1.0))
+    beats_half = lo_pess > 0.5
     ev["MCGS_COMPETITIVE"] = {
         "status": "PASS" if beats_half else "FAIL",
         "best_run": best_name, "field_score": best_mcgs, "games": n_games,
+        "pooled": pool_n > 0,
+        "pooling_note": ("competitive and transfer_T0_control are the same configuration; they "
+                         "are pooled rather than max-selected, because reporting the higher of "
+                         "two identical runs is selection on the measured noise."),
         "wilson95": [round(lo, 4), round(hi, 4)],
-        "gate": "lower bound of the 95% Wilson interval must exceed 0.5 against the field",
+        "abandoned": pool_ab,
+        "wilson95_lower_if_abandoned_are_losses": round(lo_pess, 4),
+        "gate": ("lower bound of the 95% Wilson interval must exceed 0.5 against the field, "
+                 "judged with abandoned games counted as losses so exclusion cannot manufacture "
+                 "a pass"),
         "note": ("A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an "
                  "implementation failure (DECISION_RULES §1)."),
     }
@@ -243,10 +294,16 @@ def main(argv=None):
     arms = {}
     control = None
     for name, s in mcgs.items():
-        if s.get("transfer_arm") in (None, "T0_control") and "competitive" in name:
-            control = s
+        if s.get("transfer_arm") == "T0_control":
+            control = s            # the arm that shares the transfer harness but uses no prior
+    if control is None:
+        for name, s in mcgs.items():
+            if "competitive" in name and not s.get("transfer_arm"):
+                control = s
     for name, s in transfer.items():
         arm = s.get("transfer_arm")
+        if arm == "T0_control":
+            continue               # the control is reported separately, not as an arm
         n = s.get("completed") or 0
         fs = s.get("field_score")
         if fs is None or n == 0:
@@ -265,6 +322,9 @@ def main(argv=None):
         "status": "PASS" if retained else ("FAIL" if arms else "NOT_RUN"),
         "control_field_score": (control or {}).get("field_score"),
         "arms": arms, "retained": retained,
+        "interpretation": ("NOT RETAINED, and NOT REJECTED. The arm-to-control differences are "
+                           "smaller than the measured run-to-run resolution limit, so the test "
+                           "lacks the power to separate them. Treat the components as UNTESTED."),
         "rule": ("DECISION_RULES §3: a component is retained only on a credible improvement; "
                  "internal ByteRL-vs-history improvement alone is insufficient. Here that means "
                  "the arm's 95% lower bound must exceed the control's upper bound."),

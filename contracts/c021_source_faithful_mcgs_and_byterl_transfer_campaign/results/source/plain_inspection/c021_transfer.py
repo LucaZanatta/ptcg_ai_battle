@@ -145,6 +145,12 @@ def rollout_pick(rng, provider, obs, opts, arm: Dict[str, bool],
     still a rollout to a real terminal -- NOT a neural value substituted for one, which is the
     substitution FIDELITY_RULES forbids.
     """
+    # THROUGHPUT NOTE, recorded before the arm is run so its result is not misread. A network
+    # forward per rollout step is expensive: rollouts run ~1800 steps per decision, so T2 spends
+    # its entire per-decision budget on far fewer simulations than T0. The wall clock is bounded
+    # either way -- the budget caps it -- but a weaker T2 field score may reflect SIMULATION
+    # STARVATION rather than a worse default policy. `sims_per_decision` distinguishes the two
+    # and must be read alongside the score.
     if not arm.get("rollout_policy") or provider is None or obs is None:
         return int(rng.integers(len(opts)))
     p = provider.option_scores(obs, len(opts))

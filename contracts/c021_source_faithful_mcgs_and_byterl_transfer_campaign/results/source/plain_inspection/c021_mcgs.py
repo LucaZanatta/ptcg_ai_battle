@@ -67,6 +67,8 @@ class MCGS:
         # {} means every transfer switch is off, i.e. exact source behaviour
         self.transfer_arm = dict(transfer_arm or {})
         self.legal_corrected = (cfg.get("branch") == "MCGS_2019_PTCG_LEGAL_CORRECTED")
+        # A5: statistics carried in from previous decisions of this match, keyed by abstraction
+        self.reuse: Optional[Dict[int, Any]] = None
         self.traces: List[Dict[str, Any]] = []
 
     # ---------------------------------------------------------------- lifecycle
@@ -139,6 +141,13 @@ class MCGS:
                 n.legal_options = opts
                 n.action_sets = None
                 n.untested_action_indices = list(range(len(opts)))
+        if self.reuse is not None:
+            # A5 re-rooting: a state already searched this match resumes with the statistics it
+            # earned, instead of starting from zero visits every atomic decision.
+            prev = self.reuse.get(hash(n.state_abstraction))
+            if prev is not None:
+                n.visit_count, n.rewards, n.total_visit = prev
+                self.stats["graph_reuse_reroots"] += 1
         if is_random:
             self.stats["chance_nodes_created"] += 1
             k = f"chance_ctx_{ctx}"
@@ -469,6 +478,20 @@ class MCGS:
         if len(self.traces) < 300:
             self.traces.append({"leaf_depth": leaf.depth, "reward": round(reward, 4),
                                 "backup_nodes": n, "terminal": leaf.is_terminal})
+
+    def harvest_reuse(self, max_entries: int):
+        """Store this decision's statistics for the next decision of the same match (A5)."""
+        if self.reuse is None:
+            return
+        for key, node in self.tt.table.items():
+            if node.visit_count <= 0:
+                continue
+            self.reuse[hash(key)] = (node.visit_count, node.rewards, node.total_visit)
+        if len(self.reuse) > max_entries:
+            # bounded: drop the least-visited entries rather than growing without limit
+            keep = sorted(self.reuse.items(), key=lambda kv: -kv[1][0])[:max_entries]
+            self.reuse.clear()
+            self.reuse.update(keep)
 
     # ---------------------------------------------------------------- final selection
     def select_final(self, root: G.Node, mode: str = "MaxChild"

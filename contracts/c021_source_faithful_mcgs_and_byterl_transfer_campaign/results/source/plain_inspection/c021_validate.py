@@ -453,6 +453,30 @@ def build_checks() -> List[Check]:
         "the same seed must reproduce weights and different seeds must not",
         probe_fresh_weights, inject_fresh_weights, lambda o: setattr(BM, "fresh", o)))
 
+    # ---------------------------------------------------------------- Finalise under UCD
+    def probe_finalise_ucd() -> bool:
+        st = S.new_stats()
+        root, a = G.Node(), G.Node()
+        G.Edge.connect(root, a, 0)
+        G.Edge.connect(root, G.Node(), 1)
+        win = G.Node(is_terminal=True, play_state="WON")
+        e = G.Edge.connect(a, win, 0)
+        win.last_traversed_edge = e
+        G.backup_ucd(win, 1.0, G.UCDParams(1, 0), st)
+        return st["finalised"] >= 1 and len(a.outgoing_edges) == 1
+
+    def inject_finalise_ucd():
+        orig = G.Node.finalise
+        G.Node.finalise = lambda self: False        # lethal-sequence collapse disabled
+        return orig
+
+    checks.append(Check(
+        "MCGS_FINALISE_RUNS_UNDER_UCD",
+        "c021: BackupUCD omitted the Finalise block, so with UCD active it was dead code",
+        "a proven win must collapse its parent onto the winning edge during a UCD backup",
+        probe_finalise_ucd, inject_finalise_ucd,
+        lambda o: setattr(G.Node, "finalise", o)))
+
     # ---------------------------------------------------------------- PIMC flag
     def probe_pimc() -> bool:
         return G.PIMC is False

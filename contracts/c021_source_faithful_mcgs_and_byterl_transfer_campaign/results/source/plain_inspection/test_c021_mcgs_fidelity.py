@@ -290,3 +290,31 @@ def test_the_second_end_turn_flip_is_gated_on_pimc_and_therefore_inactive():
     n = G.Node(is_opponent=False, is_end_turn=True)
     n.update(1.0)
     assert n.rewards == 1.0, "with PIMC False the end-turn flip must not fire"
+
+
+def test_backup_ucd_carries_the_same_finalise_block_as_backup_edges():
+    """Regression: UCD is the ACTIVE strategy, so omitting Finalise made it dead code.
+
+    `Node.Finalise` collapses a parent onto a proven winning edge. A win reached without an
+    end-turn action must trigger it during a UCD backup, exactly as it does during an edge backup.
+    """
+    stats = S.new_stats()
+    root = G.Node()
+    a, b = G.Node(), G.Node()
+    G.Edge.connect(root, a, 0)
+    G.Edge.connect(root, b, 1)
+    win = G.Node(is_terminal=True, play_state="WON")
+    e = G.Edge.connect(a, win, 0)
+    win.last_traversed_edge = e
+    assert len(root.outgoing_edges) == 2
+    G.backup_ucd(win, 1.0, G.UCDParams(1, 0), stats)
+    assert stats["finalised"] >= 1, "Finalise never ran during a UCD backup"
+    assert win.is_finalised
+    assert len(a.outgoing_edges) == 1, "the parent was not collapsed onto the winning edge"
+
+
+def test_finalise_is_counted_only_when_it_actually_collapses():
+    stats = S.new_stats()
+    lone = G.Node(is_terminal=True, play_state="WON")   # no parent -> nothing to collapse
+    G.backup_ucd(lone, 1.0, G.UCDParams(1, 0), stats)
+    assert stats["finalised"] == 0

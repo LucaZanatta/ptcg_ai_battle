@@ -1,5 +1,5 @@
 {
-  "head": "28ffe5270d6ba0920b4d48fbbb03931d727546ec",
+  "head": "8dbabe786107b6c0bcc14cad560b6fdb72c87bc0",
   "files": [
     "starter_kit/c021_byterl_actor.py",
     "starter_kit/c021_byterl_deck.py",
@@ -19,10 +19,18 @@
     "tools/c021_byterl_train.py",
     "tools/c021_controls.py",
     "tools/c021_final_report.py",
+    "tools/c021_finalize.py",
     "tools/c021_mcgs_run.py",
     "tools/c021_report.py",
     "tools/c021_validate.py"
   ],
   "archive": "final_git_archive.tar.gz",
-  "method": "git archive from the exact final commit, and plain inspection copies exported from that same commit with `git show` -- not from the mutable working tree"
+  "method": "git archive from the exact final commit, and plain inspection copies exported from that same commit with `git show` -- not from the mutable working tree",
+  "focused_archive": "c021_focused_source.zip",
+  "full_repo_archive": {
+    "produced": false,
+    "reason": "`git archive` of the whole tracked repository at this commit exceeded 9.9 GB and was still growing, because the tracked results of c018-c021 include compressed raw-game corpora. Committing it would bloat the repository without adding evidence: every c021 source file is in c021_focused_source.zip, exported from this same commit, and each is hashed in hashes.sha256.",
+    "reproduce": "git archive --format=tar.gz -o <out> 8dbabe786107b6c0bcc14cad560b6fdb72c87bc0"
+  },
+  "verification": "plain_inspection/ holds copies exported from this commit via `git show <commit>:<path>`, never from the mutable working tree; hashes.sha256 covers each."
 }

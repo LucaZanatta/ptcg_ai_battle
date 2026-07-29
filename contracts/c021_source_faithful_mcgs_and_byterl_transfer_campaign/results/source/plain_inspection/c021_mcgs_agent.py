@@ -24,6 +24,7 @@ from cg import c019_core as K  # noqa: E402
 from cg import c020_determinize as DT  # noqa: E402
 from cg import c021_mcgs as S  # noqa: E402
 from cg import c021_mcgs_abstraction as AB  # noqa: E402
+from cg import c020_override as OV  # noqa: E402
 from cg import c021_mcgs_graph as G  # noqa: E402
 
 REFERENCE_CFG = {
@@ -41,6 +42,28 @@ REFERENCE_CFG = {
     # Every activation is counted. This does not change selection, expansion, sampling or backup.
     "max_simulations_per_decision": 0,     # 0 = unbounded, source behaviour
     "manual_coin": True,                   # A4: surfaces random effects as chance nodes
+    # A5. `MCGS.Select` re-roots onto the chosen successor with DoNotRemoveUnselectedNodes = true,
+    # so statistics survive across the sequential atomic decisions of a turn.
+    #
+    # The PTCG API cannot reuse the ENGINE STATES: `search_end` invalidates every searchId, and an
+    # interior observation carries no `search_begin_input`, so the next decision must open a fresh
+    # session. What CAN carry over is the part that matters -- the statistics keyed by state
+    # abstraction. A node whose abstraction was already searched is seeded with the visits and
+    # rewards it accumulated, which is exactly what re-rooting preserves.
+    "graph_reuse": True,
+    "graph_reuse_max_entries": 20000,
+    # MECHANICAL_ADAPTER: a CUMULATIVE MATCH CLOCK, in seconds of search across the whole game.
+    # The source has a per-move budget and no match budget, but PTCG competition play is governed
+    # by a cumulative clock, so this is closer to the deployment constraint than an unbounded
+    # per-move budget is.
+    #
+    # It also fixes a measured pathology: one game ran 10+ minutes at a 0.9 s per-decision budget
+    # while every other worker had finished, blocking the pool barrier. A game that reaches
+    # several hundred decisions spends its budget on each one, and a single such game stalls a
+    # whole run. Past the clock the agent still plays every decision -- it simply stops searching
+    # and takes the first legal option, exactly as a real player out of time must. Every
+    # activation is counted in `match_clock_exhausted_decisions`.
+    "match_clock_seconds": 90.0,
 }
 
 
@@ -63,12 +86,39 @@ class MCGSAgent:
         self.graph_snapshots: List[Dict[str, Any]] = []
         self.exceptions: List[Dict[str, Any]] = []
         self._first_move_done = False
+        # A5: abstraction -> (visit_count, rewards, total_visit), carried across decisions
+        self._reuse: Dict[int, Any] = {}
 
     def _budget_seconds(self) -> float:
         base = (self.cfg["continuing_move_seconds"] if self._first_move_done
                 else self.cfg["first_move_seconds"])
         cap = self.cfg.get("decision_seconds_cap")
-        return min(base, cap) if cap else base
+        if cap:
+            base = min(base, cap)
+        clock = float(self.cfg.get("match_clock_seconds") or 0.0)
+        if clock > 0:
+            left = clock - self.match_search_ms / 1000.0
+            if left <= 0:
+                return 0.0                       # out of time: play, do not search
+            base = min(base, left)
+        return base
+
+    @staticmethod
+    def _progress_option(opts):
+        """An out-of-time move that GUARANTEES the game advances.
+
+        Always taking `opts[0]` can livelock: if the first option is a repeatable action that
+        does not change state, the agent replays it forever and the game never terminates. Three
+        workers were measured pinned at 100% CPU for eighteen minutes on exactly that.
+
+        Ending the turn always advances the game, so it is preferred; otherwise a uniform random
+        legal option, which terminates with probability 1.
+        """
+        for o in opts:
+            if int(getattr(o, "option_type", -1) or -1) == OV.OPT_END:
+                return o
+        import random
+        return random.choice(opts)
 
     def act(self, obs_dict: dict) -> List[int]:
         sel = obs_dict.get("select") if isinstance(obs_dict, dict) else None
@@ -84,9 +134,16 @@ class MCGSAgent:
 
         t0 = time.monotonic()
         budget = self._budget_seconds()
+        if budget <= 0.0:
+            # Match clock exhausted. Still a legal move, just an unsearched one.
+            self.stats["match_clock_exhausted_decisions"] = (
+                self.stats.get("match_clock_exhausted_decisions", 0) + 1)
+            return K.to_select_payload([self._progress_option(opts)], sel)
         deadline = t0 + budget
         search = S.MCGS(A, self.cfg, self.stats, self.rng, self.prior_provider,
                         self.transfer_arm)
+        if self.cfg.get("graph_reuse", True):
+            search.reuse = self._reuse
         chosen = None
         try:
             o = A.to_observation_class(obs_dict)
@@ -135,6 +192,8 @@ class MCGSAgent:
                                         "type": type(e).__name__, "msg": str(e)[:240],
                                         "tb": traceback.format_exc()[-700:]})
         finally:
+            if self.cfg.get("graph_reuse", True):
+                search.harvest_reuse(int(self.cfg.get("graph_reuse_max_entries", 20000)))
             search.release_all()
             try:
                 A.search_end()
@@ -144,7 +203,7 @@ class MCGSAgent:
             self._first_move_done = True
 
         if chosen is None:
-            chosen = K.to_select_payload([opts[0]], sel)
+            chosen = K.to_select_payload([self._progress_option(opts)], sel)
         return list(chosen)
 
     def report(self) -> Dict[str, Any]:
