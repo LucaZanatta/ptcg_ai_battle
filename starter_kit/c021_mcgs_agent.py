@@ -131,6 +131,18 @@ class MCGSAgent:
             return [0]
         if len(opts) == 1:
             return K.to_select_payload([opts[0]], sel)
+        # A10 / C3: an OBLIGED decision admits exactly one legal answer -- minCount already
+        # requires every option on offer. The reference port still searches it, spending the
+        # whole per-decision budget proving that the only legal move is the only legal move.
+        # This was defined in c021_mcgs_legal.is_obliged and documented in the change manifest
+        # but never invoked, so the manifest was claiming a correction that was not applied.
+        if self.cfg.get("branch") == "MCGS_2019_PTCG_LEGAL_CORRECTED" \
+                and self.cfg.get("C3_obliged_actions", True):
+            from cg import c021_mcgs_legal as LG
+            if LG.is_obliged(sel, opts):
+                self.stats["obliged_collapsed"] = self.stats.get("obliged_collapsed", 0) + 1
+                lo, _hi = LG.select_bounds(sel)
+                return LG.payload_for(sel, opts, list(range(min(lo, len(opts)))))
 
         t0 = time.monotonic()
         budget = self._budget_seconds()

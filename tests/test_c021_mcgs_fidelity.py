@@ -406,3 +406,29 @@ def test_reuse_cache_cannot_fuse_two_states_that_merely_collide():
     bad[hash(a)] = (10, 5.0, 10)
     bad[hash(b)] = (99, 1.0, 99)
     assert len(bad) == 1 and bad[hash(a)] == (99, 1.0, 99)
+
+
+# ------------------------------------------------------------------ A10 / C3 obliged actions
+def test_is_obliged_identifies_the_single_legal_answer():
+    from cg import c021_mcgs_legal as LG
+
+    class Sel:
+        def __init__(self, lo, hi):
+            self.minCount, self.maxCount = lo, hi
+
+    assert LG.is_obliged(Sel(1, 1), ["a"]) is True            # only one option
+    assert LG.is_obliged(Sel(3, 3), ["a", "b", "c"]) is True   # must take all three
+    assert LG.is_obliged(Sel(1, 1), ["a", "b"]) is False       # a real choice
+    assert LG.is_obliged(Sel(2, 3), ["a", "b", "c"]) is False  # which two is a choice
+    assert LG.is_obliged(Sel(1, 1), []) is False
+
+
+def test_obliged_payload_takes_every_required_option():
+    from cg import c021_mcgs_legal as LG
+
+    class Sel:
+        minCount, maxCount = 3, 3
+
+    opts = ["a", "b", "c"]
+    combo = list(range(min(LG.select_bounds(Sel())[0], len(opts))))
+    assert combo == [0, 1, 2], "an obliged select must take every option it requires"
