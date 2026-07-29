@@ -415,9 +415,146 @@ def main(argv=None):
                "generated": time.strftime("%Y-%m-%dT%H:%M:%S")},
               open(os.path.join(R, "DECISION_BOARD.json"), "w"), indent=2)
 
+    n_empty = annotate_empty_dirs()
+    print(f"annotated {n_empty} empty mandated directories with WHY_EMPTY.json")
     print(json.dumps({k: len(v) for k, v in moved.items()}, indent=2))
     print(f"tree materialised under {R}")
     return 0
+
+
+
+
+# ---------------------------------------------------------------------------------------------
+EMPTY_DIR_REASONS = {
+    # nothing was packaged or submitted, and DECISION_RULES forbids doing so on this evidence
+    "packages": "No candidate cleared its registered gate, so nothing was packaged.",
+    "mcgs/packages": "No MCGS candidate cleared its gate; MCGS_COMPETITIVE=FAIL.",
+    "mcgs/submissions": "Nothing submitted: DECISION_RULES 4 forbids submitting a candidate "
+                        "clearly dominated by the champion.",
+    "mcgs/legal_corrected/packages": "The legality-corrected branch scored best of the MCGS arms "
+                                     "(0.1818) but still far below the 0.5 gate, and the margin "
+                                     "over the control is inside the measured reproducibility "
+                                     "bound. Not packaged.",
+    "mcgs/legal_corrected/submissions": "See packages/ -- nothing cleared its gate.",
+    "mcgs/reference_source_port/packages": "See packages/ -- nothing cleared its gate.",
+    "byterl/packages": "ByteRL never separated from the uniform-random floor; packaging it would "
+                       "be packaging noise.",
+    "byterl/submissions": "DECISION_RULES 4 forbids submitting a checkpoint selected only on "
+                          "self-play, which is the only signal B3 produced.",
+    "submissions/responses": "No submission was made, so there are no responses.",
+    # measured, but recorded inside the run summaries rather than as separate corpora
+    "mcgs/comparisons": "Arm-to-arm comparison lives in reports/statuses.json and FINAL_REPORT.md "
+                        "sections 2 and 7. A separate corpus would duplicate it, and every "
+                        "between-arm difference measured is smaller than the 6.4-point "
+                        "reproducibility bound, so there is nothing to compare that is "
+                        "interpretable.",
+    "mcgs/ablations": "The ablation arm is ablation_nochance, filed under "
+                      "reference_source_port/evaluations with manual_coin=false and "
+                      "chance_nodes_created=0.",
+    "mcgs/chance": "Chance-node evidence is in reference_source_port/chance_nodes/.",
+    "mcgs/source_port": "Superseded by reference_source_port/, the schema's name for it.",
+    "mcgs/fixtures": "Formula fixtures are tests/test_c021_mcgs_fidelity.py, run in CI rather "
+                     "than dumped as data; the validator records their injection results in "
+                     "validation/semantic_validation.json.",
+    "mcgs/reference_source_port/filters_obliged_actions":
+        "Category filters and obliged-action collapse (A6) exist ONLY in the "
+        "MCGS_2019_PTCG_LEGAL_CORRECTED branch -- the reference port deliberately has neither, "
+        "so this directory is empty by construction rather than by omission.",
+    "byterl/configs": "Per-run configuration is embedded in each manifest under stages/.",
+    "byterl/raw_games": "Per-game rows are written to byterl/raw/*.jsonl.",
+    "byterl/evaluations": "Per-iteration evaluation is the curve itself, under stages/.",
+    "byterl/external_evaluations": "Every ByteRL rung except B3 is evaluated against the EXTERNAL "
+                                   "scripted field, and those results are the curves under "
+                                   "stages/. B3 is self-play only and is marked as not "
+                                   "field-comparable.",
+    "byterl/fixtures": "Numerical fixtures are in byterl/numerical_fixtures/.",
+    "byterl/schema": "Tensor shapes and dimensions are in byterl/architecture/network.json.",
+    "byterl/deck_construction": "In byterl/meta_environment/deck_construction.json.",
+    "byterl/multiselect": "Autoregressive multi-select is verified by assertion, not corpus: the "
+                          "sampled joint log-probability must equal its recomputation "
+                          "(BYTERL_AUTOREGRESSIVE_MULTISELECT in the validator).",
+    "byterl/osfp/period_local_payoffs": "Per-period payoffs and mixtures are recorded inline in "
+                                        "each curve row's osfp snapshot, and the promotions are "
+                                        "in osfp/promotion_history.jsonl.",
+    "byterl/osfp/mixtures": "See period_local_payoffs/ -- the mixture is the `distribution` field "
+                            "of each osfp snapshot.",
+    "byterl/osfp/frozen_evaluations": "Frozen-checkpoint evaluation IS the B3 curve: every B3 "
+                                      "game is played against a frozen checkpoint.",
+    # not produced, and the reason is a declared deviation
+    "byterl/action_records": "Per-action records were not retained: at ~90 battle steps per game "
+                             "across 7680 games the corpus would be large and adds nothing the "
+                             "curves and fixtures do not already establish.",
+    "byterl/actor_unrolls": "No decoupled actor-learner exists under synchronous execution; see "
+                            "recurrent_unrolls/NOT_PRODUCED.json.",
+    "byterl/recurrent": "Same as actor_unrolls -- the synchronous-execution deviation behind "
+                        "BYTERL_METHOD=PARTIAL.",
+    "byterl/learner_logs": "Learner statistics are aggregated per iteration into the curves "
+                           "(pg_loss, upgo_loss, value_loss, entropy, rho_mean, grad_norm).",
+    "byterl/component_analysis/priors": "Component analysis was run as MCGS transfer arms, not as "
+                                        "a ByteRL-internal study; see transfer/.",
+    "byterl/component_analysis/representation": "Not run: no rung separated from the floor, so "
+                                                "there is no learned representation whose "
+                                                "contribution could be attributed.",
+    "byterl/component_analysis/autoregressive_decoder": "Verified by assertion rather than "
+                                                        "ablation; see byterl/multiselect.",
+    "byterl/component_analysis/recurrence": "There is no recurrence to analyse -- declared "
+                                            "deviation.",
+    "byterl/component_analysis/osfp_diversity": "OSFP promoted 10 times across the two B3 runs, "
+                                                "but with no rung separating from the floor a "
+                                                "diversity study would be measuring noise.",
+    "byterl/component_analysis/deck_construction": "The construction arm IS the comparison: "
+                                                   "flearn_* against fctrl_*, in stages/.",
+    "byterl/component_analysis/value": "A neural value replacing the rollout return is forbidden "
+                                       "in the primary branch by FIDELITY_RULES 3.",
+    "transfer/priors": "Filed under transfer/prior_only/ per the schema.",
+    "transfer/value": "A value-transfer arm is forbidden; see transfer/value_only/NOT_RUN.json.",
+    "transfer/evaluations": "Each arm's evaluation is its summary under prior_only/ and "
+                            "other_single_component/.",
+    "implementation": "Implementation lives in starter_kit/c021_*.py and tools/c021_*.py, "
+                      "archived at the final commit in source/c021_focused_source.zip.",
+    "probes": "Probe scripts and their raw output are in fidelity/probes/.",
+    "source/milestones": "Single-branch contract; every milestone is a c021: commit, listed in "
+                         "git/log.txt.",
+    # failure buckets that are genuinely empty because the failure did not occur
+    "failures/exceptions": "EMPTY BECAUSE NONE OCCURRED: 0 step errors and 0 release errors "
+                           "across all six MCGS arms and all ten ladder rungs.",
+    "failures/timeouts": "Abandoned games are counted per run in each summary under `abandoned` "
+                         "and bounded in reports/statuses.json rather than dumped here.",
+    "failures/source_mismatches": "EMPTY BECAUSE NONE OCCURRED: every ported constant and formula "
+                                  "is asserted against the archive by "
+                                  "tests/test_c021_mcgs_fidelity.py.",
+    "failures/formula_mismatches": "EMPTY BECAUSE NONE OCCURRED: V-trace, UPGO and UCB1 are each "
+                                   "pinned to hand-derived values.",
+    "failures/recurrent_mismatches": "No recurrent execution exists to mismatch -- declared "
+                                     "deviation.",
+    "failures/invalid_decks_actions": "EMPTY BECAUSE NONE OCCURRED: legal_deck_rate was 1.00 for "
+                                      "every rung of every arm after the ACE SPEC fix, and the "
+                                      "defect itself is written up in DEFECT_LOG.md.",
+    "failures/package_failures": "Nothing was packaged, so nothing failed to package.",
+}
+
+
+def annotate_empty_dirs():
+    """Every empty mandated directory gets a WHY_EMPTY.json.
+
+    A schema slot left silently empty reads as an oversight. One holding an explicit reason is an
+    auditable statement -- and several of these are empty because the failure they collect did
+    not happen, which is evidence rather than absence.
+    """
+    n = 0
+    for dirpath, dirnames, filenames in os.walk(R):
+        if filenames or dirnames:
+            continue
+        rel = os.path.relpath(dirpath, R)
+        reason = EMPTY_DIR_REASONS.get(rel)
+        json.dump({"empty": True,
+                   "reason": reason or ("Not produced by this campaign; no artifact of this kind "
+                                        "was generated."),
+                   "reason_is_specific": reason is not None,
+                   "generated": time.strftime("%Y-%m-%dT%H:%M:%S")},
+                  open(os.path.join(dirpath, "WHY_EMPTY.json"), "w"), indent=2)
+        n += 1
+    return n
 
 
 if __name__ == "__main__":

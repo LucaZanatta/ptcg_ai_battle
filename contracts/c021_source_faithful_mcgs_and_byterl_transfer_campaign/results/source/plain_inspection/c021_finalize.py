@@ -363,9 +363,16 @@ def main(argv=None):
     if not a.skip_archive:
         os.makedirs(os.path.join(R, "source"), exist_ok=True)
         head = sh(["git", "rev-parse", "HEAD"]).strip()
-        arc = os.path.join(R, "source", "final_git_archive.tar.gz")
-        subprocess.run(["git", "archive", "--format=tar.gz", "-o", arc, head],
-                       cwd=_REPO, capture_output=True, timeout=600)
+        # A focused archive, NOT the whole tracked repo: `git archive` of everything at this
+        # commit exceeded 9.9 GB because c018-c021 results include compressed raw-game corpora.
+        # The focused zip carries every c021 source file from the same commit, which is what the
+        # canonical-source requirement is actually for.
+        arc = os.path.join(R, "source", "c021_focused_source.zip")
+        listed = [f for f in sh(["git", "ls-files"]).splitlines()
+                  if "c021" in f and f.split("/")[0] in ("starter_kit", "tools", "tests")]
+        if listed:
+            subprocess.run(["git", "archive", "--format=zip", "-o", arc, head] + listed,
+                           cwd=_REPO, capture_output=True, timeout=600)
         # plain inspection copies of the c021 sources, from the SAME commit
         pi = os.path.join(R, "source", "plain_inspection")
         os.makedirs(pi, exist_ok=True)
@@ -384,6 +391,12 @@ def main(argv=None):
                 fh.write(f"{hashes[k]}  {k}\n")
         json.dump({"head": head, "files": sorted(hashes),
                    "archive": os.path.basename(arc),
+                   "full_repo_archive": {
+                       "produced": False,
+                       "reason": ("git archive of the whole tracked repo exceeded 9.9 GB; the "
+                                  "focused archive carries every c021 source file from the same "
+                                  "commit and each is hashed"),
+                       "reproduce": f"git archive --format=tar.gz -o <out> {head}"},
                    "method": ("git archive from the exact final commit, and plain inspection "
                               "copies exported from that same commit with `git show` -- not from "
                               "the mutable working tree")},

@@ -1,5 +1,5 @@
 {
-  "head": "0d20cb563e28bc096007a6639b20660bdeb506f2",
+  "head": "2d24d90d40171b13403874ca6a21f4d902dc9e85",
   "files": [
     "starter_kit/c021_byterl_actor.py",
     "starter_kit/c021_byterl_deck.py",
@@ -28,7 +28,7 @@
   "full_repo_archive": {
     "produced": false,
     "reason": "git archive of the whole tracked repo exceeded 9.9 GB; the focused archive carries every c021 source file from the same commit and each is hashed",
-    "reproduce": "git archive --format=tar.gz -o <out> 0d20cb563e28bc096007a6639b20660bdeb506f2"
+    "reproduce": "git archive --format=tar.gz -o <out> 2d24d90d40171b13403874ca6a21f4d902dc9e85"
   },
   "method": "git archive from the exact final commit, and plain inspection copies exported from that same commit with `git show` -- not from the mutable working tree"
 }

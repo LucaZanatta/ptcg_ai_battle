@@ -350,16 +350,27 @@ def main(argv=None):
     # ---------------------------------------------------------------- next action
     w("## 10. Exactly one next action")
     w("")
-    if tr.get("status") in ("FAIL", "NOT_RUN"):
-        w("**Train a ByteRL checkpoint that measurably separates from the B0 floor, then re-run "
-          "the transfer arms against it.** Every other question in this contract is answered; "
-          "the transfer result is the only one whose answer is currently *unknown* rather than "
-          "*negative*, and it is unknown for a single identifiable reason — the checkpoint the "
-          "arms query never learned. Nothing else should be attempted until that is fixed, "
-          "because no transfer conclusion drawn from a near-random prior is worth recording.")
-    else:
-        w("**Package and submit the retained transfer candidate**, then re-measure the field "
-          "over a fresh panel before any champion claim.")
+    w("**Add root-level multi-determinization to MCGS: run K independent `search_begin` sessions "
+      "per decision and aggregate the root statistics across them, as an explicitly controlled "
+      "arm against the single-determinization port.**")
+    w("")
+    w("This is chosen over the obvious alternative — train a ByteRL checkpoint that separates "
+      "from the floor, then re-run transfer — because it addresses the one failure mechanism "
+      "this campaign actually *measured*. The search resolves its own rollouts to a win about "
+      "96% of the time while winning about 11% of its games, because every simulation explores "
+      "one sampled world (`failures/FINDING_single_determinization_overconfidence.md`). A better "
+      "prior would still be evaluated inside a searcher that is confidently optimising a world "
+      "that did not happen, so the transfer question cannot be answered cleanly until this is.")
+    w("")
+    w("The API already permits it: `search_begin` accepts a fresh determinization on each call, "
+      "and Probe 2 confirmed 8 of 8 distinct successors from independent determinizations. It is "
+      "also what `DeterminizationNumber = 200` does in the reference, which is why the "
+      "overconfidence is safe there and not here.")
+    w("")
+    w("One methodological change should ride along, because without it no result is "
+      "attributable: **budget the search by simulation count rather than wall clock.** Two runs "
+      "of an identical configuration differed by 6.4 points, and a time-budgeted search is not "
+      "reproducible by construction. Measure latency separately.")
     w("")
 
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
