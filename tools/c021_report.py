@@ -149,26 +149,36 @@ def main(argv=None):
     # `competitive` and `transfer_T0_control` are the SAME configuration -- the source port with
     # every transfer switch off. Reporting whichever scored higher would be selection on exactly
     # the run-to-run noise this campaign measured, so they are POOLED.
+    def eligible(name: str, s: Dict[str, Any]) -> bool:
+        if s.get("SUPERSEDED"):
+            return False
+        if not s.get("manual_coin_contexts_are_coin_head_only", True):
+            return False
+        role = s.get("role")
+        if role is None:      # pre-role runs: fall back to the explicit pooled pair only
+            return name.replace("_summary.json", "") in ("competitive", "transfer_T0_control")
+        if role == "competitive":
+            return True
+        # the T0 control shares the transfer harness but uses no prior, so it measures the
+        # standalone port and is pooled with `competitive`
+        return role == "transfer" and s.get("transfer_arm") == "T0_control"
+
     pool_names = ("competitive_summary.json", "transfer_T0_control_summary.json")
     pool_k, pool_n = 0.0, 0
     for nm in pool_names:
         d = mcgs.get(nm)
-        if d and d.get("field_score") is not None and not d.get("SUPERSEDED"):
+        if d and d.get("field_score") is not None and eligible(nm, d):
             pool_k += d["field_score"] * (d.get("completed") or 0)
             pool_n += int(d.get("completed") or 0)
 
+    # ALLOW-list, not a blocklist. A blocklist enumerates what to exclude and is wrong the
+    # moment a new diagnostic tag appears -- `scale_w2`, an 11-game worker-scaling probe, became
+    # the best-scoring eligible candidate for the headline MCGS result under the old rule.
+    # A run qualifies only if it explicitly declares itself competitive.
     best_mcgs, best_name = None, None
     for name, s in mcgs.items():
-        if name.startswith(("a4_", "legal_smoke", "smoke")):
+        if not eligible(name, s):
             continue
-        if s.get("SUPERSEDED"):
-            continue          # pre-COIN_HEAD runs are diagnostic only, never a competitive read
-        if not s.get("manual_coin_contexts_are_coin_head_only", True):
-            continue
-        if s.get("transfer_arm") and s.get("transfer_arm") != "T0_control":
-            continue      # a transfer arm is not the standalone MCGS competitive candidate
-        if s.get("manual_coin") is False:
-            continue      # the no-chance-node ablation is not a competitive candidate
         fs = s.get("field_score")
         if fs is not None and (best_mcgs is None or fs > best_mcgs):
             best_mcgs, best_name = fs, name

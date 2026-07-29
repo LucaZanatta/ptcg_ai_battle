@@ -476,3 +476,30 @@ def test_sample_width_and_damping_are_configurable_not_hardcoded():
     assert ch.is_fully_expanded(0, sample_width=2) is True       # honours an override
     assert G.Node.reduce_function(24, 1) == 12
     assert G.Node.reduce_function(24, 1, damping=4.0) == 6       # honours an override
+
+
+# ------------------------------------------------------------------ evidence hygiene
+def test_diagnostic_runs_can_never_become_the_competitive_candidate():
+    """Regression: throughput probes and ablations write into the same evaluations directory.
+
+    Under the old blocklist, `scale_w2` -- an 11-game worker-scaling probe -- was the
+    best-scoring eligible run and would have been reported as the headline MCGS result. So would
+    `ablation_nosearch`, a control that deliberately never searches. Eligibility is now an
+    ALLOW-list keyed on an explicit `role`, so a new diagnostic tag cannot silently qualify.
+    """
+    import importlib.util
+    import os as _os
+    root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+    spec = importlib.util.spec_from_file_location(
+        "rep", _os.path.join(root, "tools", "c021_report.py"))
+    rep = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rep)
+    src = open(_os.path.join(root, "tools", "c021_report.py")).read()
+    assert "def eligible(" in src, "eligibility must be an explicit predicate"
+    assert 'role == "competitive"' in src, "eligibility must key on an explicit role"
+    # and the runner must stamp a role on every summary it writes
+    runner = open(_os.path.join(root, "tools", "c021_mcgs_run.py")).read()
+    assert '"role":' in runner
+    for tag in ("scale_", "boundtest", "clocktest", "drainfix"):
+        assert tag in runner, f"{tag} must be classified as diagnostic by the runner"
+    assert 'else "ablation" if a.tag.startswith("ablation")' in runner

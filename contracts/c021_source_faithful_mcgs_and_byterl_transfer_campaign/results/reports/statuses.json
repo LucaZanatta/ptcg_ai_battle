@@ -34,6 +34,46 @@
         "term_root_loss": 35520
       },
       {
+        "run": "ablation_nosearch_summary.json",
+        "games": 40,
+        "completed": 40,
+        "abandoned": 0,
+        "field_score": 0.0,
+        "field_score_bounds_if_abandoned_counted": [
+          0.0,
+          0.0
+        ],
+        "sims_per_decision": 0.0,
+        "chance_nodes_created": 0,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 0,
+        "dummy_edges": 0,
+        "term_root_win": null,
+        "term_root_loss": null
+      },
+      {
+        "run": "ablation_search_summary.json",
+        "games": 40,
+        "completed": 34,
+        "abandoned": 6,
+        "field_score": 0.1176,
+        "field_score_bounds_if_abandoned_counted": [
+          0.1,
+          0.25
+        ],
+        "sims_per_decision": 739.4,
+        "chance_nodes_created": 120,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 7309,
+        "dummy_edges": 137,
+        "term_root_win": 561623,
+        "term_root_loss": 39851
+      },
+      {
         "run": "competitive_summary.json",
         "games": 40,
         "completed": 34,
@@ -375,7 +415,7 @@
   },
   "BYTERL_SCALE": {
     "status": "COMPUTE_LIMITED",
-    "total_games_played": 19008,
+    "total_games_played": 34368,
     "paper_reference": "distributed fleet, millions of games, days of wall clock",
     "achieved_fraction_note": "Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.",
     "permitted_reductions_only": [
@@ -429,5 +469,5 @@
     "both_methods_implemented_and_executed": true,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-29T08:38:19"
+  "generated": "2026-07-29T09:18:34"
 }

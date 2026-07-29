@@ -1,0 +1,25 @@
+{
+  "search": {
+    "field_score": 0.1176,
+    "completed": 34,
+    "sims_per_decision": 739.4,
+    "wilson95": [
+      0.0467,
+      0.2662
+    ],
+    "wall_clock_s": 383.1
+  },
+  "no_search": {
+    "field_score": 0.0,
+    "completed": 40,
+    "searched_decisions": 40,
+    "match_clock_exhausted_decisions": 120,
+    "wilson95": [
+      -0.0,
+      0.0876
+    ],
+    "wall_clock_s": 13.6
+  },
+  "delta": 0.1176,
+  "interpretation": "The no-search control plays the same agent with the match clock set to zero, so it never searches and takes END_TURN when available. A positive delta means executed search actions helped; a negative one means they HURT, which is the question DECISION_RULES 5 requires answered explicitly. Read it against the measured reproducibility bound, not against zero."
+}
