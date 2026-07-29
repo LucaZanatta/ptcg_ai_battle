@@ -432,3 +432,47 @@ def test_obliged_payload_takes_every_required_option():
     opts = ["a", "b", "c"]
     combo = list(range(min(LG.select_bounds(Sel())[0], len(opts))))
     assert combo == [0, 1, 2], "an obliged select must take every option it requires"
+
+
+# ------------------------------------------------------------------ source turn cap
+class _TurnObs:
+    def __init__(self, turn):
+        class _C:
+            pass
+        self.current = _C()
+        self.current.turn = turn
+
+
+def test_player_turn_reads_through_current():
+    assert S.MCGS._player_turn(_TurnObs(0)) == 0
+    assert S.MCGS._player_turn(_TurnObs(89)) == 89
+
+    class Bare:
+        pass
+    assert S.MCGS._player_turn(Bare()) == 0
+
+
+def test_turn_cap_constant_and_trigger_match_the_source():
+    """`PlayUntilTerminal`: `if ((game.Turn + 1) / 2 == 45) return 0.0;`
+
+    The counter for this existed from the start while the cap itself did not, so a reading of 0
+    looked like "the cap never fired" when nothing could have fired it. The source's `==` is
+    reproduced rather than "fixed" to `>=` (FIDELITY_RULES 5) -- a port that silently widened it
+    would cut rollouts the reference would have let run.
+    """
+    assert G.ROLLOUT_TURN_CAP == 45
+    fires = [t for t in range(0, 200) if (t + 1) // 2 == G.ROLLOUT_TURN_CAP]
+    assert fires == [89, 90], f"the cap must trigger on plies 89-90, got {fires}"
+    # and it is an equality test, so a rollout that jumps past the window is NOT cut
+    assert (91 + 1) // 2 != G.ROLLOUT_TURN_CAP
+
+
+def test_sample_width_and_damping_are_configurable_not_hardcoded():
+    """Both were written into every run's config JSON while the code read module constants."""
+    ch = G.Node(is_random=True)
+    for i in range(3):
+        G.Edge.connect(ch, G.Node(), i)          # 3 samples
+    assert ch.is_fully_expanded(0) is False                      # default width 24
+    assert ch.is_fully_expanded(0, sample_width=2) is True       # honours an override
+    assert G.Node.reduce_function(24, 1) == 12
+    assert G.Node.reduce_function(24, 1, damping=4.0) == 6       # honours an override

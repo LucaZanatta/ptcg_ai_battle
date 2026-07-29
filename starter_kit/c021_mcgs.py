@@ -68,7 +68,12 @@ class MCGS:
         self.transfer_arm = dict(transfer_arm or {})
         self.legal_corrected = (cfg.get("branch") == "MCGS_2019_PTCG_LEGAL_CORRECTED")
         # A5: statistics carried in from previous decisions of this match, keyed by abstraction
-        self.reuse: Optional[Dict[int, Any]] = None
+        self.reuse: Optional[Dict[Any, Any]] = None
+        # These were declared in REFERENCE_CFG and written into every run's config JSON while
+        # the code read the module constants directly -- so a run that configured them would
+        # have been silently ignored while its manifest claimed otherwise.
+        self.sample_width = int(cfg.get("sample_width", G.SAMPLE_WIDTH))
+        self.damping_parameter = float(cfg.get("damping_parameter", G.DAMPING_PARAMETER))
         self.traces: List[Dict[str, Any]] = []
 
     # ---------------------------------------------------------------- lifecycle
@@ -154,6 +159,15 @@ class MCGS:
             self.stats[k] = self.stats.get(k, 0) + 1
         self.stats["max_depth"] = max(self.stats["max_depth"], depth)
         return n
+
+    @staticmethod
+    def _player_turn(obs) -> int:
+        """The engine's ply counter, from `observation.current.turn`."""
+        st = getattr(obs, "current", None)
+        if st is None:
+            st = obs
+        v = getattr(st, "turn", None)
+        return 0 if v is None else int(v)
 
     @staticmethod
     def _your_index(obs, default: int = 0) -> int:
@@ -348,7 +362,8 @@ class MCGS:
             if time.monotonic() >= deadline:
                 self.stats["time_budget_exhausted"] += 1
                 return node
-            if not node.is_fully_expanded(chance_traversed):
+            if not node.is_fully_expanded(chance_traversed, self.sample_width,
+                                          self.damping_parameter):
                 nxt, cont = self.expand(node, root_player, start_turn)
                 if nxt is None:
                     return node
@@ -404,6 +419,14 @@ class MCGS:
                 self.stats["rollout_aborts"] += 1
                 self._release_rollout(prev_rollout_sid)
                 return -1.0
+            # `PlayUntilTerminal`: `if ((game.Turn + 1) / 2 == 45) return 0.0;`
+            # The counter for this existed from the start while the cap itself did not, so a
+            # reading of 0 looked like "the cap never fired" when nothing could have fired it.
+            # Reproduced with the source's `==` rather than a `>=` "fix" (FIDELITY_RULES 5).
+            if (self._player_turn(obs) + 1) // 2 == G.ROLLOUT_TURN_CAP:
+                self.stats["rollout_turn_caps"] += 1
+                self._release_rollout(prev_rollout_sid)
+                return 0.0
             sel = getattr(obs, "select", None)
             if sel is None:
                 self.stats["rollout_terminals"] = self.stats.get("rollout_terminals", 0) + 1

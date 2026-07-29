@@ -31,7 +31,13 @@ REFERENCE_CFG = {
     "uct_constant": G.UCT_CONSTANT,
     "sample_width": G.SAMPLE_WIDTH,
     "damping_parameter": G.DAMPING_PARAMETER,
-    "determinization_number": G.DETERMINIZATION_NUMBER,
+    # NOT USED. The source aggregates over DeterminizationNumber independent worlds per
+    # decision; this API fixes hidden information at search_begin and cannot re-determinize an
+    # interior node, so the port searches ONE world per decision. Kept as a declared constant so
+    # the gap is visible in every config dump rather than absent from it -- and it is the
+    # measured cause of the search's 96%-predicted-wins overconfidence.
+    "determinization_number_SOURCE_VALUE_NOT_APPLIED": G.DETERMINIZATION_NUMBER,
+    "determinizations_per_decision": 1,
     "first_move_seconds": G.FIRST_MOVE_SECONDS,
     "continuing_move_seconds": G.CONTINUING_MOVE_SECONDS,
     "ucd_d1": 1, "ucd_d2": 0,
@@ -168,9 +174,17 @@ class MCGSAgent:
             # step and NO chance node can exist. With it, they surface as selects that
             # `_make_node` marks random. Configurable so the no-chance-node arm stays runnable
             # as an ablation rather than being lost.
-            st = A.search_begin(o, det.your_deck, det.your_prize, det.opponent_deck,
-                                det.opponent_prize, det.opponent_hand, det.opponent_active,
-                                manual_coin=bool(self.cfg.get("manual_coin", True)))
+            try:
+                st = A.search_begin(o, det.your_deck, det.your_prize, det.opponent_deck,
+                                    det.opponent_prize, det.opponent_hand, det.opponent_active,
+                                    manual_coin=bool(self.cfg.get("manual_coin", True)))
+            except Exception:
+                # `begin_errors` was declared in new_stats() and set by nothing, so a reading of
+                # 0 meant "nothing could ever set this", not "no failures". A determinization
+                # the engine rejects is a real and diagnosable event; it is counted and the
+                # decision falls back to a legal unsearched move.
+                self.stats["begin_errors"] += 1
+                raise
             search._track(st.searchId)
             root_player = S.MCGS._your_index(o, 0)
             root = search._make_node(st, 0, None, root_player, 0)
