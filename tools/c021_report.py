@@ -131,11 +131,27 @@ def main(argv=None):
             "dummy_edges": s.get("dummy_edges"),
             "term_root_win": s.get("term_root_win"), "term_root_loss": s.get("term_root_loss"),
         })
-    # `fctrl_`/`flearn_` are the FINAL ladder, measured end to end on one code version.
-    # `ctrl_`/`learn_` straddled the sample_select fix and are retained only as history.
-    FINAL_PFX = ("fctrl_", "flearn_")
-    have_final = any(k.startswith(FINAL_PFX) for k in curves)
-    ladder_pfx = FINAL_PFX if have_final else ("ctrl_", "learn_")
+    # Ladder generations, MOST AUTHORITATIVE FIRST. A hardcoded pair silently omitted a whole
+    # generation: the prefix was fixed at ("fctrl_", "flearn_") while the scaled campaign wrote
+    # `big_ctrl_*` / `big_learn_*`, so 15,360 games per rung were invisible to every status and
+    # the report would have kept presenting the 768-game ladder as the result.
+    #
+    #   big_*   scaled campaign, on the fixed option encoder
+    #   f*      first single-code-version ladder, 768 games/rung, blind energy features
+    #   bare    earliest ladder, straddled the sample_select fix
+    LADDER_GENERATIONS = [
+        (("big_ctrl_", "big_learn_"), "scaled campaign (15360 games/rung, fixed encoder)"),
+        (("fctrl_", "flearn_"), "768 games/rung, single code version, pre-encoder-fix"),
+        (("ctrl_", "learn_"), "earliest ladder; straddles the sample_select fix"),
+    ]
+    ladder_pfx, ladder_desc = ("fctrl_", "flearn_"), "none found"
+    for pfx, desc in LADDER_GENERATIONS:
+        # a generation counts only once it has a rung that actually trained
+        if any(k.startswith(pfx) and isinstance(curves[k], list)
+               and sum(int(r.get("updates") or 0) for r in curves[k]) > 0 for k in curves):
+            ladder_pfx, ladder_desc = pfx, desc
+            break
+    have_final = ladder_pfx[0].startswith(("big_", "fctrl_"))
     ladder_done = sorted({k.replace("_curve.json", "") for k in curves
                           if k.startswith(ladder_pfx)})
     clean = all((r.get("step_errors") or 0) == 0 and
@@ -271,9 +287,10 @@ def main(argv=None):
         "rungs_run": have_rungs,
         "training_runs_with_weight_updates": weights_changed,
         "end_to_end_construction_and_battle": e2e,
-        "ladder_version": ("final, single code version" if have_final else
-                           "MIXED CODE VERSIONS -- straddles the sample_select fix; "
-                           "superseded by the fctrl_/flearn_ ladder"),
+        "ladder_version": ladder_desc,
+        "ladder_prefix": list(ladder_pfx),
+        "ladder_generations_present": [d for p, d in LADDER_GENERATIONS
+                                       if any(k.startswith(p) for k in curves)],
         "reasons": bm_reasons,
         "declared_deviation": ("Actor-learner execution is SYNCHRONOUS (actors fill a batch, "
                                "then the learner updates), not the papers' decoupled recurrent "

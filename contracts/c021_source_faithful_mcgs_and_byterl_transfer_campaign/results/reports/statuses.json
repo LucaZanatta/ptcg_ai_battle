@@ -275,16 +275,8 @@
       }
     ],
     "byterl_runs": [
-      "fctrl_b0",
-      "fctrl_b1",
-      "fctrl_b1_5",
-      "fctrl_b2",
-      "fctrl_b3",
-      "flearn_b0",
-      "flearn_b1",
-      "flearn_b1_5",
-      "flearn_b2",
-      "flearn_b3"
+      "big_ctrl_b1_5",
+      "big_ctrl_b2"
     ],
     "no_step_errors_and_no_coin_ucb_selection": true
   },
@@ -318,94 +310,48 @@
       "DECK_ENERGY_CAP_IS_STRUCTURAL": "PASS"
     },
     "rungs_run": [
-      "b0",
-      "b1",
-      "b1_5",
-      "b2",
-      "b3"
+      "ctrl_b1_5",
+      "ctrl_b2"
     ],
     "training_runs_with_weight_updates": [
       {
-        "run": "fctrl_b1_5",
-        "updates": 768,
-        "iterations": 16,
+        "run": "big_ctrl_b1_5",
+        "updates": 15360,
+        "iterations": 120,
         "actor_errors": 0,
         "actor_error_rate": null,
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.0,
-        "last_win_rate": 0.0833,
-        "best_win_rate": 0.0833
+        "first_win_rate": 0.0391,
+        "last_win_rate": 0.0859,
+        "best_win_rate": 0.1719
       },
       {
-        "run": "fctrl_b2",
-        "updates": 768,
-        "iterations": 16,
+        "run": "big_ctrl_b2",
+        "updates": 15360,
+        "iterations": 120,
         "actor_errors": 0,
         "actor_error_rate": null,
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.0417,
-        "last_win_rate": 0.0833,
-        "best_win_rate": 0.0833
-      },
-      {
-        "run": "fctrl_b3",
-        "updates": 768,
-        "iterations": 16,
-        "actor_errors": 0,
-        "actor_error_rate": null,
-        "opponent": "frozen self-play checkpoints (OSFP)",
-        "win_rate_is_self_play": true,
-        "comparable_to_field": false,
-        "first_win_rate": 0.4167,
-        "last_win_rate": 0.4792,
-        "best_win_rate": 0.625
-      },
-      {
-        "run": "flearn_b1_5",
-        "updates": 768,
-        "iterations": 16,
-        "actor_errors": 0,
-        "actor_error_rate": null,
-        "opponent": "scripted field",
-        "win_rate_is_self_play": false,
-        "comparable_to_field": true,
-        "first_win_rate": 0.1042,
-        "last_win_rate": 0.0208,
-        "best_win_rate": 0.1042
-      },
-      {
-        "run": "flearn_b2",
-        "updates": 768,
-        "iterations": 16,
-        "actor_errors": 0,
-        "actor_error_rate": null,
-        "opponent": "scripted field",
-        "win_rate_is_self_play": false,
-        "comparable_to_field": true,
-        "first_win_rate": 0.0417,
-        "last_win_rate": 0.0208,
-        "best_win_rate": 0.1667
-      },
-      {
-        "run": "flearn_b3",
-        "updates": 768,
-        "iterations": 16,
-        "actor_errors": 0,
-        "actor_error_rate": null,
-        "opponent": "frozen self-play checkpoints (OSFP)",
-        "win_rate_is_self_play": true,
-        "comparable_to_field": false,
-        "first_win_rate": 0.5833,
-        "last_win_rate": 0.4167,
-        "best_win_rate": 0.625
+        "first_win_rate": 0.0391,
+        "last_win_rate": 0.0859,
+        "best_win_rate": 0.125
       }
     ],
     "end_to_end_construction_and_battle": true,
-    "ladder_version": "final, single code version",
+    "ladder_version": "scaled campaign (15360 games/rung, fixed encoder)",
+    "ladder_prefix": [
+      "big_ctrl_",
+      "big_learn_"
+    ],
+    "ladder_generations_present": [
+      "scaled campaign (15360 games/rung, fixed encoder)",
+      "768 games/rung, single code version, pre-encoder-fix",
+      "earliest ladder; straddles the sample_select fix"
+    ],
     "reasons": [
       "actor-learner execution is synchronous, not the papers' decoupled recurrent actor-learner (declared deviation against a named requirement)"
     ],
@@ -415,7 +361,7 @@
   },
   "BYTERL_SCALE": {
     "status": "COMPUTE_LIMITED",
-    "total_games_played": 34368,
+    "total_games_played": 49728,
     "paper_reference": "distributed fleet, millions of games, days of wall clock",
     "achieved_fraction_note": "Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.",
     "permitted_reductions_only": [
@@ -469,5 +415,5 @@
     "both_methods_implemented_and_executed": true,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-29T09:18:34"
+  "generated": "2026-07-29T10:55:56"
 }
