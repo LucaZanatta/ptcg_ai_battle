@@ -1,0 +1,24 @@
+{
+  "id": "T04",
+  "probe": "One-change invariant",
+  "status": "PASS",
+  "evidence": {
+    "arms": {
+      "T0_control": {
+        "expansion_prior": false,
+        "rollout_policy": false
+      },
+      "T1_policy_prior": {
+        "expansion_prior": true,
+        "rollout_policy": false
+      },
+      "T2_rollout_policy": {
+        "expansion_prior": false,
+        "rollout_policy": true
+      }
+    },
+    "no_uncontrolled_hybrid": true,
+    "no_third_method": true
+  },
+  "generated": "2026-07-29T08:03:49"
+}

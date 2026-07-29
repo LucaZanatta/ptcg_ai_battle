@@ -1,0 +1,12 @@
+{
+  "id": "M09",
+  "probe": "Category filters",
+  "status": "PASS",
+  "evidence": {
+    "branch": "MCGS_2019_PTCG_LEGAL_CORRECTED only",
+    "legal_filter_activations": null,
+    "legal_filter_pruned": null,
+    "semantics": "SelectContext valence (DAMAGE/DAMAGE_COUNTER/HEAL/REMOVE_DAMAGE_COUNTER) x playerIndex ownership; never a name match and never inferred from AreaType, which enumerates the ZONE and carries no ownership"
+  },
+  "generated": "2026-07-29T08:03:47"
+}

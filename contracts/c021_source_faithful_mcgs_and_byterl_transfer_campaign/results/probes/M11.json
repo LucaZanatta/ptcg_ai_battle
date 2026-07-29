@@ -1,0 +1,34 @@
+{
+  "id": "M11",
+  "probe": "Rollout/terminal payoff",
+  "status": "PASS",
+  "evidence": {
+    "rollout_terminal_rate": {
+      "transfer_T1_policy_prior": 1.0,
+      "ablation_nochance": 1.0,
+      "legal_corrected": 1.0,
+      "transfer_T2_rollout_policy": 1.0,
+      "transfer_T0_control": 1.0,
+      "competitive": 1.0
+    },
+    "term_root_win": {
+      "transfer_T1_policy_prior": 897262,
+      "ablation_nochance": 348702,
+      "legal_corrected": 909910,
+      "transfer_T2_rollout_policy": 709136,
+      "transfer_T0_control": 173162,
+      "competitive": 208101
+    },
+    "term_root_loss": {
+      "transfer_T1_policy_prior": 28757,
+      "ablation_nochance": 35520,
+      "legal_corrected": 35849,
+      "transfer_T2_rollout_policy": 7926,
+      "transfer_T0_control": 39459,
+      "competitive": 39731
+    },
+    "no_leaf_evaluator": true,
+    "note": "Uniform-random rollout to a REAL terminal; the winner is resolved to a player index and compared to the root, never read from the terminal observation's owner."
+  },
+  "generated": "2026-07-29T08:03:47"
+}

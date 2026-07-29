@@ -1,0 +1,12 @@
+{
+  "id": "M14",
+  "probe": "Known-defect reproduction",
+  "status": "PASS",
+  "evidence": {
+    "documented_limitation": "fidelity/A4_chance_node_api_constraint.md",
+    "measured": "the search resolves ~96% of its rollouts to a root win while winning ~11% of its games, because every simulation explores ONE determinization",
+    "finding": "failures/FINDING_single_determinization_overconfidence.md",
+    "note": "This is the source's information-memory limitation as it manifests here: the reference compensates with DeterminizationNumber = 200, which this API's root-only determinization prevents. Reproduced and measured, not fixed."
+  },
+  "generated": "2026-07-29T08:03:47"
+}

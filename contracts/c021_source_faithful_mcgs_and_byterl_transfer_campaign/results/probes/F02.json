@@ -1,0 +1,11 @@
+{
+  "id": "F02",
+  "probe": "One repair pass",
+  "status": "PASS",
+  "evidence": {
+    "defect_log": "failures/DEFECT_LOG.md",
+    "defects": 14,
+    "note": "every defect is documented with what it corrupted and the check that now fails if the fix is reverted; no hidden second cycle"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

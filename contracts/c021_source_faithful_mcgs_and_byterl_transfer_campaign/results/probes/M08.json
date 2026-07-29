@@ -1,0 +1,17 @@
+{
+  "id": "M08",
+  "probe": "Atomic-action graph reuse",
+  "status": "PASS",
+  "evidence": {
+    "graph_reuse_reroots": {
+      "transfer_T1_policy_prior": 5289,
+      "ablation_nochance": 4938,
+      "legal_corrected": 5961,
+      "transfer_T2_rollout_policy": 1532,
+      "transfer_T0_control": 6084,
+      "competitive": 6193
+    },
+    "note": "The API invalidates engine states at search_end and interior observations carry no search_begin_input, so what survives re-rooting is the statistics keyed by state abstraction -- which is what DoNotRemoveUnselectedNodes preserves."
+  },
+  "generated": "2026-07-29T08:03:47"
+}

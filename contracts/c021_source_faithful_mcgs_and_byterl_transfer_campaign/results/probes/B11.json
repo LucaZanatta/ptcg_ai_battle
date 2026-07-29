@@ -1,0 +1,21 @@
+{
+  "id": "B11",
+  "probe": "V-trace numerical fixture",
+  "status": "PASS",
+  "evidence": {
+    "pytest": {
+      "node": "tests/test_c021_byterl_learn.py",
+      "returncode": 0,
+      "tail": [
+        "17 passed in 0.87s"
+      ]
+    },
+    "hand_derived": [
+      "on-policy with zero baselines equals the Monte-Carlo return",
+      "fixed point when the value is already correct",
+      "ratios clip at rho_bar",
+      "advantage uses vs_{t+1}, not vs_t"
+    ]
+  },
+  "generated": "2026-07-29T08:03:49"
+}

@@ -1,0 +1,341 @@
+{
+  "generated": "2026-07-29T08:03:49",
+  "total": 55,
+  "counts": {
+    "PASS": 45,
+    "NOT_RUN": 4,
+    "NOT_APPLICABLE": 6
+  },
+  "probes": [
+    {
+      "id": "P01",
+      "probe": "MCGS official archive",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "P02",
+      "probe": "MCGS paper/source map",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "P03",
+      "probe": "ByteRL source search",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "P04",
+      "probe": "License boundary",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "P00",
+      "probe": "Parent/control freeze",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M01",
+      "probe": "Abstraction fixtures",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M02",
+      "probe": "DAG transposition",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M03",
+      "probe": "Modified UCD numerical fixture",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M04",
+      "probe": "Recursive incoming-edge update",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M05",
+      "probe": "Chance-node lifecycle",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M06",
+      "probe": "Sparse sampling",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M07",
+      "probe": "Damped sampling",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M08",
+      "probe": "Atomic-action graph reuse",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M09",
+      "probe": "Category filters",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M10",
+      "probe": "Obliged actions",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M11",
+      "probe": "Rollout/terminal payoff",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M12",
+      "probe": "Time allocation",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M13",
+      "probe": "Parallel equivalence",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M14",
+      "probe": "Known-defect reproduction",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M15",
+      "probe": "Corrected branch isolation",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "M16",
+      "probe": "Throughput scaling",
+      "status": "NOT_RUN",
+      "reason": "Scaling sweep not executed; run tools/c021_scaling.py"
+    },
+    {
+      "id": "M17",
+      "probe": "Decision-value ablation",
+      "status": "NOT_RUN",
+      "reason": "Search-vs-no-search control not executed; run tools/c021_scaling.py --ablation"
+    },
+    {
+      "id": "B01",
+      "probe": "Deck meta-environment",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B02",
+      "probe": "Shared representation",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B03",
+      "probe": "Slot/typed-state sensitivity",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B04",
+      "probe": "Dynamic option references",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B05",
+      "probe": "Autoregressive round trip",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B06",
+      "probe": "Joint log-probability",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B07",
+      "probe": "Actor recurrent replay",
+      "status": "NOT_APPLICABLE",
+      "reason": "Execution is synchronous: actors fill a batch, then the learner updates. There is no recurrent hidden state to replay, no cross-episode carry to leak, no queue to impose FIFO or producer/consumer ratios on, and no microbatch accumulation. This is the declared deviation behind BYTERL_METHOD=PARTIAL, recorded in fidelity/ADAPTATION_LEDGER.md rather than worked around."
+    },
+    {
+      "id": "B08",
+      "probe": "Episode reset",
+      "status": "NOT_APPLICABLE",
+      "reason": "Execution is synchronous: actors fill a batch, then the learner updates. There is no recurrent hidden state to replay, no cross-episode carry to leak, no queue to impose FIFO or producer/consumer ratios on, and no microbatch accumulation. This is the declared deviation behind BYTERL_METHOD=PARTIAL, recorded in fidelity/ADAPTATION_LEDGER.md rather than worked around."
+    },
+    {
+      "id": "B09",
+      "probe": "FIFO semantics",
+      "status": "NOT_APPLICABLE",
+      "reason": "Execution is synchronous: actors fill a batch, then the learner updates. There is no recurrent hidden state to replay, no cross-episode carry to leak, no queue to impose FIFO or producer/consumer ratios on, and no microbatch accumulation. This is the declared deviation behind BYTERL_METHOD=PARTIAL, recorded in fidelity/ADAPTATION_LEDGER.md rather than worked around."
+    },
+    {
+      "id": "B10",
+      "probe": "Producer/consumer balance",
+      "status": "NOT_APPLICABLE",
+      "reason": "Execution is synchronous: actors fill a batch, then the learner updates. There is no recurrent hidden state to replay, no cross-episode carry to leak, no queue to impose FIFO or producer/consumer ratios on, and no microbatch accumulation. This is the declared deviation behind BYTERL_METHOD=PARTIAL, recorded in fidelity/ADAPTATION_LEDGER.md rather than worked around."
+    },
+    {
+      "id": "B14",
+      "probe": "Effective-batch equivalence",
+      "status": "NOT_APPLICABLE",
+      "reason": "Execution is synchronous: actors fill a batch, then the learner updates. There is no recurrent hidden state to replay, no cross-episode carry to leak, no queue to impose FIFO or producer/consumer ratios on, and no microbatch accumulation. This is the declared deviation behind BYTERL_METHOD=PARTIAL, recorded in fidelity/ADAPTATION_LEDGER.md rather than worked around."
+    },
+    {
+      "id": "B11",
+      "probe": "V-trace numerical fixture",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B12",
+      "probe": "UPGO numerical/live",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B13",
+      "probe": "Improved objective",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B15",
+      "probe": "OSFP period reset",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B16",
+      "probe": "Immutable history",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B17",
+      "probe": "Mixture realization",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B18",
+      "probe": "Frozen promotion",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B19",
+      "probe": "BR0->BR3 delta audit",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B20",
+      "probe": "External generalization",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "B21",
+      "probe": "Value admission",
+      "status": "NOT_RUN",
+      "reason": "A neural value replacing the rollout return is forbidden in the primary branch by FIDELITY_RULES 3 -- it is exactly the substitution c020 made -- so no value-admission study was run and T03 is correspondingly NOT_RUN."
+    },
+    {
+      "id": "B22",
+      "probe": "Prior admission",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "T01",
+      "probe": "Parent fidelity gate",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "T02",
+      "probe": "Prior-only transfer",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "T03",
+      "probe": "Value-only transfer",
+      "status": "NOT_RUN",
+      "reason": "Forbidden in the primary branch by FIDELITY_RULES 3; see B21."
+    },
+    {
+      "id": "T04",
+      "probe": "One-change invariant",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "F01",
+      "probe": "Complete thin smoke",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "F02",
+      "probe": "One repair pass",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "F03",
+      "probe": "Identity-safe final panel",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "F04",
+      "probe": "Package/source identity",
+      "status": "NOT_APPLICABLE",
+      "reason": "No candidate cleared its registered gate, so nothing was packaged and there is no package identity to verify."
+    },
+    {
+      "id": "F05",
+      "probe": "Canonical final source",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "F06",
+      "probe": "Report consistency",
+      "status": "PASS",
+      "reason": ""
+    },
+    {
+      "id": "F07",
+      "probe": "Semantic validator",
+      "status": "PASS",
+      "reason": ""
+    }
+  ]
+}

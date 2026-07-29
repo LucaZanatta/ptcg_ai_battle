@@ -1,0 +1,10 @@
+{
+  "id": "B09",
+  "probe": "FIFO semantics",
+  "status": "NOT_APPLICABLE",
+  "evidence": {
+    "declared_deviation": "synchronous actor-learner"
+  },
+  "generated": "2026-07-29T08:03:49",
+  "reason": "Execution is synchronous: actors fill a batch, then the learner updates. There is no recurrent hidden state to replay, no cross-episode carry to leak, no queue to impose FIFO or producer/consumer ratios on, and no microbatch accumulation. This is the declared deviation behind BYTERL_METHOD=PARTIAL, recorded in fidelity/ADAPTATION_LEDGER.md rather than worked around."
+}

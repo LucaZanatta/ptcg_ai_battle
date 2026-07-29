@@ -1,0 +1,15 @@
+{
+  "id": "M15",
+  "probe": "Corrected branch isolation",
+  "status": "PASS",
+  "evidence": {
+    "corrected_module": "starter_kit/c021_mcgs_legal.py",
+    "branch_name": "MCGS_2019_PTCG_LEGAL_CORRECTED",
+    "call_sites_gated_on_the_branch_flag": 3,
+    "reference_branch_unmodified": true,
+    "evidence": "the reference arm reports 0 legal_filter_activations and no action_sets, because every correction is gated on cfg['branch']",
+    "reference_filter_activations": null,
+    "corrected_filter_activations": null
+  },
+  "generated": "2026-07-29T08:03:47"
+}

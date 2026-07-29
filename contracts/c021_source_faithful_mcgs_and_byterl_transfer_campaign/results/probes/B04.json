@@ -1,0 +1,23 @@
+{
+  "id": "B04",
+  "probe": "Dynamic option references",
+  "status": "PASS",
+  "evidence": {
+    "option_truncations": {
+      "fctrl_b2": 0,
+      "fctrl_b3": 0,
+      "fctrl_b1": 0,
+      "flearn_b2": 0,
+      "flearn_b3": 0,
+      "fctrl_b0": 0,
+      "flearn_b0": 0,
+      "flearn_b1_5": 0,
+      "fctrl_b1_5": 0,
+      "flearn_b1": 0
+    },
+    "max_options_seen": 36,
+    "cap": 128,
+    "verified": "option indices align with canonical_options across 221 selects, 0 mismatches"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

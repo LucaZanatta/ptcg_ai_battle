@@ -1,0 +1,25 @@
+{
+  "id": "M04",
+  "probe": "Recursive incoming-edge update",
+  "status": "PASS",
+  "evidence": {
+    "recursive_update_noops": {
+      "transfer_T1_policy_prior": 2316820,
+      "ablation_nochance": 33173,
+      "legal_corrected": 1421295,
+      "transfer_T2_rollout_policy": 531972,
+      "transfer_T0_control": 56462,
+      "competitive": 63645
+    },
+    "recursive_reward_updates": {
+      "transfer_T1_policy_prior": 0,
+      "ablation_nochance": 0,
+      "legal_corrected": 0,
+      "transfer_T2_rollout_policy": 0,
+      "transfer_T0_control": 0,
+      "competitive": 0
+    },
+    "note": "At the source default UCDParams(1, 0) RecursiveUpdate is INERT. The noop counter proves the guard is reached and returns, which is the source behaviour reproduced rather than 'fixed' (FIDELITY_RULES 5)."
+  },
+  "generated": "2026-07-29T08:03:47"
+}

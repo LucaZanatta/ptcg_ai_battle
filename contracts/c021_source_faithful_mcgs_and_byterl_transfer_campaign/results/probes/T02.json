@@ -1,0 +1,27 @@
+{
+  "id": "T02",
+  "probe": "Prior-only transfer",
+  "status": "PASS",
+  "evidence": {
+    "arms": {
+      "transfer_T1_policy_prior": {
+        "field_score": 0.1562,
+        "completed": 32,
+        "sims_per_decision": 884.6
+      },
+      "transfer_T2_rollout_policy": {
+        "field_score": 0.1053,
+        "completed": 38,
+        "sims_per_decision": 530.3
+      },
+      "transfer_T0_control": {
+        "field_score": 0.0833,
+        "completed": 36,
+        "sims_per_decision": 158.7
+      }
+    },
+    "identical_budget": true,
+    "only_prior_differs": "T1 replaces Node.TreePolicy's uniform draw over untested actions; the UCB1 selection formula is untouched"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "M01",
+  "probe": "Abstraction fixtures",
+  "status": "PASS",
+  "evidence": {
+    "pytest": {
+      "node": "tests/test_c021_mcgs_fidelity.py",
+      "returncode": 0,
+      "tail": [
+        "25 passed in 0.08s"
+      ]
+    },
+    "note": "hash combiner and field order preserved; full structural equality so a collision cannot fuse distinct states"
+  },
+  "generated": "2026-07-29T08:03:47"
+}

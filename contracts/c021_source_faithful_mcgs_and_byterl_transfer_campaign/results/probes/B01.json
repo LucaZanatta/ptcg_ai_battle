@@ -1,0 +1,29 @@
+{
+  "id": "B01",
+  "probe": "Deck meta-environment",
+  "status": "PASS",
+  "evidence": {
+    "pytest": {
+      "node": "tests/test_c021_deck.py",
+      "returncode": 0,
+      "tail": [
+        "43 passed in 0.14s"
+      ]
+    },
+    "legal_deck_rate": {
+      "fctrl_b2": 1.0,
+      "fctrl_b3": 1.0,
+      "fctrl_b1": 1.0,
+      "flearn_b2": 1.0,
+      "flearn_b3": 1.0,
+      "fctrl_b0": 1.0,
+      "flearn_b0": 1.0,
+      "flearn_b1_5": 1.0,
+      "fctrl_b1_5": 1.0,
+      "flearn_b1": 1.0
+    },
+    "construction_steps_per_episode": 60,
+    "episode": "construct -> validate -> battle -> terminal reward reaching BOTH stages"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "F03",
+  "probe": "Identity-safe final panel",
+  "status": "PASS",
+  "evidence": {
+    "protocol": "final_panel/registered_protocol.json",
+    "per_game_ids": "each raw game row carries game_id, opponent and seat",
+    "seats": "alternating by construction"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

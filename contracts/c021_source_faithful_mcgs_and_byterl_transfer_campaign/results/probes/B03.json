@@ -1,0 +1,12 @@
+{
+  "id": "B03",
+  "probe": "Slot/typed-state sensitivity",
+  "status": "PASS",
+  "evidence": {
+    "slot_role_embedding": "active vs bench, never collapsed",
+    "slot_index_embedding": "bench seat",
+    "side_embedding": "mine vs theirs",
+    "regression": "c020 collapsed active and bench, so the network could not distinguish attacking with the active from attacking with a benched Pokemon"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

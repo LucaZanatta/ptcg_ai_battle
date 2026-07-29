@@ -1,0 +1,21 @@
+{
+  "id": "B19",
+  "probe": "BR0->BR3 delta audit",
+  "status": "PASS",
+  "evidence": {
+    "rungs": [
+      "b0",
+      "b1",
+      "b1_5",
+      "b2",
+      "b3"
+    ],
+    "arms": [
+      "fctrl",
+      "flearn"
+    ],
+    "cumulative": "each rung adds exactly one component and keeps everything below it",
+    "ledger": "fidelity/BYTERL_STAGE_LEDGER.md"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

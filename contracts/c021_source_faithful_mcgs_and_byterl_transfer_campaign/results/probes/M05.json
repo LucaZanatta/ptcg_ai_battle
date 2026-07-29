@@ -1,0 +1,36 @@
+{
+  "id": "M05",
+  "probe": "Chance-node lifecycle",
+  "status": "PASS",
+  "evidence": {
+    "chance_nodes_created": {
+      "transfer_T1_policy_prior": 83,
+      "ablation_nochance": 0,
+      "legal_corrected": 132,
+      "transfer_T2_rollout_policy": 7,
+      "transfer_T0_control": 99,
+      "competitive": 96
+    },
+    "chance_expansions": {
+      "transfer_T1_policy_prior": 4,
+      "ablation_nochance": 0,
+      "legal_corrected": 32,
+      "transfer_T2_rollout_policy": 0,
+      "transfer_T0_control": 45,
+      "competitive": 21
+    },
+    "manual_coin_node_ucb_selected": {
+      "transfer_T1_policy_prior": 0,
+      "ablation_nochance": 0,
+      "legal_corrected": 0,
+      "transfer_T2_rollout_policy": 0,
+      "transfer_T0_control": 0,
+      "competitive": 0
+    },
+    "ablation_no_manual_coin": {
+      "ablation_nochance": 0
+    },
+    "note": "The engine's own enum (SelectContext.COIN_HEAD = 46) defines the surface; the ablation arm with manual_coin off shows exactly 0, as it must."
+  },
+  "generated": "2026-07-29T08:03:47"
+}

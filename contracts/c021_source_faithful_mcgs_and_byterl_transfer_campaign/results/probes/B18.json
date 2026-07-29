@@ -1,0 +1,29 @@
+{
+  "id": "B18",
+  "probe": "Frozen promotion",
+  "status": "PASS",
+  "evidence": {
+    "promoted_iterations": {
+      "fctrl_b3": [
+        7,
+        9,
+        10,
+        14
+      ],
+      "flearn_b3": [
+        0,
+        1,
+        4,
+        5,
+        6,
+        8
+      ]
+    },
+    "checkpoints_at_end": {
+      "fctrl_b3": 5,
+      "flearn_b3": 7
+    },
+    "note": "each promotion appends ONE frozen copy of the learner's current weights"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

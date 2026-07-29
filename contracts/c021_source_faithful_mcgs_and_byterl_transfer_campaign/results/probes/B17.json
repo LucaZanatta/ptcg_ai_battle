@@ -1,0 +1,27 @@
+{
+  "id": "B17",
+  "probe": "Mixture realization",
+  "status": "PASS",
+  "evidence": {
+    "final_opponent_distribution": {
+      "fctrl_b3": [
+        0.4436,
+        0.2215,
+        0.1271,
+        0.0807,
+        0.1271
+      ],
+      "flearn_b3": [
+        0.1353,
+        0.0317,
+        0.0037,
+        0.0463,
+        0.2591,
+        0.3195,
+        0.2043
+      ]
+    },
+    "rule": "softmax over negative mean payoff; uniform before any game in a period"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

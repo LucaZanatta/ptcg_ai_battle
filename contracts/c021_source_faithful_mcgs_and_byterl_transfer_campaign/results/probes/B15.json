@@ -1,0 +1,15 @@
+{
+  "id": "B15",
+  "probe": "OSFP period reset",
+  "status": "PASS",
+  "evidence": {
+    "check": "test_osfp_g_and_c_are_period_local",
+    "validator": "PASS",
+    "periods_reached": {
+      "fctrl_b3": 4,
+      "flearn_b3": 6
+    },
+    "regression": "c019 and c020 both accumulated payoffs globally"
+  },
+  "generated": "2026-07-29T08:03:49"
+}

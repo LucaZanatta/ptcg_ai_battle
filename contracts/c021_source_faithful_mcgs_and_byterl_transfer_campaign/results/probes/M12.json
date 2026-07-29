@@ -1,0 +1,24 @@
+{
+  "id": "M12",
+  "probe": "Time allocation",
+  "status": "PASS",
+  "evidence": {
+    "first_move_seconds": 0.9,
+    "continuing_move_seconds": 0.7,
+    "source": {
+      "first": 15.0,
+      "continuing": 10.0
+    },
+    "match_clock_seconds": 90.0,
+    "match_clock_exhausted_decisions": {
+      "transfer_T1_policy_prior": null,
+      "ablation_nochance": null,
+      "legal_corrected": null,
+      "transfer_T2_rollout_policy": null,
+      "transfer_T0_control": null,
+      "competitive": null
+    },
+    "adapter": "MECHANICAL_ADAPTER: budget scaled down and a cumulative match clock added, which is closer to PTCG competition play than an unbounded per-move budget"
+  },
+  "generated": "2026-07-29T08:03:47"
+}

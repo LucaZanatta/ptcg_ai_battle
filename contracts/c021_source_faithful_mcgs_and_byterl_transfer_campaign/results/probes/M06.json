@@ -1,0 +1,18 @@
+{
+  "id": "M06",
+  "probe": "Sparse sampling",
+  "status": "PASS",
+  "evidence": {
+    "threshold": 5,
+    "check": "test_chance_node_sparse_threshold_increments_past_five_edges",
+    "chance_sparse_cutoffs": {
+      "transfer_T1_policy_prior": 0,
+      "ablation_nochance": 0,
+      "legal_corrected": 0,
+      "transfer_T2_rollout_policy": 0,
+      "transfer_T0_control": 0,
+      "competitive": 0
+    }
+  },
+  "generated": "2026-07-29T08:03:47"
+}

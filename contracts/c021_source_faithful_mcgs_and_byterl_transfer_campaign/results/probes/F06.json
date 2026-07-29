@@ -1,0 +1,16 @@
+{
+  "id": "F06",
+  "probe": "Report consistency",
+  "status": "PASS",
+  "evidence": {
+    "reported_field_score": 0.11428857142857142,
+    "recomputed_from_raw_summaries": 0.11428857142857142,
+    "games": 70,
+    "wilson95": [
+      0.0591,
+      0.2096
+    ],
+    "note": "the report is GENERATED from statuses.json, which is computed from the raw summaries, so the narrative cannot drift from its numbers"
+  },
+  "generated": "2026-07-29T08:03:49"
+}
