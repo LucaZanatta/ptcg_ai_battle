@@ -175,9 +175,11 @@ def main(argv=None):
             return name.replace("_summary.json", "") in ("competitive", "transfer_T0_control")
         if role == "competitive":
             return True
-        # the T0 control shares the transfer harness but uses no prior, so it measures the
-        # standalone port and is pooled with `competitive`
-        return role == "transfer" and s.get("transfer_arm") == "T0_control"
+        # The T0 control shares the transfer harness but uses no prior, so it measures the
+        # standalone port -- but ONLY the run pooled with `competitive` from the same campaign.
+        # A later transfer generation also carries transfer_arm == "T0_control", and admitting
+        # any of them would silently change the headline MCGS result.
+        return name.replace("_summary.json", "") == "transfer_T0_control"
 
     pool_names = ("competitive_summary.json", "transfer_T0_control_summary.json")
     pool_k, pool_n = 0.0, 0
@@ -321,12 +323,27 @@ def main(argv=None):
     }
 
     # ---------------------------------------------------------------- TRANSFER
-    transfer = {k: v for k, v in mcgs.items() if v.get("transfer_arm")}
+    # Transfer generations, newest first. The first campaign's arms queried a checkpoint whose
+    # curve was indistinguishable from the untrained floor, so the comparison had no power; the
+    # `t2_` generation queries a checkpoint that demonstrably learned. Mixing them would compare
+    # arms against a control from a different run at a different checkpoint.
+    TRANSFER_GENERATIONS = [
+        ("t2_", "big_ctrl_b1_5 checkpoint (scaled, fixed encoder, learned)"),
+        ("transfer_", "ctrl_b2 checkpoint (near-random; the underpowered first attempt)"),
+    ]
+    transfer_gen, transfer_desc = "transfer_", "none"
+    for pfx, desc in TRANSFER_GENERATIONS:
+        if any(k.startswith(pfx) and v.get("transfer_arm") for k, v in mcgs.items()):
+            transfer_gen, transfer_desc = pfx, desc
+            break
+    transfer = {k: v for k, v in mcgs.items()
+                if v.get("transfer_arm") and k.startswith(transfer_gen)}
     arms = {}
     control = None
     for name, s in mcgs.items():
-        if s.get("transfer_arm") == "T0_control":
-            control = s            # the arm that shares the transfer harness but uses no prior
+        # the control must come from the SAME generation as the arms it is compared against
+        if s.get("transfer_arm") == "T0_control" and name.startswith(transfer_gen):
+            control = s
     if control is None:
         for name, s in mcgs.items():
             if "competitive" in name and not s.get("transfer_arm"):
@@ -352,6 +369,8 @@ def main(argv=None):
     ev["TRANSFER"] = {
         "status": "PASS" if retained else ("FAIL" if arms else "NOT_RUN"),
         "control_field_score": (control or {}).get("field_score"),
+        "generation": transfer_desc,
+        "generation_prefix": transfer_gen,
         "arms": arms, "retained": retained,
         "interpretation": ("NOT RETAINED, and NOT REJECTED. The arm-to-control differences are "
                            "smaller than the measured run-to-run resolution limit, so the test "
