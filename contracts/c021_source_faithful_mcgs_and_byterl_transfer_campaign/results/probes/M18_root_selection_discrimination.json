@@ -1,0 +1,20 @@
+{
+  "id": "M18",
+  "probe": "Root selection discrimination (added by audit)",
+  "status": "PASS",
+  "question": "With no terminal node ever entering the tree, every value is rewards/visit_count from 0/1 rollouts. Is the root's chosen action separated from its alternatives, or picked out of rollout noise?",
+  "evidence": {
+    "decisions_with_more_than_one_root_edge": 48,
+    "chosen_edge_separated_by_more_than_2_rollout_SE": 30,
+    "inside_noise": 18,
+    "separation_rate": 0.625,
+    "example_decision": {
+      "simulations": 50, "root_edges": 7, "chosen_visits": 20,
+      "top_edge_values": [0.35, 0.3, 0.25, 0.1667, 0.0, -0.5]
+    },
+    "method": "rollout standard error taken as sqrt(p(1-p)/n) at the chosen edge's own visit count; separation measured against the MEDIAN edge, not the runner-up, so a near-tie for first does not count as noise"
+  },
+  "interpretation": "The search is NOT selecting at random. In roughly five decisions out of eight the chosen edge stands clear of the field by more than twice the rollout noise at its own visit count. That distinguishes two very different readings of MCGS_COMPETITIVE=FAIL: this is a WEAK search, not an ABSENT one. The remaining three-in-eight are genuine coin-flips between near-equal estimates, which is expected when the tree never reaches a terminal and all values are means of 0/1 rollouts in a narrow band.",
+  "why_it_matters": "Had this come out the other way, the correct fix would have been 'the search does nothing, remove it'. Because it discriminates, the fix is the one already named in the final report: the estimates it discriminates ON are drawn from a single determinization, so the ordering is confident and frequently about a world that did not happen.",
+  "caveat": "Measured under load (the ByteRL training was running), which reduces simulations per decision and therefore makes this a LOWER bound on separation. It does not bias the direction of the result."
+}

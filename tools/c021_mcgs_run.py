@@ -193,6 +193,11 @@ def main(argv=None):
             traces.extend(r.get("graph_snapshots") or [])
     gf.close()
     json.dump(traces, open(os.path.join(MC, "graph_traces", f"{a.tag}_graphs.json"), "w"), indent=2)
+    # Per-decision root edge statistics: the richest diagnostic the agent produces, and it was
+    # collected by the worker and then dropped. Without it there is no way to ask whether the
+    # search's chosen action is separated from its alternatives or is being picked out of noise.
+    dl = [d for r in res for d in (r.get("decisions_log") or [])]
+    json.dump(dl, open(os.path.join(MC, "graph_traces", f"{a.tag}_decisions.json"), "w"), indent=2)
     json.dump(lat, open(os.path.join(MC, "latency", f"{a.tag}_latency.json"), "w"), indent=2)
     tot_n = sum(v[0] for v in per.values()); tot_s = sum(v[1] for v in per.values())
     summary = {"tag": a.tag, "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT", "config": full,
