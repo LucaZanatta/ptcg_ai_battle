@@ -28,7 +28,10 @@ def main(argv=None):
         # M16: identical work at 1/2/4/8/12 workers. Each run is measured ALONE.
         ms = []
         for n in (1, 2, 4, 8, 12):
-            d, wall = run(f"scale_w{n}", [], games=12, nproc=n)
+            # 12 games per point let game-length variance swamp the contention signal: the
+            # first run gave sims/decision of 73 / 1003 / 566 at 4 / 8 / 12 workers, which is
+            # noise, not scaling. Same game COUNT at every point, more of them.
+            d, wall = run(f"scale_w{n}", [], games=36, nproc=n)
             ms.append({"workers": n, "games": d.get("games"), "completed": d.get("completed"),
                        "wall_clock_s": wall,
                        "games_per_minute": round(60.0 * (d.get("completed") or 0) / max(wall, 1), 2),
