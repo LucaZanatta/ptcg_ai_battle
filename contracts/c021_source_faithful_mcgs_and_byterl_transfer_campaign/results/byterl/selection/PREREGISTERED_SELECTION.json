@@ -1,0 +1,35 @@
+{
+  "written_before_the_extension_ran": true,
+  "why_preregistered": "DECISION_RULES 6 allows OVERALL=PASS only if the gates actually pass. A gate chosen after seeing the numbers is not a gate, so the rule, the candidate set and the tie-breaks are fixed here before any extension iteration executes.",
+  "extension": {
+    "rungs": ["big_ctrl_b1_5", "big_ctrl_b2"],
+    "target_games_per_rung": 76800,
+    "wall_clock_budget_hours": 4,
+    "resumed_from": ["big_ctrl_b1_5_final.pt", "big_ctrl_b2_final.pt"],
+    "unchanged": ["implementation", "losses", "hyperparameters", "population rules",
+                  "evaluation protocol", "seed derivation", "opponent set"],
+    "intermediate_checkpoints_every_iterations": 10,
+    "close_even_if_curves_still_rising": true
+  },
+  "candidate_set": "every intermediate checkpoint written during the extension, plus the two pre-extension finals. Recency confers no advantage and is not a tie-break.",
+  "selection_rule": {
+    "primary": "EXTERNAL PANEL win rate against the four frozen scripted opponents (dragapult, mega_lucario, iono, mega_abomasnow), balanced seats, identical game count per candidate.",
+    "secondary": "MCGS transfer-prior utility: field score of the T1 arm using that checkpoint as the expansion prior.",
+    "explicitly_excluded": [
+      "internal self-play win rate -- DECISION_RULES 4 forbids selecting a checkpoint on self-play alone",
+      "checkpoint recency -- the last checkpoint is not privileged",
+      "training-set win rate from the learning curve itself, which is measured on the same games that produced the gradient"
+    ],
+    "tie_break": "fewer training games (prefer the earlier checkpoint at equal measured strength, since it is the less overfit one)"
+  },
+  "early_stop_conditions": [
+    "clear instability: actor_error_rate > 0.01, or loss/grad_norm non-finite",
+    "collapse: entropy falls below 0.25 of its value at extension start",
+    "sustained external regression: external-panel win rate below the pre-extension baseline for 3 consecutive checkpoint evaluations"
+  ],
+  "gates_for_OVERALL_PASS": {
+    "external": "a selected checkpoint must beat the pre-extension baseline on the external panel by more than the measured reproducibility bound",
+    "transfer": "a transfer arm's 95% Wilson lower bound must exceed the T0 control's upper bound, per DECISION_RULES 3",
+    "note": "BOTH are required. Neither is satisfied by an improvement measured only against the agent's own history."
+  }
+}

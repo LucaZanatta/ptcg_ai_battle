@@ -295,6 +295,17 @@ def main(argv=None):
     ap.add_argument("--promote-threshold", type=float, default=0.55)
     ap.add_argument("--promote-min-games", type=int, default=48)
     ap.add_argument("--seed", type=int, default=2100)
+    # EXTENSION SUPPORT. Neither flag changes the algorithm, the losses, the hyperparameters,
+    # the population rules or the evaluation protocol -- they only let a run CONTINUE from
+    # existing weights instead of restarting, and record intermediate weights so a checkpoint
+    # can be SELECTED afterwards rather than taken by recency.
+    ap.add_argument("--init-checkpoint", default=None,
+                    help="resume from these weights instead of fresh random initialisation")
+    ap.add_argument("--checkpoint-every", type=int, default=0,
+                    help="save intermediate weights every N iterations (0 = final only)")
+    ap.add_argument("--deadline-seconds", type=float, default=0.0,
+                    help="stop cleanly at this wall clock, writing the curve and checkpoint. A "
+                         "hard `timeout` would kill mid-iteration and lose them.")
     ap.add_argument("--tag", default=None)
     a = ap.parse_args(argv)
 
@@ -312,6 +323,14 @@ def main(argv=None):
     feats = RUNG_FEATURES[a.rung]
     net = M.fresh(dims["global_dim"], dims["slot_dim"], dims["option_dim"], pool.size(),
                   width=a.width, blocks=a.blocks, seed=a.seed)
+    resumed_from = None
+    if a.init_checkpoint:
+        # B1/B3 require FRESH RANDOM WEIGHTS for a ladder rung. This path is used only to
+        # EXTEND an already-fresh run, never to warm-start one, and the provenance is recorded
+        # in the manifest so the distinction stays auditable.
+        net.load_state_dict(torch.load(a.init_checkpoint, map_location="cpu",
+                                       weights_only=True))
+        resumed_from = os.path.basename(a.init_checkpoint)
     opt = torch.optim.Adam(net.parameters(), lr=a.lr) if feats["vtrace"] else None
     osfp = L.OSFP() if feats["osfp"] else None
 
@@ -323,7 +342,12 @@ def main(argv=None):
     manifest = {
         "rung": a.rung, "features": feats, "config": cfg,
         "params": M.count_parameters(net),
-        "fresh_random_weights": True,
+        "fresh_random_weights": a.init_checkpoint is None,
+        "resumed_from": resumed_from,
+        "extension_note": (None if a.init_checkpoint is None else
+                           "Continuation of an already-fresh run. Implementation, losses, "
+                           "hyperparameters, population rules and evaluation protocol are "
+                           "unchanged from the run being extended."),
         "reductions": {
             "kind": "permitted by FIDELITY_RULES §4 (actors, samples, duration, periods only)",
             "actors": a.nproc, "games_per_iteration": a.games_per_iter,
@@ -337,8 +361,12 @@ def main(argv=None):
 
     curve, stats_all = [], []
     t0 = time.time()
+    deadline = (t0 + a.deadline_seconds) if a.deadline_seconds else None
     gf = open(os.path.join(BR, "raw", f"{tag}_games.jsonl"), "w")
     for it in range(a.iterations):
+        if deadline is not None and time.time() >= deadline:
+            print(json.dumps({"stopped": "deadline", "iterations_completed": it}), flush=True)
+            break
         weights = ({k: v.detach().cpu().numpy() for k, v in net.state_dict().items()}
                    if feats["network"] else None)
         jobs = []
@@ -425,6 +453,11 @@ def main(argv=None):
                 row["promoted"] = True
             row["osfp"] = osfp.snapshot()
         curve.append(row)
+        if a.checkpoint_every and (it + 1) % a.checkpoint_every == 0:
+            ckdir = os.path.join(BR, "checkpoints", "intermediate")
+            os.makedirs(ckdir, exist_ok=True)
+            torch.save(net.state_dict(), os.path.join(ckdir, f"{tag}_it{it + 1:04d}.pt"))
+            row["checkpoint_saved"] = f"{tag}_it{it + 1:04d}.pt"
         print(json.dumps({k: row[k] for k in list(row)[:14]}), flush=True)
         for r in ok:
             gf.write(json.dumps({k: r[k] for k in
@@ -433,6 +466,8 @@ def main(argv=None):
     gf.close()
 
     torch.save(net.state_dict(), os.path.join(BR, "checkpoints", f"{tag}_final.pt"))
+    manifest["iterations_completed"] = len(curve)
+    manifest["stopped_on_deadline"] = bool(deadline and len(curve) < a.iterations)
     manifest["finished"] = time.strftime("%Y-%m-%dT%H:%M:%S")
     manifest["wall_clock_s"] = round(time.time() - t0, 1)
     manifest["final_win_rate"] = curve[-1]["win_rate"] if curve else None
