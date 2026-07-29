@@ -1,0 +1,56 @@
+{
+  "rule": "results/byterl/selection/PREREGISTERED_SELECTION.json",
+  "primary": "external-panel win rate vs four frozen scripted opponents",
+  "excluded": [
+    "internal self-play",
+    "checkpoint recency",
+    "training-curve win rate"
+  ],
+  "candidates": [
+    {
+      "checkpoint": "PRE_big_ctrl_b2_final.pt",
+      "games": 256,
+      "completed": 256,
+      "win_rate": 0.0742,
+      "wilson95": [
+        0.048,
+        0.113
+      ],
+      "seconds": 180.1
+    },
+    {
+      "checkpoint": "PRE_big_ctrl_b1_5_final.pt",
+      "games": 256,
+      "completed": 256,
+      "win_rate": 0.0781,
+      "wilson95": [
+        0.0511,
+        0.1176
+      ],
+      "seconds": 86.0
+    }
+  ],
+  "selected": {
+    "checkpoint": "PRE_big_ctrl_b1_5_final.pt",
+    "games": 256,
+    "completed": 256,
+    "win_rate": 0.0781,
+    "wilson95": [
+      0.0511,
+      0.1176
+    ],
+    "seconds": 86.0
+  },
+  "runner_up": {
+    "checkpoint": "PRE_big_ctrl_b2_final.pt",
+    "games": 256,
+    "completed": 256,
+    "win_rate": 0.0742,
+    "wilson95": [
+      0.048,
+      0.113
+    ],
+    "seconds": 180.1
+  },
+  "generated": "2026-07-29T21:44:07"
+}

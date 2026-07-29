@@ -1,0 +1,39 @@
+{
+  "protocol": "256 games, 4 frozen scripted opponents, balanced seats, fresh seed 555001, identical per candidate",
+  "pre_extension_b2": {
+    "source": "recovered from git fbbd9ac",
+    "win_rate": 0.0742,
+    "wilson95": [
+      0.048,
+      0.113
+    ]
+  },
+  "post_extension_b2_final": {
+    "win_rate": 0.2578,
+    "wilson95": [
+      0.2081,
+      0.3147
+    ],
+    "selection_panel_64g": 0.25
+  },
+  "post_extension_b2_it0160_SELECTED": {
+    "win_rate": 0.1953,
+    "wilson95": [
+      0.1514,
+      0.2482
+    ],
+    "selection_panel_64g": 0.3594
+  },
+  "external_gate": {
+    "result": "PASS",
+    "basis": "pre 0.0742 vs post 0.2578, non-overlapping 95% intervals, >> 6.4pt reproducibility bound"
+  },
+  "selection_defect": {
+    "winners_curse_inflation": 0.1641,
+    "candidates": 121,
+    "games_each": 64,
+    "binomial_se": 0.0541,
+    "note": "the preregistered rule was followed exactly and was underpowered; it selected a checkpoint that is ~6pts weaker out of sample than the final"
+  },
+  "not_rerun": "the transfer arms are NOT re-run with a different checkpoint -- choosing the checkpoint after seeing which makes the gate pass is gate-shopping"
+}
