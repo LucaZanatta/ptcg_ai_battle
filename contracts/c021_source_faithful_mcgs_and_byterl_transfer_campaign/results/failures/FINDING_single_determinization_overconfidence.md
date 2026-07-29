@@ -42,8 +42,33 @@ Two mechanisms then amplify it rather than damp it:
    when the world is one draw of many.
 
 Both are faithful to the source. Neither is a defect. They are safe in the reference setting
-*because* the reference draws `DeterminizationNumber = 200` independent worlds and aggregates over
-them; the overconfidence in any one world averages out.
+because of a mechanism this port cannot reproduce — see the correction below.
+
+### Correction (pass-3 audit): the reference's mechanism is per-ROLLOUT, not per-decision
+
+An earlier draft of this document said the reference "draws `DeterminizationNumber = 200`
+independent worlds and aggregates over them". **That was wrong.** `DeterminizationNumber` appears
+exactly once in the archive outside its declaration — inside a `ToString()`, in a branch guarded
+by `IIAlgorithm == PIMC`, which never executes. It is a dead display constant.
+
+The actual mechanism is in `SingleThreadRollout`:
+
+```csharp
+var game = leaf.Game.Clone(true);
+if (searchConfig.IIAlgorithm != ImperfectInformationAlgorithm.PIMC)
+    SabberUtils.Determinize(game, ThreadStaticRandom, true);
+value = PlayUntilTerminal(game, searchConfig);
+```
+
+`IIAlgorithm` is never assigned anywhere in the archive, so it holds the enum's default
+(`DEFAULT`), the guard is true, and **the game is re-determinized before every single rollout**.
+Each of a decision's thousands of rollouts therefore samples a fresh world, and the value at a
+node is an average over many worlds rather than a conditional on one.
+
+That makes the gap both sharper and worse than first described. It is not "the reference averages
+200 worlds per decision and we average one" — it is "the reference averages a fresh world **per
+rollout**, and every rollout we run is conditioned on the same single world fixed at
+`search_begin`." The overconfidence follows directly.
 
 ## What this means for the contract's questions
 
@@ -62,10 +87,14 @@ world that did not happen.
 
 ## What would fix it, and why it was not done here
 
-Root-level multi-determinization: run K independent `search_begin` sessions per decision and
-aggregate the root statistics across them, which is what `DeterminizationNumber = 200` does. The
-API permits this — `search_begin` accepts a fresh determinization each call, and Probe 2 confirmed
-8 of 8 distinct successors from independent determinizations.
+The source's own fix — re-determinize per rollout — is unavailable: it needs to mutate an interior
+game state, and Probe 3 shows the API has no such operation.
+
+The closest available approximation is **root-level multi-determinization**: run K independent
+`search_begin` sessions per decision and aggregate the root statistics across them. The API permits
+this — `search_begin` accepts a fresh determinization on each call, and Probe 2 confirmed 8 of 8
+distinct successors from independent determinizations. It is coarser than the reference (worlds
+vary per SESSION rather than per rollout) but it attacks the same variance.
 
 It is not in the primary branch because the contract requires `MCGS_2019_OFFICIAL_SOURCE_PORT` to
 be the source port, and the aggregation layer would need its own controlled arm rather than being

@@ -31,13 +31,20 @@ REFERENCE_CFG = {
     "uct_constant": G.UCT_CONSTANT,
     "sample_width": G.SAMPLE_WIDTH,
     "damping_parameter": G.DAMPING_PARAMETER,
-    # NOT USED. The source aggregates over DeterminizationNumber independent worlds per
-    # decision; this API fixes hidden information at search_begin and cannot re-determinize an
-    # interior node, so the port searches ONE world per decision. Kept as a declared constant so
-    # the gap is visible in every config dump rather than absent from it -- and it is the
-    # measured cause of the search's 96%-predicted-wins overconfidence.
+    # NOT USED -- AND NOT USED BY THE SOURCE EITHER. `DeterminizationNumber` appears exactly
+    # once in the archive outside its declaration: inside a `ToString()`, in a branch guarded by
+    # `IIAlgorithm == PIMC`, which never executes. It is a dead display constant, and an earlier
+    # draft of this contract wrongly described it as the reference's variance-reduction
+    # mechanism. The real mechanism is per-ROLLOUT re-determinization in `SingleThreadRollout`,
+    # which this API cannot reproduce; see `determinizations_per_rollout` below.
     "determinization_number_SOURCE_VALUE_NOT_APPLIED": G.DETERMINIZATION_NUMBER,
     "determinizations_per_decision": 1,
+    # The source re-determinizes before EVERY rollout (`SingleThreadRollout`, with IIAlgorithm
+    # unassigned and therefore DEFAULT, so the `!= PIMC` guard is true). Here all rollouts in a
+    # decision share the one world fixed at search_begin. This is the measured cause of the
+    # search resolving ~96% of its rollouts to a win while winning ~11% of its games.
+    "determinizations_per_rollout_SOURCE": "fresh per rollout",
+    "determinizations_per_rollout_PORT": 0,
     "first_move_seconds": G.FIRST_MOVE_SECONDS,
     "continuing_move_seconds": G.CONTINUING_MOVE_SECONDS,
     "ucd_d1": 1, "ucd_d2": 0,

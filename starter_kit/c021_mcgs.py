@@ -384,8 +384,19 @@ class MCGS:
 
     # ---------------------------------------------------------------- rollout (A7)
     def rollout(self, leaf: G.Node, deadline: float, root_player: int = 0) -> float:
-        """`SingleThreadRollout` + `PlayUntilTerminal`, uniform random, retry while value < 0."""
-        for attempt in range(G.ROLLOUT_RETRIES):
+        """`SingleThreadRollout` + `PlayUntilTerminal`, uniform random, retry while value < 0.
+
+        NOT reproduced, and it is the single most consequential gap in the port: the source
+        calls `SabberUtils.Determinize(game, rng, all: true)` on a CLONE of the leaf's game
+        **before every rollout**, so each of a decision's thousands of rollouts samples a fresh
+        world. Here every rollout in a decision shares the one determinization fixed at
+        `search_begin`, because the API cannot re-determinize an interior state (Probe 3). See
+        results/failures/FINDING_single_determinization_overconfidence.md.
+        """
+        # `do { ... } while (value < 0 && count++ < NumMaxTry)` -- one attempt, then up to
+        # ROLLOUT_RETRIES more, so SIX total. A `for _ in range(5)` gives five and is an
+        # off-by-one against the source.
+        for attempt in range(G.ROLLOUT_RETRIES + 1):
             v = self._play_until_terminal(leaf, deadline, root_player)
             if v >= 0:
                 self.stats["rollouts"] += 1

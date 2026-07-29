@@ -1,6 +1,6 @@
 # c021 — source-faithful MCGS and ByteRL transfer campaign: final report
 
-Generated 2026-07-29T04:21:02 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
+Generated 2026-07-29T09:18:34 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
 
 ## Statuses
 
@@ -39,8 +39,15 @@ Gate: lower bound of the 95% Wilson interval must exceed 0.5 against the field, 
 | run | games | done | field | sims/dec | chance nodes | coin UCB | step err |
 |---|---|---|---|---|---|---|---|
 | `ablation_nochance_summary.json` | 40 | 31 | 0.1290 | 615.5 | 0 | 0 | 0 |
+| `ablation_nosearch_summary.json` | 40 | 40 | 0.0000 | 0.0 | 0 | 0 | 0 |
+| `ablation_search_summary.json` | 40 | 34 | 0.1176 | 739.4 | 120 | 0 | 0 |
 | `competitive_summary.json` | 40 | 34 | 0.1471 | 174.5 | 96 | 0 | 0 |
 | `legal_corrected_summary.json` | 40 | 33 | 0.1818 | 809.1 | 132 | 0 | 0 |
+| `scale_w12_summary.json` | 12 | 9 | 0.2222 | 566.0 | 28 | 0 | 0 |
+| `scale_w1_summary.json` | 12 | 11 | 0.2727 | 2293.4 | 84 | 0 | 0 |
+| `scale_w2_summary.json` | 12 | 11 | 0.2727 | 942.6 | 28 | 0 | 0 |
+| `scale_w4_summary.json` | 12 | 11 | 0.0909 | 73.0 | 12 | 0 | 0 |
+| `scale_w8_summary.json` | 12 | 12 | 0.2500 | 1002.8 | 84 | 0 | 0 |
 | `transfer_T0_control_summary.json` | 40 | 36 | 0.0833 | 158.7 | 99 | 0 | 0 |
 | `transfer_T1_policy_prior_summary.json` | 40 | 32 | 0.1562 | 884.6 | 83 | 0 | 0 |
 | `transfer_T2_rollout_policy_summary.json` | 40 | 38 | 0.1053 | 530.3 | 7 | 0 | 0 |
@@ -104,7 +111,7 @@ Unresolved reference choices are declared in `results/fidelity/UNRESOLVED_REFERE
 
 ## 5. Achieved scale relative to the published reference
 
-**COMPUTE_LIMITED.** 19008 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
+**COMPUTE_LIMITED.** 34368 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
 
 > Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.
 
@@ -173,7 +180,9 @@ The live ladder score is known to move 150+ points within minutes, so no champio
 
 This is chosen over the obvious alternative — train a ByteRL checkpoint that separates from the floor, then re-run transfer — because it addresses the one failure mechanism this campaign actually *measured*. The search resolves its own rollouts to a win about 96% of the time while winning about 11% of its games, because every simulation explores one sampled world (`failures/FINDING_single_determinization_overconfidence.md`). A better prior would still be evaluated inside a searcher that is confidently optimising a world that did not happen, so the transfer question cannot be answered cleanly until this is.
 
-The API already permits it: `search_begin` accepts a fresh determinization on each call, and Probe 2 confirmed 8 of 8 distinct successors from independent determinizations. It is also what `DeterminizationNumber = 200` does in the reference, which is why the overconfidence is safe there and not here.
+The API already permits it: `search_begin` accepts a fresh determinization on each call, and Probe 2 confirmed 8 of 8 distinct successors from independent determinizations.
+
+A correction the pass-3 audit forced, because it changes what the fix is imitating: the reference does **not** aggregate `DeterminizationNumber = 200` worlds per decision — that constant appears once, inside a `ToString()` in a branch that never executes. The real mechanism is `SingleThreadRollout` re-determinizing the game **before every rollout**. So the reference averages a fresh world per rollout while this port conditions every rollout on one world fixed at `search_begin`. Root-level multi-determinization is the closest approximation the API allows, not a reproduction.
 
 One methodological change should ride along, because without it no result is attributable: **budget the search by simulation count rather than wall clock.** Two runs of an identical configuration differed by 6.4 points, and a time-budgeted search is not reproducible by construction. Measure latency separately.
 

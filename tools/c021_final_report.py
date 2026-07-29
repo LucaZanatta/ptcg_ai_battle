@@ -369,9 +369,15 @@ def main(argv=None):
       "that did not happen, so the transfer question cannot be answered cleanly until this is.")
     w("")
     w("The API already permits it: `search_begin` accepts a fresh determinization on each call, "
-      "and Probe 2 confirmed 8 of 8 distinct successors from independent determinizations. It is "
-      "also what `DeterminizationNumber = 200` does in the reference, which is why the "
-      "overconfidence is safe there and not here.")
+      "and Probe 2 confirmed 8 of 8 distinct successors from independent determinizations.")
+    w("")
+    w("A correction the pass-3 audit forced, because it changes what the fix is imitating: the "
+      "reference does **not** aggregate `DeterminizationNumber = 200` worlds per decision — that "
+      "constant appears once, inside a `ToString()` in a branch that never executes. The real "
+      "mechanism is `SingleThreadRollout` re-determinizing the game **before every rollout**. So "
+      "the reference averages a fresh world per rollout while this port conditions every rollout "
+      "on one world fixed at `search_begin`. Root-level multi-determinization is the closest "
+      "approximation the API allows, not a reproduction.")
     w("")
     w("One methodological change should ride along, because without it no result is "
       "attributable: **budget the search by simulation count rather than wall clock.** Two runs "
