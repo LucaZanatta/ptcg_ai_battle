@@ -1,0 +1,28 @@
+{
+  "id": "P05",
+  "probe": "Hidden-information guarantee (added by audit)",
+  "status": "PASS",
+  "question": "DECISION_RULES forbids submitting an oracle-information candidate. Every c021 encoder, abstraction and agent reads state through c019_core.visible_view. Does that function actually refuse hidden zones, and does any c021 module bypass it?",
+  "evidence": {
+    "state_tested": "mid-game, my_hand 7, opp_hand 7, my_deck 53, opp_deck 53",
+    "forbidden_accessors": {
+      "opponent_hand_contents": "HiddenInformationAccess",
+      "deck_contents('mine')": "HiddenInformationAccess",
+      "deck_contents('theirs')": "HiddenInformationAccess",
+      "prize_contents('mine')": "HiddenInformationAccess",
+      "prize_contents('theirs')": "HiddenInformationAccess"
+    },
+    "leaks": 0,
+    "allowed_reads_still_work": {"my_hand": 7, "discard_mine": 0, "discard_theirs": 0,
+                                 "board_theirs": 0},
+    "bypass_scan": {
+      "c021_modules_indexing_players[]": 0,
+      "c021_modules_touching_.current": "only MCGS._player_turn and _your_index, which read the ply counter and the acting seat -- both public, neither a hidden zone",
+      "c020_byterl_encode_direct_reads": 0,
+      "note": "The guard is only worth as much as the absence of a way around it, so the scan matters as much as the raises."
+    },
+    "false_start": "The first version of this probe called v.hand(), v.deck(), v.prize() -- none of which exist -- so every check reported 'no such accessor' and proved nothing. The real names are opponent_hand_contents / deck_contents / prize_contents. It also captured the opening state where both hands were empty. Both corrected before reporting.",
+    "script": "fidelity/probes/probe_hidden_information.py"
+  },
+  "interpretation": "The campaign is not an oracle-information candidate. Hidden zones raise rather than return, no c021 module reaches around the view, and the determinizer supplies GUESSED hidden information rather than reading the real thing."
+}

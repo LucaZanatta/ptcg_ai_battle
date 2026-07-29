@@ -503,3 +503,45 @@ def test_diagnostic_runs_can_never_become_the_competitive_candidate():
     for tag in ("scale_", "boundtest", "clocktest", "drainfix"):
         assert tag in runner, f"{tag} must be classified as diagnostic by the runner"
     assert 'else "ablation" if a.tag.startswith("ablation")' in runner
+
+
+# ------------------------------------------------------------------ hidden information
+def test_hidden_zones_raise_rather_than_return():
+    """DECISION_RULES forbids an oracle-information candidate, and every c021 encoder,
+    abstraction and agent reads state through `visible_view`. If these ever return instead of
+    raising, the whole campaign becomes one.
+    """
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    from cg import c019_core as K
+
+    class _P:
+        def __init__(self):
+            self.yourIndex = 0
+            self.players = []
+
+    v = K.VisibleObservation.__new__(K.VisibleObservation)
+    for call in (lambda: v.opponent_hand_contents(),
+                 lambda: v.deck_contents("mine"),
+                 lambda: v.deck_contents("theirs"),
+                 lambda: v.prize_contents("mine"),
+                 lambda: v.prize_contents("theirs")):
+        with pytest.raises(K.HiddenInformationAccess):
+            call()
+
+
+def test_no_c021_module_reaches_around_the_visible_view():
+    """The guard is only worth as much as the absence of a way around it."""
+    import glob
+    import os as _os
+    import re
+    root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+    offenders = []
+    for f in glob.glob(_os.path.join(root, "starter_kit", "c021_*.py")):
+        src = open(f).read()
+        # indexing raw player state is the bypass; `.current.turn` / `.current.yourIndex` are
+        # public scalars and are allowed
+        for m in re.finditer(r"players\s*\[", src):
+            offenders.append((_os.path.basename(f), src[:m.start()].count("\n") + 1))
+    assert not offenders, f"c021 modules indexing raw player state: {offenders}"
