@@ -2,53 +2,80 @@
   "measurements": [
     {
       "workers": 1,
-      "games": 12,
-      "completed": 11,
-      "wall_clock_s": 658.9,
-      "games_per_minute": 1.0,
-      "sims_per_decision": 2293.4,
-      "field_score": 0.2727,
-      "speedup_vs_1_worker": 1.0
+      "games": 36,
+      "completed": 34,
+      "wall_clock_s": 1711.3,
+      "games_per_minute": 1.19,
+      "sims_per_decision": 539.3,
+      "field_score": 0.1471,
+      "speedup_vs_1_worker": 1.0,
+      "sims_per_decision_vs_1_worker": 1.0
     },
     {
       "workers": 2,
-      "games": 12,
-      "completed": 11,
-      "wall_clock_s": 473.5,
-      "games_per_minute": 1.39,
-      "sims_per_decision": 942.6,
-      "field_score": 0.2727,
-      "speedup_vs_1_worker": 1.39
+      "games": 36,
+      "completed": 32,
+      "wall_clock_s": 1158.2,
+      "games_per_minute": 1.66,
+      "sims_per_decision": 518.2,
+      "field_score": 0.1562,
+      "speedup_vs_1_worker": 1.39,
+      "sims_per_decision_vs_1_worker": 0.961
     },
     {
       "workers": 4,
-      "games": 12,
-      "completed": 11,
-      "wall_clock_s": 300.5,
-      "games_per_minute": 2.2,
-      "sims_per_decision": 73.0,
-      "field_score": 0.0909,
-      "speedup_vs_1_worker": 2.2
+      "games": 36,
+      "completed": 33,
+      "wall_clock_s": 591.5,
+      "games_per_minute": 3.35,
+      "sims_per_decision": 1462.7,
+      "field_score": 0.2424,
+      "speedup_vs_1_worker": 2.82,
+      "sims_per_decision_vs_1_worker": 2.712
     },
     {
       "workers": 8,
-      "games": 12,
-      "completed": 12,
-      "wall_clock_s": 84.5,
-      "games_per_minute": 8.52,
-      "sims_per_decision": 1002.8,
-      "field_score": 0.25,
-      "speedup_vs_1_worker": 8.52
+      "games": 36,
+      "completed": 31,
+      "wall_clock_s": 449.6,
+      "games_per_minute": 4.14,
+      "sims_per_decision": 912.2,
+      "field_score": 0.129,
+      "speedup_vs_1_worker": 3.48,
+      "sims_per_decision_vs_1_worker": 1.691
     },
     {
       "workers": 12,
-      "games": 12,
-      "completed": 9,
-      "wall_clock_s": 300.3,
-      "games_per_minute": 1.8,
-      "sims_per_decision": 566.0,
-      "field_score": 0.2222,
-      "speedup_vs_1_worker": 1.8
+      "games": 36,
+      "completed": 31,
+      "wall_clock_s": 373.3,
+      "games_per_minute": 4.98,
+      "sims_per_decision": 706.1,
+      "field_score": 0.1613,
+      "speedup_vs_1_worker": 4.18,
+      "sims_per_decision_vs_1_worker": 1.309
+    },
+    {
+      "workers": 20,
+      "games": 36,
+      "completed": 32,
+      "wall_clock_s": 326.7,
+      "games_per_minute": 5.88,
+      "sims_per_decision": 351.4,
+      "field_score": 0.0938,
+      "speedup_vs_1_worker": 4.94,
+      "sims_per_decision_vs_1_worker": 0.652
+    },
+    {
+      "workers": 24,
+      "games": 36,
+      "completed": 31,
+      "wall_clock_s": 329.7,
+      "games_per_minute": 5.64,
+      "sims_per_decision": 42.8,
+      "field_score": 0.0,
+      "speedup_vs_1_worker": 4.74,
+      "sims_per_decision_vs_1_worker": 0.079
     }
   ],
   "note": "Each point measured ALONE on an otherwise idle machine, with torch.set_num_threads(1) per worker. sims_per_decision is the quantity that must stay FLAT across worker counts: if it falls as workers are added, the per-decision wall-clock budget is being eaten by contention, which is the artifact that inverted a c019 ranking."

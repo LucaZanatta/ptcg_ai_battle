@@ -1,0 +1,17 @@
+{
+  "question": "How many workers may a latency-bounded MCGS run use on this 24-core box?",
+  "why_it_mattered": "I intended to run the transfer arms at nproc 20 to roughly halve their wall clock, on the reasoning that workers <= cores means no oversubscription. That was a hypothesis, so M16 was extended to 20 and 24 workers specifically to test it before relying on it.",
+  "measurement": {
+    "1": {"sims_per_decision": 539.3, "ratio_vs_1w": 1.0},
+    "2": {"sims_per_decision": 518.2, "ratio_vs_1w": 0.961},
+    "4": {"sims_per_decision": 1462.7, "ratio_vs_1w": 2.712},
+    "8": {"sims_per_decision": 912.2, "ratio_vs_1w": 1.691},
+    "12": {"sims_per_decision": 706.1, "ratio_vs_1w": 1.309},
+    "20": {"sims_per_decision": 351.4, "ratio_vs_1w": 0.652},
+    "24": {"sims_per_decision": 42.8, "ratio_vs_1w": 0.079}
+  },
+  "finding": "The hypothesis is FALSE. sims_per_decision collapses at high worker counts -- to 65% of the single-worker value at 20 workers and to 8% at 24. A latency-bounded search at 24 workers buys roughly one twelfth of the simulations per decision that it does alone, inside the identical wall-clock budget, and nothing in the field score would reveal it.",
+  "decision": "Transfer arms run at nproc 12, not 20. Twelve is below the collapse, and it is the count every earlier MCGS arm used, so the new arms stay directly comparable to the existing campaign rather than being both differently-scheduled and differently-parallelised.",
+  "caveat": "The 4/8/12 ratios exceed 1.0, which is not physical -- at 36 games per point, game-mix variance still moves sims_per_decision more than contention does in that range. The 20 and 24 collapse is far too large to be that, and it is the only part of this measurement I am relying on.",
+  "generalisation": "'Workers <= cores implies no contention' is wrong on this machine. The native engine and the allocator do not scale linearly, and the per-decision wall-clock budget converts that silently into fewer simulations rather than into a longer run."
+}
