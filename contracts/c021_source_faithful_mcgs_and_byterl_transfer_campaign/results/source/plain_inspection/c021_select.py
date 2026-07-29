@@ -106,11 +106,18 @@ def main(argv=None):
     ap.add_argument("--nproc", type=int, default=20)
     ap.add_argument("--seed", type=int, default=90210)
     ap.add_argument("--pattern", default="big_ctrl_*")
+    ap.add_argument("--checkpoints", nargs="*", default=None,
+                    help="evaluate exactly these paths instead of globbing candidates -- used "
+                         "for the out-of-sample re-evaluation of an already-selected checkpoint")
+    ap.add_argument("--out", default="external_panel_selection.json")
     a = ap.parse_args(argv)
     os.makedirs(SEL, exist_ok=True)
     CK = os.path.join(C21, "byterl", "checkpoints")
-    cands = sorted(glob.glob(os.path.join(CK, "intermediate", f"{a.pattern}*.pt")))
-    cands += sorted(glob.glob(os.path.join(CK, f"{a.pattern}final.pt")))
+    if a.checkpoints:
+        cands = list(a.checkpoints)
+    else:
+        cands = sorted(glob.glob(os.path.join(CK, "intermediate", f"{a.pattern}*.pt")))
+        cands += sorted(glob.glob(os.path.join(CK, f"{a.pattern}final.pt")))
     if not cands:
         print("no candidates"); return 1
     print(f"evaluating {len(cands)} candidates on the external panel, "
@@ -132,7 +139,7 @@ def main(argv=None):
            "selected": scored[0] if scored else None,
            "runner_up": scored[1] if len(scored) > 1 else None,
            "generated": time.strftime("%Y-%m-%dT%H:%M:%S")}
-    json.dump(out, open(os.path.join(SEL, "external_panel_selection.json"), "w"), indent=2)
+    json.dump(out, open(os.path.join(SEL, a.out), "w"), indent=2)
     if scored:
         s = scored[0]
         print(f"\nSELECTED {s['checkpoint']}  win_rate={s['win_rate']} "
