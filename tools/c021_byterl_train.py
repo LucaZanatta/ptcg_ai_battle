@@ -134,6 +134,8 @@ def _play_games(payload):
                     "n_battle": ep.battle_steps(),
                     "encode_stats": ep.info.get("encode_stats", {}),
                     "errors": ep.info.get("errors", []),
+                    "n_errors": ep.info.get("n_errors", 0),
+                    "n_decisions": ep.info.get("n_decisions", 0),
                     "opponent_checkpoint": job.get("opponent_checkpoint"),
                     "trajectory": _pack(ep) if feats["vtrace"] else None})
     return out
@@ -375,6 +377,11 @@ def main(argv=None):
         done = [r for r in ok if r.get("completed")]
         wr = (sum(r["score"] for r in done) / len(done)) if done else None
         legal = sum(1 for r in ok if r.get("deck_legal"))
+        # The ACTOR's own exceptions, which `errors` (job-level) does not see. A policy raising
+        # on every decision would otherwise complete its games and report 0 errors.
+        actor_err = sum(int(r.get("n_errors") or 0) for r in ok)
+        actor_dec = sum(int(r.get("n_decisions") or 0) for r in ok)
+        first_err = next((r["errors"][0] for r in ok if r.get("errors")), None)
         enc_trunc = sum((r.get("encode_stats") or {}).get("option_truncations", 0) for r in ok)
         enc_max = max([(r.get("encode_stats") or {}).get("max_options_seen", 0)
                        for r in ok] or [0])
@@ -387,6 +394,9 @@ def main(argv=None):
 
         row = {"iteration": it, "games": len(res), "completed": len(done),
                "errors": sum(1 for r in res if r.get("error")),
+               "actor_errors": actor_err,
+               "actor_error_rate": round(actor_err / max(1, actor_dec), 4),
+               "actor_first_error": first_err,
                "win_rate": round(wr, 4) if wr is not None else None,
                "legal_decks": legal, "legal_deck_rate": round(legal / max(1, len(ok)), 4),
                "updates": n_up,

@@ -76,6 +76,10 @@ class ByteRLActor:
         self.enc_stats = EN.EncodeStats()
         self.episode = Episode()
         self.errors: List[str] = []
+        # A COUNT, not just the truncated sample list. The trainer aggregates this: without it,
+        # a policy that raised on EVERY decision would fall back to opts[0], complete its games,
+        # and report 0 errors with a win rate that looks like network play.
+        self.n_errors = 0
         self._deck: Optional[List[int]] = None
 
     # ---------------------------------------------------------------- construction stage
@@ -171,6 +175,7 @@ class ByteRLActor:
             chosen = kept
             return K.to_select_payload([opts[c] for c in chosen], sel)
         except Exception as e:  # noqa: BLE001
+            self.n_errors += 1
             if len(self.errors) < 40:
                 self.errors.append(f"{type(e).__name__}: {e}"[:200])
             opts = K.canonical_options(sel)
@@ -189,6 +194,8 @@ class ByteRLActor:
         self.episode.info = dict(info or {})
         self.episode.info["encode_stats"] = self.enc_stats.as_dict()
         self.episode.info["errors"] = self.errors[:8]
+        self.episode.info["n_errors"] = self.n_errors
+        self.episode.info["n_decisions"] = self.episode.battle_steps() + self.n_errors
         return self.episode
 
 # `episode_to_tensors` used to live here: a second implementation of the learner's tensor

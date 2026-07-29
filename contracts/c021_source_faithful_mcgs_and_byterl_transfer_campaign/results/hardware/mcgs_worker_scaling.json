@@ -1,0 +1,55 @@
+{
+  "measurements": [
+    {
+      "workers": 1,
+      "games": 12,
+      "completed": 11,
+      "wall_clock_s": 658.9,
+      "games_per_minute": 1.0,
+      "sims_per_decision": 2293.4,
+      "field_score": 0.2727,
+      "speedup_vs_1_worker": 1.0
+    },
+    {
+      "workers": 2,
+      "games": 12,
+      "completed": 11,
+      "wall_clock_s": 473.5,
+      "games_per_minute": 1.39,
+      "sims_per_decision": 942.6,
+      "field_score": 0.2727,
+      "speedup_vs_1_worker": 1.39
+    },
+    {
+      "workers": 4,
+      "games": 12,
+      "completed": 11,
+      "wall_clock_s": 300.5,
+      "games_per_minute": 2.2,
+      "sims_per_decision": 73.0,
+      "field_score": 0.0909,
+      "speedup_vs_1_worker": 2.2
+    },
+    {
+      "workers": 8,
+      "games": 12,
+      "completed": 12,
+      "wall_clock_s": 84.5,
+      "games_per_minute": 8.52,
+      "sims_per_decision": 1002.8,
+      "field_score": 0.25,
+      "speedup_vs_1_worker": 8.52
+    },
+    {
+      "workers": 12,
+      "games": 12,
+      "completed": 9,
+      "wall_clock_s": 300.3,
+      "games_per_minute": 1.8,
+      "sims_per_decision": 566.0,
+      "field_score": 0.2222,
+      "speedup_vs_1_worker": 1.8
+    }
+  ],
+  "note": "Each point measured ALONE on an otherwise idle machine, with torch.set_num_threads(1) per worker. sims_per_decision is the quantity that must stay FLAT across worker counts: if it falls as workers are added, the per-decision wall-clock budget is being eaten by contention, which is the artifact that inverted a c019 ranking."
+}
