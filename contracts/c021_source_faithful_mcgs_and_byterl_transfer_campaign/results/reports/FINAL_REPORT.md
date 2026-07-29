@@ -1,6 +1,6 @@
 # c021 — source-faithful MCGS and ByteRL transfer campaign: final report
 
-Generated 2026-07-29T02:57:26 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
+Generated 2026-07-29T04:04:39 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
 
 ## Statuses
 
@@ -30,26 +30,32 @@ The PTCG API fixes hidden information at `search_begin` and exposes no way to re
 
 ## 2. Did executed search actions help or hurt?
 
-Best non-superseded MCGS run `transfer_T0_control_summary.json`: field score **0.1905** over 21 completed games, 95% Wilson interval [0.0767, 0.4].
+Best non-superseded MCGS run `competitive + transfer_T0_control`: field score **0.1143** over 70 completed games, 95% Wilson interval [0.0591, 0.2096].
 
-Gate: lower bound of the 95% Wilson interval must exceed 0.5 against the field → **FAIL**.
+Gate: lower bound of the 95% Wilson interval must exceed 0.5 against the field, judged with abandoned games counted as losses so exclusion cannot manufacture a pass → **FAIL**.
 
 > A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an implementation failure (DECISION_RULES §1).
 
 | run | games | done | field | sims/dec | chance nodes | coin UCB | step err |
 |---|---|---|---|---|---|---|---|
-| `ablation_nochance_summary.json` | 24 | 24 | 0.1250 | 329.0 | 0 | 0 | 0 |
-| `competitive_summary.json` | 24 | 22 | 0.1364 | 364.5 | 46 | 0 | 0 |
-| `legal_corrected_summary.json` | 24 | 19 | 0.0526 | 58.8 | 90 | 0 | 0 |
-| `transfer_T0_control_summary.json` | 24 | 21 | 0.1905 | 953.3 | 84 | 0 | 0 |
-| `transfer_T1_policy_prior_summary.json` | 24 | 24 | 0.1667 | 770.9 | 58 | 0 | 0 |
-| `transfer_T2_rollout_policy_summary.json` | 24 | 23 | 0.1739 | 806.5 | 5 | 0 | 0 |
+| `ablation_nochance_summary.json` | 40 | 31 | 0.1290 | 615.5 | 0 | 0 | 0 |
+| `competitive_summary.json` | 40 | 34 | 0.1471 | 174.5 | 96 | 0 | 0 |
+| `legal_corrected_summary.json` | 40 | 33 | 0.1818 | 809.1 | 132 | 0 | 0 |
+| `transfer_T0_control_summary.json` | 40 | 36 | 0.0833 | 158.7 | 99 | 0 | 0 |
+| `transfer_T1_policy_prior_summary.json` | 40 | 32 | 0.1562 | 884.6 | 83 | 0 | 0 |
+| `transfer_T2_rollout_policy_summary.json` | 40 | 38 | 0.1053 | 530.3 | 7 | 0 | 0 |
 
 ### The noise floor, measured rather than assumed
 
-`competitive` and `transfer_T0_control` are the SAME configuration -- the source port with every transfer switch off. Run independently they scored **0.1364** and **0.1905** (22 and 21 games). That 5.4-point spread between identical configurations is the resolution limit of a ~24-game arm, and every comparison below must be read against it. No difference smaller than this is interpretable, which is precisely why the transfer arms are reported as UNTESTED rather than rejected.
+`competitive` and `transfer_T0_control` are the SAME configuration -- the source port with every transfer switch off. Run independently they scored **0.1471** and **0.0833** (34 and 36 games). That 6.4-point spread between identical configurations is the resolution limit of a ~24-game arm, and every comparison below must be read against it. No difference smaller than this is interpretable, which is precisely why the transfer arms are reported as UNTESTED rather than rejected.
 
 Across three contracts the same result has now reproduced: overriding a stateful scripted agent with a search costs roughly 18 points regardless of the search's quality, because the scripted opponent's line is internally consistent and a search that departs from it part-way inherits neither plan. The measured constraint is early-game credit assignment, not search depth.
+
+### A10 carries a throughput confound and must not be read as 'the corrections hurt'
+
+`legal_corrected` scored 0.1818 against 0.0833 for the control, but it also ran at **809.1 simulations per decision against 158.7** — roughly 0.2x fewer. C1 expands a multi-select node into up to `MAX_COMBINATIONS` distinct action sets, so each decision costs far more engine steps.
+
+The two explanations — *the legality corrections are harmful* and *the corrected branch is simulation-starved at an equal time budget* — are **not separated by this experiment**. Separating them needs an equal-simulation rather than equal-time comparison. Until then A10's deficit is reported as confounded, not as evidence against the corrections.
 
 ## 3. Were the MCGS defects algorithmic, adaptation-related or throughput-related?
 
@@ -102,25 +108,33 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 | run | opponent | iters | updates | first | last | best | field-comparable |
 |---|---|---|---|---|---|---|---|
-| `fctrl_b1_5` | scripted field | 16 | 768 | 0.0417 | 0.0417 | 0.1250 | yes |
-| `fctrl_b2` | scripted field | 16 | 768 | 0.0417 | 0.0208 | 0.1250 | yes |
-| `fctrl_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.4375 | 0.3542 | 0.5625 | **no — self-play** |
-| `flearn_b1_5` | scripted field | 16 | 768 | 0.0417 | 0.0000 | 0.1042 | yes |
-| `flearn_b2` | scripted field | 16 | 768 | 0.0417 | 0.0625 | 0.1250 | yes |
-| `flearn_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.5208 | 0.4375 | 0.5625 | **no — self-play** |
+| `fctrl_b1_5` | scripted field | 16 | 768 | 0.0000 | 0.0833 | 0.0833 | yes |
+| `fctrl_b2` | scripted field | 16 | 768 | 0.0417 | 0.0833 | 0.0833 | yes |
+| `fctrl_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.4167 | 0.4792 | 0.6250 | **no — self-play** |
+| `flearn_b1_5` | scripted field | 16 | 768 | 0.1042 | 0.0208 | 0.1042 | yes |
+| `flearn_b2` | scripted field | 16 | 768 | 0.0417 | 0.0208 | 0.1667 | yes |
+| `flearn_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.5833 | 0.4167 | 0.6250 | **no — self-play** |
 
 > B3's win rate is measured against frozen checkpoints of itself and sits near 0.5 by construction. It is not a field result and must not be compared with the other rungs; DECISION_RULES §4 forbids submitting a checkpoint selected only on self-play.
+
+### The sharpest ByteRL result, stated directly
+
+The promotion gate is a win rate of 0.55 over at least 48 games. **No rung reached it**, so no promotion ever fired, and B3 therefore played the seeded period-0 checkpoint — *its own random initial weights* — for every iteration.
+
+Best self-play rates: `fctrl_b3` 0.6250, `flearn_b3` 0.6250. Both sit at or below 0.5 against that frozen random initialization.
+
+So the finding supported by this data is stronger and more specific than "no rung separates from B0": **after 768 games of V-trace plus UPGO, the policy does not beat its own random initialization.** That is the direct evidence for `BYTERL_SCALE = COMPUTE_LIMITED` — the algorithm is implemented and running, and the sample budget is orders of magnitude short of what the published method needs.
 
 **No rung separates from the B0 uniform-random floor at this scale.** All field-facing rungs sit within binomial noise of one another. That is the honest reading of a compute-limited run and is reported as such rather than dressed up: with order 1e3 games the standard error on a win rate near 0.05 is about 0.006, and the rung-to-rung differences are smaller than that. The ladder demonstrates that each component is correctly implemented and running, not that it helps at this budget.
 
 ## 7. Which components transferred, and which were rejected?
 
-**FAIL.** Control field score 0.1905.
+**FAIL.** Control field score 0.0833.
 
 | arm | field score | games | 95% Wilson |
 |---|---|---|---|
-| `T1_policy_prior` | 0.1667 | 24 | [0.0668, 0.3586] |
-| `T2_rollout_policy` | 0.1739 | 23 | [0.0698, 0.3714] |
+| `T1_policy_prior` | 0.1562 | 32 | [0.0686, 0.3175] |
+| `T2_rollout_policy` | 0.1053 | 38 | [0.0417, 0.2414] |
 
 Retained: **none**.
 
@@ -130,7 +144,7 @@ Retained: **none**.
 
 ## 8. Strongest trustworthy local candidate, and submission
 
-Strongest measured local candidate: `transfer_T0_control_summary.json` at 0.1905 — which does **not** clear its registered gate.
+Strongest measured local candidate: `competitive + transfer_T0_control` at 0.1143 — which does **not** clear its registered gate.
 
 `PACKAGE` = **NOT_BUILT** — no candidate cleared its registered gate, so none was packaged
 

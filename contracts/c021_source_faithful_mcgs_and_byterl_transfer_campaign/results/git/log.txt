@@ -1,3 +1,7 @@
+34bd314 c021: bound the abandonment bias instead of hiding it in an exclusion
+8bb3653 c021: pool identical configs, name the A10 confound, and state the B3 result sharply
+36362b7 c021: reading the child's result only after it died manufactured fake timeouts
+b82c666 c021: full campaign results, and the noise floor measured rather than assumed
 eabc2c4 c021: one process per game with a hard timeout, so a stalemate cannot stall an arm
 c4d32a3 c021: out-of-time fallback must guarantee progress, not livelock
 5ba91be c021: the search believes it wins 96% while losing 5 of 6 games -- mechanism, not correlation
@@ -54,7 +58,3 @@ a086f18 c020: B2's option-to-object references were INERT -- 0 of 556 options re
 8db4a43 c020: make the source bundle auditable, and count frozen evaluations correctly
 267ca81 c020: materialize the full probe matrix from real evidence
 e2e371b c020: complete the 11-candidate panel and add per-candidate game counts
-fad2824 c020: post-repair scaled MCTS, and the override finding it settles
-35ed74b c020: fix packaged ByteRL carrying recurrent state across games
-e758664 c020: M09 override ablation, and supersede markers for non-campaign MCTS runs
-64e79df c020: consolidated repair pass -- 2 root defects of a permitted 5

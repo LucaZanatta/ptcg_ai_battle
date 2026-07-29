@@ -15,93 +15,123 @@
     "mcgs_runs": [
       {
         "run": "ablation_nochance_summary.json",
-        "games": 24,
-        "completed": 24,
-        "field_score": 0.125,
-        "sims_per_decision": 329.0,
+        "games": 40,
+        "completed": 31,
+        "abandoned": 9,
+        "field_score": 0.129,
+        "field_score_bounds_if_abandoned_counted": [
+          0.1,
+          0.325
+        ],
+        "sims_per_decision": 615.5,
         "chance_nodes_created": 0,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 5278,
-        "dummy_edges": 117,
-        "term_root_win": 261809,
-        "term_root_loss": 30004
+        "transposition_merges": 6135,
+        "dummy_edges": 184,
+        "term_root_win": 348702,
+        "term_root_loss": 35520
       },
       {
         "run": "competitive_summary.json",
-        "games": 24,
-        "completed": 22,
-        "field_score": 0.1364,
-        "sims_per_decision": 364.5,
-        "chance_nodes_created": 46,
+        "games": 40,
+        "completed": 34,
+        "abandoned": 6,
+        "field_score": 0.1471,
+        "field_score_bounds_if_abandoned_counted": [
+          0.125,
+          0.275
+        ],
+        "sims_per_decision": 174.5,
+        "chance_nodes_created": 96,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 5614,
-        "dummy_edges": 167,
-        "term_root_win": 280887,
-        "term_root_loss": 21849
+        "transposition_merges": 8053,
+        "dummy_edges": 199,
+        "term_root_win": 208101,
+        "term_root_loss": 39731
       },
       {
         "run": "legal_corrected_summary.json",
-        "games": 24,
-        "completed": 19,
-        "field_score": 0.0526,
-        "sims_per_decision": 58.8,
-        "chance_nodes_created": 90,
+        "games": 40,
+        "completed": 33,
+        "abandoned": 3,
+        "field_score": 0.1818,
+        "field_score_bounds_if_abandoned_counted": [
+          0.1666,
+          0.25
+        ],
+        "sims_per_decision": 809.1,
+        "chance_nodes_created": 132,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 3769,
-        "dummy_edges": 92,
-        "term_root_win": 20034,
-        "term_root_loss": 18646
+        "transposition_merges": 8862,
+        "dummy_edges": 424,
+        "term_root_win": 909910,
+        "term_root_loss": 35849
       },
       {
         "run": "transfer_T0_control_summary.json",
-        "games": 24,
-        "completed": 21,
-        "field_score": 0.1905,
-        "sims_per_decision": 953.3,
-        "chance_nodes_created": 84,
+        "games": 40,
+        "completed": 36,
+        "abandoned": 4,
+        "field_score": 0.0833,
+        "field_score_bounds_if_abandoned_counted": [
+          0.075,
+          0.175
+        ],
+        "sims_per_decision": 158.7,
+        "chance_nodes_created": 99,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 6415,
-        "dummy_edges": 188,
-        "term_root_win": 645630,
-        "term_root_loss": 22246
+        "transposition_merges": 8783,
+        "dummy_edges": 130,
+        "term_root_win": 173162,
+        "term_root_loss": 39459
       },
       {
         "run": "transfer_T1_policy_prior_summary.json",
-        "games": 24,
-        "completed": 24,
-        "field_score": 0.1667,
-        "sims_per_decision": 770.9,
-        "chance_nodes_created": 58,
+        "games": 40,
+        "completed": 32,
+        "abandoned": 8,
+        "field_score": 0.1562,
+        "field_score_bounds_if_abandoned_counted": [
+          0.125,
+          0.325
+        ],
+        "sims_per_decision": 884.6,
+        "chance_nodes_created": 83,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 3865,
-        "dummy_edges": 255,
-        "term_root_win": 598441,
-        "term_root_loss": 21191
+        "transposition_merges": 6222,
+        "dummy_edges": 169,
+        "term_root_win": 897262,
+        "term_root_loss": 28757
       },
       {
         "run": "transfer_T2_rollout_policy_summary.json",
-        "games": 24,
-        "completed": 23,
-        "field_score": 0.1739,
-        "sims_per_decision": 806.5,
-        "chance_nodes_created": 5,
+        "games": 40,
+        "completed": 38,
+        "abandoned": 2,
+        "field_score": 0.1053,
+        "field_score_bounds_if_abandoned_counted": [
+          0.1,
+          0.15
+        ],
+        "sims_per_decision": 530.3,
+        "chance_nodes_created": 7,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 1694,
-        "dummy_edges": 5,
-        "term_root_win": 462711,
-        "term_root_loss": 4057
+        "transposition_merges": 1680,
+        "dummy_edges": 47,
+        "term_root_win": 709136,
+        "term_root_loss": 7926
       }
     ],
     "byterl_runs": [
@@ -120,14 +150,18 @@
   },
   "MCGS_COMPETITIVE": {
     "status": "FAIL",
-    "best_run": "transfer_T0_control_summary.json",
-    "field_score": 0.1905,
-    "games": 21,
+    "best_run": "competitive + transfer_T0_control",
+    "field_score": 0.11428857142857142,
+    "games": 70,
+    "pooled": true,
+    "pooling_note": "competitive and transfer_T0_control are the same configuration; they are pooled rather than max-selected, because reporting the higher of two identical runs is selection on the measured noise.",
     "wilson95": [
-      0.0767,
-      0.4
+      0.0591,
+      0.2096
     ],
-    "gate": "lower bound of the 95% Wilson interval must exceed 0.5 against the field",
+    "abandoned": 10,
+    "wilson95_lower_if_abandoned_are_losses": 0.0515,
+    "gate": "lower bound of the 95% Wilson interval must exceed 0.5 against the field, judged with abandoned games counted as losses so exclusion cannot manufacture a pass",
     "note": "A technically faithful but weak MCGS is MCGS_COMPETITIVE=FAIL, not an implementation failure (DECISION_RULES \u00a71)."
   },
   "BYTERL_METHOD": {
@@ -158,9 +192,9 @@
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.0417,
-        "last_win_rate": 0.0417,
-        "best_win_rate": 0.125
+        "first_win_rate": 0.0,
+        "last_win_rate": 0.0833,
+        "best_win_rate": 0.0833
       },
       {
         "run": "fctrl_b2",
@@ -170,8 +204,8 @@
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
         "first_win_rate": 0.0417,
-        "last_win_rate": 0.0208,
-        "best_win_rate": 0.125
+        "last_win_rate": 0.0833,
+        "best_win_rate": 0.0833
       },
       {
         "run": "fctrl_b3",
@@ -180,9 +214,9 @@
         "opponent": "frozen self-play checkpoints (OSFP)",
         "win_rate_is_self_play": true,
         "comparable_to_field": false,
-        "first_win_rate": 0.4375,
-        "last_win_rate": 0.3542,
-        "best_win_rate": 0.5625
+        "first_win_rate": 0.4167,
+        "last_win_rate": 0.4792,
+        "best_win_rate": 0.625
       },
       {
         "run": "flearn_b1_5",
@@ -191,8 +225,8 @@
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.0417,
-        "last_win_rate": 0.0,
+        "first_win_rate": 0.1042,
+        "last_win_rate": 0.0208,
         "best_win_rate": 0.1042
       },
       {
@@ -203,8 +237,8 @@
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
         "first_win_rate": 0.0417,
-        "last_win_rate": 0.0625,
-        "best_win_rate": 0.125
+        "last_win_rate": 0.0208,
+        "best_win_rate": 0.1667
       },
       {
         "run": "flearn_b3",
@@ -213,9 +247,9 @@
         "opponent": "frozen self-play checkpoints (OSFP)",
         "win_rate_is_self_play": true,
         "comparable_to_field": false,
-        "first_win_rate": 0.5208,
-        "last_win_rate": 0.4375,
-        "best_win_rate": 0.5625
+        "first_win_rate": 0.5833,
+        "last_win_rate": 0.4167,
+        "best_win_rate": 0.625
       }
     ],
     "end_to_end_construction_and_battle": true,
@@ -243,28 +277,29 @@
   },
   "TRANSFER": {
     "status": "FAIL",
-    "control_field_score": 0.1905,
+    "control_field_score": 0.0833,
     "arms": {
       "T1_policy_prior": {
         "run": "transfer_T1_policy_prior_summary.json",
-        "field_score": 0.1667,
-        "games": 24,
+        "field_score": 0.1562,
+        "games": 32,
         "wilson95": [
-          0.0668,
-          0.3586
+          0.0686,
+          0.3175
         ]
       },
       "T2_rollout_policy": {
         "run": "transfer_T2_rollout_policy_summary.json",
-        "field_score": 0.1739,
-        "games": 23,
+        "field_score": 0.1053,
+        "games": 38,
         "wilson95": [
-          0.0698,
-          0.3714
+          0.0417,
+          0.2414
         ]
       }
     },
     "retained": [],
+    "interpretation": "NOT RETAINED, and NOT REJECTED. The arm-to-control differences are smaller than the measured run-to-run resolution limit, so the test lacks the power to separate them. Treat the components as UNTESTED.",
     "rule": "DECISION_RULES \u00a73: a component is retained only on a credible improvement; internal ByteRL-vs-history improvement alone is insufficient. Here that means the arm's 95% lower bound must exceed the control's upper bound."
   },
   "PACKAGE": {
@@ -282,5 +317,5 @@
     "both_methods_implemented_and_executed": true,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-29T02:57:26"
+  "generated": "2026-07-29T04:04:39"
 }
