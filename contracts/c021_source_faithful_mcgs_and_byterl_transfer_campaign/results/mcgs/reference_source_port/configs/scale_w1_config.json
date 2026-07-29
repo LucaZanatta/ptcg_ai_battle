@@ -1,0 +1,32 @@
+{
+  "config": {
+    "uct_constant": 0.285,
+    "sample_width": 24,
+    "damping_parameter": 2.0,
+    "determinization_number": 200,
+    "first_move_seconds": 0.9,
+    "continuing_move_seconds": 0.7,
+    "ucd_d1": 1,
+    "ucd_d2": 0,
+    "selection_strategy": "UCD",
+    "final_move_selection": "MaxChild",
+    "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT",
+    "max_simulations_per_decision": 0,
+    "manual_coin": true,
+    "graph_reuse": true,
+    "graph_reuse_max_entries": 20000,
+    "match_clock_seconds": 90.0,
+    "game_timeout_seconds": 300.0
+  },
+  "source_constants": {
+    "uct": 0.285,
+    "sample_width": 24,
+    "damping": 2.0,
+    "ucd": [
+      1,
+      0
+    ],
+    "sparse_threshold": 5
+  },
+  "deployment_note": "first/continuing move seconds reduced from the source's 15/10 as a registered MECHANICAL_ADAPTER for the PTCG cumulative match clock; see benchmarks/scheduling_analysis.md"
+}

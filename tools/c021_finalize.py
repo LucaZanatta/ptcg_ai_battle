@@ -62,6 +62,20 @@ TREE = [
 RUNG_TO_STAGE = {"b0": "BR0", "b1": "BR1", "b1_5": "BR1_5", "b2": "BR2", "b3": "BR3"}
 
 
+def rung_of(base: str) -> Optional[str]:
+    """Rung key from a run tag, by SUFFIX match.
+
+    `base.split("_", 1)[1]` assumes exactly one prefix segment: it maps `fctrl_b1_5` to `b1_5`
+    but `big_ctrl_b1_5` to `ctrl_b1_5`, which matches nothing -- so the entire scaled campaign
+    would never be filed into stages/BR*, its mandated schema location. Longest key first so
+    `b1_5` wins over `b1`.
+    """
+    for k in sorted(RUNG_TO_STAGE, key=len, reverse=True):
+        if base == k or base.endswith("_" + k):
+            return k
+    return None
+
+
 def sh(cmd: List[str]) -> str:
     try:
         return subprocess.run(cmd, cwd=_REPO, capture_output=True, text=True,
@@ -170,8 +184,8 @@ def main(argv=None):
         base = name.replace("_curve.json", "")
         if base.endswith("smoke"):
             continue
-        rung = base.split("_", 1)[1] if "_" in base else base
-        stage = RUNG_TO_STAGE.get(rung)
+        rung = rung_of(base)
+        stage = RUNG_TO_STAGE.get(rung) if rung else None
         if stage:
             copy(p, os.path.join(R, "byterl", "stages", stage, name))
             man = os.path.join(R, "byterl", "manifests", f"{base}_manifest.json")
@@ -543,6 +557,14 @@ def annotate_empty_dirs():
     """
     n = 0
     for dirpath, dirnames, filenames in os.walk(R):
+        stale = os.path.join(dirpath, "WHY_EMPTY.json")
+        if (filenames or dirnames) and os.path.exists(stale):
+            # the directory has content now; a file claiming it is empty contradicts its
+            # neighbours (mcgs/comparisons carried one next to decision_value_ablation.json)
+            others = [f for f in filenames if f != "WHY_EMPTY.json"]
+            if others or dirnames:
+                os.remove(stale)
+                filenames = others
         if filenames or dirnames:
             continue
         rel = os.path.relpath(dirpath, R)

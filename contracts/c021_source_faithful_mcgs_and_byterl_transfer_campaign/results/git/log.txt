@@ -1,3 +1,20 @@
+10884e1 c021: pass 4 -- the report could not see the scaled campaign at all
+fbbd9ac c021: pass 3 -- I mis-attributed the reference's own variance-reduction mechanism
+e8357db c021: pass 2 -- complete the file-by-file source audit, which covered 16 of 33 files
+da17872 c021: pass 1 -- persist per-decision edge data, and answer whether the search discriminates
+ab80323 c021: the option encoder's energy-type feature was wired to a POSITION, leaving 12 inputs dead
+669aeb3 c021: diagnostic runs could become the headline competitive result
+13cd47f c021: classify every identically-zero metric -- and find that a whole subsystem is inert
+afb7e36 c021: surface actor_errors and actor_error_rate in BYTERL_METHOD
+3a2ae63 c021: M16 needs more games per point, and M17 must be re-run clean
+71a0e4f c021: the trainer never aggregated the ACTOR's own errors -- a broken policy would report 0
+453b343 c021: wiring/logging audit -- three config keys read by nothing, two counters that could never move, and a source behaviour that was counted but not implemented
+d1df0d5 c021: OSFP's seeded checkpoint was a VIEW of the live network, not a frozen copy
+b043e82 c021: out-of-time fallback drew from the UNSEEDED global RNG
+6f249c9 c021: C3 was documented and defined but never invoked -- the manifest claimed a correction that was not applied
+3135a9e c021: two real bugs found by audit -- a latent index mis-map and a hash-keyed cache
+805919e c021: execute the mandatory probe matrix instead of asserting it
+b2b74f1 c021: every empty mandated directory now states why it is empty
 2d24d90 c021: the next action now follows the evidence instead of contradicting it
 49e47b6 c021: finalizer emits the focused archive by default so the 9.9 GB regression cannot recur
 0d20cb5 c021: canonical source as a focused archive from the exact final commit
@@ -41,20 +58,3 @@ d963585 c021: deck-construction meta-environment (B2) and scaled MCGS runner
 59c1402 c021: MCGS official-source port, and six defects found by re-reading the source
 d06d35f c021: Phase 1 throughput benchmarks -- the official time budget is affordable
 f552b8d c021: Phase 0 -- branch, controls, official MCGS source acquired and audited
-275f430 c021-prep / c020: final panel, gates, and close-out
-653bd52 c020: record source provenance -- a Phase 0 requirement that had no campaign-level artifact
-9e6e625 c020: register falsifiable predictions before the final panel runs
-c29cef5 c020: register final-panel nproc at 16 before any result exists
-82f3134 c020: seed study proves the 41-point swing was load, not variance -- protocol updated
-2186f9c c020: panel results depended on machine load -- torch threads were not pinned
-3b03cfe c020: --append replaced panel rows instead of accumulating them
-7df4962 c020: pooled ablation at n=480-560 -- and a correction to "the veto does not help"
-b673ba6 c020: the ablation arms were too small to resolve their own effect
-56e2760 c020: branch invariant audit across MCTS, ByteRL and hybrid -- 31 invariants, all hold
-b770cc0 c020: re-measure M09 with a veto that fires, and audit two more mechanisms
-f3ae336 c020: dive into the flagged null token -- it is load-bearing, and the gather is exact
-1d623a3 c020: multi-select override fix confirmed; re-run everything measured with the inert veto
-1b4448c c020: the mandatory end-turn veto never fired, and four leaf features were always zero
-23b57ec c020: supersede training run 1, retrain with the working encoder, parallelize
-a086f18 c020: B2's option-to-object references were INERT -- 0 of 556 options resolved
-040982a c020: fix an illegal payload emitted when an override lands in a multi-select context

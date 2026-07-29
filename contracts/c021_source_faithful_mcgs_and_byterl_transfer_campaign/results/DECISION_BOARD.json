@@ -1,14 +1,22 @@
 {
   "moved": {
     "mcgs": [
+      "ablation_nosearch_summary.json -> mcgs/reference_source_port/evaluations",
       "ablation_nochance_summary.json -> mcgs/reference_source_port/evaluations",
       "legal_corrected_summary.json -> mcgs/legal_corrected/evaluations",
-      "competitive_summary.json -> mcgs/reference_source_port/evaluations"
+      "scale_w4_summary.json -> mcgs/reference_source_port/evaluations",
+      "scale_w12_summary.json -> mcgs/reference_source_port/evaluations",
+      "ablation_search_summary.json -> mcgs/reference_source_port/evaluations",
+      "scale_w8_summary.json -> mcgs/reference_source_port/evaluations",
+      "scale_w2_summary.json -> mcgs/reference_source_port/evaluations",
+      "competitive_summary.json -> mcgs/reference_source_port/evaluations",
+      "scale_w1_summary.json -> mcgs/reference_source_port/evaluations"
     ],
     "byterl": [
       "learn_b1_curve.json -> byterl/stages/BR1",
       "fctrl_b2_curve.json -> byterl/stages/BR2",
       "fctrl_b3_curve.json -> byterl/stages/BR3",
+      "big_ctrl_b2_curve.json -> byterl/stages/BR2",
       "fctrl_b1_curve.json -> byterl/stages/BR1",
       "flearn_b2_curve.json -> byterl/stages/BR2",
       "flearn_b3_curve.json -> byterl/stages/BR3",
@@ -16,8 +24,10 @@
       "fctrl_b0_curve.json -> byterl/stages/BR0",
       "flearn_b0_curve.json -> byterl/stages/BR0",
       "flearn_b1_5_curve.json -> byterl/stages/BR1_5",
+      "big_ctrl_b1_5_curve.json -> byterl/stages/BR1_5",
       "ctrl_b1_5_curve.json -> byterl/stages/BR1_5",
       "fctrl_b1_5_curve.json -> byterl/stages/BR1_5",
+      "big_ctrl_b3_curve.json -> byterl/stages/BR3",
       "b0_curve.json -> byterl/stages/BR0",
       "ctrl_b0_curve.json -> byterl/stages/BR0",
       "flearn_b1_curve.json -> byterl/stages/BR1",
@@ -31,5 +41,5 @@
       "transfer_T0_control_summary.json -> transfer/prior_only"
     ]
   },
-  "generated": "2026-07-29T04:57:54"
+  "generated": "2026-07-29T11:23:23"
 }

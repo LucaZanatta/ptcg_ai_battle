@@ -1,6 +1,6 @@
 # c021 — source-faithful MCGS and ByteRL transfer campaign: final report
 
-Generated 2026-07-29T09:18:34 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
+Generated 2026-07-29T11:23:41 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
 
 ## Statuses
 
@@ -111,7 +111,7 @@ Unresolved reference choices are declared in `results/fidelity/UNRESOLVED_REFERE
 
 ## 5. Achieved scale relative to the published reference
 
-**COMPUTE_LIMITED.** 34368 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
+**COMPUTE_LIMITED.** 65088 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
 
 > Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.
 
@@ -121,12 +121,9 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 | run | opponent | iters | updates | first | last | best | field-comparable |
 |---|---|---|---|---|---|---|---|
-| `fctrl_b1_5` | scripted field | 16 | 768 | 0.0000 | 0.0833 | 0.0833 | yes |
-| `fctrl_b2` | scripted field | 16 | 768 | 0.0417 | 0.0833 | 0.0833 | yes |
-| `fctrl_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.4167 | 0.4792 | 0.6250 | **no — self-play** |
-| `flearn_b1_5` | scripted field | 16 | 768 | 0.1042 | 0.0208 | 0.1042 | yes |
-| `flearn_b2` | scripted field | 16 | 768 | 0.0417 | 0.0208 | 0.1667 | yes |
-| `flearn_b3` | frozen self-play checkpoints (OSFP) | 16 | 768 | 0.5833 | 0.4167 | 0.6250 | **no — self-play** |
+| `big_ctrl_b1_5` | scripted field | 120 | 15360 | 0.0391 | 0.0859 | 0.1719 | yes |
+| `big_ctrl_b2` | scripted field | 120 | 15360 | 0.0391 | 0.0859 | 0.1250 | yes |
+| `big_ctrl_b3` | frozen self-play checkpoints (OSFP) | 120 | 15360 | 0.4844 | 0.3359 | 0.7812 | **no — self-play** |
 
 > B3's win rate is measured against frozen checkpoints of itself and sits near 0.5 by construction. It is not a field result and must not be compared with the other rungs; DECISION_RULES §4 forbids submitting a checkpoint selected only on self-play.
 
@@ -134,7 +131,7 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 OSFP itself worked: promotion fired (`fctrl_b3` at iterations 7, 9, 10, 14; `flearn_b3` at 0, 1, 4, 5, 6, 8), the period-local payoff bookkeeping advanced, and the history is append-only.
 
-But the seeded period-0 checkpoint was stored as `tensor.detach().cpu().numpy()`, **which shares storage with the live parameter**. Without an explicit copy that "frozen" checkpoint mutated on every optimizer step, so for as long as checkpoint 0 was in the opponent pool B3 was playing a mirror of its *current* self rather than a frozen past self. A mirror match returns 0.5 by construction — which is exactly where these rates sit (`fctrl_b3` best 0.6250, `flearn_b3` best 0.6250).
+But the seeded period-0 checkpoint was stored as `tensor.detach().cpu().numpy()`, **which shares storage with the live parameter**. Without an explicit copy that "frozen" checkpoint mutated on every optimizer step, so for as long as checkpoint 0 was in the opponent pool B3 was playing a mirror of its *current* self rather than a frozen past self. A mirror match returns 0.5 by construction — which is exactly where these rates sit (`big_ctrl_b3` best 0.7812).
 
 So the earlier reading — *B3 does not beat its own random initialization* — was **not supported**: it never played its random initialization. The bug is fixed (`.copy()`, with a regression test that the fixture only passes if `.numpy()` really does alias), and these B3 rates should be read as **uninformative**, not as evidence either way. The promotion path was always correct, because it copied via `.tolist()`.
 
