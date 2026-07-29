@@ -1,0 +1,4039 @@
+[
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 23,
+      "lookups": 22,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 22,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 22,
+      "lookups": 23,
+      "hits": 2,
+      "hit_rate": 0.087,
+      "merges": 2,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 21,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 18,
+      "lookups": 18,
+      "hits": 1,
+      "hit_rate": 0.0556,
+      "merges": 1,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 17,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 20,
+      "lookups": 19,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 19,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 2,
+    "graph": {
+      "entries": 27,
+      "lookups": 26,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 5,
+    "root_visits": 26,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 23,
+      "lookups": 22,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 22,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 1.0,
+        "backup_nodes": 8,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 0.0,
+        "backup_nodes": 8,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 18,
+      "lookups": 17,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 17,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 33,
+      "lookups": 32,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 32,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 19,
+      "lookups": 20,
+      "hits": 2,
+      "hit_rate": 0.1,
+      "merges": 2,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 18,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 2,
+    "graph": {
+      "entries": 23,
+      "lookups": 23,
+      "hits": 1,
+      "hit_rate": 0.0435,
+      "merges": 1,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 6,
+    "root_visits": 22,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 21,
+      "lookups": 23,
+      "hits": 3,
+      "hit_rate": 0.1304,
+      "merges": 3,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 20,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 19,
+      "lookups": 18,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 18,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 19,
+      "lookups": 19,
+      "hits": 1,
+      "hit_rate": 0.0526,
+      "merges": 1,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 18,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 0.0,
+        "backup_nodes": 8,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 23,
+      "lookups": 22,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 22,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 16,
+      "lookups": 15,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 3,
+    "root_visits": 15,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 24,
+      "lookups": 24,
+      "hits": 1,
+      "hit_rate": 0.0417,
+      "merges": 1,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 23,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 19,
+      "lookups": 18,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 18,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 22,
+      "lookups": 23,
+      "hits": 2,
+      "hit_rate": 0.087,
+      "merges": 2,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 21,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 0.0,
+        "backup_nodes": 8,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 20,
+      "lookups": 19,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 19,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 2,
+    "graph": {
+      "entries": 28,
+      "lookups": 32,
+      "hits": 5,
+      "hit_rate": 0.1562,
+      "merges": 5,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 5,
+    "root_visits": 27,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 1.0,
+        "backup_nodes": 8,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 1.0,
+        "backup_nodes": 8,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 1.0,
+        "backup_nodes": 8,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 16,
+      "lookups": 15,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 15,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 19,
+      "lookups": 20,
+      "hits": 2,
+      "hit_rate": 0.1,
+      "merges": 2,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 18,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 2,
+    "graph": {
+      "entries": 23,
+      "lookups": 25,
+      "hits": 3,
+      "hit_rate": 0.12,
+      "merges": 3,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 22,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 29,
+      "lookups": 28,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 28,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 22,
+      "lookups": 21,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 21,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 1.0,
+        "backup_nodes": 8,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 7,
+        "reward": 0.0,
+        "backup_nodes": 8,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 40,
+      "lookups": 40,
+      "hits": 1,
+      "hit_rate": 0.025,
+      "merges": 1,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": true
+    },
+    "root_edges": 2,
+    "root_visits": 39,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 19,
+      "lookups": 18,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 18,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 22,
+      "lookups": 21,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 21,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 1.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 0.0,
+        "backup_nodes": 7,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 6,
+        "reward": 1.0,
+        "backup_nodes": 7,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 2,
+    "graph": {
+      "entries": 23,
+      "lookups": 22,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 7,
+    "root_visits": 22,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 1,
+    "graph": {
+      "entries": 16,
+      "lookups": 15,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 2,
+    "root_visits": 15,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 1.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 3,
+        "reward": 0.0,
+        "backup_nodes": 4,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 4,
+        "reward": 0.0,
+        "backup_nodes": 5,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 0.0,
+        "backup_nodes": 6,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 5,
+        "reward": 1.0,
+        "backup_nodes": 6,
+        "terminal": false
+      }
+    ]
+  },
+  {
+    "decision": 2,
+    "graph": {
+      "entries": 23,
+      "lookups": 22,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "merges": 0,
+      "dummy_edges": 0,
+      "sample_merges": 0,
+      "is_a_dag": false
+    },
+    "root_edges": 8,
+    "root_visits": 22,
+    "traces": [
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 1.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 1,
+        "reward": 0.0,
+        "backup_nodes": 2,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 1.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      },
+      {
+        "leaf_depth": 2,
+        "reward": 0.0,
+        "backup_nodes": 3,
+        "terminal": false
+      }
+    ]
+  }
+]

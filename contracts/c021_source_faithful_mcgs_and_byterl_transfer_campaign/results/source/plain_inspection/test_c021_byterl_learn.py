@@ -211,3 +211,119 @@ def test_osfp_history_is_immutable_even_when_the_buffer_evicts():
     before = o.history_log()
     o.history_log().append({"label": "tampered"})
     assert o.history_log() == before, "history_log must hand back a copy"
+
+
+def test_osfp_checkpoints_must_be_copies_not_views():
+    """Regression: a `.numpy()` snapshot SHARES storage with the live parameter.
+
+    Without an explicit copy the "frozen" checkpoint mutates on every optimizer step, so
+    self-play runs against a mirror of the CURRENT policy rather than a frozen past one -- which
+    pins the self-play rate near 0.5 by construction and makes it uninformative.
+    """
+    import torch.nn as nn
+    net = nn.Linear(4, 4)
+    opt = torch.optim.Adam(net.parameters(), lr=1.0)
+
+    view = {k: v.detach().cpu().numpy() for k, v in net.state_dict().items()}
+    copied = {k: v.detach().cpu().numpy().copy() for k, v in net.state_dict().items()}
+    view_before = view["weight"].copy()
+    copied_before = copied["weight"].copy()
+
+    net(torch.randn(2, 4)).sum().backward()
+    opt.step()
+
+    assert not np.allclose(view_before, view["weight"]), \
+        "fixture is wrong: .numpy() should share storage"
+    assert np.allclose(copied_before, copied["weight"]), \
+        "a copied checkpoint must not change when the live network updates"
+
+
+def test_osfp_add_checkpoint_stores_what_it_was_given():
+    o = L.OSFP()
+    state = {"w": np.zeros(3)}
+    o.add_checkpoint({k: v.copy() for k, v in state.items()}, "ck")
+    state["w"][0] = 99.0
+    assert o.checkpoints[0]["state"]["w"][0] == 0.0
+
+
+def test_actor_error_counter_detects_a_fully_broken_policy():
+    """A metric that reads 0 when healthy proves nothing unless it moves when broken.
+
+    The trainer previously aggregated only JOB-level errors. A policy raising on every decision
+    falls back to the first legal option, completes its games, and would have reported 0 errors
+    with a win rate that looks like network play.
+    """
+    import sys, os
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from cg import c021_byterl_actor as AC, c021_byterl_deck as DK
+    from cg import c021_byterl_encode as EN, c021_byterl_model as M
+
+    pool = DK.CardPool.from_archetypes()
+    d = EN.dims()
+    net = M.fresh(d["global_dim"], d["slot_dim"], d["option_dim"], pool.size(),
+                  width=32, blocks=1, seed=0)
+    a = AC.ByteRLActor(net, pool, seed=1, fixed_deck=DK.greedy_reference_deck(pool))
+
+    def boom(*args, **kw):
+        raise RuntimeError("injected policy failure")
+
+    a.net.encode = boom
+    sel = {"selectType": 0, "context": 0, "minCount": 1, "maxCount": 1,
+           "option": [{"optionType": 7, "area": 2, "index": 0}, {"optionType": 14}]}
+    for _ in range(10):
+        a.act({"select": sel})
+    ep = a.finish(0.0, True, {})
+    assert ep.info["n_errors"] == 10
+    assert ep.info["n_errors"] / max(1, ep.info["n_decisions"]) == 1.0
+    assert ep.battle_steps() == 0
+
+
+# ------------------------------------------------------------------ masking (mutation-driven)
+def test_masking_gives_illegal_actions_exactly_zero_probability():
+    """Added after a mutation test: deleting the masked_fill from masked_log_softmax left all
+    97 tests passing. Masking is the load-bearing legality guarantee -- an unmasked policy can
+    sample an illegal action and, worse, every gradient flowing through that mass is wrong.
+    """
+    import os
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from cg import c021_byterl_model as M
+
+    torch.manual_seed(0)
+    logits = torch.randn(1, 20) * 5.0          # large, so an unmasked softmax spreads widely
+    mask = torch.zeros(1, 20)
+    mask[0, :3] = 1.0
+    p = M.masked_log_softmax(logits, mask).exp()
+
+    illegal_mass = float((p * (mask <= 0)).sum())
+    assert illegal_mass == 0.0, f"illegal actions carry {illegal_mass} probability"
+    assert abs(float(p.sum()) - 1.0) < 1e-5, "legal probabilities must still sum to 1"
+    assert float(p[0, 3:].max()) == 0.0
+
+    # the argmax must never be an illegal action even when it has the largest raw logit
+    forced = torch.full((1, 6), -10.0)
+    forced[0, 5] = 100.0                        # illegal but overwhelmingly the largest logit
+    m2 = torch.zeros(1, 6)
+    m2[0, 0] = 1.0
+    q = M.masked_log_softmax(forced, m2).exp()
+    assert int(q.argmax()) == 0, "masking must beat a dominant illegal logit"
+    assert float(q[0, 5]) == 0.0
+
+
+def test_sampled_action_is_always_legal_under_a_sparse_mask():
+    import os
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from cg import c021_byterl_model as M
+
+    net = M.fresh(24, 35, 28, 52, width=64, blocks=1, seed=1)
+    h = torch.randn(1, 64)
+    o = torch.randn(1, 30, 28) * 3.0
+    legal = torch.zeros(1, 30)
+    legal[0, [2, 7, 19]] = 1.0
+    for seed in range(30):
+        chosen, _ = net.sample_select(h, o, legal, min_count=1, max_count=2,
+                                      rng=np.random.default_rng(seed))
+        assert chosen, "must pick something"
+        for c in chosen:
+            assert legal[0, c] == 1.0, f"sampled illegal option {c}"

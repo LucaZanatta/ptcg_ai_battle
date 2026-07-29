@@ -8,5 +8,5 @@
     "design": "checkpoints is a BOUNDED sampling buffer; history is append-only and is never rewritten, so a promotion stays auditable after its weights leave the buffer",
     "check": "test_osfp_history_is_immutable_even_when_the_buffer_evicts"
   },
-  "generated": "2026-07-29T08:03:49"
+  "generated": "2026-07-29T21:47:01"
 }

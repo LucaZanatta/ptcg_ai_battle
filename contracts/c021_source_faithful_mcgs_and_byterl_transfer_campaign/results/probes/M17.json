@@ -1,8 +1,31 @@
 {
   "id": "M17",
   "probe": "Decision-value ablation",
-  "status": "NOT_RUN",
-  "evidence": {},
-  "generated": "2026-07-29T08:03:47",
-  "reason": "Search-vs-no-search control not executed; run tools/c021_scaling.py --ablation"
+  "status": "PASS",
+  "evidence": {
+    "search": {
+      "field_score": 0.1471,
+      "completed": 34,
+      "sims_per_decision": 891.8,
+      "wilson95": [
+        0.0645,
+        0.3013
+      ],
+      "wall_clock_s": 418.0
+    },
+    "no_search": {
+      "field_score": 0.0,
+      "completed": 40,
+      "searched_decisions": 40,
+      "match_clock_exhausted_decisions": 104,
+      "wilson95": [
+        -0.0,
+        0.0876
+      ],
+      "wall_clock_s": 13.8
+    },
+    "delta": 0.1471,
+    "interpretation": "The no-search control plays the same agent with the match clock set to zero, so it never searches and takes END_TURN when available. A positive delta means executed search actions helped; a negative one means they HURT, which is the question DECISION_RULES 5 requires answered explicitly. Read it against the measured reproducibility bound, not against zero."
+  },
+  "generated": "2026-07-29T21:46:59"
 }

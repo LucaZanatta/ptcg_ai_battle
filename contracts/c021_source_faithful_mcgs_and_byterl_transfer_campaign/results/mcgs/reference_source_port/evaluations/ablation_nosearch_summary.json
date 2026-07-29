@@ -7,6 +7,8 @@
     "damping_parameter": 2.0,
     "determinization_number_SOURCE_VALUE_NOT_APPLIED": 200,
     "determinizations_per_decision": 1,
+    "determinizations_per_rollout_SOURCE": "fresh per rollout",
+    "determinizations_per_rollout_PORT": 0,
     "first_move_seconds": 0.9,
     "continuing_move_seconds": 0.7,
     "ucd_d1": 1,
@@ -23,6 +25,7 @@
   },
   "manual_coin": true,
   "drain_fixed": true,
+  "role": "ablation",
   "manual_coin_contexts": [
     46
   ],
@@ -65,19 +68,23 @@
   "begin_errors": 0,
   "release_calls": 40,
   "release_errors": 0,
-  "decisions": 210,
+  "decisions": 194,
   "searched_decisions": 40,
   "graph_reuse_reroots": 0,
   "time_budget_exhausted": 0,
   "chance_expansions": 0,
   "manual_coin_node_ucb_selected": 0,
-  "match_clock_exhausted_decisions": 120,
+  "match_clock_exhausted_decisions": 104,
   "max_max_depth": 0,
-  "max_match_search_ms": 16.7,
+  "max_match_search_ms": 19.4,
   "sims_per_decision": 0.0,
   "steps_per_decision": 0.0,
   "rollout_terminal_rate": 0.0,
   "per_opponent": {
+    "mega_lucario": {
+      "games": 10,
+      "rate": 0.0
+    },
     "iono": {
       "games": 10,
       "rate": 0.0
@@ -89,12 +96,8 @@
     "dragapult": {
       "games": 10,
       "rate": 0.0
-    },
-    "mega_lucario": {
-      "games": 10,
-      "rate": 0.0
     }
   },
   "field_score": 0.0,
-  "wall_clock_s": 13.6
+  "wall_clock_s": 13.7
 }

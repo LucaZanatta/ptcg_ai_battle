@@ -20,20 +20,24 @@
     "max_grad_norm": 10.0
   },
   "params": 552055,
-  "fresh_random_weights": true,
+  "fresh_random_weights": false,
+  "resumed_from": "big_ctrl_b2_final.pt",
+  "extension_note": "Continuation of an already-fresh run. Implementation, losses, hyperparameters, population rules and evaluation protocol are unchanged from the run being extended.",
   "reductions": {
     "kind": "permitted by FIDELITY_RULES \u00a74 (actors, samples, duration, periods only)",
-    "actors": 22,
+    "actors": 11,
     "games_per_iteration": 128,
-    "iterations": 120,
+    "iterations": 600,
     "learn_construction": false,
     "arm": "control_fixed_deck",
     "architecture_simplified": false,
     "algorithm_simplified": false
   },
-  "started": "2026-07-29T09:57:48",
-  "finished": "2026-07-29T10:27:57",
-  "wall_clock_s": 1808.9,
-  "final_win_rate": 0.0859,
-  "best_win_rate": 0.125
+  "started": "2026-07-29T15:45:05",
+  "iterations_completed": 600,
+  "stopped_on_deadline": false,
+  "finished": "2026-07-29T19:34:03",
+  "wall_clock_s": 13738.4,
+  "final_win_rate": 0.2109,
+  "best_win_rate": 0.3203
 }

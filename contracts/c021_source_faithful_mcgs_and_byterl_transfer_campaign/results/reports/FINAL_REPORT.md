@@ -1,6 +1,6 @@
 # c021 — source-faithful MCGS and ByteRL transfer campaign: final report
 
-Generated 2026-07-29T11:23:41 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
+Generated 2026-07-29T21:46:58 from `reports/statuses.json`. Every figure below is read from that file at render time, so the narrative cannot drift from the evidence.
 
 ## Statuses
 
@@ -40,14 +40,20 @@ Gate: lower bound of the 95% Wilson interval must exceed 0.5 against the field, 
 |---|---|---|---|---|---|---|---|
 | `ablation_nochance_summary.json` | 40 | 31 | 0.1290 | 615.5 | 0 | 0 | 0 |
 | `ablation_nosearch_summary.json` | 40 | 40 | 0.0000 | 0.0 | 0 | 0 | 0 |
-| `ablation_search_summary.json` | 40 | 34 | 0.1176 | 739.4 | 120 | 0 | 0 |
+| `ablation_search_summary.json` | 40 | 34 | 0.1471 | 891.8 | 98 | 0 | 0 |
 | `competitive_summary.json` | 40 | 34 | 0.1471 | 174.5 | 96 | 0 | 0 |
 | `legal_corrected_summary.json` | 40 | 33 | 0.1818 | 809.1 | 132 | 0 | 0 |
-| `scale_w12_summary.json` | 12 | 9 | 0.2222 | 566.0 | 28 | 0 | 0 |
-| `scale_w1_summary.json` | 12 | 11 | 0.2727 | 2293.4 | 84 | 0 | 0 |
-| `scale_w2_summary.json` | 12 | 11 | 0.2727 | 942.6 | 28 | 0 | 0 |
-| `scale_w4_summary.json` | 12 | 11 | 0.0909 | 73.0 | 12 | 0 | 0 |
-| `scale_w8_summary.json` | 12 | 12 | 0.2500 | 1002.8 | 84 | 0 | 0 |
+| `scale_w12_summary.json` | 36 | 31 | 0.1613 | 706.1 | 93 | 0 | 0 |
+| `scale_w1_summary.json` | 36 | 34 | 0.1471 | 539.3 | 212 | 0 | 0 |
+| `scale_w20_summary.json` | 36 | 32 | 0.0938 | 351.4 | 88 | 0 | 0 |
+| `scale_w24_summary.json` | 36 | 31 | 0.0000 | 42.8 | 59 | 0 | 0 |
+| `scale_w2_summary.json` | 36 | 32 | 0.1562 | 518.2 | 90 | 0 | 0 |
+| `scale_w4_summary.json` | 36 | 33 | 0.2424 | 1462.7 | 158 | 0 | 0 |
+| `scale_w8_summary.json` | 36 | 31 | 0.1290 | 912.2 | 102 | 0 | 0 |
+| `t2_T0_control_summary.json` | 40 | 36 | 0.1111 | 176.6 | 100 | 0 | 0 |
+| `t2_T1_policy_prior_summary.json` | 40 | 35 | 0.1714 | 492.5 | 49 | 0 | 0 |
+| `t2_T2_rollout_policy_summary.json` | 40 | 39 | 0.1795 | 326.0 | 11 | 0 | 0 |
+| `t2_T3_prior_and_rollout_summary.json` | 40 | 34 | 0.0882 | 296.0 | 12 | 0 | 0 |
 | `transfer_T0_control_summary.json` | 40 | 36 | 0.0833 | 158.7 | 99 | 0 | 0 |
 | `transfer_T1_policy_prior_summary.json` | 40 | 32 | 0.1562 | 884.6 | 83 | 0 | 0 |
 | `transfer_T2_rollout_policy_summary.json` | 40 | 38 | 0.1053 | 530.3 | 7 | 0 | 0 |
@@ -111,7 +117,7 @@ Unresolved reference choices are declared in `results/fidelity/UNRESOLVED_REFERE
 
 ## 5. Achieved scale relative to the published reference
 
-**COMPUTE_LIMITED.** 65088 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
+**COMPUTE_LIMITED.** 232384 games played in total against a reference of *distributed fleet, millions of games, days of wall clock*.
 
 > Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.
 
@@ -121,9 +127,12 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 | run | opponent | iters | updates | first | last | best | field-comparable |
 |---|---|---|---|---|---|---|---|
-| `big_ctrl_b1_5` | scripted field | 120 | 15360 | 0.0391 | 0.0859 | 0.1719 | yes |
-| `big_ctrl_b2` | scripted field | 120 | 15360 | 0.0391 | 0.0859 | 0.1250 | yes |
+| `big_ctrl_b1_5` | scripted field | 587 | 75136 | 0.1094 | 0.1250 | 0.2812 | yes |
+| `big_ctrl_b2` | scripted field | 600 | 76800 | 0.1094 | 0.2109 | 0.3203 | yes |
 | `big_ctrl_b3` | frozen self-play checkpoints (OSFP) | 120 | 15360 | 0.4844 | 0.3359 | 0.7812 | **no — self-play** |
+| `big_learn_b1_5` | scripted field | 120 | 15360 | 0.0625 | 0.0938 | 0.1406 | yes |
+| `big_learn_b2` | scripted field | 120 | 15360 | 0.0547 | 0.0547 | 0.1094 | yes |
+| `big_learn_b3` | frozen self-play checkpoints (OSFP) | 120 | 15360 | 0.5078 | 0.5547 | 0.7109 | **no — self-play** |
 
 > B3's win rate is measured against frozen checkpoints of itself and sits near 0.5 by construction. It is not a field result and must not be compared with the other rungs; DECISION_RULES §4 forbids submitting a checkpoint selected only on self-play.
 
@@ -131,7 +140,7 @@ Reductions taken are confined to the four `FIDELITY_RULES §4` permits (actors, 
 
 OSFP itself worked: promotion fired (`fctrl_b3` at iterations 7, 9, 10, 14; `flearn_b3` at 0, 1, 4, 5, 6, 8), the period-local payoff bookkeeping advanced, and the history is append-only.
 
-But the seeded period-0 checkpoint was stored as `tensor.detach().cpu().numpy()`, **which shares storage with the live parameter**. Without an explicit copy that "frozen" checkpoint mutated on every optimizer step, so for as long as checkpoint 0 was in the opponent pool B3 was playing a mirror of its *current* self rather than a frozen past self. A mirror match returns 0.5 by construction — which is exactly where these rates sit (`big_ctrl_b3` best 0.7812).
+But the seeded period-0 checkpoint was stored as `tensor.detach().cpu().numpy()`, **which shares storage with the live parameter**. Without an explicit copy that "frozen" checkpoint mutated on every optimizer step, so for as long as checkpoint 0 was in the opponent pool B3 was playing a mirror of its *current* self rather than a frozen past self. A mirror match returns 0.5 by construction — which is exactly where these rates sit (`big_ctrl_b3` best 0.7812, `big_learn_b3` best 0.7109).
 
 So the earlier reading — *B3 does not beat its own random initialization* — was **not supported**: it never played its random initialization. The bug is fixed (`.copy()`, with a regression test that the fixture only passes if `.numpy()` really does alias), and these B3 rates should be read as **uninformative**, not as evidence either way. The promotion path was always correct, because it copied via `.tolist()`.
 
@@ -139,12 +148,13 @@ So the earlier reading — *B3 does not beat its own random initialization* — 
 
 ## 7. Which components transferred, and which were rejected?
 
-**FAIL.** Control field score 0.0833.
+**FAIL.** Control field score 0.1111.
 
 | arm | field score | games | 95% Wilson |
 |---|---|---|---|
-| `T1_policy_prior` | 0.1562 | 32 | [0.0686, 0.3175] |
-| `T2_rollout_policy` | 0.1053 | 38 | [0.0417, 0.2414] |
+| `T1_policy_prior` | 0.1714 | 35 | [0.081, 0.3268] |
+| `T2_rollout_policy` | 0.1795 | 39 | [0.0898, 0.3267] |
+| `T3_prior_and_rollout` | 0.0882 | 34 | [0.0304, 0.2296] |
 
 Retained: **none**.
 

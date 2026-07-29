@@ -5,30 +5,69 @@
   "evidence": {
     "rollout_terminal_rate": {
       "transfer_T1_policy_prior": 1.0,
+      "t2_T1_policy_prior": 1.0,
+      "ablation_nosearch": 0.0,
       "ablation_nochance": 1.0,
       "legal_corrected": 1.0,
       "transfer_T2_rollout_policy": 1.0,
+      "scale_w4": 1.0,
+      "t2_T3_prior_and_rollout": 1.0,
+      "scale_w12": 1.0,
+      "ablation_search": 1.0,
       "transfer_T0_control": 1.0,
-      "competitive": 1.0
+      "scale_w8": 1.0,
+      "scale_w2": 1.0,
+      "scale_w20": 1.0,
+      "t2_T2_rollout_policy": 1.0,
+      "competitive": 1.0,
+      "scale_w24": 1.0,
+      "t2_T0_control": 1.0,
+      "scale_w1": 1.0
     },
     "term_root_win": {
       "transfer_T1_policy_prior": 897262,
+      "t2_T1_policy_prior": 627283,
+      "ablation_nosearch": null,
       "ablation_nochance": 348702,
       "legal_corrected": 909910,
       "transfer_T2_rollout_policy": 709136,
+      "scale_w4": 1830528,
+      "t2_T3_prior_and_rollout": 415327,
+      "scale_w12": 914159,
+      "ablation_search": 814531,
       "transfer_T0_control": 173162,
-      "competitive": 208101
+      "scale_w8": 731018,
+      "scale_w2": 433509,
+      "scale_w20": 132409,
+      "t2_T2_rollout_policy": 481496,
+      "competitive": 208101,
+      "scale_w24": 17512,
+      "t2_T0_control": 107278,
+      "scale_w1": 706056
     },
     "term_root_loss": {
       "transfer_T1_policy_prior": 28757,
+      "t2_T1_policy_prior": 24725,
+      "ablation_nosearch": null,
       "ablation_nochance": 35520,
       "legal_corrected": 35849,
       "transfer_T2_rollout_policy": 7926,
+      "scale_w4": 40470,
+      "t2_T3_prior_and_rollout": 9123,
+      "scale_w12": 39781,
+      "ablation_search": 30406,
       "transfer_T0_control": 39459,
-      "competitive": 39731
+      "scale_w8": 35888,
+      "scale_w2": 46729,
+      "scale_w20": 27254,
+      "t2_T2_rollout_policy": 10628,
+      "competitive": 39731,
+      "scale_w24": 28770,
+      "t2_T0_control": 28346,
+      "scale_w1": 50192
     },
     "no_leaf_evaluator": true,
     "note": "Uniform-random rollout to a REAL terminal; the winner is resolved to a player index and compared to the root, never read from the terminal observation's owner."
   },
-  "generated": "2026-07-29T08:03:47"
+  "generated": "2026-07-29T21:46:59"
 }

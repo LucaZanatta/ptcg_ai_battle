@@ -5,20 +5,46 @@
   "evidence": {
     "transposition_merges": {
       "transfer_T1_policy_prior": 6222,
+      "t2_T1_policy_prior": 4291,
+      "ablation_nosearch": 0,
       "ablation_nochance": 6135,
       "legal_corrected": 8862,
       "transfer_T2_rollout_policy": 1680,
+      "scale_w4": 14222,
+      "t2_T3_prior_and_rollout": 1397,
+      "scale_w12": 7772,
+      "ablation_search": 6857,
       "transfer_T0_control": 8783,
-      "competitive": 8053
+      "scale_w8": 7770,
+      "scale_w2": 11183,
+      "scale_w20": 4237,
+      "t2_T2_rollout_policy": 1605,
+      "competitive": 8053,
+      "scale_w24": 3944,
+      "t2_T0_control": 5144,
+      "scale_w1": 10611
     },
     "dummy_edges": {
       "transfer_T1_policy_prior": 169,
+      "t2_T1_policy_prior": 158,
+      "ablation_nosearch": 0,
       "ablation_nochance": 184,
       "legal_corrected": 424,
       "transfer_T2_rollout_policy": 47,
+      "scale_w4": 339,
+      "t2_T3_prior_and_rollout": 57,
+      "scale_w12": 174,
+      "ablation_search": 128,
       "transfer_T0_control": 130,
-      "competitive": 199
+      "scale_w8": 216,
+      "scale_w2": 261,
+      "scale_w20": 111,
+      "t2_T2_rollout_policy": 43,
+      "competitive": 199,
+      "scale_w24": 198,
+      "t2_T0_control": 258,
+      "scale_w1": 317
     }
   },
-  "generated": "2026-07-29T08:03:47"
+  "generated": "2026-07-29T21:46:59"
 }

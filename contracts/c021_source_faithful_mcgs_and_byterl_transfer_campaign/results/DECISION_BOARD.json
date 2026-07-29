@@ -9,7 +9,9 @@
       "ablation_search_summary.json -> mcgs/reference_source_port/evaluations",
       "scale_w8_summary.json -> mcgs/reference_source_port/evaluations",
       "scale_w2_summary.json -> mcgs/reference_source_port/evaluations",
+      "scale_w20_summary.json -> mcgs/reference_source_port/evaluations",
       "competitive_summary.json -> mcgs/reference_source_port/evaluations",
+      "scale_w24_summary.json -> mcgs/reference_source_port/evaluations",
       "scale_w1_summary.json -> mcgs/reference_source_port/evaluations"
     ],
     "byterl": [
@@ -28,18 +30,25 @@
       "ctrl_b1_5_curve.json -> byterl/stages/BR1_5",
       "fctrl_b1_5_curve.json -> byterl/stages/BR1_5",
       "big_ctrl_b3_curve.json -> byterl/stages/BR3",
+      "big_learn_b3_curve.json -> byterl/stages/BR3",
       "b0_curve.json -> byterl/stages/BR0",
       "ctrl_b0_curve.json -> byterl/stages/BR0",
+      "big_learn_b1_5_curve.json -> byterl/stages/BR1_5",
       "flearn_b1_curve.json -> byterl/stages/BR1",
       "ctrl_b1_curve.json -> byterl/stages/BR1",
+      "big_learn_b2_curve.json -> byterl/stages/BR2",
       "ctrl_b3_curve.json -> byterl/stages/BR3",
       "ctrl_b2_curve.json -> byterl/stages/BR2"
     ],
     "transfer": [
       "transfer_T1_policy_prior_summary.json -> transfer/prior_only",
+      "t2_T1_policy_prior_summary.json -> transfer/prior_only",
       "transfer_T2_rollout_policy_summary.json -> transfer/other_single_component",
-      "transfer_T0_control_summary.json -> transfer/prior_only"
+      "t2_T3_prior_and_rollout_summary.json -> transfer/other_single_component",
+      "transfer_T0_control_summary.json -> transfer/prior_only",
+      "t2_T2_rollout_policy_summary.json -> transfer/other_single_component",
+      "t2_T0_control_summary.json -> transfer/prior_only"
     ]
   },
-  "generated": "2026-07-29T11:57:54"
+  "generated": "2026-07-29T21:52:42"
 }

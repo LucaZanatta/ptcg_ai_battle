@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-29T08:03:49",
+  "generated": "2026-07-29T21:47:01",
   "total": 55,
   "counts": {
-    "PASS": 45,
-    "NOT_RUN": 4,
-    "NOT_APPLICABLE": 6
+    "PASS": 47,
+    "NOT_APPLICABLE": 6,
+    "NOT_RUN": 2
   },
   "probes": [
     {
@@ -130,14 +130,14 @@
     {
       "id": "M16",
       "probe": "Throughput scaling",
-      "status": "NOT_RUN",
-      "reason": "Scaling sweep not executed; run tools/c021_scaling.py"
+      "status": "PASS",
+      "reason": ""
     },
     {
       "id": "M17",
       "probe": "Decision-value ablation",
-      "status": "NOT_RUN",
-      "reason": "Search-vs-no-search control not executed; run tools/c021_scaling.py --ablation"
+      "status": "PASS",
+      "reason": ""
     },
     {
       "id": "B01",

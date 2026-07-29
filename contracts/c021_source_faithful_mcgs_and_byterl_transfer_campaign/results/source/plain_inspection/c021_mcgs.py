@@ -68,7 +68,12 @@ class MCGS:
         self.transfer_arm = dict(transfer_arm or {})
         self.legal_corrected = (cfg.get("branch") == "MCGS_2019_PTCG_LEGAL_CORRECTED")
         # A5: statistics carried in from previous decisions of this match, keyed by abstraction
-        self.reuse: Optional[Dict[int, Any]] = None
+        self.reuse: Optional[Dict[Any, Any]] = None
+        # These were declared in REFERENCE_CFG and written into every run's config JSON while
+        # the code read the module constants directly -- so a run that configured them would
+        # have been silently ignored while its manifest claimed otherwise.
+        self.sample_width = int(cfg.get("sample_width", G.SAMPLE_WIDTH))
+        self.damping_parameter = float(cfg.get("damping_parameter", G.DAMPING_PARAMETER))
         self.traces: List[Dict[str, Any]] = []
 
     # ---------------------------------------------------------------- lifecycle
@@ -144,7 +149,7 @@ class MCGS:
         if self.reuse is not None:
             # A5 re-rooting: a state already searched this match resumes with the statistics it
             # earned, instead of starting from zero visits every atomic decision.
-            prev = self.reuse.get(hash(n.state_abstraction))
+            prev = self.reuse.get(n.state_abstraction)
             if prev is not None:
                 n.visit_count, n.rewards, n.total_visit = prev
                 self.stats["graph_reuse_reroots"] += 1
@@ -154,6 +159,15 @@ class MCGS:
             self.stats[k] = self.stats.get(k, 0) + 1
         self.stats["max_depth"] = max(self.stats["max_depth"], depth)
         return n
+
+    @staticmethod
+    def _player_turn(obs) -> int:
+        """The engine's ply counter, from `observation.current.turn`."""
+        st = getattr(obs, "current", None)
+        if st is None:
+            st = obs
+        v = getattr(st, "turn", None)
+        return 0 if v is None else int(v)
 
     @staticmethod
     def _your_index(obs, default: int = 0) -> int:
@@ -348,7 +362,8 @@ class MCGS:
             if time.monotonic() >= deadline:
                 self.stats["time_budget_exhausted"] += 1
                 return node
-            if not node.is_fully_expanded(chance_traversed):
+            if not node.is_fully_expanded(chance_traversed, self.sample_width,
+                                          self.damping_parameter):
                 nxt, cont = self.expand(node, root_player, start_turn)
                 if nxt is None:
                     return node
@@ -369,8 +384,19 @@ class MCGS:
 
     # ---------------------------------------------------------------- rollout (A7)
     def rollout(self, leaf: G.Node, deadline: float, root_player: int = 0) -> float:
-        """`SingleThreadRollout` + `PlayUntilTerminal`, uniform random, retry while value < 0."""
-        for attempt in range(G.ROLLOUT_RETRIES):
+        """`SingleThreadRollout` + `PlayUntilTerminal`, uniform random, retry while value < 0.
+
+        NOT reproduced, and it is the single most consequential gap in the port: the source
+        calls `SabberUtils.Determinize(game, rng, all: true)` on a CLONE of the leaf's game
+        **before every rollout**, so each of a decision's thousands of rollouts samples a fresh
+        world. Here every rollout in a decision shares the one determinization fixed at
+        `search_begin`, because the API cannot re-determinize an interior state (Probe 3). See
+        results/failures/FINDING_single_determinization_overconfidence.md.
+        """
+        # `do { ... } while (value < 0 && count++ < NumMaxTry)` -- one attempt, then up to
+        # ROLLOUT_RETRIES more, so SIX total. A `for _ in range(5)` gives five and is an
+        # off-by-one against the source.
+        for attempt in range(G.ROLLOUT_RETRIES + 1):
             v = self._play_until_terminal(leaf, deadline, root_player)
             if v >= 0:
                 self.stats["rollouts"] += 1
@@ -404,6 +430,14 @@ class MCGS:
                 self.stats["rollout_aborts"] += 1
                 self._release_rollout(prev_rollout_sid)
                 return -1.0
+            # `PlayUntilTerminal`: `if ((game.Turn + 1) / 2 == 45) return 0.0;`
+            # The counter for this existed from the start while the cap itself did not, so a
+            # reading of 0 looked like "the cap never fired" when nothing could have fired it.
+            # Reproduced with the source's `==` rather than a `>=` "fix" (FIDELITY_RULES 5).
+            if (self._player_turn(obs) + 1) // 2 == G.ROLLOUT_TURN_CAP:
+                self.stats["rollout_turn_caps"] += 1
+                self._release_rollout(prev_rollout_sid)
+                return 0.0
             sel = getattr(obs, "select", None)
             if sel is None:
                 self.stats["rollout_terminals"] = self.stats.get("rollout_terminals", 0) + 1
@@ -483,10 +517,16 @@ class MCGS:
         """Store this decision's statistics for the next decision of the same match (A5)."""
         if self.reuse is None:
             return
+        # Keyed by the StateAbstraction OBJECT, not by hash(). The abstraction implements
+        # __eq__, so a dict keyed on it compares structurally and cannot fuse two states that
+        # merely collide. Keying on the 32-bit-masked hash alone gave a 4.5% chance of at least
+        # one collision at the 20,000-entry bound -- and a collision there silently transfers
+        # visit counts and rewards between unrelated positions, which is the failure mode where
+        # the totals still look right and only the attribution is wrong.
         for key, node in self.tt.table.items():
             if node.visit_count <= 0:
                 continue
-            self.reuse[hash(key)] = (node.visit_count, node.rewards, node.total_visit)
+            self.reuse[key] = (node.visit_count, node.rewards, node.total_visit)
         if len(self.reuse) > max_entries:
             # bounded: drop the least-visited entries rather than growing without limit
             keep = sorted(self.reuse.items(), key=lambda kv: -kv[1][0])[:max_entries]

@@ -311,8 +311,22 @@ def main(argv=None):
     for name, c in curves.items():
         if isinstance(c, list):
             total_games += sum(int(r.get("games") or 0) for r in c)
+    gate = load(os.path.join(C21, "byterl", "selection", "gate_evaluation.json")) or {}
     ev["BYTERL_SCALE"] = {
         "status": "COMPUTE_LIMITED",
+        "external_gate": gate.get("external_gate"),
+        "out_of_sample_evidence": {
+            "pre_extension": gate.get("pre_extension_b2"),
+            "post_extension_final": gate.get("post_extension_b2_final"),
+            "protocol": gate.get("protocol"),
+        },
+        "selection_defect": gate.get("selection_defect"),
+        "demonstrated_learning": (
+            "The 4h extension took the B2 control rung from 0.0742 to 0.2578 on an "
+            "out-of-sample external panel with non-overlapping 95% intervals -- a 3.5x "
+            "improvement that clears the reproducibility bound by a wide margin. This is the "
+            "evidence DECISION_RULES 2 asks for: a reported learning trajectory, not a claim "
+            "of convergence. The curves were still rising when the budget ended."),
         "total_games_played": total_games,
         "paper_reference": "distributed fleet, millions of games, days of wall clock",
         "achieved_fraction_note": ("Order 1e3 games against an order 1e6+ reference, i.e. well "

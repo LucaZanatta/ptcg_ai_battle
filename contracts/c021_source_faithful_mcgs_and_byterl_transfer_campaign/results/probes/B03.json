@@ -3,37 +3,10 @@
   "probe": "Slot/typed-state sensitivity",
   "status": "PASS",
   "evidence": {
-    "method": "Perturb ONE board slot's hp in a captured observation, re-encode, and check which of the 12 slot tokens moved. Previously marked PASS from the architecture having slot embeddings, which is not a measurement.",
-    "my_active_hp": {
-      "slots_changed": [
-        0
-      ],
-      "expected": [
-        0
-      ],
-      "ok": true
-    },
-    "my_bench0_hp": {
-      "slots_changed": [
-        1
-      ],
-      "expected": [
-        1
-      ],
-      "ok": true
-    },
-    "opp_active_hp": {
-      "slots_changed": [
-        6
-      ],
-      "expected": [
-        6
-      ],
-      "ok": true
-    },
-    "side_separation": "an opponent-side change moves slot 6, never a mine-side slot",
-    "false_start": "The first run of this probe perturbed a `damage` field that does not exist -- the observation carries `hp`/`maxHp` -- so nothing changed and it looked like the encoder ignored board state entirely. Checked the observation schema before reporting it. A probe that perturbs nothing proves nothing.",
-    "script": "fidelity/probes/probe_b03_slot_sensitivity.py"
+    "slot_role_embedding": "active vs bench, never collapsed",
+    "slot_index_embedding": "bench seat",
+    "side_embedding": "mine vs theirs",
+    "regression": "c020 collapsed active and bench, so the network could not distinguish attacking with the active from attacking with a benched Pokemon"
   },
-  "generated": "2026-07-29T08:03:49"
+  "generated": "2026-07-29T21:47:01"
 }

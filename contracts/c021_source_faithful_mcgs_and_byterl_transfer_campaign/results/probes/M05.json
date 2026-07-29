@@ -5,32 +5,71 @@
   "evidence": {
     "chance_nodes_created": {
       "transfer_T1_policy_prior": 83,
+      "t2_T1_policy_prior": 49,
+      "ablation_nosearch": 0,
       "ablation_nochance": 0,
       "legal_corrected": 132,
       "transfer_T2_rollout_policy": 7,
+      "scale_w4": 158,
+      "t2_T3_prior_and_rollout": 12,
+      "scale_w12": 93,
+      "ablation_search": 98,
       "transfer_T0_control": 99,
-      "competitive": 96
+      "scale_w8": 102,
+      "scale_w2": 90,
+      "scale_w20": 88,
+      "t2_T2_rollout_policy": 11,
+      "competitive": 96,
+      "scale_w24": 59,
+      "t2_T0_control": 100,
+      "scale_w1": 212
     },
     "chance_expansions": {
       "transfer_T1_policy_prior": 4,
+      "t2_T1_policy_prior": 12,
+      "ablation_nosearch": 0,
       "ablation_nochance": 0,
       "legal_corrected": 32,
       "transfer_T2_rollout_policy": 0,
+      "scale_w4": 27,
+      "t2_T3_prior_and_rollout": 0,
+      "scale_w12": 13,
+      "ablation_search": 27,
       "transfer_T0_control": 45,
-      "competitive": 21
+      "scale_w8": 39,
+      "scale_w2": 26,
+      "scale_w20": 12,
+      "t2_T2_rollout_policy": 1,
+      "competitive": 21,
+      "scale_w24": 12,
+      "t2_T0_control": 22,
+      "scale_w1": 52
     },
     "manual_coin_node_ucb_selected": {
       "transfer_T1_policy_prior": 0,
+      "t2_T1_policy_prior": 0,
+      "ablation_nosearch": 0,
       "ablation_nochance": 0,
       "legal_corrected": 0,
       "transfer_T2_rollout_policy": 0,
+      "scale_w4": 0,
+      "t2_T3_prior_and_rollout": 0,
+      "scale_w12": 0,
+      "ablation_search": 0,
       "transfer_T0_control": 0,
-      "competitive": 0
+      "scale_w8": 0,
+      "scale_w2": 0,
+      "scale_w20": 0,
+      "t2_T2_rollout_policy": 0,
+      "competitive": 0,
+      "scale_w24": 0,
+      "t2_T0_control": 0,
+      "scale_w1": 0
     },
     "ablation_no_manual_coin": {
       "ablation_nochance": 0
     },
     "note": "The engine's own enum (SelectContext.COIN_HEAD = 46) defines the surface; the ablation arm with manual_coin off shows exactly 0, as it must."
   },
-  "generated": "2026-07-29T08:03:47"
+  "generated": "2026-07-29T21:46:59"
 }

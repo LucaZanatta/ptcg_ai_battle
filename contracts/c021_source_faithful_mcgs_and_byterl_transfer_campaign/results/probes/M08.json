@@ -5,13 +5,26 @@
   "evidence": {
     "graph_reuse_reroots": {
       "transfer_T1_policy_prior": 5289,
+      "t2_T1_policy_prior": 4076,
+      "ablation_nosearch": 0,
       "ablation_nochance": 4938,
       "legal_corrected": 5961,
       "transfer_T2_rollout_policy": 1532,
+      "scale_w4": 7647,
+      "t2_T3_prior_and_rollout": 1555,
+      "scale_w12": 5686,
+      "ablation_search": 5358,
       "transfer_T0_control": 6084,
-      "competitive": 6193
+      "scale_w8": 5112,
+      "scale_w2": 6895,
+      "scale_w20": 4362,
+      "t2_T2_rollout_policy": 1867,
+      "competitive": 6193,
+      "scale_w24": 3483,
+      "t2_T0_control": 3968,
+      "scale_w1": 7441
     },
     "note": "The API invalidates engine states at search_end and interior observations carry no search_begin_input, so what survives re-rooting is the statistics keyed by state abstraction -- which is what DoNotRemoveUnselectedNodes preserves."
   },
-  "generated": "2026-07-29T08:03:47"
+  "generated": "2026-07-29T21:46:59"
 }

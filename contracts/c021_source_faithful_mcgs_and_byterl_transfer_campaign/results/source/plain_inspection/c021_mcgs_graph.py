@@ -298,7 +298,9 @@ class Node:
     def parent(self) -> Optional["Node"]:
         return self.last_traversed_edge.predecessor if self.last_traversed_edge else None
 
-    def is_fully_expanded(self, num_sample_traversed: int) -> bool:
+    def is_fully_expanded(self, num_sample_traversed: int,
+                          sample_width: Optional[int] = None,
+                          damping: Optional[float] = None) -> bool:
         """`Node.IsFullyExpanded(int numSampleTraversed)` exactly.
 
         Decision node: fully expanded when no untested action remains.
@@ -311,19 +313,23 @@ class Node:
         if not self.is_random:
             return not self.untested_action_indices
         total_samples = sum(e.sample_count for e in self.outgoing_edges)
+        sw = SAMPLE_WIDTH if sample_width is None else int(sample_width)
+        dp = DAMPING_PARAMETER if damping is None else float(damping)
         if DAMPED_SAMPLING:
             if num_sample_traversed == 0:
-                return SAMPLE_WIDTH <= total_samples
-            reduced = self.reduce_function(SAMPLE_WIDTH, num_sample_traversed)
+                return sw <= total_samples
+            reduced = self.reduce_function(sw, num_sample_traversed, dp)
             if reduced == 0:
                 reduced = 1
             return reduced <= total_samples
         return self.visit_count <= total_samples
 
     @staticmethod
-    def reduce_function(sample_width: int, num_sample_traversed: int) -> int:
+    def reduce_function(sample_width: int, num_sample_traversed: int,
+                        damping: Optional[float] = None) -> int:
         """`ReduceFunction`: sampleWidth / DampingParameter^numSampleTraversed, C#-rounded."""
-        return int(round(sample_width / (DAMPING_PARAMETER ** num_sample_traversed)))
+        dp = DAMPING_PARAMETER if damping is None else float(damping)
+        return int(round(sample_width / (dp ** num_sample_traversed)))
 
     def sample_budget(self, num_sample_traversed: int = 0) -> int:
         if not DAMPED_SAMPLING:

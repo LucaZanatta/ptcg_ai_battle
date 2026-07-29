@@ -9,19 +9,39 @@
         "completed": 32,
         "sims_per_decision": 884.6
       },
+      "t2_T1_policy_prior": {
+        "field_score": 0.1714,
+        "completed": 35,
+        "sims_per_decision": 492.5
+      },
       "transfer_T2_rollout_policy": {
         "field_score": 0.1053,
         "completed": 38,
         "sims_per_decision": 530.3
       },
+      "t2_T3_prior_and_rollout": {
+        "field_score": 0.0882,
+        "completed": 34,
+        "sims_per_decision": 296.0
+      },
       "transfer_T0_control": {
         "field_score": 0.0833,
         "completed": 36,
         "sims_per_decision": 158.7
+      },
+      "t2_T2_rollout_policy": {
+        "field_score": 0.1795,
+        "completed": 39,
+        "sims_per_decision": 326.0
+      },
+      "t2_T0_control": {
+        "field_score": 0.1111,
+        "completed": 36,
+        "sims_per_decision": 176.6
       }
     },
     "identical_budget": true,
     "only_prior_differs": "T1 replaces Node.TreePolicy's uniform draw over untested actions; the UCB1 selection formula is untouched"
   },
-  "generated": "2026-07-29T08:03:49"
+  "generated": "2026-07-29T21:47:01"
 }

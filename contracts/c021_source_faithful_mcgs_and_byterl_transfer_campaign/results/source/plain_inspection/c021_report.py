@@ -131,11 +131,27 @@ def main(argv=None):
             "dummy_edges": s.get("dummy_edges"),
             "term_root_win": s.get("term_root_win"), "term_root_loss": s.get("term_root_loss"),
         })
-    # `fctrl_`/`flearn_` are the FINAL ladder, measured end to end on one code version.
-    # `ctrl_`/`learn_` straddled the sample_select fix and are retained only as history.
-    FINAL_PFX = ("fctrl_", "flearn_")
-    have_final = any(k.startswith(FINAL_PFX) for k in curves)
-    ladder_pfx = FINAL_PFX if have_final else ("ctrl_", "learn_")
+    # Ladder generations, MOST AUTHORITATIVE FIRST. A hardcoded pair silently omitted a whole
+    # generation: the prefix was fixed at ("fctrl_", "flearn_") while the scaled campaign wrote
+    # `big_ctrl_*` / `big_learn_*`, so 15,360 games per rung were invisible to every status and
+    # the report would have kept presenting the 768-game ladder as the result.
+    #
+    #   big_*   scaled campaign, on the fixed option encoder
+    #   f*      first single-code-version ladder, 768 games/rung, blind energy features
+    #   bare    earliest ladder, straddled the sample_select fix
+    LADDER_GENERATIONS = [
+        (("big_ctrl_", "big_learn_"), "scaled campaign (15360 games/rung, fixed encoder)"),
+        (("fctrl_", "flearn_"), "768 games/rung, single code version, pre-encoder-fix"),
+        (("ctrl_", "learn_"), "earliest ladder; straddles the sample_select fix"),
+    ]
+    ladder_pfx, ladder_desc = ("fctrl_", "flearn_"), "none found"
+    for pfx, desc in LADDER_GENERATIONS:
+        # a generation counts only once it has a rung that actually trained
+        if any(k.startswith(pfx) and isinstance(curves[k], list)
+               and sum(int(r.get("updates") or 0) for r in curves[k]) > 0 for k in curves):
+            ladder_pfx, ladder_desc = pfx, desc
+            break
+    have_final = ladder_pfx[0].startswith(("big_", "fctrl_"))
     ladder_done = sorted({k.replace("_curve.json", "") for k in curves
                           if k.startswith(ladder_pfx)})
     clean = all((r.get("step_errors") or 0) == 0 and
@@ -149,26 +165,38 @@ def main(argv=None):
     # `competitive` and `transfer_T0_control` are the SAME configuration -- the source port with
     # every transfer switch off. Reporting whichever scored higher would be selection on exactly
     # the run-to-run noise this campaign measured, so they are POOLED.
+    def eligible(name: str, s: Dict[str, Any]) -> bool:
+        if s.get("SUPERSEDED"):
+            return False
+        if not s.get("manual_coin_contexts_are_coin_head_only", True):
+            return False
+        role = s.get("role")
+        if role is None:      # pre-role runs: fall back to the explicit pooled pair only
+            return name.replace("_summary.json", "") in ("competitive", "transfer_T0_control")
+        if role == "competitive":
+            return True
+        # The T0 control shares the transfer harness but uses no prior, so it measures the
+        # standalone port -- but ONLY the run pooled with `competitive` from the same campaign.
+        # A later transfer generation also carries transfer_arm == "T0_control", and admitting
+        # any of them would silently change the headline MCGS result.
+        return name.replace("_summary.json", "") == "transfer_T0_control"
+
     pool_names = ("competitive_summary.json", "transfer_T0_control_summary.json")
     pool_k, pool_n = 0.0, 0
     for nm in pool_names:
         d = mcgs.get(nm)
-        if d and d.get("field_score") is not None and not d.get("SUPERSEDED"):
+        if d and d.get("field_score") is not None and eligible(nm, d):
             pool_k += d["field_score"] * (d.get("completed") or 0)
             pool_n += int(d.get("completed") or 0)
 
+    # ALLOW-list, not a blocklist. A blocklist enumerates what to exclude and is wrong the
+    # moment a new diagnostic tag appears -- `scale_w2`, an 11-game worker-scaling probe, became
+    # the best-scoring eligible candidate for the headline MCGS result under the old rule.
+    # A run qualifies only if it explicitly declares itself competitive.
     best_mcgs, best_name = None, None
     for name, s in mcgs.items():
-        if name.startswith(("a4_", "legal_smoke", "smoke")):
+        if not eligible(name, s):
             continue
-        if s.get("SUPERSEDED"):
-            continue          # pre-COIN_HEAD runs are diagnostic only, never a competitive read
-        if not s.get("manual_coin_contexts_are_coin_head_only", True):
-            continue
-        if s.get("transfer_arm") and s.get("transfer_arm") != "T0_control":
-            continue      # a transfer arm is not the standalone MCGS competitive candidate
-        if s.get("manual_coin") is False:
-            continue      # the no-chance-node ablation is not a competitive candidate
         fs = s.get("field_score")
         if fs is not None and (best_mcgs is None or fs > best_mcgs):
             best_mcgs, best_name = fs, name
@@ -221,6 +249,8 @@ def main(argv=None):
             continue
         ups = sum(int(r.get("updates") or 0) for r in c)
         wrs = [r.get("win_rate") for r in c if r.get("win_rate") is not None]
+        ae = sum(int(r.get("actor_errors") or 0) for r in c)
+        ad = sum(int(r.get("n_decisions") or 0) for r in c) or None
         if ups > 0:
             run_name = name.replace("_curve.json", "")
             # B3 plays FROZEN CHECKPOINTS OF ITSELF. Its win rate is a mirror-match rate and sits
@@ -230,6 +260,8 @@ def main(argv=None):
             selfplay = run_name.endswith("b3")
             weights_changed.append({"run": run_name,
                                     "updates": ups, "iterations": len(c),
+                                    "actor_errors": ae,
+                                    "actor_error_rate": (round(ae / ad, 4) if ad else None),
                                     "opponent": ("frozen self-play checkpoints (OSFP)"
                                                  if selfplay else "scripted field"),
                                     "win_rate_is_self_play": selfplay,
@@ -257,9 +289,10 @@ def main(argv=None):
         "rungs_run": have_rungs,
         "training_runs_with_weight_updates": weights_changed,
         "end_to_end_construction_and_battle": e2e,
-        "ladder_version": ("final, single code version" if have_final else
-                           "MIXED CODE VERSIONS -- straddles the sample_select fix; "
-                           "superseded by the fctrl_/flearn_ ladder"),
+        "ladder_version": ladder_desc,
+        "ladder_prefix": list(ladder_pfx),
+        "ladder_generations_present": [d for p, d in LADDER_GENERATIONS
+                                       if any(k.startswith(p) for k in curves)],
         "reasons": bm_reasons,
         "declared_deviation": ("Actor-learner execution is SYNCHRONOUS (actors fill a batch, "
                                "then the learner updates), not the papers' decoupled recurrent "
@@ -290,12 +323,27 @@ def main(argv=None):
     }
 
     # ---------------------------------------------------------------- TRANSFER
-    transfer = {k: v for k, v in mcgs.items() if v.get("transfer_arm")}
+    # Transfer generations, newest first. The first campaign's arms queried a checkpoint whose
+    # curve was indistinguishable from the untrained floor, so the comparison had no power; the
+    # `t2_` generation queries a checkpoint that demonstrably learned. Mixing them would compare
+    # arms against a control from a different run at a different checkpoint.
+    TRANSFER_GENERATIONS = [
+        ("t2_", "big_ctrl_b1_5 checkpoint (scaled, fixed encoder, learned)"),
+        ("transfer_", "ctrl_b2 checkpoint (near-random; the underpowered first attempt)"),
+    ]
+    transfer_gen, transfer_desc = "transfer_", "none"
+    for pfx, desc in TRANSFER_GENERATIONS:
+        if any(k.startswith(pfx) and v.get("transfer_arm") for k, v in mcgs.items()):
+            transfer_gen, transfer_desc = pfx, desc
+            break
+    transfer = {k: v for k, v in mcgs.items()
+                if v.get("transfer_arm") and k.startswith(transfer_gen)}
     arms = {}
     control = None
     for name, s in mcgs.items():
-        if s.get("transfer_arm") == "T0_control":
-            control = s            # the arm that shares the transfer harness but uses no prior
+        # the control must come from the SAME generation as the arms it is compared against
+        if s.get("transfer_arm") == "T0_control" and name.startswith(transfer_gen):
+            control = s
     if control is None:
         for name, s in mcgs.items():
             if "competitive" in name and not s.get("transfer_arm"):
@@ -321,6 +369,8 @@ def main(argv=None):
     ev["TRANSFER"] = {
         "status": "PASS" if retained else ("FAIL" if arms else "NOT_RUN"),
         "control_field_score": (control or {}).get("field_score"),
+        "generation": transfer_desc,
+        "generation_prefix": transfer_gen,
         "arms": arms, "retained": retained,
         "interpretation": ("NOT RETAINED, and NOT REJECTED. The arm-to-control differences are "
                            "smaller than the measured run-to-run resolution limit, so the test "

@@ -1,5 +1,5 @@
 {
-  "head": "2d24d90d40171b13403874ca6a21f4d902dc9e85",
+  "head": "9582ba9f62e2bf4278cac9fe572bdb2bd226b3f8",
   "files": [
     "starter_kit/c021_byterl_actor.py",
     "starter_kit/c021_byterl_deck.py",
@@ -21,14 +21,17 @@
     "tools/c021_final_report.py",
     "tools/c021_finalize.py",
     "tools/c021_mcgs_run.py",
+    "tools/c021_probes.py",
     "tools/c021_report.py",
+    "tools/c021_scaling.py",
+    "tools/c021_select.py",
     "tools/c021_validate.py"
   ],
   "archive": "c021_focused_source.zip",
   "full_repo_archive": {
     "produced": false,
     "reason": "git archive of the whole tracked repo exceeded 9.9 GB; the focused archive carries every c021 source file from the same commit and each is hashed",
-    "reproduce": "git archive --format=tar.gz -o <out> 2d24d90d40171b13403874ca6a21f4d902dc9e85"
+    "reproduce": "git archive --format=tar.gz -o <out> 9582ba9f62e2bf4278cac9fe572bdb2bd226b3f8"
   },
   "method": "git archive from the exact final commit, and plain inspection copies exported from that same commit with `git show` -- not from the mutable working tree"
 }

@@ -1,6 +1,6 @@
 # c021 — summary
 
-Generated 2026-07-29T11:23:41. Statuses are computed in `tools/c021_report.py` from evidence on disk; a missing input yields FAIL or PARTIAL with a reason, never a pass by default.
+Generated 2026-07-29T21:46:58. Statuses are computed in `tools/c021_report.py` from evidence on disk; a missing input yields FAIL or PARTIAL with a reason, never a pass by default.
 
 | Status | Value |
 |---|---|

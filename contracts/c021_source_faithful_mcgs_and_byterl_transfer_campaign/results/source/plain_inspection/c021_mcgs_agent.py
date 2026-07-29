@@ -31,7 +31,20 @@ REFERENCE_CFG = {
     "uct_constant": G.UCT_CONSTANT,
     "sample_width": G.SAMPLE_WIDTH,
     "damping_parameter": G.DAMPING_PARAMETER,
-    "determinization_number": G.DETERMINIZATION_NUMBER,
+    # NOT USED -- AND NOT USED BY THE SOURCE EITHER. `DeterminizationNumber` appears exactly
+    # once in the archive outside its declaration: inside a `ToString()`, in a branch guarded by
+    # `IIAlgorithm == PIMC`, which never executes. It is a dead display constant, and an earlier
+    # draft of this contract wrongly described it as the reference's variance-reduction
+    # mechanism. The real mechanism is per-ROLLOUT re-determinization in `SingleThreadRollout`,
+    # which this API cannot reproduce; see `determinizations_per_rollout` below.
+    "determinization_number_SOURCE_VALUE_NOT_APPLIED": G.DETERMINIZATION_NUMBER,
+    "determinizations_per_decision": 1,
+    # The source re-determinizes before EVERY rollout (`SingleThreadRollout`, with IIAlgorithm
+    # unassigned and therefore DEFAULT, so the `!= PIMC` guard is true). Here all rollouts in a
+    # decision share the one world fixed at search_begin. This is the measured cause of the
+    # search resolving ~96% of its rollouts to a win while winning ~11% of its games.
+    "determinizations_per_rollout_SOURCE": "fresh per rollout",
+    "determinizations_per_rollout_PORT": 0,
     "first_move_seconds": G.FIRST_MOVE_SECONDS,
     "continuing_move_seconds": G.CONTINUING_MOVE_SECONDS,
     "ucd_d1": 1, "ucd_d2": 0,
@@ -103,8 +116,7 @@ class MCGSAgent:
             base = min(base, left)
         return base
 
-    @staticmethod
-    def _progress_option(opts):
+    def _progress_option(self, opts):
         """An out-of-time move that GUARANTEES the game advances.
 
         Always taking `opts[0]` can livelock: if the first option is a repeatable action that
@@ -117,8 +129,11 @@ class MCGSAgent:
         for o in opts:
             if int(getattr(o, "option_type", -1) or -1) == OV.OPT_END:
                 return o
-        import random
-        return random.choice(opts)
+        # self.rng, NOT the unseeded global `random`. Every other stochastic choice in this
+        # agent draws from the seeded generator; a bare random.choice here injected
+        # non-determinism into runs that were otherwise identically seeded, which is one of the
+        # sources behind two same-configuration runs differing by 6.4 points.
+        return opts[int(self.rng.integers(len(opts)))]
 
     def act(self, obs_dict: dict) -> List[int]:
         sel = obs_dict.get("select") if isinstance(obs_dict, dict) else None
@@ -131,6 +146,18 @@ class MCGSAgent:
             return [0]
         if len(opts) == 1:
             return K.to_select_payload([opts[0]], sel)
+        # A10 / C3: an OBLIGED decision admits exactly one legal answer -- minCount already
+        # requires every option on offer. The reference port still searches it, spending the
+        # whole per-decision budget proving that the only legal move is the only legal move.
+        # This was defined in c021_mcgs_legal.is_obliged and documented in the change manifest
+        # but never invoked, so the manifest was claiming a correction that was not applied.
+        if self.cfg.get("branch") == "MCGS_2019_PTCG_LEGAL_CORRECTED" \
+                and self.cfg.get("C3_obliged_actions", True):
+            from cg import c021_mcgs_legal as LG
+            if LG.is_obliged(sel, opts):
+                self.stats["obliged_collapsed"] = self.stats.get("obliged_collapsed", 0) + 1
+                lo, _hi = LG.select_bounds(sel)
+                return LG.payload_for(sel, opts, list(range(min(lo, len(opts)))))
 
         t0 = time.monotonic()
         budget = self._budget_seconds()
@@ -154,9 +181,17 @@ class MCGSAgent:
             # step and NO chance node can exist. With it, they surface as selects that
             # `_make_node` marks random. Configurable so the no-chance-node arm stays runnable
             # as an ablation rather than being lost.
-            st = A.search_begin(o, det.your_deck, det.your_prize, det.opponent_deck,
-                                det.opponent_prize, det.opponent_hand, det.opponent_active,
-                                manual_coin=bool(self.cfg.get("manual_coin", True)))
+            try:
+                st = A.search_begin(o, det.your_deck, det.your_prize, det.opponent_deck,
+                                    det.opponent_prize, det.opponent_hand, det.opponent_active,
+                                    manual_coin=bool(self.cfg.get("manual_coin", True)))
+            except Exception:
+                # `begin_errors` was declared in new_stats() and set by nothing, so a reading of
+                # 0 meant "nothing could ever set this", not "no failures". A determinization
+                # the engine rejects is a real and diagnosable event; it is counted and the
+                # decision falls back to a legal unsearched move.
+                self.stats["begin_errors"] += 1
+                raise
             search._track(st.searchId)
             root_player = S.MCGS._your_index(o, 0)
             root = search._make_node(st, 0, None, root_player, 0)

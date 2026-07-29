@@ -58,20 +58,20 @@
         "games": 40,
         "completed": 34,
         "abandoned": 6,
-        "field_score": 0.1176,
+        "field_score": 0.1471,
         "field_score_bounds_if_abandoned_counted": [
-          0.1,
-          0.25
+          0.125,
+          0.275
         ],
-        "sims_per_decision": 739.4,
-        "chance_nodes_created": 120,
+        "sims_per_decision": 891.8,
+        "chance_nodes_created": 98,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 7309,
-        "dummy_edges": 137,
-        "term_root_win": 561623,
-        "term_root_loss": 39851
+        "transposition_merges": 6857,
+        "dummy_edges": 128,
+        "term_root_win": 814531,
+        "term_root_loss": 30406
       },
       {
         "run": "competitive_summary.json",
@@ -115,103 +115,223 @@
       },
       {
         "run": "scale_w12_summary.json",
-        "games": 12,
-        "completed": 9,
-        "abandoned": 3,
-        "field_score": 0.2222,
+        "games": 36,
+        "completed": 31,
+        "abandoned": 5,
+        "field_score": 0.1613,
         "field_score_bounds_if_abandoned_counted": [
-          0.1666,
-          0.4167
+          0.1389,
+          0.2778
         ],
-        "sims_per_decision": 566.0,
-        "chance_nodes_created": 28,
+        "sims_per_decision": 706.1,
+        "chance_nodes_created": 93,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 2232,
-        "dummy_edges": 102,
-        "term_root_win": 7995,
-        "term_root_loss": 8751
+        "transposition_merges": 7772,
+        "dummy_edges": 174,
+        "term_root_win": 914159,
+        "term_root_loss": 39781
       },
       {
         "run": "scale_w1_summary.json",
-        "games": 12,
-        "completed": 11,
-        "abandoned": 1,
-        "field_score": 0.2727,
+        "games": 36,
+        "completed": 34,
+        "abandoned": 2,
+        "field_score": 0.1471,
         "field_score_bounds_if_abandoned_counted": [
-          0.25,
-          0.3333
+          0.1389,
+          0.1945
         ],
-        "sims_per_decision": 2293.4,
-        "chance_nodes_created": 84,
+        "sims_per_decision": 539.3,
+        "chance_nodes_created": 212,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 5324,
-        "dummy_edges": 205,
-        "term_root_win": 1035552,
-        "term_root_loss": 12369
+        "transposition_merges": 10611,
+        "dummy_edges": 317,
+        "term_root_win": 706056,
+        "term_root_loss": 50192
+      },
+      {
+        "run": "scale_w20_summary.json",
+        "games": 36,
+        "completed": 32,
+        "abandoned": 4,
+        "field_score": 0.0938,
+        "field_score_bounds_if_abandoned_counted": [
+          0.0834,
+          0.1945
+        ],
+        "sims_per_decision": 351.4,
+        "chance_nodes_created": 88,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 4237,
+        "dummy_edges": 111,
+        "term_root_win": 132409,
+        "term_root_loss": 27254
+      },
+      {
+        "run": "scale_w24_summary.json",
+        "games": 36,
+        "completed": 31,
+        "abandoned": 5,
+        "field_score": 0.0,
+        "field_score_bounds_if_abandoned_counted": [
+          0.0,
+          0.1389
+        ],
+        "sims_per_decision": 42.8,
+        "chance_nodes_created": 59,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 3944,
+        "dummy_edges": 198,
+        "term_root_win": 17512,
+        "term_root_loss": 28770
       },
       {
         "run": "scale_w2_summary.json",
-        "games": 12,
-        "completed": 11,
-        "abandoned": 1,
-        "field_score": 0.2727,
+        "games": 36,
+        "completed": 32,
+        "abandoned": 4,
+        "field_score": 0.1562,
         "field_score_bounds_if_abandoned_counted": [
-          0.25,
-          0.3333
+          0.1388,
+          0.25
         ],
-        "sims_per_decision": 942.6,
-        "chance_nodes_created": 28,
+        "sims_per_decision": 518.2,
+        "chance_nodes_created": 90,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 4639,
-        "dummy_edges": 150,
-        "term_root_win": 409586,
-        "term_root_loss": 17582
+        "transposition_merges": 11183,
+        "dummy_edges": 261,
+        "term_root_win": 433509,
+        "term_root_loss": 46729
       },
       {
         "run": "scale_w4_summary.json",
-        "games": 12,
-        "completed": 11,
-        "abandoned": 1,
-        "field_score": 0.0909,
+        "games": 36,
+        "completed": 33,
+        "abandoned": 3,
+        "field_score": 0.2424,
         "field_score_bounds_if_abandoned_counted": [
-          0.0833,
-          0.1667
+          0.2222,
+          0.3055
         ],
-        "sims_per_decision": 73.0,
+        "sims_per_decision": 1462.7,
+        "chance_nodes_created": 158,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 14222,
+        "dummy_edges": 339,
+        "term_root_win": 1830528,
+        "term_root_loss": 40470
+      },
+      {
+        "run": "scale_w8_summary.json",
+        "games": 36,
+        "completed": 31,
+        "abandoned": 5,
+        "field_score": 0.129,
+        "field_score_bounds_if_abandoned_counted": [
+          0.1111,
+          0.25
+        ],
+        "sims_per_decision": 912.2,
+        "chance_nodes_created": 102,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 7770,
+        "dummy_edges": 216,
+        "term_root_win": 731018,
+        "term_root_loss": 35888
+      },
+      {
+        "run": "t2_T0_control_summary.json",
+        "games": 40,
+        "completed": 36,
+        "abandoned": 4,
+        "field_score": 0.1111,
+        "field_score_bounds_if_abandoned_counted": [
+          0.1,
+          0.2
+        ],
+        "sims_per_decision": 176.6,
+        "chance_nodes_created": 100,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 5144,
+        "dummy_edges": 258,
+        "term_root_win": 107278,
+        "term_root_loss": 28346
+      },
+      {
+        "run": "t2_T1_policy_prior_summary.json",
+        "games": 40,
+        "completed": 35,
+        "abandoned": 5,
+        "field_score": 0.1714,
+        "field_score_bounds_if_abandoned_counted": [
+          0.15,
+          0.275
+        ],
+        "sims_per_decision": 492.5,
+        "chance_nodes_created": 49,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 4291,
+        "dummy_edges": 158,
+        "term_root_win": 627283,
+        "term_root_loss": 24725
+      },
+      {
+        "run": "t2_T2_rollout_policy_summary.json",
+        "games": 40,
+        "completed": 39,
+        "abandoned": 1,
+        "field_score": 0.1795,
+        "field_score_bounds_if_abandoned_counted": [
+          0.175,
+          0.2
+        ],
+        "sims_per_decision": 326.0,
+        "chance_nodes_created": 11,
+        "manual_coin_node_ucb_selected": 0,
+        "step_errors": 0,
+        "release_errors": 0,
+        "transposition_merges": 1605,
+        "dummy_edges": 43,
+        "term_root_win": 481496,
+        "term_root_loss": 10628
+      },
+      {
+        "run": "t2_T3_prior_and_rollout_summary.json",
+        "games": 40,
+        "completed": 34,
+        "abandoned": 6,
+        "field_score": 0.0882,
+        "field_score_bounds_if_abandoned_counted": [
+          0.075,
+          0.225
+        ],
+        "sims_per_decision": 296.0,
         "chance_nodes_created": 12,
         "manual_coin_node_ucb_selected": 0,
         "step_errors": 0,
         "release_errors": 0,
-        "transposition_merges": 4760,
-        "dummy_edges": 129,
-        "term_root_win": 10408,
-        "term_root_loss": 21739
-      },
-      {
-        "run": "scale_w8_summary.json",
-        "games": 12,
-        "completed": 12,
-        "abandoned": 0,
-        "field_score": 0.25,
-        "field_score_bounds_if_abandoned_counted": [
-          0.25,
-          0.25
-        ],
-        "sims_per_decision": 1002.8,
-        "chance_nodes_created": 84,
-        "manual_coin_node_ucb_selected": 0,
-        "step_errors": 0,
-        "release_errors": 0,
-        "transposition_merges": 4077,
-        "dummy_edges": 49,
-        "term_root_win": 562000,
-        "term_root_loss": 18217
+        "transposition_merges": 1397,
+        "dummy_edges": 57,
+        "term_root_win": 415327,
+        "term_root_loss": 9123
       },
       {
         "run": "transfer_T0_control_summary.json",
@@ -277,7 +397,10 @@
     "byterl_runs": [
       "big_ctrl_b1_5",
       "big_ctrl_b2",
-      "big_ctrl_b3"
+      "big_ctrl_b3",
+      "big_learn_b1_5",
+      "big_learn_b2",
+      "big_learn_b3"
     ],
     "no_step_errors_and_no_coin_ucb_selection": true
   },
@@ -313,34 +436,37 @@
     "rungs_run": [
       "ctrl_b1_5",
       "ctrl_b2",
-      "ctrl_b3"
+      "ctrl_b3",
+      "learn_b1_5",
+      "learn_b2",
+      "learn_b3"
     ],
     "training_runs_with_weight_updates": [
       {
         "run": "big_ctrl_b1_5",
-        "updates": 15360,
-        "iterations": 120,
+        "updates": 75136,
+        "iterations": 587,
         "actor_errors": 0,
         "actor_error_rate": null,
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.0391,
-        "last_win_rate": 0.0859,
-        "best_win_rate": 0.1719
+        "first_win_rate": 0.1094,
+        "last_win_rate": 0.125,
+        "best_win_rate": 0.2812
       },
       {
         "run": "big_ctrl_b2",
-        "updates": 15360,
-        "iterations": 120,
+        "updates": 76800,
+        "iterations": 600,
         "actor_errors": 0,
         "actor_error_rate": null,
         "opponent": "scripted field",
         "win_rate_is_self_play": false,
         "comparable_to_field": true,
-        "first_win_rate": 0.0391,
-        "last_win_rate": 0.0859,
-        "best_win_rate": 0.125
+        "first_win_rate": 0.1094,
+        "last_win_rate": 0.2109,
+        "best_win_rate": 0.3203
       },
       {
         "run": "big_ctrl_b3",
@@ -354,6 +480,45 @@
         "first_win_rate": 0.4844,
         "last_win_rate": 0.3359,
         "best_win_rate": 0.7812
+      },
+      {
+        "run": "big_learn_b1_5",
+        "updates": 15360,
+        "iterations": 120,
+        "actor_errors": 0,
+        "actor_error_rate": null,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
+        "first_win_rate": 0.0625,
+        "last_win_rate": 0.0938,
+        "best_win_rate": 0.1406
+      },
+      {
+        "run": "big_learn_b2",
+        "updates": 15360,
+        "iterations": 120,
+        "actor_errors": 0,
+        "actor_error_rate": null,
+        "opponent": "scripted field",
+        "win_rate_is_self_play": false,
+        "comparable_to_field": true,
+        "first_win_rate": 0.0547,
+        "last_win_rate": 0.0547,
+        "best_win_rate": 0.1094
+      },
+      {
+        "run": "big_learn_b3",
+        "updates": 15360,
+        "iterations": 120,
+        "actor_errors": 0,
+        "actor_error_rate": null,
+        "opponent": "frozen self-play checkpoints (OSFP)",
+        "win_rate_is_self_play": true,
+        "comparable_to_field": false,
+        "first_win_rate": 0.5078,
+        "last_win_rate": 0.5547,
+        "best_win_rate": 0.7109
       }
     ],
     "end_to_end_construction_and_battle": true,
@@ -376,7 +541,38 @@
   },
   "BYTERL_SCALE": {
     "status": "COMPUTE_LIMITED",
-    "total_games_played": 65088,
+    "external_gate": {
+      "result": "PASS",
+      "basis": "pre 0.0742 vs post 0.2578, non-overlapping 95% intervals, >> 6.4pt reproducibility bound"
+    },
+    "out_of_sample_evidence": {
+      "pre_extension": {
+        "source": "recovered from git fbbd9ac",
+        "win_rate": 0.0742,
+        "wilson95": [
+          0.048,
+          0.113
+        ]
+      },
+      "post_extension_final": {
+        "win_rate": 0.2578,
+        "wilson95": [
+          0.2081,
+          0.3147
+        ],
+        "selection_panel_64g": 0.25
+      },
+      "protocol": "256 games, 4 frozen scripted opponents, balanced seats, fresh seed 555001, identical per candidate"
+    },
+    "selection_defect": {
+      "winners_curse_inflation": 0.1641,
+      "candidates": 121,
+      "games_each": 64,
+      "binomial_se": 0.0541,
+      "note": "the preregistered rule was followed exactly and was underpowered; it selected a checkpoint that is ~6pts weaker out of sample than the final"
+    },
+    "demonstrated_learning": "The 4h extension took the B2 control rung from 0.0742 to 0.2578 on an out-of-sample external panel with non-overlapping 95% intervals -- a 3.5x improvement that clears the reproducibility bound by a wide margin. This is the evidence DECISION_RULES 2 asks for: a reported learning trajectory, not a claim of convergence. The curves were still rising when the budget ended.",
+    "total_games_played": 232384,
     "paper_reference": "distributed fleet, millions of games, days of wall clock",
     "achieved_fraction_note": "Order 1e3 games against an order 1e6+ reference, i.e. well under 1%. Convergence is NOT claimed; the learning trajectory is reported as-is.",
     "permitted_reductions_only": [
@@ -390,24 +586,35 @@
   },
   "TRANSFER": {
     "status": "FAIL",
-    "control_field_score": 0.0833,
+    "control_field_score": 0.1111,
+    "generation": "big_ctrl_b1_5 checkpoint (scaled, fixed encoder, learned)",
+    "generation_prefix": "t2_",
     "arms": {
       "T1_policy_prior": {
-        "run": "transfer_T1_policy_prior_summary.json",
-        "field_score": 0.1562,
-        "games": 32,
+        "run": "t2_T1_policy_prior_summary.json",
+        "field_score": 0.1714,
+        "games": 35,
         "wilson95": [
-          0.0686,
-          0.3175
+          0.081,
+          0.3268
         ]
       },
       "T2_rollout_policy": {
-        "run": "transfer_T2_rollout_policy_summary.json",
-        "field_score": 0.1053,
-        "games": 38,
+        "run": "t2_T2_rollout_policy_summary.json",
+        "field_score": 0.1795,
+        "games": 39,
         "wilson95": [
-          0.0417,
-          0.2414
+          0.0898,
+          0.3267
+        ]
+      },
+      "T3_prior_and_rollout": {
+        "run": "t2_T3_prior_and_rollout_summary.json",
+        "field_score": 0.0882,
+        "games": 34,
+        "wilson95": [
+          0.0304,
+          0.2296
         ]
       }
     },
@@ -430,5 +637,5 @@
     "both_methods_implemented_and_executed": true,
     "credible_competitive_or_transfer_result": false
   },
-  "generated": "2026-07-29T11:23:41"
+  "generated": "2026-07-29T21:46:58"
 }

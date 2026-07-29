@@ -318,3 +318,230 @@ def test_finalise_is_counted_only_when_it_actually_collapses():
     lone = G.Node(is_terminal=True, play_state="WON")   # no parent -> nothing to collapse
     G.backup_ucd(lone, 1.0, G.UCDParams(1, 0), stats)
     assert stats["finalised"] == 0
+
+
+# ------------------------------------------------------------------ transfer x A10 interaction
+def test_transfer_prior_maps_action_set_indices_not_option_indices():
+    """Regression: the two features are each correct alone and were wrong together.
+
+    On the reference port `untested_action_indices` indexes `legal_options`. On the A10 corrected
+    branch it indexes `action_sets`, whose entries are TUPLES of option indices. The prior is
+    option-indexed in both cases, so looking an action-set index up directly mis-maps it -- and
+    a node with more action sets than options would silently get probability 0 for the excess,
+    making those combinations unexpandable-first.
+    """
+    from cg import c021_transfer as TR
+
+    class Provider:
+        def option_scores(self, obs, k):
+            # option 3 is overwhelmingly preferred
+            p = np.full(4, 0.01); p[3] = 0.97
+            return p / p.sum()
+
+    stats = S.new_stats()
+    node = G.Node()
+    node.obs = object()
+    node.legal_options = [0, 1, 2, 3]
+    # six 2-element combinations over 4 options: MORE sets than options
+    node.action_sets = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]
+    node.untested_action_indices = list(range(len(node.action_sets)))
+    arm = TR.arm_config("T1_policy_prior")
+    picks = [TR.sample_untested(np.random.default_rng(s), Provider(), node, arm, stats)
+             for s in range(200)]
+    assert max(picks) <= 5, "returned an index outside the action-set space"
+    # sets containing option 3 are indices 2, 4, 5 -- they must dominate
+    containing = sum(1 for i in picks if 3 in node.action_sets[i])
+    assert containing > 150, f"prior did not follow the option it prefers: {containing}/200"
+    assert stats["transfer_prior_used"] > 0
+
+
+def test_transfer_prior_still_indexes_options_on_the_reference_port():
+    from cg import c021_transfer as TR
+
+    class Provider:
+        def option_scores(self, obs, k):
+            p = np.full(4, 0.01); p[3] = 0.97
+            return p / p.sum()
+
+    stats = S.new_stats()
+    node = G.Node()
+    node.obs = object()
+    node.legal_options = [0, 1, 2, 3]
+    node.action_sets = None                       # reference port
+    node.untested_action_indices = [0, 1, 2, 3]
+    arm = TR.arm_config("T1_policy_prior")
+    picks = [TR.sample_untested(np.random.default_rng(s), Provider(), node, arm, stats)
+             for s in range(200)]
+    assert picks.count(3) > 150, f"option 3 should dominate, got {picks.count(3)}/200"
+
+
+def test_reuse_cache_cannot_fuse_two_states_that_merely_collide():
+    """Regression: the A5 reuse cache was keyed by hash() alone.
+
+    At the 20,000-entry bound a 32-bit-masked hash collides with ~4.5% probability, and a
+    collision there silently transfers visit counts and rewards between unrelated positions --
+    totals still look right, only the attribution is wrong. The abstraction implements __eq__,
+    so the cache keys on the object and compares structurally.
+    """
+    class Colliding:
+        """Two distinct states that deliberately share a hash."""
+        def __init__(self, tag):
+            self.tag = tag
+
+        def __hash__(self):
+            return 12345
+
+        def __eq__(self, other):
+            return isinstance(other, Colliding) and other.tag == self.tag
+
+    a, b = Colliding("a"), Colliding("b")
+    assert hash(a) == hash(b) and a != b
+    cache = {}
+    cache[a] = (10, 5.0, 10)
+    cache[b] = (99, 1.0, 99)
+    assert cache[a] == (10, 5.0, 10), "an object-keyed cache must not fuse colliding states"
+    assert len(cache) == 2
+    # the defective form keeps only one entry
+    bad = {}
+    bad[hash(a)] = (10, 5.0, 10)
+    bad[hash(b)] = (99, 1.0, 99)
+    assert len(bad) == 1 and bad[hash(a)] == (99, 1.0, 99)
+
+
+# ------------------------------------------------------------------ A10 / C3 obliged actions
+def test_is_obliged_identifies_the_single_legal_answer():
+    from cg import c021_mcgs_legal as LG
+
+    class Sel:
+        def __init__(self, lo, hi):
+            self.minCount, self.maxCount = lo, hi
+
+    assert LG.is_obliged(Sel(1, 1), ["a"]) is True            # only one option
+    assert LG.is_obliged(Sel(3, 3), ["a", "b", "c"]) is True   # must take all three
+    assert LG.is_obliged(Sel(1, 1), ["a", "b"]) is False       # a real choice
+    assert LG.is_obliged(Sel(2, 3), ["a", "b", "c"]) is False  # which two is a choice
+    assert LG.is_obliged(Sel(1, 1), []) is False
+
+
+def test_obliged_payload_takes_every_required_option():
+    from cg import c021_mcgs_legal as LG
+
+    class Sel:
+        minCount, maxCount = 3, 3
+
+    opts = ["a", "b", "c"]
+    combo = list(range(min(LG.select_bounds(Sel())[0], len(opts))))
+    assert combo == [0, 1, 2], "an obliged select must take every option it requires"
+
+
+# ------------------------------------------------------------------ source turn cap
+class _TurnObs:
+    def __init__(self, turn):
+        class _C:
+            pass
+        self.current = _C()
+        self.current.turn = turn
+
+
+def test_player_turn_reads_through_current():
+    assert S.MCGS._player_turn(_TurnObs(0)) == 0
+    assert S.MCGS._player_turn(_TurnObs(89)) == 89
+
+    class Bare:
+        pass
+    assert S.MCGS._player_turn(Bare()) == 0
+
+
+def test_turn_cap_constant_and_trigger_match_the_source():
+    """`PlayUntilTerminal`: `if ((game.Turn + 1) / 2 == 45) return 0.0;`
+
+    The counter for this existed from the start while the cap itself did not, so a reading of 0
+    looked like "the cap never fired" when nothing could have fired it. The source's `==` is
+    reproduced rather than "fixed" to `>=` (FIDELITY_RULES 5) -- a port that silently widened it
+    would cut rollouts the reference would have let run.
+    """
+    assert G.ROLLOUT_TURN_CAP == 45
+    fires = [t for t in range(0, 200) if (t + 1) // 2 == G.ROLLOUT_TURN_CAP]
+    assert fires == [89, 90], f"the cap must trigger on plies 89-90, got {fires}"
+    # and it is an equality test, so a rollout that jumps past the window is NOT cut
+    assert (91 + 1) // 2 != G.ROLLOUT_TURN_CAP
+
+
+def test_sample_width_and_damping_are_configurable_not_hardcoded():
+    """Both were written into every run's config JSON while the code read module constants."""
+    ch = G.Node(is_random=True)
+    for i in range(3):
+        G.Edge.connect(ch, G.Node(), i)          # 3 samples
+    assert ch.is_fully_expanded(0) is False                      # default width 24
+    assert ch.is_fully_expanded(0, sample_width=2) is True       # honours an override
+    assert G.Node.reduce_function(24, 1) == 12
+    assert G.Node.reduce_function(24, 1, damping=4.0) == 6       # honours an override
+
+
+# ------------------------------------------------------------------ evidence hygiene
+def test_diagnostic_runs_can_never_become_the_competitive_candidate():
+    """Regression: throughput probes and ablations write into the same evaluations directory.
+
+    Under the old blocklist, `scale_w2` -- an 11-game worker-scaling probe -- was the
+    best-scoring eligible run and would have been reported as the headline MCGS result. So would
+    `ablation_nosearch`, a control that deliberately never searches. Eligibility is now an
+    ALLOW-list keyed on an explicit `role`, so a new diagnostic tag cannot silently qualify.
+    """
+    import importlib.util
+    import os as _os
+    root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+    spec = importlib.util.spec_from_file_location(
+        "rep", _os.path.join(root, "tools", "c021_report.py"))
+    rep = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rep)
+    src = open(_os.path.join(root, "tools", "c021_report.py")).read()
+    assert "def eligible(" in src, "eligibility must be an explicit predicate"
+    assert 'role == "competitive"' in src, "eligibility must key on an explicit role"
+    # and the runner must stamp a role on every summary it writes
+    runner = open(_os.path.join(root, "tools", "c021_mcgs_run.py")).read()
+    assert '"role":' in runner
+    for tag in ("scale_", "boundtest", "clocktest", "drainfix"):
+        assert tag in runner, f"{tag} must be classified as diagnostic by the runner"
+    assert 'else "ablation" if a.tag.startswith("ablation")' in runner
+
+
+# ------------------------------------------------------------------ hidden information
+def test_hidden_zones_raise_rather_than_return():
+    """DECISION_RULES forbids an oracle-information candidate, and every c021 encoder,
+    abstraction and agent reads state through `visible_view`. If these ever return instead of
+    raising, the whole campaign becomes one.
+    """
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    from cg import c019_core as K
+
+    class _P:
+        def __init__(self):
+            self.yourIndex = 0
+            self.players = []
+
+    v = K.VisibleObservation.__new__(K.VisibleObservation)
+    for call in (lambda: v.opponent_hand_contents(),
+                 lambda: v.deck_contents("mine"),
+                 lambda: v.deck_contents("theirs"),
+                 lambda: v.prize_contents("mine"),
+                 lambda: v.prize_contents("theirs")):
+        with pytest.raises(K.HiddenInformationAccess):
+            call()
+
+
+def test_no_c021_module_reaches_around_the_visible_view():
+    """The guard is only worth as much as the absence of a way around it."""
+    import glob
+    import os as _os
+    import re
+    root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+    offenders = []
+    for f in glob.glob(_os.path.join(root, "starter_kit", "c021_*.py")):
+        src = open(f).read()
+        # indexing raw player state is the bypass; `.current.turn` / `.current.yourIndex` are
+        # public scalars and are allowed
+        for m in re.finditer(r"players\s*\[", src):
+            offenders.append((_os.path.basename(f), src[:m.start()].count("\n") + 1))
+    assert not offenders, f"c021 modules indexing raw player state: {offenders}"

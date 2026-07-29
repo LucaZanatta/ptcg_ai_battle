@@ -63,6 +63,10 @@ def main(argv=None):
     ap.add_argument("--max-sims", type=int, default=0)
     ap.add_argument("--match-clock-seconds", type=float, default=90.0)
     ap.add_argument("--game-timeout-seconds", type=float, default=300.0)
+    ap.add_argument("--role", default=None,
+                    choices=["competitive", "diagnostic", "ablation", "transfer"],
+                    help="What this run is FOR. Diagnostic and ablation runs must never be "
+                         "eligible as a competitive candidate; inferred from the tag if omitted.")
     ap.add_argument("--seed", type=int, default=2101)
     ap.add_argument("--tag", default="scaled")
     ap.add_argument("--branch", default="MCGS_2019_OFFICIAL_SOURCE_PORT",
@@ -189,11 +193,26 @@ def main(argv=None):
             traces.extend(r.get("graph_snapshots") or [])
     gf.close()
     json.dump(traces, open(os.path.join(MC, "graph_traces", f"{a.tag}_graphs.json"), "w"), indent=2)
+    # Per-decision root edge statistics: the richest diagnostic the agent produces, and it was
+    # collected by the worker and then dropped. Without it there is no way to ask whether the
+    # search's chosen action is separated from its alternatives or is being picked out of noise.
+    dl = [d for r in res for d in (r.get("decisions_log") or [])]
+    json.dump(dl, open(os.path.join(MC, "graph_traces", f"{a.tag}_decisions.json"), "w"), indent=2)
     json.dump(lat, open(os.path.join(MC, "latency", f"{a.tag}_latency.json"), "w"), indent=2)
     tot_n = sum(v[0] for v in per.values()); tot_s = sum(v[1] for v in per.values())
     summary = {"tag": a.tag, "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT", "config": full,
                "manual_coin": bool(full.get("manual_coin", True)),
                "drain_fixed": True,
+               # What this run is FOR. Throughput probes and ablations write into the same
+               # evaluations directory as real arms, and a blocklist let `scale_w2` -- a
+               # 11-game worker-scaling probe -- become the best-scoring eligible candidate for
+               # the headline MCGS result. Role is explicit and the report ALLOW-lists it.
+               "role": (a.role or ("transfer" if a.transfer_arm else
+                                   "diagnostic" if a.tag.startswith(("scale_", "smoke", "a4_",
+                                                                     "boundtest", "clocktest",
+                                                                     "drainfix", "livelock"))
+                                   else "ablation" if a.tag.startswith("ablation")
+                                   else "competitive")),
                "manual_coin_contexts": sorted(G.MANUAL_COIN_CONTEXTS),
                "manual_coin_contexts_are_coin_head_only":
                    sorted(G.MANUAL_COIN_CONTEXTS) == [G.COIN_HEAD_CONTEXT],
