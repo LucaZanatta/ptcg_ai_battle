@@ -324,3 +324,48 @@ game and cuts nothing real; the K=8 guard becomes 2359 s instead of 6360 s. Each
 
 **Expected effect:** arm wall time roughly a third of what it was, with abandonment unchanged —
 because the games being abandoned were never going to finish.
+
+---
+
+## D16 — whose turn follows an action is not always public, so the cross-world sum was adding
+opposite signs
+
+**Found by** the validator's V08 check firing: `ft_k2` reported **21 opponent-flag conflicts**,
+in 10 of 64 traced decisions.
+
+I had written that this was impossible. The comment in `c022_mcgs_multidet.py` read: "Public
+information decides whose turn follows an action, so this cannot differ across worlds. If it ever
+does, the action indices are not aligned." **That claim is false**, and the traces show why: the
+option signature MATCHED in every conflicting decision, so the indices were perfectly aligned.
+The successor genuinely differed.
+
+In PTCG an action's resolution can depend on hidden information — a card that reveals, draws,
+or searches can end the turn in one sampled world and not in another. So the successor's player
+is a function of the hidden state, not only of the action.
+
+**Why it matters.** `Node.Update` stores `-reward` at an opponent node. So for the same action
+index, a world whose successor is the agent's own turn contributes `+p`, and a world whose
+successor is the opponent's contributes `-q`. The source's `AggregateDeterminizations` sums raw
+`Rewards`, which is a root-frame sum **only because Hearthstone's successor player is determined
+by the action alone**. Here it is not, and summing raw rewards adds quantities in opposite frames.
+
+Concretely, two worlds each scoring the root player 0.6 and 0.8 for one action summed to
+`(6.0 − 8.0)/20 = −0.10` — a number that is not a return in any frame — instead of
+`(6.0 + 8.0)/20 = 0.70`.
+
+**Fix:** `root_frame_rewards()` converts each world's contribution to the root player's frame
+before summing, and `predicted_win_probability` reads that. `SEMANTIC_GAME_ADAPTER`: the
+operation reduces exactly to the source's raw sum whenever the flags agree, which is always the
+case in Hearthstone.
+
+The source's SIGNED value — the quantity `MaxChild` selects on — is reconstructed from the
+root-frame sum using the MODAL flag, so at K=1, where no disagreement is possible, it is
+bit-for-bit the c021 control's value and probe M04's identity is preserved.
+
+`opponent_flag_conflicts` is kept as a counter rather than removed: it no longer indicates
+misalignment, but a sudden rise still would, and it quantifies how often the adapter is doing
+real work (10 of 64 decisions, ~16%).
+
+**The general lesson, which is the third time this contract has produced it:** a comment
+asserting that something cannot happen is a hypothesis. This one was written into the code as
+justification for a counter, and the counter then refuted it.

@@ -1,22 +1,22 @@
 {
   "generated_from": "raw per-game, per-decision and per-run artifacts",
   "n_checks": 13,
-  "n_ran": 11,
-  "n_pass": 11,
-  "checks_with_no_data": [
-    "V04",
-    "V05"
-  ],
+  "n_ran": 13,
+  "n_pass": 12,
+  "checks_with_no_data": [],
   "no_data_is_not_a_pass": true,
   "inert_checks": [],
   "injections_not_detected": [],
   "all_injections_detected": true,
   "inventory": {
     "mcgs_arms": [
+      "ft_k1",
+      "ft_k2",
       "m04_k1_reuse"
     ],
     "byterl_evals": [
       "ctrl_BR0",
+      "ctrl_BR1",
       "floor_end_to_end",
       "floor_fixed_deck",
       "smoke_floor"
@@ -27,7 +27,8 @@
       "conf_BR1",
       "conf_BR2",
       "conf_BR3",
-      "ctrl_BR0"
+      "ctrl_BR0",
+      "ctrl_BR1"
     ]
   },
   "checks": [
@@ -35,11 +36,11 @@
       "id": "V01",
       "name": "MCGS field scores recompute from per-game records",
       "detail": {
-        "arms_checked": 1,
+        "arms_checked": 3,
         "mismatches": []
       },
       "detects": "a reported score that disagrees with its own raw games",
-      "n_inputs": 1,
+      "n_inputs": 3,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -49,11 +50,11 @@
       "id": "V02",
       "name": "every game lands in exactly one bucket",
       "detail": {
-        "arms_checked": 1,
+        "arms_checked": 3,
         "unaccounted": []
       },
       "detects": "D10: ten games in no category, silently excluded from the field score",
-      "n_inputs": 1,
+      "n_inputs": 3,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -63,11 +64,11 @@
       "id": "V03",
       "name": "the simulation budget was delivered",
       "detail": {
-        "arms_checked": 1,
+        "arms_checked": 3,
         "budget_failures": []
       },
       "detects": "an arm that did not run its simulations, or hit the per-decision wall ceiling",
-      "n_inputs": 1,
+      "n_inputs": 3,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -78,38 +79,40 @@
       "name": "M05/M06 equal budgets across K",
       "detail": {
         "per_protocol": [],
-        "_n_inputs": 0,
+        "_n_inputs": 2,
         "note": "needs at least two arms in a protocol to compare"
       },
       "detects": "a K sweep whose arms did not use equal simulations",
-      "n_inputs": 0,
-      "status": "NO_DATA",
-      "pass": false,
-      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+      "n_inputs": 2,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
     },
     {
       "id": "V05",
       "name": "exclusion rate is comparable across K",
       "detail": {
         "per_protocol_spread_over_15pp": [],
-        "_n_inputs": 0,
+        "_n_inputs": 2,
         "note": "needs at least two arms in a protocol to compare"
       },
       "detects": "D08/contention: arms scored on different populations, making 'K is worse' indistinguishable from 'K was cut earlier'",
-      "n_inputs": 0,
-      "status": "NO_DATA",
-      "pass": false,
-      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+      "n_inputs": 2,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
     },
     {
       "id": "V06",
       "name": "predicted win probabilities are in [0,1]",
       "detail": {
-        "rows_checked": 1983,
+        "rows_checked": 4317,
         "out_of_range": []
       },
       "detects": "D04: the source's opponent sign flip making an end-turn action's probability negative",
-      "n_inputs": 1983,
+      "n_inputs": 4317,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -119,11 +122,11 @@
       "id": "V07",
       "name": "no arm mixed the +/-10 terminal scale into a [0,1] aggregate",
       "detail": {
-        "arms_checked": 1,
+        "arms_checked": 3,
         "mixed": []
       },
       "detects": "a terminal leaf entering the aggregate and breaking the probability reading",
-      "n_inputs": 1,
+      "n_inputs": 3,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -133,13 +136,18 @@
       "id": "V08",
       "name": "action indices are aligned across worlds",
       "detail": {
-        "arms_checked": 1,
-        "mismatches": []
+        "arms_checked": 3,
+        "mismatches": [
+          {
+            "arm": "ft_k2",
+            "opponent_flag_conflicts": 21
+          }
+        ]
       },
       "detects": "the position-pairing defect family: summing statistics for different actions",
-      "n_inputs": 1,
-      "status": "PASS",
-      "pass": true,
+      "n_inputs": 3,
+      "status": "FAIL",
+      "pass": false,
       "injection_detected": true,
       "inert": false
     },
@@ -147,11 +155,11 @@
       "id": "V09",
       "name": "ByteRL external evaluations recompute from per-game records",
       "detail": {
-        "evals_checked": 4,
+        "evals_checked": 5,
         "mismatches": []
       },
       "detects": "a reported win rate that disagrees with its own raw games",
-      "n_inputs": 4,
+      "n_inputs": 5,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -161,11 +169,11 @@
       "id": "V10",
       "name": "recurrent replay agrees at the exact behaviour weights",
       "detail": {
-        "runs_checked": 6,
+        "runs_checked": 7,
         "failures": []
       },
       "detects": "B4's zeroed-recurrent-start hard failure, and D06's publish race",
-      "n_inputs": 6,
+      "n_inputs": 7,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -175,11 +183,11 @@
       "id": "V11",
       "name": "ByteRL trained from fresh random weights",
       "detail": {
-        "runs_checked": 6,
+        "runs_checked": 7,
         "warm_starts": []
       },
       "detects": "a warm start from c021 weights, which CONTRACT \u00a72 forbids",
-      "n_inputs": 6,
+      "n_inputs": 7,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -189,11 +197,11 @@
       "id": "V12",
       "name": "the LSTM is present at hidden size 256",
       "detail": {
-        "runs_checked": 6,
+        "runs_checked": 7,
         "bad": []
       },
       "detects": "c021's defining absence: a feed-forward substitute",
-      "n_inputs": 6,
+      "n_inputs": 7,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,

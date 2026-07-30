@@ -526,3 +526,55 @@ def test_searched_payload_falls_back_to_unexpanded_options_to_reach_min_count(mo
     assert captured["ids"][0] == 2
     assert len(set(captured["ids"])) == 4
     assert all(0 <= i < 6 for i in captured["ids"])
+
+
+def test_worlds_may_legitimately_disagree_about_whose_turn_follows_an_action():
+    """In PTCG the successor's player is NOT always public.
+
+    Measured on a real K=2 arm: 10 of 64 traced decisions had worlds disagreeing about the same
+    action index, with the option signature matching every time. An action's resolution can
+    depend on hidden information, so the same action can end the turn in one sampled world and
+    not in another.
+
+    The source's AggregateDeterminizations sums RAW rewards, which is a root-frame sum only
+    because Hearthstone's successor player is determined by the action alone. Here it is not, so
+    summing raw rewards would add +p from one world to -q from another for the same action.
+    """
+    # both worlds see 10 visits; world 0's successor is the agent's own turn (+0.6),
+    # world 1's is the opponent's, stored negated (-0.8 means the ROOT player scores 0.8)
+    a = make_world_signed(0, {0: 10}, {0: 6.0}, {0: False})
+    b = make_world_signed(1, {0: 10}, {0: -8.0}, {0: True})
+    agg = build_signed([a, b])
+    assert agg.opponent_flag_conflicts == 1
+
+    # RAW summing would give (6.0 - 8.0)/20 = -0.10, which is not a return in any frame.
+    raw = (6.0 + -8.0) / 20
+    assert raw == pytest.approx(-0.10)
+
+    # Root-frame summing gives (6.0 + 8.0)/20 = 0.70 -- the mean root-player return.
+    assert agg.root_frame_rewards(0) == pytest.approx(14.0)
+    assert agg.root_frame_value(0) == pytest.approx(0.70)
+    assert agg.predicted_win_probability(0) == pytest.approx(0.70)
+    assert agg.root_frame_value(0) != pytest.approx(raw)
+
+
+def test_at_k1_the_signed_value_is_exactly_the_source_value():
+    """The root-frame conversion must not change K=1, or probe M04's identity breaks."""
+    for is_opp, reward in ((False, 6.0), (True, -6.0)):
+        w = make_world_signed(0, {0: 10}, {0: reward}, {0: is_opp})
+        agg = build_signed([w])
+        # the source stores Rewards/VisitCount and MaxChild reads exactly that
+        assert agg.value(0) == pytest.approx(reward / 10)
+        # and the probability is the root-frame reading of the same number
+        assert agg.predicted_win_probability(0) == pytest.approx(0.6)
+
+
+def test_modal_flag_decides_the_signed_value_under_disagreement():
+    """With 2 of 3 worlds calling it an opponent successor, the signed value takes that sign."""
+    ws = [make_world_signed(0, {0: 10}, {0: 6.0}, {0: False}),
+          make_world_signed(1, {0: 10}, {0: -6.0}, {0: True}),
+          make_world_signed(2, {0: 10}, {0: -6.0}, {0: True})]
+    agg = build_signed(ws)
+    assert agg.is_opponent[0] is True
+    assert agg.root_frame_value(0) == pytest.approx(0.6)
+    assert agg.value(0) == pytest.approx(-0.6)

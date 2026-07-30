@@ -144,10 +144,51 @@ class Aggregate:
     option_signature: Optional[str] = None
     signature_mismatch: bool = False
     opponent_flag_conflicts: int = 0
+    _flag_votes: Dict[int, List[bool]] = field(default_factory=dict, repr=False)
+
+    def root_frame_rewards(self, action: int) -> float:
+        """Summed rewards converted to the ROOT PLAYER's frame before summing.
+
+        `Node.Update` stores `-reward` at an opponent node, so a world whose successor for this
+        action is an opponent node contributes the NEGATIVE of the root player's return. Summing
+        raw rewards across worlds is only meaningful when every world agrees on that flag.
+
+        **In PTCG they do not always agree.** Measured on a real K=2 arm: 10 of 64 traced
+        decisions had worlds disagreeing about whose turn follows the SAME action index. That is
+        not an index misalignment — the option signature matched in every case. It is a property
+        of the game: an action's resolution can depend on hidden information, so the same action
+        can end the turn in one sampled world and not in another.
+
+        The source's `AggregateDeterminizations` sums raw `Rewards` because in Hearthstone the
+        successor's player is determined by the action alone, making the raw sum a root-frame sum
+        already. Here it is not, so the conversion is made explicit. `SEMANTIC_GAME_ADAPTER`: the
+        operation reduces exactly to the source's raw sum whenever the flags agree.
+        """
+        total = 0.0
+        for w in self.per_world:
+            r = w.rewards.get(action)
+            if r is None:
+                continue
+            total += (-r) if w.is_opponent.get(action, False) else r
+        return total
 
     def value(self, action: int) -> Optional[float]:
+        """The source's SIGNED value: `Rewards / VisitCount` on `Node.Value`'s own scale.
+
+        Reconstructed from the root-frame sum using the MODAL opponent flag, so that at K=1 --
+        where there is one world and no disagreement possible -- this is bit-for-bit the c021
+        control's value and probe M04's identity is preserved.
+        """
         v = self.visits.get(action, 0)
-        return (self.rewards.get(action, 0.0) / v) if v > 0 else None
+        if v <= 0:
+            return None
+        p = self.root_frame_rewards(action) / v
+        return -p if self.is_opponent.get(action, False) else p
+
+    def root_frame_value(self, action: int) -> Optional[float]:
+        """The root player's expected return for this action, in [0, 1]."""
+        v = self.visits.get(action, 0)
+        return (self.root_frame_rewards(action) / v) if v > 0 else None
 
     def select(self, rule: str = AGG_SOURCE_SUM, lcb_z: float = 1.0) -> Optional[int]:
         """Choose the root action. `AGG_SOURCE_SUM` is the source's MaxChild on the aggregate."""
@@ -196,12 +237,10 @@ class Aggregate:
         `mixed_terminal_scale_detected()` is the thing to look at — the ±10 terminal scale is the
         only mechanism that could put it outside.
         """
-        v = self.value(action)
-        if v is None:
+        p = self.root_frame_value(action)
+        if p is None:
             return None
-        if self.is_opponent.get(action, False):
-            v = -v
-        return min(1.0, max(0.0, v))
+        return min(1.0, max(0.0, p))
 
     def raw_aggregate_value(self, action: int) -> Optional[float]:
         """The unconverted `sum(rewards)/sum(visits)`, on the source's own signed scale.
@@ -391,12 +430,19 @@ def multi_determinization_decision(
             agg.rewards[a] = agg.rewards.get(a, 0.0) + ws.rewards.get(a, 0.0)
             flag = bool(ws.is_opponent.get(a, False))
             if a in agg.is_opponent and agg.is_opponent[a] != flag:
-                # Public information decides whose turn follows an action, so this cannot differ
-                # across worlds. If it ever does, the action indices are not aligned and the
-                # aggregate is summing different actions -- exactly what the option signature
-                # guards against, caught here a second way.
+                # NOT an index misalignment. Measured on a real K=2 arm, 10 of 64 traced
+                # decisions disagreed here while the option signature matched every time: in
+                # PTCG an action's resolution can depend on hidden information, so the same
+                # action can end the turn in one sampled world and not in another.
+                #
+                # It is counted because it decides whether the raw cross-world sum is
+                # meaningful -- root_frame_rewards() handles it -- and because a SUDDEN rise
+                # would still indicate misalignment.
                 agg.opponent_flag_conflicts += 1
-            agg.is_opponent[a] = flag
+            # the MODAL flag, so K=1 keeps the c021 control's signed value exactly
+            agg._flag_votes.setdefault(a, []).append(flag)
+            agg.is_opponent[a] = (
+                sum(agg._flag_votes[a]) * 2 > len(agg._flag_votes[a]))
 
     # Action indices are only comparable across worlds if every world offered the same options.
     # The check is on the AGENT-side option set, which is world-independent by construction, plus
@@ -423,6 +469,8 @@ def multi_determinization_decision(
         "aggregate_visits": dict(sorted(agg.visits.items())),
         "aggregate_values_raw_signed": {a: round(agg.value(a), 4) for a in sorted(agg.visits)
                                         if agg.visits[a] > 0},
+        "aggregate_root_frame_values": {a: round(agg.root_frame_value(a), 4)
+                                        for a in sorted(agg.visits) if agg.visits[a] > 0},
         "aggregate_win_probabilities": {
             a: round(agg.predicted_win_probability(a), 4) for a in sorted(agg.visits)
             if agg.visits[a] > 0},

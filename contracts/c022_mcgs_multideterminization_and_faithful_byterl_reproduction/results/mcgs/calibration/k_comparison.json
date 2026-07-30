@@ -2,21 +2,384 @@
   "fixed_total": {
     "protocol": "fixed_total",
     "dir": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/mcgs/fixed_total_simulations",
-    "arms_found": [],
-    "arms_missing": [
+    "arms_found": [
       "ft_k1",
-      "ft_k2",
+      "ft_k2"
+    ],
+    "arms_missing": [
       "ft_k4",
       "ft_k8"
     ],
     "validity": {
       "valid": false,
       "reasons": [
-        "no arms"
-      ]
+        "ft_k2: 21 opponent-flag conflicts"
+      ],
+      "exclusion_rate": {
+        "ft_k1": 0.0312,
+        "ft_k2": 0.0
+      },
+      "total_simulations": {
+        "ft_k1": 114720,
+        "ft_k2": 109344
+      },
+      "sims_per_decision": {
+        "ft_k1": 96.0,
+        "ft_k2": 96.0
+      }
     },
-    "arms": {},
-    "k1_control_tag": null
+    "arms": {
+      "ft_k1": {
+        "k": 1,
+        "games": 32,
+        "completed": 31,
+        "abandoned": 1,
+        "unscored": 0,
+        "errored": 0,
+        "excluded_fraction": 0.0312,
+        "all_games_accounted": true,
+        "field_score": 0.129,
+        "wilson95": [
+          0.0513,
+          0.2885
+        ],
+        "field_score_bounds_if_unscored_counted": [
+          0.125,
+          0.1562
+        ],
+        "sims_per_decision": 96.0,
+        "searched_decisions": 1195,
+        "decision_budget_exhausted_decisions": 18,
+        "wall_clock_s": 700.7,
+        "term_root_win": 34570,
+        "term_root_loss": 66267,
+        "term_undecided": 13883,
+        "predicted_over_decided": 0.3428,
+        "calibration": {
+          "n": 1195,
+          "mean_predicted": 0.3368,
+          "observed_base_rate": 0.1531,
+          "overconfidence_pp": 18.4,
+          "brier": 0.24039,
+          "brier_constant_baseline": 0.12969,
+          "brier_skill_vs_constant": -0.8536,
+          "log_loss": 1.08799,
+          "log_loss_constant_baseline": 0.42811,
+          "expected_calibration_error": 0.2495,
+          "reliability": [
+            {
+              "bin": "[0.0,0.1)",
+              "n": 302,
+              "mean_predicted": 0.0387,
+              "observed": 0.1689,
+              "gap_pp": -13.0,
+              "observed_wilson95": [
+                0.1308,
+                0.2152
+              ]
+            },
+            {
+              "bin": "[0.1,0.2)",
+              "n": 210,
+              "mean_predicted": 0.143,
+              "observed": 0.1286,
+              "gap_pp": 1.4,
+              "observed_wilson95": [
+                0.0899,
+                0.1806
+              ]
+            },
+            {
+              "bin": "[0.2,0.3)",
+              "n": 161,
+              "mean_predicted": 0.2432,
+              "observed": 0.1491,
+              "gap_pp": 9.4,
+              "observed_wilson95": [
+                0.1023,
+                0.2122
+              ]
+            },
+            {
+              "bin": "[0.3,0.4)",
+              "n": 104,
+              "mean_predicted": 0.3487,
+              "observed": 0.1346,
+              "gap_pp": 21.4,
+              "observed_wilson95": [
+                0.0819,
+                0.2134
+              ]
+            },
+            {
+              "bin": "[0.4,0.5)",
+              "n": 80,
+              "mean_predicted": 0.4496,
+              "observed": 0.175,
+              "gap_pp": 27.5,
+              "observed_wilson95": [
+                0.1072,
+                0.2726
+              ]
+            },
+            {
+              "bin": "[0.5,0.6)",
+              "n": 87,
+              "mean_predicted": 0.5447,
+              "observed": 0.1149,
+              "gap_pp": 43.0,
+              "observed_wilson95": [
+                0.0636,
+                0.1988
+              ]
+            },
+            {
+              "bin": "[0.6,0.7)",
+              "n": 59,
+              "mean_predicted": 0.6477,
+              "observed": 0.0678,
+              "gap_pp": 58.0,
+              "observed_wilson95": [
+                0.0267,
+                0.1618
+              ]
+            },
+            {
+              "bin": "[0.7,0.8)",
+              "n": 61,
+              "mean_predicted": 0.7491,
+              "observed": 0.1148,
+              "gap_pp": 63.4,
+              "observed_wilson95": [
+                0.0567,
+                0.2184
+              ]
+            },
+            {
+              "bin": "[0.8,0.9)",
+              "n": 66,
+              "mean_predicted": 0.8425,
+              "observed": 0.1818,
+              "gap_pp": 66.1,
+              "observed_wilson95": [
+                0.1072,
+                0.2915
+              ]
+            },
+            {
+              "bin": "[0.9,1.0)",
+              "n": 65,
+              "mean_predicted": 0.9616,
+              "observed": 0.3077,
+              "gap_pp": 65.4,
+              "observed_wilson95": [
+                0.2089,
+                0.428
+              ]
+            }
+          ]
+        },
+        "disagreement": {
+          "decisions": 1195,
+          "decisions_with_k_gt_1": 0,
+          "mean_modal_agreement": 1.0,
+          "unanimous_fraction": 1.0,
+          "mean_distinct_best_actions": 1.0,
+          "max_distinct_best_actions": 1,
+          "mean_selected_value_sd": null,
+          "n_with_sd": 0
+        },
+        "starvation": {
+          "n_world_records": 62,
+          "sampled_from_traces_per_game": 2,
+          "is_a_sample_not_a_census": true,
+          "mean_simulations_per_world": 96.0,
+          "min_simulations_per_world": 96,
+          "mean_expanded_actions_per_world": 4.15,
+          "mean_root_edges_per_world": 4.15,
+          "fraction_of_worlds_expanding_le_1_action": 0.0
+        }
+      },
+      "ft_k2": {
+        "k": 2,
+        "games": 32,
+        "completed": 32,
+        "abandoned": 0,
+        "unscored": 0,
+        "errored": 0,
+        "excluded_fraction": 0.0,
+        "all_games_accounted": true,
+        "field_score": 0.1562,
+        "wilson95": [
+          0.0686,
+          0.3175
+        ],
+        "field_score_bounds_if_unscored_counted": [
+          0.1562,
+          0.1562
+        ],
+        "sims_per_decision": 96.0,
+        "searched_decisions": 1139,
+        "decision_budget_exhausted_decisions": 28,
+        "wall_clock_s": 278.6,
+        "term_root_win": 38053,
+        "term_root_loss": 56639,
+        "term_undecided": 14652,
+        "predicted_over_decided": 0.4019,
+        "calibration": {
+          "n": 1139,
+          "mean_predicted": 0.3949,
+          "observed_base_rate": 0.2046,
+          "overconfidence_pp": 19.0,
+          "brier": 0.16109,
+          "brier_constant_baseline": 0.16272,
+          "brier_skill_vs_constant": 0.01,
+          "log_loss": 0.54039,
+          "log_loss_constant_baseline": 0.50667,
+          "expected_calibration_error": 0.1903,
+          "reliability": [
+            {
+              "bin": "[0.0,0.1)",
+              "n": 245,
+              "mean_predicted": 0.0362,
+              "observed": 0.0204,
+              "gap_pp": 1.6,
+              "observed_wilson95": [
+                0.0087,
+                0.0469
+              ]
+            },
+            {
+              "bin": "[0.1,0.2)",
+              "n": 175,
+              "mean_predicted": 0.1463,
+              "observed": 0.0629,
+              "gap_pp": 8.3,
+              "observed_wilson95": [
+                0.0355,
+                0.109
+              ]
+            },
+            {
+              "bin": "[0.2,0.3)",
+              "n": 126,
+              "mean_predicted": 0.2443,
+              "observed": 0.0476,
+              "gap_pp": 19.7,
+              "observed_wilson95": [
+                0.022,
+                0.1
+              ]
+            },
+            {
+              "bin": "[0.3,0.4)",
+              "n": 87,
+              "mean_predicted": 0.3459,
+              "observed": 0.1264,
+              "gap_pp": 21.9,
+              "observed_wilson95": [
+                0.0721,
+                0.2124
+              ]
+            },
+            {
+              "bin": "[0.4,0.5)",
+              "n": 80,
+              "mean_predicted": 0.4474,
+              "observed": 0.1375,
+              "gap_pp": 31.0,
+              "observed_wilson95": [
+                0.0785,
+                0.2297
+              ]
+            },
+            {
+              "bin": "[0.5,0.6)",
+              "n": 96,
+              "mean_predicted": 0.5485,
+              "observed": 0.1979,
+              "gap_pp": 35.1,
+              "observed_wilson95": [
+                0.1305,
+                0.2886
+              ]
+            },
+            {
+              "bin": "[0.6,0.7)",
+              "n": 74,
+              "mean_predicted": 0.6497,
+              "observed": 0.2838,
+              "gap_pp": 36.6,
+              "observed_wilson95": [
+                0.1937,
+                0.3952
+              ]
+            },
+            {
+              "bin": "[0.7,0.8)",
+              "n": 81,
+              "mean_predicted": 0.7481,
+              "observed": 0.3704,
+              "gap_pp": 37.8,
+              "observed_wilson95": [
+                0.2733,
+                0.4792
+              ]
+            },
+            {
+              "bin": "[0.8,0.9)",
+              "n": 94,
+              "mean_predicted": 0.8424,
+              "observed": 0.4787,
+              "gap_pp": 36.4,
+              "observed_wilson95": [
+                0.3806,
+                0.5785
+              ]
+            },
+            {
+              "bin": "[0.9,1.0)",
+              "n": 81,
+              "mean_predicted": 0.9642,
+              "observed": 0.9136,
+              "gap_pp": 5.1,
+              "observed_wilson95": [
+                0.8322,
+                0.9575
+              ]
+            }
+          ]
+        },
+        "disagreement": {
+          "decisions": 1139,
+          "decisions_with_k_gt_1": 1139,
+          "mean_modal_agreement": 0.7313,
+          "unanimous_fraction": 0.4627,
+          "mean_distinct_best_actions": 1.5373,
+          "max_distinct_best_actions": 2,
+          "mean_selected_value_sd": 0.1524,
+          "n_with_sd": 1132
+        },
+        "starvation": {
+          "n_world_records": 128,
+          "sampled_from_traces_per_game": 2,
+          "is_a_sample_not_a_census": true,
+          "mean_simulations_per_world": 48.0,
+          "min_simulations_per_world": 48,
+          "mean_expanded_actions_per_world": 4.39,
+          "mean_root_edges_per_world": 4.39,
+          "fraction_of_worlds_expanding_le_1_action": 0.0
+        },
+        "vs_k1": {
+          "field_score_delta_pp": 2.72,
+          "intervals_overlap": true,
+          "brier_delta": -0.0793,
+          "log_loss_delta": -0.5476,
+          "overconfidence_delta_pp": 0.6
+        }
+      }
+    },
+    "k1_control_tag": "ft_k1"
   },
   "fixed_per_world": {
     "protocol": "fixed_per_world",
