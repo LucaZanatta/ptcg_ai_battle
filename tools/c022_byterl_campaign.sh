@@ -73,6 +73,24 @@ case "${1:-all}" in
     done
     ;;
 
+  # The ladder split at the b2 line, so the exclusive block can take the machine between them.
+  # D18: BR0/BR1/BR1_5 have an unbounded queue and must run alone; BR2/BR3 have a bounded
+  # blocking FIFO, so their metrics are load-invariant and they may share the machine with the
+  # decisive arms. Same command, same code, same budget -- only the scheduling differs.
+  controlled_lower)
+    for S in BR0 BR1 BR1_5; do
+      train "ctrl_${S}" "$S" 1 "$CONTROLLED_DECISIONS"
+      evaluate "ctrl_${S}" "$BY/checkpoints/ctrl_${S}_final.pt" 1
+    done
+    ;;
+
+  controlled_upper)
+    for S in BR2 BR3; do
+      train "ctrl_${S}" "$S" 1 "$CONTROLLED_DECISIONS"
+      evaluate "ctrl_${S}" "$BY/checkpoints/ctrl_${S}_final.pt" 1
+    done
+    ;;
+
   controlled)
     # EQUAL budget for every rung -- this is the whole point of the controlled comparison.
     for S in BR0 BR1 BR1_5 BR2 BR3; do
@@ -89,6 +107,32 @@ case "${1:-all}" in
   decisive_e2e)
     train "br3_end_to_end" BR3 1 "$MATCHED_DECISIONS"
     evaluate "br3_end_to_end" "$BY/checkpoints/br3_end_to_end_final.pt" 1
+    ;;
+
+  # ---------------------------------------------------------------- B06 at high coverage
+  # D20: the controlled rungs verify replay fidelity on ~10% of their opportunities, because a
+  # pre-b2 rung's policy lag exceeds any blob history that fits alongside two decisive arms.
+  #
+  # Raising the ladder's history further is the wrong trade. The ladder's job is to measure rung
+  # EFFECTS at an equal 120k-decision budget; B06's job is to assert that the learner replays an
+  # unroll exactly as the actor scored it. Those are separable, and separating them costs minutes
+  # instead of hours: a short run per stage with a history deep enough to hold every version and
+  # a check on EVERY batch.
+  #
+  # Load-independent by construction -- replay deltas are arithmetic, not throughput -- so this
+  # may run alongside anything, unlike the rungs themselves (D18).
+  fidelity)
+    for S in BR0 BR1 BR1_5 BR2 BR3; do
+      echo "=== $(date +%H:%M:%S)  FIDELITY $S  (check every batch, full history)"
+      python3 tools/c022_byterl_train.py \
+        --tag "fid_${S}" --stage "$S" --learn-construction 1 \
+        --actors "${FID_ACTORS:-4}" --queue-size "$QUEUE" --batch-unrolls "$BATCH" \
+        --unroll-length "$UNROLL" --target-decisions "${FIDELITY_DECISIONS:-24000}" \
+        --seed "$SEED" --blob-history "${FID_HISTORY:-4096}" \
+        --recurrence-check-every 1 --recurrence-strict 1 \
+        --log-every 200 --checkpoint-every 100000 2>&1 \
+        | grep -viE '^\[kaggle_environments|INFO:'
+    done
     ;;
 
   all)
