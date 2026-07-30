@@ -114,6 +114,7 @@ class MultiDetMCGSAgent:
             "match_clock_exhausted_decisions": 0, "signature_mismatches": 0,
             "mixed_terminal_scale_decisions": 0, "aggregate_empty_decisions": 0,
             "decision_budget_exhausted_decisions": 0, "opponent_flag_conflicts": 0,
+            "multiselect_decisions": 0, "obliged_decisions": 0,
         })
         self.decision_index = 0
         self.match_search_ms = 0.0
@@ -144,6 +145,42 @@ class MultiDetMCGSAgent:
                 return -1.0
             ceiling = min(ceiling, left)
         return time.monotonic() + ceiling
+
+    def _payload_for(self, sel, opts, agg, action: int) -> List[int]:
+        """Turn the search's chosen ACTION INDEX into a legal payload.
+
+        The graph search ranks single action indices, because that is what
+        `MonteCarloGraphSearch` does: one `PlayerTask` per edge. A PTCG select with
+        `minCount > 1` is not a single pick — it is a SET, and a payload naming one option is
+        rejected outright.
+
+        Emitting `[opts[action]]` unconditionally is what made 10 of 60 games in the m04 arm end
+        `["INVALID", "DONE"]` with `decision_budget_exhausted_decisions: 0` — so it was not the
+        out-of-budget fallback at all, it was the SEARCHED path. The two look identical in every
+        aggregate counter, which is why the terminal-status histogram had to exist before the
+        cause could be found.
+
+        `SEMANTIC_GAME_ADAPTER`. The extension is the smallest one that keeps the search's own
+        ranking: take the top `minCount` action indices by the aggregate value the search already
+        computed, with the chosen action first. Any other rule — a random completion, the first
+        `minCount` options — would discard the search's opinion about every element after the
+        first, which is precisely the c019/c020 defect of scoring a k-element select as if it
+        were a single pick.
+        """
+        n = len(opts)
+        lo = int(getattr(sel, "minCount", 1) or 1)
+        hi = int(getattr(sel, "maxCount", 1) or 1)
+        hi = max(1, min(hi, n))
+        lo = max(1, min(lo, hi))
+        if lo <= 1:
+            return K.to_select_payload([opts[action]], sel)
+        self.stats["multiselect_decisions"] = self.stats.get("multiselect_decisions", 0) + 1
+        ranked = sorted((a for a in agg.visits if agg.visits[a] > 0 and a < n),
+                        key=lambda a: -(agg.value(a) if agg.value(a) is not None else -1e9))
+        picks = [action] + [a for a in ranked if a != action]
+        # an option the search never expanded is still legal, and the payload must reach `lo`
+        picks += [i for i in range(n) if i not in picks]
+        return K.to_select_payload([opts[i] for i in picks[:lo]], sel)
 
     def _fallback_payload(self, sel, opts) -> List[int]:
         """An out-of-budget move that is LEGAL and guarantees the game advances.
@@ -234,7 +271,7 @@ class MultiDetMCGSAgent:
             if action is None:
                 self.stats["aggregate_empty_decisions"] += 1
             elif action < len(opts):
-                chosen = K.to_select_payload([opts[action]], sel)
+                chosen = self._payload_for(sel, opts, agg, action)
                 self.stats["searched_decisions"] += 1
                 p = agg.predicted_win_probability(action)
                 raw = agg.raw_aggregate_value(action)

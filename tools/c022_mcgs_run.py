@@ -316,6 +316,8 @@ def run_arm(a) -> Dict[str, Any]:
         "decisions_total": int(agg_stats.get("decisions", 0)),
         "signature_mismatches": int(agg_stats.get("signature_mismatches", 0)),
         "opponent_flag_conflicts": int(agg_stats.get("opponent_flag_conflicts", 0)),
+        "multiselect_decisions": int(agg_stats.get("multiselect_decisions", 0)),
+        "obliged_decisions": int(agg_stats.get("obliged_decisions", 0)),
         "mixed_terminal_scale_decisions": int(
             agg_stats.get("mixed_terminal_scale_decisions", 0)),
         "aggregate_empty_decisions": int(agg_stats.get("aggregate_empty_decisions", 0)),

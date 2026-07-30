@@ -172,6 +172,8 @@ the field score carries bounds computed as if every excluded game were a win or 
 **Before/after, same configuration:** 1 unscored (`INVALID|DONE`) with 7 budget-exhausted
 decisions → 0 unscored, 8/8 completed.
 
+**But this was only half of it — see D13.**
+
 ---
 
 ## D11 — a terminated game could be counted twice
@@ -197,3 +199,36 @@ wrote into the relaunched sweep's log through its inherited file descriptor.
 naming the specific evidence that they predate the fix — their `config` block has no
 `decision_budget` field. They are cited nowhere as a c022 result. A result that vanishes cannot
 be audited; one that stays in place becomes evidence.
+
+---
+
+## D13 — the SEARCHED path emitted a single option too
+
+**Found by** the m04 arm still reporting `unscored: 10, unscored_status_histogram:
+{"INVALID|DONE": 10}` after D10 was fixed — with `decision_budget_exhausted_decisions: 0`.
+
+That zero is the whole diagnosis. The out-of-budget fallback had not fired once, so the invalid
+actions were coming from the path that *had* searched. `chosen = K.to_select_payload([opts[action]],
+sel)` names exactly one option, and a select with `minCount > 1` rejects it.
+
+The two defects are indistinguishable in every aggregate counter — same INVALID games, same
+missing scores, same `completed` deficit. Only the terminal-status histogram plus the
+budget-exhaustion count separates them, and both had to be added (D10) before the second could be
+seen at all. Fixing D10 and stopping there would have left 10 of 60 games still invalid while the
+counter that used to reveal them read zero.
+
+**Why it exists:** the graph search ranks single action indices, because
+`MonteCarloGraphSearch` has one `PlayerTask` per edge. A PTCG select with `minCount > 1` is a SET.
+The source has no counterpart for this, so it is a `SEMANTIC_GAME_ADAPTER`.
+
+**Fix:** `_payload_for` takes the top `minCount` action indices by the aggregate value the search
+already computed, with the chosen action first, padding with unexpanded options only if the search
+expanded fewer than `minCount`. Any other completion — random, or the first `minCount` options —
+would discard the search's opinion about every element after the first, which is exactly the
+c019/c020 defect of scoring a k-element select as a single pick.
+
+`multiselect_decisions` and `obliged_decisions` are now counted, so the path is visible in every
+arm rather than only when it breaks.
+
+**Verified:** 12 games, 11 completed, 1 abandoned, **0 unscored**, `all_games_accounted: true`,
+`multiselect_decisions: 1`, `obliged_decisions: 1`.

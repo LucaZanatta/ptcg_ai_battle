@@ -461,3 +461,68 @@ def test_fallback_is_deterministic_under_the_seeded_generator(monkeypatch):
         ag = _agent(seed=12345)
         ag._fallback_payload(_Sel(3, 3), opts)
     assert seen[0] == seen[1], "the fallback must be reproducible from the seed"
+
+
+def test_searched_payload_respects_min_count(monkeypatch):
+    """The SEARCHED path must also name at least `minCount` options.
+
+    The graph search ranks single action indices, because MonteCarloGraphSearch has one
+    PlayerTask per edge. A PTCG select with minCount > 1 is a SET, and a payload naming one
+    option is rejected.
+
+    This defect is distinguishable from the fallback one only by `decision_budget_exhausted_
+    decisions: 0` -- the two paths produce identical INVALID games and identical aggregate
+    counters otherwise, which is why the terminal-status histogram had to exist before the
+    cause could be found.
+    """
+    from cg import c019_core as CK
+    captured = {}
+
+    def fake_payload(picks, sel):
+        captured["ids"] = [p.i for p in picks]
+        return [0]
+
+    monkeypatch.setattr(CK, "to_select_payload", fake_payload)
+    from cg import c022_mcgs_agent as AG
+    monkeypatch.setattr(AG, "K", CK)
+
+    ag = _agent()
+    ag.stats = {}
+    opts = [_Opt(i) for i in range(5)]
+    # the search likes action 3 most, then 1, then 4; 0 and 2 were never expanded
+    agg = build_signed([make_world_signed(0, {3: 50, 1: 30, 4: 20},
+                                          {3: 40.0, 1: 12.0, 4: 2.0},
+                                          {3: False, 1: False, 4: False})])
+    ag._payload_for(_Sel(1, 1), opts, agg, 3)
+    assert captured["ids"] == [3], "a single-pick select must play exactly the chosen action"
+
+    ag._payload_for(_Sel(3, 3), opts, agg, 3)
+    assert len(captured["ids"]) == 3, "minCount 3 must produce three options"
+    assert captured["ids"][0] == 3, "the search's chosen action must come first"
+    # the remainder must follow the search's own ranking, not option order
+    assert captured["ids"][1] == 1, f"expected the next-best searched action, got {captured['ids']}"
+    assert len(set(captured["ids"])) == 3
+
+
+def test_searched_payload_falls_back_to_unexpanded_options_to_reach_min_count(monkeypatch):
+    """If the search expanded fewer actions than minCount, the payload must still be legal."""
+    from cg import c019_core as CK
+    captured = {}
+
+    def fake_payload(picks, sel):
+        captured["ids"] = [p.i for p in picks]
+        return [0]
+
+    monkeypatch.setattr(CK, "to_select_payload", fake_payload)
+    from cg import c022_mcgs_agent as AG
+    monkeypatch.setattr(AG, "K", CK)
+
+    ag = _agent()
+    ag.stats = {}
+    opts = [_Opt(i) for i in range(6)]
+    agg = build_signed([make_world_signed(0, {2: 10}, {2: 5.0}, {2: False})])
+    ag._payload_for(_Sel(4, 4), opts, agg, 2)
+    assert len(captured["ids"]) == 4
+    assert captured["ids"][0] == 2
+    assert len(set(captured["ids"])) == 4
+    assert all(0 <= i < 6 for i in captured["ids"])
