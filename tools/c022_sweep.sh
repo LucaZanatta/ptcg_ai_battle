@@ -18,6 +18,16 @@
 set -u
 cd "$(dirname "$0")/.."
 
+# Kill the whole process group on exit, not just this script. Twice now, `pkill -f c022_sweep.sh`
+# killed the driver while the arm it had already spawned survived as an orphan, ran to
+# completion, and wrote a full set of result files into the live results directory using
+# PRE-FIX code -- once corrupting the relaunched sweep's log through its inherited file
+# descriptor. Both orphaned arms had to be quarantined in results/failures/superseded/.
+#
+# `set -m` puts this script in its own process group so the trap can take the children with it.
+set -m
+trap 'trap - TERM INT EXIT; kill -- -$$ 2>/dev/null; exit' TERM INT EXIT
+
 GAMES=${GAMES:-60}
 NPROC=${NPROC:-12}
 SEED=${SEED:-90210}

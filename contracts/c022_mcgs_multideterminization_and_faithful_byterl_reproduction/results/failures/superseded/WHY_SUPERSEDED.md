@@ -42,3 +42,28 @@ Its headline reading was `field_score 0.1739` on 46 completed games, Wilson 95% 
 This is the stale-artifact defect family this repository has shipped before: the counts look
 right, the file is in the right directory, and the attribution is wrong. The corrected `ft_k1`
 lives in `results/mcgs/fixed_total_simulations/` and carries `decision_budget` in its config.
+
+---
+
+# Superseded: two `m04_k1_reuse` arms
+
+`m04_from_sweep2/` and `m04_from_sweep3/` are the K=1 identity arm from the second and third
+sweep launches. Both predate the D13 fix (the SEARCHED path emitting a single option when
+`minCount > 1`), and both are quarantined for that reason.
+
+`m04_from_sweep2/` additionally predates the unscored-category accounting: its summary has no
+`unscored` field at all, so its 6 missing games are invisible in it. It is the second orphan —
+`pkill -f c022_sweep.sh` killed the driver at 12:00 and again at 12:20, and both times the arm
+already spawned survived and ran to completion.
+
+`m04_from_sweep3/` DOES carry the accounting, which is how D13 was found: `unscored: 10`,
+`unscored_status_histogram: {"INVALID|DONE": 10}`, and crucially
+`decision_budget_exhausted_decisions: 0` — proving the invalid actions came from the searched
+path rather than the out-of-budget fallback. Its `games_accounted: 49` against `games: 60` is an
+artifact of my killing it mid-run, not a code defect.
+
+Neither is cited as a c022 result. `m04_from_sweep3/` is genuinely useful evidence *about a
+defect*, and the defect log (D13) cites it as such.
+
+The sweep script now traps EXIT and kills its whole process group, so a driver kill takes its
+arms with it.
