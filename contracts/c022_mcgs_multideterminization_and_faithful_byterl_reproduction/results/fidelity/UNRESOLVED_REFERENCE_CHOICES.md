@@ -191,3 +191,35 @@ papers rather than carried across:
 The last row is the one most likely to mislead a reader: **a c021 rung label and a c022 rung
 label of the same name denote different systems.** Every comparison in this contract that crosses
 the c021 boundary names the artifact, not the rung.
+
+## The M12 deploy arm's clock — read off c021, not chosen (recorded 19:52, before the arm ran)
+
+`PROBE_MATRIX M12` asks only that "Kaggle budget changes do not modify reference branch". It
+does not state the budget, and `MANDATORY_IMPLEMENTATION §115` says only "legal cumulative
+clock/resource controls". So the numbers had to come from somewhere, and the honest options were
+to take them from a source or to declare them chosen.
+
+They come from a source. The frozen `C021_MCGS_K1_CONTROL` config, in
+`results/controls/control_manifest.json`:
+
+```json
+"match_clock_seconds": 90.0,
+"first_move_seconds": 0.9,
+"continuing_move_seconds": 0.7
+```
+
+That is the 2019 source's own 15 s / 10 s schedule scaled by ~16.7x to fit the Kaggle budget
+c021 actually played under. The c022 deploy arm uses those three values unchanged, which makes
+it a re-measurement of a known deployment configuration under the multi-determinization search
+rather than a new configuration invented alongside its own result.
+
+**What was NOT adopted.** An earlier draft of the deploy script used `--decision-cap 5` and a
+count-budgeted protocol. Both were invented: nothing in the contract, the source or c021
+specifies a 5-second per-decision cap, and c021's deploy agent was time-budgeted, so a
+count-budgeted arm would not have been the same question. The draft was replaced before any arm
+ran, which is the only time such a replacement is worth anything.
+
+**K is not fixed by this file.** The arm runs at K=1 and K=8. The 200-game paired result does not
+license K=8 as the deployment configuration: under a 90 s cumulative clock, K=8 divides the same
+clock eight ways, which is a different question from the paired comparison and has to be measured
+rather than inferred.

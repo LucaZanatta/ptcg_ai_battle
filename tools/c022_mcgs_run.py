@@ -139,6 +139,11 @@ def run_arm(a) -> Dict[str, Any]:
         "decision_wall_ceiling_seconds": float(a.wall_ceiling),
         "decision_budget": int(a.decision_budget),
     }
+    # 0 means "keep the source value already in REFERENCE_CFG". Only the deploy arm overrides.
+    if float(getattr(a, "first_move_seconds", 0.0)) > 0:
+        cfg["first_move_seconds"] = float(a.first_move_seconds)
+    if float(getattr(a, "continuing_move_seconds", 0.0)) > 0:
+        cfg["continuing_move_seconds"] = float(a.continuing_move_seconds)
     jobs = [{"game_id": f"{a.tag}:g{i}",
              "opponent": OPPONENTS[i % len(OPPONENTS)],
              "seat": i % 2,
@@ -341,6 +346,25 @@ def run_arm(a) -> Dict[str, Any]:
         "calibration_rows": len(cal_rows),
         "budget_delivered": bool(agg_stats.get("decision_deadline_stops", 0) == 0),
     }
+    if a.protocol == "source_time":
+        # In this protocol the simulation count is the OUTCOME, so `budget_delivered` -- which
+        # asks whether the configured count was reached -- has no meaning and would report
+        # vacuously true. Replace it with the question that does have meaning: did the arm
+        # actually search on the source's schedule, or did a stray count/ceiling bind first?
+        #
+        # `--sims 0` is the sentinel for "no count is being requested". If a protocol typo ever
+        # sends a count-budgeted arm down this path, sims_per_decision collapses to that count
+        # and this flag goes false instead of the arm looking like it executed.
+        sd_reported = summary["sims_per_decision"]
+        summary["budget_delivered"] = bool(sd_reported > max(4.0, 4.0 * float(a.sims)))
+        summary["source_time_note"] = (
+            "simulations are a MEASUREMENT here, not a budget; `budget_delivered` asserts the "
+            "wall schedule bound rather than a count or the safety ceiling")
+        summary["schedule_seconds"] = {
+            "first_move": float(a.first_move_seconds or 15.0),
+            "continuing": float(a.continuing_move_seconds or 10.0),
+            "decision_wall_ceiling": float(a.wall_ceiling),
+        }
     with open(os.path.join(a.out, f"{a.tag}_summary.json"), "w") as fh:
         json.dump(summary, fh, indent=2)
     return summary
@@ -389,6 +413,14 @@ def main(argv=None):
                          "from MEASURED completed-game duration: abandonment here is dominated "
                          "by non-terminating games, which consume whatever guard they are "
                          "given, while normal games finish far inside it.")
+    # The source's schedule is 15 s / 10 s (SearchConfig.cs). The c021 DEPLOYMENT arm scaled it
+    # to 0.9 s / 0.7 s under a 90 s cumulative match clock -- those are not invented numbers,
+    # they are read off the frozen C021_MCGS_K1_CONTROL config. Exposed as flags so the M11
+    # reference arm and the M12 deploy arm can differ in exactly this and nothing else.
+    ap.add_argument("--first-move-seconds", type=float, default=0.0,
+                    help="0 = the source value (15 s). The deploy arm passes c021's 0.9.")
+    ap.add_argument("--continuing-move-seconds", type=float, default=0.0,
+                    help="0 = the source value (10 s). The deploy arm passes c021's 0.7.")
     ap.add_argument("--arm-timeout", type=float, default=14400.0)
     ap.add_argument("--transfer-arm", default=None)
     ap.add_argument("--byterl-checkpoint", default=None)

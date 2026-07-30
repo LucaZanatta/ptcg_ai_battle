@@ -108,6 +108,26 @@ at   00:00    assess against this table. If the remaining chain does not project
               and its reason in this file at the time it is taken.
 ```
 
+### How a scale cut is recorded — written 19:55, before any cut is taken
+
+Cuts 1 and 2 stop a decisive arm at "whatever the block affords". That phrasing is only honest
+if the achieved figure is the right one, so the procedure is fixed here rather than decided while
+looking at a half-trained arm:
+
+1. The arm is stopped, not killed mid-write: `--checkpoint-every 400` means the latest checkpoint
+   is at most 400 updates old, and that checkpoint is the one evaluated.
+2. The achieved exposure reported is **`produced_decisions`**, not `consumed_decisions`. The
+   matched budget is defined in `byterl/budget/c021_matched_budget.json` as "total environment
+   decisions", which is the actor-side quantity. `--target-decisions` gates on the learner-side
+   counter, and at BR3's measured production/consumption ratio of 1.023 the two are within 2.3%
+   — so a completed arm satisfies the budget either way, but a STOPPED arm must report the
+   counter the budget is defined in.
+3. The report states `produced_decisions / 3,607,599` as a fraction, in the same sentence as any
+   claim about that arm's strength. `FIDELITY_RULES §5`: "Do not convert undertraining into
+   method failure."
+4. The stop time and the reason (`schedule`, never a result) go in this file at the moment of the
+   cut.
+
 This is a **schedule** trigger, not a results trigger. Nothing about what has been measured by
 midnight may influence which items get cut — the cut order was fixed before any of it existed,
 and a cut taken because an arm looked disappointing would be exactly the gate-shopping the order
