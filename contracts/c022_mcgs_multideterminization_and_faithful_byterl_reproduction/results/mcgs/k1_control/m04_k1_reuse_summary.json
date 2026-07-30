@@ -14,10 +14,10 @@
     "decision_budget": 260
   },
   "seed": 90210,
-  "nproc": 12,
+  "nproc": 14,
   "games": 60,
-  "completed": 56,
-  "abandoned": 4,
+  "completed": 52,
+  "abandoned": 8,
   "errored": 0,
   "unscored": 0,
   "unscored_status_histogram": {},
@@ -27,37 +27,37 @@
   "all_games_accounted": true,
   "effective_n_note": "field_score is computed over `completed` only. abandoned, errored and unscored games are excluded, so `completed` is the effective sample size and the Wilson interval is computed on it.",
   "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field score rather than scored as losses",
-  "field_score": 0.25,
+  "field_score": 0.1538,
   "wilson95": [
-    0.1552,
-    0.3769
+    0.0801,
+    0.2752
   ],
   "field_score_bounds_if_unscored_counted": [
-    0.2333,
-    0.3
+    0.1333,
+    0.2667
   ],
-  "excluded_fraction": 0.0667,
+  "excluded_fraction": 0.1333,
   "per_opponent": {
     "dragapult": {
       "games": 15,
-      "rate": 0.1333
+      "rate": 0.0667
     },
     "iono": {
-      "games": 14,
-      "rate": 0.2143
+      "games": 12,
+      "rate": 0.0833
     },
     "mega_abomasnow": {
       "games": 14,
-      "rate": 0.0714
+      "rate": 0.1429
     },
     "mega_lucario": {
-      "games": 13,
-      "rate": 0.6154
+      "games": 11,
+      "rate": 0.3636
     }
   },
-  "wall_clock_s": 1755.6,
-  "searched_decisions": 2295,
-  "total_simulations": 406215,
+  "wall_clock_s": 1783.8,
+  "searched_decisions": 1983,
+  "total_simulations": 350991,
   "sims_per_decision": 177.0,
   "mean_k_used": 1.0,
   "world_errors": 0,
@@ -65,25 +65,25 @@
   "match_clock_exhausted_decisions": 0,
   "decision_budget": 260,
   "decision_budget_exhausted_decisions": 0,
-  "decisions_total": 2730,
+  "decisions_total": 2405,
   "signature_mismatches": 0,
   "opponent_flag_conflicts": 0,
-  "multiselect_decisions": 5,
+  "multiselect_decisions": 9,
   "obliged_decisions": 1,
   "mixed_terminal_scale_decisions": 0,
   "aggregate_empty_decisions": 0,
-  "term_root_win": 148573,
-  "term_root_loss": 212753,
-  "term_undecided": 44889,
+  "term_root_win": 118744,
+  "term_root_loss": 189302,
+  "term_undecided": 42945,
   "finalised": 0,
   "terminal_leaves": 0,
   "lethal_bonus": 0,
   "step_errors": 0,
   "begin_errors": 0,
-  "transposition_merges": 59670,
-  "dummy_edges": 1060,
-  "chance_nodes_created": 1704,
+  "transposition_merges": 52758,
+  "dummy_edges": 889,
+  "chance_nodes_created": 1331,
   "manual_coin_node_ucb_selected": 0,
-  "calibration_rows": 2295,
+  "calibration_rows": 1983,
   "budget_delivered": true
 }

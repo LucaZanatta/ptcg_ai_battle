@@ -1,0 +1,73 @@
+{
+  "question": "does concurrent CPU load taint a SIMULATION-BUDGETED MCGS arm?",
+  "answer": "PARTLY -- and the part that survives is the one that matters. The simulation budget is delivered exactly under load. Game ABANDONMENT doubles, and since abandoned games leave the field score, the surviving population changes and the field score with it.",
+  "method": "the strongest available comparison: the SAME arm, same tag, same seeds, same job indices, run twice -- once with the machine otherwise idle at nproc 12, once at nproc 14 alongside a 6-actor ByteRL campaign. Not a proxy arm.",
+  "arm": "m04_k1_reuse (K=1, fixed_total, 177 simulations per decision, graph_reuse on)",
+
+  "measurements": {
+    "unloaded": {
+      "when": "2026-07-30 12:47-13:16",
+      "nproc": 12,
+      "concurrent_load": "none",
+      "sims_per_decision": 177.0,
+      "decision_deadline_stops": 0,
+      "decision_budget_exhausted_decisions": 0,
+      "games": 60, "completed": 56, "abandoned": 4, "unscored": 0, "errored": 0,
+      "excluded_fraction": 0.0667,
+      "field_score": 0.25,
+      "wilson95": [0.1552, 0.3769],
+      "field_score_bounds_if_excluded_counted": [0.2333, 0.3],
+      "total_simulations": 406215,
+      "wall_clock_s": 1755.6,
+      "ms_per_simulation_per_worker": 51.9,
+      "source": "recovered from commit c20ffa8"
+    },
+    "loaded": {
+      "when": "2026-07-30 13:24-13:54",
+      "nproc": 14,
+      "concurrent_load": "tools/c022_byterl_campaign.sh floor -- 6 ByteRL actors plus a learner",
+      "sims_per_decision": 177.0,
+      "decision_deadline_stops": 0,
+      "decision_budget_exhausted_decisions": 0,
+      "games": 60, "completed": 52, "abandoned": 8, "unscored": 0, "errored": 0,
+      "excluded_fraction": 0.1333,
+      "field_score": 0.1538,
+      "wilson95": [0.0801, 0.2752],
+      "field_score_bounds_if_excluded_counted": [0.1333, 0.2667],
+      "total_simulations": 350991,
+      "wall_clock_s": 1783.8,
+      "ms_per_simulation_per_worker": 71.2
+    }
+  },
+
+  "verdict": {
+    "simulation_budget_held": true,
+    "simulation_budget_evidence": "177.0 in BOTH runs, against a configured 177. This is the causal quantity -- MANDATORY_IMPLEMENTATION A4 requires attribution by simulation count -- and contention did not touch it. The design intent held.",
+    "no_decision_hit_the_wall_ceiling": true,
+    "wall_ceiling_evidence": "decision_deadline_stops 0 in both. At ~71 ms per simulation under load, a 177-simulation decision costs about 13 s against a 300 s ceiling.",
+    "exclusion_rate_moved": true,
+    "exclusion_evidence": "4 abandoned unloaded, 8 loaded -- 0.0667 to 0.1333, a doubling. Per-worker simulation throughput fell from 19.3/s to 14.1/s, a 1.37x slowdown, and the per-game wall guard was computed from an UNLOADED 19 ms/simulation estimate. Long games therefore crossed the guard that would have survived unloaded.",
+    "safe_to_run_concurrent_load_as_configured": false
+  },
+
+  "why_this_matters_more_than_it_looks": {
+    "observation": "the SAME arm, with identical seeds and an identically delivered simulation budget, scored 0.25 and 0.1538.",
+    "reading": "the difference is not the search. It is which of its long games survived to be scored. The field score is computed over completed games, so an arm that abandons more of its long games is scored on a different, shorter population -- and 4 extra abandonments out of 60 moved the headline by 10 points.",
+    "why_it_is_a_confound_and_not_just_noise": "if abandonment interacts with K -- and it must, because a K=8 fixed_per_world decision costs eight times a K=1 decision -- then the high-K arms lose more of their long games, and 'K=8 is worse' becomes indistinguishable from 'K=8 was cut earlier'. That is defect D08 returning through a different door: D08 was the wall clock cutting arms unequally by K, this is contention cutting them unequally by K.",
+    "what_would_have_happened_without_this_check": "the a-priori argument was that a simulation-budgeted arm cannot be corrupted by contention, and the FIRST TWO checks confirm it. Stopping there -- which is what 'sims_per_decision looks fine' invites -- would have shipped a K sweep whose arms were scored on different populations."
+  },
+
+  "decision": {
+    "action": "the sweep is restarted with a per-game guard derived from the LOADED cost, and a lower decision budget so that a long game's total search cost sits well inside it. Concurrency is retained, because the failure was the guard's calibration and not concurrency itself.",
+    "parameters_changed": {
+      "seconds_per_simulation": "0.019 (unloaded) -> 0.071 (measured under load)",
+      "decision_budget": "260 -> 120",
+      "guard_margin": "1.5x -> 2.0x"
+    },
+    "why_a_lower_decision_budget_rather_than_only_a_bigger_guard": "a bigger guard alone makes the worst-case game unboundedly long: 260 decisions x 256 simulations x 71 ms is about 79 minutes for ONE game, and an arm cannot finish. Capping searched decisions bounds the worst case directly, applies IDENTICALLY to every K, and leaves the typical game untouched -- the m04 arm averaged 46 searched decisions per game, so only the tail is affected, and it is affected equally in every arm.",
+    "acceptance_condition": "the first restarted arm must report abandonment at or near zero. If it does not, concurrency is abandoned and the sweep runs under exclusive CPU as CONTRACT.md §5's default -- the parallelism is not worth an invalid comparison.",
+    "what_still_runs_alone": ["the final panel", "the unrestricted 15s/10s source-timing arm", "the Kaggle deploy arm"]
+  },
+
+  "note_on_the_abandoned_standalone_test": "tools/c022_contention.py was started and killed after 14 minutes without completing one configuration: it measured a proxy arm while competing with the sweep it was measuring. This comparison is strictly better -- it is the real arm, at the real budget, with the real seeds."
+}

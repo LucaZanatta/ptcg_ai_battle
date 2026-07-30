@@ -92,8 +92,8 @@
       "asserted": false,
       "quantity": "transposition_merges per 1000 simulations",
       "c021_control": 22.733,
-      "c022_arm": 146.893,
-      "ratio": 6.462,
+      "c022_arm": 150.312,
+      "ratio": 6.612,
       "within_original_factor_of_2_band": false,
       "why_not_asserted": "the two runs search different populations of decisions -- the control's match clock dropped its late-game decisions -- so a rate normalised by simulations does not compare like with like. Reported so a divergence is visible; not a pass condition."
     },
@@ -102,8 +102,8 @@
       "asserted": false,
       "quantity": "dummy_edges per 1000 simulations",
       "c021_control": 1.14,
-      "c022_arm": 2.609,
-      "ratio": 2.289,
+      "c022_arm": 2.533,
+      "ratio": 2.221,
       "within_original_factor_of_2_band": false,
       "why_not_asserted": "the two runs search different populations of decisions -- the control's match clock dropped its late-game decisions -- so a rate normalised by simulations does not compare like with like. Reported so a divergence is visible; not a pass condition."
     },
@@ -112,7 +112,7 @@
       "asserted": false,
       "quantity": "chance_nodes_created",
       "c021_control": 100,
-      "c022_arm": 1704,
+      "c022_arm": 1331,
       "note": "chance nodes arise at genuine random effects, which concentrate later in a game; the control's match clock dropped exactly those decisions."
     }
   ],
@@ -121,10 +121,10 @@
   "pass": true,
   "explicitly_not_asserted": {
     "field_score": {
-      "c022_arm": 0.25,
+      "c022_arm": 0.1538,
       "c022_wilson95": [
-        0.1552,
-        0.3769
+        0.0801,
+        0.2752
       ],
       "c021_control": 0.1111,
       "why_not_asserted": "the control's 0.1111 came from 36 completed games at 176.6 sims/decision under a 90 s match clock, with a 95% Wilson interval of roughly [0.04, 0.26]. Asserting outcome equality across a budget-regime change, at that sample size, would be asserting noise."

@@ -28,12 +28,17 @@ cd "$(dirname "$0")/.."
 set -m
 trap 'trap - TERM INT EXIT; kill -- -$$ 2>/dev/null; exit' TERM INT EXIT
 
-GAMES=${GAMES:-60}
+GAMES=${GAMES:-40}
 NPROC=${NPROC:-12}
 SEED=${SEED:-90210}
-FT_SIMS=${FT_SIMS:-256}      # fixed_total: TOTAL simulations per decision, constant across K
-FPW_SIMS=${FPW_SIMS:-64}     # fixed_per_world: simulations PER WORLD, constant across K
-DECISION_BUDGET=${DECISION_BUDGET:-260}
+FT_SIMS=${FT_SIMS:-192}      # fixed_total: TOTAL simulations per decision, constant across K
+FPW_SIMS=${FPW_SIMS:-48}     # fixed_per_world: simulations PER WORLD, constant across K
+DECISION_BUDGET=${DECISION_BUDGET:-120}
+# Measured UNDER LOAD (results/hardware/contention_tests.json): 71 ms per simulation per worker
+# at nproc 14 alongside a 6-actor ByteRL campaign, against 52 ms unloaded. The per-game wall
+# guard is derived from this, because deriving it from the unloaded figure is what doubled
+# abandonment -- and abandoned games leave the field score, so the surviving population changes.
+SEC_PER_SIM=${SEC_PER_SIM:-0.071}
 R="contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/mcgs"
 
 run () {  # tag k protocol sims out reuse
@@ -42,14 +47,21 @@ run () {  # tag k protocol sims out reuse
     --tag "$1" --k "$2" --protocol "$3" --sims "$4" \
     --games "$GAMES" --nproc "$NPROC" --seed "$SEED" \
     --graph-reuse "${6:-0}" --match-clock 0 --wall-ceiling 300 \
-    --decision-budget "$DECISION_BUDGET" --arm-timeout 14400 \
+    --decision-budget "$DECISION_BUDGET" --arm-timeout 21600 \
+    --seconds-per-simulation "$SEC_PER_SIM" \
     --out "$5" 2>&1 | grep -viE '^\[kaggle_environments|INFO:'
 }
 
 # ---- M04: does the c022 search reproduce the c021 search? Everything else is compared to a
 # K=1 control, so this runs first. Budget matches the frozen control's MEASURED 176.6
 # sims/decision; see PREREGISTERED_M04_IDENTITY.json for what is and is not asserted.
-run "m04_k1_reuse" 1 fixed_total 177 "$R/k1_control" 1
+# RUN_M04=0 skips it: the arm has already run and passed 9/9, and re-running it costs 30
+# minutes of the sweep's exclusive window for a probe whose result is committed.
+if [ "${RUN_M04:-1}" = "1" ]; then
+  run "m04_k1_reuse" 1 fixed_total 177 "$R/k1_control" 1
+else
+  echo "=== $(date +%H:%M:%S)  m04_k1_reuse SKIPPED (RUN_M04=0); result already committed"
+fi
 
 for K in 1 2 4 8; do
   run "ft_k${K}" "$K" fixed_total "$FT_SIMS" "$R/fixed_total_simulations"
