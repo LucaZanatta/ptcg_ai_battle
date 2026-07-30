@@ -81,71 +81,120 @@ def capture_frozen_set(n_decisions: int, every: int, seed: int, max_games: int):
     return deck, captured
 
 
-def evaluate(deck, frozen, ks, repeats, sims, protocol, base_seed, out_path):
+def _one_decision(job, q):
+    """Evaluate ONE frozen decision across every K, in its own process."""
+    import sys as _s
+    _s.path.insert(0, _REPO)
+    import torch
+    torch.set_num_threads(1)
+    import numpy as _np
     from cg import api as A
     from cg import c022_mcgs_agent as AG
     from cg import c022_mcgs_multidet as MD
 
-    rows = []
+    entry = job["entry"]
+    deck = job["deck"]
+    o = A.to_observation_class(entry["obs"])
+    rec = {"decision_index": entry["decision_index"], "n_options": entry["n_options"],
+           "opponent": entry["opponent"], "k": {}}
+    for k in job["ks"]:
+        picks, probs, agreements, distinct = [], [], [], []
+        for r in range(job["repeats"]):
+            cfg = dict(AG.REFERENCE_CFG)
+            cfg.update({"k_worlds": k, "budget_protocol": job["protocol"],
+                        "simulations_per_decision": job["sims"], "graph_reuse": False,
+                        "match_clock_seconds": 0.0, "decision_budget": 10 ** 9})
+            rng = _np.random.default_rng(job["base_seed"] + 7919 * r + k)
+            try:
+                agg, trace = MD.multi_determinization_decision(
+                    o, deck, cfg, rng,
+                    # A DIFFERENT world seed per repeat is the whole point: stability is
+                    # "does the choice survive a different draw of worlds?"
+                    base_seed=job["base_seed"] + 104729 * r,
+                    decision_index=entry["decision_index"], k=k,
+                    total_simulations=job["sims"], protocol=job["protocol"],
+                    deadline=time.monotonic() + 300.0)
+            except Exception as e:  # noqa: BLE001
+                rec.setdefault("errors", []).append(f"{type(e).__name__}: {e}"[:120])
+                continue
+            a = agg.select(MD.AGG_SOURCE_SUM)
+            if a is None:
+                continue
+            picks.append(int(a))
+            pw = agg.predicted_win_probability(a)
+            if pw is not None:
+                probs.append(float(pw))
+            d = trace["disagreement"]
+            if d["modal_agreement"] is not None:
+                agreements.append(d["modal_agreement"])
+            distinct.append(d["distinct_best_actions"])
+        if not picks:
+            continue
+        modal = collections.Counter(picks).most_common(1)[0]
+        rec["k"][str(k)] = {
+            "repeats": len(picks), "picks": picks,
+            "distinct_picks": len(set(picks)),
+            "stability": round(modal[1] / len(picks), 4),
+            "modal_action": modal[0],
+            "mean_predicted": round(statistics.fmean(probs), 4) if probs else None,
+            "predicted_sd": round(statistics.pstdev(probs), 4) if len(probs) > 1 else None,
+            "mean_world_modal_agreement": round(statistics.fmean(agreements), 4)
+            if agreements else None,
+            "mean_distinct_best_actions_within_a_decision": round(
+                statistics.fmean(distinct), 4) if distinct else None,
+        }
+    q.put(rec)
+
+
+def evaluate(deck, frozen, ks, repeats, sims, protocol, base_seed, out_path, nproc=12,
+             timeout=10800.0):
+    """Fan the frozen decisions across processes.
+
+    The first version ran single-process. At 500 decisions x 4 K values x 5 repeats x 128
+    simulations that is about 1.3 million simulations in one thread -- roughly 25 hours, which
+    is not a schedule slip but a design error. Decisions are independent by construction: each
+    replays a FROZEN observation and shares nothing with its neighbours, so this is the one part
+    of the contract that parallelises without any correctness argument at all.
+    """
+    import multiprocessing as mp
+    ctx = mp.get_context("spawn")
+    q = ctx.Queue()
+    jobs = [{"entry": e, "deck": deck, "ks": ks, "repeats": repeats, "sims": sims,
+             "protocol": protocol, "base_seed": base_seed} for e in frozen]
+    rows, running, pending = [], {}, list(jobs)
     t0 = time.time()
     fh = open(out_path, "w")
-    for di, entry in enumerate(frozen):
-        o = A.to_observation_class(entry["obs"])
-        rec: Dict[str, Any] = {"decision_index": entry["decision_index"],
-                               "n_options": entry["n_options"],
-                               "opponent": entry["opponent"], "k": {}}
-        for k in ks:
-            picks, probs, agreements, distinct = [], [], [], []
-            for r in range(repeats):
-                cfg = dict(AG.REFERENCE_CFG)
-                cfg.update({"k_worlds": k, "budget_protocol": protocol,
-                            "simulations_per_decision": sims, "graph_reuse": False,
-                            "match_clock_seconds": 0.0, "decision_budget": 10 ** 9})
-                rng = np.random.default_rng(base_seed + 7919 * r + k)
-                try:
-                    agg, trace = MD.multi_determinization_decision(
-                        o, deck, cfg, rng,
-                        # A DIFFERENT world seed per repeat is the whole point: stability is
-                        # "does the choice survive a different draw of worlds?"
-                        base_seed=base_seed + 104729 * r,
-                        decision_index=entry["decision_index"], k=k,
-                        total_simulations=sims, protocol=protocol,
-                        deadline=time.monotonic() + 120.0)
-                except Exception as e:  # noqa: BLE001
-                    rec.setdefault("errors", []).append(f"{type(e).__name__}: {e}"[:120])
-                    continue
-                a = agg.select(MD.AGG_SOURCE_SUM)
-                if a is None:
-                    continue
-                picks.append(int(a))
-                p = agg.predicted_win_probability(a)
-                if p is not None:
-                    probs.append(float(p))
-                d = trace["disagreement"]
-                if d["modal_agreement"] is not None:
-                    agreements.append(d["modal_agreement"])
-                distinct.append(d["distinct_best_actions"])
-            if not picks:
-                continue
-            modal = collections.Counter(picks).most_common(1)[0]
-            rec["k"][str(k)] = {
-                "repeats": len(picks),
-                "picks": picks,
-                "distinct_picks": len(set(picks)),
-                "stability": round(modal[1] / len(picks), 4),
-                "modal_action": modal[0],
-                "mean_predicted": round(statistics.fmean(probs), 4) if probs else None,
-                "predicted_sd": round(statistics.pstdev(probs), 4) if len(probs) > 1 else None,
-                "mean_world_modal_agreement": round(statistics.fmean(agreements), 4)
-                if agreements else None,
-                "mean_distinct_best_actions_within_a_decision": round(
-                    statistics.fmean(distinct), 4) if distinct else None,
-            }
-        rows.append(rec)
-        fh.write(json.dumps(rec) + "\n")
-        fh.flush()
-        if (di + 1) % 25 == 0:
-            print(f"  {di+1}/{len(frozen)} decisions, {time.time()-t0:.0f}s", flush=True)
+    done = 0
+    while (pending or running) and time.time() - t0 < timeout:
+        while pending and len(running) < nproc:
+            j = pending.pop(0)
+            pr = ctx.Process(target=_one_decision, args=(j, q))
+            pr.start()
+            running[j["entry"]["decision_index"]] = (pr, time.time())
+        while True:
+            try:
+                r = q.get(timeout=0.25)
+                rows.append(r)
+                fh.write(json.dumps(r) + "\n")
+                fh.flush()
+                done += 1
+                if done % 25 == 0:
+                    print(f"  {done}/{len(jobs)} decisions, {time.time()-t0:.0f}s", flush=True)
+            except Exception:  # noqa: BLE001
+                break
+        for gid, (pr, st) in list(running.items()):
+            if not pr.is_alive():
+                pr.join(timeout=1)
+                del running[gid]
+    for gid, (pr, st) in list(running.items()):
+        pr.terminate()
+        pr.join(timeout=3)
+    while True:
+        try:
+            rows.append(q.get(timeout=0.5))
+            fh.write(json.dumps(rows[-1]) + "\n")
+        except Exception:  # noqa: BLE001
+            break
     fh.close()
     return rows
 
@@ -204,6 +253,8 @@ def main(argv=None):
     ap.add_argument("--sims", type=int, default=128)
     ap.add_argument("--protocol", default="fixed_total")
     ap.add_argument("--seed", type=int, default=515151)
+    ap.add_argument("--nproc", type=int, default=12)
+    ap.add_argument("--timeout", type=float, default=10800.0)
     ap.add_argument("--out", default=os.path.join(OUT, "stability"))
     a = ap.parse_args(argv)
 
@@ -221,12 +272,15 @@ def main(argv=None):
                   fh, indent=2)
 
     rows = evaluate(deck, frozen, ks, a.repeats, a.sims, a.protocol, a.seed,
-                    os.path.join(a.out, "stability_rows.jsonl"))
+                    os.path.join(a.out, "stability_rows.jsonl"), nproc=a.nproc,
+                    timeout=a.timeout)
     summary = summarise(rows, ks)
     summary.update({"protocol": a.protocol, "simulations_per_decision": a.sims,
                     "repeats_per_decision": a.repeats, "ks": ks, "seed": a.seed,
                     "frozen_decisions_requested": a.decisions,
                     "frozen_decisions_captured": len(frozen),
+                    "decisions_evaluated": len(rows),
+                    "nproc": a.nproc,
                     "meets_500_decision_minimum": len(frozen) >= 500,
                     "elapsed_s": round(time.time() - t0, 1)})
     with open(os.path.join(a.out, "stability_summary.json"), "w") as fh:
