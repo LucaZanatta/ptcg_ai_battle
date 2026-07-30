@@ -166,6 +166,11 @@ def starvation(arm: Dict[str, Any]) -> Dict[str, Any]:
     could be world diversity failing to help OR each world being too starved to search at all.
     Per-world simulations and expanded actions separate the two.
     """
+    # SAMPLE SIZE CAVEAT: the agent caps its trace buffer and the runner keeps only the first
+    # two traces per game, so this is a sample of roughly 2 x games decisions -- about 120 at 60
+    # games, out of thousands. It is a diagnostic that distinguishes "world diversity did not
+    # help" from "each world was too starved to search", not a census of the arm's per-world
+    # behaviour, and the report says so.
     sims, expanded, edges = [], [], []
     for t in arm["traces"]:
         for ws in t.get("world_stats", []):
@@ -176,6 +181,8 @@ def starvation(arm: Dict[str, Any]) -> Dict[str, Any]:
         return {"n_world_records": 0}
     return {
         "n_world_records": len(sims),
+        "sampled_from_traces_per_game": 2,
+        "is_a_sample_not_a_census": True,
         "mean_simulations_per_world": round(statistics.fmean(sims), 2),
         "min_simulations_per_world": min(sims),
         "mean_expanded_actions_per_world": round(statistics.fmean(expanded), 2),
@@ -389,6 +396,14 @@ def render(report: Dict[str, Any]) -> str:
         A("Starvation matters for attribution. Under `fixed_total` a K=8 arm gives each world one "
           "eighth of the simulations, so a worse result could be world diversity failing to help "
           "OR each world being too starved to search. The last two columns separate them.")
+        A("")
+        n_world = {t: r["starvation"].get("n_world_records")
+                   for t, r in p["arms"].items()}
+        A(f"**These two columns are a SAMPLE, not a census.** The runner keeps two traces per "
+          f"game, so the per-world records number {n_world} out of many thousands of decisions "
+          "per arm. They are sufficient to tell starvation from diversity — a starved world "
+          "expands one action whatever decision it faces — and are not a per-world profile of "
+          "the arm.")
         A("")
 
     return "\n".join(L) + "\n"

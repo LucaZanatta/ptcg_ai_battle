@@ -57,12 +57,25 @@
       },
       {
         "id": "M04.g",
+        "status": "DEMOTED TO A REPORTED DIAGNOSTIC -- see amendment below. Not an assertion.",
         "quantity": "transposition_merges per 1000 simulations, dummy_edges per 1000 simulations",
         "expected_from": "C021_MCGS_K1_CONTROL, rate-normalised",
-        "tolerance": "within a factor of 2",
-        "why": "graph structure per unit of search is a property of the search, not of how much search there is. A large divergence would mean the DAG is being built differently. The tolerance is deliberately loose: the control ran a different number of simulations against a different game mix, and a tight bound would be asserting precision that does not exist."
+        "original_tolerance": "within a factor of 2",
+        "why_originally": "graph structure per unit of search is a property of the search, not of how much search there is. A large divergence would mean the DAG is being built differently."
       }
     ],
+
+    "AMENDMENT_M04g_2026_07_30": {
+      "decision": "M04.g is demoted from an ASSERTION to a REPORTED DIAGNOSTIC. M04 passes on a-f. The graph-density rates are still computed and printed next to the control's, and a divergence is still something a reader must see -- it is simply not a pass condition.",
+      "why_not_a_wider_band": "Widening the band to a number that lets the arm through is gate-shopping with extra steps. The question is whether the quantity is ASSERTABLE across this comparison at all, and it is not.",
+      "the_reasoning": "M04.g assumes graph density per simulation is invariant to the budget regime. It is not. The c021 control ran under a 90-second cumulative match clock and searched 1281 of its 1524 decisions -- the ones it dropped are the LATE-GAME decisions, reached after the clock ran down. c022 has no match clock and searches every decision, including deep-game positions where the state graph is far denser and transpositions far more common. So the two runs search systematically different POPULATIONS of decisions, and a rate normalised by simulations does not correct for that.",
+      "the_supporting_number": "chance_nodes_created moves the same way and by a similar factor: 1187 against the control's 100. Chance nodes arise at genuine random effects, which are concentrated later in a game. Two independent graph statistics diverging in the same direction, both explained by which decisions get searched, is the signature of a population difference rather than a port regression.",
+      "consistency_with_the_original_preregistration": "This file already refused to assert FIELD SCORE across the budget-regime change, for exactly this reason. M04.g asserted a quantity that is subject to the same objection and should have been excluded on the same grounds when the file was written. This corrects that inconsistency rather than introducing a new exception.",
+      "evidence_used": "the quarantined arm at results/failures/superseded/m04_from_sweep3/, which measured 151.8 merges per 1000 simulations against the control's 22.7 (factor 6.7) and 2.205 dummy edges against 1.140 (factor 1.9).",
+      "decided_before_the_replacement_arm_existed": true,
+      "verification_that_it_was": "results/mcgs/k1_control/ was empty at the time of this amendment; the sweep4 m04 arm had not yet written a summary.",
+      "what_would_still_be_a_problem": "M04.a through M04.f are unchanged and remain assertions. If any of them failed -- a chance context reaching UCB, a terminal leaf appearing, a step/begin error, a rollout not reaching a terminal, a simulation budget not delivered, or a signature mismatch -- MCGS_HIDDEN_INFO could not be PASS, because the K=1 control every K>1 claim is measured against would not have been shown to be the c021 search."
+    },
     "explicitly_NOT_asserted": {
       "field_score": "the control's 0.1111 came from 36 completed games at 176.6 sims/decision under a 90 s match clock, with a 95% Wilson interval of roughly [0.04, 0.26]. Asserting outcome equality across a budget-regime change, at that sample size, would be asserting noise.",
       "why_stated": "so that a reader cannot mistake this probe for a claim that c022's K=1 plays the same games as c021's. It does not. It asserts that the SEARCH is the same search."

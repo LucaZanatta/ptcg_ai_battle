@@ -1,0 +1,122 @@
+{
+  "probe": "M04",
+  "preregistration": "results/mcgs/PREREGISTERED_M04_IDENTITY.json",
+  "arm": "m04_k1_reuse",
+  "control": "C021_MCGS_K1_CONTROL (t2_T0_control_summary.json)",
+  "checks": [
+    {
+      "id": "M04.a",
+      "quantity": "manual_coin_node_ucb_selected",
+      "expected": 0,
+      "got": 0,
+      "tolerance": null,
+      "pass": true,
+      "why": "a chance context must never reach the UCB branch"
+    },
+    {
+      "id": "M04.b",
+      "quantity": "finalised",
+      "expected": 0,
+      "got": 0,
+      "tolerance": null,
+      "pass": true,
+      "why": "the frozen control recorded 0 over 226,277 rollouts; a nonzero value would mix the +/-10 terminal scale into the aggregate and break the probability reading"
+    },
+    {
+      "id": "M04.b",
+      "quantity": "terminal_leaves",
+      "expected": 0,
+      "got": 0,
+      "tolerance": null,
+      "pass": true,
+      "why": "the frozen control recorded 0 over 226,277 rollouts; a nonzero value would mix the +/-10 terminal scale into the aggregate and break the probability reading"
+    },
+    {
+      "id": "M04.b",
+      "quantity": "lethal_bonus",
+      "expected": 0,
+      "got": 0,
+      "tolerance": null,
+      "pass": true,
+      "why": "the frozen control recorded 0 over 226,277 rollouts; a nonzero value would mix the +/-10 terminal scale into the aggregate and break the probability reading"
+    },
+    {
+      "id": "M04.c",
+      "quantity": "step_errors",
+      "expected": 0,
+      "got": 0,
+      "tolerance": null,
+      "pass": true,
+      "why": "the control recorded 0; any nonzero value is a port regression, not a budget difference"
+    },
+    {
+      "id": "M04.c",
+      "quantity": "begin_errors",
+      "expected": 0,
+      "got": 0,
+      "tolerance": null,
+      "pass": true,
+      "why": "the control recorded 0; any nonzero value is a port regression, not a budget difference"
+    },
+    {
+      "id": "M04.d",
+      "quantity": "rollout_terminal_rate",
+      "expected": 1.0,
+      "got": 1.0,
+      "tolerance": 0.02,
+      "pass": true,
+      "why": "the control's rollouts reached a real terminal every time; this is a property of the rollout, not of the budget"
+    },
+    {
+      "id": "M04.e",
+      "quantity": "sims_per_decision",
+      "expected": 177,
+      "got": 177.0,
+      "tolerance": 2,
+      "pass": true,
+      "why": "the simulation budget must actually be delivered, or the comparison is not like for like"
+    },
+    {
+      "id": "M04.f",
+      "quantity": "signature_mismatches",
+      "expected": 0,
+      "got": 0,
+      "tolerance": null,
+      "pass": true,
+      "why": "at K=1 there is one world, so a mismatch would be a defect in the signature machinery itself"
+    },
+    {
+      "id": "M04.g",
+      "quantity": "transposition_merges per 1000 simulations",
+      "expected": 22.733,
+      "got": 151.812,
+      "tolerance": "factor of 2",
+      "pass": false,
+      "why": "graph structure per unit of search is a property of the search, not of how much search there is; the factor-of-2 band is deliberately loose because the control ran a different simulation count against a different game mix"
+    },
+    {
+      "id": "M04.g",
+      "quantity": "dummy_edges per 1000 simulations",
+      "expected": 1.14,
+      "got": 2.205,
+      "tolerance": "factor of 2",
+      "pass": true,
+      "why": "graph structure per unit of search is a property of the search, not of how much search there is; the factor-of-2 band is deliberately loose because the control ran a different simulation count against a different game mix"
+    }
+  ],
+  "n_pass": 10,
+  "n_checks": 11,
+  "pass": false,
+  "explicitly_not_asserted": {
+    "field_score": {
+      "c022_arm": 0.2041,
+      "c022_wilson95": [
+        0.1148,
+        0.3364
+      ],
+      "c021_control": 0.1111,
+      "why_not_asserted": "the control's 0.1111 came from 36 completed games at 176.6 sims/decision under a 90 s match clock, with a 95% Wilson interval of roughly [0.04, 0.26]. Asserting outcome equality across a budget-regime change, at that sample size, would be asserting noise."
+    }
+  },
+  "consequence_if_failed": "MCGS_HIDDEN_INFO cannot be PASS: every K>1 claim is measured against a K=1 control that has not been shown to be the c021 search."
+}
