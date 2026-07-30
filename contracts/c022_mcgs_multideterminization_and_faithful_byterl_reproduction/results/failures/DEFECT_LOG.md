@@ -620,3 +620,36 @@ K=1 arm reporting one would mean the counter measures something other than its n
 
 **State after the fix:** 19 checks, 17 ran, 17 pass, 0 inert, 0 undetected injections, 2 NO_DATA
 (`V14` and `V17`, awaiting the rung ladder and the timed arms) — and `NO_DATA` is still not a pass.
+
+## D22 — I contaminated my own quiet window, one hour after establishing that it exists
+
+**Found** 2026-07-30 20:36, comparing the two clean rungs' learner rates.
+
+| rung | consumed dec/s | prod/cons | wall clock |
+|---|---:|---:|---:|
+| `ctrl_BR0` | 91.1 | 8.73 | 1318 s |
+| `ctrl_BR1` | 115.1 | 8.22 | 1042 s |
+
+They differ only by gamma, which cannot change learner throughput — the same reasoning that made
+D18 conclusive. A 26% rate difference needs an explanation, and the explanation is me: during
+BR0's and BR1's training windows I ran the full 695-test suite (~65 s of multi-core work), the
+validator, the status tool and the numerical fixtures. D18 established that the pre-b2 rungs must
+run alone, and then I ran my own tooling on top of them.
+
+**Why this is recorded rather than fixed by a third re-run.**
+
+The effect is 26% in learner rate against D18's 9x, and — this is the part that decides it —
+**it changes no reported conclusion.** The ladder's output is adjacent-rung effects on external
+win rate at 128 evaluation games, where a Wilson interval spans roughly 8 points. BR0 scores
+0.0531 and BR1 0.0558, both indistinguishable from the 0.0625 random floor. Every adjacent pair
+will read "no resolvable effect at 128 games" whatever the learner rate was, so a third restart
+would buy a cleaner provenance for a conclusion that does not move.
+
+What it does change is what may be CLAIMED. The ladder report states the measured per-rung rates
+and this contamination alongside them, and does not claim the rungs ran in isolation. `V14`
+still applies its `[0.6, 1.7] x median` bound, which both rungs pass — the bound was set for
+D18's 9x, and it correctly does not fire on 1.26x.
+
+**The rule this makes explicit, since "run it alone" evidently was not enough:** during a pre-b2
+rung, the only permitted foreground work is editing files. No test suite, no validator, no
+analysis tool, no `git add` over a 295 MB checkpoint tree. Writing is free; running is not.

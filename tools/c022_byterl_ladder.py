@@ -197,6 +197,16 @@ def render(rep: Dict[str, Any]) -> str:
               "Their queue statistics are load measurements, not stage properties, and are "
               "reported as INVALID below.")
         A("")
+        A("**These rungs are not claimed to have run in isolation (D22).** The pre-b2 rungs ran "
+          "with no competing MCGS arm, which is what D18 requires, but light foreground tooling "
+          "— a 695-test suite, the validator, the status and fixture tools — ran during BR0's "
+          "and BR1's windows. The rates above are the measurement of that, and they are printed "
+          "rather than smoothed. The spread is 1.26x against D18's 9x, and the `[0.6, 1.7]` "
+          "bound is set for the latter, so it correctly does not fire here. Nothing below rests "
+          "on the rungs having been isolated; the external comparisons rest on their evaluation "
+          "games, which are played from frozen checkpoints and are not affected by the rate at "
+          "which those checkpoints were produced.")
+        A("")
 
     if rep["flag_problems"]:
         A("**Stage flags that the runs did not act on:**")
@@ -206,7 +216,7 @@ def render(rep: Dict[str, Any]) -> str:
 
     A("## Rungs")
     A("")
-    A("| rung | delta from below | decisions | prod/cons | queue age s | policy lag | "
+    A("| rung | delta from below | decisions | dec/s | prod/cons | B06 coverage | "
       "external field | Wilson 95% |")
     A("|---|---|---:|---:|---:|---:|---:|---|")
     prev = None
@@ -218,11 +228,13 @@ def render(rep: Dict[str, Any]) -> str:
         delta = DELTA_NAME.get((prev, s), "—") if prev else "—"
         invalid = s in (rep["throughput"].get("contended_rungs") or [])
         ratio = "INVALID" if invalid else m.get("production_consumption_ratio")
-        qage = "INVALID" if invalid else m.get("mean_queue_age_s", m.get("queue_age_s"))
-        lag = "INVALID" if invalid else m.get("mean_policy_lag", m.get("policy_lag"))
+        rate = (rep["throughput"].get("consumed_decisions_per_second") or {}).get(
+            r["tag"], "—")
+        cov = m.get("recurrence_check_coverage")
+        cov_s = "—" if cov is None else f"{cov:.0%} ({m.get('recurrence_checks')})"
         f = ev.get("field_score") if ev else None
         w = ev.get("wilson95") if ev else None
-        A(f"| **{s}** | {delta} | {m.get('consumed_decisions'):,} | {ratio} | {qage} | {lag} | "
+        A(f"| **{s}** | {delta} | {m.get('consumed_decisions'):,} | {rate} | {ratio} | {cov_s} | "
           f"{f if f is not None else '—'} | "
           f"{f'[{w[0]}, {w[1]}]' if w else '—'} |")
         prev = s
