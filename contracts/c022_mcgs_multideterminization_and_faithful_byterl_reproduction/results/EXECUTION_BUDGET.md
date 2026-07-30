@@ -31,10 +31,29 @@ From the arms actually run, not estimated:
 | 5 | paired arms for the shortlisted K | 2 arms × 200 games | ~2.5 h | no |
 | 6 | unrestricted source-timing arm (M11) | 20 games at 15 s/10 s | ~1 h | **yes** |
 | 7 | Kaggle deploy arm (M12) | 40 games | ~45 min | **yes** |
-| 8 | ByteRL conformance BR0→BR3 | 5 × 40k decisions | ~2 h | no (concurrent) |
-| 9 | ByteRL controlled rungs | 5 × 120k decisions | ~5 h | no (concurrent) |
+| 8 | ByteRL conformance BR0→BR3 | 5 × 40k decisions | ~2 h | pre-b2 rungs **yes** (D18) |
+| 9 | ByteRL controlled rungs | 5 × 120k decisions | ~5 h | pre-b2 rungs **yes** (D18) |
 | 10 | BR3 fixed-deck decisive | 3,607,599 decisions | ~4 h | no (concurrent) |
 | 11 | BR3 end-to-end decisive | 3,607,599 decisions | ~5 h | no (concurrent) |
+
+### Amendment 19:25 — D18: the pre-b2 rungs are latency-sensitive
+
+The "no (concurrent)" on items 8 and 9 was written before D18 and is measurably wrong for the
+**BR0, BR1 and BR1.5** rungs. Their subject matter is an unbounded queue's throughput imbalance,
+and that imbalance is the ratio of two throughputs — so competing load changes the number being
+reported. `ctrl_BR0` ran under `paired_k8` and its learner ramped from 1.24 to 4.60 updates/s as
+that arm drained, against a flat 11.4 for the clean `ctrl_BR1`.
+
+The line is drawn at the **bounded blocking FIFO**, not at the ByteRL/MCGS boundary:
+
+| rungs | queue | contention-tolerant? | why |
+|---|---|---|---|
+| BR0, BR1, BR1.5 | unbounded | **no — must run alone** | ratio, queue age and policy lag are load measurements |
+| BR2, BR3 | bounded, blocking | yes | actors block when full; ratio pinned at ~1.02 under every load tested |
+
+Concretely: MCGS work may overlay BR2/BR3 and the decisive arms, and may not overlay BR0/BR1/BR1.5.
+Latency-bounded MCGS arms (items 6, 7, 13) still require a quiet machine in both directions.
+`ctrl_BR0` is re-queued as a clean re-run.
 | 12 | transfer noise floor + T1/T2 | 3 + 2 arms × 200 games | ~3 h | no |
 | 13 | final panel | registered candidates | ~2 h | **yes** |
 | 14 | package, source capture, reports | — | ~1 h | — |

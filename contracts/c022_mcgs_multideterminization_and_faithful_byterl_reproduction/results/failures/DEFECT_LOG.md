@@ -416,3 +416,53 @@ finding.
 `results/failures/superseded/ctrl_rungs_br15_noop/` and the rung comparison is re-run. BR0, BR1,
 BR2 and BR3 were each internally valid, but the ladder they belong to had a missing rung and a
 mislabelled one, so the comparison as a whole is not reportable.
+
+## D18 — the pre-b2 rungs measure machine load, and BR0 ran under an MCGS arm
+
+**Found** 2026-07-30 19:20, comparing `ctrl_BR0` against `ctrl_BR1` in `byterl_ctrl2.log`.
+
+`ctrl_BR0` was launched at 18:41 while the 200-game `paired_k8` MCGS arm was still running at
+`nproc 14`. `paired_k8` finished at 18:56. `ctrl_BR1` began at 19:10 on a quiet machine. The two
+rungs differ **only by gamma** (0.99 -> 1.0).
+
+| at equal consumed decisions | `ctrl_BR0` | `ctrl_BR1` |
+|---|---:|---:|
+| learner updates/s @ 5k | 1.24 | 11.24 |
+| learner updates/s @ 20k | 1.73 | 11.66 |
+| learner updates/s @ 24k | 2.01 | 11.57 |
+| learner updates/s @ 80k | **4.60** | **11.38** |
+| steps per update | 13.5 | 13.5 |
+| decisions per episode | 84 | 84 |
+| production/consumption | 41.9 -> 12.1 | 7.5 (flat) |
+| queue age (s) @ 24k | 841.6 | 114.9 |
+| policy lag @ 24k | 95.5 | 85.7 |
+
+`steps/update` and `decisions/episode` are identical, so the batches and the episodes are the
+same shape. The entire difference is the **learner's update rate**, and it *ramps monotonically*
+— 1.24, 1.73, 2.01, 4.60 — as the competing MCGS arm drains away. Gamma cannot do that. Nothing
+in the BR0 -> BR1 delta can.
+
+**What is contaminated.** `ctrl_BR0`'s `production_consumption_ratio`, `queue_age_s` and
+`policy_lag` are load measurements, not stage measurements. And because the learner consumed data
+that was on average seven times staler, the *policy it learned* is contaminated too — so
+`ctrl_BR0`'s external evaluation cannot be compared with the rungs above it. `conf_BR0` shares the
+defect: it ran at 15:43 under the K sweep, and its ratio of 12.06 agrees with `ctrl_BR0`'s 12.07
+because both were contended, not because 12.06 is a property of BR0.
+
+**Fix.** `ctrl_BR0` is re-run alone. `results/EXECUTION_BUDGET.md`'s concurrency column is
+amended: it said items 8–11 run concurrently with 2–5, which is measurably wrong for the
+**pre-b2** rungs.
+
+**The finding underneath the defect, which is worth more than the fix.** With an unbounded queue
+the production/consumption ratio is not a property of the algorithm at all — it is the ratio of
+two throughputs, and it moved from 41.9 to 12.1 *within a single run* as unrelated load left the
+machine. The bounded blocking FIFO pins it at 1.02 under every load tested, because actors block
+when the queue is full. That is a stronger argument for the b2 change than the ladder was designed
+to make: b2 does not merely reduce staleness, it makes the system's behaviour reproducible at all.
+
+**Why it was not caught earlier.** The contention experiment in `hardware/contention_tests.json`
+measured what load does to *MCGS* field scores and correctly concluded that latency-bounded MCGS
+arms must run alone. It did not ask the mirrored question — what an MCGS arm does to a
+*latency-sensitive ByteRL rung* — and the concurrency plan was written on the assumption that
+decision-budgeted training is contention-tolerant. It is, for BR2 and BR3. It is not for BR0,
+BR1 and BR1.5, whose entire subject matter is an unbounded queue's throughput imbalance.

@@ -1,0 +1,457 @@
+{
+  "arms": [
+    {
+      "tag": "paired_k1",
+      "k": 1,
+      "protocol": "fixed_per_world",
+      "sims_per_decision": 12.0,
+      "total_simulations": 77736,
+      "games": 200,
+      "completed": 199,
+      "abandoned": 1,
+      "excluded_fraction": 0.005,
+      "field_score": 0.1156,
+      "wilson95": [
+        0.0783,
+        0.1675
+      ],
+      "per_opponent": {
+        "dragapult": {
+          "games": 49,
+          "rate": 0.0
+        },
+        "iono": {
+          "games": 50,
+          "rate": 0.02
+        },
+        "mega_abomasnow": {
+          "games": 50,
+          "rate": 0.04
+        },
+        "mega_lucario": {
+          "games": 50,
+          "rate": 0.4
+        }
+      },
+      "wall_clock_s": 815.9,
+      "budget_delivered": true,
+      "signature_mismatches": 0,
+      "match_clock_exhausted_decisions": 0,
+      "decision_budget_exhausted_decisions": 135,
+      "opponent_flag_conflicts": 0,
+      "mixed_terminal_scale_decisions": 0,
+      "calibration": {
+        "n": 6478,
+        "mean_predicted": 0.4783,
+        "observed_base_rate": 0.1553,
+        "overconfidence_pp": 32.3,
+        "brier": 0.29397,
+        "brier_constant_baseline": 0.13118,
+        "brier_skill_vs_constant": -1.241,
+        "log_loss": 3.61279,
+        "log_loss_constant_baseline": 0.43178,
+        "expected_calibration_error": 0.3449,
+        "reliability": [
+          {
+            "bin": "[0.0,0.1)",
+            "n": 1179,
+            "mean_predicted": 0.0034,
+            "observed": 0.0636,
+            "gap_pp": -6.0,
+            "observed_wilson95": [
+              0.051,
+              0.079
+            ]
+          },
+          {
+            "bin": "[0.1,0.2)",
+            "n": 458,
+            "mean_predicted": 0.1492,
+            "observed": 0.083,
+            "gap_pp": 6.6,
+            "observed_wilson95": [
+              0.061,
+              0.1118
+            ]
+          },
+          {
+            "bin": "[0.2,0.3)",
+            "n": 771,
+            "mean_predicted": 0.2441,
+            "observed": 0.0856,
+            "gap_pp": 15.8,
+            "observed_wilson95": [
+              0.0679,
+              0.1075
+            ]
+          },
+          {
+            "bin": "[0.3,0.4)",
+            "n": 573,
+            "mean_predicted": 0.3393,
+            "observed": 0.0925,
+            "gap_pp": 24.7,
+            "observed_wilson95": [
+              0.0714,
+              0.119
+            ]
+          },
+          {
+            "bin": "[0.4,0.5)",
+            "n": 332,
+            "mean_predicted": 0.419,
+            "observed": 0.0904,
+            "gap_pp": 32.9,
+            "observed_wilson95": [
+              0.064,
+              0.1261
+            ]
+          },
+          {
+            "bin": "[0.5,0.6)",
+            "n": 732,
+            "mean_predicted": 0.5113,
+            "observed": 0.1079,
+            "gap_pp": 40.3,
+            "observed_wilson95": [
+              0.0875,
+              0.1325
+            ]
+          },
+          {
+            "bin": "[0.6,0.7)",
+            "n": 512,
+            "mean_predicted": 0.6376,
+            "observed": 0.1504,
+            "gap_pp": 48.7,
+            "observed_wilson95": [
+              0.122,
+              0.184
+            ]
+          },
+          {
+            "bin": "[0.7,0.8)",
+            "n": 267,
+            "mean_predicted": 0.7352,
+            "observed": 0.2509,
+            "gap_pp": 48.4,
+            "observed_wilson95": [
+              0.2027,
+              0.3062
+            ]
+          },
+          {
+            "bin": "[0.8,0.9)",
+            "n": 248,
+            "mean_predicted": 0.8287,
+            "observed": 0.2863,
+            "gap_pp": 54.2,
+            "observed_wilson95": [
+              0.2336,
+              0.3455
+            ]
+          },
+          {
+            "bin": "[0.9,1.0)",
+            "n": 1406,
+            "mean_predicted": 0.997,
+            "observed": 0.3201,
+            "gap_pp": 67.7,
+            "observed_wilson95": [
+              0.2962,
+              0.3449
+            ]
+          }
+        ]
+      },
+      "disagreement": {
+        "decisions": 6478,
+        "decisions_with_k_gt_1": 0,
+        "mean_modal_agreement": 1.0,
+        "unanimous_fraction": 1.0,
+        "mean_distinct_best_actions": 1.0,
+        "max_distinct_best_actions": 1,
+        "mean_selected_value_sd": null,
+        "n_with_sd": 0
+      },
+      "starvation": {
+        "n_world_records": 397,
+        "sampled_from_traces_per_game": 2,
+        "is_a_sample_not_a_census": true,
+        "mean_simulations_per_world": 12.0,
+        "min_simulations_per_world": 12,
+        "mean_expanded_actions_per_world": 4.07,
+        "mean_root_edges_per_world": 4.07,
+        "fraction_of_worlds_expanding_le_1_action": 0.0
+      },
+      "vs_floor": {
+        "available": true,
+        "delta_vs_floor_mean_pp": 0.04,
+        "inside_floor_spread": true,
+        "exceeds_every_replication": false,
+        "n_replications_exceeded": 1,
+        "n_replications": 4,
+        "t_position": 0.017,
+        "degrees_of_freedom": 3,
+        "t_note": "a position in a 4-arm replication set, not a hypothesis test. With 3 degrees of freedom nothing at |t| < 3.18 reaches p < 0.05."
+      }
+    },
+    {
+      "tag": "paired_k8",
+      "k": 8,
+      "protocol": "fixed_per_world",
+      "sims_per_decision": 96.0,
+      "total_simulations": 737280,
+      "games": 200,
+      "completed": 200,
+      "abandoned": 0,
+      "excluded_fraction": 0.0,
+      "field_score": 0.165,
+      "wilson95": [
+        0.12,
+        0.2227
+      ],
+      "per_opponent": {
+        "dragapult": {
+          "games": 50,
+          "rate": 0.04
+        },
+        "iono": {
+          "games": 50,
+          "rate": 0.08
+        },
+        "mega_abomasnow": {
+          "games": 50,
+          "rate": 0.02
+        },
+        "mega_lucario": {
+          "games": 50,
+          "rate": 0.52
+        }
+      },
+      "wall_clock_s": 1518.9,
+      "budget_delivered": true,
+      "signature_mismatches": 0,
+      "match_clock_exhausted_decisions": 0,
+      "decision_budget_exhausted_decisions": 194,
+      "opponent_flag_conflicts": 1001,
+      "mixed_terminal_scale_decisions": 0,
+      "calibration": {
+        "n": 7680,
+        "mean_predicted": 0.3824,
+        "observed_base_rate": 0.1779,
+        "overconfidence_pp": 20.5,
+        "brier": 0.17224,
+        "brier_constant_baseline": 0.14623,
+        "brier_skill_vs_constant": -0.1779,
+        "log_loss": 0.83287,
+        "log_loss_constant_baseline": 0.46814,
+        "expected_calibration_error": 0.2045,
+        "reliability": [
+          {
+            "bin": "[0.0,0.1)",
+            "n": 1327,
+            "mean_predicted": 0.0445,
+            "observed": 0.0181,
+            "gap_pp": 2.6,
+            "observed_wilson95": [
+              0.0122,
+              0.0268
+            ]
+          },
+          {
+            "bin": "[0.1,0.2)",
+            "n": 1310,
+            "mean_predicted": 0.1444,
+            "observed": 0.0573,
+            "gap_pp": 8.7,
+            "observed_wilson95": [
+              0.0459,
+              0.0712
+            ]
+          },
+          {
+            "bin": "[0.2,0.3)",
+            "n": 1090,
+            "mean_predicted": 0.2436,
+            "observed": 0.067,
+            "gap_pp": 17.7,
+            "observed_wilson95": [
+              0.0536,
+              0.0834
+            ]
+          },
+          {
+            "bin": "[0.3,0.4)",
+            "n": 838,
+            "mean_predicted": 0.3427,
+            "observed": 0.0943,
+            "gap_pp": 24.8,
+            "observed_wilson95": [
+              0.0763,
+              0.1159
+            ]
+          },
+          {
+            "bin": "[0.4,0.5)",
+            "n": 580,
+            "mean_predicted": 0.44,
+            "observed": 0.1879,
+            "gap_pp": 25.2,
+            "observed_wilson95": [
+              0.1582,
+              0.2217
+            ]
+          },
+          {
+            "bin": "[0.5,0.6)",
+            "n": 597,
+            "mean_predicted": 0.5396,
+            "observed": 0.2328,
+            "gap_pp": 30.7,
+            "observed_wilson95": [
+              0.2007,
+              0.2684
+            ]
+          },
+          {
+            "bin": "[0.6,0.7)",
+            "n": 522,
+            "mean_predicted": 0.6446,
+            "observed": 0.3027,
+            "gap_pp": 34.2,
+            "observed_wilson95": [
+              0.2648,
+              0.3434
+            ]
+          },
+          {
+            "bin": "[0.7,0.8)",
+            "n": 448,
+            "mean_predicted": 0.7451,
+            "observed": 0.3929,
+            "gap_pp": 35.2,
+            "observed_wilson95": [
+              0.3487,
+              0.4388
+            ]
+          },
+          {
+            "bin": "[0.8,0.9)",
+            "n": 423,
+            "mean_predicted": 0.8453,
+            "observed": 0.5272,
+            "gap_pp": 31.8,
+            "observed_wilson95": [
+              0.4796,
+              0.5743
+            ]
+          },
+          {
+            "bin": "[0.9,1.0)",
+            "n": 545,
+            "mean_predicted": 0.9737,
+            "observed": 0.5688,
+            "gap_pp": 40.5,
+            "observed_wilson95": [
+              0.5269,
+              0.6098
+            ]
+          }
+        ]
+      },
+      "disagreement": {
+        "decisions": 7680,
+        "decisions_with_k_gt_1": 7680,
+        "mean_modal_agreement": 0.6078,
+        "unanimous_fraction": 0.1292,
+        "mean_distinct_best_actions": 2.9079,
+        "max_distinct_best_actions": 8,
+        "mean_selected_value_sd": 0.2274,
+        "n_with_sd": 7678
+      },
+      "starvation": {
+        "n_world_records": 3200,
+        "sampled_from_traces_per_game": 2,
+        "is_a_sample_not_a_census": true,
+        "mean_simulations_per_world": 12.0,
+        "min_simulations_per_world": 12,
+        "mean_expanded_actions_per_world": 4.0,
+        "mean_root_edges_per_world": 4.0,
+        "fraction_of_worlds_expanding_le_1_action": 0.0
+      },
+      "vs_floor": {
+        "available": true,
+        "delta_vs_floor_mean_pp": 4.98,
+        "inside_floor_spread": false,
+        "exceeds_every_replication": true,
+        "n_replications_exceeded": 4,
+        "n_replications": 4,
+        "t_position": 2.062,
+        "degrees_of_freedom": 3,
+        "t_note": "a position in a 4-arm replication set, not a hypothesis test. With 3 degrees of freedom nothing at |t| < 3.18 reaches p < 0.05."
+      }
+    }
+  ],
+  "noise_floor": {
+    "n_arms": 4,
+    "arms": [
+      {
+        "tag": "noise_k1_s90210",
+        "seed": 90210,
+        "field_score": 0.125,
+        "completed": 200,
+        "role": "registered noise-floor arm"
+      },
+      {
+        "tag": "noise_k1_s40031",
+        "seed": 40031,
+        "field_score": 0.135,
+        "completed": 200,
+        "role": "registered noise-floor arm"
+      },
+      {
+        "tag": "noise_k1_s71877",
+        "seed": 71877,
+        "field_score": 0.085,
+        "completed": 200,
+        "role": "registered noise-floor arm"
+      },
+      {
+        "tag": "paired_k1",
+        "seed": 90210,
+        "field_score": 0.1156,
+        "completed": 199,
+        "role": "paired control; repeats seed 90210, so also a replication"
+      }
+    ],
+    "configuration": "K=1, fixed_per_world, 12 simulations/world, 200 games, decision budget 50",
+    "mean": 0.1152,
+    "min": 0.085,
+    "max": 0.135,
+    "spread_pp": 5.0,
+    "sample_sd": 0.0216,
+    "why_these_are_replications": "the cabt environment exposes no seed; the shuffle, prize assignment and coin flips live in the native engine. Two runs of the same configuration play different games. See NOISE_FLOOR_ACCIDENTAL_REPLICATION.md."
+  },
+  "validity": {
+    "valid": true,
+    "reasons": [],
+    "exclusion_spread_pp": 0.5
+  },
+  "field_score_reading": "`paired_k8` scores 0.165 against `paired_k1`'s 0.1156, a difference of 4.94 pp. The two Wilson intervals [0.0783, 0.1675] and [0.12, 0.2227] OVERLAP, and the K=1 replication set spans 5.0 pp on its own. **No improvement in field score is claimed.** What the arms do establish is the condition `MCGS_HIDDEN_INFO` actually needs: K>1 does not regress external performance -- the K=8 point estimate is above every one of the 4 K=1 replications, not below them.\n\nThe compute-matched control `paired_k1_c96` has not run. Until it does, this pair confounds K with an 8x simulation budget and no part of it is attributable to the ensemble.",
+  "calibration_reading": "K=8 reduces Brier from 0.29397 to 0.17224 (\u0394 -0.12173), log-loss from 3.61279 to 0.83287 (\u0394 -2.7799), expected calibration error from 0.3449 to 0.2045, and overconfidence from 32.3 pp to 20.5 pp.\n\n**M08's registered condition is met.** It asked for a reduction in the gap between predicted win probability and realised outcome, measured as Brier and log-loss relative to K=1. The Brier improvement is 3.2x the 0.0377 \u0394Brier between the two accidentally-replicated 32-game arms, and the log-loss improvement is 11x the 0.244 seen there. It also replicates the shortlisted effect out of sample: the 32-game `fixed_per_world` K=8 arm showed \u0394Brier \u22120.105 and \u0394log-loss \u22122.45, and these 200-game arms show -0.122 and -2.78.\n\n**And both arms remain worse than a constant predictor at the base rate.** Brier skill is -1.241 at K=1 and -0.1779 at K=8: negative in both cases. The ensemble makes the search's stated belief far less badly calibrated without making it informative. Saying only that Brier improved would be true and misleading, so both are reported here rather than in a footnote. M08's threshold is NOT retightened to require positive skill -- moving a preregistered target after seeing the number is the error `PREREGISTERED_AGGREGATION.json` forbids, and it forbids it in both directions.",
+  "threats": [
+    {
+      "name": "These are not literally the same decisions",
+      "text": "M08's wording is \"relative to the K=1 arm on the SAME decisions and seeds\". The arms share seed 90210, the same world-seed stream, the same opponent panel, the same seats, the same game count and the same decision budget. They do **not** share games: the `cabt` environment exposes no seed, and the shuffle, prize assignment and coin flips are drawn inside the native engine on every run (`NOISE_FLOOR_ACCIDENTAL_REPLICATION.md` demonstrates this with two scripted deterministic agents producing different winners under identical Python seeds). The visible consequence is that the calibration sets differ in size \u2014 6,478 decisions against 7,680. There is no fix available in this environment: the frozen-decision set used for M09/M10 replays identical decisions but has no realised outcome, so it cannot supply a Brier score. What was matched is stated above; what could not be matched is stated here rather than left for a reader to discover from the row counts."
+    },
+    {
+      "name": "K is confounded with compute under fixed_per_world",
+      "text": "At 12 simulations per world, K=8 spends 96 simulations per decision and K=1 spends 12. An improvement could be the ensemble or could be 8x the search. The `paired_k1_c96` arm \u2014 K=1 at 96 simulations per decision \u2014 is the control that separates them, and because `fixed_per_world` 12/world at K=8 is arithmetically identical to `fixed_total` 96 at K=8, adding it makes these arms the compute-controlled `fixed_total` comparison at 200 games, which is the protocol the 32-game sweep could not resolve. **It has not run yet, and until it does the attribution is open.**"
+    },
+    {
+      "name": "The ensemble is not the source's own ensemble executing",
+      "text": "`FIDELITY_RULES \u00a73` fixes the K-session ensemble as `LEGAL_INFORMATION_ADAPTER`. The official archive contains `AggregateDeterminizations`, `PickDeterminization` and `GenerateDeterminizationsAtOnce`, but `NodeConfig.PIMC = false` and the `determinizations` field is never assigned, so that path is unreachable in the shipped configuration. The aggregation rule executed here is a port of the source's own aggregation; the K sessions that feed it are not the source running. Nothing in this report should be read as the 2019 system's measured behaviour."
+    }
+  ]
+}
