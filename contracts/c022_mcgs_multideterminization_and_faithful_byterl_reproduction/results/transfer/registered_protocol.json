@@ -1,0 +1,66 @@
+{
+  "written_before_any_transfer_arm_ran": true,
+  "contract_sections": ["MANDATORY_IMPLEMENTATION C", "DECISION_RULES §4", "PROBE_MATRIX T01-T05"],
+
+  "GATE_BEFORE_ANY_TRANSFER_ARM_MAY_RUN": {
+    "rule": "MANDATORY_IMPLEMENTATION C: 'Transfer starts only after MCGS_HIDDEN_INFO = PASS or PARTIAL_WITH_MEASURED_IMPROVEMENT, and BYTERL_REFERENCE_FIDELITY = PASS.'",
+    "why_it_is_a_gate_and_not_a_preference": "a transfer arm measures whether a ByteRL component improves corrected MCGS. If MCGS is not corrected, the arm measures the component against an uncorrected search; if ByteRL is not faithful, it measures a component that is not the published one. Either way the result answers a different question than the one asked, and c021 already produced that result: its transfer arms queried a checkpoint statistically indistinguishable from an untrained floor, so T1/T2 compared MCGS-with-a-near-random-prior against MCGS-with-uniform-random. c021 recorded that as TRANSFER=FAIL; the c022 reconciliation records it as UNTESTED, which is what its own power caveat said.",
+    "probe": "T01",
+    "status_at_time_of_writing": "NOT YET MET -- the K sweeps are still running and the ByteRL fidelity probes are complete but the decisive run is not. No transfer arm has been executed."
+  },
+
+  "noise_floor_first": {
+    "rule": "PROBE_MATRIX T05: 'Nominally identical controls estimate run-to-run noise.'",
+    "why_first": "DECISION_RULES §4 defines TRANSFER=PASS as an improvement 'beyond paired run-to-run noise', so the noise floor is the denominator of every subsequent claim. Measuring it AFTER seeing the arms would let the threshold be chosen to fit the answer.",
+    "design": "three nominally identical T0 control arms, differing only in their world-seed base and agent seed, at the same K, protocol, simulation count and game count as the transfer arms. The noise floor is the observed spread of their field scores.",
+    "c021_value_not_inherited": "c021 recorded a 6.4-point run-to-run spread. It is NOT carried forward: c022's arms are simulation-budgeted, use a decision budget, and exclude games differently, so its noise is its own. The c021 figure is recorded alongside for comparison only.",
+    "additional_evidence_already_in_hand": "the contention measurement (results/hardware/contention_tests.json) showed the SAME arm scoring 0.25 and 0.1538 under different machine load, with an identically delivered simulation budget. That is a lower bound on how much a field score can move for reasons that are not the algorithm, and it is why the noise floor is measured rather than assumed."
+  },
+
+  "arms": [
+    {"id": "T0", "name": "corrected MCGS control", "expansion_prior": false, "rollout_policy": false, "value": false,
+     "role": "the baseline every other arm is compared against; run three times for the noise floor"},
+    {"id": "T1", "name": "+ faithful ByteRL policy prior", "expansion_prior": true, "rollout_policy": false, "value": false,
+     "hypothesis": "a ByteRL prior over which untested action to expand first improves the field score under a finite simulation budget"},
+    {"id": "T2", "name": "+ faithful ByteRL rollout policy", "expansion_prior": false, "rollout_policy": true, "value": false,
+     "hypothesis": "a ByteRL default policy in the rollout improves the field score over uniform random"},
+    {"id": "T3", "name": "+ admitted ByteRL value", "expansion_prior": false, "rollout_policy": false, "value": true,
+     "hypothesis": "a ByteRL value admitted on held-out calibration improves the field score",
+     "precondition": "PROBE_MATRIX T04 -- runs ONLY after value admission passes. Admission requires the value head to beat a CONSTANT predictor at the observed base rate on held-out games (results/byterl/external_evaluations/*_eval.json, value_calibration.beats_constant_predictor). The measured floor value heads do NOT: skill_vs_constant -0.06 and -0.10."}
+  ],
+
+  "one_component_at_a_time": {
+    "rule": "MANDATORY_IMPLEMENTATION C and CONTRACT.md §7: 'Do not run a combined hybrid until one isolated component passes.'",
+    "consequence": "there is NO T4 combined arm registered. c021 ran a prior+rollout combination arm; it scored below its own control and taught nothing, because with neither component individually established there was no way to attribute the result.",
+    "if_one_component_passes": "a combined arm may then be registered as an amendment to this file, with the passing component named."
+  },
+
+  "held_constant_across_every_arm": [
+    "hidden worlds -- the same world_base_seed per game index, so arm A and arm B search the SAME sampled worlds",
+    "agent seed -- derived from the job index alone, never from completion timing (defect D09)",
+    "K, budget protocol and simulations per decision",
+    "decision budget and the derived per-game wall guard",
+    "opponent panel, seat assignment and game count",
+    "machine load policy -- every transfer arm runs under the same concurrency, because the contention measurement showed load alone moves a field score by ten points"
+  ],
+
+  "what_varies": "exactly one boolean per arm: expansion_prior, rollout_policy, or value.",
+
+  "verification_that_the_component_is_actually_USED": {
+    "why": "c021 recorded that a transfer arm must 'verify runtime call counts rather than trusting the label'. An arm that names a checkpoint but never calls it is indistinguishable from its own control, and would be reported as 'no effect'.",
+    "required": "every transfer arm must report a nonzero call count for the component it enables, and zero for the components it does not. An arm with a zero call count for its own component is INVALID, not a null result."
+  },
+
+  "decision_rule": {
+    "PASS": "the arm's improvement over the T0 control exceeds the MEASURED noise floor, on paired games with identical worlds and seeds.",
+    "INCONCLUSIVE": "a positive point estimate smaller than the measured noise floor. DECISION_RULES §4 is explicit that this is neither a pass nor a fail.",
+    "FAIL": "a regression exceeding the noise floor.",
+    "UNTESTED": "the arm did not run, or its component was never called, or the checkpoint it queried is statistically indistinguishable from the random floor -- in which case the arm compares MCGS-with-a-random-prior against MCGS-with-uniform-random and answers nothing. This is the status c022 assigns to c021's transfer result."
+  },
+
+  "game_count": {
+    "minimum": 200,
+    "basis": "TRAINING_AND_EVALUATION §5 requires at least 200 paired games before claiming a six-point effect. At 40 games a Wilson interval spans roughly 15 points, which cannot resolve the effect sizes at issue.",
+    "note": "c021's transfer arms ran 34-40 games each. That is the power problem its own caveat identified, and it is not repeated."
+  }
+}
