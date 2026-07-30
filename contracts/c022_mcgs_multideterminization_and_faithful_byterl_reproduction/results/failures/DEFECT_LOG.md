@@ -571,3 +571,52 @@ not that. Fifteen minutes to convert a near-vacuous probe into real evidence.
 a check that ran, reported success, and verified nothing — an inert test, a no-op flag, a
 category error, and now a check starved of the data it needed. The manifests looked identical in
 every case.
+
+## D21 — the validator's inventory omitted the arms the contract turns on
+
+**Found** 2026-07-30 20:25, while extending `tools/c022_validate.py`.
+
+`load_context` built its MCGS inventory from three directories: the fixed-total sweep, the
+fixed-per-world sweep, and the M04 identity arm. Not `paired/`. Not `transfer/noise_floor/`. Not
+`kaggle_deploy/` or `unrestricted_reference/`.
+
+So every check in the file — field scores recomputing from raw per-game records, game accounting,
+budget delivery, probabilities in range, action-index alignment — **silently skipped the 200-game
+paired arms**, which are the contract's decisive MCGS evidence and the ones `MCGS_HIDDEN_INFO`
+rests on. The validator reported `13/13 PASS` while validating the shortlist and not the result.
+
+This is the inverse of the inert-check family. There, a check ran and asserted nothing; here, the
+checks were sound and were never pointed at the data that mattered. Both produce the same
+artifact: a green report that means less than it says.
+
+**Fix.** The inventory now includes `paired`, `noise_floor`, `kaggle_deploy` and
+`unrestricted_reference`, so all nineteen checks cover them. Adding them immediately turned up a
+second problem.
+
+### D21b — and then V08 failed on correct behaviour
+
+With the paired arms in scope, `V08` failed on seven arms. Its condition was:
+
+```python
+if s.get("signature_mismatches"):        bad.append(...)
+if s.get("opponent_flag_conflicts"):     bad.append(...)   # <- wrong
+```
+
+Those are not the same thing. A **signature mismatch** means two worlds disagreed about the
+option list, so summing their statistics by action index sums different actions — a real defect,
+and it is 0 everywhere. An **opponent-flag conflict** is D16: whose turn follows an action is not
+always public, so two worlds can legitimately disagree about whether an action's successor is an
+opponent node. The fix was root-frame summation, which converts each world's reward into the root
+player's frame before summing. `paired_k8` records 1,001 such conflicts and handles every one.
+
+Failing on it made the validator report FAIL for correct behaviour on every K>1 arm. That is
+worse than a missing check: **a validator that cries wolf is how a real FAIL gets scrolled past.**
+
+V08 now asserts signature mismatches only. The handled-ness of the conflicts is asserted where it
+can actually be tested — `V06` checks the observable consequence (no probability outside [0,1],
+which is what an unconverted opponent-frame value produces), and a new **V19** asserts that
+conflicts appear only where two worlds exist, since one world cannot disagree with itself and a
+K=1 arm reporting one would mean the counter measures something other than its name.
+
+**State after the fix:** 19 checks, 17 ran, 17 pass, 0 inert, 0 undetected injections, 2 NO_DATA
+(`V14` and `V17`, awaiting the rung ladder and the timed arms) — and `NO_DATA` is still not a pass.

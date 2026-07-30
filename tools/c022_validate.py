@@ -303,16 +303,56 @@ def inject_terminal(ctx):
 
 # ---------------------------------------------------------------- index alignment
 def check_no_signature_mismatch(ctx):
-    """Cross-world aggregation keys on action index; a mismatch sums different actions."""
+    """Cross-world aggregation keys on action index; a mismatch sums different actions.
+
+    This asserts `signature_mismatches` ONLY. It used to fail on `opponent_flag_conflicts` too,
+    which is a different thing entirely and is not a defect: D16 established that whose turn
+    follows an action is not always public, so two worlds can legitimately disagree about whether
+    an action's successor is an opponent node. The fix was root-frame summation, which converts
+    each world's reward into the root player's frame before summing, and the counter records how
+    often that legitimate situation arose. Failing on it made the validator report a FAIL for
+    correct behaviour on seven arms -- and a validator that cries wolf is how a real FAIL gets
+    scrolled past. The handled-ness of those conflicts is asserted separately, by V19 and by V06.
+    """
     bad = []
     for arm in ctx["mcgs_arms"]:
         s = arm["summary"]
         if s.get("signature_mismatches"):
             bad.append({"arm": s.get("tag"), "n": s["signature_mismatches"]})
-        if s.get("opponent_flag_conflicts"):
-            bad.append({"arm": s.get("tag"), "opponent_flag_conflicts":
-                        s["opponent_flag_conflicts"]})
     return (not bad), {"arms_checked": len(ctx["mcgs_arms"]), "mismatches": bad}
+
+
+def check_opponent_conflicts_only_where_possible(ctx):
+    """An opponent-flag conflict requires two worlds. A K=1 arm reporting one is a bug.
+
+    D16's conflicts are legitimate, but only BETWEEN worlds -- one world cannot disagree with
+    itself. A nonzero count on a K=1 arm would mean the counter is measuring something other
+    than what it names, which is the stale-tag defect family this contract keeps finding.
+    """
+    checked, bad = 0, []
+    for arm in ctx["mcgs_arms"]:
+        s = arm["summary"]
+        k = int((s.get("config") or {}).get("k_worlds") or s.get("k_worlds") or 0)
+        if not k:
+            continue
+        checked += 1
+        n = int(s.get("opponent_flag_conflicts") or 0)
+        if k == 1 and n:
+            bad.append({"arm": s.get("tag"), "k": k, "opponent_flag_conflicts": n,
+                        "why": "one world cannot conflict with itself"})
+    return (not bad), {"_n_inputs": checked, "violations": bad,
+                       "conflicts_by_arm": {
+                           s["summary"].get("tag"):
+                               int(s["summary"].get("opponent_flag_conflicts") or 0)
+                           for s in ctx["mcgs_arms"]}}
+
+
+def inject_opponent_conflicts(ctx):
+    c = dict(ctx)
+    c["mcgs_arms"] = list(ctx["mcgs_arms"]) + [
+        {"summary": {"tag": "injected", "config": {"k_worlds": 1},
+                     "opponent_flag_conflicts": 7}, "games": [], "calibration": []}]
+    return c
 
 
 def inject_signature(ctx):
@@ -504,6 +544,17 @@ def load_context() -> Dict[str, Any]:
     fpw = arms_in(os.path.join(MC, "fixed_simulations_per_world"),
                   ["fpw_k1", "fpw_k2", "fpw_k4", "fpw_k8"])
     k1 = arms_in(os.path.join(MC, "k1_control"), ["m04_k1_reuse"])
+    # The 200-game paired arms are the contract's decisive MCGS evidence and were NOT in this
+    # inventory. Every check below -- field scores recomputing from raw games, game accounting,
+    # budget delivery, probabilities in range, signature alignment -- was silently skipping them.
+    # A validator whose inventory omits the headline arms validates the arms that do not matter.
+    paired = arms_in(os.path.join(MC, "paired"),
+                     ["paired_k1", "paired_k8", "paired_k1_c96"])
+    noise = arms_in(os.path.join(C22, "transfer", "noise_floor"),
+                    ["noise_k1_s90210", "noise_k1_s40031", "noise_k1_s71877"])
+    deploy = arms_in(os.path.join(MC, "kaggle_deploy"), ["deploy_k1", "deploy_k8"])
+    unrestricted = arms_in(os.path.join(MC, "unrestricted_reference"),
+                           ["m11_probe_serial", "m11_probe_parallel", "m11_unrestricted"])
 
     evals = []
     for p in sorted(glob.glob(os.path.join(BY, "external_evaluations", "*_eval.json"))):
@@ -524,9 +575,164 @@ def load_context() -> Dict[str, Any]:
             cm = json.load(fh)
 
     return {"ft_arms": ft, "fpw_arms": fpw, "k1_arms": k1,
-            "mcgs_arms": ft + fpw + k1,
+            "paired_arms": paired, "noise_arms": noise,
+            "deploy_arms": deploy, "unrestricted_arms": unrestricted,
+            "mcgs_arms": ft + fpw + k1 + paired + noise + deploy + unrestricted,
             "byterl_evals": evals, "byterl_manifests": manifests,
             "control_manifest": cm}
+
+
+
+# ---------------------------------------------------------------------------- D18/D19/D20/M11
+def check_rung_throughput(ctx):
+    """D18 — no rung's queue statistics come from a run that shared the machine.
+
+    The learner rate is the tell, not the ratio: the ratio is what a rung is SUPPOSED to differ
+    in, while `steps/update` and `decisions/episode` were identical between the contaminated and
+    clean BR0. A rate far off the ladder's median with those held constant is machine load.
+    """
+    rates = {}
+    for m in ctx["byterl_manifests"]:
+        tag = str(m.get("tag") or "")
+        if not tag.startswith("ctrl_"):
+            continue
+        w = float(m.get("wall_clock_s") or 0.0)
+        if w > 0:
+            rates[tag] = round(float(m.get("consumed_decisions") or 0) / w, 1)
+    if len(rates) < 2:
+        return True, {"_n_inputs": 0, "rates": rates,
+                      "why": "fewer than two controlled rungs; nothing to compare"}
+    med = statistics.median(rates.values())
+    bad = {t: v for t, v in rates.items() if v < 0.6 * med or v > 1.7 * med}
+    return not bad, {"_n_inputs": len(rates), "rates": rates, "median": round(med, 1),
+                     "outliers": bad,
+                     "bound": "[0.6, 1.7] x median; D18 measured a 9x spread from load alone"}
+
+
+def inject_rung_throughput(ctx):
+    c = dict(ctx)
+    c["byterl_manifests"] = list(ctx["byterl_manifests"]) + [
+        {"tag": "ctrl_INJECTED", "wall_clock_s": 10000.0, "consumed_decisions": 120000}]
+    return c
+
+
+def check_behaviour_pi_separation(ctx):
+    """D19 — mu is what it claims to be, on every run that reports the check.
+
+    `max_behaviour_delta` is computed from stored data alone: a uniform B1.5 step must carry
+    -log(n_legal), every other step must carry exactly pi. A nonzero value means a step lied
+    about which distribution chose its action, which corrupts every importance ratio on it.
+    """
+    checked, bad = 0, []
+    for m in ctx["byterl_manifests"]:
+        if m.get("max_behaviour_delta") is None:
+            continue
+        checked += 1
+        if float(m["max_behaviour_delta"]) > float(m.get("recurrence_tolerance") or 1e-4):
+            bad.append({"tag": m.get("tag"), "max_behaviour_delta": m["max_behaviour_delta"]})
+    return not bad, {"_n_inputs": checked, "violations": bad,
+                     "note": "runs predating D19 do not report the field and are not counted"}
+
+
+def inject_behaviour_pi_separation(ctx):
+    c = dict(ctx)
+    c["byterl_manifests"] = list(ctx["byterl_manifests"]) + [
+        {"tag": "injected", "max_behaviour_delta": 0.7, "recurrence_tolerance": 1e-4}]
+    return c
+
+
+def check_b06_coverage_is_reported(ctx):
+    """D20 — a fidelity check count with no denominator is not evidence.
+
+    A run reporting `recurrence_checks` must also report how many opportunities it SKIPPED for
+    want of retained weights. Without that, "1 check, 0 failures" and "400 checks, 0 failures"
+    are indistinguishable in the manifest, and the first was reported as a pass.
+
+    The check also requires that the dedicated fidelity runs actually achieve high coverage --
+    they exist precisely so that B06 rests on something better than the ladder's ~10%.
+    """
+    checked, missing, thin = 0, [], []
+    for m in ctx["byterl_manifests"]:
+        if m.get("recurrence_checks") is None:
+            continue
+        checked += 1
+        if m.get("recurrence_checks_skipped_no_retained_blob") is None:
+            missing.append(m.get("tag"))
+            continue
+        cov = m.get("recurrence_check_coverage")
+        if str(m.get("tag") or "").startswith("fid_") and (cov is None or float(cov) < 0.9):
+            thin.append({"tag": m.get("tag"), "coverage": cov})
+    return (not missing and not thin), {
+        "_n_inputs": checked, "manifests_without_a_denominator": missing,
+        "fidelity_runs_below_90pc_coverage": thin,
+        "why": "D20: B06 ran once in 556 policy versions and reported PASS"}
+
+
+def inject_b06_coverage(ctx):
+    c = dict(ctx)
+    c["byterl_manifests"] = list(ctx["byterl_manifests"]) + [
+        {"tag": "injected", "recurrence_checks": 1}]      # a count with no denominator
+    return c
+
+
+def check_source_time_arms_were_bound_by_the_clock(ctx):
+    """M11 — a timed arm must have been stopped by the SCHEDULE, not by a count or the ceiling.
+
+    In `source_time` the simulation count is the measurement, so `budget_delivered` would be
+    vacuously true if it still asked whether a configured count was reached. It instead asserts
+    that achieved simulations far exceed the configured value; this check reads that flag and
+    also verifies the schedule recorded is the source's or c021's, never an invented one.
+    """
+    LEGAL = {(15.0, 10.0): "source SearchConfig.cs",
+             (0.9, 0.7): "c021 deployment config, frozen in control_manifest.json"}
+    checked, bad = 0, []
+    for a in ctx["mcgs_arms"]:
+        s = a["summary"]
+        if str(s.get("config", {}).get("budget_protocol")) != "source_time":
+            continue
+        checked += 1
+        sch = s.get("schedule_seconds") or {}
+        key = (float(sch.get("first_move", 0)), float(sch.get("continuing", 0)))
+        if key not in LEGAL:
+            bad.append({"tag": s.get("tag"), "schedule": key,
+                        "why": "not the source's 15/10 nor c021's 0.9/0.7"})
+        elif not s.get("budget_delivered"):
+            bad.append({"tag": s.get("tag"),
+                        "why": "the wall schedule did not bind: a count or the ceiling did"})
+    return not bad, {"_n_inputs": checked, "violations": bad,
+                     "legal_schedules": {str(k): v for k, v in LEGAL.items()}}
+
+
+def inject_source_time(ctx):
+    c = dict(ctx)
+    c["mcgs_arms"] = list(ctx["mcgs_arms"]) + [
+        {"summary": {"tag": "injected", "config": {"budget_protocol": "source_time"},
+                     "schedule_seconds": {"first_move": 3.0, "continuing": 2.0},
+                     "budget_delivered": True},
+         "games": [], "calibration": []}]
+    return c
+
+
+def check_field_claims_have_a_noise_floor(ctx):
+    """Every field-score comparison in this contract is against a MEASURED replication set.
+
+    `NOISE_FLOOR_ACCIDENTAL_REPLICATION.md` showed two identical 32-game arms differing by 12.5
+    points. A comparison reported without that denominator is a number, not a result, so the
+    replication arms must exist and there must be at least three of them.
+    """
+    n = len(ctx.get("noise_arms") or [])
+    fields = [a["summary"].get("field_score") for a in (ctx.get("noise_arms") or [])]
+    ok = n >= 3
+    d = {"_n_inputs": n, "replication_arms": n, "field_scores": fields}
+    if n >= 2:
+        d["spread_pp"] = round(100 * (max(fields) - min(fields)), 2)
+    return ok, d
+
+
+def inject_noise_floor(ctx):
+    c = dict(ctx)
+    c["noise_arms"] = []                                  # remove the denominator entirely
+    return c
 
 
 CHECKS = [
@@ -570,6 +776,26 @@ CHECKS = [
     Check("V13", "frozen controls still hash to what was frozen",
           check_controls, inject_controls,
           "a control mutating under the campaign it is supposed to anchor"),
+    Check("V14", "no rung's queue statistics come from a contended run",
+          check_rung_throughput, inject_rung_throughput,
+          "D18: ctrl_BR0 under a concurrent MCGS arm, reporting load as a stage property"),
+    Check("V15", "mu is the distribution that actually chose the action",
+          check_behaviour_pi_separation, inject_behaviour_pi_separation,
+          "D19: a uniform step recording the network's log-probability, corrupting every "
+          "importance ratio on it"),
+    Check("V16", "B06 coverage is reported, and the fidelity runs achieve it",
+          check_b06_coverage_is_reported, inject_b06_coverage,
+          "D20: one fidelity check in 556 policy versions, reported as a pass"),
+    Check("V17", "timed arms were stopped by the schedule, on a schedule from a source",
+          check_source_time_arms_were_bound_by_the_clock, inject_source_time,
+          "M11/M12: an invented clock, or a count binding before the schedule did"),
+    Check("V18", "field-score claims have a measured replication set behind them",
+          check_field_claims_have_a_noise_floor, inject_noise_floor,
+          "a K difference reported without the 5 pp run-to-run spread it sits inside"),
+    Check("V19", "opponent-flag conflicts appear only where two worlds exist",
+          check_opponent_conflicts_only_where_possible, inject_opponent_conflicts,
+          "a K=1 arm reporting cross-world disagreement: the counter measuring something "
+          "other than what it names"),
 ]
 
 
