@@ -347,6 +347,28 @@ def run_arm(a) -> Dict[str, Any]:
         "budget_delivered": bool(agg_stats.get("decision_deadline_stops", 0) == 0),
     }
     if a.protocol == "source_time":
+        # A MEAN is the wrong statistic for a timed arm and is actively misleading here. The
+        # first probe reported 82,540 simulations per decision; the MEDIAN was 610, and two
+        # decisions out of 57 accounted for 99.2% of every simulation the arm ran. Those two are
+        # decisions where the tree reached an already-decided line and the rollouts became
+        # essentially free, so the arm spent minutes re-confirming a result it already had.
+        #
+        # Reporting the mean would have said "the source's schedule buys 860x the search of the
+        # causal sweeps". The median says 6.4x. Only one of those is a fact about the schedule.
+        sims_sorted = sorted(int(r.get("simulations") or 0) for r in cal_rows
+                             if r.get("simulations"))
+        if sims_sorted:
+            def _q(f):
+                return sims_sorted[int(f * (len(sims_sorted) - 1))]
+            summary["sims_per_decision_distribution"] = {
+                "n": len(sims_sorted), "min": sims_sorted[0], "p25": _q(0.25),
+                "median": _q(0.5), "p75": _q(0.75), "p90": _q(0.9), "max": sims_sorted[-1],
+                "mean": round(sum(sims_sorted) / len(sims_sorted), 1),
+                "share_of_all_simulations_in_top_3_decisions": round(
+                    sum(sims_sorted[-3:]) / max(1, sum(sims_sorted)), 4),
+                "why": ("the mean is dominated by decisions whose search collapsed onto an "
+                        "already-decided line; the median is what the schedule buys"),
+            }
         # In this protocol the simulation count is the OUTCOME, so `budget_delivered` -- which
         # asks whether the configured count was reached -- has no meaning and would report
         # vacuously true. Replace it with the question that does have meaning: did the arm

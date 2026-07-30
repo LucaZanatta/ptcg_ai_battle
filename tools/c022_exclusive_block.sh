@@ -46,29 +46,54 @@ case "${1:-probe}" in
         --decision-budget 260 --game-timeout 3600 --arm-timeout 3600 \
         --out "$R/unrestricted_reference" 2>&1 | grep -viE '^\[kaggle_environments|INFO:'
     done
-    python3 - <<'PY'
-import json, os
+    python3 - <<'PYEOF'
+import json, os, statistics
 d = ("contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/"
      "results/mcgs/unrestricted_reference")
+
+
+def dist(tag):
+    """The MEDIAN, not the mean. D23: the mean of a timed arm is two collapsed decisions
+    wearing the whole arm's name -- the serial probe's mean was 82,540 and its median 610,
+    with the top three decisions holding 99.2% of every simulation. An efficiency ratio built
+    from two such means measured nothing, reported 0.009, and confidently concluded that nproc
+    6 was unusable. On medians the same two arms agree to 3%."""
+    rows = [json.loads(l) for l in open(os.path.join(d, tag + "_calibration.jsonl"))]
+    sims = sorted(int(r["simulations"]) for r in rows if r.get("simulations"))
+    n = len(sims)
+    summ = json.load(open(os.path.join(d, tag + "_summary.json")))
+    q = lambda f: sims[int(f * (n - 1))]
+    return {"tag": tag, "n_decisions": n, "median": q(0.5), "p25": q(0.25), "p75": q(0.75),
+            "p90": q(0.9), "max": sims[-1], "mean": round(statistics.fmean(sims)),
+            "top3_share": round(sum(sims[-3:]) / max(1, sum(sims)), 4),
+            "games": summ["games"], "completed": summ["completed"],
+            "wall_clock_s": summ["wall_clock_s"], "nproc": summ["nproc"]}
+
+
 try:
-    s = json.load(open(os.path.join(d, "m11_probe_serial_summary.json")))
-    p = json.load(open(os.path.join(d, "m11_probe_parallel_summary.json")))
+    s_ = dist("m11_probe_serial")
+    p_ = dist("m11_probe_parallel")
 except FileNotFoundError as e:
     raise SystemExit(f"probe summary missing: {e}")
-eff = p["sims_per_decision"] / max(1e-9, s["sims_per_decision"])
-per_game = p["wall_clock_s"] / max(1, p["completed"]) * p["nproc"]
+
+eff = p_["median"] / max(1, s_["median"])
+per_game_parallel = p_["wall_clock_s"] / max(1, p_["games"] / p_["nproc"]) / p_["nproc"]
 print(json.dumps({
-    "serial_sims_per_decision": s["sims_per_decision"],
-    "parallel_sims_per_decision": p["sims_per_decision"],
-    "parallel_efficiency": round(eff, 3),
-    "serial_seconds_per_game": round(s["wall_clock_s"] / max(1, s["completed"]), 1),
-    "parallel_worker_seconds_per_game": round(per_game, 1),
+    "serial": s_, "parallel": p_,
+    "parallel_efficiency_on_median": round(eff, 3),
+    "parallel_efficiency_on_mean_DO_NOT_USE": round(
+        p_["mean"] / max(1, s_["mean"]), 4),
+    "why_median": ("the mean is dominated by decisions whose search collapsed onto an "
+                   "already-decided line, where rollouts cost ~128us instead of ~29ms. Two of "
+                   "279 decisions across both probes did this. See D23."),
+    "serial_seconds_per_game": round(s_["wall_clock_s"] / max(1, s_["completed"]), 1),
     "projected_20_game_arm_at_nproc_6_seconds": round(
-        20.0 * p["wall_clock_s"] / max(1, p["completed"]) , 0),
-    "verdict": ("nproc 6 is safe -- the schedule binds" if eff > 0.9 else
+        p_["wall_clock_s"] * (20.0 / max(1, p_["games"])), 0),
+    "verdict": ("nproc 6 is safe -- the schedule binds and the median is within 10%"
+                if eff > 0.9 else
                 "nproc 6 degrades the schedule; M11 must run at lower nproc or be blocked"),
 }, indent=2))
-PY
+PYEOF
     ;;
 
   # ---------------------------------------------------------------- M11 full arm

@@ -653,3 +653,54 @@ D18's 9x, and it correctly does not fire on 1.26x.
 **The rule this makes explicit, since "run it alone" evidently was not enough:** during a pre-b2
 rung, the only permitted foreground work is editing files. No test suite, no validator, no
 analysis tool, no `git add` over a 295 MB checkpoint tree. Writing is free; running is not.
+
+## D23 — the M11 probe's headline number was a mean of two degenerate decisions
+
+**Found** 2026-07-30 21:06, while reading the serial probe before reporting it.
+
+The summary said:
+
+```json
+"sims_per_decision": 82540.3,
+"total_simulations": 4704799,
+"term_root_win": 4688936        // 99.66% of every rollout
+```
+
+Read at face value that says the source's own 15 s / 10 s schedule buys **82,540 simulations per
+decision** against the 96 the causal sweeps used — an 860x gap, and a headline finding.
+
+It is not true. The distribution over the arm's 57 decisions:
+
+```text
+min 374   p25 457   median 610   p75 852   p90 1190   max 2,564,085   mean 82,540
+top three decisions = 99.2% of every simulation the arm ran
+```
+
+**The median is 610.** Two decisions out of fifty-seven consumed 2,099,865 and 2,564,085
+simulations, and the mean is those two decisions wearing the whole arm's name. The honest
+statement is that the source's schedule buys about **6.4x** the search of the causal sweeps, not
+860x.
+
+**What the two outliers are.** They are decisions where the tree policy reached an
+already-decided line. Once there, a rollout terminates in one or two engine steps, so
+simulations cost ~128 µs instead of ~29 ms and the remaining seconds are spent re-confirming a
+result the search already had. That is a direct consequence of an adaptation this contract
+already recorded: the source's `Finalise` prunes proven lines and the port disables it. The
+preregistration measured that as observationally nil — the frozen c021 control records
+`finalised: 0`, `terminal_leaves: 0` over 226,277 rollouts — and it IS nil at c021's 176
+simulations per decision. **It is not nil at the source's budget**, and only an arm run at the
+source's budget could have shown that.
+
+The 99.66% root-win rate is the same two decisions: their millions of free rollouts swamp the
+counter. Per-decision, mean predicted win probability is 0.53 against a realised 0.474.
+
+**Fix.** `source_time` arms now report `sims_per_decision_distribution` — min, quartiles, p90,
+max, mean, and the share of all simulations in the top three decisions — and the report cites the
+median. The mean is kept, next to the share that produces it, because the gap between them is
+itself the finding.
+
+**Family.** This is the stale-tag / position-pairing shape again, one level up: every count was
+correct and the summary statistic attributed them to the wrong thing. It was caught by looking at
+a number that was too good — 7,800 full-game rollouts per second on one core is not physically
+plausible — rather than by any check. No validator asserts that a mean is representative, and it
+is not obvious one could.

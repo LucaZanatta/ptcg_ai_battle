@@ -135,14 +135,36 @@ exists to prevent.
 
 ## Status
 
-Recorded 2026-07-30 at 14:50, revised 16:45.
+Recorded 2026-07-30 at 14:50, revised 16:45, 20:55.
 
-- item 2 (fixed-total sweep) — running, third calibration
-- item 3 (fixed-per-world sweep) — queued
-- item 8 (ByteRL conformance) — **complete**, all five stages, b2 ratio 7.7 -> 1.02
-- item 9 (ByteRL controlled rungs) — running
-- nothing cut
+| item | state at 20:55 |
+|---|---|
+| 2, 3 (K sweeps, 32 games) | **complete** — a shortlist; established nothing on field score |
+| 4 (frozen-decision stability) | queued for the concurrent block |
+| 5 (**200-game paired arms**) | **complete and analysed.** Brier 0.294 → 0.172, log-loss 3.61 → 0.83, overconfidence 32.3 → 20.5 pp. Field 0.1156 → 0.1650 with OVERLAPPING Wilson intervals against a 5.0 pp four-arm replication spread: no field claim |
+| 5b (`paired_k1_c96`, compute-matched) | queued — added because `fixed_per_world` confounds K with 8x simulations |
+| 6 (M11 unrestricted) | **EXECUTED** at 8 games / 279 decisions. The 1 h vs 7 h contradiction in this file is resolved: parallel efficiency on the median is 0.97, so a 20-game arm is ~41 min, and the 7 h figure was a serial extrapolation. The 20-game arm was **not run** — a scope decision at 21:15 with reasons, recorded in `M11_SOURCE_TIMING.md`, not the cut order firing. Its only additional output is a field score that at 20 games spans ~35 points against a measured 5.0 pp floor, and none is claimed |
+| 7 (M12 deploy) | queued behind the probe, at c021's measured 90 s / 0.9 s / 0.7 s clock |
+| 8 (conformance) | **superseded** — its BR1.5 predates D17 and its BR2/BR3 predate D19. The controlled ladder at 120k decisions subsumes it; not re-run, and 30 minutes of exclusive machine saved |
+| 9 (controlled rungs) | **BR0, BR1, BR1.5 complete** on one commit. BR2/BR3 deferred to the concurrent block (D18: bounded queue, load-invariant) |
+| 10, 11 (decisive arms) | launch after the exclusive block |
+| 12 (transfer) | noise floor complete (3 arms, 5.0 pp spread); T1/T2 gated on both fidelity gates |
+| 13 (final panel) | tool written; **count-budgeted**, so it shares the machine rather than needing it |
+| 14 (package, reports) | statuses computed from artifacts; validator at 19 checks |
 
-Two schedule costs already absorbed, both from defects the pre-committed bounds caught rather
-than from the plan: three sweep arms discarded for D14 (per-K compute overhead) and for the
-guard-sets-arm-duration correction. Roughly 2.5 hours.
+**Nothing has been cut.** The 00:00 trigger has not fired.
+
+### Schedule costs absorbed, and where they came from
+
+Every one is a defect the pre-committed bounds caught, not a planning miss:
+
+| cost | cause |
+|---|---|
+| ~2.5 h | three sweep arms discarded for D14 (per-K compute overhead) and the guard-sets-arm-duration correction |
+| ~40 min | D17 — the B1.5 rung was a declared flag no implementation read, so the ladder was relaunched |
+| ~35 min | D19 — the B06 check compared the learner against μ, which D17 correctly made uniform; ladder relaunched again |
+| ~22 min | D20 — B06 ran once in 556 policy versions; the ladder was restarted so all five rungs come from one commit |
+
+That is roughly four hours spent on four checks that were reporting success while verifying
+nothing. None of it was avoidable by planning; all of it was found by looking at a number that
+did not fit.
