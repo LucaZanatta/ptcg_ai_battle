@@ -201,10 +201,13 @@
       "name": "frozen controls still hash to what was frozen",
       "detail": {
         "controls": 7,
-        "violations": []
+        "controls_with_verifiable_artifacts": 7,
+        "files_verified": 37,
+        "violations": [],
+        "_n_inputs": 37
       },
       "detects": "a control mutating under the campaign it is supposed to anchor",
-      "n_inputs": 7,
+      "n_inputs": 37,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,

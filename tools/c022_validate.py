@@ -407,32 +407,80 @@ def check_controls(ctx):
     if not m:
         return False, {"error": "no control manifest"}
     bad = []
+    files_verified = 0
+    controls_with_files = 0
     for name, c in (m.get("controls") or {}).items():
+        before = files_verified
+        # files_sha256 keys are relative to the control's `dir`
         for rel, want in (c.get("files_sha256") or {}).items():
             p = os.path.join(_REPO, c.get("dir", ""), rel)
+            files_verified += 1
             if not os.path.isfile(p):
                 bad.append({"control": name, "file": rel, "why": "missing"})
                 continue
             if sha256_file(p) != want:
                 bad.append({"control": name, "file": rel, "why": "hash changed"})
-        for key in ("checkpoint",):
+        # source_sha256 keys are REPO-RELATIVE and carry no `dir`. Omitting this branch meant
+        # C020_H1_PRIOR_HYBRID_CONTROL and C021_MCGS_K1_CONTROL had their source hashes recorded
+        # and never verified, while V13 reported n=7 and passed -- reading as "all seven
+        # controls checked" when it checked five.
+        for rel, want in (c.get("source_sha256") or {}).items():
+            p = os.path.join(_REPO, rel)
+            files_verified += 1
+            if not os.path.isfile(p):
+                bad.append({"control": name, "file": rel, "why": "missing"})
+                continue
+            if sha256_file(p) != want:
+                bad.append({"control": name, "file": rel, "why": "hash changed"})
+        for arm, mm in (c.get("measured") or {}).items():
+            rel_, want = mm.get("eval_file"), mm.get("eval_sha256")
+            if not rel_ or not want:
+                continue
+            files_verified += 1
+            p = os.path.join(_REPO, rel_)
+            if not os.path.isfile(p):
+                bad.append({"control": name, "file": rel_, "why": "missing"})
+            elif sha256_file(p) != want:
+                bad.append({"control": name, "file": rel_, "why": "hash changed"})
+        for key in ("checkpoint", "summary"):
             if c.get(key):
                 p = os.path.join(_REPO, c[key])
+                files_verified += 1
                 if not os.path.isfile(p):
                     bad.append({"control": name, "file": c[key], "why": "missing"})
                 elif sha256_file(p) != c.get(key + "_sha256"):
                     bad.append({"control": name, "file": c[key], "why": "hash changed"})
-    return (not bad), {"controls": len(m.get("controls") or {}), "violations": bad[:10]}
+        if files_verified > before:
+            controls_with_files += 1
+    n_controls = len(m.get("controls") or {})
+    # A control with nothing to hash is not verified, and must not be counted as if it were.
+    unhashed = [k for k, c in (m.get("controls") or {}).items()
+                if not (c.get("files_sha256") or c.get("source_sha256")
+                        or c.get("checkpoint") or c.get("summary")
+                        or (c.get("measured") or {}))]
+    if unhashed:
+        bad.append({"controls_with_nothing_to_verify": unhashed,
+                    "why": "named but pinned to nothing -- the defect c021 shipped with "
+                           "CHAMPION_C005_DRAGAPULT"})
+    return (not bad), {"controls": n_controls,
+                       "controls_with_verifiable_artifacts": controls_with_files,
+                       "files_verified": files_verified,
+                       "violations": bad[:10], "_n_inputs": files_verified}
 
 
 def inject_controls(ctx):
+    """Corrupt a SOURCE hash, not a files_sha256 one -- the branch that was missing."""
     m = ctx["control_manifest"]
     if m and m.get("controls"):
+        for k in sorted(m["controls"]):
+            ss = m["controls"][k].get("source_sha256") or {}
+            if ss:
+                ss[sorted(ss)[0]] = "0" * 64
+                return ctx
         k = sorted(m["controls"])[0]
         fs = m["controls"][k].get("files_sha256") or {}
         if fs:
-            fk = sorted(fs)[0]
-            fs[fk] = "0" * 64
+            fs[sorted(fs)[0]] = "0" * 64
     return ctx
 
 

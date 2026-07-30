@@ -228,12 +228,17 @@ def validity(arms: List[Dict[str, Any]], protocol: str) -> Dict[str, Any]:
                      a["summary"].get("games", 0))
           for a in arms}
     rates = {t: (n / g if g else 0.0) for t, (n, g) in ab.items()}
-    if rates and (max(rates.values()) - min(rates.values())) > 0.15:
+    # 8 points, not 15. results/hardware/contention_tests.json measured a 6.7-point exclusion
+    # difference moving a field score by 10 points, so a 15-point gate would admit a spread
+    # capable of moving a score by more than any K effect this contract could detect.
+    if rates and (max(rates.values()) - min(rates.values())) > 0.08:
         reasons.append(
-            f"EXCLUSION SPREAD > 15pp across K: {({t: round(r,3) for t,r in rates.items()})}. "
+            f"EXCLUSION SPREAD > 8pp across K: {({t: round(r,3) for t,r in rates.items()})}. "
             "Excluded games (abandoned, errored, or finished without both seats DONE) do not "
             "enter the field score, so the surviving subsample is K-dependent and the "
-            "comparison is confounded.")
+            "comparison is confounded. Reported as INVALID_BY_EXCLUSION per "
+            "results/hardware/contention_tests.json; the protocol is re-run with a decision "
+            "budget lowered UNIFORMLY across its arms.")
     for a in arms:
         s = a["summary"]
         if not s.get("budget_delivered", True):

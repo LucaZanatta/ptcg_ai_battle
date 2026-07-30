@@ -113,10 +113,40 @@
       "term_undecided": 90653
     },
     "C021_RANDOM_FLOOR": {
-      "definition": "an agent that samples uniformly over the legal option set at every decision, playing the same frozen permitted deck, against the same four-archetype panel",
-      "implemented_by": "tools/c022_panel.py --agent random (c022) / the _UniformActor opponent path in tools/c021_byterl_train.py (c021)",
-      "note": "c021 measured its floor inside the training loop rather than on the external panel; c022 measures it on the external panel so that BYTERL_FIXED_DECK has a like-for-like comparator. The measured value is written to frozen_results.json once the panel has run, not asserted here.",
-      "role": "the uniform-random-policy floor every learning claim is measured against"
+      "definition": "the c022 ByteRL network at FRESH RANDOM WEIGHTS, playing the same four-archetype panel with the same evaluator as every trained checkpoint. Not a hand-written uniform-random agent: the comparator for 'did training help' must be the SAME system before training, or the difference measures the architecture as well as the learning.",
+      "measured": {
+        "END_TO_END": {
+          "completed": 128,
+          "deck_legal_rate": 1.0,
+          "distinct_decks": 128,
+          "eval_file": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/external_evaluations/floor_end_to_end_eval.json",
+          "eval_sha256": "2fb5d6527f5179074a24f9d178482528862b8726ff44089519b8bbb1778ec061",
+          "field_score": 0.0625,
+          "games": 128,
+          "value_beats_constant": false,
+          "wilson95": [
+            0.032,
+            0.1185
+          ]
+        },
+        "FIXED_DECK": {
+          "completed": 128,
+          "deck_legal_rate": 1.0,
+          "distinct_decks": 1,
+          "eval_file": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/external_evaluations/floor_fixed_deck_eval.json",
+          "eval_sha256": "a96511e3d4ccd68f7a5219205653c016175202ad96418a70313d5c410a093149",
+          "field_score": 0.0234,
+          "games": 128,
+          "value_beats_constant": false,
+          "wilson95": [
+            0.008,
+            0.0666
+          ]
+        }
+      },
+      "note": "the two arms have DIFFERENT floors -- end-to-end scores above fixed-deck at random initialization -- so neither arm's improvement may be measured against the other's floor.",
+      "role": "the fresh-random-weights floor every ByteRL learning claim is measured against",
+      "why_measured_externally": "c021 measured its floor inside the training loop, on the very games that produced the gradient. DECISION_RULES \u00a73 requires a credible improvement over the floor, so the floor has to be measured the same way the improvement is."
     },
     "CHAMPION_C005_DRAGAPULT": {
       "dir": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult",
@@ -150,7 +180,7 @@
     "C021_FIXED_DECK_B2_SELECTED_IT0160",
     "C021_RANDOM_FLOOR"
   ],
-  "frozen_at_commit": "7be9e04b316d79022fb10856de7f92d90555abdd",
+  "frozen_at_commit": "76c639da2b7776ff46f3f6e835fc7417c7499fe5",
   "opponent_panel": [
     "dragapult",
     "mega_lucario",

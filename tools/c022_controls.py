@@ -210,16 +210,46 @@ def build() -> dict:
         e, os.path.join(ck, "intermediate", "big_ctrl_b2_it0160.pt"), "checkpoint")
 
     # ---------------------------------------------------------------- 7. random floor
-    e = _entry("the uniform-random-policy floor every learning claim is measured against",
-               definition="an agent that samples uniformly over the legal option set at every "
-                          "decision, playing the same frozen permitted deck, against the same "
-                          "four-archetype panel",
-               implemented_by="tools/c022_panel.py --agent random (c022) / the _UniformActor "
-                              "opponent path in tools/c021_byterl_train.py (c021)",
-               note="c021 measured its floor inside the training loop rather than on the "
-                    "external panel; c022 measures it on the external panel so that "
-                    "BYTERL_FIXED_DECK has a like-for-like comparator. The measured value is "
-                    "written to frozen_results.json once the panel has run, not asserted here.")
+    #
+    # This entry was "named but pinned to nothing" until the floor was measured -- exactly the
+    # defect this same file criticises c021 for shipping with CHAMPION_C005_DRAGAPULT. The
+    # validator's V13 check found it, and it is now pinned to the artifacts that measured it.
+    e = _entry("the fresh-random-weights floor every ByteRL learning claim is measured against",
+               definition="the c022 ByteRL network at FRESH RANDOM WEIGHTS, playing the same "
+                          "four-archetype panel with the same evaluator as every trained "
+                          "checkpoint. Not a hand-written uniform-random agent: the comparator "
+                          "for 'did training help' must be the SAME system before training, or "
+                          "the difference measures the architecture as well as the learning.",
+               why_measured_externally="c021 measured its floor inside the training loop, on the "
+                                       "very games that produced the gradient. DECISION_RULES §3 "
+                                       "requires a credible improvement over the floor, so the "
+                                       "floor has to be measured the same way the improvement "
+                                       "is.")
+    fl = {}
+    for arm, tag in (("FIXED_DECK", "floor_fixed_deck"), ("END_TO_END", "floor_end_to_end")):
+        p = os.path.join(_REPO, "contracts",
+                         "c022_mcgs_multideterminization_and_faithful_byterl_reproduction",
+                         "results", "byterl", "external_evaluations", f"{tag}_eval.json")
+        if not os.path.isfile(p):
+            continue
+        d = _load(p) or {}
+        fl[arm] = {
+            "eval_file": rel(p), "eval_sha256": sha256_file(p),
+            "games": d.get("games"), "completed": d.get("completed"),
+            "field_score": d.get("field_score"), "wilson95": d.get("wilson95"),
+            "deck_legal_rate": d.get("deck_legal_rate"),
+            "distinct_decks": d.get("distinct_decks"),
+            "value_beats_constant": (d.get("value_calibration") or {}).get(
+                "beats_constant_predictor"),
+        }
+    e["measured"] = fl
+    if not fl:
+        e["resolution_error"] = "the floor has not been measured yet; run " \
+                                "tools/c022_byterl_campaign.sh floor"
+    else:
+        e["note"] = ("the two arms have DIFFERENT floors -- end-to-end scores above fixed-deck "
+                     "at random initialization -- so neither arm's improvement may be measured "
+                     "against the other's floor.")
     controls["C021_RANDOM_FLOOR"] = e
 
     complete = all("resolution_error" not in v for v in controls.values())
