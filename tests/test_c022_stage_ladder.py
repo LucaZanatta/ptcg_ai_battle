@@ -146,3 +146,67 @@ def test_b18_end_to_end_arm_uses_the_permitted_pool_not_one_archetype():
     assert len(pool.basic_pokemon) > 0
     assert len(pool.basic_energy) > 0
     assert len(pool.ace_spec) > 0
+
+
+def test_b14_every_stage_flag_is_actually_READ_by_the_code():
+    """A stage table that no code consults is a ladder of identical systems.
+
+    `random_initial_construction` was declared in STAGES, asserted by the delta test above, and
+    read by NOTHING -- so BR1 and BR1_5 were the same system and the rung was a no-op. The table
+    said they differed; the code did not. This asserts each flag reaches an implementation.
+    """
+    import subprocess
+    roots = [os.path.join(_REPO, "starter_kit"), os.path.join(_REPO, "tools")]
+    flags = sorted({k for f in TR.STAGES.values() for k in f})
+    unread = []
+    for flag in flags:
+        hits = 0
+        for root in roots:
+            r = subprocess.run(["grep", "-rl", flag, root], capture_output=True, text=True)
+            hits += len([x for x in r.stdout.splitlines()
+                         if not x.endswith("c022_byterl_train.py")])
+        if hits == 0:
+            unread.append(flag)
+    assert not unread, (
+        f"stage flags declared but read by no implementation file: {unread}. "
+        "A flag only the stage table mentions makes its rung a no-op.")
+
+
+def test_b14_random_initial_construction_changes_what_the_actor_does():
+    """The B1.5 delta must change behaviour, not just a dict entry."""
+    import numpy as np
+    import torch
+    torch.set_num_threads(1)
+    from cg import c021_byterl_deck as DK
+    from cg import c022_byterl_actor as ACT
+    from cg import c022_byterl_encode as EN
+    from cg import c022_byterl_model as M
+
+    pool = DK.CardPool.from_archetypes()
+    dims = EN.dims()
+    net = M.fresh(dims["global_dim"], dims["slot_dim"], dims["option_dim"], pool.size(),
+                  n_cards=dims["n_cards"], seed=5)
+    net.eval()
+
+    off = ACT.EpisodeRunner(net, pool, np.random.default_rng(1), True,
+                            random_initial_construction=False)
+    off.build_deck()
+    on = ACT.EpisodeRunner(net, pool, np.random.default_rng(1), True,
+                           random_initial_construction=True)
+    on.build_deck()
+
+    assert off.random_initial_choices == 0
+    assert on.random_initial_choices == ACT.RANDOM_INITIAL_CONSTRUCTION_STEPS
+
+    # The behaviour log-probability on a randomised step must be the UNIFORM one, not the
+    # network's. V-trace's ratio is pi/mu and mu is whatever actually chose the action; recording
+    # the network's log-prob while sampling uniformly makes every ratio on those steps wrong.
+    first = on.steps[0]
+    n_legal = first.seq["tokens"][0]["n_legal"]
+    import math
+    assert first.behaviour_logp == pytest.approx(-math.log(n_legal), abs=1e-6)
+
+    # and the un-randomised runner's first step is NOT the uniform log-probability
+    off_first = off.steps[0]
+    off_n = off_first.seq["tokens"][0]["n_legal"]
+    assert off_first.behaviour_logp != pytest.approx(-math.log(off_n), abs=1e-6)

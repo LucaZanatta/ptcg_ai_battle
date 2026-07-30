@@ -369,3 +369,50 @@ real work (10 of 64 decisions, ~16%).
 **The general lesson, which is the third time this contract has produced it:** a comment
 asserting that something cannot happen is a hypothesis. This one was written into the code as
 justification for a counter, and the counter then refuted it.
+
+---
+
+## D17 — the B1.5 rung was a no-op: its flag was declared, asserted, and read by nothing
+
+**Found by** `ctrl_BR1_5` producing no manifest while the other four rungs did, and its
+evaluation reporting `checkpoint_loaded: false` — i.e. the number recorded against "BR1.5" was
+fresh random weights.
+
+Chasing that turned up the larger defect. `random_initial_construction` appeared in exactly two
+places in the whole repository:
+
+```text
+tools/c022_byterl_train.py:56   "BR1_5": {... "random_initial_construction": True ...}
+tools/c022_byterl_train.py:66   ("BR1", "BR1_5"): {"random_initial_construction"}
+```
+
+The stage table and the stage-delta table. **No implementation read it.** So `BR1` and `BR1_5`
+were the same system, and `MANDATORY_IMPLEMENTATION B7`'s "adjacent stages may differ only by the
+published change" was satisfied vacuously — they differed by nothing.
+
+**Why the existing test did not catch it.** `test_b14_adjacent_stages_differ_only_by_the_
+published_change` compares the two dictionaries and asserts the changed key set equals
+`{"random_initial_construction"}`. It passed. It was asserting a property of a *table*, not of
+the *system* the table claims to describe — an inert test in the precise sense this contract keeps
+finding.
+
+**Fix, three parts:**
+
+1. `random_initial_construction` is implemented: the first `RANDOM_INITIAL_CONSTRUCTION_STEPS`
+   (10) construction choices are drawn uniformly from the legal mask instead of from the policy.
+   `SEMANTIC_GAME_ADAPTER` — the exact Hearthstone schedule has no literal PTCG equivalent and
+   the step count is a CHOSEN value recorded in `UNRESOLVED_REFERENCE_CHOICES.md`.
+2. **The behaviour log-probability on a randomised step is the UNIFORM one**, not the network's.
+   This is the whole correctness content: V-trace's ratio is `pi(a|s)/mu(a|s)` and `mu` is
+   whatever actually chose the action. Recording the network's log-probability while sampling
+   uniformly would corrupt every importance ratio on those steps, and no loss curve would show it.
+3. Two new tests. One greps every stage flag and fails if any is read by no implementation file —
+   which would have caught this on the day the flag was written. The other runs two
+   `EpisodeRunner`s differing only in the flag and asserts the randomised one makes exactly 10
+   uniform choices whose recorded behaviour log-probability equals `-log(n_legal)`, and that the
+   un-randomised one does not.
+
+**What happened to the affected results.** The four controlled-rung manifests are copied to
+`results/failures/superseded/ctrl_rungs_br15_noop/` and the rung comparison is re-run. BR0, BR1,
+BR2 and BR3 were each internally valid, but the ladder they belong to had a missing rung and a
+mislabelled one, so the comparison as a whole is not reportable.

@@ -68,6 +68,8 @@ STAGE_DELTA = {
     ("BR2", "BR3"): {"two_sided_and_ppo"},
 }
 
+from cg.c022_byterl_actor import RANDOM_INITIAL_CONSTRUCTION_STEPS as ACT_RANDOM_STEPS
+
 UNBOUNDED_QUEUE = 1 << 16          # "effectively unbounded" for the pre-b2 rungs
 OPPONENTS = ["dragapult", "mega_lucario", "iono", "mega_abomasnow"]
 
@@ -99,9 +101,10 @@ def actor_loop(actor_id: int, cfg: Dict[str, Any], shared, q, metrics_q, stop):
     pushed = 0
     while not stop.is_set():
         weights.pull(shared)
-        runner = ACT.EpisodeRunner(net, pool, rng, cfg["learn_construction"], fixed,
-                                   unroll_length=cfg["unroll_length"],
-                                   temperature=cfg["temperature"])
+        runner = ACT.EpisodeRunner(
+            net, pool, rng, cfg["learn_construction"], fixed,
+            unroll_length=cfg["unroll_length"], temperature=cfg["temperature"],
+            random_initial_construction=cfg["random_initial_construction"])
         try:
             deck, deck_legal = runner.build_deck()
             if not deck_legal:
@@ -159,6 +162,7 @@ def actor_loop(actor_id: int, cfg: Dict[str, Any], shared, q, metrics_q, stop):
                        "illegal_sequences": runner.illegal_sequences,
                        "option_truncations": runner.option_truncations,
                        "max_options_seen": runner.max_options_seen,
+                       "random_initial_choices": runner.random_initial_choices,
                        "deck_legal": bool(deck_legal), "deck": list(deck)})
 
 
@@ -391,6 +395,10 @@ def main(argv=None):
         "unroll_length": a.unroll_length, "temperature": a.temperature,
         "sample_reuse": a.sample_reuse, "max_grad_norm": a.max_grad_norm,
         "_version": 0,
+        # THE B1.5 DELTA. Until this line existed the flag was declared in STAGES, asserted by
+        # the stage-delta test, and read by nothing -- so BR1 and BR1_5 were the same system and
+        # the rung was a no-op. The stage table said they differed; the code did not.
+        "random_initial_construction": bool(feats["random_initial_construction"]),
     }
     qsize = a.queue_size if feats["bounded_blocking_fifo"] else UNBOUNDED_QUEUE
 
@@ -437,6 +445,7 @@ def main(argv=None):
     recurrence_failures: List[Dict[str, float]] = []
     illegal_decks = 0
     actor_errors = 0
+    random_initial_choices = 0
     wins, scored = 0.0, 0
     t0 = time.time()
     deadline = t0 + a.deadline_seconds if a.deadline_seconds > 0 else None
@@ -460,6 +469,7 @@ def main(argv=None):
                 if m.get("error"):
                     actor_errors += 1
                     continue
+                random_initial_choices += int(m.get("random_initial_choices", 0) or 0)
                 produced_episodes += 1
                 produced_decisions += int(m.get("n_construction", 0)) + int(
                     m.get("n_battle", 0))
@@ -535,6 +545,10 @@ def main(argv=None):
                        "win_rate": round(wins / scored, 4) if scored else None,
                        "queue_occupancy": occupancy,
                        "illegal_decks": illegal_decks, "actor_errors": actor_errors,
+        "random_initial_construction": bool(feats["random_initial_construction"]),
+        "random_initial_choices": random_initial_choices,
+        "random_initial_construction_steps": (
+            ACT_RANDOM_STEPS if feats["random_initial_construction"] else 0),
                        "elapsed_s": round(time.time() - t0, 1)}
                 for k in ("pg_loss", "upgo_loss", "value_loss", "entropy", "total",
                           "rho_mean", "rho_clipped_upper_frac", "rho_clipped_lower_frac",
@@ -580,6 +594,10 @@ def main(argv=None):
         "production_consumption_ratio": round(
             produced_decisions / max(1, consumed_decisions), 4),
         "illegal_decks": illegal_decks, "actor_errors": actor_errors,
+        "random_initial_construction": bool(feats["random_initial_construction"]),
+        "random_initial_choices": random_initial_choices,
+        "random_initial_construction_steps": (
+            ACT_RANDOM_STEPS if feats["random_initial_construction"] else 0),
         "final_win_rate": round(wins / scored, 4) if scored else None,
         "recurrence_checks": len(recurrence_checks),
         "recurrence_check_failures": len(recurrence_failures),

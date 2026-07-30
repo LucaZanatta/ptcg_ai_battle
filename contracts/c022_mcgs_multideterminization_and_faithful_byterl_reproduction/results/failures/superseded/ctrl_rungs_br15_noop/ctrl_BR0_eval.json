@@ -1,0 +1,58 @@
+{
+  "tag": "ctrl_BR0",
+  "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/ctrl_BR0_final.pt",
+  "checkpoint_loaded": true,
+  "arm": "END_TO_END",
+  "games": 128,
+  "completed": 128,
+  "errored": 0,
+  "unscored": 0,
+  "field_score": 0.0312,
+  "wilson95": [
+    0.0122,
+    0.0776
+  ],
+  "per_opponent": {
+    "dragapult": {
+      "games": 32,
+      "rate": 0.0
+    },
+    "iono": {
+      "games": 32,
+      "rate": 0.0
+    },
+    "mega_abomasnow": {
+      "games": 32,
+      "rate": 0.0
+    },
+    "mega_lucario": {
+      "games": 32,
+      "rate": 0.125
+    }
+  },
+  "deck_legal_rate": 1.0,
+  "distinct_decks": 128,
+  "deck_diversity": 1.0,
+  "illegal_sequences": 0,
+  "mean_tokens_per_decision": 1.023,
+  "value_calibration": {
+    "n": 2981,
+    "mean_prediction": 0.13664,
+    "observed_base_rate": 0.03019,
+    "mse": 0.041796,
+    "mse_constant_baseline": 0.02928,
+    "skill_vs_constant": -0.4275,
+    "beats_constant_predictor": false,
+    "pearson_correlation_with_outcome": -0.036,
+    "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
+  },
+  "seed": 777001,
+  "temperature": 1.0,
+  "wall_clock_s": 111.2,
+  "panel": [
+    "dragapult",
+    "mega_lucario",
+    "iono",
+    "mega_abomasnow"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "tag": "paired_k1",
+  "branch": "MCGS_2019_PTCG_MULTI_DET_REFERENCE",
+  "config": {
+    "branch": "MCGS_2019_PTCG_MULTI_DET_REFERENCE",
+    "k_worlds": 1,
+    "budget_protocol": "fixed_per_world",
+    "simulations_per_decision": 12,
+    "aggregation_rule": "source_sum",
+    "graph_reuse": false,
+    "match_clock_seconds": 0.0,
+    "decision_seconds_cap": 0.0,
+    "decision_wall_ceiling_seconds": 300.0,
+    "decision_budget": 50
+  },
+  "seed": 90210,
+  "nproc": 14,
+  "games": 200,
+  "completed": 199,
+  "abandoned": 1,
+  "errored": 0,
+  "unscored": 0,
+  "unscored_status_histogram": {},
+  "unscored_mean_seconds": null,
+  "games_accounted": 200,
+  "duplicate_records_collapsed": 0,
+  "all_games_accounted": true,
+  "effective_n_note": "field_score is computed over `completed` only. abandoned, errored and unscored games are excluded, so `completed` is the effective sample size and the Wilson interval is computed on it.",
+  "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field score rather than scored as losses",
+  "field_score": 0.1156,
+  "wilson95": [
+    0.0783,
+    0.1675
+  ],
+  "field_score_bounds_if_unscored_counted": [
+    0.115,
+    0.12
+  ],
+  "excluded_fraction": 0.005,
+  "per_opponent": {
+    "dragapult": {
+      "games": 49,
+      "rate": 0.0
+    },
+    "iono": {
+      "games": 50,
+      "rate": 0.02
+    },
+    "mega_abomasnow": {
+      "games": 50,
+      "rate": 0.04
+    },
+    "mega_lucario": {
+      "games": 50,
+      "rate": 0.4
+    }
+  },
+  "wall_clock_s": 815.9,
+  "searched_decisions": 6478,
+  "total_simulations": 77736,
+  "sims_per_decision": 12.0,
+  "mean_k_used": 1.0,
+  "world_errors": 0,
+  "decision_deadline_stops": 0,
+  "match_clock_exhausted_decisions": 0,
+  "decision_budget": 50,
+  "derived_game_timeout_s": 700.0,
+  "game_timeout_basis": "measured_completed_game_duration",
+  "effective_seconds_per_simulation": 0.245,
+  "decision_budget_exhausted_decisions": 135,
+  "decisions_total": 7785,
+  "signature_mismatches": 0,
+  "opponent_flag_conflicts": 0,
+  "multiselect_decisions": 2,
+  "obliged_decisions": 0,
+  "mixed_terminal_scale_decisions": 0,
+  "aggregate_empty_decisions": 0,
+  "term_root_win": 25636,
+  "term_root_loss": 41061,
+  "term_undecided": 11039,
+  "finalised": 0,
+  "terminal_leaves": 0,
+  "lethal_bonus": 0,
+  "step_errors": 0,
+  "begin_errors": 0,
+  "transposition_merges": 1657,
+  "dummy_edges": 156,
+  "chance_nodes_created": 62,
+  "manual_coin_node_ucb_selected": 0,
+  "calibration_rows": 6478,
+  "budget_delivered": true
+}

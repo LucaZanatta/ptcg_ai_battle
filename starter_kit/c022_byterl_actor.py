@@ -40,6 +40,11 @@ from cg import c022_byterl_model as M  # noqa: E402
 
 UNROLL_LENGTH = 32
 
+# B1.5's delta: how many of the 60 construction choices are drawn uniformly instead of from the
+# policy. The papers say "random initial deck-construction selections" without a count, so this
+# is a CHOSEN value recorded in UNRESOLVED_REFERENCE_CHOICES.md.
+RANDOM_INITIAL_CONSTRUCTION_STEPS = 10
+
 
 @dataclass
 class Step:
@@ -148,7 +153,8 @@ class EpisodeRunner:
     def __init__(self, net: M.ByteRLRecurrentNet, pool: DK.CardPool, rng,
                  learn_construction: bool, fixed_deck: Optional[List[int]] = None,
                  unroll_length: int = UNROLL_LENGTH, temperature: float = 1.0,
-                 max_options: int = EN.MAX_OPTIONS):
+                 max_options: int = EN.MAX_OPTIONS,
+                 random_initial_construction: bool = False):
         self.net = net
         self.pool = pool
         self.rng = rng
@@ -159,6 +165,7 @@ class EpisodeRunner:
         self.battle_head = AC.BattleActionHead(net)
         self.construction_head = AC.ConstructionActionHead(net)
         self.max_options = int(max_options)
+        self.random_initial_construction = bool(random_initial_construction)
         self.reset()
 
     def reset(self):
@@ -181,22 +188,43 @@ class EpisodeRunner:
         self.illegal_sequences = 0
         self.option_truncations = 0
         self.max_options_seen = 0
+        self.random_initial_choices = 0
 
     # ---------------------------------------------------------------- construction
     @torch.no_grad()
     def build_deck(self) -> Tuple[List[int], bool]:
-        """B6/B19: 60 masked autoregressive choices, each a trained decision."""
+        """B6/B19: 60 masked autoregressive choices, each a trained decision.
+
+        `random_initial_construction` is the **B1.5 delta** (`FIDELITY_RULES §4`: "B1 with
+        published random initial deck-construction selections"). The first
+        `RANDOM_INITIAL_CONSTRUCTION_STEPS` choices are drawn UNIFORMLY from the legal mask
+        instead of from the policy.
+
+        The behaviour log-probability recorded for those steps is the UNIFORM one, not the
+        network's. That is the whole correctness content of this feature: V-trace's importance
+        ratio is `pi(a|s) / mu(a|s)`, and `mu` is whatever actually chose the action. Recording
+        the network's log-probability while sampling uniformly would make every ratio on those
+        steps wrong, and no loss curve would show it.
+
+        `SEMANTIC_GAME_ADAPTER` — the exact Hearthstone schedule has no literal PTCG equivalent;
+        the step count is recorded in `UNRESOLVED_REFERENCE_CHOICES.md`.
+        """
         if not self.learn_construction:
             self.deck = list(self.fixed_deck or DK.greedy_reference_deck(self.pool))
             return self.deck, True
         partial: List[int] = []
-        for _ in range(DK.CONSTRUCTION_STEPS):
+        for step_i in range(DK.CONSTRUCTION_STEPS):
             self._note_boundary()
             enc = EN.encode_construction(partial, self.pool)
             tt = EN.to_torch(enc)
             h, self.state = self.net.step(EN.obs_parts(tt), self.state)
-            seq = self.construction_head.sample(h, tt["pool_mask"], rng=self.rng,
-                                                temperature=self.temperature)
+            if (self.random_initial_construction
+                    and step_i < RANDOM_INITIAL_CONSTRUCTION_STEPS):
+                seq = self._uniform_construction_choice(tt["pool_mask"])
+                self.random_initial_choices += 1
+            else:
+                seq = self.construction_head.sample(h, tt["pool_mask"], rng=self.rng,
+                                                    temperature=self.temperature)
             v = float(self.net.value(h, tt["stage"]).item())
             partial.append(self.pool.card_ids[seq.chosen_elements[0]])
             self.steps.append(Step(stage=EN.STAGE_CONSTRUCTION, enc=enc, seq=seq.to_json(),
@@ -205,6 +233,22 @@ class EpisodeRunner:
         self.deck = partial
         legal, _detail = DK.legality(partial, self.pool)
         return partial, legal
+
+    def _uniform_construction_choice(self, pool_mask) -> AC.ActionSequence:
+        """A uniform draw over the legal pool, with the UNIFORM behaviour log-probability."""
+        import numpy as _np
+        m = pool_mask[0].detach().cpu().numpy()
+        legal_idx = _np.nonzero(m > 0)[0]
+        if legal_idx.size == 0:
+            legal_idx = _np.arange(m.shape[0])
+        idx = int(self.rng.choice(legal_idx))
+        logp = float(-_np.log(max(1, legal_idx.size)))
+        seq = AC.ActionSequence(stage=1)
+        seq.tokens.append(AC.Token(AC.TOK_POOL, idx, logp, int(legal_idx.size)))
+        seq.chosen_elements = [idx]
+        seq.count = 1
+        seq.joint_logp = logp
+        return seq
 
     # ---------------------------------------------------------------- battle
     @torch.no_grad()
