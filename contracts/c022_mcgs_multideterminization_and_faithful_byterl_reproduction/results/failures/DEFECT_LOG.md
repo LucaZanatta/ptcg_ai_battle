@@ -524,3 +524,50 @@ quarantined in `results/failures/superseded/ladder_pre_d19/` and re-run from one
 clean re-run immediately confirmed D18 as well: `ctrl_BR0` alone runs at 142 consumed
 decisions/s with a production/consumption ratio of 7.79, against 16.7/s and 12.06 under
 contention — so 12.06 was never a property of BR0.
+
+## D20 — B06 ran ONCE in a fourteen-minute run, and reported PASS
+
+**Found** 2026-07-30 19:50, reading the first clean `ctrl_BR0` manifest:
+
+```json
+"recurrence_checks": 1,
+"recurrence_check_failures": 0,
+"policy_versions": 556
+```
+
+One check. The run published 556 policy versions and executed the B06 exact-weights fidelity
+check exactly once, then reported it as a pass.
+
+**Why.** The check needs the weights an unroll was produced under, so it looks for an unroll in
+the current batch whose `policy_version` is still in the published-blob history. That history kept
+`keep = 8` versions. The pre-b2 rungs have an unbounded queue and a policy lag of tens of
+versions, so by the time an unroll reached the learner its weights had been evicted, `cand` was
+`None`, and the check was skipped — **silently**, with no counter and no line in the manifest.
+
+**The part that makes this more than a tuning miss.** The failure is worst exactly where the check
+matters most. A pre-b2 rung's entire subject is an unbounded queue's staleness; the rungs with the
+largest lag are precisely the rungs whose replay fidelity went unverified. And `MANDATORY_
+IMPLEMENTATION B3` requires recomputing recurrent outputs "during learner replay and assert
+agreement before optimization" — a requirement met once in 556 versions is not met.
+
+**Fix.**
+
+1. `keep` is now `--blob-history`, default **48**. At 6.9 MB per blob that is 329 MB, which the
+   machine has, and it covers the lag these rungs reach.
+2. `recurrence_checks_skipped_no_retained_blob` and `recurrence_check_coverage` are recorded.
+   The count alone cannot distinguish "verified throughout" from "the weights had already been
+   evicted every time we looked", and a manifest that cannot express the difference will be read
+   as the flattering one.
+3. `tools/c022_byterl_ladder.py` reports a rung with zero checks as `NO_DATA`, never as a pass,
+   and flags a BR1.5+ rung whose checks never saw a uniform construction step — because such a
+   rung has not exercised the D19 case at all, however green it looks.
+
+**Cost, and why it was paid.** The ladder had already produced a clean BR0 under `keep = 8`. It
+was discarded and the ladder restarted, because `MANDATORY_IMPLEMENTATION B7` requires ONE
+codebase to produce the stages and a ladder assembled from two versions of the fidelity check is
+not that. Fifteen minutes to convert a near-vacuous probe into real evidence.
+
+**The pattern this is the fourth instance of.** D13, D17, D19 and now D20 are all the same shape:
+a check that ran, reported success, and verified nothing — an inert test, a no-op flag, a
+category error, and now a check starved of the data it needed. The manifests looked identical in
+every case.

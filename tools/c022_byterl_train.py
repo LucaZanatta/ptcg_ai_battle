@@ -381,13 +381,27 @@ def learner_update(net, opt, batch, cfg, stats):
     return n_updates
 
 
+BLOB_HISTORY_DEFAULT = 48
+
+
 def publish(net, shared, version: int, history: Optional[Dict[int, bytes]] = None,
-            keep: int = 8):
+            keep: int = BLOB_HISTORY_DEFAULT):
     """Publish immutable versioned weights. Bytes, not tensors: actors cannot alias the learner.
 
     `history` keeps the last `keep` published blobs so `recurrence_fidelity_check` can reload the
     exact weights an unroll was produced under. Without it there is no way to assert agreement,
     because the learner's live weights have already moved.
+
+    **`keep` HAS TO EXCEED THE POLICY LAG, or the check silently stops running.** At `keep = 8`
+    a clean 120k-decision BR0 run published 556 versions and executed the fidelity check exactly
+    ONCE: every batch it sampled carried unrolls from versions already evicted, so `cand` was
+    None and the check was skipped without a word. B06 reported PASS on a single sample of a
+    fourteen-minute run.
+
+    The failure is worst precisely where the check matters most. A pre-b2 rung's whole subject is
+    an unbounded queue's staleness, so its unrolls are the OLDEST — the rungs with the largest lag
+    are the ones whose fidelity goes unchecked. At 6.9 MB per blob, 48 versions is 329 MB and
+    covers the lag these rungs actually reach.
     """
     import torch
     buf = io.BytesIO()
@@ -427,6 +441,10 @@ def main(argv=None):
     ap.add_argument("--recurrence-check-every", type=int, default=20,
                     help="batches between exact-weights B06 recurrence assertions; 0 disables")
     ap.add_argument("--recurrence-tolerance", type=float, default=1e-4)
+    ap.add_argument("--blob-history", type=int, default=BLOB_HISTORY_DEFAULT,
+                    help="published weight versions retained for the B06 exact-weights check. "
+                         "Must exceed the policy lag or the check silently stops running: at 8, "
+                         "a clean BR0 run executed it once in 556 versions.")
     ap.add_argument("--recurrence-strict", type=int, default=1,
                     help="1 = a replay mismatch aborts the run, as TRAINING_AND_EVALUATION §4 "
                          "requires ('stop immediately for ... recurrent replay mismatch')")
@@ -470,8 +488,9 @@ def main(argv=None):
     # historical version into it cannot disturb the live learner.
     scratch = M.fresh(dims["global_dim"], dims["slot_dim"], dims["option_dim"], pool.size(),
                       n_cards=dims["n_cards"], seed=a.seed)
+    recurrence_skipped = 0
     published_blobs: Dict[int, bytes] = {}
-    publish(net, shared, 0, published_blobs)
+    publish(net, shared, 0, published_blobs, keep=a.blob_history)
 
     procs = [ctx.Process(target=actor_loop, args=(i, cfg, shared, q, metrics_q, stop))
              for i in range(a.actors)]
@@ -551,7 +570,12 @@ def main(argv=None):
             if a.recurrence_check_every and (batches % a.recurrence_check_every == 0):
                 cand = next((b for b in batch if int(b["policy_version"]) in published_blobs),
                             None)
-                if cand is not None:
+                if cand is None:
+                    # Counted, never silent. Without this the manifest reports "1 check, 0
+                    # failures" for a run in which the check was skipped 400 times, and a reader
+                    # has no way to tell thorough verification from none.
+                    recurrence_skipped += 1
+                else:
                     chk = recurrence_fidelity_check(
                         scratch, published_blobs[int(cand["policy_version"])], cand, cfg)
                     recurrence_checks.append(chk)
@@ -571,7 +595,7 @@ def main(argv=None):
 
             if updates // max(1, a.publish_every) > version:
                 version += 1
-                publish(net, shared, version, published_blobs)
+                publish(net, shared, version, published_blobs, keep=a.blob_history)
 
             qlog.write(json.dumps({
                 "t": round(time.time() - t0, 2),
@@ -654,6 +678,12 @@ def main(argv=None):
         "final_win_rate": round(wins / scored, 4) if scored else None,
         "recurrence_checks": len(recurrence_checks),
         "recurrence_check_failures": len(recurrence_failures),
+        # The denominator. `recurrence_checks` alone cannot distinguish "verified throughout"
+        # from "the weights had already been evicted every time we looked".
+        "recurrence_checks_skipped_no_retained_blob": recurrence_skipped,
+        "recurrence_check_coverage": round(
+            len(recurrence_checks) / max(1, len(recurrence_checks) + recurrence_skipped), 4),
+        "blob_history_versions": a.blob_history,
         "recurrence_tolerance": a.recurrence_tolerance,
         "max_recurrence_delta_exact_weights": round(
             max((c["recurrence_delta"] for c in recurrence_checks), default=0.0), 9)
