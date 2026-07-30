@@ -1,0 +1,804 @@
+{
+  "generated": "2026-07-30T11:07:31",
+  "captured_decisions": 4,
+  "elapsed_s": 2.2,
+  "n_pass": 6,
+  "n_probes": 6,
+  "probes": [
+    {
+      "probe": "M01b",
+      "name": "API hidden-information constraint",
+      "pass": true,
+      "pass_condition": "search_step is deterministic within a session; different worlds give different successors; only the agent-facing root observation carries search_begin_input",
+      "refuted_by": "a nondeterministic search_step (priority 1 would then be available and the whole K-session design would be the wrong branch), or an interior observation that can open a session",
+      "within_session_determinism": [
+        {
+          "option": 0,
+          "distinct_successors": 1,
+          "trials": 12
+        },
+        {
+          "option": 1,
+          "distinct_successors": 1,
+          "trials": 12
+        }
+      ],
+      "across_world_successors": {
+        "distinct": 8,
+        "of": 8
+      },
+      "root_has_search_begin_input": true,
+      "interior_has_search_begin_input": false,
+      "interior_search_begin_result": "ValueError: Not agent observation."
+    },
+    {
+      "probe": "M02",
+      "name": "repeated world generation",
+      "pass": true,
+      "pass_condition": "for every captured root, K requested worlds are returned, all K world ids are distinct, and every world is legal with legal multiplicities",
+      "refuted_by": "returning fewer than K, duplicate world ids, or an illegal world",
+      "rows": [
+        {
+          "decision": 0,
+          "requested_k": 8,
+          "returned": 8,
+          "distinct_world_ids": 8,
+          "all_legal": true,
+          "all_multiplicity_ok": true,
+          "archetypes": {
+            "unknown": 8
+          },
+          "world_summaries": [
+            {
+              "index": 0,
+              "seed": 5477090537755008696,
+              "world_id": "6b6364bdddbc38ca",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 1,
+              "seed": 7339388827560917538,
+              "world_id": "e33f61654ef6f612",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 2,
+              "seed": 3716663855982766346,
+              "world_id": "ff750b8f80a2d1c5",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 3,
+              "seed": 127691572235590543,
+              "world_id": "73ea6b30bf8e0b7d",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 4,
+              "seed": 9049544725627619411,
+              "world_id": "dc7f6b169d3467d9",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 5,
+              "seed": 3751439647056900871,
+              "world_id": "f03286172d2998ac",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 6,
+              "seed": 3801709866114448669,
+              "world_id": "f691b133550db018",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 7,
+              "seed": 6451696826163826795,
+              "world_id": "8d6b15259d38e5f8",
+              "archetype": "unknown",
+              "archetype_confidence": 0.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 60,
+                "your_prize": 0,
+                "opponent_deck": 60,
+                "opponent_prize": 0,
+                "opponent_hand": 0,
+                "opponent_active": 0
+              }
+            }
+          ]
+        },
+        {
+          "decision": 1,
+          "requested_k": 8,
+          "returned": 8,
+          "distinct_world_ids": 8,
+          "all_legal": true,
+          "all_multiplicity_ok": true,
+          "archetypes": {
+            "dragapult": 8
+          },
+          "world_summaries": [
+            {
+              "index": 0,
+              "seed": 5539291089669028486,
+              "world_id": "f2bd804f8e68e9ef",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 1,
+              "seed": 1420385529521907370,
+              "world_id": "7d2c8a6b7cf69874",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 2,
+              "seed": 2246056037488106237,
+              "world_id": "107a08cac8dab19b",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 3,
+              "seed": 5716918666771837127,
+              "world_id": "1ef1d9ec7672cbd8",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 4,
+              "seed": 6148542622682463470,
+              "world_id": "d1a97ad87d95af10",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 5,
+              "seed": 5562772081180242554,
+              "world_id": "2d4f21dacf189612",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 6,
+              "seed": 4012424143595571134,
+              "world_id": "b96fb561314e0800",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 7,
+              "seed": 4677443240601149333,
+              "world_id": "c45d260b6c492936",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            }
+          ]
+        },
+        {
+          "decision": 2,
+          "requested_k": 8,
+          "returned": 8,
+          "distinct_world_ids": 8,
+          "all_legal": true,
+          "all_multiplicity_ok": true,
+          "archetypes": {
+            "dragapult": 8
+          },
+          "world_summaries": [
+            {
+              "index": 0,
+              "seed": 3063692386047616340,
+              "world_id": "bc12d39243e5951e",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 1,
+              "seed": 2107336274990190252,
+              "world_id": "fb2f04e5ecd5ea96",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 2,
+              "seed": 6106712624850484845,
+              "world_id": "600fe28d2b8f722a",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 3,
+              "seed": 2072580440248126474,
+              "world_id": "39450e694bbd7396",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 4,
+              "seed": 1650382468288412439,
+              "world_id": "11408b2848d6338b",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 5,
+              "seed": 4361788037373818432,
+              "world_id": "1c8dc8b9ec975794",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 6,
+              "seed": 1656853678578915313,
+              "world_id": "6f98424e07659e87",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 7,
+              "seed": 6510936352967361628,
+              "world_id": "eabb5b29facc0da2",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 46,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            }
+          ]
+        },
+        {
+          "decision": 3,
+          "requested_k": 8,
+          "returned": 8,
+          "distinct_world_ids": 8,
+          "all_legal": true,
+          "all_multiplicity_ok": true,
+          "archetypes": {
+            "dragapult": 8
+          },
+          "world_summaries": [
+            {
+              "index": 0,
+              "seed": 1226881700747461427,
+              "world_id": "d030cc93fcdab671",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 1,
+              "seed": 8337547747172716285,
+              "world_id": "68cfac1e85a3be6a",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 2,
+              "seed": 6933206289886155508,
+              "world_id": "ed447219efc22b23",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 3,
+              "seed": 2310546111967496143,
+              "world_id": "2b4afaab97b97869",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 4,
+              "seed": 3450077487960024713,
+              "world_id": "fc830eafa3d09b14",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 5,
+              "seed": 3654718943086097973,
+              "world_id": "d8c7f95b05c58f85",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 6,
+              "seed": 624357969523235840,
+              "world_id": "4ef1222146794fb6",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            },
+            {
+              "index": 7,
+              "seed": 8363048406884375542,
+              "world_id": "8002806a5cd84fb0",
+              "archetype": "dragapult",
+              "archetype_confidence": 1.0,
+              "legal": true,
+              "rejection": null,
+              "multiplicity_ok": true,
+              "sizes": {
+                "your_deck": 45,
+                "your_prize": 6,
+                "opponent_deck": 47,
+                "opponent_prize": 6,
+                "opponent_hand": 6,
+                "opponent_active": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "M02b",
+      "name": "world stream determinism",
+      "pass": true,
+      "pass_condition": "identical (base_seed, decision) reproduces identical world ids; a different base_seed produces different ones",
+      "refuted_by": "non-reproducible ids, or a base_seed that changes nothing",
+      "rows": [
+        {
+          "decision": 0,
+          "same_seed_identical": true,
+          "different_seed_differs": true,
+          "ids_seed911": [
+            "6b6364bdddbc38ca",
+            "e33f61654ef6f612",
+            "ff750b8f80a2d1c5",
+            "73ea6b30bf8e0b7d"
+          ],
+          "ids_seed912": [
+            "e40e71d0c5549712",
+            "c5e57bf704708d82",
+            "9e527b4a65eedebc",
+            "a7477ef4695d2bb4"
+          ]
+        },
+        {
+          "decision": 1,
+          "same_seed_identical": true,
+          "different_seed_differs": true,
+          "ids_seed911": [
+            "f2bd804f8e68e9ef",
+            "7d2c8a6b7cf69874",
+            "107a08cac8dab19b",
+            "1ef1d9ec7672cbd8"
+          ],
+          "ids_seed912": [
+            "48cdaae4af936631",
+            "f6840d1c68d77d78",
+            "52465ef1dea34044",
+            "4394102fd691b1b0"
+          ]
+        },
+        {
+          "decision": 2,
+          "same_seed_identical": true,
+          "different_seed_differs": true,
+          "ids_seed911": [
+            "bc12d39243e5951e",
+            "fb2f04e5ecd5ea96",
+            "600fe28d2b8f722a",
+            "39450e694bbd7396"
+          ],
+          "ids_seed912": [
+            "70e363b4e0967e50",
+            "281e6e001848e820",
+            "012b1ac19f2e0d8b",
+            "1b0c41eafd65be5c"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "M02c",
+      "name": "world seed stream independence",
+      "pass": true,
+      "pass_condition": "world seeds depend only on (base_seed, decision_index, i): the K=8 stream starts with the K=1 seed, is unaffected by consuming an unrelated generator, and yields 8 distinct seeds",
+      "refuted_by": "a K-dependent or draw-order-dependent first seed, which would make the K=1 arm stop reproducing the c021 control for reasons unrelated to the algorithm (probe M04)",
+      "k1_seed": [
+        5016810755446148649
+      ],
+      "k8_prefix": [
+        5016810755446148649
+      ],
+      "k8_distinct": true,
+      "unaffected_by_foreign_rng": true
+    },
+    {
+      "probe": "M03",
+      "name": "no leakage",
+      "pass": true,
+      "pass_condition": "worlds differ (so hidden state was sampled, not read); world summaries pass the leakage guard; the guard fires on a hidden zone both under its own name and under an innocent key; a WorldHandle repr does not print its zones; and NO c022 module outside c022_mcgs_worlds.py reads WorldHandle.zones",
+      "refuted_by": "identical worlds (the determinizer read the truth), a summary containing a hidden zone, a guard that never fires, or any module reaching into .zones instead of going through begin_args()",
+      "distinct_worlds": 4,
+      "requested": 4,
+      "summary_clean": true,
+      "summary_error": null,
+      "guard_fires_on_named_field": true,
+      "guard_message": "injected: hidden field 'opponent_hand' carries a list at ",
+      "guard_fires_on_disguised_field": true,
+      "short_hidden_list_under_opaque_key_caught": false,
+      "runtime_guard_known_limit": "a hidden list shorter than 20 entries, under a key containing none of hand/deck/prize/zone, is not caught by the runtime heuristic. The static check below is what actually holds the guarantee.",
+      "modules_reading_WorldHandle_zones": [],
+      "repr_clean": true
+    },
+    {
+      "probe": "M03b",
+      "name": "public root identity across worlds",
+      "pass": true,
+      "pass_condition": "every world's search_begin root presents exactly one distinct option signature, so action indices are comparable across worlds",
+      "refuted_by": "more than one signature, which would mean cross-world aggregation by ActionIndex is summing statistics for different actions",
+      "rows": [
+        {
+          "decision": 0,
+          "worlds": 6,
+          "distinct_option_signatures": 1,
+          "option_counts": [
+            2
+          ],
+          "errors": [],
+          "agent_side_signature": "6c11dff6e30937c5"
+        },
+        {
+          "decision": 1,
+          "worlds": 6,
+          "distinct_option_signatures": 1,
+          "option_counts": [
+            5
+          ],
+          "errors": [],
+          "agent_side_signature": "116f00535486ece9"
+        },
+        {
+          "decision": 2,
+          "worlds": 6,
+          "distinct_option_signatures": 1,
+          "option_counts": [
+            19
+          ],
+          "errors": [],
+          "agent_side_signature": "d16e3f6ac61fb694"
+        }
+      ]
+    }
+  ]
+}
