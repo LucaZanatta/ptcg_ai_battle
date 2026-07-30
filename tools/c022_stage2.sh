@@ -14,26 +14,46 @@ trap 'trap - TERM INT EXIT; kill -- -$$ 2>/dev/null; exit' TERM INT EXIT
 
 BY="contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl"
 
-echo "=== $(date +%H:%M:%S)  waiting for ctrl_BR3 to land"
-for i in $(seq 1 1200); do
+# Wait for ctrl_BR3, but fall back to ctrl_BR2 rather than probing a tag that does not exist.
+# B06/B07 (versions, stored recurrent starts) work against any run; B08/B09/B10 need a run with
+# the BOUNDED BLOCKING FIFO, and BR2 is the rung that INTRODUCES it -- so BR2 is a correct
+# fallback for every probe here rather than a degraded one.
+#
+# The original wait was a fixed 100 minutes and would have expired at ~23:15, after which the
+# probes would have run against a tag with no manifest and reported nothing useful. Under
+# four-way contention the upper rungs run at ~15% of clean throughput, so a fixed wait sized
+# from clean throughput is exactly the wrong shape.
+WAIT_UNTIL=${STAGE2_WAIT_UNTIL:-$(date -d "today 23:55" +%s)}
+echo "=== $(date +%H:%M:%S)  waiting for ctrl_BR3 (until $(date -d @"$WAIT_UNTIL" +%H:%M))"
+while [ "$(date +%s)" -lt "$WAIT_UNTIL" ]; do
   [ -f "$BY/stages/ctrl_BR3_manifest.json" ] && break
-  sleep 5
+  sleep 10
 done
-[ -f "$BY/stages/ctrl_BR3_manifest.json" ] \
-  && echo "=== $(date +%H:%M:%S)  ctrl_BR3 present" \
-  || echo "=== $(date +%H:%M:%S)  TIMED OUT; running what can be run"
+
+PROBE_TAG=ctrl_BR3
+if [ -f "$BY/stages/ctrl_BR3_manifest.json" ]; then
+  echo "=== $(date +%H:%M:%S)  ctrl_BR3 present"
+elif [ -f "$BY/stages/ctrl_BR2_manifest.json" ]; then
+  PROBE_TAG=ctrl_BR2
+  echo "=== $(date +%H:%M:%S)  ctrl_BR3 absent; probing ctrl_BR2 (also a bounded-FIFO rung)"
+else
+  PROBE_TAG=""
+  echo "=== $(date +%H:%M:%S)  neither upper rung present; queue probes report NO_DATA"
+fi
 
 # 1. B06/B07 (versions, stored recurrent starts) and B08/B09/B10 (queue, production/consumption)
-#    against the rung that has the published b2 and b3 behaviour.
-echo "=== $(date +%H:%M:%S)  probes against ctrl_BR3"
-python3 tools/c022_byterl_probes.py --tag ctrl_BR3 2>&1 \
-  | grep -viE '^\[kaggle_environments|INFO:'
+#    against a rung that has the published b2 behaviour.
+echo "=== $(date +%H:%M:%S)  probes against ${PROBE_TAG:-<none>}"
+if [ -n "$PROBE_TAG" ]; then
+  python3 tools/c022_byterl_probes.py --tag "$PROBE_TAG" 2>&1 \
+    | grep -viE '^\[kaggle_environments|INFO:'
+fi
 
 # 2. The architecture, action-trace and construction analyses CONTRACT §6 names. Run against a
 #    TRAINED checkpoint, because deck diversity from random weights measures the prior, not the
 #    policy -- and DECISION_RULES §3 makes diversity the PASS/PARTIAL line for the E2E arm.
 echo "=== $(date +%H:%M:%S)  ByteRL analyses"
-CK="$BY/checkpoints/ctrl_BR3_final.pt"
+CK="$BY/checkpoints/${PROBE_TAG:-ctrl_BR3}_final.pt"
 if [ -f "$CK" ]; then
   python3 tools/c022_byterl_analysis.py --checkpoint "$CK" 2>&1 \
     | grep -viE '^\[kaggle_environments|INFO:'
