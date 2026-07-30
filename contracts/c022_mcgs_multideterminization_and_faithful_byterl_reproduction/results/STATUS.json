@@ -60,9 +60,9 @@
         },
         {
           "requirement": "the calibration gain is attributable to K rather than to compute",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "paired_k1_c96 has not run; under fixed_per_world K=8 also spends 8x the simulations, so no part of the improvement is yet attributable to the ensemble rather than to compute",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "Brier decomposes as: simulations only (12 -> 96 in ONE world) -0.12027, worlds only (1 -> 8 at 96 simulations) -0.00146, total -0.12173. The ensemble contributes 1.2% of the improvement, against a measured replication difference of 0.0377. Log-loss moves the WRONG way for the ensemble at matched compute (0.2338). See FINDING_the_calibration_gain_is_compute.md.",
           "evidence": "results/mcgs/paired/paired_k1_c96_summary.json"
         }
       ],
@@ -107,16 +107,16 @@
         },
         {
           "requirement": "actor versions and stored recurrent starts",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "probe B07 has not run",
+          "met": true,
+          "verdict": "met",
+          "detail": "B07: None",
           "evidence": "results/probes/byterl_probes.json B06-B07"
         },
         {
           "requirement": "bounded blocking FIFO and measured production/consumption",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "probe B09 has not run",
+          "met": true,
+          "verdict": "met",
+          "detail": "B09: None",
           "evidence": "results/probes/byterl_probes.json B08-B10"
         },
         {

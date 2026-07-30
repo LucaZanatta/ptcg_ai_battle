@@ -192,9 +192,33 @@ def s_mcgs_hidden_info() -> Dict[str, Any]:
                           "the simulations, so no part of the improvement is yet attributable "
                           "to the ensemble rather than to compute")
         k8 = next((a for a in p["arms"] if a["k"] > 1), None)
-        d = k8["calibration"]["brier"] - c96["calibration"]["brier"]
-        return (d < 0), (f"K=8 Brier {k8['calibration']['brier']} vs compute-matched K=1 "
-                         f"{c96['calibration']['brier']} (delta {round(d, 5)})")
+        k1 = next((a for a in p["arms"] if a["k"] == 1 and a["tag"] != "paired_k1_c96"), None)
+        if not k8 or not k1:
+            return None, "the paired set is incomplete"
+        b_k1 = k1["calibration"]["brier"]
+        b_c96 = c96["calibration"]["brier"]
+        b_k8 = k8["calibration"]["brier"]
+        ensemble_only = b_k8 - b_c96          # worlds, at matched simulations
+        compute_only = b_c96 - b_k1           # simulations, at one world
+        total = b_k8 - b_k1
+        share = (ensemble_only / total) if total else 0.0
+
+        # A NOISE FLOOR, not a sign test. The first version of this predicate was `d < 0`, which
+        # returned True on a Brier difference of 0.00146 -- about 4% of the 0.0377 that separated
+        # two ACCIDENTALLY IDENTICAL arms in NOISE_FLOOR_ACCIDENTAL_REPLICATION.md. A threshold
+        # that fires on a difference smaller than the measured replication difference is not a
+        # threshold, and it reported the contract's central claim as met.
+        REPLICATION_DELTA_BRIER = 0.0377
+        met = (ensemble_only < -REPLICATION_DELTA_BRIER)
+
+        ll_ens = k8["calibration"]["log_loss"] - c96["calibration"]["log_loss"]
+        return met, (
+            f"Brier decomposes as: simulations only (12 -> 96 in ONE world) {round(compute_only, 5)}, "
+            f"worlds only (1 -> 8 at 96 simulations) {round(ensemble_only, 5)}, total "
+            f"{round(total, 5)}. The ensemble contributes {share:.1%} of the improvement, against "
+            f"a measured replication difference of {REPLICATION_DELTA_BRIER}. Log-loss moves the "
+            f"WRONG way for the ensemble at matched compute ({round(ll_ens, 4)}). "
+            f"See FINDING_the_calibration_gain_is_compute.md.")
 
     reqs = [
         Req("repeated legal hidden worlds are demonstrated", repeated_worlds,

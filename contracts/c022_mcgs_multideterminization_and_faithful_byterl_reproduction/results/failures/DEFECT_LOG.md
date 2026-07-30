@@ -704,3 +704,45 @@ correct and the summary statistic attributed them to the wrong thing. It was cau
 a number that was too good — 7,800 full-game rollouts per second on one core is not physically
 plausible — rather than by any check. No validator asserts that a mean is representative, and it
 is not obvious one could.
+
+## D24 — the status predicate for the contract's central claim was a sign test
+
+**Found** 2026-07-30 23:30, minutes after the compute-matched control landed.
+
+`paired_k1_c96` returned a Brier of 0.17370 against `paired_k8`'s 0.17224. The status tool
+reported `MCGS_HIDDEN_INFO=PASS`, because the predicate was:
+
+```python
+d = k8_brier - c96_brier
+return (d < 0), ...
+```
+
+A difference of **0.00146**, in the right direction, satisfied a requirement that reads *"the
+calibration gain is attributable to K rather than to compute"*.
+
+`NOISE_FLOOR_ACCIDENTAL_REPLICATION.md` measured two accidentally identical arms differing by
+**0.0377** in Brier. The predicate fired on 4% of that. It was not a threshold; it was a sign
+test wearing one, and it certified the contract's central claim on noise.
+
+**Fix.** The requirement now decomposes the improvement and demands the ensemble's own step clear
+the measured replication difference:
+
+```text
+simulations only, 12 -> 96 in ONE world     -0.12027
+worlds only, 1 -> 8 at 96 simulations       -0.00146      <- 1.2% of the total
+total                                       -0.12173
+```
+
+and reports that log-loss moves the **wrong way** for the ensemble at matched compute (+0.234).
+`MCGS_HIDDEN_INFO` is `PARTIAL`, with the failing requirement named.
+
+**Why this one matters more than the others.** D13, D17, D19, D20 and D23 were checks that
+verified nothing. This was a check that verified nothing **and would have converted the
+contract's headline into a PASS**. Every earlier instance cost rework; this one would have cost
+the conclusion.
+
+**What caught it.** Not the check. Reading the three arms' numbers side by side and noticing that
+0.17370 and 0.17224 are the same number to three significant figures, while the tool called the
+difference a pass. The lesson generalises poorly into a rule — but it does generalise into a
+habit: after a control lands, read the raw comparison before reading what the tooling says about
+it.

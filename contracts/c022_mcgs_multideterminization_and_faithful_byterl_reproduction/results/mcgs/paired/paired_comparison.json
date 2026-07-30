@@ -391,6 +391,202 @@
         "degrees_of_freedom": 3,
         "t_note": "a position in a 4-arm replication set, not a hypothesis test. With 3 degrees of freedom nothing at |t| < 3.18 reaches p < 0.05."
       }
+    },
+    {
+      "tag": "paired_k1_c96",
+      "k": 1,
+      "protocol": "fixed_total",
+      "sims_per_decision": 96.0,
+      "total_simulations": 698304,
+      "games": 200,
+      "completed": 195,
+      "abandoned": 5,
+      "excluded_fraction": 0.025,
+      "field_score": 0.1231,
+      "wilson95": [
+        0.0841,
+        0.1766
+      ],
+      "per_opponent": {
+        "dragapult": {
+          "games": 50,
+          "rate": 0.04
+        },
+        "iono": {
+          "games": 50,
+          "rate": 0.06
+        },
+        "mega_abomasnow": {
+          "games": 50,
+          "rate": 0.02
+        },
+        "mega_lucario": {
+          "games": 45,
+          "rate": 0.4
+        }
+      },
+      "wall_clock_s": 4702.5,
+      "budget_delivered": true,
+      "signature_mismatches": 0,
+      "match_clock_exhausted_decisions": 0,
+      "decision_budget_exhausted_decisions": 181,
+      "opponent_flag_conflicts": 0,
+      "mixed_terminal_scale_decisions": 0,
+      "calibration": {
+        "n": 7274,
+        "mean_predicted": 0.3666,
+        "observed_base_rate": 0.1445,
+        "overconfidence_pp": 22.2,
+        "brier": 0.1737,
+        "brier_constant_baseline": 0.12361,
+        "brier_skill_vs_constant": -0.4052,
+        "log_loss": 0.5991,
+        "log_loss_constant_baseline": 0.41303,
+        "expected_calibration_error": 0.2221,
+        "reliability": [
+          {
+            "bin": "[0.0,0.1)",
+            "n": 1500,
+            "mean_predicted": 0.0478,
+            "observed": 0.0367,
+            "gap_pp": 1.1,
+            "observed_wilson95": [
+              0.0283,
+              0.0474
+            ]
+          },
+          {
+            "bin": "[0.1,0.2)",
+            "n": 1278,
+            "mean_predicted": 0.146,
+            "observed": 0.0509,
+            "gap_pp": 9.5,
+            "observed_wilson95": [
+              0.0401,
+              0.0643
+            ]
+          },
+          {
+            "bin": "[0.2,0.3)",
+            "n": 930,
+            "mean_predicted": 0.245,
+            "observed": 0.057,
+            "gap_pp": 18.8,
+            "observed_wilson95": [
+              0.0438,
+              0.0738
+            ]
+          },
+          {
+            "bin": "[0.3,0.4)",
+            "n": 719,
+            "mean_predicted": 0.3471,
+            "observed": 0.0848,
+            "gap_pp": 26.2,
+            "observed_wilson95": [
+              0.0666,
+              0.1075
+            ]
+          },
+          {
+            "bin": "[0.4,0.5)",
+            "n": 540,
+            "mean_predicted": 0.4456,
+            "observed": 0.1241,
+            "gap_pp": 32.2,
+            "observed_wilson95": [
+              0.0989,
+              0.1546
+            ]
+          },
+          {
+            "bin": "[0.5,0.6)",
+            "n": 553,
+            "mean_predicted": 0.5457,
+            "observed": 0.1664,
+            "gap_pp": 37.9,
+            "observed_wilson95": [
+              0.1376,
+              0.1997
+            ]
+          },
+          {
+            "bin": "[0.6,0.7)",
+            "n": 519,
+            "mean_predicted": 0.648,
+            "observed": 0.2312,
+            "gap_pp": 41.7,
+            "observed_wilson95": [
+              0.197,
+              0.2694
+            ]
+          },
+          {
+            "bin": "[0.7,0.8)",
+            "n": 432,
+            "mean_predicted": 0.7481,
+            "observed": 0.3009,
+            "gap_pp": 44.7,
+            "observed_wilson95": [
+              0.2596,
+              0.3458
+            ]
+          },
+          {
+            "bin": "[0.8,0.9)",
+            "n": 383,
+            "mean_predicted": 0.8459,
+            "observed": 0.3864,
+            "gap_pp": 45.9,
+            "observed_wilson95": [
+              0.339,
+              0.4361
+            ]
+          },
+          {
+            "bin": "[0.9,1.0)",
+            "n": 420,
+            "mean_predicted": 0.9647,
+            "observed": 0.619,
+            "gap_pp": 34.6,
+            "observed_wilson95": [
+              0.5717,
+              0.6642
+            ]
+          }
+        ]
+      },
+      "disagreement": {
+        "decisions": 7274,
+        "decisions_with_k_gt_1": 0,
+        "mean_modal_agreement": 1.0,
+        "unanimous_fraction": 1.0,
+        "mean_distinct_best_actions": 1.0,
+        "max_distinct_best_actions": 1,
+        "mean_selected_value_sd": null,
+        "n_with_sd": 0
+      },
+      "starvation": {
+        "n_world_records": 390,
+        "sampled_from_traces_per_game": 2,
+        "is_a_sample_not_a_census": true,
+        "mean_simulations_per_world": 96.0,
+        "min_simulations_per_world": 96,
+        "mean_expanded_actions_per_world": 4.17,
+        "mean_root_edges_per_world": 4.17,
+        "fraction_of_worlds_expanding_le_1_action": 0.0
+      },
+      "vs_floor": {
+        "available": true,
+        "delta_vs_floor_mean_pp": 0.79,
+        "inside_floor_spread": true,
+        "exceeds_every_replication": false,
+        "n_replications_exceeded": 2,
+        "n_replications": 4,
+        "t_position": 0.327,
+        "degrees_of_freedom": 3,
+        "t_note": "a position in a 4-arm replication set, not a hypothesis test. With 3 degrees of freedom nothing at |t| < 3.18 reaches p < 0.05."
+      }
     }
   ],
   "noise_floor": {
@@ -436,9 +632,9 @@
   "validity": {
     "valid": true,
     "reasons": [],
-    "exclusion_spread_pp": 0.5
+    "exclusion_spread_pp": 2.5
   },
-  "field_score_reading": "`paired_k8` scores 0.165 against `paired_k1`'s 0.1156, a difference of 4.94 pp. The two Wilson intervals [0.0783, 0.1675] and [0.12, 0.2227] OVERLAP, and the K=1 replication set spans 5.0 pp on its own. **No improvement in field score is claimed.** What the arms do establish is the condition `MCGS_HIDDEN_INFO` actually needs: K>1 does not regress external performance -- the K=8 point estimate is above every one of the 4 K=1 replications, not below them.\n\nThe compute-matched control `paired_k1_c96` has not run. Until it does, this pair confounds K with an 8x simulation budget and no part of it is attributable to the ensemble.",
+  "field_score_reading": "`paired_k8` scores 0.165 against `paired_k1`'s 0.1156, a difference of 4.94 pp. The two Wilson intervals [0.0783, 0.1675] and [0.12, 0.2227] OVERLAP, and the K=1 replication set spans 5.0 pp on its own. **No improvement in field score is claimed.** What the arms do establish is the condition `MCGS_HIDDEN_INFO` actually needs: K>1 does not regress external performance -- the K=8 point estimate is above every one of the 4 K=1 replications, not below them.\n\nAgainst the compute-matched control `paired_k1_c96` (0.1231), the K=8 difference is 4.19 pp.",
   "calibration_reading": "K=8 reduces Brier from 0.29397 to 0.17224 (\u0394 -0.12173), log-loss from 3.61279 to 0.83287 (\u0394 -2.7799), expected calibration error from 0.3449 to 0.2045, and overconfidence from 32.3 pp to 20.5 pp.\n\n**M08's registered condition is met.** It asked for a reduction in the gap between predicted win probability and realised outcome, measured as Brier and log-loss relative to K=1. The Brier improvement is 3.2x the 0.0377 \u0394Brier between the two accidentally-replicated 32-game arms, and the log-loss improvement is 11x the 0.244 seen there. It also replicates the shortlisted effect out of sample: the 32-game `fixed_per_world` K=8 arm showed \u0394Brier \u22120.105 and \u0394log-loss \u22122.45, and these 200-game arms show -0.122 and -2.78.\n\n**And both arms remain worse than a constant predictor at the base rate.** Brier skill is -1.241 at K=1 and -0.1779 at K=8: negative in both cases. The ensemble makes the search's stated belief far less badly calibrated without making it informative. Saying only that Brier improved would be true and misleading, so both are reported here rather than in a footnote. M08's threshold is NOT retightened to require positive skill -- moving a preregistered target after seeing the number is the error `PREREGISTERED_AGGREGATION.json` forbids, and it forbids it in both directions.",
   "threats": [
     {
@@ -447,7 +643,7 @@
     },
     {
       "name": "K is confounded with compute under fixed_per_world",
-      "text": "At 12 simulations per world, K=8 spends 96 simulations per decision and K=1 spends 12. An improvement could be the ensemble or could be 8x the search. The `paired_k1_c96` arm \u2014 K=1 at 96 simulations per decision \u2014 is the control that separates them, and because `fixed_per_world` 12/world at K=8 is arithmetically identical to `fixed_total` 96 at K=8, adding it makes these arms the compute-controlled `fixed_total` comparison at 200 games, which is the protocol the 32-game sweep could not resolve. **It has not run yet, and until it does the attribution is open.**"
+      "text": "At 12 simulations per world, K=8 spends 96 simulations per decision and K=1 spends 12. An improvement could be the ensemble or could be 8x the search. The `paired_k1_c96` arm \u2014 K=1 at 96 simulations per decision \u2014 is the control that separates them, and because `fixed_per_world` 12/world at K=8 is arithmetically identical to `fixed_total` 96 at K=8, adding it makes these arms the compute-controlled `fixed_total` comparison at 200 games, which is the protocol the 32-game sweep could not resolve."
     },
     {
       "name": "The ensemble is not the source's own ensemble executing",

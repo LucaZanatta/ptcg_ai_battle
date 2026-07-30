@@ -44,13 +44,13 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | aggregation / re-determinization implemented and traced | **met** | `results/mcgs/PREREGISTERED_AGGREGATION.json, paired/*_traces.jsonl` |
 | c021 overconfidence is materially reduced | **met** | `results/mcgs/paired/PAIRED_COMPARISON.md` |
 | K>1 does not regress external field performance beyond noise | **met** | `results/mcgs/paired/, results/transfer/noise_floor/` |
-| the calibration gain is attributable to K rather than to compute | **NOT_RUN** | `results/mcgs/paired/paired_k1_c96_summary.json` |
+| the calibration gain is attributable to K rather than to compute | **NOT met** | `results/mcgs/paired/paired_k1_c96_summary.json` |
 
 - **repeated legal hidden worlds are demonstrated** — 6/6 world probes pass: M01b API hidden-information constraint, M02 repeated world generation, M02b world stream determinism, M02c world seed stream independence, M03 no leakage, M03b public root identity across worlds
 - **aggregation / re-determinization implemented and traced** — rule `source_sum` ported from AggregateDeterminizations; 7680 decisions traced with per-world statistics, modal agreement 0.6078
 - **c021 overconfidence is materially reduced** — overconfidence 32.3 -> 20.5 pp, Brier 0.29397 -> 0.17224; c021 predicted ~96% at the root, this arm predicts 0.3824
 - **K>1 does not regress external field performance beyond noise** — K=8 field 0.165 vs a K=1 replication mean of 0.1152 (spread 5.0 pp over 4 arms); Wilson [0.12, 0.2227] vs [0.0783, 0.1675]
-- **the calibration gain is attributable to K rather than to compute** — paired_k1_c96 has not run; under fixed_per_world K=8 also spends 8x the simulations, so no part of the improvement is yet attributable to the ensemble rather than to compute
+- **the calibration gain is attributable to K rather than to compute** — Brier decomposes as: simulations only (12 -> 96 in ONE world) -0.12027, worlds only (1 -> 8 at 96 simulations) -0.00146, total -0.12173. The ensemble contributes 1.2% of the improvement, against a measured replication difference of 0.0377. Log-loss moves the WRONG way for the ensemble at matched compute (0.2338). See FINDING_the_calibration_gain_is_compute.md.
 
 ## `MCGS_COMPETITIVE` = PARTIAL
 
@@ -72,8 +72,8 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 |---|---|---|
 | LSTM-256 recurrence | **met** | `results/probes/byterl_probes.json B01` |
 | exact complete-action autoregression | **met** | `results/probes/byterl_probes.json B03-B05` |
-| actor versions and stored recurrent starts | **NOT_RUN** | `results/probes/byterl_probes.json B06-B07` |
-| bounded blocking FIFO and measured production/consumption | **NOT_RUN** | `results/probes/byterl_probes.json B08-B10` |
+| actor versions and stored recurrent starts | **met** | `results/probes/byterl_probes.json B06-B07` |
+| bounded blocking FIFO and measured production/consumption | **met** | `results/probes/byterl_probes.json B08-B10` |
 | exact numerical V-trace / UPGO / b3 fixtures | **met** | `results/byterl/numerical_fixtures/fixtures.json` |
 | published stage-delta tests | **met** | `tests/test_c022_stage_ladder.py, results/byterl/component_analysis/` |
 | recurrent replay verified at high coverage | **NOT_RUN** | `results/byterl/stages/fid_*_manifest.json` |
@@ -83,8 +83,8 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 
 - **LSTM-256 recurrence** — B01: None
 - **exact complete-action autoregression** — B04: None
-- **actor versions and stored recurrent starts** — probe B07 has not run
-- **bounded blocking FIFO and measured production/consumption** — probe B09 has not run
+- **actor versions and stored recurrent starts** — B07: None
+- **bounded blocking FIFO and measured production/consumption** — B09: None
 - **exact numerical V-trace / UPGO / b3 fixtures** — 34/34 comparisons agree at 1e-05 against references transcribed independently of the implementation and of the test suite's own copies
 - **published stage-delta tests** — 1 rungs, one codebase; tests/test_c022_stage_ladder.py rejects extra changes
 - **recurrent replay verified at high coverage** — the dedicated high-coverage B06 runs have not run (D20)
