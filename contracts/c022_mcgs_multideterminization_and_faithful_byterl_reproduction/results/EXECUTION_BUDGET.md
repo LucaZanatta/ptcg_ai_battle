@@ -154,6 +154,34 @@ Recorded 2026-07-30 at 14:50, revised 16:45, 20:55.
 
 **Nothing has been cut.** The 00:00 trigger has not fired.
 
+### Projection recorded at 23:01, before the trigger
+
+Measured rates under the four-way concurrent block, not estimates:
+
+| arm | decisions at 23:01 | rate | projected at the 23:50 stop |
+|---|---:|---:|---|
+| `br3_fixed_deck` | 98,155 | 29.6/s | 184,369 = **5.1%** of 3,607,599 |
+| `br3_end_to_end` | 115,211 | 34.5/s | 215,437 = **6.0%** of 3,607,599 |
+
+Both arms will therefore be `COMPUTE_LIMITED`, which `DECISION_RULES §3` names as the EXPECTED
+outcome when fidelity passes and paper scale is not approached. The 23:50 stop is the recorded
+cut procedure executing — stop on a checkpoint, report `produced_decisions` as a fraction, log
+`schedule` as the reason — and is taken ten minutes before midnight for the mechanical reason
+that the arms need that time to write manifests and run their evaluations. It is cuts 1 and 2
+of the fixed order, in the fixed order, for the reason the order anticipated.
+
+**What was NOT traded away to buy those percentages.** Reallocating the compute held by
+`paired_k1_c96`, the upper ladder rungs, the fidelity runs and the panel would have moved the
+decisive arms from ~5% to perhaps ~8% of the matched budget, which converts no status. Those
+four items each convert a `PARTIAL` or `NOT_RUN` status to a decided one. The allocation follows
+from that, not from the clock.
+
+Also worth recording, because it is the b2 property under exactly the conditions that would
+break an unbounded queue: throughout the four-way contention both decisive arms held
+`queue_occupancy` at the 48-unroll cap, `policy_lag` under 8, and a production/consumption ratio
+of **1.02** — at roughly 20% of their clean throughput. D18 showed the pre-b2 ratio moving from
+41.9 to 12.1 with load; the b2 ratio does not move.
+
 ### Schedule costs absorbed, and where they came from
 
 Every one is a defect the pre-committed bounds caught, not a planning miss:
