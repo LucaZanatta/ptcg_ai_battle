@@ -31,14 +31,25 @@ trap 'trap - TERM INT EXIT; kill -- -$$ 2>/dev/null; exit' TERM INT EXIT
 GAMES=${GAMES:-32}
 NPROC=${NPROC:-12}
 SEED=${SEED:-90210}
-FT_SIMS=${FT_SIMS:-128}      # fixed_total: TOTAL simulations per decision, constant across K
-FPW_SIMS=${FPW_SIMS:-16}     # fixed_per_world: simulations PER WORLD, constant across K
-DECISION_BUDGET=${DECISION_BUDGET:-120}
+FT_SIMS=${FT_SIMS:-96}       # fixed_total: TOTAL simulations per decision, constant across K
+FPW_SIMS=${FPW_SIMS:-12}     # fixed_per_world: simulations PER WORLD, constant across K
+# An arm's WALL TIME is set by its LONGEST game, not its average: once games outnumber workers,
+# the arm cannot finish until its slowest game does. ft_k1 at a 3760 s guard took 3912 s while
+# its games averaged 33 searched decisions -- three games ran to the guard and 29 waited on them.
+#
+# So the guard sets arm duration, and lowering the guard raises abandonment. The DECISION BUDGET
+# lowers both, and it is the only one of the two applied identically across K, so shortening
+# arms this way cannot reintroduce the D08/D14 confound.
+DECISION_BUDGET=${DECISION_BUDGET:-50}
 # Measured UNDER LOAD (results/hardware/contention_tests.json): 71 ms per simulation per worker
 # at nproc 14 alongside a 6-actor ByteRL campaign, against 52 ms unloaded. The per-game wall
 # guard is derived from this, because deriving it from the unloaded figure is what doubled
 # abandonment -- and abandoned games leave the field score, so the surviving population changes.
-SEC_PER_SIM=${SEC_PER_SIM:-0.1224}
+# Derived from the games that actually ran to the guard: 120 decisions x 128 simulations in
+# 3760 s. That is ~2x the figure taken from whole-arm wall clock, which is inflated by the
+# straggler tail -- and taking it from whole-arm wall clock was the error in the previous
+# calibration.
+SEC_PER_SIM=${SEC_PER_SIM:-0.245}
 K_OVERHEAD=${K_OVERHEAD:-0.34}
 R="contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/mcgs"
 

@@ -406,11 +406,11 @@ def main(argv=None):
     eff_sec_per_sim = a.seconds_per_simulation * (1.0 + a.k_overhead * (a.k - 1))
     if a.game_timeout <= 0:
         a.game_timeout = max(
-            300.0, a.decision_budget * total_sims * eff_sec_per_sim * 2.0)
+            300.0, a.decision_budget * total_sims * eff_sec_per_sim * 1.6)
     a.derived_game_timeout = True
     print(f"[arm {a.tag}] K={a.k} protocol={a.protocol} total_sims/decision={total_sims} "
           f"eff_ms/sim={eff_sec_per_sim*1000:.0f} -> game_timeout={a.game_timeout:.0f}s "
-          f"(decision budget {a.decision_budget}, 2.0x margin)", flush=True)
+          f"(decision budget {a.decision_budget}, 1.6x margin)", flush=True)
     s = run_arm(a)
     print(json.dumps({k: s[k] for k in
                       ("tag", "games", "completed", "abandoned", "field_score", "wilson95",
