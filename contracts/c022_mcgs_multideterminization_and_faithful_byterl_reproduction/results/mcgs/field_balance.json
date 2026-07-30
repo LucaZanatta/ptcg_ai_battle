@@ -977,6 +977,67 @@
       }
     },
     {
+      "tag": "kaggle_deploy/deploy_k8",
+      "games": 40,
+      "scored": 33,
+      "excluded": 7,
+      "field_score_pooled": 0.1818,
+      "field_score_opponent_balanced": 0.2333,
+      "difference_pp": 5.15,
+      "exclusion": {
+        "total": 7,
+        "worst_opponent_excluded_fraction": 0.5,
+        "share_of_exclusions_on_one_opponent": 0.7143,
+        "most_excluded_opponent": "mega_lucario"
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 10,
+          "scored": 10,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.2775
+          ]
+        },
+        "iono": {
+          "played": 10,
+          "scored": 9,
+          "excluded": 1,
+          "excluded_fraction": 0.1,
+          "rate": 0.3333,
+          "wilson95": [
+            0.1206,
+            0.6458
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 10,
+          "scored": 9,
+          "excluded": 1,
+          "excluded_fraction": 0.1,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.2992
+          ]
+        },
+        "mega_lucario": {
+          "played": 10,
+          "scored": 5,
+          "excluded": 5,
+          "excluded_fraction": 0.5,
+          "rate": 0.6,
+          "wilson95": [
+            0.2307,
+            0.8824
+          ]
+        }
+      }
+    },
+    {
       "tag": "noise_floor/noise_k1_s40031",
       "games": 200,
       "scored": 200,

@@ -20,6 +20,7 @@ The pooled rate `wins / scored` assumes exclusions are independent of the oppone
 | `fixed_total_simulations/ft_k8` | 32 | 32 | 0 | 0.0938 | 0.0938 | 0.0 pp | 0.0 | — |
 | `k1_control/m04_k1_reuse` | 60 | 52 | 8 | 0.1538 | 0.1641 | 1.03 pp | 0.2667 | 0.5 |
 | `kaggle_deploy/deploy_k1` | 40 | 35 | 5 | 0.0857 | 0.125 | 3.93 pp | 0.5 | 1.0 |
+| `kaggle_deploy/deploy_k8` | 40 | 33 | 7 | 0.1818 | 0.2333 | 5.15 pp | 0.5 | 0.7143 |
 | `noise_floor/noise_k1_s40031` | 200 | 200 | 0 | 0.135 | 0.135 | 0.0 pp | 0.0 | — |
 | `noise_floor/noise_k1_s71877` | 200 | 200 | 0 | 0.085 | 0.085 | -0.0 pp | 0.0 | — |
 | `noise_floor/noise_k1_s90210` | 200 | 200 | 0 | 0.125 | 0.125 | 0.0 pp | 0.0 | — |
@@ -57,4 +58,17 @@ Pooled **0.1538**, opponent-balanced **0.1641** (1.03 pp). The balanced figure i
 | mega_lucario | 10 | 5 | 5 | 0.4 |
 
 Pooled **0.0857**, opponent-balanced **0.125** (3.93 pp). The balanced figure is the one to read.
+
+### `kaggle_deploy/deploy_k8`
+
+7 of 40 games excluded, 71% of them against `mega_lucario`, which lost 50% of its games.
+
+| opponent | played | scored | excluded | rate |
+|---|---:|---:|---:|---:|
+| dragapult | 10 | 10 | 0 | 0.0 |
+| iono | 10 | 9 | 1 | 0.3333 |
+| mega_abomasnow | 10 | 9 | 1 | 0.0 |
+| mega_lucario | 10 | 5 | 5 | 0.6 |
+
+Pooled **0.1818**, opponent-balanced **0.2333** (5.15 pp). The balanced figure is the one to read.
 

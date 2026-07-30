@@ -1,0 +1,112 @@
+{
+  "tag": "deploy_k8",
+  "branch": "MCGS_2019_PTCG_MULTI_DET_KAGGLE_DEPLOY",
+  "config": {
+    "branch": "MCGS_2019_PTCG_MULTI_DET_KAGGLE_DEPLOY",
+    "k_worlds": 8,
+    "budget_protocol": "source_time",
+    "simulations_per_decision": 0,
+    "aggregation_rule": "source_sum",
+    "graph_reuse": false,
+    "match_clock_seconds": 90.0,
+    "decision_seconds_cap": 0.0,
+    "decision_wall_ceiling_seconds": 10.0,
+    "decision_budget": 260,
+    "first_move_seconds": 0.9,
+    "continuing_move_seconds": 0.7
+  },
+  "seed": 90210,
+  "nproc": 6,
+  "games": 40,
+  "completed": 33,
+  "abandoned": 7,
+  "errored": 0,
+  "unscored": 0,
+  "unscored_status_histogram": {},
+  "unscored_mean_seconds": null,
+  "games_accounted": 40,
+  "duplicate_records_collapsed": 0,
+  "all_games_accounted": true,
+  "effective_n_note": "field_score is computed over `completed` only. abandoned, errored and unscored games are excluded, so `completed` is the effective sample size and the Wilson interval is computed on it.",
+  "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field score rather than scored as losses",
+  "field_score": 0.1818,
+  "wilson95": [
+    0.0861,
+    0.3439
+  ],
+  "field_score_bounds_if_unscored_counted": [
+    0.15,
+    0.325
+  ],
+  "excluded_fraction": 0.175,
+  "per_opponent": {
+    "dragapult": {
+      "games": 10,
+      "rate": 0.0
+    },
+    "iono": {
+      "games": 9,
+      "rate": 0.3333
+    },
+    "mega_abomasnow": {
+      "games": 9,
+      "rate": 0.0
+    },
+    "mega_lucario": {
+      "games": 5,
+      "rate": 0.6
+    }
+  },
+  "wall_clock_s": 1849.5,
+  "searched_decisions": 1396,
+  "total_simulations": 1109543,
+  "sims_per_decision": 794.8,
+  "mean_k_used": 8.0,
+  "world_errors": 0,
+  "decision_deadline_stops": 0,
+  "match_clock_exhausted_decisions": 0,
+  "decision_budget": 260,
+  "derived_game_timeout_s": 900.0,
+  "game_timeout_basis": "search_cost_estimate",
+  "effective_seconds_per_simulation": 0.41371,
+  "decision_budget_exhausted_decisions": 0,
+  "decisions_total": 1646,
+  "signature_mismatches": 0,
+  "opponent_flag_conflicts": 169,
+  "multiselect_decisions": 6,
+  "obliged_decisions": 0,
+  "mixed_terminal_scale_decisions": 0,
+  "aggregate_empty_decisions": 0,
+  "term_root_win": 1000031,
+  "term_root_loss": 41147,
+  "term_undecided": 68365,
+  "finalised": 0,
+  "terminal_leaves": 0,
+  "lethal_bonus": 0,
+  "step_errors": 0,
+  "begin_errors": 0,
+  "transposition_merges": 10049,
+  "dummy_edges": 298,
+  "chance_nodes_created": 37,
+  "manual_coin_node_ucb_selected": 0,
+  "calibration_rows": 1396,
+  "budget_delivered": true,
+  "sims_per_decision_distribution": {
+    "n": 1396,
+    "min": 19,
+    "p25": 33,
+    "median": 42,
+    "p75": 69,
+    "p90": 122,
+    "max": 140848,
+    "mean": 794.8,
+    "share_of_all_simulations_in_top_3_decisions": 0.3676,
+    "why": "the mean is dominated by decisions whose search collapsed onto an already-decided line; the median is what the schedule buys"
+  },
+  "source_time_note": "simulations are a MEASUREMENT here, not a budget; `budget_delivered` asserts the wall schedule bound rather than a count or the safety ceiling",
+  "schedule_seconds": {
+    "first_move": 0.9,
+    "continuing": 0.7,
+    "decision_wall_ceiling": 10.0
+  }
+}
