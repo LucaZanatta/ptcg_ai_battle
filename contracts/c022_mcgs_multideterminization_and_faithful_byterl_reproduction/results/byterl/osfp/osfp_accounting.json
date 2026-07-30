@@ -1,0 +1,168 @@
+{
+  "probes": [
+    "B15",
+    "B16",
+    "B17"
+  ],
+  "constants": {
+    "OSFP_SELFPLAY_PROB": 0.6,
+    "OSFP_PROMOTION_THRESHOLD": 0.55,
+    "OSFP_MAX_PERIODS_WITHOUT_PROMOTION": 6
+  },
+  "history_bounded": true,
+  "history_size": 4,
+  "max_history": 4,
+  "periods": 6,
+  "promotions": [
+    {
+      "period": 0,
+      "label": "p0",
+      "sha256": "4be35a7569d417b5605f3c55cc68b22987c34d581e3cd5565ccc1225a38dbc16",
+      "history_size": 1
+    },
+    {
+      "period": 1,
+      "label": "p1",
+      "sha256": "d19a7454a02d1a9e86acb476b4d5de88864487c41138d2beb168079ff5e7bf92",
+      "history_size": 2
+    },
+    {
+      "period": 2,
+      "label": "p2",
+      "sha256": "e1b3823c4efe182015fc35d2b2ccd274f09225f8fd2c91b80809d8b1b9a205c7",
+      "history_size": 3
+    },
+    {
+      "period": 3,
+      "label": "p3",
+      "sha256": "37ca5bf6dd765f85d329d9e41876021f19f959cf29f5e4e76f385f4a6d1e3ef1",
+      "history_size": 4
+    },
+    {
+      "period": 4,
+      "label": "p4",
+      "sha256": "6511fb18987e858f5b49ce684201b783456fe1992f347887b2ecb6e4479e9bd8",
+      "history_size": 4
+    },
+    {
+      "period": 5,
+      "label": "p5",
+      "sha256": "f79a29c31babfb6ca8e68b4d25ac8568d8a455dd7b20b857fc7c3af00c67f543",
+      "history_size": 4
+    }
+  ],
+  "existing_entries_not_mutated_by_promotion": true,
+  "surviving_sha_snapshots": [
+    [
+      "4be35a7569d417b5605f3c55cc68b22987c34d581e3cd5565ccc1225a38dbc16"
+    ],
+    [
+      "4be35a7569d417b5605f3c55cc68b22987c34d581e3cd5565ccc1225a38dbc16",
+      "d19a7454a02d1a9e86acb476b4d5de88864487c41138d2beb168079ff5e7bf92"
+    ],
+    [
+      "4be35a7569d417b5605f3c55cc68b22987c34d581e3cd5565ccc1225a38dbc16",
+      "d19a7454a02d1a9e86acb476b4d5de88864487c41138d2beb168079ff5e7bf92",
+      "e1b3823c4efe182015fc35d2b2ccd274f09225f8fd2c91b80809d8b1b9a205c7"
+    ],
+    [
+      "4be35a7569d417b5605f3c55cc68b22987c34d581e3cd5565ccc1225a38dbc16",
+      "d19a7454a02d1a9e86acb476b4d5de88864487c41138d2beb168079ff5e7bf92",
+      "e1b3823c4efe182015fc35d2b2ccd274f09225f8fd2c91b80809d8b1b9a205c7",
+      "37ca5bf6dd765f85d329d9e41876021f19f959cf29f5e4e76f385f4a6d1e3ef1"
+    ],
+    [
+      "d19a7454a02d1a9e86acb476b4d5de88864487c41138d2beb168079ff5e7bf92",
+      "e1b3823c4efe182015fc35d2b2ccd274f09225f8fd2c91b80809d8b1b9a205c7",
+      "37ca5bf6dd765f85d329d9e41876021f19f959cf29f5e4e76f385f4a6d1e3ef1",
+      "6511fb18987e858f5b49ce684201b783456fe1992f347887b2ecb6e4479e9bd8"
+    ],
+    [
+      "e1b3823c4efe182015fc35d2b2ccd274f09225f8fd2c91b80809d8b1b9a205c7",
+      "37ca5bf6dd765f85d329d9e41876021f19f959cf29f5e4e76f385f4a6d1e3ef1",
+      "6511fb18987e858f5b49ce684201b783456fe1992f347887b2ecb6e4479e9bd8",
+      "f79a29c31babfb6ca8e68b4d25ac8568d8a455dd7b20b857fc7c3af00c67f543"
+    ]
+  ],
+  "trace": [
+    {
+      "event": "init",
+      "period": 0,
+      "history": 0,
+      "max_history": 4
+    },
+    {
+      "event": "record 0",
+      "period": 0,
+      "history": 0,
+      "max_history": 4
+    },
+    {
+      "event": "record 1",
+      "period": 0,
+      "history": 0,
+      "max_history": 4
+    },
+    {
+      "event": "record 2",
+      "period": 0,
+      "history": 0,
+      "max_history": 4
+    },
+    {
+      "event": "record 3",
+      "period": 0,
+      "history": 0,
+      "max_history": 4
+    },
+    {
+      "event": "record 4",
+      "period": 0,
+      "history": 0,
+      "max_history": 4
+    },
+    {
+      "event": "record 5",
+      "period": 0,
+      "history": 0,
+      "max_history": 4
+    },
+    {
+      "event": "promote 0",
+      "period": 1,
+      "history": 1,
+      "max_history": 4
+    },
+    {
+      "event": "promote 1",
+      "period": 2,
+      "history": 2,
+      "max_history": 4
+    },
+    {
+      "event": "promote 2",
+      "period": 3,
+      "history": 3,
+      "max_history": 4
+    },
+    {
+      "event": "promote 3",
+      "period": 4,
+      "history": 4,
+      "max_history": 4
+    },
+    {
+      "event": "promote 4",
+      "period": 5,
+      "history": 4,
+      "max_history": 4
+    },
+    {
+      "event": "promote 5",
+      "period": 6,
+      "history": 4,
+      "max_history": 4
+    }
+  ],
+  "note": "period-local accumulators and immutable history are asserted in tests/test_c022_byterl_objectives.py::test_b15..b17; this file records the observed accounting so the requirement has an artifact and not only a test."
+}

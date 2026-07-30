@@ -1,0 +1,285 @@
+{
+  "statuses": {
+    "SOURCE_FIDELITY": {
+      "status": "PASS",
+      "requirements": [
+        {
+          "requirement": "the official source is audited at anchored sites",
+          "met": true,
+          "verdict": "met",
+          "detail": "33 anchored source sites and 6 structural absence claims against archive f00a54f310a8f868...",
+          "evidence": "results/fidelity/mcgs_hidden_information_trace.jsonl"
+        },
+        {
+          "requirement": "frozen controls still hash to what was frozen",
+          "met": true,
+          "verdict": "met",
+          "detail": "37 frozen files re-hashed",
+          "evidence": "results/validation_report.json V13"
+        },
+        {
+          "requirement": "every deviation is declared with its adaptation class",
+          "met": true,
+          "verdict": "met",
+          "detail": "91 ledger rows; every deviation carries a class and a reason",
+          "evidence": "results/fidelity/ADAPTATION_LEDGER.md"
+        }
+      ],
+      "source": "FIDELITY_RULES \u00a71-\u00a73"
+    },
+    "MCGS_HIDDEN_INFO": {
+      "status": "PARTIAL",
+      "requirements": [
+        {
+          "requirement": "repeated legal hidden worlds are demonstrated",
+          "met": true,
+          "verdict": "met",
+          "detail": "6/6 world probes pass: M01b API hidden-information constraint, M02 repeated world generation, M02b world stream determinism, M02c world seed stream independence, M03 no leakage, M03b public root identity across worlds",
+          "evidence": "results/probes/world_probes.json"
+        },
+        {
+          "requirement": "aggregation / re-determinization implemented and traced",
+          "met": true,
+          "verdict": "met",
+          "detail": "rule `source_sum` ported from AggregateDeterminizations; 7680 decisions traced with per-world statistics, modal agreement 0.6078",
+          "evidence": "results/mcgs/PREREGISTERED_AGGREGATION.json, paired/*_traces.jsonl"
+        },
+        {
+          "requirement": "c021 overconfidence is materially reduced",
+          "met": true,
+          "verdict": "met",
+          "detail": "overconfidence 32.3 -> 20.5 pp, Brier 0.29397 -> 0.17224; c021 predicted ~96% at the root, this arm predicts 0.3824",
+          "evidence": "results/mcgs/paired/PAIRED_COMPARISON.md"
+        },
+        {
+          "requirement": "K>1 does not regress external field performance beyond noise",
+          "met": true,
+          "verdict": "met",
+          "detail": "K=8 field 0.165 vs a K=1 replication mean of 0.1152 (spread 5.0 pp over 4 arms); Wilson [0.12, 0.2227] vs [0.0783, 0.1675]",
+          "evidence": "results/mcgs/paired/, results/transfer/noise_floor/"
+        },
+        {
+          "requirement": "the calibration gain is attributable to K rather than to compute",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "paired_k1_c96 has not run; under fixed_per_world K=8 also spends 8x the simulations, so no part of the improvement is yet attributable to the ensemble rather than to compute",
+          "evidence": "results/mcgs/paired/paired_k1_c96_summary.json"
+        }
+      ],
+      "source": "DECISION_RULES \u00a72 MCGS_HIDDEN_INFO"
+    },
+    "MCGS_COMPETITIVE": {
+      "status": "PARTIAL",
+      "requirements": [
+        {
+          "requirement": "credibly beats the strongest frozen champion on the broad panel",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "results/mcgs/final_panel/panel.json absent -- the panel has not run",
+          "evidence": "results/mcgs/final_panel/panel.json"
+        },
+        {
+          "requirement": "the improvement exceeds measured run-to-run noise",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "delta 4.94 pp against a measured 5.0 pp replication spread; Wilson intervals OVERLAP. DECISION_RULES \u00a72: 'A small noisy improvement over c021 MCGS is not a competitive pass.'",
+          "evidence": "results/mcgs/paired/, NOISE_FLOOR_ACCIDENTAL_REPLICATION.md"
+        }
+      ],
+      "source": "DECISION_RULES \u00a72 MCGS_COMPETITIVE"
+    },
+    "BYTERL_REFERENCE_FIDELITY": {
+      "status": "PARTIAL",
+      "requirements": [
+        {
+          "requirement": "LSTM-256 recurrence",
+          "met": true,
+          "verdict": "met",
+          "detail": "B01: None",
+          "evidence": "results/probes/byterl_probes.json B01"
+        },
+        {
+          "requirement": "exact complete-action autoregression",
+          "met": true,
+          "verdict": "met",
+          "detail": "B04: None",
+          "evidence": "results/probes/byterl_probes.json B03-B05"
+        },
+        {
+          "requirement": "actor versions and stored recurrent starts",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "probe B07 has not run",
+          "evidence": "results/probes/byterl_probes.json B06-B07"
+        },
+        {
+          "requirement": "bounded blocking FIFO and measured production/consumption",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "probe B09 has not run",
+          "evidence": "results/probes/byterl_probes.json B08-B10"
+        },
+        {
+          "requirement": "exact numerical V-trace / UPGO / b3 fixtures",
+          "met": true,
+          "verdict": "met",
+          "detail": "34/34 comparisons agree at 1e-05 against references transcribed independently of the implementation and of the test suite's own copies",
+          "evidence": "results/byterl/numerical_fixtures/fixtures.json"
+        },
+        {
+          "requirement": "published stage-delta tests",
+          "met": true,
+          "verdict": "met",
+          "detail": "1 rungs, one codebase; tests/test_c022_stage_ladder.py rejects extra changes",
+          "evidence": "tests/test_c022_stage_ladder.py, results/byterl/component_analysis/"
+        },
+        {
+          "requirement": "recurrent replay verified at high coverage",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "the dedicated high-coverage B06 runs have not run (D20)",
+          "evidence": "results/byterl/stages/fid_*_manifest.json"
+        },
+        {
+          "requirement": "immutable OSFP history and correct period accounting",
+          "met": true,
+          "verdict": "met",
+          "detail": "history 4/4 after 6 periods, bounded=True, immutable=True; self-play 0.6, promotion threshold 0.55",
+          "evidence": "results/byterl/osfp/osfp_accounting.json"
+        },
+        {
+          "requirement": "end-to-end construction path implemented",
+          "met": true,
+          "verdict": "met",
+          "detail": "B18: None",
+          "evidence": "results/byterl/end_to_end/"
+        },
+        {
+          "requirement": "every reported number survives an injection-tested validator",
+          "met": true,
+          "verdict": "met",
+          "detail": "17/17 checks that ran pass, no_data=['V14', 'V17'], inert=[], undetected injections=[]",
+          "evidence": "results/validation_report.json"
+        }
+      ],
+      "source": "DECISION_RULES \u00a73 BYTERL_REFERENCE_FIDELITY"
+    },
+    "BYTERL_FIXED_DECK": {
+      "status": "NOT_RUN",
+      "requirements": [
+        {
+          "requirement": "statistically credible improvement over the random floor",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "br3_fixed_deck has not been evaluated",
+          "evidence": "results/byterl/external_evaluations/"
+        },
+        {
+          "requirement": "a reproducible upward external trajectory",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "no training curve recorded for the decisive fixed-deck arm",
+          "evidence": "results/byterl/stages/br3_fixed_deck_curve.json"
+        }
+      ],
+      "source": "DECISION_RULES \u00a73 BYTERL_FIXED_DECK"
+    },
+    "BYTERL_E2E": {
+      "status": "PARTIAL",
+      "requirements": [
+        {
+          "requirement": "legal, diverse deck construction",
+          "met": true,
+          "verdict": "met",
+          "detail": "None",
+          "evidence": "results/byterl/end_to_end/"
+        },
+        {
+          "requirement": "external improvement above random / fixed weak baselines",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "br3_end_to_end has not been evaluated",
+          "evidence": "results/byterl/external_evaluations/"
+        }
+      ],
+      "source": "DECISION_RULES \u00a73 BYTERL_E2E"
+    },
+    "BYTERL_SCALE": {
+      "status": "NOT_RUN",
+      "requirements": [
+        {
+          "requirement": "br3_fixed_deck reaches the matched budget",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "br3_fixed_deck has not run",
+          "evidence": "results/byterl/stages/br3_fixed_deck_manifest.json"
+        },
+        {
+          "requirement": "br3_end_to_end reaches the matched budget",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "br3_end_to_end has not run",
+          "evidence": "results/byterl/stages/br3_end_to_end_manifest.json"
+        }
+      ],
+      "source": "DECISION_RULES \u00a73 BYTERL_SCALE"
+    },
+    "TRANSFER": {
+      "status": "NOT_RUN",
+      "requirements": [
+        {
+          "requirement": "a measured paired run-to-run noise floor exists",
+          "met": true,
+          "verdict": "met",
+          "detail": "3 arms, spread 5.0 pp: [0.135, 0.085, 0.125]",
+          "evidence": "results/transfer/noise_floor/"
+        },
+        {
+          "requirement": "one isolated ByteRL component improves corrected MCGS beyond that noise",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "no transfer arm has run",
+          "evidence": "results/transfer/arms/"
+        }
+      ],
+      "source": "DECISION_RULES \u00a74 TRANSFER"
+    },
+    "PACKAGE": {
+      "status": "NOT_RUN",
+      "requirements": [
+        {
+          "requirement": "package validation passes",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "no package has been built or validated",
+          "evidence": "results/mcgs/packages/package_validation.json"
+        }
+      ],
+      "source": "DECISION_RULES \u00a75"
+    },
+    "SUBMISSION": {
+      "status": "NOT_RUN",
+      "requirements": [
+        {
+          "requirement": "exact candidate identity is frozen",
+          "met": null,
+          "verdict": "NOT_RUN",
+          "detail": "no submission decision has been recorded",
+          "evidence": "results/mcgs/submissions/"
+        },
+        {
+          "requirement": "a registered credible gate passes",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "MCGS_COMPETITIVE is PARTIAL; DECISION_RULES \u00a75 requires a credible gate to pass before submitting, and \u00a72 says a small noisy improvement is not one",
+          "evidence": "results/mcgs/final_panel/"
+        }
+      ],
+      "source": "DECISION_RULES \u00a75"
+    }
+  },
+  "overall": {
+    "status": "PARTIAL",
+    "reading": "1 of 10 statuses PASS; 5 have not run. The honest outcomes `DECISION_RULES \u00a76` lists are combinations, not a single verdict, and this table is meant to be read as one."
+  }
+}
