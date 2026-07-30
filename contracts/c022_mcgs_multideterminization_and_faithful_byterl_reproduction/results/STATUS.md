@@ -61,7 +61,7 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | credibly beats the strongest frozen champion on the broad panel | **NOT met** | `results/mcgs/final_panel/panel.json` |
 | the improvement exceeds measured run-to-run noise | **NOT met** | `results/mcgs/paired/, NOISE_FLOOR_ACCIDENTAL_REPLICATION.md` |
 
-- **credibly beats the strongest frozen champion on the broad panel** — {"bar": "BASELINE_OFFICIAL_MEGA_LUCARIO, re-run here on this panel", "bar_field_score": null, "bar_wilson95": [null, null], "best_candidate": "mcgs_k8", "candidate_field_score": null, "candidate_wilson95": [null, null], "delta_pp": null, "intervals_separate_in_candidate_favour": null, "credible_impr
+- **credibly beats the strongest frozen champion on the broad panel** — {"bar": "BASELINE_OFFICIAL_MEGA_LUCARIO, re-run here on this panel", "bar_field_score": 0.5833, "bar_wilson95": [0.4573, 0.6994], "best_candidate": "mcgs_k1", "candidate_field_score": 0.1333, "candidate_wilson95": [0.0691, 0.2417], "delta_pp": -45.0, "intervals_separate_in_candidate_favour": false, 
 - **the improvement exceeds measured run-to-run noise** — delta 4.94 pp against a measured 5.0 pp replication spread; Wilson intervals OVERLAP. DECISION_RULES §2: 'A small noisy improvement over c021 MCGS is not a competitive pass.'
 
 ## `BYTERL_REFERENCE_FIDELITY` = PASS

@@ -6,7 +6,7 @@
     "mega_abomasnow"
   ],
   "games_per_candidate": 60,
-  "elapsed_s": 2.4,
+  "elapsed_s": 524.6,
   "budget": {
     "protocol": "fixed_per_world",
     "simulations_per_world": 12,
@@ -18,64 +18,115 @@
     "mcgs_k8": {
       "candidate": "mcgs_k8",
       "games": 60,
-      "scored": 0,
+      "scored": 60,
       "errored": 0,
-      "unscored": 60,
-      "field_score": null,
+      "unscored": 0,
+      "field_score": 0.1167,
       "wilson95": [
-        null,
-        null
+        0.0577,
+        0.2218
       ],
-      "per_opponent": {},
-      "mean_seconds": 0.0,
+      "per_opponent": {
+        "dragapult": {
+          "games": 15,
+          "rate": 0.0
+        },
+        "mega_lucario": {
+          "games": 15,
+          "rate": 0.4667
+        },
+        "iono": {
+          "games": 15,
+          "rate": 0.0
+        },
+        "mega_abomasnow": {
+          "games": 15,
+          "rate": 0.0
+        }
+      },
+      "mean_seconds": 58.7,
       "note": "field_score is over SCORED games only; errored and unscored games are excluded rather than counted as losses"
     },
     "mcgs_k1": {
       "candidate": "mcgs_k1",
       "games": 60,
-      "scored": 0,
+      "scored": 60,
       "errored": 0,
-      "unscored": 60,
-      "field_score": null,
+      "unscored": 0,
+      "field_score": 0.1333,
       "wilson95": [
-        null,
-        null
+        0.0691,
+        0.2417
       ],
-      "per_opponent": {},
-      "mean_seconds": 0.0,
+      "per_opponent": {
+        "dragapult": {
+          "games": 15,
+          "rate": 0.0
+        },
+        "mega_lucario": {
+          "games": 15,
+          "rate": 0.5333
+        },
+        "iono": {
+          "games": 15,
+          "rate": 0.0
+        },
+        "mega_abomasnow": {
+          "games": 15,
+          "rate": 0.0
+        }
+      },
+      "mean_seconds": 6.7,
       "note": "field_score is over SCORED games only; errored and unscored games are excluded rather than counted as losses"
     },
     "baseline": {
       "candidate": "baseline",
       "games": 60,
-      "scored": 0,
+      "scored": 60,
       "errored": 0,
-      "unscored": 60,
-      "field_score": null,
+      "unscored": 0,
+      "field_score": 0.5833,
       "wilson95": [
-        null,
-        null
+        0.4573,
+        0.6994
       ],
-      "per_opponent": {},
-      "mean_seconds": 0.0,
+      "per_opponent": {
+        "dragapult": {
+          "games": 15,
+          "rate": 0.5333
+        },
+        "mega_lucario": {
+          "games": 15,
+          "rate": 0.4667
+        },
+        "iono": {
+          "games": 15,
+          "rate": 0.8667
+        },
+        "mega_abomasnow": {
+          "games": 15,
+          "rate": 0.4667
+        }
+      },
+      "mean_seconds": 0.4,
       "note": "field_score is over SCORED games only; errored and unscored games are excluded rather than counted as losses"
     }
   },
   "champion_comparison": {
     "bar": "BASELINE_OFFICIAL_MEGA_LUCARIO, re-run here on this panel",
-    "bar_field_score": null,
+    "bar_field_score": 0.5833,
     "bar_wilson95": [
-      null,
-      null
+      0.4573,
+      0.6994
     ],
-    "best_candidate": "mcgs_k8",
-    "candidate_field_score": null,
+    "best_candidate": "mcgs_k1",
+    "candidate_field_score": 0.1333,
     "candidate_wilson95": [
-      null,
-      null
+      0.0691,
+      0.2417
     ],
-    "delta_pp": null,
-    "intervals_separate_in_candidate_favour": null,
+    "delta_pp": -45.0,
+    "intervals_separate_in_candidate_favour": false,
     "credible_improvement": false,
     "note": "the c020 figure of 0.5837 is NOT used as the bar: it was measured on a different panel. The bar here is the same agent re-run over these opponents, seats and game count."
   }
