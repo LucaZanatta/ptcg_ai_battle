@@ -232,3 +232,52 @@ arm rather than only when it breaks.
 
 **Verified:** 12 games, 11 completed, 1 abandoned, **0 unscored**, `all_games_accounted: true`,
 `multiselect_decisions: 1`, `obliged_decisions: 1`.
+
+---
+
+## D14 — "equal total simulations" is not equal compute, and the guard assumed it was
+
+**Found by** the exclusion-spread bound I had pre-committed to two hours earlier being breached
+by the second arm of the sweep.
+
+`ft_k1` abandoned 2 of 40 (5.0%); `ft_k2` abandoned 6 of 40 (15.0%). A 10-point spread against
+an 8-point bound.
+
+The cause is a fact about the algorithm, not about the machine:
+
+```text
+ft_k1   192 simulations/decision   122.4 ms per simulation per worker
+ft_k2   192 simulations/decision   164.0 ms per simulation per worker
+```
+
+**At an identical simulation budget, K=2 costs 34% more.** Opening K sessions per decision — each
+with its own `search_begin`, world sample, root construction, transposition table and teardown —
+is a real per-decision cost that grows with K and is completely invisible to a simulation count.
+
+So `MANDATORY_IMPLEMENTATION A4`'s fixed-total protocol equalises SIMULATIONS but not COMPUTE.
+That is worth stating in its own right: the protocol isolates world diversity from search
+quantity exactly as intended, and it does not isolate it from wall-clock cost.
+
+**If it had shipped:** the per-game wall guard was derived from a K-independent cost, so it
+under-provisioned every high-K arm, cut more of their long games, and — because excluded games
+leave the field score — scored them on a shorter population. This is defect D08 returning through
+a third door. D08 was the wall clock cutting arms unequally by K; the contention finding was load
+doing it; this is the algorithm's own per-K overhead doing it.
+
+**Fix:** the guard is now `decision_budget × total_sims × sec_per_sim × (1 + 0.34·(K−1)) × 2.0`,
+with the 0.34 measured from the two arms above rather than assumed. Every arm records its
+`effective_seconds_per_simulation` and `derived_game_timeout_s`, so the correction is auditable
+rather than buried in a shell variable.
+
+**What I did with the two completed arms:** quarantined to
+`results/failures/superseded/ft_k_guard_not_k_aware/`. They are not cited as results. Discarding
+1.6 hours of finished compute for a bound I set myself is the whole point of setting it before
+the data existed — the alternative was to notice the spread, observe that it was "only" 10 points,
+and keep going.
+
+**Sweep parameters were also reduced** (40→32 games, 192→128 simulations for fixed-total,
+48→16 per world for fixed-per-world) so the K-aware guard does not push the high-K arms past
+feasible wall clock. The sweep is explicitly a SHORTLIST; its primary output — the M08 calibration
+comparison — is computed per DECISION, so 32 games still yields roughly 1,280 calibration rows per
+arm. Field-score confidence intervals at 32 games are wide and are reported as such;
+`TRAINING_AND_EVALUATION §5`'s 200-game paired arms remain the evidence for any field-score claim.

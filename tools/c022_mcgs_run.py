@@ -311,6 +311,9 @@ def run_arm(a) -> Dict[str, Any]:
         "match_clock_exhausted_decisions": int(
             agg_stats.get("match_clock_exhausted_decisions", 0)),
         "decision_budget": int(a.decision_budget),
+        "derived_game_timeout_s": round(float(a.game_timeout), 1),
+        "effective_seconds_per_simulation": round(
+            a.seconds_per_simulation * (1.0 + a.k_overhead * (a.k - 1)), 5),
         "decision_budget_exhausted_decisions": int(
             agg_stats.get("decision_budget_exhausted_decisions", 0)),
         "decisions_total": int(agg_stats.get("decisions", 0)),
@@ -366,10 +369,16 @@ def main(argv=None):
     ap.add_argument("--decision-budget", type=int, default=260,
                     help="how many searched decisions a game is allowed before it is cut. This, "
                          "not wall clock, is what must be equal across K.")
-    ap.add_argument("--seconds-per-simulation", type=float, default=0.019,
-                    help="measured cost of one MCGS simulation, used to convert the decision "
-                         "budget into a wall-clock guard. Over-estimating it is safe: the guard "
-                         "is a backstop, and the decision budget is the real cut.")
+    ap.add_argument("--seconds-per-simulation", type=float, default=0.1224,
+                    help="measured cost of one MCGS simulation at K=1, under load. Used with "
+                         "--k-overhead to convert the decision budget into a wall-clock guard. "
+                         "Over-estimating is safe: the guard is a backstop, and the decision "
+                         "budget is the real cut.")
+    ap.add_argument("--k-overhead", type=float, default=0.34,
+                    help="fractional extra cost per ADDITIONAL world, at equal total "
+                         "simulations. Measured 0.34: ft_k1 ran at 122.4 ms/simulation/worker "
+                         "and ft_k2 at 164.0, with an identical 192-simulation budget. Opening "
+                         "K sessions per decision is not free.")
     ap.add_argument("--arm-timeout", type=float, default=14400.0)
     ap.add_argument("--transfer-arm", default=None)
     ap.add_argument("--byterl-checkpoint", default=None)
@@ -385,13 +394,23 @@ def main(argv=None):
     # roughly the same decision number. `abandoned` is reported per arm regardless, and an arm
     # whose abandonment differs materially from its K=1 control has no valid causal claim.
     total_sims = a.sims if a.protocol == "fixed_total" else a.sims * a.k
+    # The guard must be K-AWARE. ft_k1 and ft_k2 ran the identical 192-simulation budget and
+    # cost 122.4 and 164.0 ms per simulation per worker -- opening K sessions per decision, each
+    # with its own world sample, root construction, transposition table and teardown, is a real
+    # per-decision cost that grows with K and is invisible to a simulation count.
+    #
+    # A guard derived from a K-independent cost therefore under-provisions high-K arms, cuts
+    # more of their long games, and -- because excluded games leave the field score -- scores
+    # them on a shorter population. That is exactly the confound the decision budget was
+    # introduced to remove (D08), returning through the guard.
+    eff_sec_per_sim = a.seconds_per_simulation * (1.0 + a.k_overhead * (a.k - 1))
     if a.game_timeout <= 0:
         a.game_timeout = max(
-            300.0, a.decision_budget * total_sims * a.seconds_per_simulation * 1.5)
+            300.0, a.decision_budget * total_sims * eff_sec_per_sim * 2.0)
     a.derived_game_timeout = True
     print(f"[arm {a.tag}] K={a.k} protocol={a.protocol} total_sims/decision={total_sims} "
-          f"-> game_timeout={a.game_timeout:.0f}s "
-          f"(decision budget {a.decision_budget}, 1.5x margin)", flush=True)
+          f"eff_ms/sim={eff_sec_per_sim*1000:.0f} -> game_timeout={a.game_timeout:.0f}s "
+          f"(decision budget {a.decision_budget}, 2.0x margin)", flush=True)
     s = run_arm(a)
     print(json.dumps({k: s[k] for k in
                       ("tag", "games", "completed", "abandoned", "field_score", "wilson95",

@@ -1,0 +1,89 @@
+{
+  "tag": "ft_k2",
+  "branch": "MCGS_2019_PTCG_MULTI_DET_REFERENCE",
+  "config": {
+    "branch": "MCGS_2019_PTCG_MULTI_DET_REFERENCE",
+    "k_worlds": 2,
+    "budget_protocol": "fixed_total",
+    "simulations_per_decision": 192,
+    "aggregation_rule": "source_sum",
+    "graph_reuse": false,
+    "match_clock_seconds": 0.0,
+    "decision_seconds_cap": 0.0,
+    "decision_wall_ceiling_seconds": 300.0,
+    "decision_budget": 120
+  },
+  "seed": 90210,
+  "nproc": 14,
+  "games": 40,
+  "completed": 34,
+  "abandoned": 6,
+  "errored": 0,
+  "unscored": 0,
+  "unscored_status_histogram": {},
+  "unscored_mean_seconds": null,
+  "games_accounted": 40,
+  "duplicate_records_collapsed": 0,
+  "all_games_accounted": true,
+  "effective_n_note": "field_score is computed over `completed` only. abandoned, errored and unscored games are excluded, so `completed` is the effective sample size and the Wilson interval is computed on it.",
+  "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field score rather than scored as losses",
+  "field_score": 0.1176,
+  "wilson95": [
+    0.0467,
+    0.2662
+  ],
+  "field_score_bounds_if_unscored_counted": [
+    0.1,
+    0.25
+  ],
+  "excluded_fraction": 0.15,
+  "per_opponent": {
+    "dragapult": {
+      "games": 9,
+      "rate": 0.0
+    },
+    "iono": {
+      "games": 10,
+      "rate": 0.1
+    },
+    "mega_abomasnow": {
+      "games": 9,
+      "rate": 0.0
+    },
+    "mega_lucario": {
+      "games": 6,
+      "rate": 0.5
+    }
+  },
+  "wall_clock_s": 2933.6,
+  "searched_decisions": 1304,
+  "total_simulations": 250368,
+  "sims_per_decision": 192.0,
+  "mean_k_used": 2.0,
+  "world_errors": 0,
+  "decision_deadline_stops": 0,
+  "match_clock_exhausted_decisions": 0,
+  "decision_budget": 120,
+  "decision_budget_exhausted_decisions": 0,
+  "decisions_total": 1547,
+  "signature_mismatches": 0,
+  "opponent_flag_conflicts": 26,
+  "multiselect_decisions": 4,
+  "obliged_decisions": 0,
+  "mixed_terminal_scale_decisions": 0,
+  "aggregate_empty_decisions": 0,
+  "term_root_win": 78304,
+  "term_root_loss": 144352,
+  "term_undecided": 27712,
+  "finalised": 0,
+  "terminal_leaves": 0,
+  "lethal_bonus": 0,
+  "step_errors": 0,
+  "begin_errors": 0,
+  "transposition_merges": 32600,
+  "dummy_edges": 491,
+  "chance_nodes_created": 936,
+  "manual_coin_node_ucb_selected": 0,
+  "calibration_rows": 1304,
+  "budget_delivered": true
+}
