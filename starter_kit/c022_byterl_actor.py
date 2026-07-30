@@ -53,15 +53,31 @@ class Step:
     stage: int
     enc: Dict[str, np.ndarray]
     seq: Dict[str, Any]                 # the token sequence, from ActionSequence.to_json()
-    behaviour_logp: float               # the COMPLETE joint log-probability
+    behaviour_logp: float               # mu -- the COMPLETE joint log-probability of whatever
+                                        #       actually chose this action
     value: float
     reward: float = 0.0
     min_count: int = 1
     max_count: int = 1
+    # pi_behaviour -- the ACTING NETWORK's joint log-probability of the same action under the
+    # weights that were live at the time. Equal to behaviour_logp on every step the network
+    # sampled, and DIFFERENT on a B1.5 uniform construction step, where mu is uniform by design.
+    #
+    # Two consumers, two quantities, and conflating them is defect D19:
+    #   * V-trace and PPO use `behaviour_logp`. mu must be the distribution that produced the
+    #     action or every importance ratio on a randomised step is wrong.
+    #   * the B06 replay check uses `policy_logp`. It asks "does the learner rescore this action
+    #     the way the actor's network did, at identical weights?" -- a question about the
+    #     autoregressive factorization, which has nothing to do with how the action was chosen.
+    policy_logp: Optional[float] = None
+    uniform_behaviour: bool = False
 
     def to_json(self) -> Dict[str, Any]:
+        pl = self.behaviour_logp if self.policy_logp is None else self.policy_logp
         return {"stage": self.stage, "seq": self.seq,
                 "behaviour_logp": round(self.behaviour_logp, 6),
+                "policy_logp": round(pl, 6),
+                "uniform_behaviour": bool(self.uniform_behaviour),
                 "value": round(self.value, 6), "reward": self.reward,
                 "min_count": self.min_count, "max_count": self.max_count}
 
@@ -218,17 +234,24 @@ class EpisodeRunner:
             enc = EN.encode_construction(partial, self.pool)
             tt = EN.to_torch(enc)
             h, self.state = self.net.step(EN.obs_parts(tt), self.state)
-            if (self.random_initial_construction
-                    and step_i < RANDOM_INITIAL_CONSTRUCTION_STEPS):
+            uniform = (self.random_initial_construction
+                       and step_i < RANDOM_INITIAL_CONSTRUCTION_STEPS)
+            if uniform:
                 seq = self._uniform_construction_choice(tt["pool_mask"])
                 self.random_initial_choices += 1
+                # pi under the acting network, for the B06 replay check only (D19). Scoring the
+                # action the network did NOT choose is exactly what the learner will do on
+                # replay, so this is the quantity replay must reproduce.
+                pi = float(self.construction_head.logp(h, tt["pool_mask"], seq.to_json())[0])
             else:
                 seq = self.construction_head.sample(h, tt["pool_mask"], rng=self.rng,
                                                     temperature=self.temperature)
+                pi = seq.joint_logp
             v = float(self.net.value(h, tt["stage"]).item())
             partial.append(self.pool.card_ids[seq.chosen_elements[0]])
             self.steps.append(Step(stage=EN.STAGE_CONSTRUCTION, enc=enc, seq=seq.to_json(),
-                                   behaviour_logp=seq.joint_logp, value=v))
+                                   behaviour_logp=seq.joint_logp, value=v,
+                                   policy_logp=pi, uniform_behaviour=uniform))
             self.n_construction += 1
         self.deck = partial
         legal, _detail = DK.legality(partial, self.pool)
@@ -290,7 +313,8 @@ class EpisodeRunner:
         v = float(self.net.value(h, tt["stage"]).item())
         self.steps.append(Step(stage=EN.STAGE_BATTLE, enc=enc, seq=seq.to_json(),
                                behaviour_logp=seq.joint_logp, value=v,
-                               min_count=k_min, max_count=k_max))
+                               min_count=k_min, max_count=k_max,
+                               policy_logp=seq.joint_logp, uniform_behaviour=False))
         self.n_battle += 1
         return AC.to_payload(sel, opts[:n], seq)
 

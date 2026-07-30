@@ -169,9 +169,15 @@ def actor_loop(actor_id: int, cfg: Dict[str, Any], shared, q, metrics_q, stop):
 def _pack(u) -> Dict[str, Any]:
     """Serialize an unroll for the queue. Arrays stay as arrays; torch objects do not cross."""
     return {
+        # `policy_logp` and `uniform_behaviour` (D19) must cross the queue. A pack that drops
+        # them silently falls back to `behaviour_logp` in the B06 check, which is the pre-D19
+        # comparison and fails on every B1.5 uniform step.
         "steps": [{"stage": s.stage, "enc": s.enc, "seq": s.seq,
                    "behaviour_logp": s.behaviour_logp, "value": s.value,
-                   "reward": s.reward, "min_count": s.min_count, "max_count": s.max_count}
+                   "reward": s.reward, "min_count": s.min_count, "max_count": s.max_count,
+                   "policy_logp": (s.behaviour_logp if s.policy_logp is None
+                                   else s.policy_logp),
+                   "uniform_behaviour": bool(s.uniform_behaviour)}
                   for s in u.steps],
         "h0": u.h0, "c0": u.c0, "h_end": u.h_end, "c_end": u.c_end,
         "policy_version": u.policy_version,
@@ -236,8 +242,15 @@ def replay_unroll(net, pack, cfg, check_recurrence: bool = False):
         recurrence_delta = float(max(
             torch.abs(state[0] - he).max().item(),
             torch.abs(state[1] - ce_).max().item()))
-        beh = torch.tensor([s["behaviour_logp"] for s in steps], dtype=torch.float32)
-        logp_delta = float(torch.abs(torch.stack(tlogp).detach() - beh).max().item())
+        # AGAINST pi, NOT mu (defect D19). The question this check asks is whether the learner
+        # rescores the action the way the actor's network did at identical weights. On a B1.5
+        # uniform construction step mu is -log(n_legal) by design, so comparing against mu would
+        # fail on a correct implementation -- and did, killing the ladder at the first check.
+        # `policy_logp` falls back to `behaviour_logp` for packs written before D19, where the
+        # two were the same thing.
+        pol = torch.tensor([float(s.get("policy_logp", s["behaviour_logp"])) for s in steps],
+                           dtype=torch.float32)
+        logp_delta = float(torch.abs(torch.stack(tlogp).detach() - pol).max().item())
     return (torch.stack(tlogp), torch.stack(ents), torch.stack(vals),
             recurrence_delta, logp_delta)
 
@@ -254,9 +267,16 @@ def recurrence_fidelity_check(scratch_net, blob: bytes, pack, cfg) -> Dict[str, 
       * `recurrence_delta` — the recomputed end-of-unroll `(h, c)` against the actor's observed
         end state. Catches a zeroed start, a shifted unroll boundary, and any actor/learner
         disagreement in the encoder.
-      * `logp_delta` — the recomputed joint log-probability against the stored behaviour value.
-        Catches an autoregressive factorization that differs between sampling and scoring, which
-        would silently bias every importance ratio downstream.
+      * `logp_delta` — the recomputed joint log-probability against the stored value of **pi**,
+        the acting network's own score for the same action. Catches an autoregressive
+        factorization that differs between sampling and scoring, which would silently bias every
+        importance ratio downstream.
+      * `behaviour_delta` — the check that D19 must not be allowed to weaken. Comparing replay
+        against pi removes the old implicit guarantee that `behaviour_logp` was the network's
+        value, so `mu` is now verified directly and from stored data alone: on a uniform B1.5
+        step it must equal `-log(n_legal)` exactly, and on every other step it must equal `pi`.
+        The result is a STRICTLY STRONGER assertion than before, because it now holds separately
+        for the two kinds of step instead of collapsing them.
 
     Neither is checkable from the running metrics, because between two publications the learner's
     weights move while the version number does not — so "zero policy lag" does not mean "identical
@@ -270,9 +290,41 @@ def recurrence_fidelity_check(scratch_net, blob: bytes, pack, cfg) -> Dict[str, 
     with torch.no_grad():
         _tl, _e, _v, rdelta, ldelta = replay_unroll(scratch_net, pack, cfg,
                                                     check_recurrence=True)
+    bdelta, n_uniform = behaviour_consistency(pack)
     return {"recurrence_delta": rdelta, "logp_delta": ldelta,
+            "behaviour_delta": bdelta, "uniform_steps": n_uniform,
             "policy_version": int(pack["policy_version"]),
             "steps": len(pack["steps"])}
+
+
+def behaviour_consistency(pack) -> Tuple[float, int]:
+    """Is `behaviour_logp` the distribution that actually chose the action? (D19)
+
+    Checkable from stored data alone, with no network involved:
+
+      * a uniform B1.5 step must carry `-log(n_legal)`, from the mask the actor drew against;
+      * any other step must carry exactly the network's `pi`.
+
+    A step claiming to be uniform while recording the policy's log-probability is the precise
+    corruption D17 was written to prevent and D19's separation of mu from pi could silently
+    reintroduce, so it is asserted every time the fidelity check runs rather than in a unit test
+    alone.
+    """
+    worst, n_uniform = 0.0, 0
+    for s in pack["steps"]:
+        mu = float(s["behaviour_logp"])
+        if s.get("uniform_behaviour"):
+            n_uniform += 1
+            toks = s["seq"].get("tokens") or []
+            if not toks:
+                continue
+            n_legal = int(toks[0].get("n_legal") or 0)
+            if n_legal <= 0:
+                continue
+            worst = max(worst, abs(mu - (-math.log(n_legal))))
+        else:
+            worst = max(worst, abs(mu - float(s.get("policy_logp", mu))))
+    return worst, n_uniform
 
 
 def learner_update(net, opt, batch, cfg, stats):
@@ -504,7 +556,8 @@ def main(argv=None):
                         scratch, published_blobs[int(cand["policy_version"])], cand, cfg)
                     recurrence_checks.append(chk)
                     if (chk["recurrence_delta"] > a.recurrence_tolerance
-                            or chk["logp_delta"] > a.recurrence_tolerance):
+                            or chk["logp_delta"] > a.recurrence_tolerance
+                            or chk["behaviour_delta"] > a.recurrence_tolerance):
                         recurrence_failures.append(chk)
                         if a.recurrence_strict:
                             raise RuntimeError(
@@ -608,6 +661,12 @@ def main(argv=None):
         "max_logp_delta_exact_weights": round(
             max((c["logp_delta"] for c in recurrence_checks), default=0.0), 9)
         if recurrence_checks else None,
+        # D19: mu verified against what it claims to be, separately from pi.
+        "max_behaviour_delta": round(
+            max((c["behaviour_delta"] for c in recurrence_checks), default=0.0), 9)
+        if recurrence_checks else None,
+        "uniform_behaviour_steps_seen_in_checks": sum(
+            c.get("uniform_steps", 0) for c in recurrence_checks),
         "mean_learner_behaviour_drift_recurrence": round(
             float(np.mean(stats["drift_recurrence"])), 6) if stats["drift_recurrence"] else None,
         "mean_learner_behaviour_drift_logp": round(

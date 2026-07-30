@@ -466,3 +466,61 @@ arms must run alone. It did not ask the mirrored question — what an MCGS arm d
 *latency-sensitive ByteRL rung* — and the concurrency plan was written on the assumption that
 decision-budgeted training is contention-tolerant. It is, for BR2 and BR3. It is not for BR0,
 BR1 and BR1.5, whose entire subject matter is an unbounded queue's throughput imbalance.
+
+## D19 — the B06 replay check compared the learner against mu, and D17's fix made mu uniform
+
+**Found** 2026-07-30 19:28. `ctrl_BR1_5` died on its first fidelity check, 37 seconds in:
+
+```text
+RuntimeError: B06 recurrent replay mismatch:
+  {'recurrence_delta': 0.0, 'logp_delta': 0.00685429573059082, 'policy_version': 0, 'steps': 32}
+  (tolerance 0.0001)
+```
+
+`recurrence_delta` is exactly 0.0 — the recurrence replays perfectly — and only the
+log-probability disagrees. That shape is the whole diagnosis.
+
+**The conflation.** Two different quantities had been one:
+
+| | what it is | who needs it |
+|---|---|---|
+| `mu` | the log-probability of the distribution that **actually chose** the action | V-trace, UPGO, PPO: the ratio is `pi/mu` |
+| `pi` | the acting **network's** score for that same action | the B06 replay check: does the learner rescore it identically at identical weights? |
+
+Before D17 they were always equal, because the network always chose. D17 implemented B1.5 and
+made the first ten construction choices uniform, correctly recording `mu = -log(n_legal)` — and
+the B06 check then asked the network to reproduce a uniform draw. It cannot, and should not.
+
+So the check was **correct code failing on correct code**, because it was asserting a property
+that had been true incidentally rather than the property it was written to assert. Every rung
+from BR1.5 upward was affected: `random_initial_construction` is cumulative, so BR2 and BR3
+carry it too and would have died the same way.
+
+**Fix.** `Step` carries `policy_logp` (pi) and `uniform_behaviour` alongside `behaviour_logp`
+(mu); `_pack` carries both across the queue — omitting them there would have silently restored
+the old comparison through the fallback; the check compares replay against pi.
+
+**And the check is strictly stronger afterwards, not weaker.** Comparing against pi removes the
+old implicit guarantee that mu was the network's value, so mu is now verified directly from
+stored data by `behaviour_consistency`: a uniform step must carry `-log(n_legal)` for the mask it
+drew against, and every other step must carry exactly pi. Both run on every fidelity check, and
+`behaviour_delta` joins the strict-mode failure condition and the manifest.
+
+**Why nothing caught it.** There was no test for B06 at all — it existed only inside a training
+run. `tests/test_c022_byterl_b06.py` now covers it, with an injection per failure mode: a
+corrupted pi, a step that lies about being uniform, a uniform step carrying the wrong uniform,
+and a shifted recurrent start.
+
+**A vacuous injection, caught while writing those tests.** The shifted-recurrent-start injection
+zeroed `pack["h0"]` on unroll **0** — whose `h0` is legitimately zeros, since an episode starts
+from a zero state. The corruption changed nothing, `recurrence_delta` stayed 0.0, and the test
+reported a green check for an injection that was never made. It now corrupts a mid-episode
+unroll and asserts `h0` is non-zero first, and a companion test asserts that every unroll after
+the first carries a non-zero stored start — the property B06 exists to protect, which the
+vacuous version was silently failing to check.
+
+**What happened to the affected results.** The entire rung ladder, `conf_*` and `ctrl_*`, is
+quarantined in `results/failures/superseded/ladder_pre_d19/` and re-run from one commit. The
+clean re-run immediately confirmed D18 as well: `ctrl_BR0` alone runs at 142 consumed
+decisions/s with a production/consumption ratio of 7.79, against 16.7/s and 12.06 under
+contention — so 12.06 was never a property of BR0.
