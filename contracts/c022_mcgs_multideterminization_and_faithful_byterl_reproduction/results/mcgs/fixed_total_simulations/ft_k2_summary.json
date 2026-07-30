@@ -27,20 +27,20 @@
   "all_games_accounted": true,
   "effective_n_note": "field_score is computed over `completed` only. abandoned, errored and unscored games are excluded, so `completed` is the effective sample size and the Wilson interval is computed on it.",
   "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field score rather than scored as losses",
-  "field_score": 0.1562,
+  "field_score": 0.1875,
   "wilson95": [
-    0.0686,
-    0.3175
+    0.0889,
+    0.3531
   ],
   "field_score_bounds_if_unscored_counted": [
-    0.1562,
-    0.1562
+    0.1875,
+    0.1875
   ],
   "excluded_fraction": 0.0,
   "per_opponent": {
     "dragapult": {
       "games": 8,
-      "rate": 0.0
+      "rate": 0.25
     },
     "iono": {
       "games": 8,
@@ -52,12 +52,12 @@
     },
     "mega_lucario": {
       "games": 8,
-      "rate": 0.5
+      "rate": 0.375
     }
   },
-  "wall_clock_s": 278.6,
-  "searched_decisions": 1139,
-  "total_simulations": 109344,
+  "wall_clock_s": 256.2,
+  "searched_decisions": 1230,
+  "total_simulations": 118080,
   "sims_per_decision": 96.0,
   "mean_k_used": 2.0,
   "world_errors": 0,
@@ -68,25 +68,25 @@
   "game_timeout_basis": "measured_completed_game_duration",
   "effective_seconds_per_simulation": 0.3283,
   "decision_budget_exhausted_decisions": 28,
-  "decisions_total": 1418,
+  "decisions_total": 1480,
   "signature_mismatches": 0,
-  "opponent_flag_conflicts": 21,
-  "multiselect_decisions": 1,
+  "opponent_flag_conflicts": 20,
+  "multiselect_decisions": 4,
   "obliged_decisions": 0,
   "mixed_terminal_scale_decisions": 0,
   "aggregate_empty_decisions": 0,
-  "term_root_win": 38053,
-  "term_root_loss": 56639,
-  "term_undecided": 14652,
+  "term_root_win": 43588,
+  "term_root_loss": 60666,
+  "term_undecided": 13826,
   "finalised": 0,
   "terminal_leaves": 0,
   "lethal_bonus": 0,
   "step_errors": 0,
   "begin_errors": 0,
-  "transposition_merges": 10319,
-  "dummy_edges": 184,
-  "chance_nodes_created": 387,
+  "transposition_merges": 11128,
+  "dummy_edges": 335,
+  "chance_nodes_created": 405,
   "manual_coin_node_ucb_selected": 0,
-  "calibration_rows": 1139,
+  "calibration_rows": 1230,
   "budget_delivered": true
 }

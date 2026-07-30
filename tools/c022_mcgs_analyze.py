@@ -247,8 +247,13 @@ def validity(arms: List[Dict[str, Any]], protocol: str) -> Dict[str, Any]:
         if s.get("signature_mismatches"):
             reasons.append(f"{a['tag']}: {s['signature_mismatches']} option-signature mismatches "
                            "-- action indices are not comparable across worlds")
-        if s.get("opponent_flag_conflicts"):
-            reasons.append(f"{a['tag']}: {s['opponent_flag_conflicts']} opponent-flag conflicts")
+        # opponent_flag_conflicts is NOT a validity failure. D16 established that in PTCG an
+        # action's resolution can depend on hidden information, so the same action can end the
+        # turn in one sampled world and not in another -- with the option signature matching,
+        # i.e. with the indices perfectly aligned. The aggregate handles it by converting each
+        # world's contribution to the root player's frame before summing. The count is reported
+        # because it quantifies how often that adapter does real work, and because a rise
+        # UNACCOMPANIED by a signature mismatch would still be worth explaining.
         if s.get("mixed_terminal_scale_decisions"):
             reasons.append(f"{a['tag']}: {s['mixed_terminal_scale_decisions']} decisions reached "
                            "a terminal leaf, mixing the +/-10 scale into the aggregate")
@@ -278,6 +283,7 @@ def analyse_protocol(directory: str, tags: List[str], protocol: str) -> Dict[str
             "field_score_bounds_if_unscored_counted": s.get(
                 "field_score_bounds_if_unscored_counted"),
             "sims_per_decision": s.get("sims_per_decision"),
+            "opponent_flag_conflicts": s.get("opponent_flag_conflicts"),
             "searched_decisions": s.get("searched_decisions"),
             "decision_budget_exhausted_decisions": s.get(
                 "decision_budget_exhausted_decisions"),

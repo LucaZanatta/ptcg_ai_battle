@@ -12,10 +12,14 @@
     "mcgs_arms": [
       "ft_k1",
       "ft_k2",
+      "ft_k4",
+      "ft_k8",
+      "fpw_k1",
       "m04_k1_reuse"
     ],
     "byterl_evals": [
       "ctrl_BR0",
+      "ctrl_BR1_5",
       "ctrl_BR1",
       "floor_end_to_end",
       "floor_fixed_deck",
@@ -36,11 +40,11 @@
       "id": "V01",
       "name": "MCGS field scores recompute from per-game records",
       "detail": {
-        "arms_checked": 3,
+        "arms_checked": 6,
         "mismatches": []
       },
       "detects": "a reported score that disagrees with its own raw games",
-      "n_inputs": 3,
+      "n_inputs": 6,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -50,11 +54,11 @@
       "id": "V02",
       "name": "every game lands in exactly one bucket",
       "detail": {
-        "arms_checked": 3,
+        "arms_checked": 6,
         "unaccounted": []
       },
       "detects": "D10: ten games in no category, silently excluded from the field score",
-      "n_inputs": 3,
+      "n_inputs": 6,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -64,11 +68,11 @@
       "id": "V03",
       "name": "the simulation budget was delivered",
       "detail": {
-        "arms_checked": 3,
+        "arms_checked": 6,
         "budget_failures": []
       },
       "detects": "an arm that did not run its simulations, or hit the per-decision wall ceiling",
-      "n_inputs": 3,
+      "n_inputs": 6,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -79,11 +83,11 @@
       "name": "M05/M06 equal budgets across K",
       "detail": {
         "per_protocol": [],
-        "_n_inputs": 2,
+        "_n_inputs": 5,
         "note": "needs at least two arms in a protocol to compare"
       },
       "detects": "a K sweep whose arms did not use equal simulations",
-      "n_inputs": 2,
+      "n_inputs": 5,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -94,11 +98,11 @@
       "name": "exclusion rate is comparable across K",
       "detail": {
         "per_protocol_spread_over_15pp": [],
-        "_n_inputs": 2,
+        "_n_inputs": 4,
         "note": "needs at least two arms in a protocol to compare"
       },
       "detects": "D08/contention: arms scored on different populations, making 'K is worse' indistinguishable from 'K was cut earlier'",
-      "n_inputs": 2,
+      "n_inputs": 4,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -108,11 +112,11 @@
       "id": "V06",
       "name": "predicted win probabilities are in [0,1]",
       "detail": {
-        "rows_checked": 4317,
+        "rows_checked": 8069,
         "out_of_range": []
       },
       "detects": "D04: the source's opponent sign flip making an end-turn action's probability negative",
-      "n_inputs": 4317,
+      "n_inputs": 8069,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -122,11 +126,11 @@
       "id": "V07",
       "name": "no arm mixed the +/-10 terminal scale into a [0,1] aggregate",
       "detail": {
-        "arms_checked": 3,
+        "arms_checked": 6,
         "mixed": []
       },
       "detects": "a terminal leaf entering the aggregate and breaking the probability reading",
-      "n_inputs": 3,
+      "n_inputs": 6,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -136,16 +140,24 @@
       "id": "V08",
       "name": "action indices are aligned across worlds",
       "detail": {
-        "arms_checked": 3,
+        "arms_checked": 6,
         "mismatches": [
           {
             "arm": "ft_k2",
-            "opponent_flag_conflicts": 21
+            "opponent_flag_conflicts": 20
+          },
+          {
+            "arm": "ft_k4",
+            "opponent_flag_conflicts": 62
+          },
+          {
+            "arm": "ft_k8",
+            "opponent_flag_conflicts": 136
           }
         ]
       },
       "detects": "the position-pairing defect family: summing statistics for different actions",
-      "n_inputs": 3,
+      "n_inputs": 6,
       "status": "FAIL",
       "pass": false,
       "injection_detected": true,
@@ -155,11 +167,11 @@
       "id": "V09",
       "name": "ByteRL external evaluations recompute from per-game records",
       "detail": {
-        "evals_checked": 5,
+        "evals_checked": 6,
         "mismatches": []
       },
       "detects": "a reported win rate that disagrees with its own raw games",
-      "n_inputs": 5,
+      "n_inputs": 6,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
