@@ -211,14 +211,22 @@ def validity(arms: List[Dict[str, Any]], protocol: str) -> Dict[str, Any]:
                 f"M06 FAILED: fixed_per_world arms must give each world equal simulations, got "
                 f"{pw}")
 
-    ab = {a["tag"]: (a["summary"].get("abandoned", 0), a["summary"].get("games", 0))
+    # Every game that does not produce a score is excluded from the field score, whatever the
+    # reason -- abandoned on the wall-clock guard, errored, or finished without both seats DONE.
+    # It is the TOTAL exclusion rate that must be comparable across K, not just abandonment:
+    # an arm excluding 30% of its games has a field score computed on a different population
+    # from one excluding 5%.
+    ab = {a["tag"]: (a["summary"].get("abandoned", 0) + a["summary"].get("unscored", 0)
+                     + a["summary"].get("errored", 0),
+                     a["summary"].get("games", 0))
           for a in arms}
     rates = {t: (n / g if g else 0.0) for t, (n, g) in ab.items()}
     if rates and (max(rates.values()) - min(rates.values())) > 0.15:
         reasons.append(
-            f"ABANDONMENT SPREAD > 15pp across K: {({t: round(r,3) for t,r in rates.items()})}. "
-            "Abandoned games are excluded from the field score, so the surviving subsample is "
-            "K-dependent and the comparison is confounded.")
+            f"EXCLUSION SPREAD > 15pp across K: {({t: round(r,3) for t,r in rates.items()})}. "
+            "Excluded games (abandoned, errored, or finished without both seats DONE) do not "
+            "enter the field score, so the surviving subsample is K-dependent and the "
+            "comparison is confounded.")
     for a in arms:
         s = a["summary"]
         if not s.get("budget_delivered", True):
@@ -235,7 +243,7 @@ def validity(arms: List[Dict[str, Any]], protocol: str) -> Dict[str, Any]:
         if s.get("world_errors"):
             reasons.append(f"{a['tag']}: {s['world_errors']} world errors")
     return {"valid": not reasons, "reasons": reasons,
-            "abandonment_rate": {t: round(r, 4) for t, r in rates.items()},
+            "exclusion_rate": {t: round(r, 4) for t, r in rates.items()},
             "total_simulations": totals, "sims_per_decision": per_dec}
 
 
@@ -250,8 +258,13 @@ def analyse_protocol(directory: str, tags: List[str], protocol: str) -> Dict[str
         out["arms"][a["tag"]] = {
             "k": s["config"]["k_worlds"],
             "games": s.get("games"), "completed": s.get("completed"),
-            "abandoned": s.get("abandoned"),
+            "abandoned": s.get("abandoned"), "unscored": s.get("unscored"),
+            "errored": s.get("errored"),
+            "excluded_fraction": s.get("excluded_fraction"),
+            "all_games_accounted": s.get("all_games_accounted"),
             "field_score": s.get("field_score"), "wilson95": s.get("wilson95"),
+            "field_score_bounds_if_unscored_counted": s.get(
+                "field_score_bounds_if_unscored_counted"),
             "sims_per_decision": s.get("sims_per_decision"),
             "searched_decisions": s.get("searched_decisions"),
             "decision_budget_exhausted_decisions": s.get(
@@ -332,13 +345,16 @@ def render(report: Dict[str, Any]) -> str:
         if p["arms_missing"]:
             A(f"Arms not present: `{'`, `'.join(p['arms_missing'])}`")
             A("")
-        A("| arm | K | games | done | aband | field | 95% CI | sims/dec | Brier | "
-          "log-loss | mean pred | observed | over (pp) |")
-        A("|---|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|")
+        A("| arm | K | games | scored | aband | unscored | excl. | field | 95% CI | "
+          "bounds if counted | sims/dec | Brier | log-loss | mean pred | observed | over (pp) |")
+        A("|---|---:|---:|---:|---:|---:|---:|---:|---|---|---:|---:|---:|---:|---:|---:|")
         for t, r in sorted(p["arms"].items(), key=lambda kv: kv[1]["k"]):
             c = r["calibration"]
             A(f"| `{t}` | {r['k']} | {r['games']} | {r['completed']} | {r['abandoned']} | "
-              f"{r['field_score']} | {r['wilson95']} | {r['sims_per_decision']} | "
+              f"{r.get('unscored')} | {r.get('excluded_fraction')} | "
+              f"{r['field_score']} | {r['wilson95']} | "
+              f"{r.get('field_score_bounds_if_unscored_counted')} | "
+              f"{r['sims_per_decision']} | "
               f"{c.get('brier')} | {c.get('log_loss')} | {c.get('mean_predicted')} | "
               f"{c.get('observed_base_rate')} | {c.get('overconfidence_pp')} |")
         A("")

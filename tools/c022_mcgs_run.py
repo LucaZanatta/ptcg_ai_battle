@@ -86,18 +86,26 @@ def _one_game(job: Dict[str, Any], cfg: Dict[str, Any], seed: int, q):
     agents = [mk(ag), mo(opp)] if seat == 0 else [mo(opp), mk(ag)]
     t0 = time.time()
     completed, score = False, None
+    statuses, rewards, n_steps = None, None, 0
     try:
         env = make("cabt")
         env.run(agents)
         last = env.steps[-1]
-        if [s.status for s in last] == ["DONE", "DONE"]:
-            rw = [s.reward for s in last]
-            if rw[seat] is not None:
-                completed = True
-                score = (1.0 if rw[seat] > rw[1 - seat]
-                         else (0.5 if rw[seat] == rw[1 - seat] else 0.0))
+        # Record WHY a game did not score. The first version stored only completed/score, so a
+        # game that ran to the end of env.run without both seats DONE fell into neither the
+        # completed bucket nor the abandoned bucket -- 10 of 60 in the first arm, 17%, silently
+        # excluded from the field score with no category naming them. An unscored game is a real
+        # outcome and must be counted as one.
+        statuses = [s.status for s in last]
+        rewards = [s.reward for s in last]
+        n_steps = len(env.steps)
+        if statuses == ["DONE", "DONE"] and rewards[seat] is not None:
+            completed = True
+            score = (1.0 if rewards[seat] > rewards[1 - seat]
+                     else (0.5 if rewards[seat] == rewards[1 - seat] else 0.0))
     except Exception as e:  # noqa: BLE001
-        q.put({"game_id": job["game_id"], "error": f"{type(e).__name__}: {e}"[:200]})
+        q.put({"game_id": job["game_id"], "error": f"{type(e).__name__}: {e}"[:200],
+               "seconds": round(time.time() - t0, 2)})
         return
 
     # Staple the realised outcome onto every calibration row. A predicted probability with no
@@ -109,6 +117,8 @@ def _one_game(job: Dict[str, Any], cfg: Dict[str, Any], seed: int, q):
         row["opponent"] = job["opponent"]
     q.put({"game_id": job["game_id"], "opponent": job["opponent"], "seat": seat,
            "completed": completed, "score": score,
+           "statuses": statuses, "rewards": rewards, "env_steps": n_steps,
+           "agent_exceptions": len(ag.exceptions),
            "seconds": round(time.time() - t0, 2),
            "report": ag.report(),
            "calibration": cal,
@@ -194,11 +204,38 @@ def run_arm(a) -> Dict[str, Any]:
         except Exception:  # noqa: BLE001
             break
 
+    # A terminated game can appear TWICE: once as the abandoned marker written when the process
+    # was killed, and once as a real result the child had already put on the queue before dying.
+    # Counting both would make `games_accounted` exceed `games` and would let an abandoned
+    # marker shadow a genuine score. Deduplicate by game_id, preferring the real result.
+    by_id = {}
+    duplicates = 0
+    for r in results:
+        gid = r.get("game_id")
+        if gid is None:
+            continue
+        prev = by_id.get(gid)
+        if prev is None:
+            by_id[gid] = r
+            continue
+        duplicates += 1
+        if prev.get("abandoned") and not r.get("abandoned"):
+            by_id[gid] = r
+    results = list(by_id.values())
+
     # ---------------------------------------------------------------- aggregate
     os.makedirs(a.out, exist_ok=True)
     scored = [r for r in results if r.get("completed") and r.get("score") is not None]
     abandoned = [r for r in results if r.get("abandoned")]
     errored = [r for r in results if r.get("error")]
+    # Every game must land in exactly one bucket, and the buckets must sum to `games`. A game
+    # that finishes env.run without both seats DONE is UNSCORED -- a real outcome, not an
+    # absence -- and its terminal statuses are recorded so the category is diagnosable rather
+    # than merely counted.
+    unscored = [r for r in results
+                if not r.get("completed") and not r.get("abandoned") and not r.get("error")]
+    status_hist = collections.Counter(
+        "|".join(map(str, r.get("statuses") or [])) for r in unscored)
     wins = sum(r["score"] for r in scored)
     n = len(scored)
 
@@ -221,7 +258,8 @@ def run_arm(a) -> Dict[str, Any]:
         for r in results:
             fh.write(json.dumps({k: r.get(k) for k in
                                  ("game_id", "opponent", "seat", "completed", "score",
-                                  "seconds", "abandoned", "error")}) + "\n")
+                                  "seconds", "abandoned", "error", "statuses", "rewards",
+                                  "env_steps", "agent_exceptions")}) + "\n")
     with open(os.path.join(a.out, f"{a.tag}_traces.jsonl"), "w") as fh:
         for r in results:
             for t in (r.get("traces") or []):
@@ -233,14 +271,34 @@ def run_arm(a) -> Dict[str, Any]:
         "seed": a.seed, "nproc": a.nproc,
         "games": a.games, "completed": n,
         "abandoned": len(abandoned), "errored": len(errored),
+        "unscored": len(unscored),
+        "unscored_status_histogram": dict(status_hist),
+        "unscored_mean_seconds": round(
+            sum(float(r.get("seconds") or 0) for r in unscored) / len(unscored), 1)
+        if unscored else None,
+        "games_accounted": len(scored) + len(abandoned) + len(errored) + len(unscored),
+        "duplicate_records_collapsed": duplicates,
+        "all_games_accounted": (len(scored) + len(abandoned) + len(errored)
+                                + len(unscored)) == a.games,
+        "effective_n_note": "field_score is computed over `completed` only. abandoned, errored "
+                            "and unscored games are excluded, so `completed` is the effective "
+                            "sample size and the Wilson interval is computed on it.",
         "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field "
                           "score rather than scored as losses",
         "field_score": round(wins / n, 4) if n else None,
         "wilson95": wilson(round(wins), n) if n else [None, None],
-        "field_score_bounds_if_abandoned_counted": [
-            round(wins / (n + len(abandoned)), 4) if (n + len(abandoned)) else None,
-            round((wins + len(abandoned)) / (n + len(abandoned)), 4)
-            if (n + len(abandoned)) else None],
+        # The field score is computed over COMPLETED games only. Every excluded game is a game
+        # whose outcome is unknown, so the honest reading is an interval: best case they were
+        # all wins, worst case all losses. Reporting only the point estimate would let an arm
+        # look better the more games it failed to score.
+        "field_score_bounds_if_unscored_counted": [
+            round(wins / (n + len(abandoned) + len(unscored)), 4)
+            if (n + len(abandoned) + len(unscored)) else None,
+            round((wins + len(abandoned) + len(unscored))
+                  / (n + len(abandoned) + len(unscored)), 4)
+            if (n + len(abandoned) + len(unscored)) else None],
+        "excluded_fraction": round(
+            (len(abandoned) + len(unscored) + len(errored)) / max(1, a.games), 4),
         "per_opponent": {k: {"games": v[0], "rate": round(v[1] / v[0], 4)}
                          for k, v in sorted(per_opp.items()) if v[0]},
         "wall_clock_s": round(time.time() - t0, 1),
@@ -338,6 +396,7 @@ def main(argv=None):
                        "sims_per_decision", "mean_k_used", "total_simulations",
                        "budget_delivered", "match_clock_exhausted_decisions",
                        "decision_budget_exhausted_decisions", "searched_decisions",
+                       "unscored", "unscored_status_histogram", "all_games_accounted",
                        "signature_mismatches", "mixed_terminal_scale_decisions",
                        "world_errors", "wall_clock_s")}, indent=1))
     return 0

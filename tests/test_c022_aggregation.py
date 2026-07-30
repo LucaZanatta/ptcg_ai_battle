@@ -342,3 +342,122 @@ def test_opponent_flag_conflict_is_counted_not_silently_resolved():
     b = make_world_signed(1, {0: 10}, {0: -5.0}, {0: True})
     agg = build_signed([a, b])
     assert agg.opponent_flag_conflicts == 1
+
+
+# ============================================================ legal fallback payloads
+class _Sel:
+    def __init__(self, lo, hi, context=1):
+        self.minCount = lo
+        self.maxCount = hi
+        self.context = context
+        self.selectType = 1
+
+
+class _Opt:
+    def __init__(self, i, option_type=1):
+        self.i = i
+        self.option_type = option_type
+
+    def short(self):
+        return f"o{self.i}"
+
+
+def _agent(seed=0):
+    """A bare agent instance; only `rng` and `_fallback_payload` are exercised."""
+    from cg import c022_mcgs_agent as AG
+    obj = AG.MultiDetMCGSAgent.__new__(AG.MultiDetMCGSAgent)
+    import numpy as np
+    obj.rng = np.random.default_rng(seed)
+    return obj
+
+
+def test_fallback_payload_respects_min_count(monkeypatch):
+    """The out-of-budget fallback must name at least `minCount` options.
+
+    Returning a single option when minCount > 1 makes the environment mark the agent INVALID and
+    the game ends `["INVALID", "DONE"]` with no score at all. That is how 10 of 60 games in the
+    first arm left the field score without being abandoned, errored, or counted anywhere -- and
+    an agent that invalidates its own long games looks BETTER than it is, because the games it
+    ruins are the ones it was losing slowly.
+    """
+    from cg import c019_core as CK
+    captured = {}
+
+    def fake_payload(picks, sel):
+        captured["n"] = len(picks)
+        captured["ids"] = [p.i for p in picks]
+        return [0]
+
+    monkeypatch.setattr(CK, "to_select_payload", fake_payload)
+    from cg import c022_mcgs_agent as AG
+    monkeypatch.setattr(AG, "K", CK)
+
+    ag = _agent()
+    opts = [_Opt(i) for i in range(6)]
+    for lo, hi in ((1, 1), (2, 2), (3, 5), (4, 4)):
+        ag._fallback_payload(_Sel(lo, hi), opts)
+        assert captured["n"] >= lo, f"minCount {lo} not respected: got {captured['n']}"
+        assert captured["n"] <= max(1, min(hi, len(opts)))
+        assert len(set(captured["ids"])) == captured["n"], "fallback repeated an option"
+
+
+def test_fallback_clamps_min_count_to_the_options_available(monkeypatch):
+    """`minCount` can exceed the option count; naming non-existent options is also invalid."""
+    from cg import c019_core as CK
+    captured = {}
+
+    def fake_payload(picks, sel):
+        captured["ids"] = [p.i for p in picks]
+        return [0]
+
+    monkeypatch.setattr(CK, "to_select_payload", fake_payload)
+    from cg import c022_mcgs_agent as AG
+    monkeypatch.setattr(AG, "K", CK)
+
+    ag = _agent()
+    opts = [_Opt(i) for i in range(3)]
+    ag._fallback_payload(_Sel(9, 9), opts)
+    assert len(captured["ids"]) == 3
+    assert set(captured["ids"]) == {0, 1, 2}
+
+
+def test_fallback_prefers_end_turn_only_when_a_single_pick_is_legal(monkeypatch):
+    """Ending the turn always advances the game, but only if minCount allows one option."""
+    from cg import c019_core as CK
+    from cg import c020_override as OV
+    captured = {}
+
+    def fake_payload(picks, sel):
+        captured["types"] = [getattr(p, "option_type", None) for p in picks]
+        captured["n"] = len(picks)
+        return [0]
+
+    monkeypatch.setattr(CK, "to_select_payload", fake_payload)
+    from cg import c022_mcgs_agent as AG
+    monkeypatch.setattr(AG, "K", CK)
+
+    ag = _agent()
+    opts = [_Opt(0), _Opt(1, OV.OPT_END), _Opt(2)]
+    ag._fallback_payload(_Sel(1, 1), opts)
+    assert captured["types"] == [OV.OPT_END]
+    ag._fallback_payload(_Sel(2, 2), opts)
+    assert captured["n"] == 2, "minCount must win over the end-turn preference"
+
+
+def test_fallback_is_deterministic_under_the_seeded_generator(monkeypatch):
+    from cg import c019_core as CK
+    seen = []
+
+    def fake_payload(picks, sel):
+        seen.append(tuple(p.i for p in picks))
+        return [0]
+
+    monkeypatch.setattr(CK, "to_select_payload", fake_payload)
+    from cg import c022_mcgs_agent as AG
+    monkeypatch.setattr(AG, "K", CK)
+
+    opts = [_Opt(i) for i in range(8)]
+    for _ in range(2):
+        ag = _agent(seed=12345)
+        ag._fallback_payload(_Sel(3, 3), opts)
+    assert seen[0] == seen[1], "the fallback must be reproducible from the seed"

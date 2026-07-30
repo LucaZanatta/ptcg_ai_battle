@@ -145,17 +145,34 @@ class MultiDetMCGSAgent:
             ceiling = min(ceiling, left)
         return time.monotonic() + ceiling
 
-    def _progress_option(self, opts):
-        """An out-of-budget move that guarantees the game advances.
+    def _fallback_payload(self, sel, opts) -> List[int]:
+        """An out-of-budget move that is LEGAL and guarantees the game advances.
 
-        Ending the turn always advances; otherwise a uniform draw from the SEEDED generator.
-        c021 shipped a bare `random.choice` here once, which injected non-determinism into runs
-        that were otherwise identically seeded.
+        A PTCG select carries `minCount..maxCount`, and the engine rejects a payload naming fewer
+        than `minCount` options. The first version of this returned a SINGLE option always, which
+        is invalid whenever `minCount > 1` — the environment then marks the agent INVALID and the
+        game ends with statuses `["INVALID", "DONE"]`, producing no score at all.
+
+        That is how 10 of 60 games in the first arm vanished from the field score: not abandoned,
+        not errored, just never scored, and folded into no category. An arm's field score is
+        computed over completed games, so an agent that invalidates its own long games looks
+        better than it is — the games it ruins are exactly the ones it was losing slowly.
+
+        Ending the turn is preferred because it always advances the game; a repeatable action
+        that does not change state can otherwise be replayed forever. Everything else is drawn
+        from the SEEDED generator, never the global one.
         """
-        for o in opts:
-            if int(getattr(o, "option_type", -1) or -1) == OV.OPT_END:
-                return o
-        return opts[int(self.rng.integers(len(opts)))]
+        n = len(opts)
+        lo = int(getattr(sel, "minCount", 1) or 1)
+        hi = int(getattr(sel, "maxCount", 1) or 1)
+        hi = max(1, min(hi, n))
+        lo = max(1, min(lo, hi))
+        if lo <= 1:
+            for o in opts:
+                if int(getattr(o, "option_type", -1) or -1) == OV.OPT_END:
+                    return K.to_select_payload([o], sel)
+        idx = list(self.rng.permutation(n)[:lo])
+        return K.to_select_payload([opts[int(i)] for i in idx], sel)
 
     # ------------------------------------------------------------------ act
     def act(self, obs_dict: dict) -> List[int]:
@@ -170,17 +187,24 @@ class MultiDetMCGSAgent:
         if len(opts) == 1:
             self.stats["single_option_decisions"] += 1
             return K.to_select_payload([opts[0]], sel)
+        # An OBLIGED decision -- minCount already requires every option on offer -- has exactly
+        # one legal answer, so searching it spends the whole budget proving the only legal move
+        # is the only legal move.
+        _lo = int(getattr(sel, "minCount", 1) or 1)
+        if _lo >= len(opts):
+            self.stats["obliged_decisions"] = self.stats.get("obliged_decisions", 0) + 1
+            return K.to_select_payload(list(opts), sel)
 
         budget = int(self.cfg.get("decision_budget") or 0)
         if budget and self.stats["searched_decisions"] >= budget:
             self.stats["decision_budget_exhausted_decisions"] += 1
-            return K.to_select_payload([self._progress_option(opts)], sel)
+            return self._fallback_payload(sel, opts)
 
         t0 = time.monotonic()
         deadline = self._decision_deadline()
         if deadline < 0:
             self.stats["match_clock_exhausted_decisions"] += 1
-            return K.to_select_payload([self._progress_option(opts)], sel)
+            return self._fallback_payload(sel, opts)
 
         k = max(1, int(self.cfg.get("k_worlds", 1)))
         sims = int(self.cfg.get("simulations_per_decision", 512))
@@ -252,7 +276,7 @@ class MultiDetMCGSAgent:
             self._first_move_done = True
 
         if chosen is None:
-            chosen = K.to_select_payload([self._progress_option(opts)], sel)
+            chosen = self._fallback_payload(sel, opts)
         return list(chosen)
 
     # ------------------------------------------------------------------ report
