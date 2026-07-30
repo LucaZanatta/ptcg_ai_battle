@@ -78,7 +78,15 @@
       "the_depth_term": "c021's runs report 0.79-0.99 predicted over decided rollouts, while this probe measures 0.355 over decided at depth 0-1. The difference is SEARCH DEPTH: UCB drives the tree into lines whose rollouts win, and the selection bias compounds ply by ply. That term is within-world, and cross-world root aggregation attacks it only at the root -- so the ensemble is expected to reduce overconfidence substantially without eliminating it."
     },
     "M08_pass_condition_fixed_now": "K>1 must reduce the gap between predicted win probability and realised outcome, measured as Brier score and log-loss over per-decision (predicted, realised game result) pairs, relative to the K=1 arm on the SAME decisions and seeds. It is NOT required to reach perfect calibration: the measured floor above shows a residual the mechanism cannot remove. A K>1 arm that leaves Brier unchanged within its confidence interval is recorded as no improvement, not as a pass.",
-    "why_this_is_stated_before_the_sweep": "so that a null result is reported as a null result rather than re-explained against a target chosen afterwards."
+    "why_this_is_stated_before_the_sweep": "so that a null result is reported as a null result rather than re-explained against a target chosen afterwards.",
+
+    "REQUIRED_REMEASUREMENT_AFTER_D13": {
+      "what": "the ceiling above was measured with the pre-D13 payload path, which emitted a single option even when a select required minCount > 1. Multi-select decisions now play a DIFFERENT action set.",
+      "frequency_of_affected_decisions": "multiselect_decisions was 1 per 12 games in the verification arm -- low, but not zero.",
+      "obligation": "tools/c022_probe_rollout_bias.py is re-run after the sweep, and the ceiling it measures is compared against the recorded 0.201 root-only / 0.200 mean-over-actions / 0.088 selection gap. If the ceiling moved, M08's target moves with it and BOTH readings are reported here -- the target is not silently updated to whatever the second measurement says.",
+      "why_this_is_recorded_rather_than_just_done": "M08's pass condition is stated against this ceiling. A ceiling that changed after the condition was written, and was quietly replaced, would make the condition unfalsifiable in exactly the way this file exists to prevent.",
+      "status": "PENDING -- the sweep holds exclusive CPU (CONTRACT.md §5) and the re-measurement runs after it."
+    }
   },
 
   "world_disagreement_metrics": [
