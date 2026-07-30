@@ -1,0 +1,100 @@
+{
+  "generated": "2026-07-30T12:26:02",
+  "training_tag": null,
+  "n_pass": 7,
+  "n_probes": 7,
+  "elapsed_s": 4.9,
+  "probes": [
+    {
+      "probe": "B01",
+      "name": "architecture",
+      "pass": true,
+      "pass_condition": "exactly one LSTM with hidden size 256, and one shared card embedding table sized to the card database plus a reserved EMPTY row",
+      "refuted_by": "no LSTM (a feed-forward substitute, which MANDATORY_IMPLEMENTATION B1 forbids and which is exactly what c021 was), a different hidden size, or per-site embedding tables instead of a shared one",
+      "n_lstm_modules": 1,
+      "lstm_hidden_size": 256,
+      "card_embedding_rows": 1268,
+      "n_cards_in_database": 1267,
+      "parameters": 1707063
+    },
+    {
+      "probe": "B02",
+      "name": "slot identity",
+      "pass": true,
+      "pass_condition": "changing a slot's ROLE, its bench INDEX, or its SIDE each changes the observation embedding",
+      "refuted_by": "any of the three leaving the embedding unchanged, which is what c020 did -- it collapsed active and bench, so the network could not tell 'attack with the active' from 'attack with a benched Pokemon'",
+      "delta_role": 0.39941192,
+      "delta_bench_index": 0.48256207,
+      "delta_side": 0.38888943
+    },
+    {
+      "probe": "B03",
+      "name": "dynamic references",
+      "pass": true,
+      "pass_condition": "every legal option's reference indices are in range and its option_index matches its position",
+      "refuted_by": "an out-of-range source/target index or a mis-numbered option, which would make the network score the wrong Pokemon",
+      "options_checked": 22,
+      "bad": []
+    },
+    {
+      "probe": "B04",
+      "name": "autoregressive legality",
+      "pass": true,
+      "pass_condition": "every emitted token sequence maps to exactly one legal environment action: no repeats, indices in range, count within [minCount, maxCount]",
+      "refuted_by": "a repeated element, an out-of-range index, or a count outside the select's bounds -- the last of which is the defect that made the MCGS agent invalidate its own games",
+      "sequences_checked": 36,
+      "bad": [],
+      "sampled_count_histogram_from_real_decisions": {
+        "1": 35,
+        "2": 1
+      },
+      "synthetic_multiselect": {
+        "exercised": true,
+        "count_histogram": {
+          "1": 16,
+          "2": 9,
+          "3": 15
+        },
+        "distinct_counts_sampled": 3,
+        "max_joint_logp_delta": 2.38419e-07,
+        "always_took_the_maximum": false
+      },
+      "why_synthetic": "the captured decisions were all single-picks, so without this the COUNT token would never fire and the probe would pass while never exercising multi-select at all. The pass condition requires MORE THAN ONE distinct count to be sampled and forbids always taking the maximum -- which is precisely c021's defect."
+    },
+    {
+      "probe": "B05",
+      "name": "joint log-probability",
+      "pass": true,
+      "pass_condition": "the joint log-probability recomputed by the learner equals the one the actor accumulated while sampling, to 1e-5",
+      "refuted_by": "any disagreement -- V-trace's importance ratio is computed from these two numbers, so a mismatch biases every off-policy correction while every loss stays finite",
+      "n": 76,
+      "max_delta": 2.38419e-07,
+      "mean_delta": 5.0978e-08
+    },
+    {
+      "probe": "B18",
+      "name": "full card pool",
+      "pass": true,
+      "pass_condition": "the end-to-end arm draws from the union of the permitted lists, not a single archetype, and produces a legal deck",
+      "refuted_by": "a pool no larger than one decklist (a reduced-pool smoke presented as the real arm), or an illegal deck",
+      "pool_size": 52,
+      "single_archetype_pool_size": 17,
+      "deck_legal": true,
+      "distinct_decks_from_4_seeds": 4,
+      "basic_pokemon_in_pool": 14,
+      "ace_spec_in_pool": 4
+    },
+    {
+      "probe": "B19",
+      "name": "return propagation",
+      "pass": true,
+      "pass_condition": "the terminal game reward is attached to the episode and, with gamma = 1.0, the V-trace target at the FIRST step of an unroll equals the terminal reward -- so construction decisions are trained by the game's outcome",
+      "refuted_by": "a reward that never leaves the last step, or construction steps that never appear in an unroll at all",
+      "unrolls": 3,
+      "unrolls_containing_construction": 3,
+      "reward_attached": true,
+      "vtrace_target_at_step0": 1.0,
+      "terminal_reward": 1.0
+    }
+  ]
+}
