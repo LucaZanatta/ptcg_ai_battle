@@ -1,0 +1,162 @@
+{
+  "complete": true,
+  "contract": "c022",
+  "controls": {
+    "BASELINE_OFFICIAL_MEGA_LUCARIO": {
+      "c020_panel_ci": [
+        0.5349,
+        0.631
+      ],
+      "c020_panel_field": 0.5837,
+      "carried_from": "c021 control_manifest.json",
+      "dir": "contracts/c020_forced_method_correction_and_hybrid_integration_campaign/results/controls/baseline_package",
+      "files_sha256": {
+        "MANIFEST.json": "81064ca961fde585c57f8b144933da9a941d19908f067c02da59784a132e5cb0",
+        "REPRODUCTION_NOTES.md": "893b9247c5df6ca5aa4205bf46b97caa4ea2e110dd9380e19af0a2f4d82b2a11",
+        "attribution.md": "a3ae26ecc1fe9dc945b9e7975b142d24949b512593d2de381956ea241a4129e7",
+        "candidate_manifest.json": "66c2e327388facd202a78c98882032a0f3ca98da92a8b4afe6cc82a60589914f",
+        "deck.csv": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+        "main.py": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+        "reproduction_fidelity.json": "308a40c2def02ec6eb40ba3dc360fe25db3d3314e45e5a9bdb5c058ef642253e",
+        "smoke_results.json": "9b254f07fbcb801deacb0648798f2e037066cfe331b0798b04ef2b6755d1850f",
+        "static_dependency_report.json": "e3e5f0f1eb1508ce22647666157a0126ff2d6783e8ab0d6f351f2477d5714248"
+      },
+      "kaggle_submission_ref": 55011215,
+      "live_ladder_score_observed": 632.3,
+      "n_files": 9,
+      "role": "frozen official baseline; the competitive bar for MCGS_COMPETITIVE"
+    },
+    "C020_H1_PRIOR_HYBRID_CONTROL": {
+      "c020_panel_ci": [
+        0.4191,
+        0.5564
+      ],
+      "c020_panel_field": 0.4875,
+      "carried_from": "c021 control_manifest.json",
+      "note": "the one prior signal that a learned prior can help a search; c022 transfer arms must verify runtime call counts, not the label",
+      "promotable_in_c020": false,
+      "role": "c020's best candidate: corrected ByteRL priors + tactical heuristic",
+      "source_sha256": {
+        "starter_kit/c020_byterl_encode.py": "73d3ac525fdb696ceecd9d6d9bbcba6531a80354b7b2f843cc96f8ea28a4d60a",
+        "starter_kit/c020_byterl_model.py": "d871f83ca5f06a84d874e50b6204d8f52c79636e5545adad153b7f6a67529531",
+        "starter_kit/c020_hybrid.py": "9ce47195e48f8b69925aaf61b0598e7c81af0ed08d0dea564287f079ab3ea0e3",
+        "starter_kit/c020_ismcts.py": "37ed65f45e978f152ae984c371f95f0ac828ebb7b1861e783b42e360e7ab4a22",
+        "starter_kit/c020_override.py": "294a944f06846a305cca6e861518a88bc65e814a2453986ec53d392dffe44e22",
+        "starter_kit/c020_tactical_leaf.py": "2cadabdecf31fc63c669c12732f1bb0188db10d696168fd559706853fa6ac466"
+      },
+      "why_not": "prior admission failed on 130 catastrophic baseline suppressions; value admission failed against the constant predictor"
+    },
+    "C021_FIXED_DECK_B2_FINAL": {
+      "architecture": "feed-forward (c021 c021_byterl_model.ByteRLNet); NOT the published LSTM-256 recurrent system c022 implements",
+      "checkpoint": "contracts/c021_source_faithful_mcgs_and_byterl_transfer_campaign/results/byterl/checkpoints/big_ctrl_b2_final.pt",
+      "checkpoint_bytes": 2229393,
+      "checkpoint_sha256": "3376a0a544af0060b4daecb7906f08142da11d28c4acf12a6fa2112971f6502f",
+      "must_not_be_continued": true,
+      "must_not_initialize_c022": true,
+      "role": "c021 fixed-deck B2 final weights: transfer comparator and improvement bar",
+      "why": "CONTRACT.md \u00a72 -- a control and transfer comparator only. c022's faithful recurrent ByteRL trains from fresh random weights."
+    },
+    "C021_FIXED_DECK_B2_SELECTED_IT0160": {
+      "checkpoint": "contracts/c021_source_faithful_mcgs_and_byterl_transfer_campaign/results/byterl/checkpoints/intermediate/big_ctrl_b2_it0160.pt",
+      "checkpoint_bytes": 2229461,
+      "checkpoint_sha256": "4b807748f08751861932849edaf1d87561ee87a57826e75200cc9105a17fe981",
+      "must_not_be_continued": true,
+      "must_not_initialize_c022": true,
+      "note": "c021 recorded that this selection was subject to the winner's curse: chosen at 0.3594 on a 121-candidate x 64-game panel, it measured 0.1953 out of sample while the final checkpoint measured 0.2578. c022 reconciles both numbers from raw data before using either.",
+      "role": "the checkpoint c021's preregistered external-panel selector chose",
+      "used_by_c021_transfer_arms": true
+    },
+    "C021_MCGS_K1_CONTROL": {
+      "abandoned": 4,
+      "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT",
+      "completed": 36,
+      "config": {
+        "branch": "MCGS_2019_OFFICIAL_SOURCE_PORT",
+        "continuing_move_seconds": 0.7,
+        "damping_parameter": 2.0,
+        "determinization_number_SOURCE_VALUE_NOT_APPLIED": 200,
+        "determinizations_per_decision": 1,
+        "determinizations_per_rollout_PORT": 0,
+        "determinizations_per_rollout_SOURCE": "fresh per rollout",
+        "final_move_selection": "MaxChild",
+        "first_move_seconds": 0.9,
+        "game_timeout_seconds": 300.0,
+        "graph_reuse": true,
+        "graph_reuse_max_entries": 20000,
+        "manual_coin": true,
+        "match_clock_seconds": 90.0,
+        "max_simulations_per_decision": 0,
+        "sample_width": 24,
+        "selection_strategy": "UCD",
+        "ucd_d1": 1,
+        "ucd_d2": 0,
+        "uct_constant": 0.285
+      },
+      "determinizations_per_decision": 1,
+      "field_score": 0.1111,
+      "games": 40,
+      "role": "the c021 single-determinization MCGS run c022's K=1 arm must reproduce",
+      "searched_decisions": 1281,
+      "sims_per_decision": 176.6,
+      "source_sha256": {
+        "starter_kit/c020_determinize.py": "4ff753ccd178cf110e86808f26d9460c14487e59dd84ff5170adcc1a4577de22",
+        "starter_kit/c021_mcgs.py": "ecd4c13d2cfe7ce4a23278106a02e7ce1101a38100a960b4d7cd059c3b17aac6",
+        "starter_kit/c021_mcgs_abstraction.py": "4594cd4dd0276e76f7e305ee14241db0fab612600226e0f495173a8e1682e92c",
+        "starter_kit/c021_mcgs_agent.py": "becced497f5a9085e54dcc859abda106bd06f1ab7c88da72b23f8c14bbcf7841",
+        "starter_kit/c021_mcgs_graph.py": "56eafecde5da297d52242908bb08fae3750c893e52cef1c78790ef294ab1fee8",
+        "starter_kit/c021_mcgs_legal.py": "1928afa37bebcca33b301d142917fab55a7aa5f7029c90f063c2aacccf01e24f"
+      },
+      "summary_file": "contracts/c021_source_faithful_mcgs_and_byterl_transfer_campaign/results/transfer/prior_only/t2_T0_control_summary.json",
+      "summary_sha256": "9ccfc748ced39cc630c15b74df98b3a966e2b209641cb7730255bb4d2bae0d2f",
+      "term_root_loss": 28346,
+      "term_root_win": 107278,
+      "term_undecided": 90653
+    },
+    "C021_RANDOM_FLOOR": {
+      "definition": "an agent that samples uniformly over the legal option set at every decision, playing the same frozen permitted deck, against the same four-archetype panel",
+      "implemented_by": "tools/c022_panel.py --agent random (c022) / the _UniformActor opponent path in tools/c021_byterl_train.py (c021)",
+      "note": "c021 measured its floor inside the training loop rather than on the external panel; c022 measures it on the external panel so that BYTERL_FIXED_DECK has a like-for-like comparator. The measured value is written to frozen_results.json once the panel has run, not asserted here.",
+      "role": "the uniform-random-policy floor every learning claim is measured against"
+    },
+    "CHAMPION_C005_DRAGAPULT": {
+      "dir": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult",
+      "files_sha256": {
+        "a-sample-rule-based-agent-dragapult-ex-deck.log": "546d104a7b7c9937a11bd0816b3a2da31cd3cbc0de1f7e71d4d3feeb90788164",
+        "cg/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cg/api.py": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced",
+        "cg/game.py": "3bd3d4f4a369a11e6d2f5da9094cf15ebc410a2221835e6417b7cff4883f1fc2",
+        "cg/libcg.so": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb",
+        "cg/sim.py": "e7a804ee4cd7c5a9a3b8dc91f9581ff3585f9431633a41f33d7707194cb31191",
+        "cg/utils.py": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b",
+        "deck.csv": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+        "main.py": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+        "src/a-sample-rule-based-agent-dragapult-ex-deck.ipynb": "7fd3a2e6d6c36136bc2751bee8661d4bc66ac5a18135c31bfee6d50e02e6f698",
+        "src/kernel-metadata.json": "a6bcbc4a714496d1d316d5ec7083bd07ff513131e3a077a99f42c30469e0ed1b",
+        "submission.tar.gz": "152fa4e9b1322b98c50d696299b548fdf0e95e46be31ef7ce625612022d386d4"
+      },
+      "live_ladder_score_observed": 719.7,
+      "loaded_by": "cg.teachers.make_fresh('dragapult', cg.c009_eval.SOURCES)",
+      "n_files": 12,
+      "note": "c021 recorded this control with dir=null and no hashes, so it was named but not frozen. Resolved here to the teacher source tree that c009_eval.SOURCES resolves to at run time.",
+      "role": "externally confirmed champion; panel opponent and role-board reference"
+    }
+  },
+  "controls_required_by_contract": [
+    "BASELINE_OFFICIAL_MEGA_LUCARIO",
+    "CHAMPION_C005_DRAGAPULT",
+    "C020_H1_PRIOR_HYBRID_CONTROL",
+    "C021_MCGS_K1_CONTROL",
+    "C021_FIXED_DECK_B2_FINAL",
+    "C021_FIXED_DECK_B2_SELECTED_IT0160",
+    "C021_RANDOM_FLOOR"
+  ],
+  "frozen_at_commit": "7be9e04b316d79022fb10856de7f92d90555abdd",
+  "opponent_panel": [
+    "dragapult",
+    "mega_lucario",
+    "iono",
+    "mega_abomasnow"
+  ],
+  "opponent_panel_source": "cg.c009_eval.SOURCES -> contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources",
+  "unresolved": []
+}

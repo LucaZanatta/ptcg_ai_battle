@@ -1,0 +1,92 @@
+{
+  "contract": "c022",
+  "created_utc": "2026-07-29",
+  "expected_parent_commit": "cdbd4438496c905eaf38ee257abfe0c822c588f4",
+  "files": [
+    {
+      "bytes": 486,
+      "path": "README.txt",
+      "sha256": "6b4e8b3ec9c97f8d9cdfa10d49c76d63dede0cebb5e3df451341d502dedbb1c3"
+    },
+    {
+      "bytes": 3660,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/CLAUDE_COMMAND.txt",
+      "sha256": "8a5c548bb755fdeb27cfde7c07ea2b6991fb9c4bae2248b7dbb63d54c9be3d81"
+    },
+    {
+      "bytes": 6281,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/CONTRACT.md",
+      "sha256": "6937e7bd0255764f6341e9fef3768d734c1c92dd1896a45906180d68449fd0d1"
+    },
+    {
+      "bytes": 2667,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/DECISION_RULES.md",
+      "sha256": "19ec79897f3f451c0f0d730d5a3b94142fb3fd5c98855a323deaafd21e0885b6"
+    },
+    {
+      "bytes": 3582,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/FIDELITY_RULES.md",
+      "sha256": "b9ec4e2b8777fd9a5aae094b278dcfb4b8d582bde46e4ccedfa0a2722f3f12aa"
+    },
+    {
+      "bytes": 7539,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/MANDATORY_IMPLEMENTATION.md",
+      "sha256": "6960b73e801dfddb8edba05e0c7cc66540f23314f979261435ee27122af39614"
+    },
+    {
+      "bytes": 3901,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/PROBE_MATRIX.md",
+      "sha256": "d323df64f2b83120d542a793ee5dfb71e07ca04a65c184c95770b03711222112"
+    },
+    {
+      "bytes": 381,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/README.md",
+      "sha256": "14197dcc87f9f637b5612dda129838bc5f4dc017ed5543fd61c4fb949a11dd13"
+    },
+    {
+      "bytes": 3426,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/RESULTS_SCHEMA.md",
+      "sha256": "cd3e49669561288665f83b5784902bd7d983cc3521ae7a4aa3671f9f87559745"
+    },
+    {
+      "bytes": 3900,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/TRAINING_AND_EVALUATION.md",
+      "sha256": "5f6dd1484910c78cda4415ec4c0d4ad2bb32f7ae4a776c40f41e50a0a1135c0e"
+    },
+    {
+      "bytes": 861,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/inputs/HARDWARE_PROFILE.md",
+      "sha256": "9d375572a588b8af764ce61584915eaf74705ef28bd4fe58a73898c31c09ae40"
+    },
+    {
+      "bytes": 826,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/inputs/USER_DECISIONS.md",
+      "sha256": "e807c0bfad327022aac52fe186da493f24e65ecf1dd682e6e1e495e7d1dd4dd8"
+    },
+    {
+      "bytes": 869,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/references/C021_AUDIT_FINDINGS.md",
+      "sha256": "d838c15853fa3e18d9fe7a4851a28000b97a32103dd7bafdb4cb31f76692143a"
+    },
+    {
+      "bytes": 656,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/references/LICENSE_AND_REUSE_POLICY.md",
+      "sha256": "1f3a25a189ddf12b503d7a8b7f5b859bbe135b8334ef356e42dca043c8e5eaeb"
+    },
+    {
+      "bytes": 858,
+      "path": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/references/SOURCE_REFERENCES.md",
+      "sha256": "f8d59d62d5dbfafba191195b909cda332be68bcaee90937cf0d0df12e2773004"
+    },
+    {
+      "bytes": 420,
+      "path": "run_c022.sh",
+      "sha256": "481d63ebb32f6b68216cc9a5ed2089e3a0e9a9aa97e4d2a750c5d1baacce242f"
+    }
+  ],
+  "mandatory_methods": [
+    "MCGS_2019_PTCG_MULTI_DETERMINIZATION",
+    "ByteRL_LOCM_to_Hearthstone_B0_to_B3"
+  ],
+  "name": "c022_mcgs_multideterminization_and_faithful_byterl_reproduction"
+}
