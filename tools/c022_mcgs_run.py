@@ -352,7 +352,10 @@ def main(argv=None):
     ap.add_argument("--branch", default="MCGS_2019_PTCG_MULTI_DET_REFERENCE")
     ap.add_argument("--k", type=int, default=1)
     ap.add_argument("--protocol", default="fixed_total",
-                    choices=["fixed_total", "fixed_per_world"])
+                    choices=["fixed_total", "fixed_per_world", "source_time"],
+                    help="source_time is the M11 arm ONLY: search runs to the source's 15 s / "
+                         "10 s wall schedule and the simulation count becomes a measurement. "
+                         "A4 forbids it in any causal K comparison.")
     ap.add_argument("--sims", type=int, default=512)
     ap.add_argument("--aggregation", default="source_sum",
                     choices=["source_sum", "visit_sum", "robust_lcb"])

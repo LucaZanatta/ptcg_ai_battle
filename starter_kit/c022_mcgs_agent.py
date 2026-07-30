@@ -122,6 +122,11 @@ class MultiDetMCGSAgent:
         self.calibration: List[Dict[str, Any]] = []
         self.exceptions: List[Dict[str, Any]] = []
         self._first_move_done = False
+        # M11: the source's FirstMoveDurationSeconds applies to the first decision after an
+        # end-turn (`previousNode = root.IsEndTurn ? null : root`), so this starts True and is
+        # reset from the SELECTED action's opponent flag after every searched decision.
+        self._first_move = True
+        self._source_time_decisions = {"first_move": 0, "continuing": 0}
         # world index -> reuse table. Only populated when graph_reuse is on, and NEVER shared
         # between world indices.
         self._per_world_reuse: Optional[Dict[int, Dict[int, Any]]] = (
@@ -138,6 +143,17 @@ class MultiDetMCGSAgent:
         cap = float(self.cfg.get("decision_seconds_cap") or 0.0)
         if cap > 0:
             ceiling = min(ceiling, cap)
+        if str(self.cfg.get("budget_protocol")) == MD.PROTOCOL_SOURCE_TIME:
+            # M11. `Agent.GetMove`:
+            #     if (InitialiseRoot(poGame, previousNode, ...)) searchDuration = FirstMove(15)
+            #     else                                           searchDuration = Continuous(10)
+            # and `previousNode = root.IsEndTurn ? null : root`, so the 15 s budget is spent on
+            # the first decision AFTER an end-turn, not on the first decision of the game. This
+            # port reads the same condition off the aggregate: an action whose successor is an
+            # OPPONENT node is an end-turn, which is the identical test one level up.
+            ceiling = min(ceiling, float(
+                self.cfg.get("first_move_seconds") if self._first_move
+                else self.cfg.get("continuing_move_seconds")))
         clock = float(self.cfg.get("match_clock_seconds") or 0.0)
         if clock > 0:
             left = clock - self.match_search_ms / 1000.0
@@ -273,6 +289,11 @@ class MultiDetMCGSAgent:
             elif action < len(opts):
                 chosen = self._payload_for(sel, opts, agg, action)
                 self.stats["searched_decisions"] += 1
+                # `previousNode = root.IsEndTurn ? null : root`. An action whose successor is an
+                # opponent node ended the turn, so the NEXT decision is a first move and gets
+                # the 15 s budget. Read after selection because it is a property of the action
+                # chosen, not of the position.
+                self._first_move = bool(agg.is_opponent.get(action, False))
                 p = agg.predicted_win_probability(action)
                 raw = agg.raw_aggregate_value(action)
                 # One calibration row per decision. The realised outcome is stapled on by the
@@ -310,6 +331,9 @@ class MultiDetMCGSAgent:
                                         "tb": traceback.format_exc()[-700:]})
         finally:
             self.match_search_ms += (time.monotonic() - t0) * 1000.0
+            if str(self.cfg.get("budget_protocol")) == MD.PROTOCOL_SOURCE_TIME:
+                self._source_time_decisions[
+                    "first_move" if self._first_move else "continuing"] += 1
             self._first_move_done = True
 
         if chosen is None:
@@ -331,6 +355,13 @@ class MultiDetMCGSAgent:
         s["sims_per_decision"] = round(s.get("searches", 0) / sd, 1)
         s["mean_k_used"] = round(s.get("k_used_total", 0) / sd, 3)
         s["transfer_arm"] = self.transfer_arm
+        if str(self.cfg.get("budget_protocol")) == MD.PROTOCOL_SOURCE_TIME:
+            # M11 reports the schedule it actually spent, not the one it was configured with.
+            # A run that never sees an end-turn would spend 15 s on decision 1 and 10 s on
+            # every other, and the split is the only way to tell that from the source's pattern.
+            s["source_time_schedule"] = dict(self._source_time_decisions)
+            s["first_move_seconds"] = self.cfg.get("first_move_seconds")
+            s["continuing_move_seconds"] = self.cfg.get("continuing_move_seconds")
         s["ucd_recursion_active"] = G.UCDParams(
             self.cfg["ucd_d1"], self.cfg["ucd_d2"]).recursion_is_active
         W.assert_no_leakage(s, "MultiDetMCGSAgent.report")

@@ -75,6 +75,15 @@ AGG_VISIT_SUM = "visit_sum"            # A3: visit-count summation (RobustChild 
 AGG_ROBUST_LCB = "robust_lcb"          # A3 secondary, explicitly adapted: no source counterpart
 AGG_RULES = (AGG_SOURCE_SUM, AGG_VISIT_SUM, AGG_ROBUST_LCB)
 
+# Budget protocols. The first two are the causal ones and are budgeted by SIMULATION COUNT, as
+# `MANDATORY_IMPLEMENTATION A4` requires. The third exists for M11 alone: the source counts no
+# simulations at all, so reproducing its 15 s / 10 s schedule means searching to a WALL deadline
+# and reporting the achieved simulation count as a measurement. It is never used in a K
+# comparison, because a wall-clock budget is exactly the confound D08 was raised for.
+PROTOCOL_FIXED_TOTAL = "fixed_total"
+PROTOCOL_FIXED_PER_WORLD = "fixed_per_world"
+PROTOCOL_SOURCE_TIME = "source_time"
+
 
 @dataclass
 class WorldStats:
@@ -92,6 +101,9 @@ class WorldStats:
     expanded_actions: int = 0
     error: Optional[str] = None
     elapsed_s: float = 0.0
+    # M11: this world searched to a wall deadline rather than to a simulation count, so its
+    # `simulations` is a RESULT and not a budget. Recorded per world so a mixed arm is visible.
+    time_driven: bool = False
     # per-world terminal counters, so a K>1 arm cannot quietly start exercising the PIMC-gated
     # branches this port does not reproduce
     term_root_win: int = 0
@@ -315,12 +327,22 @@ def search_one_world(obs, world: W.WorldHandle, cfg: Dict[str, Any], rng,
                      simulations: int, deadline: float,
                      prior_provider=None, transfer_arm: Optional[Dict[str, bool]] = None,
                      reuse: Optional[Dict[int, Any]] = None,
-                     stats_sink: Optional[Dict[str, Any]] = None) -> WorldStats:
+                     stats_sink: Optional[Dict[str, Any]] = None,
+                     time_driven: bool = False) -> WorldStats:
     """Run one source-faithful MCGS session in one hidden world.
 
     `simulations` is a COUNT, not a time budget: `MANDATORY_IMPLEMENTATION A4` requires causal
     attribution by simulation count with wall clock recorded separately. `deadline` is only a
     safety stop so a pathological decision cannot hang a run; every activation is counted.
+
+    `time_driven` inverts that for the M11 arm alone. The source does not count simulations at
+    all — `Agent.GetMove` runs `while (innerTimer.Elapsed < TimeSpan.FromSeconds(searchDuration))`
+    — so reproducing its timing behaviour means searching until a wall deadline and REPORTING the
+    simulation count as an outcome rather than setting it as a budget. In that mode reaching the
+    deadline is the normal stop and must not be counted as a `deadline_stop`, which is the
+    signal that a COUNT-budgeted arm failed to deliver its budget. Every causal K comparison in
+    this contract stays count-budgeted; this mode is used only where the question is what the
+    source's own schedule buys.
     """
     ws = WorldStats(world_index=world.index, world_id=world.world_id)
     t0 = time.monotonic()
@@ -338,13 +360,17 @@ def search_one_world(obs, world: W.WorldHandle, cfg: Dict[str, Any], rng,
             return ws
         mcgs.tt.add(root.state_abstraction, root)
         n = 0
-        while n < simulations:
+        while True:
             if time.monotonic() >= deadline:
-                local_stats["deadline_stops"] = local_stats.get("deadline_stops", 0) + 1
+                if not time_driven:
+                    local_stats["deadline_stops"] = local_stats.get("deadline_stops", 0) + 1
+                break
+            if not time_driven and n >= simulations:
                 break
             mcgs.search(root, root_player, 0, deadline)
             n += 1
         ws.simulations = n
+        ws.time_driven = bool(time_driven)
         _collect_root(root, ws, local_stats)
     except Exception as e:  # noqa: BLE001
         ws.error = f"{type(e).__name__}: {e}"[:200]
@@ -384,6 +410,10 @@ def simulations_per_world(total: int, k: int, protocol: str) -> List[int]:
     k = max(1, int(k))
     if protocol == "fixed_per_world":
         return [int(total)] * k
+    if protocol == PROTOCOL_SOURCE_TIME:
+        # The count is not the budget in this protocol -- the wall deadline is. A nominal plan is
+        # still returned so every caller keeps the same shape, and `search_one_world` ignores it.
+        return [int(total)] * k
     base, rem = divmod(int(total), k)
     return [base + (1 if i < rem else 0) for i in range(k)]
 
@@ -408,6 +438,17 @@ def multi_determinization_decision(
     if deadline is None:
         deadline = time.monotonic() + 3600.0
 
+    # M11 only. The source runs ONE timed loop and picks a random determinization per iteration
+    # (`PickDeterminization`); this port searches worlds sequentially, so the schedule's budget is
+    # divided evenly between them. Even division rather than random picking is the same
+    # MECHANICAL_ADAPTER already recorded for the count-budgeted protocols, and it is stated in
+    # the arm's report rather than presented as the source's own behaviour.
+    time_driven = (protocol == PROTOCOL_SOURCE_TIME)
+    per_world_deadline = None
+    if time_driven:
+        now = time.monotonic()
+        share = max(0.0, deadline - now) / max(1, len(worlds))
+
     agg = Aggregate(n_worlds=len(worlds))
     sigs = set()
     for i, w in enumerate(worlds):
@@ -421,8 +462,15 @@ def multi_determinization_decision(
         # A dedicated generator per world, derived from the world seed, so the number of
         # simulations run in world i cannot shift the random stream of world j.
         wrng = np.random.default_rng((int(base_seed) ^ int(w.seed)) & ((1 << 63) - 1))
-        ws = search_one_world(obs, w, cfg, wrng, plan[i], deadline,
-                              prior_provider, transfer_arm, reuse, stats_sink)
+        world_deadline = deadline
+        if time_driven:
+            # Each world gets its own slice, measured from NOW so that a world which finishes
+            # early cannot hand its unused time to the next one -- that would make the split
+            # depend on search content and reintroduce the confound even division removes.
+            world_deadline = min(deadline, time.monotonic() + share)
+        ws = search_one_world(obs, w, cfg, wrng, plan[i], world_deadline,
+                              prior_provider, transfer_arm, reuse, stats_sink,
+                              time_driven=time_driven)
         agg.per_world.append(ws)
         agg.total_simulations += ws.simulations
         for a, v in ws.visits.items():
