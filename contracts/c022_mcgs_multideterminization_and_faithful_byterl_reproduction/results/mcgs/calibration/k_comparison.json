@@ -1,0 +1,40 @@
+{
+  "fixed_total": {
+    "protocol": "fixed_total",
+    "dir": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/mcgs/fixed_total_simulations",
+    "arms_found": [],
+    "arms_missing": [
+      "ft_k1",
+      "ft_k2",
+      "ft_k4",
+      "ft_k8"
+    ],
+    "validity": {
+      "valid": false,
+      "reasons": [
+        "no arms"
+      ]
+    },
+    "arms": {},
+    "k1_control_tag": null
+  },
+  "fixed_per_world": {
+    "protocol": "fixed_per_world",
+    "dir": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/mcgs/fixed_simulations_per_world",
+    "arms_found": [],
+    "arms_missing": [
+      "fpw_k1",
+      "fpw_k2",
+      "fpw_k4",
+      "fpw_k8"
+    ],
+    "validity": {
+      "valid": false,
+      "reasons": [
+        "no arms"
+      ]
+    },
+    "arms": {},
+    "k1_control_tag": null
+  }
+}
