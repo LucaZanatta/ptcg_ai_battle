@@ -2,201 +2,21 @@
   "fixed_total": {
     "protocol": "fixed_total",
     "dir": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/mcgs/fixed_total_simulations",
-    "arms_found": [
-      "ft_k1"
-    ],
+    "arms_found": [],
     "arms_missing": [
+      "ft_k1",
       "ft_k2",
       "ft_k4",
       "ft_k8"
     ],
     "validity": {
-      "valid": true,
-      "reasons": [],
-      "exclusion_rate": {
-        "ft_k1": 0.05
-      },
-      "total_simulations": {
-        "ft_k1": 299520
-      },
-      "sims_per_decision": {
-        "ft_k1": 192.0
-      }
+      "valid": false,
+      "reasons": [
+        "no arms"
+      ]
     },
-    "arms": {
-      "ft_k1": {
-        "k": 1,
-        "games": 40,
-        "completed": 38,
-        "abandoned": 2,
-        "unscored": 0,
-        "errored": 0,
-        "excluded_fraction": 0.05,
-        "all_games_accounted": true,
-        "field_score": 0.1579,
-        "wilson95": [
-          0.0744,
-          0.3042
-        ],
-        "field_score_bounds_if_unscored_counted": [
-          0.15,
-          0.2
-        ],
-        "sims_per_decision": 192.0,
-        "searched_decisions": 1560,
-        "decision_budget_exhausted_decisions": 0,
-        "wall_clock_s": 2617.9,
-        "term_root_win": 84626,
-        "term_root_loss": 176811,
-        "term_undecided": 38083,
-        "predicted_over_decided": 0.3237,
-        "calibration": {
-          "n": 1560,
-          "mean_predicted": 0.3084,
-          "observed_base_rate": 0.2077,
-          "overconfidence_pp": 10.1,
-          "brier": 0.17107,
-          "brier_constant_baseline": 0.16456,
-          "brier_skill_vs_constant": -0.0396,
-          "log_loss": 0.56112,
-          "log_loss_constant_baseline": 0.51088,
-          "expected_calibration_error": 0.1206,
-          "reliability": [
-            {
-              "bin": "[0.0,0.1)",
-              "n": 434,
-              "mean_predicted": 0.0472,
-              "observed": 0.0829,
-              "gap_pp": -3.6,
-              "observed_wilson95": [
-                0.0605,
-                0.1127
-              ]
-            },
-            {
-              "bin": "[0.1,0.2)",
-              "n": 295,
-              "mean_predicted": 0.1433,
-              "observed": 0.1186,
-              "gap_pp": 2.5,
-              "observed_wilson95": [
-                0.0866,
-                0.1605
-              ]
-            },
-            {
-              "bin": "[0.2,0.3)",
-              "n": 200,
-              "mean_predicted": 0.2455,
-              "observed": 0.15,
-              "gap_pp": 9.5,
-              "observed_wilson95": [
-                0.1071,
-                0.2061
-              ]
-            },
-            {
-              "bin": "[0.3,0.4)",
-              "n": 139,
-              "mean_predicted": 0.3483,
-              "observed": 0.2158,
-              "gap_pp": 13.2,
-              "observed_wilson95": [
-                0.1556,
-                0.2914
-              ]
-            },
-            {
-              "bin": "[0.4,0.5)",
-              "n": 125,
-              "mean_predicted": 0.4443,
-              "observed": 0.32,
-              "gap_pp": 12.4,
-              "observed_wilson95": [
-                0.2446,
-                0.4061
-              ]
-            },
-            {
-              "bin": "[0.5,0.6)",
-              "n": 110,
-              "mean_predicted": 0.5433,
-              "observed": 0.3455,
-              "gap_pp": 19.8,
-              "observed_wilson95": [
-                0.2632,
-                0.4382
-              ]
-            },
-            {
-              "bin": "[0.6,0.7)",
-              "n": 74,
-              "mean_predicted": 0.6489,
-              "observed": 0.3919,
-              "gap_pp": 25.7,
-              "observed_wilson95": [
-                0.2886,
-                0.5058
-              ]
-            },
-            {
-              "bin": "[0.7,0.8)",
-              "n": 62,
-              "mean_predicted": 0.7517,
-              "observed": 0.3226,
-              "gap_pp": 42.9,
-              "observed_wilson95": [
-                0.2195,
-                0.4463
-              ]
-            },
-            {
-              "bin": "[0.8,0.9)",
-              "n": 53,
-              "mean_predicted": 0.8456,
-              "observed": 0.3585,
-              "gap_pp": 48.7,
-              "observed_wilson95": [
-                0.243,
-                0.4931
-              ]
-            },
-            {
-              "bin": "[0.9,1.0)",
-              "n": 68,
-              "mean_predicted": 0.9721,
-              "observed": 0.6912,
-              "gap_pp": 28.1,
-              "observed_wilson95": [
-                0.5736,
-                0.7883
-              ]
-            }
-          ]
-        },
-        "disagreement": {
-          "decisions": 1560,
-          "decisions_with_k_gt_1": 0,
-          "mean_modal_agreement": 1.0,
-          "unanimous_fraction": 1.0,
-          "mean_distinct_best_actions": 1.0,
-          "max_distinct_best_actions": 1,
-          "mean_selected_value_sd": null,
-          "n_with_sd": 0
-        },
-        "starvation": {
-          "n_world_records": 76,
-          "sampled_from_traces_per_game": 2,
-          "is_a_sample_not_a_census": true,
-          "mean_simulations_per_world": 192.0,
-          "min_simulations_per_world": 192,
-          "mean_expanded_actions_per_world": 3.7,
-          "mean_root_edges_per_world": 3.7,
-          "fraction_of_worlds_expanding_le_1_action": 0.0
-        }
-      }
-    },
-    "k1_control_tag": "ft_k1"
+    "arms": {},
+    "k1_control_tag": null
   },
   "fixed_per_world": {
     "protocol": "fixed_per_world",
