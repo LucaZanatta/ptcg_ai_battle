@@ -281,3 +281,46 @@ feasible wall clock. The sweep is explicitly a SHORTLIST; its primary output —
 comparison — is computed per DECISION, so 32 games still yields roughly 1,280 calibration rows per
 arm. Field-score confidence intervals at 32 games are wide and are reported as such;
 `TRAINING_AND_EVALUATION §5`'s 200-game paired arms remain the evidence for any field-score claim.
+
+---
+
+## D15 — abandonment is the stalemate rate, and the guard was sized as if it were slowness
+
+**Found by** looking at the per-game durations behind an abandonment number instead of the
+number itself.
+
+`ft_k1` at a 1881.6 s guard:
+
+```text
+completed  29 games   mean 148.7 s   MAX 275.0 s
+abandoned   3 games   1881.9 s, 1881.9 s, 1881.8 s
+```
+
+The abandoned games did not take slightly too long. They ran to the guard **to a tenth of a
+second**, and the slowest game that ever finished took 275 s — a seventh of the guard. There is
+no continuum between them: normal games finish in under five minutes and a small number of games
+do not terminate at all.
+
+So `abandoned` is not measuring "games too slow for the budget". It is measuring the **stalemate
+rate**, which is a property of the game under this play, not of the search configuration.
+
+**Two consequences, and I had the second one backwards.**
+
+1. **The confound is milder than I feared.** A stalemate rate is K-independent to first order, so
+   the exclusion spread across K should be small — unlike a cost-driven cut, which scales with K
+   and was the D14 confound. This is good news that only appears if you look at the durations.
+
+2. **The guard IS the arm's wall time.** An arm cannot finish until its stalemates time out, so
+   sizing the guard to the search budget bought nothing except a longer arm. Three
+   non-terminating games held `ft_k1` open for 1882 s while its other 29 finished inside 275 s.
+   Every previous recalibration in this contract (D14, and the two before it) was tuning a
+   quantity that only ever affected the *stalemates* — which is why lowering the decision budget
+   from 120 to 50 barely moved the arm's duration.
+
+**Fix:** `--game-timeout-base`, derived from measured completed-game duration and scaled by the
+same K factor, replaces the search-cost derivation. 700 s at K=1 is 2.5× the slowest completed
+game and cuts nothing real; the K=8 guard becomes 2359 s instead of 6360 s. Each summary records
+`game_timeout_basis` so a reader can tell which derivation produced it.
+
+**Expected effect:** arm wall time roughly a third of what it was, with abandonment unchanged —
+because the games being abandoned were never going to finish.

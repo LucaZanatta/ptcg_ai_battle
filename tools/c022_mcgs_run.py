@@ -312,6 +312,7 @@ def run_arm(a) -> Dict[str, Any]:
             agg_stats.get("match_clock_exhausted_decisions", 0)),
         "decision_budget": int(a.decision_budget),
         "derived_game_timeout_s": round(float(a.game_timeout), 1),
+        "game_timeout_basis": getattr(a, "game_timeout_basis", "unknown"),
         "effective_seconds_per_simulation": round(
             a.seconds_per_simulation * (1.0 + a.k_overhead * (a.k - 1)), 5),
         "decision_budget_exhausted_decisions": int(
@@ -379,6 +380,12 @@ def main(argv=None):
                          "simulations. Measured 0.34: ft_k1 ran at 122.4 ms/simulation/worker "
                          "and ft_k2 at 164.0, with an identical 192-simulation budget. Opening "
                          "K sessions per decision is not free.")
+    ap.add_argument("--game-timeout-base", type=float, default=0.0,
+                    help="per-game wall guard at K=1 in seconds, scaled by --k-overhead for "
+                         "higher K. When > 0 this REPLACES the search-cost derivation. Set it "
+                         "from MEASURED completed-game duration: abandonment here is dominated "
+                         "by non-terminating games, which consume whatever guard they are "
+                         "given, while normal games finish far inside it.")
     ap.add_argument("--arm-timeout", type=float, default=14400.0)
     ap.add_argument("--transfer-arm", default=None)
     ap.add_argument("--byterl-checkpoint", default=None)
@@ -403,14 +410,33 @@ def main(argv=None):
     # more of their long games, and -- because excluded games leave the field score -- scores
     # them on a shorter population. That is exactly the confound the decision budget was
     # introduced to remove (D08), returning through the guard.
-    eff_sec_per_sim = a.seconds_per_simulation * (1.0 + a.k_overhead * (a.k - 1))
+    k_factor = 1.0 + a.k_overhead * (a.k - 1)
+    eff_sec_per_sim = a.seconds_per_simulation * k_factor
+    basis = "search_cost_estimate"
     if a.game_timeout <= 0:
-        a.game_timeout = max(
-            300.0, a.decision_budget * total_sims * eff_sec_per_sim * 1.6)
+        if a.game_timeout_base > 0:
+            # Derived from MEASURED completed-game duration, not from search cost.
+            #
+            # ft_k1 completed 29 games at a mean of 148.7 s and a MAXIMUM of 275 s, while its
+            # three abandoned games each ran to exactly 1881.9 s -- the guard, to a tenth of a
+            # second. Those are not slow games. They are games that do not terminate, and they
+            # will consume whatever guard they are given.
+            #
+            # Two consequences. First, abandonment here measures the STALEMATE RATE, which is a
+            # property of the game and not of K, so it does not confound the K comparison the
+            # way a cost-driven cut would. Second, the guard IS the arm's wall time, because an
+            # arm cannot finish until its stalemates time out -- so sizing the guard to the
+            # search budget bought nothing but a longer arm.
+            a.game_timeout = max(300.0, a.game_timeout_base * k_factor)
+            basis = "measured_completed_game_duration"
+        else:
+            a.game_timeout = max(
+                300.0, a.decision_budget * total_sims * eff_sec_per_sim * 1.6)
     a.derived_game_timeout = True
+    a.game_timeout_basis = basis
     print(f"[arm {a.tag}] K={a.k} protocol={a.protocol} total_sims/decision={total_sims} "
-          f"eff_ms/sim={eff_sec_per_sim*1000:.0f} -> game_timeout={a.game_timeout:.0f}s "
-          f"(decision budget {a.decision_budget}, 1.6x margin)", flush=True)
+          f"eff_ms/sim={eff_sec_per_sim*1000:.0f} k_factor={k_factor:.2f} "
+          f"-> game_timeout={a.game_timeout:.0f}s ({basis})", flush=True)
     s = run_arm(a)
     print(json.dumps({k: s[k] for k in
                       ("tag", "games", "completed", "abandoned", "field_score", "wilson95",

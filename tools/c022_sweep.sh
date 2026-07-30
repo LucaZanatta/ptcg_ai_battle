@@ -51,6 +51,15 @@ DECISION_BUDGET=${DECISION_BUDGET:-50}
 # calibration.
 SEC_PER_SIM=${SEC_PER_SIM:-0.245}
 K_OVERHEAD=${K_OVERHEAD:-0.34}
+# Per-game guard at K=1, from MEASURED completed-game duration rather than search cost. ft_k1
+# completed 29 games at a mean of 148.7 s and a maximum of 275 s, while its three abandoned
+# games each ran to exactly 1881.9 s -- the guard, to a tenth of a second. Those are not slow
+# games, they are games that do not terminate, and they consume whatever guard they are given.
+#
+# So abandonment measures the STALEMATE RATE, a property of the game rather than of K, and the
+# guard IS the arm's wall time because an arm cannot finish until its stalemates time out.
+# 700 s is 2.5x the slowest completed game and cuts nothing real.
+GAME_TIMEOUT_BASE=${GAME_TIMEOUT_BASE:-700}
 R="contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/mcgs"
 
 run () {  # tag k protocol sims out reuse
@@ -61,6 +70,7 @@ run () {  # tag k protocol sims out reuse
     --graph-reuse "${6:-0}" --match-clock 0 --wall-ceiling 300 \
     --decision-budget "$DECISION_BUDGET" --arm-timeout 21600 \
     --seconds-per-simulation "$SEC_PER_SIM" --k-overhead "$K_OVERHEAD" \
+    --game-timeout-base "$GAME_TIMEOUT_BASE" \
     --out "$5" 2>&1 | grep -viE '^\[kaggle_environments|INFO:'
 }
 
