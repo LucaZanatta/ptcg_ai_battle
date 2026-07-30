@@ -1,0 +1,215 @@
+{
+  "generated_from": "raw per-game, per-decision and per-run artifacts",
+  "n_checks": 13,
+  "n_ran": 9,
+  "n_pass": 9,
+  "checks_with_no_data": [
+    "V05",
+    "V10",
+    "V11",
+    "V12"
+  ],
+  "no_data_is_not_a_pass": true,
+  "inert_checks": [
+    "V04"
+  ],
+  "injections_not_detected": [
+    "V04"
+  ],
+  "all_injections_detected": false,
+  "inventory": {
+    "mcgs_arms": [
+      "ft_k1",
+      "m04_k1_reuse"
+    ],
+    "byterl_evals": [
+      "floor_end_to_end",
+      "floor_fixed_deck",
+      "smoke_floor"
+    ],
+    "byterl_runs": []
+  },
+  "checks": [
+    {
+      "id": "V01",
+      "name": "MCGS field scores recompute from per-game records",
+      "detail": {
+        "arms_checked": 2,
+        "mismatches": []
+      },
+      "detects": "a reported score that disagrees with its own raw games",
+      "n_inputs": 2,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V02",
+      "name": "every game lands in exactly one bucket",
+      "detail": {
+        "arms_checked": 2,
+        "unaccounted": []
+      },
+      "detects": "D10: ten games in no category, silently excluded from the field score",
+      "n_inputs": 2,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V03",
+      "name": "the simulation budget was delivered",
+      "detail": {
+        "arms_checked": 2,
+        "budget_failures": []
+      },
+      "detects": "an arm that did not run its simulations, or hit the per-decision wall ceiling",
+      "n_inputs": 2,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V04",
+      "name": "M05/M06 equal budgets across K",
+      "detail": {
+        "per_protocol": [],
+        "_n_inputs": 1,
+        "note": "needs at least two arms in a protocol to compare"
+      },
+      "detects": "a K sweep whose arms did not use equal simulations",
+      "n_inputs": 1,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": false,
+      "inert": true
+    },
+    {
+      "id": "V05",
+      "name": "exclusion rate is comparable across K",
+      "detail": {
+        "per_protocol_spread_over_15pp": [],
+        "_n_inputs": 0,
+        "note": "needs at least two arms in a protocol to compare"
+      },
+      "detects": "D08/contention: arms scored on different populations, making 'K is worse' indistinguishable from 'K was cut earlier'",
+      "n_inputs": 0,
+      "status": "NO_DATA",
+      "pass": false,
+      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+    },
+    {
+      "id": "V06",
+      "name": "predicted win probabilities are in [0,1]",
+      "detail": {
+        "rows_checked": 3543,
+        "out_of_range": []
+      },
+      "detects": "D04: the source's opponent sign flip making an end-turn action's probability negative",
+      "n_inputs": 3543,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V07",
+      "name": "no arm mixed the +/-10 terminal scale into a [0,1] aggregate",
+      "detail": {
+        "arms_checked": 2,
+        "mixed": []
+      },
+      "detects": "a terminal leaf entering the aggregate and breaking the probability reading",
+      "n_inputs": 2,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V08",
+      "name": "action indices are aligned across worlds",
+      "detail": {
+        "arms_checked": 2,
+        "mismatches": []
+      },
+      "detects": "the position-pairing defect family: summing statistics for different actions",
+      "n_inputs": 2,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V09",
+      "name": "ByteRL external evaluations recompute from per-game records",
+      "detail": {
+        "evals_checked": 3,
+        "mismatches": []
+      },
+      "detects": "a reported win rate that disagrees with its own raw games",
+      "n_inputs": 3,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V10",
+      "name": "recurrent replay agrees at the exact behaviour weights",
+      "detail": {
+        "runs_checked": 0,
+        "failures": []
+      },
+      "detects": "B4's zeroed-recurrent-start hard failure, and D06's publish race",
+      "n_inputs": 0,
+      "status": "NO_DATA",
+      "pass": false,
+      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+    },
+    {
+      "id": "V11",
+      "name": "ByteRL trained from fresh random weights",
+      "detail": {
+        "runs_checked": 0,
+        "warm_starts": []
+      },
+      "detects": "a warm start from c021 weights, which CONTRACT \u00a72 forbids",
+      "n_inputs": 0,
+      "status": "NO_DATA",
+      "pass": false,
+      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+    },
+    {
+      "id": "V12",
+      "name": "the LSTM is present at hidden size 256",
+      "detail": {
+        "runs_checked": 0,
+        "bad": []
+      },
+      "detects": "c021's defining absence: a feed-forward substitute",
+      "n_inputs": 0,
+      "status": "NO_DATA",
+      "pass": false,
+      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+    },
+    {
+      "id": "V13",
+      "name": "frozen controls still hash to what was frozen",
+      "detail": {
+        "controls": 7,
+        "violations": []
+      },
+      "detects": "a control mutating under the campaign it is supposed to anchor",
+      "n_inputs": 7,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    }
+  ],
+  "note": "F04 requires the validators to reject known defects. Each check is paired with an INJECTION of the shape the defect actually took; a check that passes both clean and injected data is INERT and is listed as such rather than counted as a pass. c021 shipped an inert check and found it only by mutation testing."
+}
