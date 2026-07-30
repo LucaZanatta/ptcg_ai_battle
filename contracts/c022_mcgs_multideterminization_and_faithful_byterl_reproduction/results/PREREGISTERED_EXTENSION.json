@@ -1,0 +1,47 @@
+{
+  "registered_at": "2026-07-31T00:55+02:00",
+  "registered_before_any_extension_arm_ran": true,
+  "authority": "The user granted an explicit compute window at 00:55 on 2026-07-31: run whatever experiments are most useful, without invalidating the contract, until 07:00.",
+
+  "what_this_file_is_for": "Every arm below is a POST-HOC addition, decided after the contract's registered arms had been analysed. That is exactly the position from which gate-shopping happens, so what each arm tests, and what it may and may not change, is fixed here BEFORE it runs.",
+
+  "binding_constraints": {
+    "no_existing_claim_is_modified": "Nothing here alters a threshold, an aggregation rule, a pass condition, or a reported number. The registered analyses stand as committed; these arms are additional evidence reported alongside them.",
+    "no_threshold_moves": "M08's pass condition, the 8pp exclusion bound, the 5.0pp replication floor and the 0.0377 replication Brier difference are all as registered.",
+    "negative_results_are_reported": "Each arm below is capable of confirming a conclusion this contract has already published against itself. It is registered on that basis, not on the basis of what it might improve.",
+    "the_short_arms_are_not_deleted": "br3_fixed_deck (328,601 decisions) remains as reported. The extension arm is a SEPARATE tag, and both are reported."
+  },
+
+  "arms": [
+    {
+      "id": "MCGS_ENSEMBLE_AT_DEPTH",
+      "tags": ["k8_s768", "k1_s768"],
+      "config": "fixed_total, 768 simulations per decision, 40 games, seed 90210, decision budget 50, graph_reuse off",
+      "question": "Does the ensemble's contribution grow with search depth?",
+      "why_it_matters": "FINDING_the_calibration_gain_is_compute.md concluded that at 96 simulations per decision the eight-world ensemble contributes 1.2% of the calibration improvement, and named THIS measurement as the one most likely to overturn that conclusion. Between-world disagreement is what the ensemble corrects, and how it scales with depth is unmeasured.",
+      "the_comparison": "ensemble contribution at 96 sims = paired_k8 - paired_k1_c96 = -0.00146 Brier (measured). Ensemble contribution at 768 sims = k8_s768 - k1_s768. The question is whether the second is materially larger than the first.",
+      "why_count_budgeted_and_not_the_wall_schedule": "MANDATORY_IMPLEMENTATION A4 requires causal attribution by simulation count. A wall-clock K comparison reintroduces the D08 confound, and 768 simulations per decision is roughly what M11 measured the source's own 15s/10s schedule to buy (median ~600) -- so this reaches the source's regime without adopting its budget mechanism.",
+      "order_and_why": "k8_s768 runs FIRST. If its calibration is indistinguishable from paired_k8 at 96 simulations, the depth hypothesis is dead and the control arm is unnecessary. Ordering by which arm can falsify alone.",
+      "what_would_change_a_conclusion": "An ensemble contribution at 768 simulations exceeding the measured replication difference of 0.0377 Brier would mean the 1.2% figure is budget-specific rather than general, and FINDING_the_calibration_gain_is_compute.md would be amended to say so.",
+      "what_would_not": "A field-score difference. At 40 games the Wilson interval spans ~30 points against a measured 5.0pp floor, and no field claim is made from these arms."
+    },
+    {
+      "id": "BYTERL_FIXED_DECK_AT_SCALE",
+      "tag": "br3_fixed_deck_long",
+      "config": "BR3, fixed deck, fresh random weights, 6 actors, queue 48, batch 8, unroll 32, seed 4242, target 3,607,599 decisions, deadline 06:15",
+      "question": "Does the faithful published system learn to play PTCG when given a substantial fraction of the matched sample budget?",
+      "why_it_matters": "br3_fixed_deck reached 9.11% of the matched budget and sat flat inside the random floor's interval across four checkpoints. FIDELITY_RULES §5 forbids reading that as method failure, so the strength question is currently unanswered rather than answered negatively. This arm is the attempt to answer it.",
+      "why_fresh_rather_than_resumed": "The trainer checkpoints net.state_dict() only, so resuming would restart Adam's moments from zero at 328k decisions -- precisely where the trajectory is being read for evidence of learning, and with no way to separate 'learning stalled' from 'the optimizer was reset'. A clean run to a smaller total is better evidence than a spliced run to a larger one.",
+      "why_only_the_fixed_deck_arm": "TRAINING_AND_EVALUATION §2 orders fixed-deck first, and it is the cleaner learning test because no deck-construction confound sits between the policy and the result. Running both arms would halve each. br3_end_to_end therefore REMAINS at 10.85% and BYTERL_E2E remains undertrained; that asymmetry is a choice, stated here so it does not read as an accident.",
+      "trajectory_protocol_fixed_now": "Checkpoints are evaluated ON THE SAME 128-game external panel as they land, spaced by decisions, targeting 8-10 points. The 4-point trajectory at 9% was flat in noise; a single final number would leave BYTERL_FIXED_DECK's second requirement unanswered again. Evaluations use seed 777001, identical to every other external evaluation in this contract.",
+      "what_would_change_a_conclusion": "An external field score whose Wilson interval separates from the fixed-deck random floor of 0.0234 [0.008, 0.0666], with a trajectory rising rather than bouncing, would make BYTERL_FIXED_DECK's improvement requirement met.",
+      "what_would_not": "A higher in-training win rate. It is measured against the training opponent mix, not the external panel, and is not the requirement."
+    }
+  ],
+
+  "still_not_run_and_why": {
+    "M09_M10_frozen_decision_stability": "registered chain item 4; queued behind the arms above and run if the window allows",
+    "M08_ceiling_remeasurement": "the obligation recorded in PREREGISTERED_AGGREGATION.json after D13; cheap, queued",
+    "TRANSFER_T1_T2": "MANDATORY_IMPLEMENTATION C gates transfer on both fidelity gates. BYTERL_REFERENCE_FIDELITY is now PASS, so the gate is open; the arms need 200 paired games each and are queued last."
+  }
+}
