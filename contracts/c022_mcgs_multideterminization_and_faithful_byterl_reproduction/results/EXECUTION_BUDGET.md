@@ -73,6 +73,37 @@ required at the time.
 - convert a compute shortfall into a method failure. `FIDELITY_RULES §5` is explicit: "Do not
   convert undertraining into method failure."
 
+## User ruling on when to cut — 2026-07-30 ~16:45
+
+Asked whether to apply the compressions (transfer at 96 simulations, skipping the unrestricted
+timing arm under M11's "or exact blocker recorded", cutting end-to-end scale), the user ruled:
+
+> "no, make sense to compress only if we reach midnight, otherwise it's fine as it is"
+
+So:
+
+```text
+until 00:00   run at full registered scale. Cut nothing.
+at   00:00    assess against this table. If the remaining chain does not project to finish in
+              a reasonable window, apply the cut order from the top down, recording each cut
+              and its reason in this file at the time it is taken.
+```
+
+This is a **schedule** trigger, not a results trigger. Nothing about what has been measured by
+midnight may influence which items get cut — the cut order was fixed before any of it existed,
+and a cut taken because an arm looked disappointing would be exactly the gate-shopping the order
+exists to prevent.
+
 ## Status
 
-Recorded 2026-07-30 at 14:50, with items 2 and 8 in progress and nothing yet cut.
+Recorded 2026-07-30 at 14:50, revised 16:45.
+
+- item 2 (fixed-total sweep) — running, third calibration
+- item 3 (fixed-per-world sweep) — queued
+- item 8 (ByteRL conformance) — **complete**, all five stages, b2 ratio 7.7 -> 1.02
+- item 9 (ByteRL controlled rungs) — running
+- nothing cut
+
+Two schedule costs already absorbed, both from defects the pre-committed bounds caught rather
+than from the plan: three sweep arms discarded for D14 (per-K compute overhead) and for the
+guard-sets-arm-duration correction. Roughly 2.5 hours.
