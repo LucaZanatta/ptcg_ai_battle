@@ -113,7 +113,7 @@ class MultiDetMCGSAgent:
             "k_used_total": 0, "world_errors": 0, "decision_deadline_stops": 0,
             "match_clock_exhausted_decisions": 0, "signature_mismatches": 0,
             "mixed_terminal_scale_decisions": 0, "aggregate_empty_decisions": 0,
-            "decision_budget_exhausted_decisions": 0,
+            "decision_budget_exhausted_decisions": 0, "opponent_flag_conflicts": 0,
         })
         self.decision_index = 0
         self.match_search_ms = 0.0
@@ -200,6 +200,9 @@ class MultiDetMCGSAgent:
             self.stats["world_errors"] += len(trace["world_errors"])
             if trace["signature_mismatch"]:
                 self.stats["signature_mismatches"] += 1
+            self.stats["opponent_flag_conflicts"] = (
+                self.stats.get("opponent_flag_conflicts", 0)
+                + int(trace.get("opponent_flag_conflicts", 0)))
             if trace["mixed_terminal_scale"]:
                 self.stats["mixed_terminal_scale_decisions"] += 1
 
@@ -210,6 +213,7 @@ class MultiDetMCGSAgent:
                 chosen = K.to_select_payload([opts[action]], sel)
                 self.stats["searched_decisions"] += 1
                 p = agg.predicted_win_probability(action)
+                raw = agg.raw_aggregate_value(action)
                 # One calibration row per decision. The realised outcome is stapled on by the
                 # runner once the game finishes -- a predicted probability with no realised
                 # outcome is not a calibration record, it is a log line.
@@ -221,6 +225,9 @@ class MultiDetMCGSAgent:
                     "action": int(action),
                     "n_options": len(opts),
                     "predicted_win_probability": round(float(p), 6) if p is not None else None,
+                    "raw_aggregate_value_signed": round(float(raw), 6)
+                    if raw is not None else None,
+                    "successor_is_opponent": bool(agg.is_opponent.get(action, False)),
                     "visits": int(agg.visits.get(action, 0)),
                     "modal_agreement": trace["disagreement"]["modal_agreement"],
                     "distinct_best_actions": trace["disagreement"]["distinct_best_actions"],

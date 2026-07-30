@@ -86,6 +86,7 @@ class WorldStats:
     visits: Dict[int, int] = field(default_factory=dict)
     rewards: Dict[int, float] = field(default_factory=dict)
     edge_visits: Dict[int, int] = field(default_factory=dict)
+    is_opponent: Dict[int, bool] = field(default_factory=dict)
     root_visit_count: int = 0
     root_edges: int = 0
     expanded_actions: int = 0
@@ -130,11 +131,19 @@ class Aggregate:
 
     visits: Dict[int, int] = field(default_factory=dict)
     rewards: Dict[int, float] = field(default_factory=dict)
+    # Whether the successor reached by this action is an OPPONENT node. The source's
+    # `Node.Update` negates the reward at an opponent node (`if (IsOpponent) reward *= -1`), so
+    # that node's Rewards/VisitCount is MINUS the root player's win probability. Selection is
+    # unaffected — MaxChild still prefers the child best for the root player, which is the whole
+    # point of the flip — but a predicted PROBABILITY read straight off the value is wrong by a
+    # sign whenever the action ends the turn.
+    is_opponent: Dict[int, bool] = field(default_factory=dict)
     per_world: List[WorldStats] = field(default_factory=list)
     n_worlds: int = 0
     total_simulations: int = 0
     option_signature: Optional[str] = None
     signature_mismatch: bool = False
+    opponent_flag_conflicts: int = 0
 
     def value(self, action: int) -> Optional[float]:
         v = self.visits.get(action, 0)
@@ -169,16 +178,35 @@ class Aggregate:
     def predicted_win_probability(self, action: int) -> Optional[float]:
         """The number M08 calibrates.
 
-        Defined ONCE, here, as the aggregate value of the SELECTED action: summed rewards over
-        summed visits across worlds. Not the maximum over worlds, and not the value in whichever
-        world liked it most — either of those would report the search's most optimistic world as
-        its belief and guarantee that calibration cannot improve with K.
+        The aggregate value of the SELECTED action — summed rewards over summed visits across
+        worlds — converted to a root-player win probability. Not the maximum over worlds, and not
+        the value in whichever world liked it most: either of those would report the search's
+        most optimistic world as its belief and guarantee that calibration cannot improve with K.
 
-        Rollout returns are in [0, 1] (`PlayUntilTerminal` returns 1.0 for a root-player win, 0.0
-        otherwise, and 0.0 at the turn cap), so the aggregate value is already a probability. The
-        source's terminal ±10 scale would break that, which is why `terminal_leaves` is counted
-        per world: if it ever becomes nonzero the mixed scale must be handled explicitly rather
-        than discovered in a calibration plot.
+        **The sign matters and is not cosmetic.** Rollout returns are in [0, 1]
+        (`PlayUntilTerminal` returns 1.0 for a root-player win, 0.0 otherwise, and 0.0 at the
+        turn cap), but `Node.Update` negates the reward at an OPPONENT node, so an action that
+        ends the turn has a successor whose value is MINUS the root player's win probability.
+        Reading that straight off produced calibration rows with `predicted_win_probability:
+        -0.0446`, which is not a probability at all and would have made every end-turn decision a
+        catastrophic miss in the Brier score for a reason that has nothing to do with the search.
+
+        The clamp is a guard, not a fudge: after the sign correction the value is a mean of
+        rollout returns in [0, 1] and cannot legitimately leave that range. If it does,
+        `mixed_terminal_scale_detected()` is the thing to look at — the ±10 terminal scale is the
+        only mechanism that could put it outside.
+        """
+        v = self.value(action)
+        if v is None:
+            return None
+        if self.is_opponent.get(action, False):
+            v = -v
+        return min(1.0, max(0.0, v))
+
+    def raw_aggregate_value(self, action: int) -> Optional[float]:
+        """The unconverted `sum(rewards)/sum(visits)`, on the source's own signed scale.
+
+        Recorded alongside the probability so the conversion is auditable rather than hidden.
         """
         return self.value(action)
 
@@ -232,6 +260,9 @@ def _collect_root(root: G.Node, ws: WorldStats, stats: Dict[str, Any]) -> None:
         ws.visits[a] = ws.visits.get(a, 0) + int(e.successor.visit_count)
         ws.rewards[a] = ws.rewards.get(a, 0.0) + float(e.successor.rewards)
         ws.edge_visits[a] = ws.edge_visits.get(a, 0) + int(e.visit_count)
+        # Whose turn it is after this action is PUBLIC, so it is the same in every world; the
+        # aggregate asserts that rather than assuming it.
+        ws.is_opponent[a] = bool(e.successor.is_opponent)
     ws.expanded_actions = sum(1 for v in ws.visits.values() if v > 0)
     ws.term_root_win = int(stats.get("term_root_win", 0) or 0)
     ws.term_root_loss = int(stats.get("term_root_loss", 0) or 0)
@@ -358,6 +389,14 @@ def multi_determinization_decision(
         for a, v in ws.visits.items():
             agg.visits[a] = agg.visits.get(a, 0) + v
             agg.rewards[a] = agg.rewards.get(a, 0.0) + ws.rewards.get(a, 0.0)
+            flag = bool(ws.is_opponent.get(a, False))
+            if a in agg.is_opponent and agg.is_opponent[a] != flag:
+                # Public information decides whose turn follows an action, so this cannot differ
+                # across worlds. If it ever does, the action indices are not aligned and the
+                # aggregate is summing different actions -- exactly what the option signature
+                # guards against, caught here a second way.
+                agg.opponent_flag_conflicts += 1
+            agg.is_opponent[a] = flag
 
     # Action indices are only comparable across worlds if every world offered the same options.
     # The check is on the AGENT-side option set, which is world-independent by construction, plus
@@ -382,8 +421,14 @@ def multi_determinization_decision(
         "worlds": [w.summary() for w in worlds],
         "world_stats": [w.summary() for w in agg.per_world],
         "aggregate_visits": dict(sorted(agg.visits.items())),
-        "aggregate_values": {a: round(agg.value(a), 4) for a in sorted(agg.visits)
-                             if agg.visits[a] > 0},
+        "aggregate_values_raw_signed": {a: round(agg.value(a), 4) for a in sorted(agg.visits)
+                                        if agg.visits[a] > 0},
+        "aggregate_win_probabilities": {
+            a: round(agg.predicted_win_probability(a), 4) for a in sorted(agg.visits)
+            if agg.visits[a] > 0},
+        "successor_is_opponent": {a: bool(agg.is_opponent.get(a, False))
+                                  for a in sorted(agg.visits)},
+        "opponent_flag_conflicts": agg.opponent_flag_conflicts,
         "selection": {r: agg.select(r) for r in AGG_RULES},
         "disagreement": agg.world_disagreement(),
         "mixed_terminal_scale": agg.mixed_terminal_scale_detected(),

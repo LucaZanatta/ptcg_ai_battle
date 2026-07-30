@@ -1,0 +1,74 @@
+{
+  "tag": "ft_k1",
+  "branch": "MCGS_2019_PTCG_MULTI_DET_REFERENCE",
+  "config": {
+    "branch": "MCGS_2019_PTCG_MULTI_DET_REFERENCE",
+    "k_worlds": 1,
+    "budget_protocol": "fixed_total",
+    "simulations_per_decision": 256,
+    "aggregation_rule": "source_sum",
+    "graph_reuse": false,
+    "match_clock_seconds": 0.0,
+    "decision_seconds_cap": 0.0,
+    "decision_wall_ceiling_seconds": 300.0
+  },
+  "seed": 90210,
+  "nproc": 12,
+  "games": 60,
+  "completed": 46,
+  "abandoned": 4,
+  "errored": 0,
+  "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field score rather than scored as losses",
+  "field_score": 0.1739,
+  "wilson95": [
+    0.0909,
+    0.3072
+  ],
+  "field_score_bounds_if_abandoned_counted": [
+    0.16,
+    0.24
+  ],
+  "per_opponent": {
+    "dragapult": {
+      "games": 9,
+      "rate": 0.1111
+    },
+    "iono": {
+      "games": 12,
+      "rate": 0.0833
+    },
+    "mega_abomasnow": {
+      "games": 13,
+      "rate": 0.0769
+    },
+    "mega_lucario": {
+      "games": 12,
+      "rate": 0.4167
+    }
+  },
+  "wall_clock_s": 1785.7,
+  "searched_decisions": 2106,
+  "total_simulations": 539136,
+  "sims_per_decision": 256.0,
+  "mean_k_used": 1.0,
+  "world_errors": 0,
+  "decision_deadline_stops": 0,
+  "match_clock_exhausted_decisions": 0,
+  "signature_mismatches": 0,
+  "mixed_terminal_scale_decisions": 0,
+  "aggregate_empty_decisions": 0,
+  "term_root_win": 179030,
+  "term_root_loss": 308727,
+  "term_undecided": 51379,
+  "finalised": 0,
+  "terminal_leaves": 0,
+  "lethal_bonus": 0,
+  "step_errors": 0,
+  "begin_errors": 0,
+  "transposition_merges": 85668,
+  "dummy_edges": 1499,
+  "chance_nodes_created": 2248,
+  "manual_coin_node_ucb_selected": 0,
+  "calibration_rows": 2106,
+  "budget_delivered": true
+}

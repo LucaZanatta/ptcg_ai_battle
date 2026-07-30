@@ -26,14 +26,23 @@
   ],
 
   "predicted_win_probability": {
-    "definition": "the aggregate value of the SELECTED action: sum over worlds of that action's successor rewards, divided by sum over worlds of that action's successor visits.",
+    "definition": "the aggregate value of the SELECTED action -- sum over worlds of that action's successor rewards divided by sum over worlds of that action's successor visits -- NEGATED when the successor is an opponent node, then clamped to [0,1].",
     "explicitly_not": [
       "the maximum over worlds of that action's value",
       "the value in whichever world liked the action most",
       "the maximum over actions of the aggregate value"
     ],
     "why": "Reporting the most optimistic world as the search's belief would pin the predicted probability near 1.0 at every K, so calibration could not improve with K and the failure would be misread as 'the ensemble does not help'. Asserted by tests/test_c022_aggregation.py::test_predicted_win_probability_is_the_aggregate_not_the_best_world.",
-    "scale": "rollout returns are in [0,1] (PlayUntilTerminal returns 1.0 for a root-player win, 0.0 otherwise, 0.0 at the turn cap), so the aggregate value is already a probability."
+    "scale": "rollout returns are in [0,1] (PlayUntilTerminal returns 1.0 for a root-player win, 0.0 otherwise, 0.0 at the turn cap), but Node.Update negates the reward at an OPPONENT node, so an action that ends the turn has a successor whose value is MINUS the root player's win probability. Both the raw signed value and the converted probability are recorded per decision.",
+
+    "AMENDMENT_2026_07_30": {
+      "what_changed": "the sign correction above, and the recording of the raw signed value alongside the probability.",
+      "the_error": "the original text asserted 'the aggregate value is already a probability'. It is not. Node.Update applies `if (IsOpponent) reward *= -1`, which is correct and load-bearing for SELECTION -- MaxChild still prefers the child best for the root player -- but makes the value of an end-turn action negative.",
+      "how_it_was_found": "a single calibration row from a SUPERSEDED arm recorded predicted_win_probability = -0.044586. A negative probability is not a marginal reading; every end-turn decision would have scored as a catastrophic Brier miss for a reason with nothing to do with the search, and K would have been blamed.",
+      "what_it_was_NOT_found_from": "no comparison between K arms, no field score, and no outcome data informed this change. The superseded arm was a K=1 control produced by pre-fix code and quarantined in results/failures/superseded/ before this amendment was written.",
+      "why_this_does_not_break_preregistration": "DECISION_RULES forbids choosing a rule after seeing which K wins. This corrects a definitional error in the measurement instrument, detectable from a single row's sign without reference to any arm's outcome, and it is applied identically to every arm because every arm is re-run from scratch after it. The alternative -- leaving a known-wrong probability in place to preserve the letter of a timestamp -- would produce a calibration result that is simply false.",
+      "arms_affected": "none. Every K-sweep arm is run AFTER this amendment. The one arm that predates it is quarantined and cited nowhere."
+    }
   },
 
   "terminal_scale_rule": {

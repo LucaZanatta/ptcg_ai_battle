@@ -261,3 +261,84 @@ def test_mixed_terminal_scale_flag_fires_only_when_a_terminal_is_reached():
     w = make_world(1, {0: 5}, {0: 3.0})
     w.terminal_leaves = 1
     assert build([w]).mixed_terminal_scale_detected() is True
+
+
+# ============================================================ opponent sign
+def make_world_signed(idx, visits, rewards, is_opponent):
+    ws = MD.WorldStats(world_index=idx, world_id=f"w{idx}")
+    ws.visits = dict(visits)
+    ws.rewards = dict(rewards)
+    ws.is_opponent = dict(is_opponent)
+    ws.simulations = sum(visits.values())
+    return ws
+
+
+def build_signed(worlds):
+    agg = MD.Aggregate(n_worlds=len(worlds))
+    for ws in worlds:
+        agg.per_world.append(ws)
+        agg.total_simulations += ws.simulations
+        for a, v in ws.visits.items():
+            agg.visits[a] = agg.visits.get(a, 0) + v
+            agg.rewards[a] = agg.rewards.get(a, 0.0) + ws.rewards.get(a, 0.0)
+            flag = bool(ws.is_opponent.get(a, False))
+            if a in agg.is_opponent and agg.is_opponent[a] != flag:
+                agg.opponent_flag_conflicts += 1
+            agg.is_opponent[a] = flag
+    return agg
+
+
+def test_predicted_probability_is_never_negative_at_an_opponent_successor():
+    """`Node.Update` negates the reward at an opponent node, so an end-turn action's value is
+    MINUS the root player's win probability.
+
+    This test exists because a real calibration row recorded
+    `predicted_win_probability: -0.044586`. A negative probability is not a rounding artifact:
+    every end-turn decision would have scored as a catastrophic Brier miss for a reason with
+    nothing to do with the search, and K would have taken the blame.
+    """
+    # action 0 stays with the root player; action 1 ends the turn, so its successor is the
+    # opponent and its recorded value is negative.
+    w = make_world_signed(0, {0: 100, 1: 100}, {0: 30.0, 1: -20.0},
+                          {0: False, 1: True})
+    agg = build_signed([w])
+    assert agg.raw_aggregate_value(1) == pytest.approx(-0.2)
+    assert agg.predicted_win_probability(1) == pytest.approx(0.2)
+    assert agg.predicted_win_probability(0) == pytest.approx(0.3)
+    for a in (0, 1):
+        p = agg.predicted_win_probability(a)
+        assert 0.0 <= p <= 1.0
+
+
+def test_selection_is_unaffected_by_the_sign_correction():
+    """The flip is load-bearing for SELECTION and must not be undone.
+
+    MaxChild on the signed scale correctly prefers the child best for the root player. Selecting
+    on the converted probabilities instead would pick the action whose OPPONENT successor looks
+    best for the root player, i.e. exactly backwards on end-turn actions.
+    """
+    w = make_world_signed(0, {0: 100, 1: 100}, {0: 30.0, 1: -20.0},
+                          {0: False, 1: True})
+    agg = build_signed([w])
+    assert agg.select(MD.AGG_SOURCE_SUM) == 0          # +0.30 beats -0.20 on the signed scale
+    # and the probabilities would have ranked them the same way here, so make a case where they
+    # would NOT, to prove selection uses the signed value.
+    w2 = make_world_signed(0, {0: 100, 1: 100}, {0: 10.0, 1: -60.0},
+                           {0: False, 1: True})
+    agg2 = build_signed([w2])
+    assert agg2.predicted_win_probability(1) == pytest.approx(0.6)
+    assert agg2.predicted_win_probability(0) == pytest.approx(0.1)
+    assert agg2.select(MD.AGG_SOURCE_SUM) == 0, \
+        "selection must use the SIGNED value; ranking by probability would invert end-turn actions"
+
+
+def test_opponent_flag_conflict_is_counted_not_silently_resolved():
+    """Whose turn follows an action is PUBLIC, so it cannot differ across worlds.
+
+    If it ever does, the action indices are not aligned and the aggregate is summing statistics
+    for different actions -- the position-pairing defect family, caught a second way.
+    """
+    a = make_world_signed(0, {0: 10}, {0: 5.0}, {0: False})
+    b = make_world_signed(1, {0: 10}, {0: -5.0}, {0: True})
+    agg = build_signed([a, b])
+    assert agg.opponent_flag_conflicts == 1
