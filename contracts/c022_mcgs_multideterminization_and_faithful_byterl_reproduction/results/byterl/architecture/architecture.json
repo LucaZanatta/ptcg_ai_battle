@@ -1,0 +1,357 @@
+{
+  "probe": "B01",
+  "total_parameters": 1707063,
+  "own_parameter_sum": 1707063,
+  "recurrence": {
+    "name": "lstm",
+    "input_size": 256,
+    "hidden_size": 256,
+    "num_layers": 1
+  },
+  "lstm_hidden_size_is_256": true,
+  "encoder_dims": {
+    "global_dim": 24,
+    "slot_dim": 35,
+    "option_dim": 28,
+    "board_slots": 12,
+    "max_options": 128,
+    "bench_slots": 5,
+    "n_cards": 1267,
+    "n_hand": 12,
+    "n_discard": 24,
+    "pool_dim": null
+  },
+  "pool_size": 52,
+  "modules": [
+    {
+      "name": "cards",
+      "type": "SharedCardEmbedding",
+      "own_parameters": 0
+    },
+    {
+      "name": "cards.emb",
+      "type": "Embedding",
+      "own_parameters": 81152
+    },
+    {
+      "name": "slots",
+      "type": "SlotEncoder",
+      "own_parameters": 0
+    },
+    {
+      "name": "slots.slot_role",
+      "type": "Embedding",
+      "own_parameters": 512
+    },
+    {
+      "name": "slots.slot_index",
+      "type": "Embedding",
+      "own_parameters": 1536
+    },
+    {
+      "name": "slots.side",
+      "type": "Embedding",
+      "own_parameters": 512
+    },
+    {
+      "name": "slots.proj",
+      "type": "Linear",
+      "own_parameters": 25600,
+      "in_features": 99,
+      "out_features": 256
+    },
+    {
+      "name": "slots.block",
+      "type": "ResidualBlock",
+      "own_parameters": 0
+    },
+    {
+      "name": "slots.block.fc1",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "slots.block.fc2",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "slots.block.ln1",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "slots.block.ln2",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "global_proj",
+      "type": "Linear",
+      "own_parameters": 6400,
+      "in_features": 24,
+      "out_features": 256
+    },
+    {
+      "name": "stage_embed",
+      "type": "Embedding",
+      "own_parameters": 512
+    },
+    {
+      "name": "hand_proj",
+      "type": "Linear",
+      "own_parameters": 16640,
+      "in_features": 64,
+      "out_features": 256
+    },
+    {
+      "name": "discard_proj",
+      "type": "Linear",
+      "own_parameters": 16640,
+      "in_features": 64,
+      "out_features": 256
+    },
+    {
+      "name": "torso",
+      "type": "ModuleList",
+      "own_parameters": 0
+    },
+    {
+      "name": "torso.0",
+      "type": "ResidualBlock",
+      "own_parameters": 0
+    },
+    {
+      "name": "torso.0.fc1",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "torso.0.fc2",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "torso.0.ln1",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "torso.0.ln2",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "torso.1",
+      "type": "ResidualBlock",
+      "own_parameters": 0
+    },
+    {
+      "name": "torso.1.fc1",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "torso.1.fc2",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "torso.1.ln1",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "torso.1.ln2",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "torso.2",
+      "type": "ResidualBlock",
+      "own_parameters": 0
+    },
+    {
+      "name": "torso.2.fc1",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "torso.2.fc2",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "torso.2.ln1",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "torso.2.ln2",
+      "type": "LayerNorm",
+      "own_parameters": 512
+    },
+    {
+      "name": "lstm",
+      "type": "LSTM",
+      "own_parameters": 526336,
+      "input_size": 256,
+      "hidden_size": 256,
+      "num_layers": 1
+    },
+    {
+      "name": "post",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "option_card",
+      "type": "Linear",
+      "own_parameters": 16640,
+      "in_features": 64,
+      "out_features": 256
+    },
+    {
+      "name": "option_proj",
+      "type": "Sequential",
+      "own_parameters": 0
+    },
+    {
+      "name": "option_proj.0",
+      "type": "Linear",
+      "own_parameters": 7424,
+      "in_features": 28,
+      "out_features": 256
+    },
+    {
+      "name": "option_proj.1",
+      "type": "ReLU",
+      "own_parameters": 0
+    },
+    {
+      "name": "option_proj.2",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "query",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "option_bias",
+      "type": "Linear",
+      "own_parameters": 257,
+      "in_features": 256,
+      "out_features": 1
+    },
+    {
+      "name": "selected_summary",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "token_type",
+      "type": "Embedding",
+      "own_parameters": 2048
+    },
+    {
+      "name": "pool_head",
+      "type": "Sequential",
+      "own_parameters": 0
+    },
+    {
+      "name": "pool_head.0",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "pool_head.1",
+      "type": "ReLU",
+      "own_parameters": 0
+    },
+    {
+      "name": "pool_head.2",
+      "type": "Linear",
+      "own_parameters": 13364,
+      "in_features": 256,
+      "out_features": 52
+    },
+    {
+      "name": "value_battle",
+      "type": "Sequential",
+      "own_parameters": 0
+    },
+    {
+      "name": "value_battle.0",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "value_battle.1",
+      "type": "ReLU",
+      "own_parameters": 0
+    },
+    {
+      "name": "value_battle.2",
+      "type": "Linear",
+      "own_parameters": 257,
+      "in_features": 256,
+      "out_features": 1
+    },
+    {
+      "name": "value_construction",
+      "type": "Sequential",
+      "own_parameters": 0
+    },
+    {
+      "name": "value_construction.0",
+      "type": "Linear",
+      "own_parameters": 65792,
+      "in_features": 256,
+      "out_features": 256
+    },
+    {
+      "name": "value_construction.1",
+      "type": "ReLU",
+      "own_parameters": 0
+    },
+    {
+      "name": "value_construction.2",
+      "type": "Linear",
+      "own_parameters": 257,
+      "in_features": 256,
+      "out_features": 1
+    }
+  ],
+  "note": "`FIDELITY_RULES \u00a74` requires LSTM-256 over a shared torso. c021's defining absence was recurrence entirely, so the hidden size is recorded as a value rather than described.",
+  "weights": "ctrl_BR3_final.pt"
+}

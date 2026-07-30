@@ -1,0 +1,13 @@
+{
+  "probe": "B18/B19",
+  "decks_built": 24,
+  "legal": 24,
+  "legal_fraction": 1.0,
+  "distinct_decks": 24,
+  "most_common_deck_count": 1,
+  "distinct_cards_used": 52,
+  "pool_size": 52,
+  "mean_pairwise_jaccard_distance": 0.4602,
+  "diversity_note": "mean pairwise Jaccard distance over card sets. 0.0 would mean the policy emits one deck every time, which satisfies 'legal' and is exactly the case DECISION_RULES \u00a73 calls PARTIAL rather than PASS.",
+  "weights": "ctrl_BR3_final.pt"
+}

@@ -60,33 +60,46 @@ def wilson(k: float, n: int, z: float = 1.96):
 def _play(job: Dict[str, Any]) -> Dict[str, Any]:
     """One game. Imports live inside the worker so the parent never loads the engine."""
     sys.path.insert(0, _REPO)
-    import numpy as np
     from kaggle_environments import make
-    from cg import teachers as T, c009_eval as ce
-    from cg import c021_byterl_deck as DK
+    from cg import teachers as T, c009_eval as ce, c019_determinize as D19
 
     kind = job["candidate"]
     seat = int(job["seat"])
     opp = T.make_fresh(job["opponent"], ce.SOURCES)
 
+    # FACTORY-WRAPPED CLOSURES, both sides. A bare `def f(o)` defined in this scope captures the
+    # enclosing frame, and `kaggle_environments` inspects an agent's signature to decide whether
+    # to call it with (obs) or (obs, config). Getting that wrong makes every game return
+    # status ERROR in 0.0 seconds with no exception -- 180 of 180 on the first run of this panel,
+    # which looked like a scoring bug and was an agent-construction bug.
+    def mk(a):
+        def f(o):
+            return a.act(o)
+        return f
+
+    def mo(o):
+        def f(x):
+            return o(x)
+        return f
+
+    agent = None
     if kind == "baseline":
-        # The frozen bar plays through the same harness as everything else. `make_fresh` is used
-        # for BOTH sides so that a candidate is never advantaged by a different construction path.
-        me = T.make_fresh(job["baseline_agent"], ce.SOURCES)
-        report = {}
+        # The frozen bar plays through the same harness as everything else, so a candidate is
+        # never advantaged by a different construction path.
+        me = mo(T.make_fresh(job["baseline_agent"], ce.SOURCES))
     else:
         from cg import c022_mcgs_agent as AG
-        pool = DK.CardPool.from_archetypes([job["deck_archetype"]])
-        deck = DK.greedy_reference_deck(pool)
-        agent = AG.MultiDetMCGSAgent(deck=deck, cfg=job["cfg"], seed=int(job["seed"]))
-
-        def me(o):
-            return agent.act(o)
-        report = None
+        # The SAME deck source the sweep and paired arms used. Building it a different way here
+        # was the other half of the failure.
+        deck = D19.archetype_decks()[job["deck_archetype"]]
+        cfg = dict(job["cfg"])
+        cfg["world_base_seed"] = int(job["seed"])
+        agent = AG.MultiDetMCGSAgent(deck, cfg, seed=int(job["seed"]))
+        me = mk(agent)
 
     t0 = time.time()
     env = make("cabt")
-    agents = [me, opp] if seat == 0 else [opp, me]
+    agents = [me, mo(opp)] if seat == 0 else [mo(opp), me]
     status, reward = None, None
     try:
         env.run(agents)
@@ -103,7 +116,7 @@ def _play(job: Dict[str, Any]) -> Dict[str, Any]:
 
     row = {k: job[k] for k in ("candidate", "opponent", "seat", "game_id")}
     row.update({"status": status, "score": reward, "seconds": round(time.time() - t0, 1)})
-    if report is None:
+    if agent is not None:
         r = agent.report()
         row["searched_decisions"] = r.get("searched_decisions")
         row["sims_per_decision"] = r.get("sims_per_decision")
@@ -193,6 +206,35 @@ def main(argv=None):
     best_tag = max((t for t in candidates if t != "baseline"),
                    key=lambda t: (summaries[t]["field_score"] or -1))
     best = summaries[best_tag]
+
+    # NO_DATA, not a verdict. The first run of this panel scored 0 of 180 games in two seconds
+    # and still emitted `credible_improvement: False` -- the right answer reached from nothing,
+    # written into the file `MCGS_COMPETITIVE` reads (D25). A comparison over zero games is not a
+    # comparison, and the same rule `c022_validate.py` applies to its own checks applies here.
+    if not base["scored"] or not any(summaries[t]["scored"] for t in candidates
+                                     if t != "baseline"):
+        report = {
+            "panel": OPPONENTS, "games_per_candidate": a.games,
+            "elapsed_s": round(elapsed, 1),
+            "summaries": summaries,
+            "champion_comparison": {
+                "status": "NO_DATA",
+                "why": (f"baseline scored {base['scored']}/{base['games']} games and no "
+                        "candidate scored any; a comparison over zero games is not a comparison"),
+                "credible_improvement": None,
+            },
+        }
+        os.makedirs(os.path.dirname(a.out), exist_ok=True)
+        with open(a.out, "w") as fh:
+            json.dump(report, fh, indent=2)
+        with open(os.path.join(os.path.dirname(a.out), "panel_games.jsonl"), "w") as fh:
+            for r in rows:
+                fh.write(json.dumps(r) + "\n")
+        print("PANEL PRODUCED NO SCORED GAMES -- reported as NO_DATA, not as a verdict")
+        for t, s in summaries.items():
+            print(f"  {t:12s} scored={s['scored']}/{s['games']} errored={s['errored']} "
+                  f"unscored={s['unscored']}")
+        return 1
 
     sep = None
     if best["wilson95"][0] is not None and base["wilson95"][0] is not None:

@@ -1,0 +1,82 @@
+{
+  "panel": [
+    "dragapult",
+    "mega_lucario",
+    "iono",
+    "mega_abomasnow"
+  ],
+  "games_per_candidate": 60,
+  "elapsed_s": 2.4,
+  "budget": {
+    "protocol": "fixed_per_world",
+    "simulations_per_world": 12,
+    "k": 8,
+    "decision_budget": 50
+  },
+  "why_count_budgeted": "a time-budgeted panel is latency-sensitive and must run alone; count-budgeting makes it contention-tolerant, at the cost of not measuring DEPLOYMENT strength. That question is answered by the M12 deploy arms, which do run alone under c021's 90 s clock.",
+  "summaries": {
+    "mcgs_k8": {
+      "candidate": "mcgs_k8",
+      "games": 60,
+      "scored": 0,
+      "errored": 0,
+      "unscored": 60,
+      "field_score": null,
+      "wilson95": [
+        null,
+        null
+      ],
+      "per_opponent": {},
+      "mean_seconds": 0.0,
+      "note": "field_score is over SCORED games only; errored and unscored games are excluded rather than counted as losses"
+    },
+    "mcgs_k1": {
+      "candidate": "mcgs_k1",
+      "games": 60,
+      "scored": 0,
+      "errored": 0,
+      "unscored": 60,
+      "field_score": null,
+      "wilson95": [
+        null,
+        null
+      ],
+      "per_opponent": {},
+      "mean_seconds": 0.0,
+      "note": "field_score is over SCORED games only; errored and unscored games are excluded rather than counted as losses"
+    },
+    "baseline": {
+      "candidate": "baseline",
+      "games": 60,
+      "scored": 0,
+      "errored": 0,
+      "unscored": 60,
+      "field_score": null,
+      "wilson95": [
+        null,
+        null
+      ],
+      "per_opponent": {},
+      "mean_seconds": 0.0,
+      "note": "field_score is over SCORED games only; errored and unscored games are excluded rather than counted as losses"
+    }
+  },
+  "champion_comparison": {
+    "bar": "BASELINE_OFFICIAL_MEGA_LUCARIO, re-run here on this panel",
+    "bar_field_score": null,
+    "bar_wilson95": [
+      null,
+      null
+    ],
+    "best_candidate": "mcgs_k8",
+    "candidate_field_score": null,
+    "candidate_wilson95": [
+      null,
+      null
+    ],
+    "delta_pp": null,
+    "intervals_separate_in_candidate_favour": null,
+    "credible_improvement": false,
+    "note": "the c020 figure of 0.5837 is NOT used as the bar: it was measured on a different panel. The bar here is the same agent re-run over these opponents, seats and game count."
+  }
+}

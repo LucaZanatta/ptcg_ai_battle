@@ -1,12 +1,9 @@
 {
   "generated_from": "raw per-game, per-decision and per-run artifacts",
   "n_checks": 19,
-  "n_ran": 17,
-  "n_pass": 17,
-  "checks_with_no_data": [
-    "V14",
-    "V17"
-  ],
+  "n_ran": 19,
+  "n_pass": 19,
+  "checks_with_no_data": [],
   "no_data_is_not_a_pass": true,
   "inert_checks": [],
   "injections_not_detected": [],
@@ -24,18 +21,40 @@
       "m04_k1_reuse",
       "paired_k1",
       "paired_k8",
+      "paired_k1_c96",
       "noise_k1_s90210",
       "noise_k1_s40031",
-      "noise_k1_s71877"
+      "noise_k1_s71877",
+      "deploy_k1",
+      "deploy_k8",
+      "m11_probe_serial",
+      "m11_probe_parallel"
     ],
     "byterl_evals": [
+      "br3_end_to_end",
+      "br3_fixed_deck",
       "ctrl_BR0",
+      "ctrl_BR1_5",
+      "ctrl_BR1",
+      "ctrl_BR2",
+      "ctrl_BR3",
       "floor_end_to_end",
       "floor_fixed_deck",
       "smoke_floor"
     ],
     "byterl_runs": [
-      "ctrl_BR0"
+      "br3_end_to_end",
+      "br3_fixed_deck",
+      "ctrl_BR0",
+      "ctrl_BR1_5",
+      "ctrl_BR1",
+      "ctrl_BR2",
+      "ctrl_BR3",
+      "fid_BR0",
+      "fid_BR1_5",
+      "fid_BR1",
+      "fid_BR2",
+      "fid_BR3"
     ]
   },
   "checks": [
@@ -43,11 +62,11 @@
       "id": "V01",
       "name": "MCGS field scores recompute from per-game records",
       "detail": {
-        "arms_checked": 14,
+        "arms_checked": 19,
         "mismatches": []
       },
       "detects": "a reported score that disagrees with its own raw games",
-      "n_inputs": 14,
+      "n_inputs": 19,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -57,11 +76,11 @@
       "id": "V02",
       "name": "every game lands in exactly one bucket",
       "detail": {
-        "arms_checked": 14,
+        "arms_checked": 19,
         "unaccounted": []
       },
       "detects": "D10: ten games in no category, silently excluded from the field score",
-      "n_inputs": 14,
+      "n_inputs": 19,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -71,11 +90,11 @@
       "id": "V03",
       "name": "the simulation budget was delivered",
       "detail": {
-        "arms_checked": 14,
+        "arms_checked": 19,
         "budget_failures": []
       },
       "detects": "an arm that did not run its simulations, or hit the per-decision wall ceiling",
-      "n_inputs": 14,
+      "n_inputs": 19,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -115,11 +134,11 @@
       "id": "V06",
       "name": "predicted win probabilities are in [0,1]",
       "detail": {
-        "rows_checked": 45763,
+        "rows_checked": 56003,
         "out_of_range": []
       },
       "detects": "D04: the source's opponent sign flip making an end-turn action's probability negative",
-      "n_inputs": 45763,
+      "n_inputs": 56003,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -129,11 +148,11 @@
       "id": "V07",
       "name": "no arm mixed the +/-10 terminal scale into a [0,1] aggregate",
       "detail": {
-        "arms_checked": 14,
+        "arms_checked": 19,
         "mixed": []
       },
       "detects": "a terminal leaf entering the aggregate and breaking the probability reading",
-      "n_inputs": 14,
+      "n_inputs": 19,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -143,11 +162,11 @@
       "id": "V08",
       "name": "action indices are aligned across worlds",
       "detail": {
-        "arms_checked": 14,
+        "arms_checked": 19,
         "mismatches": []
       },
       "detects": "the position-pairing defect family: summing statistics for different actions",
-      "n_inputs": 14,
+      "n_inputs": 19,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -157,11 +176,11 @@
       "id": "V09",
       "name": "ByteRL external evaluations recompute from per-game records",
       "detail": {
-        "evals_checked": 4,
+        "evals_checked": 10,
         "mismatches": []
       },
       "detects": "a reported win rate that disagrees with its own raw games",
-      "n_inputs": 4,
+      "n_inputs": 10,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -171,11 +190,11 @@
       "id": "V10",
       "name": "recurrent replay agrees at the exact behaviour weights",
       "detail": {
-        "runs_checked": 1,
+        "runs_checked": 12,
         "failures": []
       },
       "detects": "B4's zeroed-recurrent-start hard failure, and D06's publish race",
-      "n_inputs": 1,
+      "n_inputs": 12,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -185,11 +204,11 @@
       "id": "V11",
       "name": "ByteRL trained from fresh random weights",
       "detail": {
-        "runs_checked": 1,
+        "runs_checked": 12,
         "warm_starts": []
       },
       "detects": "a warm start from c021 weights, which CONTRACT \u00a72 forbids",
-      "n_inputs": 1,
+      "n_inputs": 12,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -199,11 +218,11 @@
       "id": "V12",
       "name": "the LSTM is present at hidden size 256",
       "detail": {
-        "runs_checked": 1,
+        "runs_checked": 12,
         "bad": []
       },
       "detects": "c021's defining absence: a feed-forward substitute",
-      "n_inputs": 1,
+      "n_inputs": 12,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -230,28 +249,39 @@
       "id": "V14",
       "name": "no rung's queue statistics come from a contended run",
       "detail": {
-        "_n_inputs": 0,
+        "_n_inputs": 5,
         "rates": {
-          "ctrl_BR0": 91.1
+          "ctrl_BR0": 91.1,
+          "ctrl_BR1_5": 131.2,
+          "ctrl_BR1": 115.1,
+          "ctrl_BR2": 35.1,
+          "ctrl_BR3": 89.5
         },
-        "why": "fewer than two controlled rungs; nothing to compare"
+        "median": 91.1,
+        "rate_outliers_all_rungs": {
+          "ctrl_BR2": 35.1
+        },
+        "invalidating": {},
+        "bound": "[0.6, 1.7] x median, applied to PRE-B2 rungs only",
+        "why": "a bounded blocking FIFO pins the ratio regardless of throughput, so a slow BR2/BR3 is a slow rung, not an invalid measurement"
       },
       "detects": "D18: ctrl_BR0 under a concurrent MCGS arm, reporting load as a stage property",
-      "n_inputs": 0,
-      "status": "NO_DATA",
-      "pass": false,
-      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+      "n_inputs": 5,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
     },
     {
       "id": "V15",
       "name": "mu is the distribution that actually chose the action",
       "detail": {
-        "_n_inputs": 1,
+        "_n_inputs": 12,
         "violations": [],
         "note": "runs predating D19 do not report the field and are not counted"
       },
       "detects": "D19: a uniform step recording the network's log-probability, corrupting every importance ratio on it",
-      "n_inputs": 1,
+      "n_inputs": 12,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -261,13 +291,13 @@
       "id": "V16",
       "name": "B06 coverage is reported, and the fidelity runs achieve it",
       "detail": {
-        "_n_inputs": 1,
+        "_n_inputs": 12,
         "manifests_without_a_denominator": [],
         "fidelity_runs_below_90pc_coverage": [],
         "why": "D20: B06 ran once in 556 policy versions and reported PASS"
       },
       "detects": "D20: one fidelity check in 556 policy versions, reported as a pass",
-      "n_inputs": 1,
+      "n_inputs": 12,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,
@@ -277,7 +307,7 @@
       "id": "V17",
       "name": "timed arms were stopped by the schedule, on a schedule from a source",
       "detail": {
-        "_n_inputs": 0,
+        "_n_inputs": 4,
         "violations": [],
         "legal_schedules": {
           "(15.0, 10.0)": "source SearchConfig.cs",
@@ -285,10 +315,11 @@
         }
       },
       "detects": "M11/M12: an invented clock, or a count binding before the schedule did",
-      "n_inputs": 0,
-      "status": "NO_DATA",
-      "pass": false,
-      "note": "no inputs available yet -- this is NOT a pass. The check is re-run once the artifacts it reads exist."
+      "n_inputs": 4,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
     },
     {
       "id": "V18",
@@ -314,7 +345,7 @@
       "id": "V19",
       "name": "opponent-flag conflicts appear only where two worlds exist",
       "detail": {
-        "_n_inputs": 14,
+        "_n_inputs": 19,
         "violations": [],
         "conflicts_by_arm": {
           "ft_k1": 0,
@@ -328,13 +359,18 @@
           "m04_k1_reuse": 0,
           "paired_k1": 0,
           "paired_k8": 1001,
+          "paired_k1_c96": 0,
           "noise_k1_s90210": 0,
           "noise_k1_s40031": 0,
-          "noise_k1_s71877": 0
+          "noise_k1_s71877": 0,
+          "deploy_k1": 0,
+          "deploy_k8": 169,
+          "m11_probe_serial": 0,
+          "m11_probe_parallel": 0
         }
       },
       "detects": "a K=1 arm reporting cross-world disagreement: the counter measuring something other than what it names",
-      "n_inputs": 14,
+      "n_inputs": 19,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,

@@ -1,0 +1,684 @@
+{
+  "prefix": "ctrl",
+  "target_decisions": 120097,
+  "rungs": {
+    "BR0": {
+      "tag": "ctrl_BR0",
+      "manifest": {
+        "tag": "ctrl_BR0",
+        "stage": "BR0",
+        "stage_features": {
+          "gamma": 0.99,
+          "random_initial_construction": false,
+          "bounded_blocking_fifo": false,
+          "two_sided_and_ppo": false
+        },
+        "arm": "END_TO_END_DECK_CONSTRUCTION_AND_BATTLE",
+        "fresh_random_weights": true,
+        "params": 1707063,
+        "lstm_hidden": 256,
+        "actors": 6,
+        "queue_capacity": 65536,
+        "bounded_blocking_fifo": false,
+        "unroll_length": 32,
+        "batch_unrolls": 8,
+        "sample_reuse": 2,
+        "lr": 7e-05,
+        "entropy_coef": 0.01,
+        "gamma": 0.99,
+        "two_sided_and_ppo": false,
+        "updates": 8976,
+        "policy_versions": 561,
+        "consumed_unrolls": 4488,
+        "consumed_decisions": 120076,
+        "produced_decisions": 1048464,
+        "produced_episodes": 12651,
+        "production_consumption_ratio": 8.7317,
+        "illegal_decks": 0,
+        "actor_errors": 0,
+        "random_initial_construction": false,
+        "random_initial_choices": 0,
+        "random_initial_construction_steps": 0,
+        "final_win_rate": 0.0531,
+        "recurrence_checks": 3,
+        "recurrence_check_failures": 0,
+        "recurrence_checks_skipped_no_retained_blob": 26,
+        "recurrence_check_coverage": 0.1034,
+        "blob_history_versions": 48,
+        "recurrence_tolerance": 0.0001,
+        "max_recurrence_delta_exact_weights": 0.0,
+        "max_logp_delta_exact_weights": 2.38e-07,
+        "max_behaviour_delta": 0.0,
+        "uniform_behaviour_steps_seen_in_checks": 0,
+        "mean_learner_behaviour_drift_recurrence": 27.838421,
+        "mean_learner_behaviour_drift_logp": 0.697074,
+        "wall_clock_s": 1318.0,
+        "seed": 4242
+      },
+      "eval": {
+        "tag": "ctrl_BR0",
+        "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/ctrl_BR0_final.pt",
+        "checkpoint_loaded": true,
+        "arm": "END_TO_END",
+        "games": 128,
+        "completed": 128,
+        "errored": 0,
+        "unscored": 0,
+        "field_score": 0.0547,
+        "wilson95": [
+          0.0267,
+          0.1086
+        ],
+        "per_opponent": {
+          "dragapult": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "iono": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "mega_abomasnow": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "mega_lucario": {
+            "games": 32,
+            "rate": 0.2188
+          }
+        },
+        "deck_legal_rate": 1.0,
+        "distinct_decks": 128,
+        "deck_diversity": 1.0,
+        "illegal_sequences": 0,
+        "mean_tokens_per_decision": 1.019,
+        "value_calibration": {
+          "n": 2774,
+          "mean_prediction": 0.10428,
+          "observed_base_rate": 0.06885,
+          "mse": 0.065113,
+          "mse_constant_baseline": 0.064113,
+          "skill_vs_constant": -0.0156,
+          "beats_constant_predictor": false,
+          "pearson_correlation_with_outcome": 0.0667,
+          "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
+        },
+        "seed": 777001,
+        "temperature": 1.0,
+        "wall_clock_s": 92.8,
+        "panel": [
+          "dragapult",
+          "mega_lucario",
+          "iono",
+          "mega_abomasnow"
+        ]
+      }
+    },
+    "BR1": {
+      "tag": "ctrl_BR1",
+      "manifest": {
+        "tag": "ctrl_BR1",
+        "stage": "BR1",
+        "stage_features": {
+          "gamma": 1.0,
+          "random_initial_construction": false,
+          "bounded_blocking_fifo": false,
+          "two_sided_and_ppo": false
+        },
+        "arm": "END_TO_END_DECK_CONSTRUCTION_AND_BATTLE",
+        "fresh_random_weights": true,
+        "params": 1707063,
+        "lstm_hidden": 256,
+        "actors": 6,
+        "queue_capacity": 65536,
+        "bounded_blocking_fifo": false,
+        "unroll_length": 32,
+        "batch_unrolls": 8,
+        "sample_reuse": 2,
+        "lr": 7e-05,
+        "entropy_coef": 0.01,
+        "gamma": 1.0,
+        "two_sided_and_ppo": false,
+        "updates": 8928,
+        "policy_versions": 558,
+        "consumed_unrolls": 4464,
+        "consumed_decisions": 120002,
+        "produced_decisions": 986805,
+        "produced_episodes": 11779,
+        "production_consumption_ratio": 8.2232,
+        "illegal_decks": 0,
+        "actor_errors": 0,
+        "random_initial_construction": false,
+        "random_initial_choices": 0,
+        "random_initial_construction_steps": 0,
+        "final_win_rate": 0.0558,
+        "recurrence_checks": 3,
+        "recurrence_check_failures": 0,
+        "recurrence_checks_skipped_no_retained_blob": 25,
+        "recurrence_check_coverage": 0.1071,
+        "blob_history_versions": 48,
+        "recurrence_tolerance": 0.0001,
+        "max_recurrence_delta_exact_weights": 0.0,
+        "max_logp_delta_exact_weights": 0.0,
+        "max_behaviour_delta": 0.0,
+        "uniform_behaviour_steps_seen_in_checks": 0,
+        "mean_learner_behaviour_drift_recurrence": 36.997792,
+        "mean_learner_behaviour_drift_logp": 0.554682,
+        "wall_clock_s": 1042.2,
+        "seed": 4242
+      },
+      "eval": {
+        "tag": "ctrl_BR1",
+        "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/ctrl_BR1_final.pt",
+        "checkpoint_loaded": true,
+        "arm": "END_TO_END",
+        "games": 128,
+        "completed": 128,
+        "errored": 0,
+        "unscored": 0,
+        "field_score": 0.0625,
+        "wilson95": [
+          0.032,
+          0.1185
+        ],
+        "per_opponent": {
+          "dragapult": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "iono": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "mega_abomasnow": {
+            "games": 32,
+            "rate": 0.0312
+          },
+          "mega_lucario": {
+            "games": 32,
+            "rate": 0.2188
+          }
+        },
+        "deck_legal_rate": 1.0,
+        "distinct_decks": 128,
+        "deck_diversity": 1.0,
+        "illegal_sequences": 0,
+        "mean_tokens_per_decision": 1.023,
+        "value_calibration": {
+          "n": 2990,
+          "mean_prediction": 0.04986,
+          "observed_base_rate": 0.07559,
+          "mse": 0.070397,
+          "mse_constant_baseline": 0.069872,
+          "skill_vs_constant": -0.0075,
+          "beats_constant_predictor": false,
+          "pearson_correlation_with_outcome": 0.1309,
+          "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
+        },
+        "seed": 777001,
+        "temperature": 1.0,
+        "wall_clock_s": 78.5,
+        "panel": [
+          "dragapult",
+          "mega_lucario",
+          "iono",
+          "mega_abomasnow"
+        ]
+      }
+    },
+    "BR1_5": {
+      "tag": "ctrl_BR1_5",
+      "manifest": {
+        "tag": "ctrl_BR1_5",
+        "stage": "BR1_5",
+        "stage_features": {
+          "gamma": 1.0,
+          "random_initial_construction": true,
+          "bounded_blocking_fifo": false,
+          "two_sided_and_ppo": false
+        },
+        "arm": "END_TO_END_DECK_CONSTRUCTION_AND_BATTLE",
+        "fresh_random_weights": true,
+        "params": 1707063,
+        "lstm_hidden": 256,
+        "actors": 6,
+        "queue_capacity": 65536,
+        "bounded_blocking_fifo": false,
+        "unroll_length": 32,
+        "batch_unrolls": 8,
+        "sample_reuse": 2,
+        "lr": 7e-05,
+        "entropy_coef": 0.01,
+        "gamma": 1.0,
+        "two_sided_and_ppo": false,
+        "updates": 8912,
+        "policy_versions": 557,
+        "consumed_unrolls": 4456,
+        "consumed_decisions": 120031,
+        "produced_decisions": 950854,
+        "produced_episodes": 11439,
+        "production_consumption_ratio": 7.9217,
+        "illegal_decks": 0,
+        "actor_errors": 0,
+        "random_initial_construction": true,
+        "random_initial_choices": 114390,
+        "random_initial_construction_steps": 10,
+        "final_win_rate": 0.0548,
+        "recurrence_checks": 3,
+        "recurrence_check_failures": 0,
+        "recurrence_checks_skipped_no_retained_blob": 25,
+        "recurrence_check_coverage": 0.1071,
+        "blob_history_versions": 48,
+        "recurrence_tolerance": 0.0001,
+        "max_recurrence_delta_exact_weights": 0.0,
+        "max_logp_delta_exact_weights": 0.0,
+        "max_behaviour_delta": 0.0,
+        "uniform_behaviour_steps_seen_in_checks": 20,
+        "mean_learner_behaviour_drift_recurrence": 28.861974,
+        "mean_learner_behaviour_drift_logp": 0.735946,
+        "wall_clock_s": 914.8,
+        "seed": 4242
+      },
+      "eval": {
+        "tag": "ctrl_BR1_5",
+        "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/ctrl_BR1_5_final.pt",
+        "checkpoint_loaded": true,
+        "arm": "END_TO_END",
+        "games": 128,
+        "completed": 128,
+        "errored": 0,
+        "unscored": 0,
+        "field_score": 0.0781,
+        "wilson95": [
+          0.043,
+          0.1378
+        ],
+        "per_opponent": {
+          "dragapult": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "iono": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "mega_abomasnow": {
+            "games": 32,
+            "rate": 0.0312
+          },
+          "mega_lucario": {
+            "games": 32,
+            "rate": 0.2812
+          }
+        },
+        "deck_legal_rate": 1.0,
+        "distinct_decks": 128,
+        "deck_diversity": 1.0,
+        "illegal_sequences": 0,
+        "mean_tokens_per_decision": 1.022,
+        "value_calibration": {
+          "n": 3144,
+          "mean_prediction": 0.08907,
+          "observed_base_rate": 0.0792,
+          "mse": 0.073007,
+          "mse_constant_baseline": 0.072926,
+          "skill_vs_constant": -0.0011,
+          "beats_constant_predictor": false,
+          "pearson_correlation_with_outcome": 0.0163,
+          "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
+        },
+        "seed": 777001,
+        "temperature": 1.0,
+        "wall_clock_s": 80.6,
+        "panel": [
+          "dragapult",
+          "mega_lucario",
+          "iono",
+          "mega_abomasnow"
+        ]
+      }
+    },
+    "BR2": {
+      "tag": "ctrl_BR2",
+      "manifest": {
+        "tag": "ctrl_BR2",
+        "stage": "BR2",
+        "stage_features": {
+          "gamma": 1.0,
+          "random_initial_construction": true,
+          "bounded_blocking_fifo": true,
+          "two_sided_and_ppo": false
+        },
+        "arm": "END_TO_END_DECK_CONSTRUCTION_AND_BATTLE",
+        "fresh_random_weights": true,
+        "params": 1707063,
+        "lstm_hidden": 256,
+        "actors": 6,
+        "queue_capacity": 48,
+        "bounded_blocking_fifo": true,
+        "unroll_length": 32,
+        "batch_unrolls": 8,
+        "sample_reuse": 2,
+        "lr": 7e-05,
+        "entropy_coef": 0.01,
+        "gamma": 1.0,
+        "two_sided_and_ppo": false,
+        "updates": 8896,
+        "policy_versions": 556,
+        "consumed_unrolls": 4448,
+        "consumed_decisions": 120097,
+        "produced_decisions": 120860,
+        "produced_episodes": 1433,
+        "production_consumption_ratio": 1.0064,
+        "illegal_decks": 0,
+        "actor_errors": 0,
+        "random_initial_construction": true,
+        "random_initial_choices": 14330,
+        "random_initial_construction_steps": 10,
+        "final_win_rate": 0.0586,
+        "recurrence_checks": 28,
+        "recurrence_check_failures": 0,
+        "recurrence_checks_skipped_no_retained_blob": 0,
+        "recurrence_check_coverage": 1.0,
+        "blob_history_versions": 48,
+        "recurrence_tolerance": 0.0001,
+        "max_recurrence_delta_exact_weights": 0.0,
+        "max_logp_delta_exact_weights": 0.0,
+        "max_behaviour_delta": 0.0,
+        "uniform_behaviour_steps_seen_in_checks": 70,
+        "mean_learner_behaviour_drift_recurrence": 9.107127,
+        "mean_learner_behaviour_drift_logp": 0.24217,
+        "wall_clock_s": 3426.3,
+        "seed": 4242
+      },
+      "eval": {
+        "tag": "ctrl_BR2",
+        "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/ctrl_BR2_final.pt",
+        "checkpoint_loaded": true,
+        "arm": "END_TO_END",
+        "games": 128,
+        "completed": 128,
+        "errored": 0,
+        "unscored": 0,
+        "field_score": 0.0781,
+        "wilson95": [
+          0.043,
+          0.1378
+        ],
+        "per_opponent": {
+          "dragapult": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "iono": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "mega_abomasnow": {
+            "games": 32,
+            "rate": 0.0938
+          },
+          "mega_lucario": {
+            "games": 32,
+            "rate": 0.2188
+          }
+        },
+        "deck_legal_rate": 1.0,
+        "distinct_decks": 128,
+        "deck_diversity": 1.0,
+        "illegal_sequences": 0,
+        "mean_tokens_per_decision": 1.02,
+        "value_calibration": {
+          "n": 2961,
+          "mean_prediction": 0.07861,
+          "observed_base_rate": 0.08882,
+          "mse": 0.079647,
+          "mse_constant_baseline": 0.080932,
+          "skill_vs_constant": 0.0159,
+          "beats_constant_predictor": true,
+          "pearson_correlation_with_outcome": 0.3235,
+          "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
+        },
+        "seed": 777001,
+        "temperature": 1.0,
+        "wall_clock_s": 113.3,
+        "panel": [
+          "dragapult",
+          "mega_lucario",
+          "iono",
+          "mega_abomasnow"
+        ]
+      }
+    },
+    "BR3": {
+      "tag": "ctrl_BR3",
+      "manifest": {
+        "tag": "ctrl_BR3",
+        "stage": "BR3",
+        "stage_features": {
+          "gamma": 1.0,
+          "random_initial_construction": true,
+          "bounded_blocking_fifo": true,
+          "two_sided_and_ppo": true
+        },
+        "arm": "END_TO_END_DECK_CONSTRUCTION_AND_BATTLE",
+        "fresh_random_weights": true,
+        "params": 1707063,
+        "lstm_hidden": 256,
+        "actors": 6,
+        "queue_capacity": 48,
+        "bounded_blocking_fifo": true,
+        "unroll_length": 32,
+        "batch_unrolls": 8,
+        "sample_reuse": 2,
+        "lr": 7e-05,
+        "entropy_coef": 0.01,
+        "gamma": 1.0,
+        "two_sided_and_ppo": true,
+        "updates": 8864,
+        "policy_versions": 554,
+        "consumed_unrolls": 4432,
+        "consumed_decisions": 120088,
+        "produced_decisions": 120962,
+        "produced_episodes": 1442,
+        "production_consumption_ratio": 1.0073,
+        "illegal_decks": 0,
+        "actor_errors": 0,
+        "random_initial_construction": true,
+        "random_initial_choices": 14420,
+        "random_initial_construction_steps": 10,
+        "final_win_rate": 0.0673,
+        "recurrence_checks": 28,
+        "recurrence_check_failures": 0,
+        "recurrence_checks_skipped_no_retained_blob": 0,
+        "recurrence_check_coverage": 1.0,
+        "blob_history_versions": 48,
+        "recurrence_tolerance": 0.0001,
+        "max_recurrence_delta_exact_weights": 0.0,
+        "max_logp_delta_exact_weights": 4.77e-07,
+        "max_behaviour_delta": 0.0,
+        "uniform_behaviour_steps_seen_in_checks": 100,
+        "mean_learner_behaviour_drift_recurrence": 10.444815,
+        "mean_learner_behaviour_drift_logp": 0.184635,
+        "wall_clock_s": 1341.5,
+        "seed": 4242
+      },
+      "eval": {
+        "tag": "ctrl_BR3",
+        "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/ctrl_BR3_final.pt",
+        "checkpoint_loaded": true,
+        "arm": "END_TO_END",
+        "games": 128,
+        "completed": 128,
+        "errored": 0,
+        "unscored": 0,
+        "field_score": 0.0859,
+        "wilson95": [
+          0.0487,
+          0.1473
+        ],
+        "per_opponent": {
+          "dragapult": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "iono": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "mega_abomasnow": {
+            "games": 32,
+            "rate": 0.0
+          },
+          "mega_lucario": {
+            "games": 32,
+            "rate": 0.3438
+          }
+        },
+        "deck_legal_rate": 1.0,
+        "distinct_decks": 128,
+        "deck_diversity": 1.0,
+        "illegal_sequences": 0,
+        "mean_tokens_per_decision": 1.02,
+        "value_calibration": {
+          "n": 3008,
+          "mean_prediction": 0.03787,
+          "observed_base_rate": 0.10904,
+          "mse": 0.097466,
+          "mse_constant_baseline": 0.097152,
+          "skill_vs_constant": -0.0032,
+          "beats_constant_predictor": false,
+          "pearson_correlation_with_outcome": 0.5358,
+          "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
+        },
+        "seed": 777001,
+        "temperature": 1.0,
+        "wall_clock_s": 117.6,
+        "panel": [
+          "dragapult",
+          "mega_lucario",
+          "iono",
+          "mega_abomasnow"
+        ]
+      }
+    }
+  },
+  "throughput": {
+    "available": true,
+    "consumed_decisions_per_second": {
+      "BR0": 91.1,
+      "BR1": 115.1,
+      "BR1_5": 131.2,
+      "BR2": 35.1,
+      "BR3": 89.5
+    },
+    "median": 91.1,
+    "rate_outliers_all_rungs": [
+      "BR2"
+    ],
+    "contended_rungs": [],
+    "queue_statistics_valid": true,
+    "why_bounded_rungs_are_not_flagged": "BR2 and BR3 block their actors when the queue is full, so their production/consumption ratio is pinned by construction rather than by throughput. A slow bounded rung is a slow rung, not an invalid measurement.",
+    "rule": "a rung whose learner rate is outside [0.6, 1.7] x the ladder median did not run under the same conditions as the rest; D18 measured a 9x spread from concurrent load alone, with steps/update and decisions/episode unchanged"
+  },
+  "flag_problems": [],
+  "fidelity": {
+    "BR0": {
+      "status": "PASS",
+      "checks": 3,
+      "failures": 0,
+      "max_recurrence_delta": 0.0,
+      "max_logp_delta": 2.38e-07,
+      "max_behaviour_delta": 0.0,
+      "uniform_steps_checked": 0
+    },
+    "BR1": {
+      "status": "PASS",
+      "checks": 3,
+      "failures": 0,
+      "max_recurrence_delta": 0.0,
+      "max_logp_delta": 0.0,
+      "max_behaviour_delta": 0.0,
+      "uniform_steps_checked": 0
+    },
+    "BR1_5": {
+      "status": "PASS",
+      "checks": 3,
+      "failures": 0,
+      "max_recurrence_delta": 0.0,
+      "max_logp_delta": 0.0,
+      "max_behaviour_delta": 0.0,
+      "uniform_steps_checked": 20
+    },
+    "BR2": {
+      "status": "PASS",
+      "checks": 28,
+      "failures": 0,
+      "max_recurrence_delta": 0.0,
+      "max_logp_delta": 0.0,
+      "max_behaviour_delta": 0.0,
+      "uniform_steps_checked": 70
+    },
+    "BR3": {
+      "status": "PASS",
+      "checks": 28,
+      "failures": 0,
+      "max_recurrence_delta": 0.0,
+      "max_logp_delta": 4.77e-07,
+      "max_behaviour_delta": 0.0,
+      "uniform_steps_checked": 100
+    }
+  },
+  "floor": {
+    "floor_fixed_deck": {
+      "field_score": 0.0234,
+      "wilson95": [
+        0.008,
+        0.0666
+      ],
+      "games": 128
+    },
+    "floor_end_to_end": {
+      "field_score": 0.0625,
+      "wilson95": [
+        0.032,
+        0.1185
+      ],
+      "games": 128
+    }
+  },
+  "adjacent": [
+    {
+      "from": "BR0",
+      "to": "BR1",
+      "change": "gamma 0.99 -> 1.0",
+      "delta_pp": 0.78,
+      "overlap": true,
+      "reading": "no resolvable effect at 128 games"
+    },
+    {
+      "from": "BR1",
+      "to": "BR1_5",
+      "change": "published random initial deck-construction selections",
+      "delta_pp": 1.56,
+      "overlap": true,
+      "reading": "no resolvable effect at 128 games"
+    },
+    {
+      "from": "BR1_5",
+      "to": "BR2",
+      "change": "bounded blocking FIFO + balanced production/consumption",
+      "delta_pp": 0.0,
+      "overlap": true,
+      "reading": "no resolvable effect at 128 games"
+    },
+    {
+      "from": "BR2",
+      "to": "BR3",
+      "change": "two-sided clipped V-trace + PPO-style clipped policy objective",
+      "delta_pp": 0.78,
+      "overlap": true,
+      "reading": "no resolvable effect at 128 games"
+    }
+  ]
+}

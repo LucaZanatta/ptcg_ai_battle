@@ -116,13 +116,24 @@ def throughput_validity(rungs: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
     if len(rates) < 2:
         return {"available": False, "rates": rates}
     med = statistics.median(rates.values())
-    suspect = {s: v for s, v in rates.items() if v < 0.6 * med or v > 1.7 * med}
+    outliers = {s: v for s, v in rates.items() if v < 0.6 * med or v > 1.7 * med}
+    # A rate outlier only INVALIDATES a rung whose reported quantity is a throughput ratio, and
+    # that is exactly the pre-b2 rungs. D18's own conclusion is that a bounded blocking FIFO
+    # pins the ratio near 1 under every load tested -- so flagging BR2 or BR3 for running slowly
+    # would hide the number that demonstrates the b2 delta behind a warning about a property
+    # that change was made to remove. Marking correct behaviour INVALID is the V08 mistake.
+    suspect = {s: v for s, v in outliers.items() if s in UNBOUNDED}
     return {
         "available": True,
         "consumed_decisions_per_second": rates,
         "median": round(med, 1),
+        "rate_outliers_all_rungs": sorted(outliers),
         "contended_rungs": sorted(suspect),
         "queue_statistics_valid": not suspect,
+        "why_bounded_rungs_are_not_flagged": (
+            "BR2 and BR3 block their actors when the queue is full, so their production/"
+            "consumption ratio is pinned by construction rather than by throughput. A slow "
+            "bounded rung is a slow rung, not an invalid measurement."),
         "rule": ("a rung whose learner rate is outside [0.6, 1.7] x the ladder median did not "
                  "run under the same conditions as the rest; D18 measured a 9x spread from "
                  "concurrent load alone, with steps/update and decisions/episode unchanged"),

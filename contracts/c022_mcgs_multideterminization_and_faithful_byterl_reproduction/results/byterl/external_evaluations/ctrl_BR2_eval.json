@@ -7,15 +7,15 @@
   "completed": 128,
   "errored": 0,
   "unscored": 0,
-  "field_score": 0.0703,
+  "field_score": 0.0781,
   "wilson95": [
-    0.0374,
-    0.1282
+    0.043,
+    0.1378
   ],
   "per_opponent": {
     "dragapult": {
       "games": 32,
-      "rate": 0.0938
+      "rate": 0.0
     },
     "iono": {
       "games": 32,
@@ -23,32 +23,32 @@
     },
     "mega_abomasnow": {
       "games": 32,
-      "rate": 0.0
+      "rate": 0.0938
     },
     "mega_lucario": {
       "games": 32,
-      "rate": 0.1875
+      "rate": 0.2188
     }
   },
   "deck_legal_rate": 1.0,
   "distinct_decks": 128,
   "deck_diversity": 1.0,
   "illegal_sequences": 0,
-  "mean_tokens_per_decision": 1.025,
+  "mean_tokens_per_decision": 1.02,
   "value_calibration": {
-    "n": 3409,
-    "mean_prediction": 0.01825,
-    "observed_base_rate": 0.09064,
-    "mse": 0.087632,
-    "mse_constant_baseline": 0.082426,
-    "skill_vs_constant": -0.0632,
-    "beats_constant_predictor": false,
-    "pearson_correlation_with_outcome": 0.0297,
+    "n": 2961,
+    "mean_prediction": 0.07861,
+    "observed_base_rate": 0.08882,
+    "mse": 0.079647,
+    "mse_constant_baseline": 0.080932,
+    "skill_vs_constant": 0.0159,
+    "beats_constant_predictor": true,
+    "pearson_correlation_with_outcome": 0.3235,
     "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
   },
   "seed": 777001,
   "temperature": 1.0,
-  "wall_clock_s": 150.9,
+  "wall_clock_s": 113.3,
   "panel": [
     "dragapult",
     "mega_lucario",

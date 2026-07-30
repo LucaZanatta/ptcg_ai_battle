@@ -603,16 +603,35 @@ def check_rung_throughput(ctx):
         return True, {"_n_inputs": 0, "rates": rates,
                       "why": "fewer than two controlled rungs; nothing to compare"}
     med = statistics.median(rates.values())
-    bad = {t: v for t, v in rates.items() if v < 0.6 * med or v > 1.7 * med}
+    outliers = {t: v for t, v in rates.items() if v < 0.6 * med or v > 1.7 * med}
+    # Only the UNBOUNDED rungs can be invalidated by load. D18's conclusion was that a bounded
+    # blocking FIFO pins the production/consumption ratio by construction -- BR2 and BR3 measured
+    # 1.0064 and 1.0073 while running at a third of the ladder's median rate under the four-way
+    # concurrent block. Failing them for being slow would mark correct behaviour INVALID and
+    # hide the very number the b2 change exists to produce. Same mistake as V08's original
+    # opponent-flag clause; a validator that cries wolf is how a real FAIL gets scrolled past.
+    UNBOUNDED_RUNGS = ("ctrl_BR0", "ctrl_BR1", "ctrl_BR1_5")
+    bad = {t: v for t, v in outliers.items() if t in UNBOUNDED_RUNGS}
     return not bad, {"_n_inputs": len(rates), "rates": rates, "median": round(med, 1),
-                     "outliers": bad,
-                     "bound": "[0.6, 1.7] x median; D18 measured a 9x spread from load alone"}
+                     "rate_outliers_all_rungs": outliers, "invalidating": bad,
+                     "bound": "[0.6, 1.7] x median, applied to PRE-B2 rungs only",
+                     "why": ("a bounded blocking FIFO pins the ratio regardless of throughput, "
+                             "so a slow BR2/BR3 is a slow rung, not an invalid measurement")}
 
 
 def inject_rung_throughput(ctx):
+    """Inject a contended PRE-B2 rung, since those are the only ones the check invalidates.
+
+    The first version injected a rung called `ctrl_INJECTED`. Once the check was correctly
+    narrowed to BR0/BR1/BR1.5, that tag stopped being visible to it and the injection went
+    undetected -- the harness reported V14 as INERT, which is exactly what it is for. The
+    injection must exercise the path the check actually guards.
+    """
     c = dict(ctx)
+    # Same tag as a real rung, so it OVERWRITES it in the rate table and makes a genuine pre-b2
+    # rung look contended. A distinct tag would test a code path no real arm takes.
     c["byterl_manifests"] = list(ctx["byterl_manifests"]) + [
-        {"tag": "ctrl_INJECTED", "wall_clock_s": 10000.0, "consumed_decisions": 120000}]
+        {"tag": "ctrl_BR1", "wall_clock_s": 100000.0, "consumed_decisions": 120000}]
     return c
 
 

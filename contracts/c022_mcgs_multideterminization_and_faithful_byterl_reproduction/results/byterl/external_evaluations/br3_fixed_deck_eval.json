@@ -1,54 +1,54 @@
 {
-  "tag": "ctrl_BR0",
-  "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/ctrl_BR0_final.pt",
+  "tag": "br3_fixed_deck",
+  "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/br3_fixed_deck_final.pt",
   "checkpoint_loaded": true,
-  "arm": "END_TO_END",
+  "arm": "FIXED_DECK",
   "games": 128,
   "completed": 128,
   "errored": 0,
   "unscored": 0,
-  "field_score": 0.0547,
+  "field_score": 0.0703,
   "wilson95": [
-    0.0267,
-    0.1086
+    0.0374,
+    0.1282
   ],
   "per_opponent": {
     "dragapult": {
       "games": 32,
-      "rate": 0.0
+      "rate": 0.0312
     },
     "iono": {
       "games": 32,
-      "rate": 0.0
+      "rate": 0.0312
     },
     "mega_abomasnow": {
       "games": 32,
-      "rate": 0.0
+      "rate": 0.0625
     },
     "mega_lucario": {
       "games": 32,
-      "rate": 0.2188
+      "rate": 0.1562
     }
   },
   "deck_legal_rate": 1.0,
-  "distinct_decks": 128,
-  "deck_diversity": 1.0,
+  "distinct_decks": 1,
+  "deck_diversity": 0.0078,
   "illegal_sequences": 0,
-  "mean_tokens_per_decision": 1.019,
+  "mean_tokens_per_decision": 1.01,
   "value_calibration": {
-    "n": 2774,
-    "mean_prediction": 0.10428,
-    "observed_base_rate": 0.06885,
-    "mse": 0.065113,
-    "mse_constant_baseline": 0.064113,
-    "skill_vs_constant": -0.0156,
-    "beats_constant_predictor": false,
-    "pearson_correlation_with_outcome": 0.0667,
+    "n": 3214,
+    "mean_prediction": 0.0726,
+    "observed_base_rate": 0.12134,
+    "mse": 0.088401,
+    "mse_constant_baseline": 0.10662,
+    "skill_vs_constant": 0.1709,
+    "beats_constant_predictor": true,
+    "pearson_correlation_with_outcome": 0.4476,
     "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
   },
   "seed": 777001,
   "temperature": 1.0,
-  "wall_clock_s": 92.8,
+  "wall_clock_s": 101.6,
   "panel": [
     "dragapult",
     "mega_lucario",

@@ -9,16 +9,16 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | `SOURCE_FIDELITY` | **PASS** |
 | `MCGS_HIDDEN_INFO` | **PARTIAL** |
 | `MCGS_COMPETITIVE` | **PARTIAL** |
-| `BYTERL_REFERENCE_FIDELITY` | **PARTIAL** |
-| `BYTERL_FIXED_DECK` | **NOT_RUN** |
+| `BYTERL_REFERENCE_FIDELITY` | **PASS** |
+| `BYTERL_FIXED_DECK` | **PARTIAL** |
 | `BYTERL_E2E` | **PARTIAL** |
-| `BYTERL_SCALE` | **NOT_RUN** |
+| `BYTERL_SCALE` | **COMPUTE_LIMITED** |
 | `TRANSFER` | **NOT_RUN** |
 | `PACKAGE` | **NOT_RUN** |
 | `SUBMISSION` | **NOT_RUN** |
 | `OVERALL` | **PARTIAL** |
 
-1 of 10 statuses PASS; 5 have not run. The honest outcomes `DECISION_RULES §6` lists are combinations, not a single verdict, and this table is meant to be read as one.
+2 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES §6` lists are combinations, not a single verdict, and this table is meant to be read as one.
 
 ## `SOURCE_FIDELITY` = PASS
 
@@ -58,13 +58,13 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 
 | requirement | verdict | evidence |
 |---|---|---|
-| credibly beats the strongest frozen champion on the broad panel | **NOT_RUN** | `results/mcgs/final_panel/panel.json` |
+| credibly beats the strongest frozen champion on the broad panel | **NOT met** | `results/mcgs/final_panel/panel.json` |
 | the improvement exceeds measured run-to-run noise | **NOT met** | `results/mcgs/paired/, NOISE_FLOOR_ACCIDENTAL_REPLICATION.md` |
 
-- **credibly beats the strongest frozen champion on the broad panel** — results/mcgs/final_panel/panel.json absent -- the panel has not run
+- **credibly beats the strongest frozen champion on the broad panel** — {"bar": "BASELINE_OFFICIAL_MEGA_LUCARIO, re-run here on this panel", "bar_field_score": null, "bar_wilson95": [null, null], "best_candidate": "mcgs_k8", "candidate_field_score": null, "candidate_wilson95": [null, null], "delta_pp": null, "intervals_separate_in_candidate_favour": null, "credible_impr
 - **the improvement exceeds measured run-to-run noise** — delta 4.94 pp against a measured 5.0 pp replication spread; Wilson intervals OVERLAP. DECISION_RULES §2: 'A small noisy improvement over c021 MCGS is not a competitive pass.'
 
-## `BYTERL_REFERENCE_FIDELITY` = PARTIAL
+## `BYTERL_REFERENCE_FIDELITY` = PASS
 
 *DECISION_RULES §3 BYTERL_REFERENCE_FIDELITY*
 
@@ -76,7 +76,7 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | bounded blocking FIFO and measured production/consumption | **met** | `results/probes/byterl_probes.json B08-B10` |
 | exact numerical V-trace / UPGO / b3 fixtures | **met** | `results/byterl/numerical_fixtures/fixtures.json` |
 | published stage-delta tests | **met** | `tests/test_c022_stage_ladder.py, results/byterl/component_analysis/` |
-| recurrent replay verified at high coverage | **NOT_RUN** | `results/byterl/stages/fid_*_manifest.json` |
+| recurrent replay verified at high coverage | **met** | `results/byterl/stages/fid_*_manifest.json` |
 | immutable OSFP history and correct period accounting | **met** | `results/byterl/osfp/osfp_accounting.json` |
 | end-to-end construction path implemented | **met** | `results/byterl/end_to_end/` |
 | every reported number survives an injection-tested validator | **met** | `results/validation_report.json` |
@@ -86,23 +86,23 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 - **actor versions and stored recurrent starts** — B07: None
 - **bounded blocking FIFO and measured production/consumption** — B09: None
 - **exact numerical V-trace / UPGO / b3 fixtures** — 34/34 comparisons agree at 1e-05 against references transcribed independently of the implementation and of the test suite's own copies
-- **published stage-delta tests** — 1 rungs, one codebase; tests/test_c022_stage_ladder.py rejects extra changes
-- **recurrent replay verified at high coverage** — the dedicated high-coverage B06 runs have not run (D20)
+- **published stage-delta tests** — 5 rungs, one codebase; tests/test_c022_stage_ladder.py rejects extra changes
+- **recurrent replay verified at high coverage** — fid_BR0: 112 checks, coverage 1.0, failures 0; fid_BR1: 111 checks, coverage 1.0, failures 0; fid_BR1_5: 111 checks, coverage 1.0, failures 0; fid_BR2: 111 checks, coverage 1.0, failures 0; fid_BR3: 111 checks, coverage 1.0, failures 0
 - **immutable OSFP history and correct period accounting** — history 4/4 after 6 periods, bounded=True, immutable=True; self-play 0.6, promotion threshold 0.55
 - **end-to-end construction path implemented** — B18: None
-- **every reported number survives an injection-tested validator** — 17/17 checks that ran pass, no_data=['V14', 'V17'], inert=[], undetected injections=[]
+- **every reported number survives an injection-tested validator** — 19/19 checks that ran pass, no_data=[], inert=[], undetected injections=[]
 
-## `BYTERL_FIXED_DECK` = NOT_RUN
+## `BYTERL_FIXED_DECK` = PARTIAL
 
 *DECISION_RULES §3 BYTERL_FIXED_DECK*
 
 | requirement | verdict | evidence |
 |---|---|---|
-| statistically credible improvement over the random floor | **NOT_RUN** | `results/byterl/external_evaluations/` |
+| statistically credible improvement over the random floor | **NOT met** | `results/byterl/external_evaluations/` |
 | a reproducible upward external trajectory | **NOT_RUN** | `results/byterl/stages/br3_fixed_deck_curve.json` |
 
-- **statistically credible improvement over the random floor** — br3_fixed_deck has not been evaluated
-- **a reproducible upward external trajectory** — no training curve recorded for the decisive fixed-deck arm
+- **statistically credible improvement over the random floor** — br3_fixed_deck 0.0703 [0.0374, 0.1282] vs floor 0.0234 [0.008, 0.0666] over 128 games; intervals OVERLAP
+- **a reproducible upward external trajectory** — could not be evaluated: AttributeError: 'list' object has no attribute 'get'
 
 ## `BYTERL_E2E` = PARTIAL
 
@@ -111,22 +111,22 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | requirement | verdict | evidence |
 |---|---|---|
 | legal, diverse deck construction | **met** | `results/byterl/end_to_end/` |
-| external improvement above random / fixed weak baselines | **NOT_RUN** | `results/byterl/external_evaluations/` |
+| external improvement above random / fixed weak baselines | **NOT met** | `results/byterl/external_evaluations/` |
 
 - **legal, diverse deck construction** — None
-- **external improvement above random / fixed weak baselines** — br3_end_to_end has not been evaluated
+- **external improvement above random / fixed weak baselines** — br3_end_to_end 0.0547 [0.0267, 0.1086] vs floor 0.0625 [0.032, 0.1185] over 128 games; intervals OVERLAP
 
-## `BYTERL_SCALE` = NOT_RUN
+## `BYTERL_SCALE` = COMPUTE_LIMITED
 
 *DECISION_RULES §3 BYTERL_SCALE*
 
 | requirement | verdict | evidence |
 |---|---|---|
-| br3_fixed_deck reaches the matched budget | **NOT_RUN** | `results/byterl/stages/br3_fixed_deck_manifest.json` |
-| br3_end_to_end reaches the matched budget | **NOT_RUN** | `results/byterl/stages/br3_end_to_end_manifest.json` |
+| br3_fixed_deck reaches the matched budget | **NOT met** | `results/byterl/stages/br3_fixed_deck_manifest.json` |
+| br3_end_to_end reaches the matched budget | **NOT met** | `results/byterl/stages/br3_end_to_end_manifest.json` |
 
-- **br3_fixed_deck reaches the matched budget** — br3_fixed_deck has not run
-- **br3_end_to_end reaches the matched budget** — br3_end_to_end has not run
+- **br3_fixed_deck reaches the matched budget** — produced_decisions 328,601 of 3,607,599 (9.1%); the budget is defined in ENVIRONMENT decisions, so the actor-side counter is the one reported
+- **br3_end_to_end reaches the matched budget** — produced_decisions 391,305 of 3,607,599 (10.8%); the budget is defined in ENVIRONMENT decisions, so the actor-side counter is the one reported
 
 ## `TRANSFER` = NOT_RUN
 

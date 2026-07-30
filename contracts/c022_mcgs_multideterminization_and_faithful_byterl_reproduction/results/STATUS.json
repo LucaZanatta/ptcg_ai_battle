@@ -73,9 +73,9 @@
       "requirements": [
         {
           "requirement": "credibly beats the strongest frozen champion on the broad panel",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "results/mcgs/final_panel/panel.json absent -- the panel has not run",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "{\"bar\": \"BASELINE_OFFICIAL_MEGA_LUCARIO, re-run here on this panel\", \"bar_field_score\": null, \"bar_wilson95\": [null, null], \"best_candidate\": \"mcgs_k8\", \"candidate_field_score\": null, \"candidate_wilson95\": [null, null], \"delta_pp\": null, \"intervals_separate_in_candidate_favour\": null, \"credible_impr",
           "evidence": "results/mcgs/final_panel/panel.json"
         },
         {
@@ -89,7 +89,7 @@
       "source": "DECISION_RULES \u00a72 MCGS_COMPETITIVE"
     },
     "BYTERL_REFERENCE_FIDELITY": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "requirements": [
         {
           "requirement": "LSTM-256 recurrence",
@@ -130,14 +130,14 @@
           "requirement": "published stage-delta tests",
           "met": true,
           "verdict": "met",
-          "detail": "1 rungs, one codebase; tests/test_c022_stage_ladder.py rejects extra changes",
+          "detail": "5 rungs, one codebase; tests/test_c022_stage_ladder.py rejects extra changes",
           "evidence": "tests/test_c022_stage_ladder.py, results/byterl/component_analysis/"
         },
         {
           "requirement": "recurrent replay verified at high coverage",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "the dedicated high-coverage B06 runs have not run (D20)",
+          "met": true,
+          "verdict": "met",
+          "detail": "fid_BR0: 112 checks, coverage 1.0, failures 0; fid_BR1: 111 checks, coverage 1.0, failures 0; fid_BR1_5: 111 checks, coverage 1.0, failures 0; fid_BR2: 111 checks, coverage 1.0, failures 0; fid_BR3: 111 checks, coverage 1.0, failures 0",
           "evidence": "results/byterl/stages/fid_*_manifest.json"
         },
         {
@@ -158,27 +158,27 @@
           "requirement": "every reported number survives an injection-tested validator",
           "met": true,
           "verdict": "met",
-          "detail": "17/17 checks that ran pass, no_data=['V14', 'V17'], inert=[], undetected injections=[]",
+          "detail": "19/19 checks that ran pass, no_data=[], inert=[], undetected injections=[]",
           "evidence": "results/validation_report.json"
         }
       ],
       "source": "DECISION_RULES \u00a73 BYTERL_REFERENCE_FIDELITY"
     },
     "BYTERL_FIXED_DECK": {
-      "status": "NOT_RUN",
+      "status": "PARTIAL",
       "requirements": [
         {
           "requirement": "statistically credible improvement over the random floor",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "br3_fixed_deck has not been evaluated",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "br3_fixed_deck 0.0703 [0.0374, 0.1282] vs floor 0.0234 [0.008, 0.0666] over 128 games; intervals OVERLAP",
           "evidence": "results/byterl/external_evaluations/"
         },
         {
           "requirement": "a reproducible upward external trajectory",
           "met": null,
           "verdict": "NOT_RUN",
-          "detail": "no training curve recorded for the decisive fixed-deck arm",
+          "detail": "could not be evaluated: AttributeError: 'list' object has no attribute 'get'",
           "evidence": "results/byterl/stages/br3_fixed_deck_curve.json"
         }
       ],
@@ -196,29 +196,29 @@
         },
         {
           "requirement": "external improvement above random / fixed weak baselines",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "br3_end_to_end has not been evaluated",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "br3_end_to_end 0.0547 [0.0267, 0.1086] vs floor 0.0625 [0.032, 0.1185] over 128 games; intervals OVERLAP",
           "evidence": "results/byterl/external_evaluations/"
         }
       ],
       "source": "DECISION_RULES \u00a73 BYTERL_E2E"
     },
     "BYTERL_SCALE": {
-      "status": "NOT_RUN",
+      "status": "COMPUTE_LIMITED",
       "requirements": [
         {
           "requirement": "br3_fixed_deck reaches the matched budget",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "br3_fixed_deck has not run",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "produced_decisions 328,601 of 3,607,599 (9.1%); the budget is defined in ENVIRONMENT decisions, so the actor-side counter is the one reported",
           "evidence": "results/byterl/stages/br3_fixed_deck_manifest.json"
         },
         {
           "requirement": "br3_end_to_end reaches the matched budget",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "br3_end_to_end has not run",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "produced_decisions 391,305 of 3,607,599 (10.8%); the budget is defined in ENVIRONMENT decisions, so the actor-side counter is the one reported",
           "evidence": "results/byterl/stages/br3_end_to_end_manifest.json"
         }
       ],
@@ -280,6 +280,6 @@
   },
   "overall": {
     "status": "PARTIAL",
-    "reading": "1 of 10 statuses PASS; 5 have not run. The honest outcomes `DECISION_RULES \u00a76` lists are combinations, not a single verdict, and this table is meant to be read as one."
+    "reading": "2 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES \u00a76` lists are combinations, not a single verdict, and this table is meant to be read as one."
   }
 }

@@ -746,3 +746,81 @@ the conclusion.
 difference a pass. The lesson generalises poorly into a rule — but it does generalise into a
 habit: after a control lands, read the raw comparison before reading what the tooling says about
 it.
+
+## D25 — the final panel scored 0 of 180 games and reported a verdict anyway
+
+**Found** 2026-07-31 23:53 (stage 2 log), on the never-cut item.
+
+```text
+[panel] 3 candidates x 60 games = 180 games, nproc 6
+  mcgs_k8   field=None  scored=0/60
+  mcgs_k1   field=None  scored=0/60
+  baseline  field=None  scored=0/60
+  -> mcgs_k8 None vs bar None: delta None pp, credible_improvement=False
+```
+
+180 games in **two seconds**, every one `status: ERROR`, `seconds: 0.0`, and **no exception
+recorded** — the per-game `error` field was empty on all 180. The tool then printed a
+`champion_comparison` with `credible_improvement: False`, which is the right answer reached with
+no evidence whatsoever, and wrote it to `panel.json` where `MCGS_COMPETITIVE` reads it.
+
+**Cause, two halves, both in agent construction:**
+
+1. **Bare closures instead of factories.** `kaggle_environments` inspects an agent's signature to
+   decide whether to call it with `(obs)` or `(obs, config)`. The working runner
+   (`c022_mcgs_run.py`) wraps both sides in `mk()` / `mo()` factories; the panel defined
+   `def me(o)` inline and passed `opp` unwrapped. This is the failure mode already recorded in
+   the project's own memory as the "two-param agent trap", and I walked into it in a new file.
+2. **A different deck source.** The panel built its deck from `DK.CardPool.from_archetypes()` +
+   `greedy_reference_deck`, while every arm in this contract uses
+   `D19.archetype_decks()["mega_lucario"]`.
+
+**What makes this worse than a crash.** A crash is loud. This returned a complete, well-formed
+report with a plausible conclusion — and the conclusion it reached, "the candidate does not
+credibly beat the bar", is one I already expected to be true. A wrong method producing the
+expected answer is the hardest kind of error to notice, and the only reason it was caught is that
+180 games cannot run in two seconds.
+
+**Fix.** Factory-wrapped closures on both sides, the same deck source as every other arm, and the
+`agent is not None` guard that the old `report is None` sentinel got wrong for the baseline
+branch. Verified on a 4-game smoke: 12 of 12 games scored, baseline 0.5, candidates 0.0.
+
+**The guard this needs and does not yet have.** `summarise()` should refuse to emit a
+`champion_comparison` when `scored == 0`, in the same way `c022_validate.py` reports `NO_DATA`
+rather than a pass. A verdict computed from zero games is not a verdict.
+
+## D26 — three checks in one night that failed correct behaviour
+
+**Found** 2026-07-31 00:05, fixing the third one.
+
+| check | flagged | why it was wrong |
+|---|---|---|
+| `V08` | 7 arms with `opponent_flag_conflicts > 0` | D16 established those conflicts are legitimate and root-frame summation handles them |
+| ladder `throughput_validity` | `ctrl_BR2`'s production/consumption as `INVALID` | BR2 is a bounded-FIFO rung; its ratio is pinned by construction, not by throughput |
+| `V14` | `ctrl_BR2` at 35.1 dec/s under the concurrent block | same |
+
+All three had the same shape: a bound calibrated on one regime applied to another. D18 measured
+a **9x** rate spread from load on an *unbounded* queue and concluded those rungs must run alone.
+The bound derived from it then got applied to bounded rungs, where a rate difference is expected
+and changes nothing — BR2 and BR3 measured **1.0064** and **1.0073** while running at a third of
+the ladder's median rate.
+
+The last one was the most costly: it made `V14` FAIL, which made
+`BYTERL_REFERENCE_FIDELITY=PARTIAL` through the "every reported number survives an
+injection-tested validator" requirement. A false alarm three levels down was suppressing a status.
+
+**And the fix immediately produced an inert check.** Narrowing `V14` to pre-b2 rungs left its
+injection — a made-up rung called `ctrl_INJECTED` — invisible to it, and the harness reported
+`inert: ['V14'], undetected_injections: ['V14']`. That is the injection machinery doing precisely
+its job: refusing to count a check that can no longer detect anything. The injection now
+overwrites a real pre-b2 rung's rate, which exercises the path the check actually guards.
+
+**The general lesson, since this is the fourth family this contract has produced.** Inert checks
+verify nothing and report success. These verify something real and report failure — and they are
+worse, because a FAIL gets investigated, and after two or three false ones stop getting
+investigated. Both failure modes come from the same root: a threshold whose derivation is not
+recorded next to it. Every bound in this contract's tooling now carries the measurement it came
+from and the regime it applies to.
+
+**State after the fixes:** 19 checks, 19 ran, 19 pass, 0 inert, 0 undetected injections, 0
+NO_DATA.

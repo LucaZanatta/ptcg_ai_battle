@@ -1,9 +1,9 @@
 {
-  "generated": "2026-07-30T12:26:02",
-  "training_tag": null,
-  "n_pass": 7,
-  "n_probes": 7,
-  "elapsed_s": 4.9,
+  "generated": "2026-07-30T23:27:23",
+  "training_tag": "ctrl_BR3",
+  "n_pass": 12,
+  "n_probes": 12,
+  "elapsed_s": 4.5,
   "probes": [
     {
       "probe": "B01",
@@ -33,7 +33,7 @@
       "pass": true,
       "pass_condition": "every legal option's reference indices are in range and its option_index matches its position",
       "refuted_by": "an out-of-range source/target index or a mis-numbered option, which would make the network score the wrong Pokemon",
-      "options_checked": 22,
+      "options_checked": 17,
       "bad": []
     },
     {
@@ -45,15 +45,14 @@
       "sequences_checked": 36,
       "bad": [],
       "sampled_count_histogram_from_real_decisions": {
-        "1": 35,
-        "2": 1
+        "1": 36
       },
       "synthetic_multiselect": {
         "exercised": true,
         "count_histogram": {
-          "1": 16,
+          "3": 16,
           "2": 9,
-          "3": 15
+          "1": 15
         },
         "distinct_counts_sampled": 3,
         "max_joint_logp_delta": 2.38419e-07,
@@ -69,7 +68,7 @@
       "refuted_by": "any disagreement -- V-trace's importance ratio is computed from these two numbers, so a mismatch biases every off-policy correction while every loss stays finite",
       "n": 76,
       "max_delta": 2.38419e-07,
-      "mean_delta": 5.0978e-08
+      "mean_delta": 4.7841e-08
     },
     {
       "probe": "B18",
@@ -95,6 +94,65 @@
       "reward_attached": true,
       "vtrace_target_at_step0": 1.0,
       "terminal_reward": 1.0
+    },
+    {
+      "probe": "B06",
+      "name": "hidden-state replay",
+      "pass": true,
+      "pass_condition": "the learner's recomputed end-of-unroll (h, c) and joint log-probability match the actor's, under the EXACT weights the unroll was produced with, on every sampled check",
+      "refuted_by": "any nonzero delta -- a zeroed recurrent start is a hard failure under MANDATORY_IMPLEMENTATION B4, and so is an actor/learner encoder disagreement",
+      "checks": 28,
+      "failures": 0,
+      "tolerance": 0.0001,
+      "max_recurrence_delta": 0.0,
+      "max_logp_delta": 4.77e-07,
+      "note": "recomputing under the learner's CURRENT weights measures STALENESS, not fidelity, and is nonzero by design; it is reported separately as mean_learner_behaviour_drift_recurrence"
+    },
+    {
+      "probe": "B07",
+      "name": "burn-in/unroll boundaries",
+      "pass": true,
+      "pass_condition": "unrolls are a fixed registered length and every one carries its own stored recurrent start, so gradients respect the sequence boundary",
+      "refuted_by": "variable-length unrolls or a missing stored start, either of which would make the learner replay from a state the actor never held",
+      "unroll_length": 32,
+      "consumed_unrolls": 4432,
+      "stored_start_convention": "the state BEFORE the unroll's first decision; the end state is stored too, which is what makes B06 refutable"
+    },
+    {
+      "probe": "B08",
+      "name": "FIFO",
+      "pass": true,
+      "pass_condition": "queue occupancy never exceeds the declared capacity, and consumed decisions never exceed produced decisions (sample reuse applies learner-side and does not re-enqueue)",
+      "refuted_by": "occupancy above capacity (the bound is not enforced) or more consumed than produced (samples are being replayed from a buffer, which \u00a77 forbids)",
+      "bounded_blocking_fifo": true,
+      "capacity": 48,
+      "max_occupancy": 48,
+      "mean_occupancy": 47.7,
+      "samples_over_capacity": 0,
+      "consumed_unrolls": 4432,
+      "produced_decisions": 120962,
+      "consumed_decisions": 120088
+    },
+    {
+      "probe": "B09",
+      "name": "production balance",
+      "pass": true,
+      "pass_condition": "the producer/consumer ratio settles near 1: actors are neither starving the learner nor racing far ahead of it",
+      "refuted_by": "a ratio far from 1, which means the bounded blocking FIFO is not controlling production -- the b2 delta would then be nominal",
+      "final_ratio": 1.0073,
+      "mean_ratio_second_half": 1.0103,
+      "n_samples": 553
+    },
+    {
+      "probe": "B10",
+      "name": "policy versions",
+      "pass": true,
+      "pass_condition": "every unroll carries a behaviour policy version, and the mean lag and queue age are recorded throughout the run",
+      "refuted_by": "no versions published, or no lag recorded -- either means the actors are not versioned and the off-policy correction has nothing to correct against",
+      "policy_versions": 554,
+      "mean_policy_lag": 7.509,
+      "max_policy_lag": 8.57,
+      "mean_queue_age_s": 18.247
     }
   ]
 }

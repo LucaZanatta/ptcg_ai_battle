@@ -152,7 +152,47 @@ Recorded 2026-07-30 at 14:50, revised 16:45, 20:55.
 | 13 (final panel) | tool written; **count-budgeted**, so it shares the machine rather than needing it |
 | 14 (package, reports) | statuses computed from artifacts; validator at 19 checks |
 
-**Nothing has been cut.** The 00:00 trigger has not fired.
+## THE 00:00 ASSESSMENT — taken 2026-07-31 00:10
+
+The trigger fired. Assessed against the chain table above.
+
+**Applied: cuts 1 and 2, and only those.** Both decisive arms stopped at 23:50 on their own
+deadline, wrote manifests and final checkpoints, and were evaluated:
+
+| arm | produced decisions | fraction of 3,607,599 | external field | Wilson 95% |
+|---|---:|---:|---:|---|
+| `br3_fixed_deck` | 328,601 | **9.11%** | 0.0703 | [0.0374, 0.1282] |
+| `br3_end_to_end` | 391,305 | **10.85%** | 0.0547 | [0.0267, 0.1086] |
+
+Reason recorded: **schedule**. Not a result. Nothing measured between 14:50 and now influenced
+which items were cut — the order was fixed before any of it existed, and cuts 3, 4 and 5 were not
+reached.
+
+**No further cut is indicated.** Everything else in the chain has completed:
+
+- items 2–5: both K sweeps, the paired arms, **and** the compute-matched control
+- item 6: M11 executed (8 games, 279 decisions); the 20-game arm was a separate recorded scope
+  decision at 21:15, not this trigger
+- item 7: both deploy arms at c021's measured clock
+- items 8–9: the controlled ladder, all five rungs, one commit
+- items 10–11: the decisive arms, above
+- item 12: transfer noise floor complete; T1/T2 remain `NOT_RUN` and are gated on
+  `MANDATORY_IMPLEMENTATION C` requiring both fidelity gates, not on the clock
+- item 13: the final panel is re-running after `D25`
+- item 14: 19/19 validator checks pass with no inert checks and no undetected injections;
+  statuses computed from artifacts
+
+**What the cut cost, stated plainly.** At ~10% of the matched budget both decisive arms sit
+inside the random floor's interval, so `BYTERL_FIXED_DECK` and `BYTERL_E2E` cannot reach `PASS`
+on external improvement. `FIDELITY_RULES §5` forbids reading that as method failure, and
+`BYTERL_SCALE=COMPUTE_LIMITED` is `DECISION_RULES §3`'s named expected outcome. What the arms DO
+establish is fidelity at scale: 112 and 91 B06 checks at **100% coverage**, zero failures,
+production/consumption **1.0022** and **1.0023** across six thousand seconds under contention.
+
+**Remaining work is analysis and reporting, not compute** — with two exceptions, both recorded as
+open rather than done: the M09/M10 frozen-decision stability run, and the K=1 vs K=8 pair at the
+source's own schedule that `FINDING_the_calibration_gain_is_compute.md` names as the measurement
+most likely to change its conclusion.
 
 ### Projection recorded at 23:01, before the trigger
 
