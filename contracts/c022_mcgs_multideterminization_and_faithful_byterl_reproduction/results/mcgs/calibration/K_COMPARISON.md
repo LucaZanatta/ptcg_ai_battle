@@ -42,16 +42,20 @@ Starvation matters for attribution. Under `fixed_total` a K=8 arm gives each wor
 
 **Validity: PASS**
 
-Arms not present: `fpw_k2`, `fpw_k4`, `fpw_k8`
-
 | arm | K | games | scored | aband | unscored | excl. | field | 95% CI | bounds if counted | sims/dec | Brier | log-loss | mean pred | observed | over (pp) |
 |---|---:|---:|---:|---:|---:|---:|---:|---|---|---:|---:|---:|---:|---:|---:|
 | `fpw_k1` | 1 | 32 | 32 | 0 | 0 | 0.0 | 0.1562 | [0.0686, 0.3175] | [0.1562, 0.1562] | 12.0 | 0.26797 | 3.10968 | 0.5026 | 0.1892 | 31.3 |
+| `fpw_k2` | 2 | 32 | 32 | 0 | 0 | 0.0 | 0.25 | [0.1325, 0.4211] | [0.25, 0.25] | 24.0 | 0.22014 | 1.83478 | 0.4578 | 0.2376 | 22.0 |
+| `fpw_k4` | 4 | 32 | 32 | 0 | 0 | 0.0 | 0.2188 | [0.1102, 0.3876] | [0.2188, 0.2188] | 48.0 | 0.22943 | 1.77044 | 0.4617 | 0.2385 | 22.3 |
+| `fpw_k8` | 8 | 32 | 32 | 0 | 0 | 0.0 | 0.2188 | [0.1102, 0.3876] | [0.2188, 0.2188] | 96.0 | 0.16248 | 0.65984 | 0.4501 | 0.2546 | 19.5 |
 
 ### Against the K=1 control
 
 | arm | Δfield (pp) | CIs overlap | ΔBrier | Δlog-loss | Δoverconfidence (pp) |
 |---|---:|---|---:|---:|---:|
+| `fpw_k2` | 9.38 | True | -0.04783 | -1.2749 | -9.3 |
+| `fpw_k4` | 6.26 | True | -0.03854 | -1.33924 | -9.0 |
+| `fpw_k8` | 6.26 | True | -0.10549 | -2.44984 | -11.8 |
 
 A **negative** ΔBrier and Δlog-loss means K>1 is better calibrated than K=1, which is M08's pass condition. Field-score deltas at these game counts are shortlist evidence only — `TRAINING_AND_EVALUATION §5` requires at least 200 paired games before claiming a six-point effect.
 
@@ -60,8 +64,11 @@ A **negative** ΔBrier and Δlog-loss means K>1 is better calibrated than K=1, w
 | arm | K | modal agreement | unanimous | mean distinct best | sel. value sd | sims/world | worlds expanding ≤1 action |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | `fpw_k1` | 1 | 1.0 | 1.0 | 1.0 | None | 12.0 | 0.0 |
+| `fpw_k2` | 2 | 0.7424 | 0.4848 | 1.5152 | 0.1866 | 12.0 | 0.0 |
+| `fpw_k4` | 4 | 0.6672 | 0.2445 | 2.1806 | 0.208 | 12.0 | 0.0 |
+| `fpw_k8` | 8 | 0.6398 | 0.1655 | 2.7697 | 0.2169 | 12.0 | 0.0 |
 
 Starvation matters for attribution. Under `fixed_total` a K=8 arm gives each world one eighth of the simulations, so a worse result could be world diversity failing to help OR each world being too starved to search. The last two columns separate them.
 
-**These two columns are a SAMPLE, not a census.** The runner keeps two traces per game, so the per-world records number {'fpw_k1': 64} out of many thousands of decisions per arm. They are sufficient to tell starvation from diversity — a starved world expands one action whatever decision it faces — and are not a per-world profile of the arm.
+**These two columns are a SAMPLE, not a census.** The runner keeps two traces per game, so the per-world records number {'fpw_k1': 64, 'fpw_k2': 128, 'fpw_k4': 256, 'fpw_k8': 512} out of many thousands of decisions per arm. They are sufficient to tell starvation from diversity — a starved world expands one action whatever decision it faces — and are not a per-world profile of the arm.
 
