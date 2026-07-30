@@ -220,9 +220,13 @@ def probe_m03_no_leakage(deck, captured, k=4):
     # injected payloads above. It is the one permitted exception and is named explicitly.
     zone_readers = [z for z in zone_readers if z["file"] != "c022_probe_worlds.py"]
 
-    # WorldHandle must not print its contents either.
-    repr_clean = "opponent_hand" not in repr(worlds[0]) and \
-                 str(worlds[0].zones.get("opponent_deck", [])[:1]) not in repr(worlds[0])
+    # WorldHandle must not print anything hidden-shaped: a world that reaches a log through
+    # repr() has leaked just as surely as one that reaches a JSON artifact. The first version of
+    # this check compared against `str(zones['opponent_deck'][:1])`, which reduces to "[]" for an
+    # empty zone and then matches any empty list anywhere in the repr -- a check that could fail
+    # or pass for reasons unrelated to leakage.
+    r = repr(worlds[0])
+    repr_clean = ("zones=" not in r) and all(f not in r for f in W.HIDDEN_FIELDS)
 
     ok = bool(distinct == k and summary_clean and guard_fires and guard_fires_unnamed
               and repr_clean and not zone_readers)

@@ -1,0 +1,89 @@
+{
+  "written_before_any_K_sweep_ran": true,
+  "why_preregistered": "MANDATORY_IMPLEMENTATION A3: 'Choose the primary aggregation rule before broad game outcomes are unblinded.' A rule chosen after seeing which K wins is not a rule. Everything in this file is fixed now, and the sweep may not change it.",
+  "written_at_commit": "f22f0ee",
+
+  "primary_aggregation_rule": {
+    "id": "source_sum",
+    "definition": "For every world and every root edge, sum the SUCCESSOR NODE's visit_count and rewards into a per-action-index accumulator; the aggregate value of an action is sum(rewards)/sum(visits). Final selection is MaxChild on that aggregate.",
+    "why_this_one": "It is not a choice. It is a port of MonteCarloGraphSearch.AggregateDeterminizations plus MCGS.Select(FinalMoveSelection.MaxChild), both present and complete in the official archive. FIDELITY_RULES §1 puts the source archive above every other authority, so where the source specifies the operation there is nothing to preregister except the fact that it is being followed.",
+    "source_anchor": "external_refs/c021_mcgs/extracted/src/MCGS.cs :: AggregateDeterminizations (audit site A1), Select (site not required), Edge.Value (site G3)",
+    "join_key": "action index, exactly as the source matches rootEdge.ActionIndex == edge.ActionIndex. NOT edge list position.",
+    "which_counter": "the SUCCESSOR NODE's visit_count and rewards, because Edge.Value(0) returns Successor.Rewards/Successor.VisitCount and that is what MaxChild selects on. Edge.visit_count is recorded separately but is not the aggregated quantity."
+  },
+
+  "secondary_rules_reported_but_not_selecting": [
+    {
+      "id": "visit_sum",
+      "definition": "A3's 'visit-count summation': RobustChild over the summed successor visit counts.",
+      "status": "source-derived (FinalMoveSelection.RobustChild exists in the archive) but NOT the shipped FinalMoveSelection, which is MaxChild (SearchConfig.FinalMoveSelection = 0). Reported for every decision; never used to select."
+    },
+    {
+      "id": "robust_lcb",
+      "definition": "mean over per-world action values minus z * SE across worlds, z = 1.0.",
+      "status": "ALGORITHMIC_ADAPTATION. No source counterpart. A3 permits it only as 'an explicitly adapted secondary arm'. Reported for every decision; used to select only in an arm named MCGS_MULTI_DET_ROBUST_LCB, which is never presented as source behaviour."
+    }
+  ],
+
+  "predicted_win_probability": {
+    "definition": "the aggregate value of the SELECTED action: sum over worlds of that action's successor rewards, divided by sum over worlds of that action's successor visits.",
+    "explicitly_not": [
+      "the maximum over worlds of that action's value",
+      "the value in whichever world liked the action most",
+      "the maximum over actions of the aggregate value"
+    ],
+    "why": "Reporting the most optimistic world as the search's belief would pin the predicted probability near 1.0 at every K, so calibration could not improve with K and the failure would be misread as 'the ensemble does not help'. Asserted by tests/test_c022_aggregation.py::test_predicted_win_probability_is_the_aggregate_not_the_best_world.",
+    "scale": "rollout returns are in [0,1] (PlayUntilTerminal returns 1.0 for a root-player win, 0.0 otherwise, 0.0 at the turn cap), so the aggregate value is already a probability."
+  },
+
+  "terminal_scale_rule": {
+    "situation": "Node.Value returns +/-10 for a proven terminal while rollouts return 1/0. If terminals entered the sums, the aggregate would no longer be a probability.",
+    "measured_fact": "the frozen C021_MCGS_K1_CONTROL records finalised=0, terminal_leaves=0, lethal_bonus=0 over 226,277 rollouts and 1,281 searched decisions. The tree policy never reached a terminal, so the +/-10 branch never entered a computation at c021 scale.",
+    "rule_fixed_now": "per-world terminal_leaves / finalised / lethal_bonus are counted for EVERY arm. If any arm records a nonzero value, the mixed scale is handled by an explicitly documented normalisation and the affected arm is re-run; it is never absorbed silently into a calibration plot. Aggregate.mixed_terminal_scale_detected() raises the flag and tests/test_c022_aggregation.py asserts the flag fires."
+  },
+
+  "graph_reuse_rule": {
+    "K_sweep_arms": "graph_reuse DISABLED in every K-sweep arm, INCLUDING K=1.",
+    "why": "Worlds are resampled per decision, so ensemble slot i at decision t+1 is not the world slot i held at decision t. A per-slot statistics table carried across decisions would seed a world's search with statistics conditioned on a DIFFERENT world -- the same contamination as sharing a table between worlds within a decision, one level up. The source avoids this by keeping determinizations alive (CleanUpDeterminizations); PTCG sessions die at search_end, so this port cannot. Disabling reuse in all K arms makes K the only difference between them.",
+    "within_a_decision": "each world gets its OWN reuse dict when reuse is enabled at all; a shared dict is forbidden and probe M03c checks no cross-world sharing.",
+    "M04_identity_arm": "a SEPARATE arm, MCGS_K1_CONTROL_REUSE, runs K=1 with graph_reuse enabled exactly as the c021 control did, solely to demonstrate reproduction of C021_MCGS_K1_CONTROL. It is not part of the K sweep."
+  },
+
+  "budget_protocols": {
+    "fixed_total": "total simulations per decision constant across K; per world = total / K, with the remainder distributed one per world so the sum is EXACTLY total for every K. Asserted by test_m05_fixed_total_uses_exactly_equal_total_simulations.",
+    "fixed_per_world": "simulations per world constant across K; total grows with K. Asserted by test_m06_fixed_per_world_gives_every_world_the_same_count.",
+    "attribution": "by SIMULATION COUNT, never wall clock (A4). Elapsed time is recorded separately.",
+    "match_clock": "the c021 cumulative 90 s match clock is DISABLED in the K-sweep arms. With K sequential sessions per decision, fixed_per_world at K=8 multiplies search time ~8x; leaving the clock on would make the arm measure clock exhaustion rather than strength. match_clock_exhausted_decisions is reported per arm and is required to be 0 in both sweeps; a nonzero value invalidates that arm's causal comparison.",
+    "world_seeds": "from c022_mcgs_worlds.world_seeds(base_seed, decision_index, i) -- a dedicated SHA-256 stream, never the agent generator, so that adding worlds cannot shift the agent's draw order (probe M02c)."
+  },
+
+  "K_values": [1, 2, 4, 8],
+
+  "calibration_target_M08": {
+    "measured_ceiling": "results/mcgs/calibration/rollout_bias_probe.json",
+    "what_it_measured": "at 12 frozen roots sampled every 9th decision across multiple games, 8 worlds each, 24 source-faithful uniform-random rollouts per root action: mean over root actions 0.200, max over root actions 0.289, rollout from the ROOT before any action 0.201, and the same rollouts scored for the opposing seat 0.601.",
+    "terminal_attribution": "CONSISTENT. 0.201 + 0.601 = 0.802 <= 1, with the remainder being turn-capped rollouts (0.197). If both seats had been told they win, the terminal owner would have been read off whoever happens to be to act -- the defect c021 found and fixed -- and no world averaging would have helped.",
+    "decomposition_fixed_now": {
+      "shared_by_every_world_and_NOT_reducible_by_K": "the rollout's own optimism: 0.201 predicted from the root against an actual field score of 0.111, i.e. about 9 pp.",
+      "reducible_by_K": "within-world action selection: mean over actions 0.200 rises to 0.289 when the best action is chosen, i.e. about 9 pp at depth 1.",
+      "the_depth_term": "c021's runs report 0.79-0.99 predicted over decided rollouts, while this probe measures 0.355 over decided at depth 0-1. The difference is SEARCH DEPTH: UCB drives the tree into lines whose rollouts win, and the selection bias compounds ply by ply. That term is within-world, and cross-world root aggregation attacks it only at the root -- so the ensemble is expected to reduce overconfidence substantially without eliminating it."
+    },
+    "M08_pass_condition_fixed_now": "K>1 must reduce the gap between predicted win probability and realised outcome, measured as Brier score and log-loss over per-decision (predicted, realised game result) pairs, relative to the K=1 arm on the SAME decisions and seeds. It is NOT required to reach perfect calibration: the measured floor above shows a residual the mechanism cannot remove. A K>1 arm that leaves Brier unchanged within its confidence interval is recorded as no improvement, not as a pass.",
+    "why_this_is_stated_before_the_sweep": "so that a null result is reported as a null result rather than re-explained against a target chosen afterwards."
+  },
+
+  "world_disagreement_metrics": [
+    "per-world best action, and the number of distinct best actions across worlds",
+    "modal agreement: the fraction of worlds whose best action is the modal one",
+    "mean / sd / min / max of the SELECTED action's value across worlds",
+    "per-world simulations actually run, and root edges expanded, so a fixed-total K=8 result can be attributed to world diversity or to per-world starvation rather than confused between them"
+  ],
+
+  "forbidden": [
+    "choosing K after seeing broad field outcomes",
+    "changing the aggregation rule after unblinding",
+    "presenting the K-session ensemble as source-identical -- FIDELITY_RULES §3 fixes it as LEGAL_INFORMATION_ADAPTER",
+    "replacing search with a heuristic evaluator",
+    "using a neural value in place of the rollout return in any arm of this sweep"
+  ]
+}

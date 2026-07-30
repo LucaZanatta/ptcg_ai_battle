@@ -86,7 +86,19 @@ class WorldHandle:
     legal: bool = True
     rejection: Optional[str] = None
     multiplicity_ok: bool = True
-    multiplicity_detail: Dict[str, Any] = field(default_factory=dict)
+    # `repr=False` on the detail dicts as well as on `zones`. They hold only counts, so they are
+    # not a disclosure -- but they are KEYED by hidden field names, which made the default repr
+    # mention `your_deck` and `opponent_hand` and defeated the probe that checks a WorldHandle
+    # cannot be printed into a log with anything hidden-shaped in it. The details remain
+    # available through `summary()`, which is the channel that is actually checked.
+    multiplicity_detail: Dict[str, Any] = field(repr=False, default_factory=dict)
+    sizes_ok: bool = True
+    sizes_detail: Dict[str, Any] = field(repr=False, default_factory=dict)
+
+    @property
+    def usable(self) -> bool:
+        """A world enters the ensemble only if it is legal in all three senses."""
+        return bool(self.legal and self.multiplicity_ok and self.sizes_ok)
 
     def summary(self) -> Dict[str, Any]:
         """What may be written to a trace. Contains no card identity from a hidden zone."""
@@ -96,6 +108,8 @@ class WorldHandle:
             "archetype_confidence": round(float(self.archetype_confidence), 4),
             "legal": self.legal, "rejection": self.rejection,
             "multiplicity_ok": self.multiplicity_ok,
+            "sizes_ok": self.sizes_ok,
+            "size_mismatch": self.sizes_detail.get("mismatch") or {},
             "sizes": {f: len(self.zones.get(f, [])) for f in HIDDEN_FIELDS},
         }
 
@@ -120,6 +134,40 @@ def _world_id(zones: Dict[str, List[int]]) -> str:
         h.update(f.encode())
         h.update(np.asarray(sorted(zones.get(f, [])), dtype=np.int64).tobytes())
     return h.hexdigest()[:16]
+
+
+def check_zone_sizes(zones: Dict[str, List[int]], view) -> Tuple[bool, Dict]:
+    """The sampled world must have the PUBLIC zone sizes the real game has.
+
+    `MANDATORY_IMPLEMENTATION A2` requires "hidden hand/deck/prize completion is legal". A
+    completion that leaves the opponent holding zero cards is not a legal completion of the
+    observed game — it is a different game, and one in which the opponent is trivially weak.
+    Multiplicity and legality checks do not catch it: an empty opponent hand has no duplicate
+    cards and violates no copy limit.
+
+    Card COUNTS are public in PTCG (deck size, hand size and prize count are all visible), so
+    comparing against them is not a hidden-information read; `VisibleObservation.counts()` is
+    the same accessor the determinizer itself uses.
+    """
+    detail: Dict[str, Any] = {}
+    try:
+        c = view.counts()
+    except Exception as e:  # noqa: BLE001
+        return True, {"skipped": f"{type(e).__name__}: {e}"[:120]}
+    expect = {
+        "your_deck": int(c.get("my_deck", 0) or 0),
+        "your_prize": int(c.get("my_prize", 0) or 0),
+        "opponent_deck": int(c.get("opp_deck", 0) or 0),
+        "opponent_prize": int(c.get("opp_prize", 0) or 0),
+        "opponent_hand": int(c.get("opp_hand", 0) or 0),
+    }
+    got = {f: len(zones.get(f, [])) for f in expect}
+    mismatch = {f: {"expected": expect[f], "sampled": got[f]}
+                for f in expect if expect[f] != got[f]}
+    detail["expected"] = expect
+    detail["sampled"] = got
+    detail["mismatch"] = mismatch
+    return (not mismatch), detail
 
 
 def check_multiplicity(zones: Dict[str, List[int]], my_deck: List[int]) -> Tuple[bool, Dict]:
@@ -186,13 +234,15 @@ def sample_world(view, my_deck: List[int], seed: int, index: int) -> WorldHandle
     det, draw = DT.determinize(view, my_deck, rng)
     zones = {f: [int(x) for x in (getattr(det, f, None) or [])] for f in HIDDEN_FIELDS}
     mult_ok, mult_detail = check_multiplicity(zones, my_deck)
+    size_ok, size_detail = check_zone_sizes(zones, view)
     return WorldHandle(
         index=index, seed=int(seed), world_id=_world_id(zones), zones=zones,
         archetype=str(getattr(det, "archetype", draw.archetype)),
         archetype_confidence=float(getattr(det, "archetype_confidence", draw.confidence)),
         legal=bool(getattr(det, "legal", True)),
         rejection=getattr(det, "rejection", None),
-        multiplicity_ok=mult_ok, multiplicity_detail=mult_detail)
+        multiplicity_ok=mult_ok, multiplicity_detail=mult_detail,
+        sizes_ok=size_ok, sizes_detail=size_detail)
 
 
 def sample_worlds(view, my_deck: List[int], base_seed: int, decision_index: int, k: int,
@@ -218,7 +268,7 @@ def sample_worlds(view, my_deck: List[int], base_seed: int, decision_index: int,
         if len(out) >= want:
             break
         w = sample_world(view, my_deck, s, len(out))
-        if not w.legal or not w.multiplicity_ok:
+        if not w.usable:
             continue
         if dedupe and w.world_id in seen:
             continue

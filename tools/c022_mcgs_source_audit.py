@@ -621,16 +621,60 @@ def render_gap_analysis(sites, claims) -> str:
       "per rollout inside one graph; the ensemble re-determinizes per session. They are not the "
       "same algorithm, and the ensemble is the closest legal equivalent, not the original.")
     A("")
-    A("## Where the gap bites hardest")
+    A("## Where the gap bites, measured rather than assumed")
     A("")
-    A("`Node.Value` returns ±10 for a proven terminal while rollouts return 1/0, and "
-      "`Node.Finalise` collapses a parent onto a proven winning edge. Inside a single fixed "
-      "world both are correct — the world really is won. Across worlds they are the amplifier "
-      "that turns one lucky determinization into a 96%-confident decision.")
+    A("It is tempting to blame the ±10 terminal scale in `Node.Value` and the parent collapse in "
+      "`Node.Finalise`: inside one fixed world a discovered win is real, and across worlds those "
+      "two would be an amplifier turning one lucky determinization into a confident decision. "
+      "**The frozen c021 control refutes that story.** `t2_T0_control_summary.json` records, over "
+      "226,277 rollouts and 1,281 searched decisions:")
     A("")
-    A("This dictates a design decision that must be made **before** any sweep, because making it "
-      "implicitly in code and discovering it afterwards would be fitting the mechanism to the "
-      "result. It is recorded in `results/mcgs/PREREGISTERED_AGGREGATION.json`.")
+    A("```text")
+    A("finalised        0")
+    A("terminal_leaves  0")
+    A("lethal_bonus     0")
+    A("```")
+    A("")
+    A("The tree policy never reached a terminal, so `Finalise` never fired and the ±10 branch "
+      "never entered a computation. There is no scale-mixing decision to make: the aggregate is "
+      "`sum(rewards)/sum(visits)` over non-terminal children, on the rollout's own [0,1] scale, "
+      "which is exactly the source's two lines. What the port must do instead is **count** "
+      "`terminal_leaves` / `finalised` / `lethal_bonus` per world, so that if a larger K budget "
+      "ever does reach a terminal the mixed scale is handled explicitly rather than discovered "
+      "in a calibration plot. That rule is fixed in "
+      "`results/mcgs/PREREGISTERED_AGGREGATION.json` before any sweep runs.")
+    A("")
+    A("The real decomposition was measured directly "
+      "(`results/mcgs/calibration/rollout_bias_probe.json`), at 12 frozen roots across several "
+      "games, 8 worlds each, 24 source-faithful rollouts per root action:")
+    A("")
+    A("| quantity | value |")
+    A("|---|---:|")
+    A("| rollout from the ROOT, before any action | 0.201 |")
+    A("| the same rollouts scored for the OPPOSING seat | 0.601 |")
+    A("| mean over root actions | 0.200 |")
+    A("| max over root actions | 0.289 |")
+    A("| c021-style predicted over DECIDED rollouts | 0.355 |")
+    A("| turn-capped fraction | 0.197 |")
+    A("| actual field score of the frozen K1 control | 0.111 |")
+    A("")
+    A("Three things follow, and all three constrain what the correction can achieve:")
+    A("")
+    A("1. **Terminal attribution is sound.** 0.201 + 0.601 = 0.802 ≤ 1, the remainder being "
+      "turn-capped rollouts. Had both seats been told they win, the terminal owner would have "
+      "been read off whoever happens to be to act — the defect c021 found and fixed — and no "
+      "amount of world averaging would have helped.")
+    A("2. **Part of the overconfidence is shared by every world.** The rollout predicts 0.201 "
+      "from the root against an actual 0.111. Averaging independent worlds reduces variance and "
+      "selection bias, not a bias every world holds. That ~9 pp is a floor the ensemble cannot "
+      "reach below.")
+    A("3. **c021's 0.79–0.99 is a DEPTH effect.** At depth 0–1 the same rollout predicts 0.355 "
+      "over decided rollouts, not 0.96. The difference is that c021's statistic is over rollouts "
+      "launched from tree leaves UCB selected into promising lines, and that selection bias "
+      "compounds ply by ply. Cross-world root aggregation attacks the root-level term directly "
+      "and the deeper term only indirectly, so a substantial but incomplete reduction is the "
+      "honest expectation — which is why `M08`'s pass condition is stated as a Brier/log-loss "
+      "improvement against the K=1 arm rather than as reaching the true win rate.")
     A("")
     A("## Status")
     A("")
