@@ -127,6 +127,7 @@ def run_arm(a) -> Dict[str, Any]:
         "match_clock_seconds": float(a.match_clock),
         "decision_seconds_cap": float(a.decision_cap),
         "decision_wall_ceiling_seconds": float(a.wall_ceiling),
+        "decision_budget": int(a.decision_budget),
     }
     jobs = [{"game_id": f"{a.tag}:g{i}",
              "opponent": OPPONENTS[i % len(OPPONENTS)],
@@ -143,14 +144,21 @@ def run_arm(a) -> Dict[str, Any]:
     results: List[Dict[str, Any]] = []
     running: Dict[str, Any] = {}
     pending = list(jobs)
+    # The agent seed must depend ONLY on the job index. Deriving it from `len(results) +
+    # len(running)` -- which the first version did -- makes it depend on completion TIMING, so
+    # re-running the identical command gives different agent RNG streams and the arm is not
+    # reproducible. Worlds were unaffected (they come from world_base_seed), but the
+    # out-of-budget fallback and every agent-side tie-break were, which is enough to break
+    # M13's matched seeds and F03's requirement that reported numbers recompute from raw data.
+    for i, j in enumerate(jobs):
+        j["agent_seed"] = a.seed + i
     t0 = time.time()
     deadline = t0 + a.arm_timeout
 
     while (pending or running) and time.time() < deadline:
         while pending and len(running) < a.nproc:
             job = pending.pop(0)
-            p = ctx.Process(target=_one_game,
-                            args=(job, cfg, a.seed + len(results) + len(running), q))
+            p = ctx.Process(target=_one_game, args=(job, cfg, job["agent_seed"], q))
             p.start()
             running[job["game_id"]] = (p, job, time.time())
         # Drain CONTINUOUSLY. Reading only after join() is what made c021 record live children
@@ -244,6 +252,10 @@ def run_arm(a) -> Dict[str, Any]:
         "decision_deadline_stops": int(agg_stats.get("decision_deadline_stops", 0)),
         "match_clock_exhausted_decisions": int(
             agg_stats.get("match_clock_exhausted_decisions", 0)),
+        "decision_budget": int(a.decision_budget),
+        "decision_budget_exhausted_decisions": int(
+            agg_stats.get("decision_budget_exhausted_decisions", 0)),
+        "decisions_total": int(agg_stats.get("decisions", 0)),
         "signature_mismatches": int(agg_stats.get("signature_mismatches", 0)),
         "mixed_terminal_scale_decisions": int(
             agg_stats.get("mixed_terminal_scale_decisions", 0)),
@@ -286,18 +298,45 @@ def main(argv=None):
     ap.add_argument("--games", type=int, default=40)
     ap.add_argument("--nproc", type=int, default=12)
     ap.add_argument("--seed", type=int, default=90210)
-    ap.add_argument("--game-timeout", type=float, default=900.0)
+    ap.add_argument("--game-timeout", type=float, default=0.0,
+                    help="absolute per-game wall clock. 0 = derive it from the arm's "
+                         "per-decision simulation cost so every K is cut at the same DECISION, "
+                         "not at the same second")
+    ap.add_argument("--decision-budget", type=int, default=260,
+                    help="how many searched decisions a game is allowed before it is cut. This, "
+                         "not wall clock, is what must be equal across K.")
+    ap.add_argument("--seconds-per-simulation", type=float, default=0.019,
+                    help="measured cost of one MCGS simulation, used to convert the decision "
+                         "budget into a wall-clock guard. Over-estimating it is safe: the guard "
+                         "is a backstop, and the decision budget is the real cut.")
     ap.add_argument("--arm-timeout", type=float, default=14400.0)
     ap.add_argument("--transfer-arm", default=None)
     ap.add_argument("--byterl-checkpoint", default=None)
     ap.add_argument("--out", default=os.path.join(MC, "k_sweeps"))
     a = ap.parse_args(argv)
 
+    # A per-game WALL CLOCK cuts high-K arms earlier in DECISION space than low-K arms, because
+    # a K=8 decision costs 8x a K=1 decision under fixed_per_world. Abandoned games are excluded
+    # from the field score, so the surviving subsample would be systematically shorter at high K
+    # and "K=8 is worse" would be indistinguishable from "K=8 dropped its long games".
+    #
+    # The guard is therefore derived from the arm's own per-decision cost, so every K is cut at
+    # roughly the same decision number. `abandoned` is reported per arm regardless, and an arm
+    # whose abandonment differs materially from its K=1 control has no valid causal claim.
+    total_sims = a.sims if a.protocol == "fixed_total" else a.sims * a.k
+    if a.game_timeout <= 0:
+        a.game_timeout = max(
+            300.0, a.decision_budget * total_sims * a.seconds_per_simulation * 1.5)
+    a.derived_game_timeout = True
+    print(f"[arm {a.tag}] K={a.k} protocol={a.protocol} total_sims/decision={total_sims} "
+          f"-> game_timeout={a.game_timeout:.0f}s "
+          f"(decision budget {a.decision_budget}, 1.5x margin)", flush=True)
     s = run_arm(a)
     print(json.dumps({k: s[k] for k in
                       ("tag", "games", "completed", "abandoned", "field_score", "wilson95",
                        "sims_per_decision", "mean_k_used", "total_simulations",
                        "budget_delivered", "match_clock_exhausted_decisions",
+                       "decision_budget_exhausted_decisions", "searched_decisions",
                        "signature_mismatches", "mixed_terminal_scale_decisions",
                        "world_errors", "wall_clock_s")}, indent=1))
     return 0

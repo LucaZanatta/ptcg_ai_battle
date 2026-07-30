@@ -77,6 +77,17 @@ REFERENCE_CFG: Dict[str, Any] = {
     # counted in `decision_deadline_stops`, and an arm with a nonzero count has not delivered its
     # simulation budget and must say so rather than quietly reporting fewer simulations.
     "decision_wall_ceiling_seconds": 120.0,
+    # MECHANICAL_ADAPTER, and the one that keeps the K sweep causal. Past this many SEARCHED
+    # decisions the agent still plays every decision, it simply stops searching -- exactly as a
+    # real player out of time must.
+    #
+    # It must be a DECISION count, not a wall clock. A per-game wall clock cuts a K=8 arm eight
+    # times earlier in decision space than a K=1 arm under fixed_per_world, and since abandoned
+    # games are excluded from the field score, the K=8 survivors would be systematically shorter
+    # games. "K=8 is worse" would then be indistinguishable from "K=8 dropped its long games" --
+    # the same shape as c021's contention artifact, where the counts looked right and the
+    # attribution was wrong. A decision cap truncates every K identically.
+    "decision_budget": 260,
 
     # ---- source timing, recorded for the unrestricted arm
     "first_move_seconds": G.FIRST_MOVE_SECONDS,
@@ -102,6 +113,7 @@ class MultiDetMCGSAgent:
             "k_used_total": 0, "world_errors": 0, "decision_deadline_stops": 0,
             "match_clock_exhausted_decisions": 0, "signature_mismatches": 0,
             "mixed_terminal_scale_decisions": 0, "aggregate_empty_decisions": 0,
+            "decision_budget_exhausted_decisions": 0,
         })
         self.decision_index = 0
         self.match_search_ms = 0.0
@@ -158,6 +170,11 @@ class MultiDetMCGSAgent:
         if len(opts) == 1:
             self.stats["single_option_decisions"] += 1
             return K.to_select_payload([opts[0]], sel)
+
+        budget = int(self.cfg.get("decision_budget") or 0)
+        if budget and self.stats["searched_decisions"] >= budget:
+            self.stats["decision_budget_exhausted_decisions"] += 1
+            return K.to_select_payload([self._progress_option(opts)], sel)
 
         t0 = time.monotonic()
         deadline = self._decision_deadline()
@@ -240,6 +257,7 @@ class MultiDetMCGSAgent:
         s["simulations_per_decision_config"] = self.cfg["simulations_per_decision"]
         s["aggregation_rule"] = self.cfg["aggregation_rule"]
         s["graph_reuse"] = bool(self.cfg.get("graph_reuse"))
+        s["decision_budget"] = self.cfg.get("decision_budget")
         s["match_search_ms"] = round(self.match_search_ms, 1)
         sd = max(1, s.get("searched_decisions", 0))
         s["sims_per_decision"] = round(s.get("searches", 0) / sd, 1)
