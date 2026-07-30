@@ -29,7 +29,12 @@ trap 'trap - TERM INT EXIT; kill -- -$$ 2>/dev/null; exit' TERM INT EXIT
 S=${SCRATCH:-/tmp/claude-1000/-home-luca-kaggle-ptcg-ai-battle/3e28ed63-1041-4fe7-81fb-48ae9cc70346/scratchpad}
 mkdir -p "$S"
 
+# Stop the decisive arms at 23:50 so they write manifests and final checkpoints and get
+# evaluated, instead of being killed with nothing to report. EXECUTION_BUDGET's cut procedure
+# needs `produced_decisions` out of 3,607,599, and a killed process does not produce it.
+export DECISIVE_DEADLINE_EPOCH=${DECISIVE_DEADLINE_EPOCH:-$(date -d "today 23:50" +%s)}
 echo "=== $(date +%H:%M:%S)  launching the concurrent block"
+echo "    decisive arms stop at $(date -d @$DECISIVE_DEADLINE_EPOCH +%H:%M) and self-report"
 
 # 1. the decisive arms -- the long pole, and the only items whose scale a midnight cut touches
 nohup bash tools/c022_byterl_campaign.sh decisive_fixed > "$S/br3_fixed.log" 2>&1 &

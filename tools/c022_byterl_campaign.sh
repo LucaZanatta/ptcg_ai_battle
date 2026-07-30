@@ -99,13 +99,25 @@ case "${1:-all}" in
     done
     ;;
 
+  # A decisive arm that is KILLED writes no manifest, so BYTERL_SCALE would have no artifact at
+  # all -- not "reached 9% of the matched budget", but nothing. EXECUTION_BUDGET's recorded cut
+  # procedure requires reporting `produced_decisions` as a fraction of 3,607,599, and that number
+  # only exists if the run ends by itself.
+  #
+  # So the arm carries a DEADLINE and stops on its own, writes its manifest and final checkpoint,
+  # and is evaluated. Set DECISIVE_DEADLINE_EPOCH to a unix time; the arm converts it to a
+  # remaining-seconds budget at launch. Unset means run to the full matched budget.
   decisive_fixed)
-    train "br3_fixed_deck" BR3 0 "$MATCHED_DECISIONS"
+    DL=""
+    [ -n "${DECISIVE_DEADLINE_EPOCH:-}" ] &&       DL="--deadline-seconds $(( DECISIVE_DEADLINE_EPOCH - $(date +%s) ))"
+    train "br3_fixed_deck" BR3 0 "$MATCHED_DECISIONS" $DL
     evaluate "br3_fixed_deck" "$BY/checkpoints/br3_fixed_deck_final.pt" 0
     ;;
 
   decisive_e2e)
-    train "br3_end_to_end" BR3 1 "$MATCHED_DECISIONS"
+    DL=""
+    [ -n "${DECISIVE_DEADLINE_EPOCH:-}" ] &&       DL="--deadline-seconds $(( DECISIVE_DEADLINE_EPOCH - $(date +%s) ))"
+    train "br3_end_to_end" BR3 1 "$MATCHED_DECISIONS" $DL
     evaluate "br3_end_to_end" "$BY/checkpoints/br3_end_to_end_final.pt" 1
     ;;
 
