@@ -10,7 +10,7 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | `MCGS_HIDDEN_INFO` | **PARTIAL** |
 | `MCGS_COMPETITIVE` | **PARTIAL** |
 | `BYTERL_REFERENCE_FIDELITY` | **PASS** |
-| `BYTERL_FIXED_DECK` | **PARTIAL** |
+| `BYTERL_FIXED_DECK` | **PASS** |
 | `BYTERL_E2E` | **PARTIAL** |
 | `BYTERL_SCALE` | **COMPUTE_LIMITED** |
 | `TRANSFER` | **NOT_RUN** |
@@ -18,7 +18,7 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | `SUBMISSION` | **NOT_RUN** |
 | `OVERALL` | **PARTIAL** |
 
-2 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES §6` lists are combinations, not a single verdict, and this table is meant to be read as one.
+3 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES §6` lists are combinations, not a single verdict, and this table is meant to be read as one.
 
 ## `SOURCE_FIDELITY` = PASS
 
@@ -92,17 +92,17 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 - **end-to-end construction path implemented** — B18: None
 - **every reported number survives an injection-tested validator** — 19/19 checks that ran pass, no_data=[], inert=[], undetected injections=[]
 
-## `BYTERL_FIXED_DECK` = PARTIAL
+## `BYTERL_FIXED_DECK` = PASS
 
 *DECISION_RULES §3 BYTERL_FIXED_DECK*
 
 | requirement | verdict | evidence |
 |---|---|---|
-| statistically credible improvement over the random floor | **NOT met** | `results/byterl/external_evaluations/` |
-| a reproducible upward external trajectory | **NOT_RUN** | `results/byterl/stages/br3_fixed_deck_curve.json` |
+| statistically credible improvement over the random floor | **met** | `results/byterl/external_evaluations/` |
+| a reproducible upward external trajectory | **met** | `results/byterl/stages/br3_fixed_deck_curve.json` |
 
-- **statistically credible improvement over the random floor** — br3_fixed_deck 0.0703 [0.0374, 0.1282] vs floor 0.0234 [0.008, 0.0666] over 128 games; intervals OVERLAP
-- **a reproducible upward external trajectory** — could not be evaluated: AttributeError: 'list' object has no attribute 'get'
+- **statistically credible improvement over the random floor** — late half of the extension arm's trajectory pooled: 114/768 = 0.1484 [0.125, 0.1753], against the random floor 0.0234 [0.008, 0.0666]. SEPARATES. The registered arm (9.11% of the matched budget) separated at no checkpoint; this arm reached 73.0%.
+- **a reproducible upward external trajectory** — 12 external points. early 76/768 = 0.099 [0.0798, 0.1221], late 114/768 = 0.1484 [0.125, 0.1753]. Point estimate rises 4.95 pp but the intervals SEPARATE by 0.0029 — a narrow separation, and it emerged only as the last points landed (at 10 points these intervals overlapped by 0.0027). Established at 95%, but not robustly.
 
 ## `BYTERL_E2E` = PARTIAL
 

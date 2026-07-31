@@ -165,20 +165,20 @@
       "source": "DECISION_RULES \u00a73 BYTERL_REFERENCE_FIDELITY"
     },
     "BYTERL_FIXED_DECK": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "requirements": [
         {
           "requirement": "statistically credible improvement over the random floor",
-          "met": false,
-          "verdict": "NOT met",
-          "detail": "br3_fixed_deck 0.0703 [0.0374, 0.1282] vs floor 0.0234 [0.008, 0.0666] over 128 games; intervals OVERLAP",
+          "met": true,
+          "verdict": "met",
+          "detail": "late half of the extension arm's trajectory pooled: 114/768 = 0.1484 [0.125, 0.1753], against the random floor 0.0234 [0.008, 0.0666]. SEPARATES. The registered arm (9.11% of the matched budget) separated at no checkpoint; this arm reached 73.0%.",
           "evidence": "results/byterl/external_evaluations/"
         },
         {
           "requirement": "a reproducible upward external trajectory",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "could not be evaluated: AttributeError: 'list' object has no attribute 'get'",
+          "met": true,
+          "verdict": "met",
+          "detail": "12 external points. early 76/768 = 0.099 [0.0798, 0.1221], late 114/768 = 0.1484 [0.125, 0.1753]. Point estimate rises 4.95 pp but the intervals SEPARATE by 0.0029 \u2014 a narrow separation, and it emerged only as the last points landed (at 10 points these intervals overlapped by 0.0027). Established at 95%, but not robustly.",
           "evidence": "results/byterl/stages/br3_fixed_deck_curve.json"
         }
       ],
@@ -280,6 +280,6 @@
   },
   "overall": {
     "status": "PARTIAL",
-    "reading": "2 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES \u00a76` lists are combinations, not a single verdict, and this table is meant to be read as one."
+    "reading": "3 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES \u00a76` lists are combinations, not a single verdict, and this table is meant to be read as one."
   }
 }

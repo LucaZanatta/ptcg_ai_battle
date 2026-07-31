@@ -1,0 +1,58 @@
+{
+  "tag": "traj_br3_fixed_deck_u017600",
+  "checkpoint": "contracts/c022_mcgs_multideterminization_and_faithful_byterl_reproduction/results/byterl/checkpoints/br3_fixed_deck_u017600.pt",
+  "checkpoint_loaded": true,
+  "arm": "FIXED_DECK",
+  "games": 128,
+  "completed": 128,
+  "errored": 0,
+  "unscored": 0,
+  "field_score": 0.0625,
+  "wilson95": [
+    0.032,
+    0.1185
+  ],
+  "per_opponent": {
+    "dragapult": {
+      "games": 32,
+      "rate": 0.0312
+    },
+    "iono": {
+      "games": 32,
+      "rate": 0.0312
+    },
+    "mega_abomasnow": {
+      "games": 32,
+      "rate": 0.0312
+    },
+    "mega_lucario": {
+      "games": 32,
+      "rate": 0.1562
+    }
+  },
+  "deck_legal_rate": 1.0,
+  "distinct_decks": 1,
+  "deck_diversity": 0.0078,
+  "illegal_sequences": 0,
+  "mean_tokens_per_decision": 1.008,
+  "value_calibration": {
+    "n": 2749,
+    "mean_prediction": 0.03553,
+    "observed_base_rate": 0.08803,
+    "mse": 0.073642,
+    "mse_constant_baseline": 0.080282,
+    "skill_vs_constant": 0.0827,
+    "beats_constant_predictor": true,
+    "pearson_correlation_with_outcome": 0.5209,
+    "note": "B23: a value head that cannot beat a CONSTANT predictor at the observed base rate has learned nothing about which positions are good, however small its MSE looks in absolute terms."
+  },
+  "seed": 777001,
+  "temperature": 1.0,
+  "wall_clock_s": 48.1,
+  "panel": [
+    "dragapult",
+    "mega_lucario",
+    "iono",
+    "mega_abomasnow"
+  ]
+}

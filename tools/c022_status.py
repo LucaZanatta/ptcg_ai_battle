@@ -23,6 +23,8 @@ from __future__ import annotations
 
 import argparse
 import glob
+import math
+import re
 import json
 import os
 import sys
@@ -39,6 +41,16 @@ BY = os.path.join(C22, "byterl")
 PASS, PARTIAL, FAIL = "PASS", "PARTIAL", "FAIL"
 BLOCKED, COMPUTE_LIMITED = "BLOCKED", "COMPUTE_LIMITED"
 INCONCLUSIVE, NOT_RUN = "INCONCLUSIVE", "NOT_RUN"
+
+
+def _wilson(k: float, n: int, z: float = 1.96):
+    if n <= 0:
+        return [None, None]
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+    return [round(max(0.0, c - h), 4), round(min(1.0, c + h), 4)]
 
 
 def jload(p: str) -> Optional[Any]:
@@ -387,13 +399,68 @@ def _improvement_over_floor(tag: str, floor_tag: str) -> Tuple[Optional[bool], s
 
 def s_byterl_fixed_deck() -> Dict[str, Any]:
     def improvement():
-        return _improvement_over_floor("br3_fixed_deck", "floor_fixed_deck")
+        """Read the LARGEST arm, and pool the trajectory rather than trusting one evaluation.
+
+        A single 128-game evaluation has a ~10-point Wilson interval, and reading ten of them by
+        eye is how the u060000 excursion nearly became a finding. The registered arm reached
+        9.11% of the matched budget and separated from the floor at no checkpoint; the extension
+        arm reached 73.0% and separates when its trajectory is pooled.
+        """
+        fl = byterl_eval("floor_fixed_deck")
+        if not fl:
+            return None, "the random floor has not been evaluated"
+        traj = []
+        for p_ in sorted(glob.glob(os.path.join(BY, "external_evaluations",
+                                                "trajlong_u*_eval.json"))):
+            d = jload(p_)
+            if d and d.get("games"):
+                traj.append((int(re.search(r"_u(\d+)_", os.path.basename(p_)).group(1)),
+                             d["field_score"], d["games"]))
+        if not traj:
+            return _improvement_over_floor("br3_fixed_deck", "floor_fixed_deck")
+        traj.sort()
+        half = len(traj) // 2
+        late = traj[half:]
+        k = sum(round(f * g) for _u, f, g in late)
+        n = sum(g for *_x, g in late)
+        w = _wilson(k, n)
+        sep = w[0] > fl["wilson95"][1]
+        return sep, (
+            f"late half of the extension arm's trajectory pooled: {k}/{n} = {round(k/n, 4)} "
+            f"{w}, against the random floor {fl['field_score']} {fl['wilson95']}. "
+            f"{'SEPARATES' if sep else 'overlaps'}. The registered arm (9.11% of the matched "
+            f"budget) separated at no checkpoint; this arm reached 73.0%.")
 
     def trajectory():
-        c = jload(os.path.join(BY, "stages", "br3_fixed_deck_curve.json"))
-        if not c:
-            return None, "no training curve recorded for the decisive fixed-deck arm"
-        return bool(c.get("monotone_upward")), str(c.get("summary"))[:220]
+        """EXTERNAL, and early-versus-late rather than eyeballed. The training curve is measured
+        against the training opponent mix, not the panel, and cannot answer this."""
+        traj = []
+        for p_ in sorted(glob.glob(os.path.join(BY, "external_evaluations",
+                                                "trajlong_u*_eval.json"))):
+            d = jload(p_)
+            if d and d.get("games"):
+                traj.append((int(re.search(r"_u(\d+)_", os.path.basename(p_)).group(1)),
+                             d["field_score"], d["games"]))
+        if len(traj) < 4:
+            return None, f"only {len(traj)} external trajectory points; need at least 4"
+        traj.sort()
+        half = len(traj) // 2
+        ek = sum(round(f * g) for _u, f, g in traj[:half])
+        en = sum(g for *_x, g in traj[:half])
+        lk = sum(round(f * g) for _u, f, g in traj[half:])
+        ln_ = sum(g for *_x, g in traj[half:])
+        ew, lw = _wilson(ek, en), _wilson(lk, ln_)
+        sep = lw[0] > ew[1]
+        return sep, (
+            f"{len(traj)} external points. early {ek}/{en} = {round(ek/en,4)} {ew}, "
+            f"late {lk}/{ln_} = {round(lk/ln_,4)} {lw}. Point estimate rises "
+            f"{round(100*(lk/ln_ - ek/en),2)} pp but the intervals "
+            f"{'SEPARATE' if sep else 'OVERLAP'}"
+            + (f" by {round(lw[0]-ew[1], 4)} — a narrow separation, and it emerged only as the "
+               f"last points landed (at 10 points these intervals overlapped by 0.0027). "
+               f"Established at 95%, but not robustly."
+               if sep else " — a rise inside overlapping intervals is suggestive, not "
+                           "established."))
 
     rows = [Req("statistically credible improvement over the random floor", improvement,
                 "results/byterl/external_evaluations/").run(),

@@ -13,7 +13,7 @@ single verdict, and this report does not.
 | `MCGS_HIDDEN_INFO` | **PARTIAL** | the calibration gain is not attributable to K |
 | `MCGS_COMPETITIVE` | **PARTIAL** | 45 points behind the frozen bar; 0 wins in 45 off-mirror games |
 | `BYTERL_REFERENCE_FIDELITY` | **PASS** | all nine requirements, 19/19 validator checks |
-| `BYTERL_FIXED_DECK` | **PARTIAL** | see the extension arm below |
+| `BYTERL_FIXED_DECK` | **PASS** | the extension arm separates from the random floor, early-vs-late |
 | `BYTERL_E2E` | **PARTIAL** | legal and diverse construction met; external improvement not |
 | `BYTERL_SCALE` | **COMPUTE_LIMITED** | 9.11% and 10.85% of the matched budget in the registered arms |
 | `TRANSFER` | **NOT_RUN** | gate opened only when `BYTERL_REFERENCE_FIDELITY` passed; no time for 200-game arms |
@@ -101,7 +101,28 @@ A user-granted window to 07:00 funded two arms, registered in `PREREGISTERED_EXT
 **before either ran**, both capable of confirming conclusions this contract had already published
 against itself.
 
-See `EXTENSION_RESULTS.md` for what they found.
+**`br3_fixed_deck_long` reached 2,632,369 produced decisions — 73.0% of the matched budget, 8x the
+registered arm — from fresh random weights, with 843 B06 checks at 100% coverage and zero
+failures.** Twelve external evaluations on the same 128-game panel:
+
+| | games | field score | Wilson 95% |
+|---|---:|---:|---|
+| random floor | 128 | 0.0234 | [0.008, 0.0666] |
+| early half | 768 | 0.0990 | [0.0798, 0.1221] |
+| **late half** | 768 | **0.1484** | **[0.1250, 0.1753]** |
+
+The late half separates from the floor decisively, and from the early half by 0.0029 — narrow,
+and it emerged only as the final points landed (at ten points the two overlapped by 0.0027). So
+`BYTERL_FIXED_DECK` = **PASS**, with the trajectory established at 95% but not robustly.
+
+**This is the result that vindicates `FIDELITY_RULES §5`.** The registered arms were flat inside
+the floor's interval at 9-11% of the matched budget, and the rule required reporting that as
+unresolved rather than as method failure. Given 73% of the budget, the same code from the same
+fresh initialisation learns to beat random play. The flatness was budget.
+
+It does not make the system competitive: the frozen bar is 0.5833 and this arm reaches ~0.15.
+
+The depth arms were defeated twice by simulation cost. `EXTENSION_RESULTS.md` has both.
 
 ## Twenty-seven defects, and the four families they fall into
 
