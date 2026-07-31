@@ -78,6 +78,7 @@ class C022RecurrentPriorProvider:
         self.checkpoint = checkpoint_path
         self.calls = 0
         self.failures = 0
+        self.seconds = 0.0
         # Counted separately from `failures`: a query the encoder could not represent is a
         # different event from a query the network refused, and collapsing them would hide which.
         self.encode_failures = 0
@@ -88,6 +89,8 @@ class C022RecurrentPriorProvider:
         Same signature and same defensive contract as the c021 provider, so
         `c021_transfer.sample_untested` and `rollout_pick` consume it unchanged.
         """
+        import time as _time
+        _t0 = _time.perf_counter()
         self.calls += 1
         try:
             enc = self.EN.encode_battle(observation, None, None)
@@ -124,12 +127,17 @@ class C022RecurrentPriorProvider:
         except Exception:  # noqa: BLE001
             self.failures += 1
             return None
+        finally:
+            self.seconds += _time.perf_counter() - _t0
 
     def report(self) -> Dict[str, Any]:
         return {"provider": "C022RecurrentPriorProvider",
                 "checkpoint": os.path.basename(self.checkpoint),
                 "calls": self.calls, "failures": self.failures,
                 "encode_failures": self.encode_failures,
+                "seconds_in_provider": round(self.seconds, 3),
+                "mean_inference_ms": (round(1000 * self.seconds / self.calls, 3)
+                                      if self.calls else None),
                 "recurrent_state": "zeroed per query (SEMANTIC_GAME_ADAPTER)",
                 "success_rate": (round(1 - self.failures / self.calls, 4)
                                  if self.calls else None)}
