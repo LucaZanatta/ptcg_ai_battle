@@ -824,3 +824,42 @@ from and the regime it applies to.
 
 **State after the fixes:** 19 checks, 19 ran, 19 pass, 0 inert, 0 undetected injections, 0
 NO_DATA.
+
+## D27 — the 8x depth arm was cut by its guard, not by its budget
+
+**Found** 2026-07-31 03:38, reading `k8_s768` before comparing it to anything.
+
+```text
+k8_s768   768 sims/decision   completed 15 of 40 games   25 abandoned (62.5%)
+paired_k8  96 sims/decision   completed 200 of 200       0 abandoned  (0%)
+```
+
+The registered validity gate is an exclusion spread of at most 8 pp across compared arms. This is
+**62.5 pp**, seven times over.
+
+Its calibration looked *worse* than the 96-simulation arm — overconfidence 29.4 pp against 20.5,
+Brier 0.303 against 0.172 — and that number is worthless. `D15` established that abandonment here
+is the stalemate rate and that a guard cuts the games that do not terminate. So the 15 survivors
+are the games that finish fast, and their 448 decisions are a biased subsample. Reading a depth
+effect off them would have been the exclusion-selection defect with a new label.
+
+**The arithmetic that made it unavoidable.** 768 simulations x 50 searched decisions x ~29 ms is
+1,100–1,900 s of search per game, inside a 2,400 s guard. A guard scaled to that search would be
+about **19,000 s per game** — five hours each, forty games. Not affordable, and raising it would
+have lengthened the stalemates rather than saved the real games.
+
+**What was done.** The arm is quarantined in `results/failures/superseded/depth_768_guard_bound/`
+and cited nowhere. `k1_s768` was killed before it hit the identical wall. The depth question is
+re-asked at **384 simulations per decision** — 4x the paired arms rather than 8x — where per-game
+search is ~560–900 s inside a 3,600 s guard, the same headroom the 96-simulation arms had.
+
+**Why 4x is still worth asking.** `FINDING_the_calibration_gain_is_compute.md` measured the
+ensemble contributing 1.2% of the calibration improvement at 96 simulations and named the depth
+scaling as the thing that could overturn it. An executable arm at 4x answers that question with a
+smaller lever; an invalid arm at 8x answers nothing. The reduction is recorded here rather than
+presented as the original design.
+
+**The general shape, for the fourth time tonight.** A parameter was chosen from one regime — the
+2,400 s guard, sized for 96 simulations — and applied to another. D18 (load bounds), D22 (my own
+tooling), D26 (bounded vs unbounded rungs) and now D27 are all that. The guard is now derived
+from the arm's own simulation count rather than inherited.
