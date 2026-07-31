@@ -1,6 +1,6 @@
 # Acceptance checklist
 
-46 probes in `PROBE_MATRIX.md`. **40 MET, 0 NOT MET, 6 NOT_RUN.**
+46 probes in `PROBE_MATRIX.md`. **44 MET, 0 NOT MET, 2 NOT_RUN.**
 
 Generated from the artifacts by `tools/c022_acceptance.py`. A probe whose evidence is absent is `NOT_RUN` — never `MET` by default. Regenerated after the final runs landed.
 
@@ -14,8 +14,8 @@ Generated from the artifacts by `tools/c022_acceptance.py`. A probe whose eviden
 | M06 | Fixed-per-world K sweep | Each world receives identical simulations | **MET** | `validation_report.json V04` | equal simulations per world across K |
 | M07 | Aggregation fixture | Independent calculation matches production aggregation | **MET** | `validation_report.json V08` | action indices aligned across worlds |
 | M08 | Calibration | Predicted/actual calibration improves over c021 control | **MET** | `mcgs/paired/PAIRED_COMPARISON.md` | met on registered terms; ceiling remeasurement UNRESOLVED -- see mcgs/calibration/M08_CEILING_REMEASUREMENT.md |
-| M09 | World disagreement | Per-world action/value variance logged correctly | NOT_RUN | `mcgs/stability/` | between-world disagreement on frozen decisions |
-| M10 | Action stability | Repeated-seed stability measured on frozen decisions | NOT_RUN | `mcgs/stability/` | action stability across repeated draws |
+| M09 | World disagreement | Per-world action/value variance logged correctly | **MET** | `mcgs/calibration/stability/` | 500 frozen decisions captured, 499 evaluated; §5 asks for at least 500 -- a 1-decision shortfall on the evaluated set, recorded |
+| M10 | Action stability | Repeated-seed stability measured on frozen decisions | **MET** | `mcgs/calibration/stability/` | 500 frozen decisions captured, 499 evaluated; §5 asks for at least 500 -- a 1-decision shortfall on the evaluated set, recorded |
 | M11 | Source timing arm | Original-style 15/10-second schedule executes or exact blocker recorded | **MET** | `mcgs/unrestricted_reference/M11_SOURCE_TIMING.md` | schedule EXECUTED at 8 games/279 decisions; 20-game arm a recorded scope decision |
 | M12 | Deploy separation | Kaggle budget changes do not modify reference branch | **MET** | `mcgs/kaggle_deploy/M12_DEPLOY.md` | both K at c021's measured clock |
 | M13 | Paired field panel | Candidate/control use matched seeds and identities | **MET** | `mcgs/paired/PAIRED_COMPARISON.md` | matched seeds/worlds/opponents; games CANNOT be matched (native engine reseeds) |
@@ -44,13 +44,13 @@ Generated from the artifacts by `tools/c022_acceptance.py`. A probe whose eviden
 | B23 | Value calibration | Compared with constant, heuristic, c021 and outcome baselines | **MET** | `byterl/external_evaluations/*_eval.json` | value skill vs a CONSTANT predictor reported; the floor heads do not beat it |
 | B24 | Prior admission | Ranking, entropy, suppression and MCGS effect measured | NOT_RUN | `byterl/component_analysis/` | prior admission: ranking/entropy/suppression measured only via the transfer arms |
 | T01 | Parent gates | No transfer before MCGS and ByteRL fidelity gates | **MET** | `STATUS.json` | both fidelity gates checked before any arm ran |
-| T02 | Prior-only | Only prior changes; worlds/sims/seeds identical | NOT_RUN | `transfer/prior_only/` | arm has not run |
-| T03 | Rollout-only | Only default policy changes | NOT_RUN | `transfer/rollout_only/` | arm has not run |
+| T02 | Prior-only | Only prior changes; worlds/sims/seeds identical | **MET** | `transfer/prior_only/` | 200/200 completed, 83354 component calls, 2.386 ms mean inference |
+| T03 | Rollout-only | Only default policy changes | **MET** | `transfer/rollout_only/` | 200/200 completed, 6172385 component calls, 2.182 ms mean inference |
 | T04 | Value-only | Runs only after value admission | NOT_RUN | `transfer/value_only/` | NOT RUN BY DESIGN -- T04 runs only after value admission, and the measured value heads do not beat a constant predictor (skill -0.06, -0.10) |
 | T05 | Noise floor | Nominally identical controls estimate run-to-run noise | **MET** | `transfer/noise_floor/` | 3 identical controls, 5.0 pp spread |
 | F01 | Candidate identity | Deck/model/source/package verified for every game | **MET** | `validation_report.json V13` | frozen controls re-hash |
 | F02 | Canonical final source | Git archive/plain export/package agree | **MET** | `source/source_manifest.json` | 40 files, archives hashed, final head recorded |
-| F03 | Report consistency | All reported numbers recompute from raw data | **MET** | `validation_report.json` | 19/19 recompute checks pass |
+| F03 | Report consistency | All reported numbers recompute from raw data | **MET** | `validation_report.json` | 20/20 recompute checks pass |
 | F04 | Defect injection | Validators reject c019–c021 known defects | **MET** | `validation_report.json` | every check carries an injection proving it can fail |
 
 ## Probes deliberately not run

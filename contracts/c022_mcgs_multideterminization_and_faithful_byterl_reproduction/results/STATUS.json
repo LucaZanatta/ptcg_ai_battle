@@ -158,7 +158,7 @@
           "requirement": "every reported number survives an injection-tested validator",
           "met": true,
           "verdict": "met",
-          "detail": "19/19 checks that ran pass, no_data=[], inert=[], undetected injections=[]",
+          "detail": "20/20 checks that ran pass, no_data=[], inert=[], undetected injections=[]",
           "evidence": "results/validation_report.json"
         }
       ],
@@ -225,7 +225,7 @@
       "source": "DECISION_RULES \u00a73 BYTERL_SCALE"
     },
     "TRANSFER": {
-      "status": "NOT_RUN",
+      "status": "INCONCLUSIVE",
       "requirements": [
         {
           "requirement": "a measured paired run-to-run noise floor exists",
@@ -236,9 +236,9 @@
         },
         {
           "requirement": "one isolated ByteRL component improves corrected MCGS beyond that noise",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "no transfer arm has run",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "noise floor mean 0.115, spread 5.0 pp. T1_policy_prior 0.13 (+1.50 pp vs floor mean, 83,354 component calls); T2_rollout_policy 0.12 (+0.50 pp vs floor mean, 6,172,385 component calls). Every arm delivered 12.0 simulations/decision and 200/200 games, so no part of this is inference cost buying fewer searches.",
           "evidence": "results/transfer/arms/"
         }
       ],
@@ -280,6 +280,6 @@
   },
   "overall": {
     "status": "PARTIAL",
-    "reading": "3 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES \u00a76` lists are combinations, not a single verdict, and this table is meant to be read as one."
+    "reading": "3 of 10 statuses PASS; 2 have not run. The honest outcomes `DECISION_RULES \u00a76` lists are combinations, not a single verdict, and this table is meant to be read as one."
   }
 }

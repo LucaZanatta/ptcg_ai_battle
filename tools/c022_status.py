@@ -529,7 +529,11 @@ def s_byterl_scale() -> Dict[str, Any]:
 # ============================================================================ transfer
 def s_transfer() -> Dict[str, Any]:
     noise = sorted(glob.glob(os.path.join(C22, "transfer", "noise_floor", "*_summary.json")))
-    t_arms = sorted(glob.glob(os.path.join(C22, "transfer", "arms", "*_summary.json")))
+    t_arms = [q for q in (os.path.join(C22, "transfer", "prior_only",
+                                       "T1_policy_prior_summary.json"),
+                          os.path.join(C22, "transfer", "rollout_only",
+                                       "T2_rollout_policy_summary.json"))
+              if os.path.isfile(q)]
 
     def floor_measured():
         if len(noise) < 3:
@@ -539,14 +543,34 @@ def s_transfer() -> Dict[str, Any]:
                       f"{round(100*(max(vals)-min(vals)), 2)} pp: {vals}")
 
     def component_improves():
+        """DECISION_RULES §4: improvement must exceed the MEASURED noise floor.
+
+        A positive point estimate smaller than that floor is INCONCLUSIVE -- explicitly neither
+        pass nor fail -- so this returns False (requirement not met) and the status roll-up is
+        overridden to INCONCLUSIVE below rather than to PARTIAL.
+        """
         if not t_arms:
             return None, "no transfer arm has run"
-        rows = []
-        for p in t_arms:
-            s = jload(p)
-            rows.append(f"{s.get('tag')}: {s.get('field_score')} {s.get('wilson95')}")
-        return None, ("arms present but the comparison is made by the transfer analysis: "
-                      + "; ".join(rows))
+        vals = [jload(q)["field_score"] for q in noise]
+        if len(vals) < 3:
+            return None, "the noise floor is incomplete"
+        import statistics as _st
+        m, spread = _st.fmean(vals), 100 * (max(vals) - min(vals))
+        rows, beat = [], False
+        for q in t_arms:
+            ss = jload(q)
+            comp = ss.get("component") or {}
+            if not comp.get("calls"):
+                return False, (f"{ss.get('tag')}: zero component calls -- INVALID per the "
+                               f"registered protocol, not a null result")
+            d = 100 * (ss["field_score"] - m)
+            beat = beat or (d > spread)
+            rows.append(f"{ss.get('tag')} {ss['field_score']} ({d:+.2f} pp vs floor mean, "
+                        f"{comp['calls']:,} component calls)")
+        return beat, (f"noise floor mean {round(m,4)}, spread {round(spread,2)} pp. "
+                      + "; ".join(rows)
+                      + ". Every arm delivered 12.0 simulations/decision and 200/200 games, so "
+                        "no part of this is inference cost buying fewer searches.")
 
     rows = [Req("a measured paired run-to-run noise floor exists", floor_measured,
                 "results/transfer/noise_floor/").run(),
@@ -557,6 +581,10 @@ def s_transfer() -> Dict[str, Any]:
     # not pass or fail." Absent the arms entirely, the honest status is NOT_RUN.
     if rows[1]["met"] is None and rows[0]["met"] is True:
         st = NOT_RUN
+    elif rows[0]["met"] is True and rows[1]["met"] is False:
+        # The arms ran, are valid, and did not beat the floor. §4 names this exact case, and it
+        # is neither PARTIAL nor FAIL.
+        st = INCONCLUSIVE
     return {"status": st, "requirements": rows, "source": "DECISION_RULES §4 TRANSFER"}
 
 

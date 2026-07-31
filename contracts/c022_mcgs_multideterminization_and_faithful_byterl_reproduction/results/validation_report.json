@@ -1,8 +1,8 @@
 {
   "generated_from": "raw per-game, per-decision and per-run artifacts",
-  "n_checks": 19,
-  "n_ran": 19,
-  "n_pass": 19,
+  "n_checks": 20,
+  "n_ran": 20,
+  "n_pass": 20,
   "checks_with_no_data": [],
   "no_data_is_not_a_pass": true,
   "inert_checks": [],
@@ -356,6 +356,40 @@
       },
       "detects": "a K difference reported without the 5 pp run-to-run spread it sits inside",
       "n_inputs": 3,
+      "status": "PASS",
+      "pass": true,
+      "injection_detected": true,
+      "inert": false
+    },
+    {
+      "id": "V20",
+      "name": "transfer arms are live artifacts, not superseded ones",
+      "detail": {
+        "_n_inputs": 2,
+        "arms": [
+          {
+            "tag": "T1_policy_prior",
+            "completed": 200,
+            "scored_in_raw": 200,
+            "newer_than_quarantine": true,
+            "config_matches_T0_control": true,
+            "component_calls": 83354,
+            "config_hash": "49c075ea003c4eef"
+          },
+          {
+            "tag": "T2_rollout_policy",
+            "completed": 200,
+            "scored_in_raw": 200,
+            "newer_than_quarantine": true,
+            "config_matches_T0_control": true,
+            "component_calls": 6172385,
+            "config_hash": "49c075ea003c4eef"
+          }
+        ],
+        "violations": []
+      },
+      "detects": "the 2026-07-31 provider load failure, which wrote completed:0 summaries into the live transfer directories where any glob would read them as results",
+      "n_inputs": 2,
       "status": "PASS",
       "pass": true,
       "injection_detected": true,

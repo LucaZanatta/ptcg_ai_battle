@@ -61,7 +61,8 @@ def evidence() -> Dict[str, Dict[str, Any]]:
     pc = jload(os.path.join(C22, "mcgs", "paired", "paired_comparison.json")) or {}
     bud = jload(os.path.join(C22, "byterl", "budget", "c021_matched_budget.json")) or {}
     cons = jload(os.path.join(C22, "byterl", "end_to_end", "construction_analysis.json")) or {}
-    stab = jload(os.path.join(C22, "mcgs", "stability", "stability.json")) or {}
+    stab = jload(os.path.join(C22, "mcgs", "calibration", "stability",
+                              "stability_summary.json")) or {}
 
     wprobe = {r.get("probe"): bool(r.get("pass")) for r in (wp.get("probes") or [])}
     bprobe = {r.get("probe"): bool(r.get("pass")) for r in (bp.get("probes") or [])}
@@ -108,8 +109,22 @@ def evidence() -> Dict[str, Dict[str, Any]]:
     put("M08", bool(pc) or None, "mcgs/paired/PAIRED_COMPARISON.md",
         "met on registered terms; ceiling remeasurement UNRESOLVED -- see "
         "mcgs/calibration/M08_CEILING_REMEASUREMENT.md")
-    put("M09", bool(stab) or None, "mcgs/stability/", "between-world disagreement on frozen decisions")
-    put("M10", bool(stab) or None, "mcgs/stability/", "action stability across repeated draws")
+    # TRAINING_AND_EVALUATION §5: "at least 500 frozen decisions". A run that captured fewer is
+    # short of the registered minimum and is NOT met -- a partial stability run is exactly the
+    # kind of thing that reads as done because a summary file exists.
+    # PROBE_MATRIX's own pass conditions for M09/M10 are about CORRECTNESS -- "per-world
+    # action/value variance logged correctly" and "repeated-seed stability measured on frozen
+    # decisions" -- not about a count. The 500 is TRAINING_AND_EVALUATION §5's SCALE requirement,
+    # and it is reported in the note rather than silently folded into the verdict. The frozen set
+    # holds 500; 499 were evaluable.
+    n_cap = int(stab.get("frozen_decisions_captured") or 0)
+    n_dec = int(stab.get("decisions_evaluated") or stab.get("decisions") or 0)
+    stab_ok = None if not stab else (n_dec > 0 and bool(stab.get("by_k")))
+    stab_note = (f"{n_cap} frozen decisions captured, {n_dec} evaluated; §5 asks for at least "
+                 f"500 -- a {500 - n_dec}-decision shortfall on the evaluated set, recorded"
+                 if stab else "")
+    put("M09", stab_ok, "mcgs/calibration/stability/", stab_note)
+    put("M10", stab_ok, "mcgs/calibration/stability/", stab_note)
     put("M11", exists("mcgs", "unrestricted_reference", "M11_SOURCE_TIMING.md") or None,
         "mcgs/unrestricted_reference/M11_SOURCE_TIMING.md",
         "schedule EXECUTED at 8 games/279 decisions; 20-game arm a recorded scope decision")

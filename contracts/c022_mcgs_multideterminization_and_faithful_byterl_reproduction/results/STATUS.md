@@ -13,12 +13,12 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 | `BYTERL_FIXED_DECK` | **PASS** |
 | `BYTERL_E2E` | **PARTIAL** |
 | `BYTERL_SCALE` | **COMPUTE_LIMITED** |
-| `TRANSFER` | **NOT_RUN** |
+| `TRANSFER` | **INCONCLUSIVE** |
 | `PACKAGE` | **NOT_RUN** |
 | `SUBMISSION` | **NOT_RUN** |
 | `OVERALL` | **PARTIAL** |
 
-3 of 10 statuses PASS; 3 have not run. The honest outcomes `DECISION_RULES §6` lists are combinations, not a single verdict, and this table is meant to be read as one.
+3 of 10 statuses PASS; 2 have not run. The honest outcomes `DECISION_RULES §6` lists are combinations, not a single verdict, and this table is meant to be read as one.
 
 ## `SOURCE_FIDELITY` = PASS
 
@@ -90,7 +90,7 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 - **recurrent replay verified at high coverage** — fid_BR0: 112 checks, coverage 1.0, failures 0; fid_BR1: 111 checks, coverage 1.0, failures 0; fid_BR1_5: 111 checks, coverage 1.0, failures 0; fid_BR2: 111 checks, coverage 1.0, failures 0; fid_BR3: 111 checks, coverage 1.0, failures 0
 - **immutable OSFP history and correct period accounting** — history 4/4 after 6 periods, bounded=True, immutable=True; self-play 0.6, promotion threshold 0.55
 - **end-to-end construction path implemented** — B18: None
-- **every reported number survives an injection-tested validator** — 19/19 checks that ran pass, no_data=[], inert=[], undetected injections=[]
+- **every reported number survives an injection-tested validator** — 20/20 checks that ran pass, no_data=[], inert=[], undetected injections=[]
 
 ## `BYTERL_FIXED_DECK` = PASS
 
@@ -128,17 +128,17 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 - **br3_fixed_deck reaches the matched budget** — produced_decisions 328,601 of 3,607,599 (9.1%); the budget is defined in ENVIRONMENT decisions, so the actor-side counter is the one reported
 - **br3_end_to_end reaches the matched budget** — produced_decisions 391,305 of 3,607,599 (10.8%); the budget is defined in ENVIRONMENT decisions, so the actor-side counter is the one reported
 
-## `TRANSFER` = NOT_RUN
+## `TRANSFER` = INCONCLUSIVE
 
 *DECISION_RULES §4 TRANSFER*
 
 | requirement | verdict | evidence |
 |---|---|---|
 | a measured paired run-to-run noise floor exists | **met** | `results/transfer/noise_floor/` |
-| one isolated ByteRL component improves corrected MCGS beyond that noise | **NOT_RUN** | `results/transfer/arms/` |
+| one isolated ByteRL component improves corrected MCGS beyond that noise | **NOT met** | `results/transfer/arms/` |
 
 - **a measured paired run-to-run noise floor exists** — 3 arms, spread 5.0 pp: [0.135, 0.085, 0.125]
-- **one isolated ByteRL component improves corrected MCGS beyond that noise** — no transfer arm has run
+- **one isolated ByteRL component improves corrected MCGS beyond that noise** — noise floor mean 0.115, spread 5.0 pp. T1_policy_prior 0.13 (+1.50 pp vs floor mean, 83,354 component calls); T2_rollout_policy 0.12 (+0.50 pp vs floor mean, 6,172,385 component calls). Every arm delivered 12.0 simulations/decision and 200/200 games, so no part of this is inference cost buying fewer searches.
 
 ## `PACKAGE` = NOT_RUN
 

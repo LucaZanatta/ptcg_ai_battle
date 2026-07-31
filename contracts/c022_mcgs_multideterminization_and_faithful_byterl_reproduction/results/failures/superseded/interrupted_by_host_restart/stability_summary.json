@@ -1,0 +1,38 @@
+{
+  "decisions": 359,
+  "by_k": {
+    "1": {
+      "decisions": 359,
+      "mean_action_stability": 0.6063,
+      "fraction_perfectly_stable": 0.1448,
+      "mean_predicted_sd_across_repeats": 0.0582,
+      "mean_within_decision_world_agreement": 1.0,
+      "mean_distinct_best_actions_within_a_decision": 1.0
+    },
+    "8": {
+      "decisions": 359,
+      "mean_action_stability": 0.5998,
+      "fraction_perfectly_stable": 0.1643,
+      "mean_predicted_sd_across_repeats": 0.0411,
+      "mean_within_decision_world_agreement": 0.5807,
+      "mean_distinct_best_actions_within_a_decision": 3.1996,
+      "stability_delta_vs_k1": -0.0065,
+      "predicted_sd_delta_vs_k1": -0.0171
+    }
+  },
+  "reading": "Stability RISING with K is the ensemble working: the chosen action stops depending on which hidden world happened to be sampled. Predicted-probability SD FALLING with K is the same effect in the value estimate. If within-decision world agreement is already 1.0 at K=8, the worlds never disagree on this decision set and K cannot help here -- that would be a real finding about the game, not a defect in the correction.",
+  "protocol": "fixed_total",
+  "simulations_per_decision": 96,
+  "repeats_per_decision": 3,
+  "ks": [
+    1,
+    8
+  ],
+  "seed": 515151,
+  "frozen_decisions_requested": 500,
+  "frozen_decisions_captured": 395,
+  "decisions_evaluated": 359,
+  "nproc": 12,
+  "meets_500_decision_minimum": false,
+  "elapsed_s": 2920.9
+}

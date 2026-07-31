@@ -1,0 +1,81 @@
+{
+  "status": "INCONCLUSIVE",
+  "decided_by": "DECISION_RULES §4: 'A positive point estimate smaller than the measured noise floor is INCONCLUSIVE, not pass or fail.'",
+
+  "noise_floor": {
+    "arms": [0.135, 0.085, 0.125],
+    "mean": 0.115,
+    "spread_pp": 5.0,
+    "sample_sd": 0.0265,
+    "measured_before_any_transfer_arm_ran": true,
+    "why_first": "PROBE_MATRIX T05. Measuring the denominator after seeing the arms would let the threshold be chosen to fit the answer."
+  },
+
+  "arms": {
+    "T1_policy_prior": {
+      "field_score": 0.130,
+      "wilson95": [0.0903, 0.1837],
+      "delta_vs_floor_mean_pp": 1.5,
+      "inside_floor_range": true,
+      "verdict": "INCONCLUSIVE",
+      "reason": "a positive point estimate of +1.5 pp against a measured 5.0 pp floor"
+    },
+    "T2_rollout_policy": {
+      "field_score": 0.120,
+      "wilson95": [0.082, 0.1723],
+      "delta_vs_floor_mean_pp": 0.5,
+      "inside_floor_range": true,
+      "verdict": "INCONCLUSIVE",
+      "reason": "a positive point estimate of +0.5 pp against a measured 5.0 pp floor"
+    },
+    "T3_prior_and_rollout": {
+      "verdict": "NOT RUN, BY PROHIBITION",
+      "reason": "MANDATORY_IMPLEMENTATION forbids adding multiple ByteRL components to MCGS simultaneously. A combined arm cannot attribute its own result."
+    },
+    "T4_value_only": {
+      "verdict": "NOT RUN, PRECONDITION UNMET",
+      "reason": "PROBE_MATRIX T04 runs only after value admission. Admission requires the value head to beat a CONSTANT predictor at the observed base rate on held-out games; the measured heads score skill -0.06 and -0.10 and do not."
+    }
+  },
+
+  "EQUAL_SIMULATION_CONCLUSION": {
+    "valid": true,
+    "why": "every arm delivered exactly 12.0 simulations per decision, completed 200 of 200 games, abandoned none, left none unscored, and searched a comparable number of decisions (controls 6590-6797, T1 6766, T2 6974).",
+    "evidence": {
+      "sims_per_decision": {"T0_controls": 12.0, "T1": 12.0, "T2": 12.0},
+      "completed": {"T0_controls": "200/200 x3", "T1": "200/200", "T2": "200/200"},
+      "abandoned": {"T0_controls": 0, "T1": 0, "T2": 0},
+      "searched_decisions": {"T0_controls": [6590, 6632, 6797], "T1": 6766, "T2": 6974},
+      "decision_budget_exhausted": {"T0_controls": [115, 123, 148], "T1": 153, "T2": 230}
+    },
+    "reading": "Neither component improved the field score beyond run-to-run noise at equal simulations."
+  },
+
+  "WALL_CLOCK_DEPLOYMENT_CONCLUSION": {
+    "separate_from_the_above": true,
+    "why_it_must_be_separate": "the components cost inference, and inference competes with search under a wall clock. A deployment budget would convert that cost into fewer searches; a simulation budget does not.",
+    "measured_cost": {
+      "T1": {"component_calls": 83354, "calls_per_searched_decision": 12.32,
+             "mean_inference_ms": 2.386, "share_of_arm_wall_clock": 0.0744,
+             "arm_wall_clock_s": 267.2, "nproc": 10},
+      "T2": {"component_calls": 6172385, "calls_per_searched_decision": 885.06,
+             "mean_inference_ms": 2.182, "share_of_arm_wall_clock": 0.7758,
+             "arm_wall_clock_s": 1736.1, "nproc": 10}
+    },
+    "the_asymmetry": "T2 makes 74x the calls T1 does, because a rollout policy is queried at every rollout step while an expansion prior is queried once per expansion. T2 spends 78% of its wall clock inside the network and costs roughly 5.8x the control's compute for the same 12 simulations per decision.",
+    "reading": "Under a DEPLOYMENT clock the rollout policy would be strongly negative: it buys no measurable strength and consumes most of the budget. That is a statement about deployment, not about the component's value as a policy, and the two must not be merged."
+  },
+
+  "WHAT_IS_EXPLICITLY_NOT_CONCLUDED": {
+    "not_a_regression_from_inference_cost": "Neither arm lost games or searches to inference. Both completed 200/200 with 0 abandoned and full simulation delivery, so no part of either result is attributable to the component having bought fewer searches. This was checked because it is the D08/D15 confound in a new place.",
+    "not_a_verdict_on_the_recurrent_policy": "The provider queries the network from a ZEROED recurrent state, because an MCGS node carries no episode history. The c022 model's defining feature over c021 is its recurrence, and these arms query it with that recurrence effectively switched off. A null result here is evidence about a stateless query of a recurrent policy.",
+    "not_a_verdict_on_a_stronger_checkpoint": "The checkpoint is br3_fixed_deck_long, which reached 73.0% of the matched budget and separates from the random floor. It is the first checkpoint in this campaign that qualifies under the protocol's own rule -- c021's arms were UNTESTED because theirs did not -- but it is not a strong player: it scores ~0.15 against a frozen bar of 0.5833."
+  },
+
+  "component_validity_gate": {
+    "rule": "the registered protocol: 'every transfer arm must report a nonzero call count for the component it enables. An arm with a zero call count for its own component is INVALID, not a null result.'",
+    "T1": {"calls": 83354, "failures": 0, "VALID": true},
+    "T2": {"calls": 6172385, "failures": 0, "VALID": true},
+    "note": "zero failures on 6.26 million queries across both arms; the provider never fell back to source behaviour, so neither arm silently degraded to its control."
+  }
+}

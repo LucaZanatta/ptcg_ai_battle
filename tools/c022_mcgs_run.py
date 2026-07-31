@@ -369,7 +369,7 @@ def run_arm(a) -> Dict[str, Any]:
     }
     # ---- transfer component accounting (registered protocol, "verification that the component
     # is actually USED"). Aggregated across games; absent for arms with no provider.
-    provs = [g["provider"] for g in games if g.get("provider")]
+    provs = [r["provider"] for r in results if r.get("provider")]
     if provs:
         calls = sum(int(x.get("calls") or 0) for x in provs)
         fails = sum(int(x.get("failures") or 0) for x in provs)

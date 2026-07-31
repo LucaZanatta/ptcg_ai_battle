@@ -1,6 +1,311 @@
 {
   "arms": [
     {
+      "tag": "depth/k1_s384",
+      "games": 20,
+      "scored": 19,
+      "excluded": 1,
+      "field_score_pooled": 0.4211,
+      "field_score_opponent_balanced": 0.4375,
+      "difference_pp": 1.64,
+      "exclusion": {
+        "total": 1,
+        "worst_opponent_excluded_fraction": 0.2,
+        "share_of_exclusions_on_one_opponent": 1.0,
+        "most_excluded_opponent": "mega_lucario"
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 5,
+          "scored": 5,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4,
+          "wilson95": [
+            0.1176,
+            0.7693
+          ]
+        },
+        "iono": {
+          "played": 5,
+          "scored": 5,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4,
+          "wilson95": [
+            0.1176,
+            0.7693
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 5,
+          "scored": 5,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2,
+          "wilson95": [
+            0.0362,
+            0.6245
+          ]
+        },
+        "mega_lucario": {
+          "played": 5,
+          "scored": 4,
+          "excluded": 1,
+          "excluded_fraction": 0.2,
+          "rate": 0.75,
+          "wilson95": [
+            0.3006,
+            0.9544
+          ]
+        }
+      }
+    },
+    {
+      "tag": "depth/k8_s384",
+      "games": 40,
+      "scored": 39,
+      "excluded": 1,
+      "field_score_pooled": 0.2051,
+      "field_score_opponent_balanced": 0.2028,
+      "difference_pp": -0.24,
+      "exclusion": {
+        "total": 1,
+        "worst_opponent_excluded_fraction": 0.1,
+        "share_of_exclusions_on_one_opponent": 1.0,
+        "most_excluded_opponent": "mega_abomasnow"
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 10,
+          "scored": 10,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.2775
+          ]
+        },
+        "iono": {
+          "played": 10,
+          "scored": 10,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1,
+          "wilson95": [
+            0.0179,
+            0.4042
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 10,
+          "scored": 9,
+          "excluded": 1,
+          "excluded_fraction": 0.1,
+          "rate": 0.1111,
+          "wilson95": [
+            0.0199,
+            0.435
+          ]
+        },
+        "mega_lucario": {
+          "played": 10,
+          "scored": 10,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.6,
+          "wilson95": [
+            0.3127,
+            0.8318
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/br3_end_to_end",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0547,
+      "field_score_opponent_balanced": 0.0547,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0938,
+          "wilson95": [
+            0.0324,
+            0.2422
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.125,
+          "wilson95": [
+            0.0497,
+            0.2807
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/br3_fixed_deck",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0703,
+      "field_score_opponent_balanced": 0.0703,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0625,
+          "wilson95": [
+            0.0173,
+            0.2015
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1562,
+          "wilson95": [
+            0.0686,
+            0.3175
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/br3_fixed_deck_long",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.125,
+      "field_score_opponent_balanced": 0.125,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0625,
+          "wilson95": [
+            0.0173,
+            0.2015
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4062,
+          "wilson95": [
+            0.2552,
+            0.5774
+          ]
+        }
+      }
+    },
+    {
       "tag": "external_evaluations/ctrl_BR0",
       "games": 128,
       "scored": 128,
@@ -184,6 +489,128 @@
       }
     },
     {
+      "tag": "external_evaluations/ctrl_BR2",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0781,
+      "field_score_opponent_balanced": 0.0781,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0938,
+          "wilson95": [
+            0.0324,
+            0.2422
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2188,
+          "wilson95": [
+            0.1102,
+            0.3876
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/ctrl_BR3",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0859,
+      "field_score_opponent_balanced": 0.0859,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.3438,
+          "wilson95": [
+            0.2041,
+            0.5169
+          ]
+        }
+      }
+    },
+    {
       "tag": "external_evaluations/floor_end_to_end",
       "games": 128,
       "scored": 128,
@@ -362,6 +789,1226 @@
           "wilson95": [
             0.0,
             0.6576
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/traj_br3_end_to_end_u008800",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0469,
+      "field_score_opponent_balanced": 0.0469,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.125,
+          "wilson95": [
+            0.0497,
+            0.2807
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/traj_br3_end_to_end_u017600",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0781,
+      "field_score_opponent_balanced": 0.0781,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.25,
+          "wilson95": [
+            0.1325,
+            0.4211
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/traj_br3_end_to_end_u026400",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0391,
+      "field_score_opponent_balanced": 0.0391,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1562,
+          "wilson95": [
+            0.0686,
+            0.3175
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/traj_br3_fixed_deck_u008800",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0703,
+      "field_score_opponent_balanced": 0.0703,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.25,
+          "wilson95": [
+            0.1325,
+            0.4211
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/traj_br3_fixed_deck_u017600",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0625,
+      "field_score_opponent_balanced": 0.0625,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1562,
+          "wilson95": [
+            0.0686,
+            0.3175
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/traj_br3_fixed_deck_u026400",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0547,
+      "field_score_opponent_balanced": 0.0547,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2188,
+          "wilson95": [
+            0.1102,
+            0.3876
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u012000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0547,
+      "field_score_opponent_balanced": 0.0547,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2188,
+          "wilson95": [
+            0.1102,
+            0.3876
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u036000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0859,
+      "field_score_opponent_balanced": 0.0859,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2812,
+          "wilson95": [
+            0.1556,
+            0.4537
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u060000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.1328,
+      "field_score_opponent_balanced": 0.1328,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4688,
+          "wilson95": [
+            0.3087,
+            0.6355
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u086000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.0547,
+      "field_score_opponent_balanced": 0.0547,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2188,
+          "wilson95": [
+            0.1102,
+            0.3876
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u110000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.1328,
+      "field_score_opponent_balanced": 0.1328,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0625,
+          "wilson95": [
+            0.0173,
+            0.2015
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0625,
+          "wilson95": [
+            0.0173,
+            0.2015
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.375,
+          "wilson95": [
+            0.2293,
+            0.5475
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u134000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.1328,
+      "field_score_opponent_balanced": 0.1328,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.5,
+          "wilson95": [
+            0.3363,
+            0.6637
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u150000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.1328,
+      "field_score_opponent_balanced": 0.1328,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0625,
+          "wilson95": [
+            0.0173,
+            0.2015
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4688,
+          "wilson95": [
+            0.3087,
+            0.6355
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u174000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.125,
+      "field_score_opponent_balanced": 0.125,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.125,
+          "wilson95": [
+            0.0497,
+            0.2807
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.375,
+          "wilson95": [
+            0.2293,
+            0.5475
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u198000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.125,
+      "field_score_opponent_balanced": 0.125,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0938,
+          "wilson95": [
+            0.0324,
+            0.2422
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4062,
+          "wilson95": [
+            0.2552,
+            0.5774
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u222000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.1797,
+      "field_score_opponent_balanced": 0.1797,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0938,
+          "wilson95": [
+            0.0324,
+            0.2422
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0625,
+          "wilson95": [
+            0.0173,
+            0.2015
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.5312,
+          "wilson95": [
+            0.3645,
+            0.6913
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u244000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.1602,
+      "field_score_opponent_balanced": 0.1602,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0469,
+          "wilson95": [
+            0.0109,
+            0.18
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0625,
+          "wilson95": [
+            0.0173,
+            0.2015
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.5312,
+          "wilson95": [
+            0.3645,
+            0.6913
+          ]
+        }
+      }
+    },
+    {
+      "tag": "external_evaluations/trajlong_u268000",
+      "games": 128,
+      "scored": 128,
+      "excluded": 0,
+      "field_score_pooled": 0.1641,
+      "field_score_opponent_balanced": 0.1641,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "iono": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1562,
+          "wilson95": [
+            0.0686,
+            0.3175
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0312,
+          "wilson95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "mega_lucario": {
+          "played": 32,
+          "scored": 32,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4688,
+          "wilson95": [
+            0.3087,
+            0.6355
+          ]
+        }
+      }
+    },
+    {
+      "tag": "final_panel/panel",
+      "games": 180,
+      "scored": 180,
+      "excluded": 0,
+      "field_score_pooled": 0.2778,
+      "field_score_opponent_balanced": 0.2778,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1778,
+          "wilson95": [
+            0.0929,
+            0.3133
+          ]
+        },
+        "iono": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2889,
+          "wilson95": [
+            0.1773,
+            0.4337
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1556,
+          "wilson95": [
+            0.0775,
+            0.2878
+          ]
+        },
+        "mega_lucario": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4889,
+          "wilson95": [
+            0.3496,
+            0.63
+          ]
+        }
+      }
+    },
+    {
+      "tag": "final_panel/raw",
+      "games": 180,
+      "scored": 180,
+      "excluded": 0,
+      "field_score_pooled": 0.2778,
+      "field_score_opponent_balanced": 0.2778,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1778,
+          "wilson95": [
+            0.0929,
+            0.3133
+          ]
+        },
+        "iono": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.2889,
+          "wilson95": [
+            0.1773,
+            0.4337
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.1556,
+          "wilson95": [
+            0.0775,
+            0.2878
+          ]
+        },
+        "mega_lucario": {
+          "played": 45,
+          "scored": 45,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.4889,
+          "wilson95": [
+            0.3496,
+            0.63
           ]
         }
       }
@@ -1282,6 +2929,67 @@
       }
     },
     {
+      "tag": "paired/paired_k1_c96",
+      "games": 200,
+      "scored": 195,
+      "excluded": 5,
+      "field_score_pooled": 0.1231,
+      "field_score_opponent_balanced": 0.13,
+      "difference_pp": 0.69,
+      "exclusion": {
+        "total": 5,
+        "worst_opponent_excluded_fraction": 0.1,
+        "share_of_exclusions_on_one_opponent": 1.0,
+        "most_excluded_opponent": "mega_lucario"
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.04,
+          "wilson95": [
+            0.011,
+            0.1346
+          ]
+        },
+        "iono": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.06,
+          "wilson95": [
+            0.0206,
+            0.1622
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.02,
+          "wilson95": [
+            0.0035,
+            0.105
+          ]
+        },
+        "mega_lucario": {
+          "played": 50,
+          "scored": 45,
+          "excluded": 5,
+          "excluded_fraction": 0.1,
+          "rate": 0.4,
+          "wilson95": [
+            0.2702,
+            0.5455
+          ]
+        }
+      }
+    },
+    {
       "tag": "paired/paired_k8",
       "games": 200,
       "scored": 200,
@@ -1338,6 +3046,128 @@
           "wilson95": [
             0.3851,
             0.652
+          ]
+        }
+      }
+    },
+    {
+      "tag": "prior_only/T1_policy_prior",
+      "games": 200,
+      "scored": 200,
+      "excluded": 0,
+      "field_score_pooled": 0.13,
+      "field_score_opponent_balanced": 0.13,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.02,
+          "wilson95": [
+            0.0035,
+            0.105
+          ]
+        },
+        "iono": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.12,
+          "wilson95": [
+            0.0562,
+            0.2381
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.06,
+          "wilson95": [
+            0.0206,
+            0.1622
+          ]
+        },
+        "mega_lucario": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.32,
+          "wilson95": [
+            0.2076,
+            0.4581
+          ]
+        }
+      }
+    },
+    {
+      "tag": "rollout_only/T2_rollout_policy",
+      "games": 200,
+      "scored": 200,
+      "excluded": 0,
+      "field_score_pooled": 0.12,
+      "field_score_opponent_balanced": 0.12,
+      "difference_pp": 0.0,
+      "exclusion": {
+        "total": 0,
+        "worst_opponent_excluded_fraction": 0.0,
+        "share_of_exclusions_on_one_opponent": null,
+        "most_excluded_opponent": null
+      },
+      "per_opponent": {
+        "dragapult": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.0714
+          ]
+        },
+        "iono": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.0714
+          ]
+        },
+        "mega_abomasnow": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.06,
+          "wilson95": [
+            0.0206,
+            0.1622
+          ]
+        },
+        "mega_lucario": {
+          "played": 50,
+          "scored": 50,
+          "excluded": 0,
+          "excluded_fraction": 0.0,
+          "rate": 0.42,
+          "wilson95": [
+            0.2937,
+            0.5577
           ]
         }
       }

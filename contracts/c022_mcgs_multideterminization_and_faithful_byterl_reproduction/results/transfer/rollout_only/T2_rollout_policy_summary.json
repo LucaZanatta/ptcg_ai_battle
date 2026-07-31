@@ -14,35 +14,52 @@
     "decision_budget": 50
   },
   "seed": 90210,
-  "nproc": 12,
+  "nproc": 10,
   "games": 200,
-  "completed": 0,
+  "completed": 200,
   "abandoned": 0,
   "errored": 0,
   "unscored": 0,
   "unscored_status_histogram": {},
   "unscored_mean_seconds": null,
-  "games_accounted": 0,
+  "games_accounted": 200,
   "duplicate_records_collapsed": 0,
-  "all_games_accounted": false,
+  "all_games_accounted": true,
   "effective_n_note": "field_score is computed over `completed` only. abandoned, errored and unscored games are excluded, so `completed` is the effective sample size and the Wilson interval is computed on it.",
   "abandoned_note": "games exceeding the per-game wall clock; EXCLUDED from the field score rather than scored as losses",
-  "field_score": null,
+  "field_score": 0.12,
   "wilson95": [
-    null,
-    null
+    0.082,
+    0.1723
   ],
   "field_score_bounds_if_unscored_counted": [
-    null,
-    null
+    0.12,
+    0.12
   ],
   "excluded_fraction": 0.0,
-  "per_opponent": {},
-  "wall_clock_s": 60.6,
-  "searched_decisions": 0,
-  "total_simulations": 0,
-  "sims_per_decision": 0.0,
-  "mean_k_used": 0.0,
+  "per_opponent": {
+    "dragapult": {
+      "games": 50,
+      "rate": 0.0
+    },
+    "iono": {
+      "games": 50,
+      "rate": 0.0
+    },
+    "mega_abomasnow": {
+      "games": 50,
+      "rate": 0.06
+    },
+    "mega_lucario": {
+      "games": 50,
+      "rate": 0.42
+    }
+  },
+  "wall_clock_s": 1736.1,
+  "searched_decisions": 6974,
+  "total_simulations": 83688,
+  "sims_per_decision": 12.0,
+  "mean_k_used": 1.0,
   "world_errors": 0,
   "decision_deadline_stops": 0,
   "match_clock_exhausted_decisions": 0,
@@ -50,26 +67,40 @@
   "derived_game_timeout_s": 700.0,
   "game_timeout_basis": "measured_completed_game_duration",
   "effective_seconds_per_simulation": 0.245,
-  "decision_budget_exhausted_decisions": 0,
-  "decisions_total": 0,
+  "decision_budget_exhausted_decisions": 230,
+  "decisions_total": 8520,
   "signature_mismatches": 0,
   "opponent_flag_conflicts": 0,
-  "multiselect_decisions": 0,
+  "multiselect_decisions": 3,
   "obliged_decisions": 0,
   "mixed_terminal_scale_decisions": 0,
   "aggregate_empty_decisions": 0,
-  "term_root_win": 0,
-  "term_root_loss": 0,
-  "term_undecided": 0,
+  "term_root_win": 35551,
+  "term_root_loss": 37024,
+  "term_undecided": 11112,
   "finalised": 0,
   "terminal_leaves": 0,
   "lethal_bonus": 0,
   "step_errors": 0,
   "begin_errors": 0,
-  "transposition_merges": 0,
-  "dummy_edges": 0,
-  "chance_nodes_created": 0,
+  "transposition_merges": 2033,
+  "dummy_edges": 180,
+  "chance_nodes_created": 82,
   "manual_coin_node_ucb_selected": 0,
-  "calibration_rows": 0,
-  "budget_delivered": true
+  "calibration_rows": 6974,
+  "budget_delivered": true,
+  "component": {
+    "provider": "C022RecurrentPriorProvider",
+    "checkpoint": "br3_fixed_deck_long_final.pt",
+    "recurrent_state": "zeroed per query (SEMANTIC_GAME_ADAPTER)",
+    "calls": 6172385,
+    "failures": 0,
+    "success_rate": 1.0,
+    "seconds_in_provider": 13468.7,
+    "mean_inference_ms": 2.182,
+    "calls_per_searched_decision": 885.06,
+    "provider_share_of_arm_wall_clock": 0.7758,
+    "VALID": true,
+    "why_valid_matters": "an arm that names a checkpoint but never calls it is indistinguishable from its own control and would be reported as 'no effect'"
+  }
 }
