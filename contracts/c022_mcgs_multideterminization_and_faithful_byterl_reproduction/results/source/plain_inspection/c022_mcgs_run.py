@@ -63,20 +63,7 @@ def _one_game(job: Dict[str, Any], cfg: Dict[str, Any], seed: int, q):
         arm = TR.arm_config(job["transfer_arm"])
         ck = job.get("byterl_checkpoint")
         if ck and any(arm.values()):
-            # The c021 provider loads a feed-forward ByteRLNet and cannot read a c022 recurrent
-            # checkpoint -- it raises on state_dict. Transferring from the FAITHFUL system is the
-            # reason these arms are being run again at all (c021's are recorded UNTESTED), so a
-            # c022 checkpoint gets the c022 provider. Selected by what the file IS, not by a flag,
-            # because a flag can disagree with the checkpoint and the arm would silently be
-            # measuring the wrong network.
-            from cg import c022_transfer as TR2
-            import torch as _t
-            _sd = _t.load(ck, map_location="cpu", weights_only=False)
-            if any(k.startswith("lstm.") for k in _sd):
-                provider = TR2.C022RecurrentPriorProvider(ck)
-            else:
-                provider = TR.ByteRLPriorProvider(ck)
-            del _sd
+            provider = TR.ByteRLPriorProvider(ck)
     # Each game gets its own world base seed, so two games never search identical worlds; paired
     # arms reuse the SAME seed for the same game_id, which is what makes them paired.
     gcfg = dict(cfg)

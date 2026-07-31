@@ -49,9 +49,16 @@ predicted probability falls to 0.367. The ensemble attacks a *different* error �
 between worlds — and that error turns out to be small next to the sampling noise it was competing
 with.
 
-**The residual is the one the ceiling predicted.** Both 96-simulation arms remain ~21 pp
-overconfident with negative Brier skill, and `PREREGISTERED_AGGREGATION.json`'s `calibration_
-target_M08` measured exactly that floor before any sweep ran: ~9 pp of irreducible rollout
+**The residual, and a caveat added 2026-07-31 after the M08 remeasurement.** Both 96-simulation
+arms remain ~21 pp overconfident with negative Brier skill. The explanation below cites the
+PRE-D13 ceiling, and the post-D13 remeasurement moved it substantially — root-only optimism
+0.201 → 0.6003, with the root and opposing seats effectively swapping. See
+`../calibration/M08_CEILING_REMEASUREMENT.md`: the explanation of the residual is therefore
+**pending**, while the decomposition above — which compares three measured arms and does not
+reference the ceiling at all — is unaffected. The original text follows.
+
+`PREREGISTERED_AGGREGATION.json`'s `calibration_target_M08` measured that floor before any sweep
+ran: ~9 pp of irreducible rollout
 optimism at the root plus a within-world selection term that compounds with depth, of which
 "cross-world root aggregation attacks it only at the root". That prediction stands. What did not
 survive is the expectation that the reducible part was large.

@@ -1,0 +1,45 @@
+{
+  "purpose": "the frozen controls' measured RESULTS, beside the hash manifest that proves they have not moved. control_manifest.json answers 'is this control still the file it was?'; this answers 'what did it score?'",
+  "verified_unchanged_by": "results/validation_report.json check V13",
+  "controls": {
+    "BASELINE_OFFICIAL_MEGA_LUCARIO": {
+      "role": "frozen official baseline; the competitive bar for MCGS_COMPETITIVE",
+      "c020_panel_field": 0.5837,
+      "c020_panel_ci": [
+        0.5349,
+        0.631
+      ]
+    },
+    "C020_H1_PRIOR_HYBRID_CONTROL": {
+      "role": "c020's best candidate: corrected ByteRL priors + tactical heuristic",
+      "c020_panel_field": 0.4875,
+      "c020_panel_ci": [
+        0.4191,
+        0.5564
+      ]
+    },
+    "C021_FIXED_DECK_B2_FINAL": {
+      "role": "c021 fixed-deck B2 final weights: transfer comparator and improvement bar"
+    },
+    "C021_FIXED_DECK_B2_SELECTED_IT0160": {
+      "role": "the checkpoint c021's preregistered external-panel selector chose"
+    },
+    "C021_MCGS_K1_CONTROL": {
+      "role": "the c021 single-determinization MCGS run c022's K=1 arm must reproduce",
+      "field_score": 0.1111,
+      "games": 40,
+      "completed": 36,
+      "abandoned": 4,
+      "sims_per_decision": 176.6,
+      "searched_decisions": 1281,
+      "determinizations_per_decision": 1,
+      "summary_file": "contracts/c021_source_faithful_mcgs_and_byterl_transfer_campaign/results/transfer/prior_only/t2_T0_control_summary.json"
+    },
+    "C021_RANDOM_FLOOR": {
+      "role": "the fresh-random-weights floor every ByteRL learning claim is measured against"
+    },
+    "CHAMPION_C005_DRAGAPULT": {
+      "role": "externally confirmed champion; panel opponent and role-board reference"
+    }
+  }
+}

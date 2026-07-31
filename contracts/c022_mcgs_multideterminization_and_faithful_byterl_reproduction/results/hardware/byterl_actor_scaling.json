@@ -1,0 +1,149 @@
+{
+  "measured_from": "every ByteRL run manifest in this contract",
+  "the_finding": "learner throughput is the bottleneck under a bounded blocking FIFO, and the production/consumption ratio is INVARIANT to it: BR2/BR3 hold ~1.00 whether running alone or at a third of clean rate under four-way contention, while the unbounded rungs' ratio moved 41.9 -> 12.1 with load inside one run (D18). Rates below are NOT comparable across runs -- see D22 and D28 for the background loads present.",
+  "runs": [
+    {
+      "tag": "br3_end_to_end",
+      "stage": "BR3",
+      "actors": 6,
+      "consumed_decisions": 390389,
+      "produced_decisions": 391305,
+      "production_consumption_ratio": 1.0023,
+      "wall_clock_s": 6325.0,
+      "consumed_decisions_per_second": 61.7,
+      "queue_capacity": 48
+    },
+    {
+      "tag": "br3_fixed_deck_long",
+      "stage": "BR3",
+      "actors": 6,
+      "consumed_decisions": 2631647,
+      "produced_decisions": 2632369,
+      "production_consumption_ratio": 1.0003,
+      "wall_clock_s": 19038.4,
+      "consumed_decisions_per_second": 138.2,
+      "queue_capacity": 48
+    },
+    {
+      "tag": "br3_fixed_deck",
+      "stage": "BR3",
+      "actors": 6,
+      "consumed_decisions": 327890,
+      "produced_decisions": 328601,
+      "production_consumption_ratio": 1.0022,
+      "wall_clock_s": 6330.7,
+      "consumed_decisions_per_second": 51.8,
+      "queue_capacity": 48
+    },
+    {
+      "tag": "ctrl_BR0",
+      "stage": "BR0",
+      "actors": 6,
+      "consumed_decisions": 120076,
+      "produced_decisions": 1048464,
+      "production_consumption_ratio": 8.7317,
+      "wall_clock_s": 1318.0,
+      "consumed_decisions_per_second": 91.1,
+      "queue_capacity": 65536
+    },
+    {
+      "tag": "ctrl_BR1_5",
+      "stage": "BR1_5",
+      "actors": 6,
+      "consumed_decisions": 120031,
+      "produced_decisions": 950854,
+      "production_consumption_ratio": 7.9217,
+      "wall_clock_s": 914.8,
+      "consumed_decisions_per_second": 131.2,
+      "queue_capacity": 65536
+    },
+    {
+      "tag": "ctrl_BR1",
+      "stage": "BR1",
+      "actors": 6,
+      "consumed_decisions": 120002,
+      "produced_decisions": 986805,
+      "production_consumption_ratio": 8.2232,
+      "wall_clock_s": 1042.2,
+      "consumed_decisions_per_second": 115.1,
+      "queue_capacity": 65536
+    },
+    {
+      "tag": "ctrl_BR2",
+      "stage": "BR2",
+      "actors": 6,
+      "consumed_decisions": 120097,
+      "produced_decisions": 120860,
+      "production_consumption_ratio": 1.0064,
+      "wall_clock_s": 3426.3,
+      "consumed_decisions_per_second": 35.1,
+      "queue_capacity": 48
+    },
+    {
+      "tag": "ctrl_BR3",
+      "stage": "BR3",
+      "actors": 6,
+      "consumed_decisions": 120088,
+      "produced_decisions": 120962,
+      "production_consumption_ratio": 1.0073,
+      "wall_clock_s": 1341.5,
+      "consumed_decisions_per_second": 89.5,
+      "queue_capacity": 48
+    },
+    {
+      "tag": "fid_BR0",
+      "stage": "BR0",
+      "actors": 3,
+      "consumed_decisions": 24081,
+      "produced_decisions": 147828,
+      "production_consumption_ratio": 6.1388,
+      "wall_clock_s": 379.6,
+      "consumed_decisions_per_second": 63.4,
+      "queue_capacity": 65536
+    },
+    {
+      "tag": "fid_BR1_5",
+      "stage": "BR1_5",
+      "actors": 3,
+      "consumed_decisions": 24085,
+      "produced_decisions": 126338,
+      "production_consumption_ratio": 5.2455,
+      "wall_clock_s": 323.5,
+      "consumed_decisions_per_second": 74.5,
+      "queue_capacity": 65536
+    },
+    {
+      "tag": "fid_BR1",
+      "stage": "BR1",
+      "actors": 3,
+      "consumed_decisions": 24009,
+      "produced_decisions": 129058,
+      "production_consumption_ratio": 5.3754,
+      "wall_clock_s": 328.4,
+      "consumed_decisions_per_second": 73.1,
+      "queue_capacity": 65536
+    },
+    {
+      "tag": "fid_BR2",
+      "stage": "BR2",
+      "actors": 3,
+      "consumed_decisions": 24134,
+      "produced_decisions": 25192,
+      "production_consumption_ratio": 1.0438,
+      "wall_clock_s": 268.2,
+      "consumed_decisions_per_second": 90.0,
+      "queue_capacity": 48
+    },
+    {
+      "tag": "fid_BR3",
+      "stage": "BR3",
+      "actors": 3,
+      "consumed_decisions": 24012,
+      "produced_decisions": 25064,
+      "production_consumption_ratio": 1.0438,
+      "wall_clock_s": 203.1,
+      "consumed_decisions_per_second": 118.2,
+      "queue_capacity": 48
+    }
+  ]
+}

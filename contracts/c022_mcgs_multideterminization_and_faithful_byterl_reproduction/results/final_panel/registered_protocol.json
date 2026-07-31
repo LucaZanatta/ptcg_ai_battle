@@ -1,0 +1,24 @@
+{
+  "registered_before_the_panel_ran": true,
+  "question": "DECISION_RULES \u00a72: does a candidate credibly beat the strongest frozen local champion on the broad panel?",
+  "why_the_bar_is_RE-RUN_and_not_quoted": "BASELINE_OFFICIAL_MEGA_LUCARIO is recorded at 0.5837 on the c020 panel and the c022 arms are measured on a four-opponent panel. Two field scores from different panels are not comparable, and placing them side by side would be the position-pairing defect family in a new costume. The bar therefore plays the SAME opponents, seats, seeds and game count as the candidates. It scored 0.5833 against its recorded 0.5837.",
+  "held_constant": [
+    "opponents",
+    "seat assignment by game index",
+    "seed",
+    "game count",
+    "simulation budget",
+    "decision budget",
+    "deck archetype"
+  ],
+  "what_varies": "the candidate only",
+  "budget": {
+    "protocol": "fixed_per_world",
+    "simulations_per_world": 12,
+    "k": 8,
+    "decision_budget": 50
+  },
+  "why_count_budgeted": "a time-budgeted panel is latency-sensitive and must run alone; count-budgeting makes it contention-tolerant, at the cost of not measuring DEPLOYMENT strength. That question is answered by the M12 deploy arms, which do run alone under c021's 90 s clock.",
+  "games_per_candidate": 60,
+  "power_stated_before_the_run": "60 games gives a ~12-point Wilson interval. Ample for the ~45-point gap at issue, useless for the ~2 points between the two candidates, and no claim is made about the latter."
+}

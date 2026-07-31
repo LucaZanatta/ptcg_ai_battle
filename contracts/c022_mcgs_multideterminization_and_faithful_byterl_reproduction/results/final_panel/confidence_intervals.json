@@ -1,0 +1,131 @@
+{
+  "method": "Wilson score interval at 95%, on scored games only",
+  "candidates": {
+    "mcgs_k8": {
+      "field_score": 0.1167,
+      "scored": 60,
+      "wilson95": [
+        0.0577,
+        0.2218
+      ],
+      "per_opponent": {
+        "dragapult": {
+          "games": 15,
+          "rate": 0.0,
+          "wilson95": [
+            0,
+            0.2039
+          ]
+        },
+        "mega_lucario": {
+          "games": 15,
+          "rate": 0.4667,
+          "wilson95": [
+            0.2481,
+            0.6989
+          ]
+        },
+        "iono": {
+          "games": 15,
+          "rate": 0.0,
+          "wilson95": [
+            0,
+            0.2039
+          ]
+        },
+        "mega_abomasnow": {
+          "games": 15,
+          "rate": 0.0,
+          "wilson95": [
+            0,
+            0.2039
+          ]
+        }
+      }
+    },
+    "mcgs_k1": {
+      "field_score": 0.1333,
+      "scored": 60,
+      "wilson95": [
+        0.0691,
+        0.2417
+      ],
+      "per_opponent": {
+        "dragapult": {
+          "games": 15,
+          "rate": 0.0,
+          "wilson95": [
+            0,
+            0.2039
+          ]
+        },
+        "mega_lucario": {
+          "games": 15,
+          "rate": 0.5333,
+          "wilson95": [
+            0.3011,
+            0.7519
+          ]
+        },
+        "iono": {
+          "games": 15,
+          "rate": 0.0,
+          "wilson95": [
+            0,
+            0.2039
+          ]
+        },
+        "mega_abomasnow": {
+          "games": 15,
+          "rate": 0.0,
+          "wilson95": [
+            0,
+            0.2039
+          ]
+        }
+      }
+    },
+    "baseline": {
+      "field_score": 0.5833,
+      "scored": 60,
+      "wilson95": [
+        0.4573,
+        0.6994
+      ],
+      "per_opponent": {
+        "dragapult": {
+          "games": 15,
+          "rate": 0.5333,
+          "wilson95": [
+            0.3011,
+            0.7519
+          ]
+        },
+        "mega_lucario": {
+          "games": 15,
+          "rate": 0.4667,
+          "wilson95": [
+            0.2481,
+            0.6989
+          ]
+        },
+        "iono": {
+          "games": 15,
+          "rate": 0.8667,
+          "wilson95": [
+            0.6212,
+            0.9627
+          ]
+        },
+        "mega_abomasnow": {
+          "games": 15,
+          "rate": 0.4667,
+          "wilson95": [
+            0.2481,
+            0.6989
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "purpose": "Which defect invalidated which artifact, and what was done about it. A defect log says what went wrong; this says what it CONTAMINATED. Without it a reader cannot tell whether a number in this tree was produced before or after the fix that concerns it.",
+  "rule": "An artifact touched by a defect is either QUARANTINED (moved under failures/superseded/, cited nowhere) or REGENERATED after the fix. Nothing tainted is reported.",
+
+  "edges": [
+    {
+      "defect": "D04",
+      "what": "negative predicted win probability from the source's opponent sign flip",
+      "tainted": ["a superseded K=1 control arm"],
+      "resolution": "QUARANTINED before the amendment was written; every K-sweep arm ran after the root-frame conversion",
+      "cited_anywhere_now": false
+    },
+    {
+      "defect": "D08 / D14",
+      "what": "wall-clock K confound, then per-K compute overhead in the guard",
+      "tainted": ["three early sweep arms"],
+      "resolution": "QUARANTINED and re-run under a decision budget with a K-aware guard",
+      "cited_anywhere_now": false
+    },
+    {
+      "defect": "D10 / D13",
+      "what": "multi-select payloads emitted a single option, on the fallback and then the searched path",
+      "tainted": ["arms whose INVALID games came from minCount > 1 selects",
+                  "the M08 rollout-bias ceiling, measured with the pre-D13 payload path"],
+      "resolution": "arms re-run; the M08 ceiling carries a REQUIRED_REMEASUREMENT_AFTER_D13 obligation recorded in PREREGISTERED_AGGREGATION.json",
+      "cited_anywhere_now": true,
+      "caveat": "the ceiling figure is reported WITH its obligation, not as if unaffected"
+    },
+    {
+      "defect": "D12",
+      "what": "an orphaned arm from a killed sweep wrote results into the live tree using pre-fix code",
+      "tainted": ["one sweep arm's result files"],
+      "resolution": "QUARANTINED; tools/c022_sweep.sh gained `set -m` and a process-group EXIT trap",
+      "cited_anywhere_now": false,
+      "recurrence": "D28 is the resource variant of the same root cause -- kills that target a parent leave children alive. Those orphans could not write (their queues had no live consumer), so unlike D12 they tainted no artifact."
+    },
+    {
+      "defect": "D17 / D19 / D20",
+      "what": "the B1.5 rung was a no-op; then the B06 check compared the learner against mu; then B06 ran once in 556 policy versions",
+      "tainted": ["the entire controlled rung ladder, conf_* and ctrl_*, across three code versions"],
+      "resolution": "QUARANTINED in failures/superseded/ladder_pre_d19/ and failures/superseded/ctrl_rungs_br15_noop/; the ladder was re-run in full from ONE commit",
+      "cited_anywhere_now": false,
+      "why_the_whole_ladder": "MANDATORY_IMPLEMENTATION B7 requires one codebase to produce the stages. A ladder assembled from three versions of the fidelity check is not that, even where individual rungs were internally valid."
+    },
+    {
+      "defect": "D18",
+      "what": "ctrl_BR0 ran under a concurrent MCGS arm; its learner ramped 1.24 -> 4.60 updates/s as that arm drained",
+      "tainted": ["ctrl_BR0's production/consumption ratio, queue age, policy lag AND its learned policy"],
+      "resolution": "re-run alone; EXECUTION_BUDGET's concurrency column amended to draw the line at the bounded blocking FIFO",
+      "cited_anywhere_now": false
+    },
+    {
+      "defect": "D21",
+      "what": "the validator's inventory omitted the paired arms, the noise floor, the deploy and unrestricted arms",
+      "tainted": ["every validation_report.json produced before the fix -- they reported 13/13 PASS having never examined the contract's decisive MCGS evidence"],
+      "resolution": "REGENERATED. The inventory now covers all live arms and the report is 19/19 with 0 inert checks.",
+      "cited_anywhere_now": false,
+      "note": "no measurement was wrong; the checks were sound and pointed at the wrong data. The taint is on the VALIDATION, not on the arms."
+    },
+    {
+      "defect": "D23",
+      "what": "sims_per_decision reported as a mean dominated by two collapsed decisions (82,540 against a median of 610)",
+      "tainted": ["the M11 probe's headline figure, and the probe's own parallel-efficiency verdict, which divided one unstable mean by another and concluded nproc 6 was unusable"],
+      "resolution": "REGENERATED. source_time arms report the full distribution and the top-3 share; the verdict uses medians.",
+      "cited_anywhere_now": true,
+      "caveat": "the mean is still reported, beside the share that produces it, because the gap between them is the finding"
+    },
+    {
+      "defect": "D24",
+      "what": "the MCGS_HIDDEN_INFO attribution predicate was a sign test that returned PASS on a Brier difference of 0.00146",
+      "tainted": ["one STATUS.json in which MCGS_HIDDEN_INFO read PASS"],
+      "resolution": "REGENERATED. The requirement now decomposes the improvement and demands the ensemble's own step clear the measured 0.0377 replication difference; the status is PARTIAL.",
+      "cited_anywhere_now": false,
+      "severity": "highest of any defect here. Every other inert check cost rework; this one would have converted the contract's central negative finding into a PASS on noise."
+    },
+    {
+      "defect": "D25",
+      "what": "the final panel scored 0 of 180 games in two seconds and emitted a champion_comparison anyway",
+      "tainted": ["one panel.json with credible_improvement: false reached from zero evidence"],
+      "resolution": "REGENERATED after fixing agent construction; the panel now reports NO_DATA rather than a verdict when nothing scores",
+      "cited_anywhere_now": false,
+      "note": "the conclusion it reached was the one later confirmed. A wrong method producing the expected answer is the hardest kind to notice."
+    },
+    {
+      "defect": "D26",
+      "what": "three checks failed CORRECT behaviour -- V08 on legitimate opponent-flag conflicts, the ladder tool and V14 on a bounded rung's queue statistics",
+      "tainted": ["one validation_report in which V14 FAILED, which suppressed BYTERL_REFERENCE_FIDELITY to PARTIAL three levels down"],
+      "resolution": "REGENERATED. Bounds now carry the regime they apply to.",
+      "cited_anywhere_now": false
+    },
+    {
+      "defect": "D27",
+      "what": "the 8x depth arm was cut by its per-game guard, abandoning 62.5% of its games against a comparison arm's 0%",
+      "tainted": ["k8_s768 -- its calibration was computed on the games that finish fast"],
+      "resolution": "QUARANTINED in failures/superseded/depth_768_guard_bound/; the depth question re-asked at 4x, then blocked again by the same simulation cost",
+      "cited_anywhere_now": false
+    },
+    {
+      "defect": "D22 / D28",
+      "what": "my own foreground tooling ran during quiet-machine rungs; and eighteen orphaned workers held 24.7 GB from 19:51 onward",
+      "tainted": ["no artifact -- but every THROUGHPUT figure measured after 19:51 carries an unmeasured background load"],
+      "resolution": "recorded rather than re-run: the affected numbers are wall-clock rates, and no reported conclusion rests on them. hardware/byterl_actor_scaling.json states that its rates are not comparable across runs and points here.",
+      "cited_anywhere_now": true,
+      "caveat": "D22's per-rung rates are understated in absolute terms; the DIFFERENCES between rungs are unaffected because the load was constant across them"
+    }
+  ],
+
+  "artifacts_currently_quarantined": [
+    "failures/superseded/ctrl_rungs_br15_noop/",
+    "failures/superseded/ladder_pre_d19/",
+    "failures/superseded/depth_768_guard_bound/"
+  ],
+
+  "how_to_verify_nothing_tainted_is_cited": "tools/c022_field_balance.py excludes failures/ and superseded/ outright, and every analysis tool loads arms by explicit tag from a live directory rather than by glob. The one tool that globbed -- field_balance, on its first run -- immediately pulled five quarantined ft_k1 arms into an evidence table, which is why the exclusion is now explicit."
+}
