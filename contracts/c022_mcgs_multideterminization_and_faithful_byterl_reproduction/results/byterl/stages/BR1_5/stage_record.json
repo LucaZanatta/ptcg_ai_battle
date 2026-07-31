@@ -1,0 +1,33 @@
+{
+  "stage": "BR1_5",
+  "published_delta_from_the_rung_below": "BR1 with published random initial deck-construction selections",
+  "source": "FIDELITY_RULES \u00a74",
+  "controlled_rung": {
+    "tag": "ctrl_BR1_5",
+    "consumed_decisions": 120031,
+    "produced_decisions": 950854,
+    "production_consumption_ratio": 7.9217,
+    "wall_clock_s": 914.8,
+    "queue_capacity": 65536,
+    "random_initial_construction": true,
+    "random_initial_choices": 114390,
+    "recurrence_checks": 3,
+    "recurrence_check_coverage": 0.1071,
+    "external_field_score": 0.0781,
+    "external_wilson95": [
+      0.043,
+      0.1378
+    ]
+  },
+  "dedicated_fidelity_run": {
+    "tag": "fid_BR1_5",
+    "recurrence_checks": 111,
+    "coverage": 1.0,
+    "failures": 0,
+    "max_logp_delta_exact_weights": 4.77e-07,
+    "max_behaviour_delta": 0.0,
+    "uniform_behaviour_steps_seen_in_checks": 390
+  },
+  "note": "the controlled rung measures this stage's EFFECT at an equal 120k-decision budget; the fidelity run verifies replay at 100% coverage. D20: they are separate runs because a pre-b2 rung's policy lag exceeds any blob history that fits alongside the decisive arms.",
+  "full_ladder": "../../component_analysis/RUNG_LADDER.md"
+}

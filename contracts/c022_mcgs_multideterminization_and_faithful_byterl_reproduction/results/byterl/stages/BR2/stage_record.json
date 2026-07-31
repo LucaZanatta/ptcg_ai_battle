@@ -1,0 +1,33 @@
+{
+  "stage": "BR2",
+  "published_delta_from_the_rung_below": "BR1_5 with a bounded blocking FIFO and balanced production/consumption",
+  "source": "FIDELITY_RULES \u00a74",
+  "controlled_rung": {
+    "tag": "ctrl_BR2",
+    "consumed_decisions": 120097,
+    "produced_decisions": 120860,
+    "production_consumption_ratio": 1.0064,
+    "wall_clock_s": 3426.3,
+    "queue_capacity": 48,
+    "random_initial_construction": true,
+    "random_initial_choices": 14330,
+    "recurrence_checks": 28,
+    "recurrence_check_coverage": 1.0,
+    "external_field_score": 0.0781,
+    "external_wilson95": [
+      0.043,
+      0.1378
+    ]
+  },
+  "dedicated_fidelity_run": {
+    "tag": "fid_BR2",
+    "recurrence_checks": 111,
+    "coverage": 1.0,
+    "failures": 0,
+    "max_logp_delta_exact_weights": 9.54e-07,
+    "max_behaviour_delta": 0.0,
+    "uniform_behaviour_steps_seen_in_checks": 380
+  },
+  "note": "the controlled rung measures this stage's EFFECT at an equal 120k-decision budget; the fidelity run verifies replay at 100% coverage. D20: they are separate runs because a pre-b2 rung's policy lag exceeds any blob history that fits alongside the decisive arms.",
+  "full_ladder": "../../component_analysis/RUNG_LADDER.md"
+}

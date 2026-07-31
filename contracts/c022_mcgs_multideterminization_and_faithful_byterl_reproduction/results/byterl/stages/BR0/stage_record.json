@@ -1,0 +1,33 @@
+{
+  "stage": "BR0",
+  "published_delta_from_the_rung_below": "end-to-end baseline: gamma 0.99, one-sided V-trace, unbounded queue",
+  "source": "FIDELITY_RULES \u00a74",
+  "controlled_rung": {
+    "tag": "ctrl_BR0",
+    "consumed_decisions": 120076,
+    "produced_decisions": 1048464,
+    "production_consumption_ratio": 8.7317,
+    "wall_clock_s": 1318.0,
+    "queue_capacity": 65536,
+    "random_initial_construction": false,
+    "random_initial_choices": 0,
+    "recurrence_checks": 3,
+    "recurrence_check_coverage": 0.1034,
+    "external_field_score": 0.0547,
+    "external_wilson95": [
+      0.0267,
+      0.1086
+    ]
+  },
+  "dedicated_fidelity_run": {
+    "tag": "fid_BR0",
+    "recurrence_checks": 112,
+    "coverage": 1.0,
+    "failures": 0,
+    "max_logp_delta_exact_weights": 4.77e-07,
+    "max_behaviour_delta": 0.0,
+    "uniform_behaviour_steps_seen_in_checks": 0
+  },
+  "note": "the controlled rung measures this stage's EFFECT at an equal 120k-decision budget; the fidelity run verifies replay at 100% coverage. D20: they are separate runs because a pre-b2 rung's policy lag exceeds any blob history that fits alongside the decisive arms.",
+  "full_ladder": "../../component_analysis/RUNG_LADDER.md"
+}

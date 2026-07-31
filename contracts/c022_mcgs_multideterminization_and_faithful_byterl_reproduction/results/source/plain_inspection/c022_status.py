@@ -595,11 +595,20 @@ def s_package() -> Dict[str, Any]:
     def validated():
         if not pkg:
             return None, "no package has been built or validated"
+        if pkg.get("decision") == "NO_PACKAGE":
+            # A recorded decision not to build is a DECISION. It is not "met" -- no package
+            # passed validation -- but the status roll-up below reports NOT_RUN with the reason
+            # rather than PARTIAL, because §5 requires no package when no candidate qualifies.
+            return False, f"NO_PACKAGE, recorded: {pkg.get('summary')}"
         return bool(pkg.get("valid")), str(pkg.get("summary"))[:220]
 
     rows = [Req("package validation passes", validated,
                 "results/mcgs/packages/package_validation.json").run()]
-    return {"status": roll_up(rows), "requirements": rows, "source": "DECISION_RULES §5"}
+    st = roll_up(rows)
+    if pkg and pkg.get("decision") == "NO_PACKAGE":
+        st = NOT_RUN
+    return {"status": st, "requirements": rows, "source": "DECISION_RULES §5",
+            "decision_recorded": bool(pkg and pkg.get("decision"))}
 
 
 def s_submission() -> Dict[str, Any]:
@@ -609,6 +618,9 @@ def s_submission() -> Dict[str, Any]:
     def frozen_identity():
         if not sub:
             return None, "no submission decision has been recorded"
+        if sub.get("decision") == "NO_SUBMISSION":
+            return False, ("NO_SUBMISSION, recorded with its reason: "
+                           + str((sub.get("why") or {}).get("credible_gate"))[:220])
         return bool(sub.get("candidate_sha256")), str(sub.get("candidate"))[:200]
 
     def gate():
@@ -626,7 +638,12 @@ def s_submission() -> Dict[str, Any]:
     if any(r["met"] is False for r in rows):
         # §5: "No automatic submission is required when no candidate qualifies."
         st = NOT_RUN if all(r["met"] is not True for r in rows) else PARTIAL
-    return {"status": st, "requirements": rows, "source": "DECISION_RULES §5"}
+    return {"status": st, "requirements": rows, "source": "DECISION_RULES §5",
+            "decision_recorded": bool(sub and sub.get("decision")),
+            "note": ("NOT_RUN here means no submission was MADE, and the decision not to make one "
+                     "is recorded in results/mcgs/submissions/submission_decision.json with the "
+                     "gate result that produced it. It does not mean the question went "
+                     "unexamined.") if sub else None}
 
 
 def s_source_fidelity() -> Dict[str, Any]:

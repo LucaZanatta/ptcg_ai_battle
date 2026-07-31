@@ -249,22 +249,23 @@
       "requirements": [
         {
           "requirement": "package validation passes",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "no package has been built or validated",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "NO_PACKAGE, recorded: the frozen bar re-run on this panel scores 0.5833; the best candidate scores 0.1333 and wins 0 of 45 games against three of the four opponents",
           "evidence": "results/mcgs/packages/package_validation.json"
         }
       ],
-      "source": "DECISION_RULES \u00a75"
+      "source": "DECISION_RULES \u00a75",
+      "decision_recorded": true
     },
     "SUBMISSION": {
       "status": "NOT_RUN",
       "requirements": [
         {
           "requirement": "exact candidate identity is frozen",
-          "met": null,
-          "verdict": "NOT_RUN",
-          "detail": "no submission decision has been recorded",
+          "met": false,
+          "verdict": "NOT met",
+          "detail": "NO_SUBMISSION, recorded with its reason: FAILED. The final panel re-ran the frozen bar over the same opponents, seats, seeds and game count: bar 0.5833, best candidate 0.1333, a 45-point gap with intervals nowhere near touching.",
           "evidence": "results/mcgs/submissions/"
         },
         {
@@ -275,7 +276,9 @@
           "evidence": "results/mcgs/final_panel/"
         }
       ],
-      "source": "DECISION_RULES \u00a75"
+      "source": "DECISION_RULES \u00a75",
+      "decision_recorded": true,
+      "note": "NOT_RUN here means no submission was MADE, and the decision not to make one is recorded in results/mcgs/submissions/submission_decision.json with the gate result that produced it. It does not mean the question went unexamined."
     }
   },
   "overall": {

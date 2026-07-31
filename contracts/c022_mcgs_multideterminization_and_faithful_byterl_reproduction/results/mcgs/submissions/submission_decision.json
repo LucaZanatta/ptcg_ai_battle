@@ -1,0 +1,18 @@
+{
+  "decision": "NO_SUBMISSION",
+  "decided_at": "2026-07-31",
+  "candidate": null,
+  "candidate_sha256": null,
+  "rule": "DECISION_RULES \u00a75: 'No automatic submission is required when no candidate qualifies.'",
+  "why": {
+    "credible_gate": "FAILED. The final panel re-ran the frozen bar over the same opponents, seats, seeds and game count: bar 0.5833, best candidate 0.1333, a 45-point gap with intervals nowhere near touching.",
+    "complementary_profile_route": "ALSO FAILED. DECISION_RULES \u00a72 offers a second route -- 'a strong complementary matchup profile with no unacceptable broad-field regression'. The candidate wins ZERO of 45 games against three of four opponents; its entire score is the mega_lucario mirror. That is the opposite of complementary.",
+    "would_a_different_candidate_qualify": "No. mcgs_k1 (0.1333) and mcgs_k8 (0.1167) are the two registered candidates and both are ~45 points behind. The ByteRL arms are weaker still (~0.15 at 73% of the matched budget)."
+  },
+  "what_was_NOT_done": "no candidate was submitted, no package hashed, and no gate relaxed to produce one. CONTRACT \u00a77 forbids submitting a candidate that fails the registered credible gate.",
+  "evidence": [
+    "../../final_panel/aggregates.json",
+    "../../final_panel/interpretation.md",
+    "../packages/package_validation.json"
+  ]
+}

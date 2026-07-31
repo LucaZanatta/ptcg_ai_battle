@@ -146,9 +146,9 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 
 | requirement | verdict | evidence |
 |---|---|---|
-| package validation passes | **NOT_RUN** | `results/mcgs/packages/package_validation.json` |
+| package validation passes | **NOT met** | `results/mcgs/packages/package_validation.json` |
 
-- **package validation passes** — no package has been built or validated
+- **package validation passes** — NO_PACKAGE, recorded: the frozen bar re-run on this panel scores 0.5833; the best candidate scores 0.1333 and wins 0 of 45 games against three of the four opponents
 
 ## `SUBMISSION` = NOT_RUN
 
@@ -156,9 +156,9 @@ Each status is computed from artifacts by `tools/c022_status.py`, and each requi
 
 | requirement | verdict | evidence |
 |---|---|---|
-| exact candidate identity is frozen | **NOT_RUN** | `results/mcgs/submissions/` |
+| exact candidate identity is frozen | **NOT met** | `results/mcgs/submissions/` |
 | a registered credible gate passes | **NOT met** | `results/mcgs/final_panel/` |
 
-- **exact candidate identity is frozen** — no submission decision has been recorded
+- **exact candidate identity is frozen** — NO_SUBMISSION, recorded with its reason: FAILED. The final panel re-ran the frozen bar over the same opponents, seats, seeds and game count: bar 0.5833, best candidate 0.1333, a 45-point gap with intervals nowhere near touching.
 - **a registered credible gate passes** — MCGS_COMPETITIVE is PARTIAL; DECISION_RULES §5 requires a credible gate to pass before submitting, and §2 says a small noisy improvement is not one
 

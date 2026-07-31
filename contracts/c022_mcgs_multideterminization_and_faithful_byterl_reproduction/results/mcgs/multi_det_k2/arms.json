@@ -1,0 +1,27 @@
+{
+  "K": 2,
+  "where_the_arms_live": "this contract organises the K sweep by BUDGET PROTOCOL rather than by K, because the protocol is what makes a K comparison causal: fixed_total holds total simulations constant across K, fixed_per_world holds per-world simulations constant. An arm is identified by (protocol, K), so a per-K directory would have split every comparison in half.",
+  "arms": {
+    "fixed_total_simulations/ft_k2": {
+      "field_score": 0.1875,
+      "wilson95": [
+        0.0889,
+        0.3531
+      ],
+      "sims_per_decision": 96.0,
+      "games": 32,
+      "completed": 32
+    },
+    "fixed_simulations_per_world/fpw_k2": {
+      "field_score": 0.25,
+      "wilson95": [
+        0.1325,
+        0.4211
+      ],
+      "sims_per_decision": 24.0,
+      "games": 32,
+      "completed": 32
+    }
+  },
+  "analysis": "../calibration/K_COMPARISON.md"
+}

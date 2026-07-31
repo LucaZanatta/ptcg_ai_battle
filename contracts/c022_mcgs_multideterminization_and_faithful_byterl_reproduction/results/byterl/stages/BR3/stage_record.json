@@ -1,0 +1,33 @@
+{
+  "stage": "BR3",
+  "published_delta_from_the_rung_below": "BR2 with two-sided clipped V-trace and a PPO-style clipped objective",
+  "source": "FIDELITY_RULES \u00a74",
+  "controlled_rung": {
+    "tag": "ctrl_BR3",
+    "consumed_decisions": 120088,
+    "produced_decisions": 120962,
+    "production_consumption_ratio": 1.0073,
+    "wall_clock_s": 1341.5,
+    "queue_capacity": 48,
+    "random_initial_construction": true,
+    "random_initial_choices": 14420,
+    "recurrence_checks": 28,
+    "recurrence_check_coverage": 1.0,
+    "external_field_score": 0.0859,
+    "external_wilson95": [
+      0.0487,
+      0.1473
+    ]
+  },
+  "dedicated_fidelity_run": {
+    "tag": "fid_BR3",
+    "recurrence_checks": 111,
+    "coverage": 1.0,
+    "failures": 0,
+    "max_logp_delta_exact_weights": 4.77e-07,
+    "max_behaviour_delta": 0.0,
+    "uniform_behaviour_steps_seen_in_checks": 400
+  },
+  "note": "the controlled rung measures this stage's EFFECT at an equal 120k-decision budget; the fidelity run verifies replay at 100% coverage. D20: they are separate runs because a pre-b2 rung's policy lag exceeds any blob history that fits alongside the decisive arms.",
+  "full_ladder": "../../component_analysis/RUNG_LADDER.md"
+}

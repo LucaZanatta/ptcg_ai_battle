@@ -1,0 +1,138 @@
+{
+  "arm": "BR3, fixed deck, fresh random weights",
+  "matched_budget_decisions": 3607599,
+  "runs": {
+    "br3_fixed_deck (registered)": {
+      "produced_decisions": 328601,
+      "fraction_of_matched_budget": 0.0911,
+      "external_field_score": 0.0703
+    },
+    "br3_fixed_deck_long (extension)": {
+      "produced_decisions": 2632369,
+      "fraction_of_matched_budget": 0.7297,
+      "production_consumption_ratio": 1.0003,
+      "recurrence_checks": 843,
+      "recurrence_check_coverage": 1.0,
+      "external_field_score": 0.125
+    }
+  },
+  "random_floor": {
+    "field_score": 0.0234,
+    "wilson95": [
+      0.008,
+      0.0666
+    ],
+    "games": 128
+  },
+  "external_trajectory": [
+    {
+      "updates": 12000,
+      "field_score": 0.0547,
+      "wilson95": [
+        0.0267,
+        0.1086
+      ],
+      "games": 128
+    },
+    {
+      "updates": 36000,
+      "field_score": 0.0859,
+      "wilson95": [
+        0.0487,
+        0.1473
+      ],
+      "games": 128
+    },
+    {
+      "updates": 60000,
+      "field_score": 0.1328,
+      "wilson95": [
+        0.0846,
+        0.2024
+      ],
+      "games": 128
+    },
+    {
+      "updates": 86000,
+      "field_score": 0.0547,
+      "wilson95": [
+        0.0267,
+        0.1086
+      ],
+      "games": 128
+    },
+    {
+      "updates": 110000,
+      "field_score": 0.1328,
+      "wilson95": [
+        0.0846,
+        0.2024
+      ],
+      "games": 128
+    },
+    {
+      "updates": 134000,
+      "field_score": 0.1328,
+      "wilson95": [
+        0.0846,
+        0.2024
+      ],
+      "games": 128
+    },
+    {
+      "updates": 150000,
+      "field_score": 0.1328,
+      "wilson95": [
+        0.0846,
+        0.2024
+      ],
+      "games": 128
+    },
+    {
+      "updates": 174000,
+      "field_score": 0.125,
+      "wilson95": [
+        0.0784,
+        0.1934
+      ],
+      "games": 128
+    },
+    {
+      "updates": 198000,
+      "field_score": 0.125,
+      "wilson95": [
+        0.0784,
+        0.1934
+      ],
+      "games": 128
+    },
+    {
+      "updates": 222000,
+      "field_score": 0.1797,
+      "wilson95": [
+        0.1228,
+        0.2552
+      ],
+      "games": 128
+    },
+    {
+      "updates": 244000,
+      "field_score": 0.1602,
+      "wilson95": [
+        0.1067,
+        0.2334
+      ],
+      "games": 128
+    },
+    {
+      "updates": 268000,
+      "field_score": 0.1641,
+      "wilson95": [
+        0.1099,
+        0.2378
+      ],
+      "games": 128
+    }
+  ],
+  "verdict": "BYTERL_FIXED_DECK = PASS; see ../../EXTENSION_RESULTS.md for the pooled analysis"
+}
