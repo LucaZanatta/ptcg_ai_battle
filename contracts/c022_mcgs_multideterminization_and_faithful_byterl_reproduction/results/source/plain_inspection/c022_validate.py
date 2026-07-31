@@ -553,6 +553,18 @@ def load_context() -> Dict[str, Any]:
     noise = arms_in(os.path.join(C22, "transfer", "noise_floor"),
                     ["noise_k1_s90210", "noise_k1_s40031", "noise_k1_s71877"])
     deploy = arms_in(os.path.join(MC, "kaggle_deploy"), ["deploy_k1", "deploy_k8"])
+    transfer = []
+    for sub, tag in (("prior_only", "T1_policy_prior"), ("rollout_only", "T2_rollout_policy"),
+                     ("value_only", "T3_value")):
+        sp = os.path.join(C22, "transfer", sub, f"{tag}_summary.json")
+        if os.path.isfile(sp):
+            with open(sp) as fh:
+                ss = json.load(fh)
+            transfer.append({"summary": ss, "path": sp,
+                             "games": read_jsonl(os.path.join(C22, "transfer", sub,
+                                                              f"{tag}_games.jsonl")),
+                             "calibration": read_jsonl(os.path.join(C22, "transfer", sub,
+                                                                    f"{tag}_calibration.jsonl"))})
     unrestricted = arms_in(os.path.join(MC, "unrestricted_reference"),
                            ["m11_probe_serial", "m11_probe_parallel", "m11_unrestricted"])
 
@@ -577,6 +589,7 @@ def load_context() -> Dict[str, Any]:
     return {"ft_arms": ft, "fpw_arms": fpw, "k1_arms": k1,
             "paired_arms": paired, "noise_arms": noise,
             "deploy_arms": deploy, "unrestricted_arms": unrestricted,
+            "transfer_arms": transfer,
             "mcgs_arms": ft + fpw + k1 + paired + noise + deploy + unrestricted,
             "byterl_evals": evals, "byterl_manifests": manifests,
             "control_manifest": cm}
@@ -754,6 +767,83 @@ def inject_noise_floor(ctx):
     return c
 
 
+
+def _config_hash(cfg):
+    import hashlib as _h
+    return _h.sha256(json.dumps(cfg or {}, sort_keys=True).encode()).hexdigest()[:16]
+
+
+def check_transfer_arms_are_live_not_superseded(ctx):
+    """Reject a transfer arm that is a stale artifact, on FOUR independent criteria.
+
+    On 2026-07-31 a provider load failure wrote `T1_policy_prior_summary.json` and
+    `T2_rollout_policy_summary.json` with `completed: 0, errored: 0, field_score: null` -- 200
+    games in neither bucket. Those files sat in the live transfer directories looking exactly
+    like results. Any tool globbing the directory would have read them, and a status computation
+    would have seen a transfer arm present and scored it.
+
+    A single criterion is not enough. A run id can be reused; a timestamp can be touched; a game
+    count can be nonzero on a broken arm; a configuration can match while the code differs. So
+    all four are checked and any failure rejects:
+
+      1. completed-game count > 0 and consistent with the raw per-game records
+      2. the summary is NEWER than the quarantine directory holding the superseded copies
+      3. the arm's configuration hash matches the T0 control's on every held-constant field
+      4. the component call count is nonzero -- the registered protocol's own INVALID condition
+    """
+    live = ctx.get("transfer_arms") or []
+    if not live:
+        return True, {"_n_inputs": 0, "why": "no transfer arm present yet"}
+    qdir = os.path.join(C22, "failures", "superseded", "transfer_provider_load_failure")
+    qmtime = os.path.getmtime(qdir) if os.path.isdir(qdir) else 0.0
+    t0 = None
+    for a in (ctx.get("noise_arms") or []):
+        t0 = a["summary"]
+        break
+    HELD = ("k_worlds", "budget_protocol", "simulations_per_decision", "graph_reuse",
+            "match_clock_seconds", "decision_budget")
+    bad, rows = [], []
+    for a in live:
+        s_ = a["summary"]
+        tag = s_.get("tag")
+        path = a.get("path")
+        mt = os.path.getmtime(path) if path and os.path.isfile(path) else 0.0
+        scored = sum(1 for g in a.get("games", []) if g.get("score") is not None)
+        comp = s_.get("component") or {}
+        cfg_ok = (t0 is None or
+                  {k: (s_.get("config") or {}).get(k) for k in HELD}
+                  == {k: (t0.get("config") or {}).get(k) for k in HELD})
+        row = {"tag": tag, "completed": s_.get("completed"), "scored_in_raw": scored,
+               "newer_than_quarantine": mt > qmtime,
+               "config_matches_T0_control": cfg_ok,
+               "component_calls": comp.get("calls"),
+               "config_hash": _config_hash(s_.get("config"))}
+        rows.append(row)
+        if not s_.get("completed"):
+            bad.append(f"{tag}: completed=0 -- this is the superseded-artifact signature")
+        elif scored != s_.get("completed"):
+            bad.append(f"{tag}: summary says {s_.get('completed')} completed, raw games hold "
+                       f"{scored}")
+        if mt <= qmtime:
+            bad.append(f"{tag}: summary is older than the quarantine directory")
+        if not cfg_ok:
+            bad.append(f"{tag}: configuration differs from the T0 control on a held-constant "
+                       f"field")
+        if not comp.get("calls"):
+            bad.append(f"{tag}: zero component calls -- INVALID per the registered protocol, "
+                       f"not a null result")
+    return (not bad), {"_n_inputs": len(live), "arms": rows, "violations": bad}
+
+
+def inject_transfer_superseded(ctx):
+    c = dict(ctx)
+    c["transfer_arms"] = list(ctx.get("transfer_arms") or []) + [
+        {"summary": {"tag": "injected_stale", "completed": 0, "config": {},
+                     "component": {"calls": 0}},
+         "games": [], "calibration": [], "path": None}]
+    return c
+
+
 CHECKS = [
     Check("V01", "MCGS field scores recompute from per-game records",
           check_field_scores, inject_field_score,
@@ -811,6 +901,10 @@ CHECKS = [
     Check("V18", "field-score claims have a measured replication set behind them",
           check_field_claims_have_a_noise_floor, inject_noise_floor,
           "a K difference reported without the 5 pp run-to-run spread it sits inside"),
+    Check("V20", "transfer arms are live artifacts, not superseded ones",
+          check_transfer_arms_are_live_not_superseded, inject_transfer_superseded,
+          "the 2026-07-31 provider load failure, which wrote completed:0 summaries into the "
+          "live transfer directories where any glob would read them as results"),
     Check("V19", "opponent-flag conflicts appear only where two worlds exist",
           check_opponent_conflicts_only_where_possible, inject_opponent_conflicts,
           "a K=1 arm reporting cross-world disagreement: the counter measuring something "

@@ -16,10 +16,10 @@ single verdict, and this report does not.
 | `BYTERL_FIXED_DECK` | **PASS** | the extension arm separates from the random floor, early-vs-late |
 | `BYTERL_E2E` | **PARTIAL** | legal and diverse construction met; external improvement not |
 | `BYTERL_SCALE` | **COMPUTE_LIMITED** | 9.11% and 10.85% of the matched budget in the registered arms |
-| `TRANSFER` | **NOT_RUN** | gate opened only when `BYTERL_REFERENCE_FIDELITY` passed; no time for 200-game arms |
+| `TRANSFER` | **INCONCLUSIVE** | both arms positive but inside the measured 5.0 pp noise floor |
 | `PACKAGE` | **NOT_RUN** | no candidate qualified |
 | `SUBMISSION` | **NOT_RUN** | `DECISION_RULES §5` forbids it without a credible gate |
-| `OVERALL` | **PARTIAL** | two PASS, five PARTIAL/limited, three NOT_RUN |
+| `OVERALL` | **PARTIAL** | three PASS, four PARTIAL/limited, one INCONCLUSIVE, two NOT_RUN |
 
 `STATUS.md` computes each from artifacts, names every unmet requirement, and treats a missing
 artifact as `NOT_RUN` rather than as met.
@@ -123,6 +123,42 @@ fresh initialisation learns to beat random play. The flatness was budget.
 It does not make the system competitive: the frozen bar is 0.5833 and this arm reaches ~0.15.
 
 The depth arms were defeated twice by simulation cost. `EXTENSION_RESULTS.md` has both.
+
+## Transfer, and the second measurement that says the same thing
+
+`TRANSFER=INCONCLUSIVE`, against a noise floor measured before any arm ran:
+
+| arm | field | vs floor mean | component calls | inference | share of wall clock |
+|---|---:|---:|---:|---:|---:|
+| T0 controls ×3 | 0.085–0.135 | — | — | — | — |
+| `T1` policy prior | 0.130 | +1.50 pp | 83,354 | 2.39 ms | 7.4% |
+| `T2` rollout policy | 0.120 | +0.50 pp | 6,172,385 | 2.18 ms | **77.6%** |
+
+Both positive, both inside the 5.0 pp floor. `DECISION_RULES §4` names that INCONCLUSIVE — neither
+pass nor fail — and it is reported as such.
+
+**The equal-simulation reading is valid and was checked before interpreting.** Every arm delivered
+12.0 simulations per decision, completed 200/200 games, abandoned none, and searched comparably.
+No part of either result is inference cost buying fewer searches.
+
+**The deployment reading is separate and much less kind to T2.** It makes 74× the calls T1 does —
+a rollout policy is queried at every rollout step, an expansion prior once per expansion — and
+spends 78% of its wall clock inside the network for no measurable strength. Under a deployment
+clock that is strongly negative. The two readings are not interchangeable.
+
+And **M09/M10 on 500 frozen decisions** says the same thing as the compute finding, from an
+independent direction:
+
+| | K=1 | K=8 |
+|---|---:|---:|
+| action stability | 0.6106 | 0.6119 |
+| predicted-probability SD across repeats | 0.0610 | **0.0454** |
+
+The ensemble reduces variance in the **value** and leaves the **argmax** untouched, while the
+worlds genuinely disagree (agreement 0.5633, 3.23 distinct best actions). A method that does not
+change the chosen action cannot change the outcome, whatever it does to the reported probability.
+That is why `paired_k8` sits inside the K=1 replication spread — and it is the mechanism behind
+the 1.2% figure rather than another way of stating it.
 
 ## Twenty-seven defects, and the four families they fall into
 

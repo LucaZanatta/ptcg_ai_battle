@@ -63,7 +63,20 @@ def _one_game(job: Dict[str, Any], cfg: Dict[str, Any], seed: int, q):
         arm = TR.arm_config(job["transfer_arm"])
         ck = job.get("byterl_checkpoint")
         if ck and any(arm.values()):
-            provider = TR.ByteRLPriorProvider(ck)
+            # The c021 provider loads a feed-forward ByteRLNet and cannot read a c022 recurrent
+            # checkpoint -- it raises on state_dict. Transferring from the FAITHFUL system is the
+            # reason these arms are being run again at all (c021's are recorded UNTESTED), so a
+            # c022 checkpoint gets the c022 provider. Selected by what the file IS, not by a flag,
+            # because a flag can disagree with the checkpoint and the arm would silently be
+            # measuring the wrong network.
+            from cg import c022_transfer as TR2
+            import torch as _t
+            _sd = _t.load(ck, map_location="cpu", weights_only=False)
+            if any(k.startswith("lstm.") for k in _sd):
+                provider = TR2.C022RecurrentPriorProvider(ck)
+            else:
+                provider = TR.ByteRLPriorProvider(ck)
+            del _sd
     # Each game gets its own world base seed, so two games never search identical worlds; paired
     # arms reuse the SAME seed for the same game_id, which is what makes them paired.
     gcfg = dict(cfg)
@@ -120,6 +133,14 @@ def _one_game(job: Dict[str, Any], cfg: Dict[str, Any], seed: int, q):
            "statuses": statuses, "rewards": rewards, "env_steps": n_steps,
            "agent_exceptions": len(ag.exceptions),
            "seconds": round(time.time() - t0, 2),
+           # The registered transfer protocol: "every transfer arm must report a nonzero call
+           # count for the component it enables, and zero for the components it does not. An arm
+           # with a zero call count for its own component is INVALID, not a null result."
+           # Latency is recorded beside it because inference cost competes with search under a
+           # per-game wall guard, and a component that merely made the arm slower must not be
+           # read as a component that made it weaker.
+           "provider": (provider.report() if provider is not None
+                        and hasattr(provider, "report") else None),
            "report": ag.report(),
            "calibration": cal,
            "traces": ag.traces[:2],
@@ -346,6 +367,30 @@ def run_arm(a) -> Dict[str, Any]:
         "calibration_rows": len(cal_rows),
         "budget_delivered": bool(agg_stats.get("decision_deadline_stops", 0) == 0),
     }
+    # ---- transfer component accounting (registered protocol, "verification that the component
+    # is actually USED"). Aggregated across games; absent for arms with no provider.
+    provs = [r["provider"] for r in results if r.get("provider")]
+    if provs:
+        calls = sum(int(x.get("calls") or 0) for x in provs)
+        fails = sum(int(x.get("failures") or 0) for x in provs)
+        secs = sum(float(x.get("seconds_in_provider") or 0.0) for x in provs)
+        summary["component"] = {
+            "provider": provs[0].get("provider"),
+            "checkpoint": provs[0].get("checkpoint"),
+            "recurrent_state": provs[0].get("recurrent_state"),
+            "calls": calls, "failures": fails,
+            "success_rate": round(1 - fails / calls, 4) if calls else None,
+            "seconds_in_provider": round(secs, 1),
+            "mean_inference_ms": round(1000 * secs / calls, 3) if calls else None,
+            "calls_per_searched_decision": round(
+                calls / max(1, summary["searched_decisions"]), 2),
+            "provider_share_of_arm_wall_clock": round(
+                secs / max(1e-9, summary["wall_clock_s"] * summary["nproc"]), 4),
+            "VALID": bool(calls > 0),
+            "why_valid_matters": ("an arm that names a checkpoint but never calls it is "
+                                  "indistinguishable from its own control and would be reported "
+                                  "as 'no effect'"),
+        }
     if a.protocol == "source_time":
         # A MEAN is the wrong statistic for a timed arm and is actively misleading here. The
         # first probe reported 82,540 simulations per decision; the MEDIAN was 610, and two
