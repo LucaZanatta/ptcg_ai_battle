@@ -863,3 +863,53 @@ presented as the original design.
 2,400 s guard, sized for 96 simulations — and applied to another. D18 (load bounds), D22 (my own
 tooling), D26 (bounded vs unbounded rungs) and now D27 are all that. The guard is now derived
 from the arm's own simulation count rather than inherited.
+
+## D28 — every arm I killed left its workers alive, for eleven hours
+
+**Found** 2026-07-31 07:40, because the user noticed the machine's memory was full and asked
+whether anything had been left running. Nothing of mine was *supposed* to be running.
+
+```text
+18 orphaned processes, reparented to systemd --user, holding 24.7 GB
+   7 x ~2.7 GB   started 19:51   ByteRL ladder relaunch
+   7 x ~0.8 GB   started 20:52   campaign stopped at the b2 line by the handoff
+   4 x ~0.8 GB   started 03:32   k1_s768, killed for D27
+```
+
+Each had accumulated **33 minutes of CPU time**. Eighteen of them, roughly ten CPU-hours, and
+about 40% of the machine's memory, from 19:51 until they were found.
+
+**Cause.** Every kill I performed targeted the parent — `kill -TERM <pid>` on the campaign script
+or the trainer — and multiprocessing workers do not die with their parent. They are reparented and
+keep running. `tools/c022_sweep.sh` has carried `set -m` and a process-group trap since D12 for
+exactly this reason; the ad-hoc kill sequences I typed at the prompt did not, and neither did the
+`handoff.sh` and `chain2.sh` helpers I wrote during the night.
+
+Worse, the workers ignore `SIGTERM` while blocked in native engine calls. The first cleanup pass
+sent `TERM` to all eighteen and killed none; only `SIGKILL` worked.
+
+**What it cost the evidence.** Every throughput figure measured after 19:51 was taken with an
+unmeasured background load of 7 to 18 processes. That includes the per-rung learner rates in
+`D22` — where I attributed BR0's 91/s, BR1's 115/s and BR1.5's 131/s to my own foreground tooling.
+The orphans were present for all three, so they do not explain the *differences* between them,
+but the absolute rates are lower than a clean machine would give and the D22 entry does not say
+so. It does now, by reference to this one.
+
+It also explains, at least partly, why the depth arms ran so far over estimate: `k8_s384` took
+117 minutes against ~51 predicted, on a machine quietly hosting fourteen orphaned workers.
+
+**What it did NOT cost.** No result file. The MCGS pool workers write through a queue the dead
+parent owned, and the ByteRL actors push unrolls to a queue that no longer had a consumer, so
+none of them could write anything anywhere. Every artifact in this tree was written by a live
+parent. `D12`'s quarantine machinery exists because an orphan once *did* write results; these
+could not.
+
+**Fix.** Cleaned: 18 killed, memory 35 GB -> 15 GB used. The lasting fix is that any future kill
+must target the process group (`kill -- -$PGID`) or use the `set -m` + EXIT-trap pattern that
+`c022_sweep.sh` already carries, and must escalate to `SIGKILL` rather than assuming `SIGTERM`
+was honoured.
+
+**Why this is the right defect to end on.** It was not found by a check, a validator, or a probe.
+It was found because someone looked at the machine and asked a question I had not thought to ask.
+Twenty-seven defects of instrumentation, and the twenty-eighth was housekeeping I never
+instrumented at all.
