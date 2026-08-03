@@ -88,6 +88,28 @@ entire run**:
 Look at r22's child: **0.5240, which is *below* the mean best child of 0.5245.** It did not win by
 being good. It won because the incumbent drew its minimum.
 
+**Updated at 35 rounds, including the exception.** A fourth acceptance landed at r34, and it is
+the one that does not fit the pattern:
+
+| accepted | incumbent | rank of 35 (lowest = 1) | child | vs mean child (0.5231) |
+|---|---:|---:|---:|---|
+| r5 | 0.4980 | 10 | 0.5460 | above |
+| r22 | 0.4750 | 2 | 0.5240 | at |
+| r29 | 0.4720 | **1** | 0.5210 | below |
+| **r34** | **0.5060** | 20 — near the mean | **0.5570** | **the run's maximum** |
+
+r34 was won by the child, not lost by the incumbent. It is also, to three decimals, exactly the
+expected maximum of the run: 175 children had been drawn by then, and the maximum of 175 draws at
+SD 0.0127 sits around 0.544–0.557.
+
+**Four acceptances in 35 rounds against roughly 1.7 expected under the null** — the gain
+distribution is centred near +1.5 points with SD ~1.8, so a 4.47-point threshold fires about 5% of
+rounds. Four is more than 1.7 and not remarkably more.
+
+And the acceptance count is not the decisive evidence anyway. **If the accepted changes were real
+improvements, the incumbent series would be rising. It is falling.** Ten thousand games per
+configuration say the defaults are the best configuration the search ever held.
+
 **The defect.** The rule is `best_child − incumbent ≥ margin`, with the incumbent measured once
 per round. That is asymmetric in a way the registered protocol did not notice: re-measuring the
 incumbent every round controls for *machine conditions*, but not for the incumbent's own sampling

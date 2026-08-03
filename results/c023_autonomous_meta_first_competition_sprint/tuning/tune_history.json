@@ -380,6 +380,28 @@
       "n_changed_params": 9,
       "elapsed_seconds": 425.1,
       "utc": "2026-08-03T22:26:27Z"
+    },
+    {
+      "round": 33,
+      "incumbent_score": 0.498,
+      "best_child": "tune_r33_c2",
+      "best_child_score": 0.514,
+      "gain_points": 1.6,
+      "accepted": false,
+      "n_changed_params": 9,
+      "elapsed_seconds": 432.3,
+      "utc": "2026-08-03T22:33:39Z"
+    },
+    {
+      "round": 34,
+      "incumbent_score": 0.506,
+      "best_child": "tune_r34_c3",
+      "best_child_score": 0.557,
+      "gain_points": 5.1,
+      "accepted": true,
+      "n_changed_params": 12,
+      "elapsed_seconds": 439.8,
+      "utc": "2026-08-03T22:40:59Z"
     }
   ],
   "incumbent_weights": {
@@ -391,9 +413,28 @@
     "78": 19208,
     "95": 20117,
     "53": 24,
-    "34": 34
+    "34": 34,
+    "69": 10734,
+    "11": 1783,
+    "28": 16506
   },
   "incumbent_slots": [
+    {
+      "index": 11,
+      "default": 1000,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 405,
+      "tuned_to": 1783
+    },
+    {
+      "index": 28,
+      "default": 18000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 461,
+      "tuned_to": 16506
+    },
     {
       "index": 34,
       "default": 50,
@@ -443,6 +484,14 @@
       "tuned_to": 1
     },
     {
+      "index": 69,
+      "default": 10000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 653,
+      "tuned_to": 10734
+    },
+    {
       "index": 75,
       "default": 1000,
       "where": "score Sub=",
@@ -467,5 +516,5 @@
       "tuned_to": 20117
     }
   ],
-  "best_score": 0.483
+  "best_score": 0.557
 }
