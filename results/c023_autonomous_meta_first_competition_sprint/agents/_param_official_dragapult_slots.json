@@ -1,0 +1,777 @@
+{
+  "base": "official_dragapult",
+  "source_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "param_sha256": "dbaaa8e85ebb41163e32ac42f757f5ad2573fe9c1dba42c94c889d327e282463",
+  "slots": [
+    {
+      "index": 0,
+      "default": 250,
+      "where": "score Add=",
+      "function": "pokemon_score",
+      "line": 113
+    },
+    {
+      "index": 1,
+      "default": 130,
+      "where": "score Add=",
+      "function": "pokemon_score",
+      "line": 115
+    },
+    {
+      "index": 2,
+      "default": 200,
+      "where": "score Sub=",
+      "function": "pokemon_score",
+      "line": 120
+    },
+    {
+      "index": 3,
+      "default": 300,
+      "where": "score Add=",
+      "function": "pokemon_score",
+      "line": 122
+    },
+    {
+      "index": 4,
+      "default": 0,
+      "where": "plan_score =",
+      "function": "main_option_proc",
+      "line": 243
+    },
+    {
+      "index": 5,
+      "default": 50000,
+      "where": "max_score =",
+      "function": "main_option_proc",
+      "line": 255
+    },
+    {
+      "index": 6,
+      "default": 50000,
+      "where": "score =",
+      "function": "main_option_proc",
+      "line": 266
+    },
+    {
+      "index": 7,
+      "default": 1200,
+      "where": "score Sub=",
+      "function": "main_option_proc",
+      "line": 270
+    },
+    {
+      "index": 8,
+      "default": 300,
+      "where": "score Sub=",
+      "function": "main_option_proc",
+      "line": 272
+    },
+    {
+      "index": 9,
+      "default": 1200,
+      "where": "score Add=",
+      "function": "main_option_proc",
+      "line": 274
+    },
+    {
+      "index": 10,
+      "default": 60000,
+      "where": "score =",
+      "function": "attach_score",
+      "line": 403
+    },
+    {
+      "index": 11,
+      "default": 1000,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 405
+    },
+    {
+      "index": 12,
+      "default": 22000,
+      "where": "return from attach_score",
+      "function": "attach_score",
+      "line": 414
+    },
+    {
+      "index": 13,
+      "default": 18000,
+      "where": "return from attach_score",
+      "function": "attach_score",
+      "line": 416
+    },
+    {
+      "index": 14,
+      "default": 20000,
+      "where": "score =",
+      "function": "attach_score",
+      "line": 421
+    },
+    {
+      "index": 15,
+      "default": 200,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 424
+    },
+    {
+      "index": 16,
+      "default": 250,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 431
+    },
+    {
+      "index": 17,
+      "default": 150,
+      "where": "score Sub=",
+      "function": "attach_score",
+      "line": 433
+    },
+    {
+      "index": 18,
+      "default": 200,
+      "where": "score Sub=",
+      "function": "attach_score",
+      "line": 435
+    },
+    {
+      "index": 19,
+      "default": 200,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 437
+    },
+    {
+      "index": 20,
+      "default": 400,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 441
+    },
+    {
+      "index": 21,
+      "default": 150,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 444
+    },
+    {
+      "index": 22,
+      "default": 100,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 446
+    },
+    {
+      "index": 23,
+      "default": 50,
+      "where": "score Add=",
+      "function": "attach_score",
+      "line": 448
+    },
+    {
+      "index": 24,
+      "default": 200,
+      "where": "score Sub=",
+      "function": "attach_score",
+      "line": 450
+    },
+    {
+      "index": 25,
+      "default": 500,
+      "where": "score Sub=",
+      "function": "attach_score",
+      "line": 452
+    },
+    {
+      "index": 26,
+      "default": 0,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 456
+    },
+    {
+      "index": 27,
+      "default": 1000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 459
+    },
+    {
+      "index": 28,
+      "default": 18000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 461
+    },
+    {
+      "index": 29,
+      "default": 20000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 464
+    },
+    {
+      "index": 30,
+      "default": 3000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 466
+    },
+    {
+      "index": 31,
+      "default": 40000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 471
+    },
+    {
+      "index": 32,
+      "default": 30000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 474
+    },
+    {
+      "index": 33,
+      "default": 10000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 476
+    },
+    {
+      "index": 34,
+      "default": 50,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 478
+    },
+    {
+      "index": 35,
+      "default": 50,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 481
+    },
+    {
+      "index": 36,
+      "default": 2000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 483
+    },
+    {
+      "index": 37,
+      "default": 50000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 486
+    },
+    {
+      "index": 38,
+      "default": 5,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 488
+    },
+    {
+      "index": 39,
+      "default": 28000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 494
+    },
+    {
+      "index": 40,
+      "default": 15000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 496
+    },
+    {
+      "index": 41,
+      "default": 10,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 498
+    },
+    {
+      "index": 42,
+      "default": 30000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 503
+    },
+    {
+      "index": 43,
+      "default": 5,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 506
+    },
+    {
+      "index": 44,
+      "default": 40,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 508
+    },
+    {
+      "index": 45,
+      "default": 35000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 510
+    },
+    {
+      "index": 46,
+      "default": 40000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 515
+    },
+    {
+      "index": 47,
+      "default": 80000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 518
+    },
+    {
+      "index": 48,
+      "default": 80,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 522
+    },
+    {
+      "index": 49,
+      "default": 35000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 531
+    },
+    {
+      "index": 50,
+      "default": 20,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 539
+    },
+    {
+      "index": 51,
+      "default": 70,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 542
+    },
+    {
+      "index": 52,
+      "default": 5,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 544
+    },
+    {
+      "index": 53,
+      "default": 15,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 548
+    },
+    {
+      "index": 54,
+      "default": 60000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 551
+    },
+    {
+      "index": 55,
+      "default": 10,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 555
+    },
+    {
+      "index": 56,
+      "default": 55000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 557
+    },
+    {
+      "index": 57,
+      "default": 25000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 559
+    },
+    {
+      "index": 58,
+      "default": 50000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 563
+    },
+    {
+      "index": 59,
+      "default": 30000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 565
+    },
+    {
+      "index": 60,
+      "default": 45000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 568
+    },
+    {
+      "index": 61,
+      "default": 4000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 571
+    },
+    {
+      "index": 62,
+      "default": 10,
+      "where": "score Div=",
+      "function": "hand_score",
+      "line": 586
+    },
+    {
+      "index": 63,
+      "default": 10,
+      "where": "score Sub=",
+      "function": "hand_score",
+      "line": 590
+    },
+    {
+      "index": 64,
+      "default": 100,
+      "where": "score Sub=",
+      "function": "hand_score",
+      "line": 592
+    },
+    {
+      "index": 65,
+      "default": 100000,
+      "where": "score Sub=",
+      "function": "hand_score",
+      "line": 594
+    },
+    {
+      "index": 66,
+      "default": 0,
+      "where": "support_score =",
+      "function": "agent",
+      "line": 603
+    },
+    {
+      "index": 67,
+      "default": 0,
+      "where": "score =",
+      "function": "agent",
+      "line": 631
+    },
+    {
+      "index": 68,
+      "default": 1,
+      "where": "score =",
+      "function": "agent",
+      "line": 638
+    },
+    {
+      "index": 69,
+      "default": 10000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 653
+    },
+    {
+      "index": 70,
+      "default": 20000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 656
+    },
+    {
+      "index": 71,
+      "default": 10000,
+      "where": "score Sub=",
+      "function": "agent",
+      "line": 658
+    },
+    {
+      "index": 72,
+      "default": 50000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 660
+    },
+    {
+      "index": 73,
+      "default": 100000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 663
+    },
+    {
+      "index": 74,
+      "default": 30000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 665
+    },
+    {
+      "index": 75,
+      "default": 1000,
+      "where": "score Sub=",
+      "function": "agent",
+      "line": 667
+    },
+    {
+      "index": 76,
+      "default": 2000,
+      "where": "score Sub=",
+      "function": "agent",
+      "line": 669
+    },
+    {
+      "index": 77,
+      "default": 100000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 672
+    },
+    {
+      "index": 78,
+      "default": 10000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 696
+    },
+    {
+      "index": 79,
+      "default": 30000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 702
+    },
+    {
+      "index": 80,
+      "default": 100000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 706
+    },
+    {
+      "index": 81,
+      "default": 30000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 710
+    },
+    {
+      "index": 82,
+      "default": 10000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 712
+    },
+    {
+      "index": 83,
+      "default": 100000,
+      "where": "score Sub=",
+      "function": "agent",
+      "line": 714
+    },
+    {
+      "index": 84,
+      "default": 200,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 720
+    },
+    {
+      "index": 85,
+      "default": 20,
+      "where": "score =",
+      "function": "agent",
+      "line": 725
+    },
+    {
+      "index": 86,
+      "default": 10,
+      "where": "score =",
+      "function": "agent",
+      "line": 727
+    },
+    {
+      "index": 87,
+      "default": 1,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 730
+    },
+    {
+      "index": 88,
+      "default": 51000,
+      "where": "score =",
+      "function": "agent",
+      "line": 735
+    },
+    {
+      "index": 89,
+      "default": 53000,
+      "where": "score =",
+      "function": "agent",
+      "line": 738
+    },
+    {
+      "index": 90,
+      "default": 51000,
+      "where": "score =",
+      "function": "agent",
+      "line": 743
+    },
+    {
+      "index": 91,
+      "default": 52000,
+      "where": "score =",
+      "function": "agent",
+      "line": 748
+    },
+    {
+      "index": 92,
+      "default": 50000,
+      "where": "score =",
+      "function": "agent",
+      "line": 755
+    },
+    {
+      "index": 93,
+      "default": 50000,
+      "where": "score =",
+      "function": "agent",
+      "line": 757
+    },
+    {
+      "index": 94,
+      "default": 75000,
+      "where": "score =",
+      "function": "agent",
+      "line": 764
+    },
+    {
+      "index": 95,
+      "default": 15000,
+      "where": "score =",
+      "function": "agent",
+      "line": 766
+    },
+    {
+      "index": 96,
+      "default": 42000,
+      "where": "score =",
+      "function": "agent",
+      "line": 769
+    },
+    {
+      "index": 97,
+      "default": 40000,
+      "where": "score =",
+      "function": "agent",
+      "line": 773
+    },
+    {
+      "index": 98,
+      "default": 35000,
+      "where": "score =",
+      "function": "agent",
+      "line": 776
+    },
+    {
+      "index": 99,
+      "default": 14000,
+      "where": "score =",
+      "function": "agent",
+      "line": 781
+    },
+    {
+      "index": 100,
+      "default": 80000,
+      "where": "score =",
+      "function": "agent",
+      "line": 786
+    },
+    {
+      "index": 101,
+      "default": 46000,
+      "where": "score =",
+      "function": "agent",
+      "line": 793
+    },
+    {
+      "index": 102,
+      "default": 44000,
+      "where": "score =",
+      "function": "agent",
+      "line": 798
+    },
+    {
+      "index": 103,
+      "default": 45000,
+      "where": "score =",
+      "function": "agent",
+      "line": 803
+    },
+    {
+      "index": 104,
+      "default": 35000,
+      "where": "score =",
+      "function": "agent",
+      "line": 808
+    },
+    {
+      "index": 105,
+      "default": 30000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 819
+    },
+    {
+      "index": 106,
+      "default": 70000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 823
+    },
+    {
+      "index": 107,
+      "default": 1,
+      "where": "score =",
+      "function": "agent",
+      "line": 829
+    },
+    {
+      "index": 108,
+      "default": 40000,
+      "where": "score =",
+      "function": "agent",
+      "line": 831
+    },
+    {
+      "index": 109,
+      "default": 10000,
+      "where": "score =",
+      "function": "agent",
+      "line": 834
+    }
+  ]
+}

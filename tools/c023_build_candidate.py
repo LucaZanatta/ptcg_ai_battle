@@ -71,7 +71,7 @@ def base_deck(base: str) -> List[int]:
 
 def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
           params: Optional[Dict] = None, parent: Optional[str] = None,
-          rationale: str = "") -> Dict:
+          rationale: str = "", param_source: Optional[str] = None) -> Dict:
     from cg import c023_players as P
     if base not in ATTRIBUTION:
         raise ValueError(f"{base!r} is not a submission-eligible official base; SOURCES.md "
@@ -86,7 +86,10 @@ def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
 
     d = os.path.join(AGENTS, candidate_id)
     os.makedirs(d, exist_ok=True)
-    shutil.copyfile(os.path.join(bdir, "main.py"), os.path.join(d, "base_agent.py"))
+    # `param_source` ships the AST-parameterised derivative instead of the sample verbatim. Its
+    # defaults reproduce the sample exactly, and tools/c023_identity.py verifies that.
+    shutil.copyfile(param_source or os.path.join(bdir, "main.py"),
+                    os.path.join(d, "base_agent.py"))
     shutil.copyfile(WRAPPER, os.path.join(d, "main.py"))
     shutil.copyfile(PLANNER, os.path.join(d, "planner.py"))
     with open(os.path.join(d, "deck.csv"), "w") as fh:
@@ -97,7 +100,10 @@ def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
         fh.write(f"base_agent.py: {ATTRIBUTION[base]}\n"
                  f"reuse class: SUBMISSION_REUSE_ALLOWED (see results/.../SOURCES.md)\n"
                  f"main.py, params.json: c023 contract code (this repository)\n"
-                 f"deck.csv: see DECK_CHANGE_LEDGER.md\n")
+                 + ("base_agent.py is a DERIVATIVE of that sample: tools/c023_paramize.py "
+                    "replaced its heuristic score constants with parameter lookups whose "
+                    "defaults are the original values\n" if param_source else "")
+                 + "deck.csv: see DECK_CHANGE_LEDGER.md\n")
 
     man = {
         "candidate_id": candidate_id,
@@ -111,6 +117,8 @@ def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
         "planner_sha256": sha256_file(os.path.join(d, "planner.py")),
         "params_sha256": sha256_file(os.path.join(d, "params.json")),
         "params": params,
+        "paramized": bool(param_source),
+        "param_source": os.path.relpath(param_source, _REPO) if param_source else None,
         "dir": os.path.relpath(d, _REPO),
     }
     os.makedirs(os.path.join(OUT_ROOT, "candidate_manifests"), exist_ok=True)
@@ -127,13 +135,14 @@ def main() -> int:
     ap.add_argument("--params", help="path to a params.json")
     ap.add_argument("--parent")
     ap.add_argument("--rationale", default="")
+    ap.add_argument("--param-source", help="path to an AST-parameterised base agent")
     a = ap.parse_args()
     deck = None
     if a.deck:
         with open(a.deck) as fh:
             deck = [int(x) for x in fh if x.strip()]
     params = json.load(open(a.params)) if a.params else None
-    man = build(a.id, a.base, deck, params, a.parent, a.rationale)
+    man = build(a.id, a.base, deck, params, a.parent, a.rationale, a.param_source)
     print(json.dumps({k: man[k] for k in ("candidate_id", "base", "deck_sha256",
                                           "base_agent_sha256", "params_sha256")}, indent=2))
     return 0
