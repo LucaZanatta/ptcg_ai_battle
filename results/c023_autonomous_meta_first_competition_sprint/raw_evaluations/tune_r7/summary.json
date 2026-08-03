@@ -1,0 +1,424 @@
+{
+  "tag": "tune_r7",
+  "meta": {
+    "utc": "2026-08-03T19:19:41Z",
+    "round": 7,
+    "accept_margin": 4.47,
+    "opponents": [
+      "pub_tetsutani_grimmsnarl",
+      "pub_jazivxt_codex_alakazam",
+      "official_iono",
+      "official_mega_abomasnow",
+      "official_dragapult"
+    ],
+    "games_per_pair": 200,
+    "elapsed_seconds": 465.0
+  },
+  "requested_games": 6000,
+  "completed_games": 6000,
+  "errors": 0,
+  "summary": {
+    "tune_r7_c4": {
+      "candidate_id": "tune_r7_c4",
+      "requested_games": 1000,
+      "completed_games": 1000,
+      "errors": 0,
+      "field_score": 0.488,
+      "field_score_off_mirror": 0.488,
+      "pooled_score_rate": 0.488,
+      "pooled_wilson95": [
+        0.4571,
+        0.519
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 200,
+          "score_rate": 0.435,
+          "wilson95": [
+            0.3682,
+            0.5043
+          ]
+        },
+        "official_iono": {
+          "games": 200,
+          "score_rate": 0.65,
+          "wilson95": [
+            0.5816,
+            0.7127
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 200,
+          "score_rate": 0.475,
+          "wilson95": [
+            0.4069,
+            0.544
+          ]
+        },
+        "pub_jazivxt_codex_alakazam": {
+          "games": 200,
+          "score_rate": 0.565,
+          "wilson95": [
+            0.4957,
+            0.6318
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 200,
+          "score_rate": 0.315,
+          "wilson95": [
+            0.2546,
+            0.3824
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.506,
+        "seat1": 0.47,
+        "seat0_games": 500,
+        "seat1_games": 500
+      },
+      "latency_p99_ms": 268.0953,
+      "latency_max_ms": 268.0953,
+      "mean_game_seconds": 1.4553,
+      "decisions": 84954,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.3334
+    },
+    "tune_r7_c3": {
+      "candidate_id": "tune_r7_c3",
+      "requested_games": 1000,
+      "completed_games": 1000,
+      "errors": 0,
+      "field_score": 0.501,
+      "field_score_off_mirror": 0.501,
+      "pooled_score_rate": 0.501,
+      "pooled_wilson95": [
+        0.4701,
+        0.5319
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 200,
+          "score_rate": 0.475,
+          "wilson95": [
+            0.4069,
+            0.544
+          ]
+        },
+        "official_iono": {
+          "games": 200,
+          "score_rate": 0.64,
+          "wilson95": [
+            0.5714,
+            0.7033
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 200,
+          "score_rate": 0.565,
+          "wilson95": [
+            0.4957,
+            0.6318
+          ]
+        },
+        "pub_jazivxt_codex_alakazam": {
+          "games": 200,
+          "score_rate": 0.525,
+          "wilson95": [
+            0.456,
+            0.5931
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 200,
+          "score_rate": 0.3,
+          "wilson95": [
+            0.2407,
+            0.3668
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.488,
+        "seat1": 0.514,
+        "seat0_games": 500,
+        "seat1_games": 500
+      },
+      "latency_p99_ms": 296.6745,
+      "latency_max_ms": 296.6745,
+      "mean_game_seconds": 1.4874,
+      "decisions": 86165,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.333
+    },
+    "tune_r7_c2": {
+      "candidate_id": "tune_r7_c2",
+      "requested_games": 1000,
+      "completed_games": 1000,
+      "errors": 0,
+      "field_score": 0.494,
+      "field_score_off_mirror": 0.494,
+      "pooled_score_rate": 0.494,
+      "pooled_wilson95": [
+        0.4631,
+        0.525
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 200,
+          "score_rate": 0.485,
+          "wilson95": [
+            0.4167,
+            0.5539
+          ]
+        },
+        "official_iono": {
+          "games": 200,
+          "score_rate": 0.64,
+          "wilson95": [
+            0.5714,
+            0.7033
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 200,
+          "score_rate": 0.47,
+          "wilson95": [
+            0.402,
+            0.5391
+          ]
+        },
+        "pub_jazivxt_codex_alakazam": {
+          "games": 200,
+          "score_rate": 0.575,
+          "wilson95": [
+            0.5057,
+            0.6415
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 200,
+          "score_rate": 0.3,
+          "wilson95": [
+            0.2407,
+            0.3668
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.492,
+        "seat1": 0.496,
+        "seat0_games": 500,
+        "seat1_games": 500
+      },
+      "latency_p99_ms": 403.9968,
+      "latency_max_ms": 423.3123,
+      "mean_game_seconds": 1.4905,
+      "decisions": 86343,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.3312
+    },
+    "tune_r7_c1": {
+      "candidate_id": "tune_r7_c1",
+      "requested_games": 1000,
+      "completed_games": 1000,
+      "errors": 0,
+      "field_score": 0.536,
+      "field_score_off_mirror": 0.536,
+      "pooled_score_rate": 0.536,
+      "pooled_wilson95": [
+        0.505,
+        0.5667
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 200,
+          "score_rate": 0.61,
+          "wilson95": [
+            0.5409,
+            0.6749
+          ]
+        },
+        "official_iono": {
+          "games": 200,
+          "score_rate": 0.675,
+          "wilson95": [
+            0.6073,
+            0.7361
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 200,
+          "score_rate": 0.515,
+          "wilson95": [
+            0.4461,
+            0.5833
+          ]
+        },
+        "pub_jazivxt_codex_alakazam": {
+          "games": 200,
+          "score_rate": 0.535,
+          "wilson95": [
+            0.4659,
+            0.6028
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 200,
+          "score_rate": 0.345,
+          "wilson95": [
+            0.2826,
+            0.4132
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.522,
+        "seat1": 0.55,
+        "seat0_games": 500,
+        "seat1_games": 500
+      },
+      "latency_p99_ms": 1184.3132,
+      "latency_max_ms": 1184.3132,
+      "mean_game_seconds": 1.5229,
+      "decisions": 87133,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.3319
+    },
+    "tune_r7_c0": {
+      "candidate_id": "tune_r7_c0",
+      "requested_games": 1000,
+      "completed_games": 1000,
+      "errors": 0,
+      "field_score": 0.502,
+      "field_score_off_mirror": 0.502,
+      "pooled_score_rate": 0.502,
+      "pooled_wilson95": [
+        0.4711,
+        0.5329
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 200,
+          "score_rate": 0.48,
+          "wilson95": [
+            0.4118,
+            0.549
+          ]
+        },
+        "official_iono": {
+          "games": 200,
+          "score_rate": 0.68,
+          "wilson95": [
+            0.6125,
+            0.7407
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 200,
+          "score_rate": 0.525,
+          "wilson95": [
+            0.456,
+            0.5931
+          ]
+        },
+        "pub_jazivxt_codex_alakazam": {
+          "games": 200,
+          "score_rate": 0.54,
+          "wilson95": [
+            0.4708,
+            0.6077
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 200,
+          "score_rate": 0.285,
+          "wilson95": [
+            0.2269,
+            0.3512
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.5,
+        "seat1": 0.504,
+        "seat0_games": 500,
+        "seat1_games": 500
+      },
+      "latency_p99_ms": 321.4889,
+      "latency_max_ms": 373.7606,
+      "mean_game_seconds": 1.5567,
+      "decisions": 87415,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.3331
+    },
+    "tune_r7_inc": {
+      "candidate_id": "tune_r7_inc",
+      "requested_games": 1000,
+      "completed_games": 1000,
+      "errors": 0,
+      "field_score": 0.5035,
+      "field_score_off_mirror": 0.5035,
+      "pooled_score_rate": 0.5035,
+      "pooled_wilson95": [
+        0.4726,
+        0.5344
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 200,
+          "score_rate": 0.52,
+          "wilson95": [
+            0.451,
+            0.5882
+          ]
+        },
+        "official_iono": {
+          "games": 200,
+          "score_rate": 0.66,
+          "wilson95": [
+            0.5919,
+            0.7221
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 200,
+          "score_rate": 0.55,
+          "wilson95": [
+            0.4808,
+            0.6174
+          ]
+        },
+        "pub_jazivxt_codex_alakazam": {
+          "games": 200,
+          "score_rate": 0.515,
+          "wilson95": [
+            0.4461,
+            0.5833
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 200,
+          "score_rate": 0.2725,
+          "wilson95": [
+            0.2155,
+            0.3381
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.476,
+        "seat1": 0.531,
+        "seat0_games": 500,
+        "seat1_games": 500
+      },
+      "latency_p99_ms": 338.3864,
+      "latency_max_ms": 338.3864,
+      "mean_game_seconds": 1.4772,
+      "decisions": 87371,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.3351
+    }
+  }
+}

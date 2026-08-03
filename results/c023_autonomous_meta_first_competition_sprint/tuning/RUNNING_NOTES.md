@@ -37,6 +37,29 @@ That is the expected behaviour, it is why the registered protocol calls the sear
 *hypothesis*, and it is why `tune_best` must still clear confirmation on a fresh run and
 validation on a panel the search never saw.
 
+## The shrinkage, measured inside the search itself
+
+The registered protocol predicted it: *"the search will report a dev-panel gain, and most of it
+will not survive confirmation."* The search does not have to wait for the confirmation stage to
+show it, because it re-measures its own incumbent every round.
+
+| incumbent | rounds | scores | mean |
+|---|---|---|---:|
+| the untouched defaults | r0–r5 | 0.511, 0.508, 0.504, 0.515, 0.493, 0.498 | **0.5048** |
+| after the r5 change | r6–r10 | 0.514, 0.5035, 0.505, 0.512, 0.504 | **0.5077** |
+
+**The accepted change was worth +4.80 points when it was selected and +0.29 points when it was
+re-measured five times.**
+
+That is selection bias with a number on it, from the campaign's own data and at no extra cost.
+Nothing was done differently between the two rows — same policy, same panel, same harness, 1,000
+games per measurement. The +4.80 was the maximum of five draws from a distribution whose standard
+deviation is ~2.2 points; the +0.29 is what the change is actually worth.
+
+This is the single clearest illustration in the campaign of why `PANEL_SPLIT.json` separates
+screening from confirmation, and it is the same lesson `DECK_CHANGE_LEDGER.md` learned the
+expensive way when a deck mutation went from +7.25 at 400 games to −0.12 at 1,200.
+
 ## The one accepted change is semantically coherent, which is worth noting and not worth trusting
 
 **Parameter 39** — `hand_score`, line 494 of the official Dragapult sample: **28000 → 42956.**
