@@ -204,10 +204,79 @@
       "n_changed_params": 1,
       "elapsed_seconds": 434.4,
       "utc": "2026-08-03T20:30:20Z"
+    },
+    {
+      "round": 17,
+      "incumbent_score": 0.492,
+      "best_child": "tune_r17_c1",
+      "best_child_score": 0.505,
+      "gain_points": 1.3,
+      "accepted": false,
+      "n_changed_params": 1,
+      "elapsed_seconds": 439.3,
+      "utc": "2026-08-03T20:37:39Z"
+    },
+    {
+      "round": 18,
+      "incumbent_score": 0.511,
+      "best_child": "tune_r18_c1",
+      "best_child_score": 0.5195,
+      "gain_points": 0.85,
+      "accepted": false,
+      "n_changed_params": 1,
+      "elapsed_seconds": 451.2,
+      "utc": "2026-08-03T20:45:10Z"
+    },
+    {
+      "round": 19,
+      "incumbent_score": 0.509,
+      "best_child": "tune_r19_c2",
+      "best_child_score": 0.517,
+      "gain_points": 0.8,
+      "accepted": false,
+      "n_changed_params": 1,
+      "elapsed_seconds": 464.1,
+      "utc": "2026-08-03T20:52:54Z"
+    },
+    {
+      "round": 20,
+      "incumbent_score": 0.507,
+      "best_child": "tune_r20_c2",
+      "best_child_score": 0.532,
+      "gain_points": 2.5,
+      "accepted": false,
+      "n_changed_params": 1,
+      "elapsed_seconds": 469.6,
+      "utc": "2026-08-03T21:00:44Z"
+    },
+    {
+      "round": 21,
+      "incumbent_score": 0.513,
+      "best_child": "tune_r21_c1",
+      "best_child_score": 0.513,
+      "gain_points": 0.0,
+      "accepted": false,
+      "n_changed_params": 1,
+      "elapsed_seconds": 473.4,
+      "utc": "2026-08-03T21:08:37Z"
+    },
+    {
+      "round": 22,
+      "incumbent_score": 0.475,
+      "best_child": "tune_r22_c3",
+      "best_child_score": 0.524,
+      "gain_points": 4.9,
+      "accepted": true,
+      "n_changed_params": 4,
+      "elapsed_seconds": 460.2,
+      "utc": "2026-08-03T21:16:17Z"
     }
   ],
   "incumbent_weights": {
-    "39": 42956
+    "39": 42956,
+    "52": 4,
+    "75": 757,
+    "56": 60924
   },
   "incumbent_slots": [
     {
@@ -217,7 +286,31 @@
       "function": "hand_score",
       "line": 494,
       "tuned_to": 42956
+    },
+    {
+      "index": 52,
+      "default": 5,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 544,
+      "tuned_to": 4
+    },
+    {
+      "index": 56,
+      "default": 55000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 557,
+      "tuned_to": 60924
+    },
+    {
+      "index": 75,
+      "default": 1000,
+      "where": "score Sub=",
+      "function": "agent",
+      "line": 667,
+      "tuned_to": 757
     }
   ],
-  "best_score": 0.522
+  "best_score": 0.524
 }

@@ -71,22 +71,66 @@ This is the single clearest illustration in the campaign of why `PANEL_SPLIT.jso
 screening from confirmation, and it is the same lesson `DECK_CHANGE_LEDGER.md` learned the
 expensive way when a deck mutation went from +7.25 at 400 games to −0.12 at 1,200.
 
-## The one accepted change is semantically coherent, which is worth noting and not worth trusting
+## D7 — the acceptance rule is asymmetric, and both acceptances prove it
 
-**Parameter 39** — `hand_score`, line 494 of the official Dragapult sample: **28000 → 42956.**
+Twenty-three rounds, two acceptances, and **both fired on the two lowest incumbent draws in the
+entire run**:
 
-In the original source that constant is the value of wanting **Latias ex** in hand, in the
-specific case where our Active is a non-attacker (Fezandipiti ex, Meowth ex or Dreepy) **and there
-is no Drakloak or Dragapult ex in play at all**. Raising it means: when the board has not yet
-produced the main attacker, fetch the backup attacker harder.
+| | incumbent | best child | gain | note |
+|---|---:|---:|---:|---|
+| all 23 rounds, incumbent | mean **0.5052**, SD **0.0101**, range 0.4750–0.5220 | | | |
+| all 23 rounds, best child | | mean **0.5245**, range 0.5050–0.5530 | mean **+1.93** | |
+| **r5, ACCEPTED** | **0.4980** | 0.5460 | +4.80 | 2nd-lowest incumbent of 23 |
+| **r22, ACCEPTED** | **0.4750** | 0.5240 | +4.90 | **lowest incumbent of 23** |
 
-That is a direct answer to **F5, the one failure class the loss mining actually supports** — we
-lose the games where the Dreepy → Drakloak → Dragapult ex line comes online late (first attack on
-turn 2.80 in losses against 2.24 in wins). Latias ex is a 210 HP Pokémon whose Eon Blade does 200
-for two Psychic and a Colourless, i.e. exactly the thing to reach for when the main line has not
-arrived.
+Look at r22's child: **0.5240, which is *below* the mean best child of 0.5245.** It did not win by
+being good. It won because the incumbent drew its minimum.
 
-**A coherent story is not evidence.** With 110 parameters and five children a round, some accepted
-change was always going to admit a plausible reading. The reading is recorded because if the
-change *does* survive confirmation and validation, this is the mechanism to check — and if it does
-not, this note is the reminder that plausibility was available for free.
+**The defect.** The rule is `best_child − incumbent ≥ margin`, with the incumbent measured once
+per round. That is asymmetric in a way the registered protocol did not notice: re-measuring the
+incumbent every round controls for *machine conditions*, but not for the incumbent's own sampling
+noise. The child side already takes a maximum over five draws; the incumbent side is a single
+draw. A low incumbent is therefore worth exactly as much as a high child, and with SD ≈ 1.0 point
+per measurement the incumbent alone supplies a 4.7-point swing across 23 rounds.
+
+**What should have been registered instead:** compare the child against the incumbent's *running
+mean* over all previous rounds. After twenty rounds that has a standard error near 0.2 points
+rather than 1.0, and a low draw cannot manufacture an acceptance.
+
+**What is being done about it.** The protocol is not changed mid-run — that would be choosing a
+rule after seeing which rounds it accepts. Instead:
+
+1. The search runs to completion under the registered rule.
+2. `tune_best` is evaluated against the incumbent's **pooled** series in the post-hoc analysis, which
+   is the comparison the rule should have made.
+3. It still has to clear the registered confirm and validate stages on fresh runs, which the
+   defect cannot reach.
+
+Recorded here rather than in `failures/DEFECTS.md` because it is a flaw in an experiment's
+analysis rule, not a bug in code — but it is the same species as the rest of them: a comparison
+that looks controlled and is not.
+
+## The accepted changes are semantically coherent, which is worth noting and not worth trusting
+
+Four parameters after two acceptances, read back against the original source:
+
+| # | function, line | original | tuned | what the constant means |
+|---:|---|---:|---:|---|
+| **39** | `hand_score` 494 | 28000 | **42956** | wanting **Latias ex** in hand when the Active is a non-attacker (Fezandipiti ex / Meowth ex / Dreepy) **and no Drakloak or Dragapult ex is in play at all** |
+| **56** | `hand_score` 557 | 55000 | **60924** | wanting **Crispin** — the energy fetcher — when we hold a Dragapult ex but **cannot attack and have no benched attacker** |
+| 75 | `agent` 667 | −1000 | **−757** | the penalty for promoting **Fezandipiti ex** to the Active Spot |
+| 52 | `hand_score` 544 | 5 | **4** | wanting a redundant **Ultra Ball** — a near-zero constant nudged by one |
+
+**Three of the four point the same way, and it is the way the loss mining pointed.** F5 says we
+lose the games where the Dreepy → Drakloak → Dragapult ex line comes online late — first attack on
+turn 2.80 in losses against 2.24 in wins. Parameters 39 and 56 both raise "reach harder for a way
+to attack when the main line has not arrived": Latias ex is a 210 HP body whose Eon Blade does 200,
+and Crispin fetches the energy that turns a Dragapult ex into an attacker. Parameter 75 makes the
+agent slightly more willing to promote its backup body.
+
+**A coherent story is not evidence, and D7 above is the reason to say so twice.** With 110
+parameters and five children a round, some accepted change was always going to admit a plausible
+reading — and both acceptances fired on the incumbent's two lowest draws rather than on
+exceptional children. The reading is recorded because if these changes *do* survive confirmation
+and validation, this is the mechanism to check; and if they do not, this note is the reminder that
+plausibility was available for free.
