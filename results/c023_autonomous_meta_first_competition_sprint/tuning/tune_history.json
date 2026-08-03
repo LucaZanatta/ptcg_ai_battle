@@ -292,15 +292,83 @@
       "n_changed_params": 4,
       "elapsed_seconds": 456.4,
       "utc": "2026-08-03T21:31:26Z"
+    },
+    {
+      "round": 25,
+      "incumbent_score": 0.482,
+      "best_child": "tune_r25_c0",
+      "best_child_score": 0.51,
+      "gain_points": 2.8,
+      "accepted": false,
+      "n_changed_params": 4,
+      "elapsed_seconds": 452.0,
+      "utc": "2026-08-03T21:38:58Z"
+    },
+    {
+      "round": 26,
+      "incumbent_score": 0.493,
+      "best_child": "tune_r26_c0",
+      "best_child_score": 0.523,
+      "gain_points": 3.0,
+      "accepted": false,
+      "n_changed_params": 4,
+      "elapsed_seconds": 396.1,
+      "utc": "2026-08-03T21:45:34Z"
+    },
+    {
+      "round": 27,
+      "incumbent_score": 0.523,
+      "best_child": "tune_r27_c2",
+      "best_child_score": 0.528,
+      "gain_points": 0.5,
+      "accepted": false,
+      "n_changed_params": 4,
+      "elapsed_seconds": 396.4,
+      "utc": "2026-08-03T21:52:11Z"
+    },
+    {
+      "round": 28,
+      "incumbent_score": 0.526,
+      "best_child": "tune_r28_c3",
+      "best_child_score": 0.513,
+      "gain_points": -1.3,
+      "accepted": false,
+      "n_changed_params": 4,
+      "elapsed_seconds": 397.8,
+      "utc": "2026-08-03T21:58:49Z"
+    },
+    {
+      "round": 29,
+      "incumbent_score": 0.472,
+      "best_child": "tune_r29_c4",
+      "best_child_score": 0.521,
+      "gain_points": 4.9,
+      "accepted": true,
+      "n_changed_params": 9,
+      "elapsed_seconds": 404.3,
+      "utc": "2026-08-03T22:05:33Z"
     }
   ],
   "incumbent_weights": {
     "39": 42956,
     "52": 4,
     "75": 757,
-    "56": 60924
+    "56": 60924,
+    "68": 1,
+    "78": 19208,
+    "95": 20117,
+    "53": 24,
+    "34": 34
   },
   "incumbent_slots": [
+    {
+      "index": 34,
+      "default": 50,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 478,
+      "tuned_to": 34
+    },
     {
       "index": 39,
       "default": 28000,
@@ -318,6 +386,14 @@
       "tuned_to": 4
     },
     {
+      "index": 53,
+      "default": 15,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 548,
+      "tuned_to": 24
+    },
+    {
       "index": 56,
       "default": 55000,
       "where": "score =",
@@ -326,13 +402,37 @@
       "tuned_to": 60924
     },
     {
+      "index": 68,
+      "default": 1,
+      "where": "score =",
+      "function": "agent",
+      "line": 638,
+      "tuned_to": 1
+    },
+    {
       "index": 75,
       "default": 1000,
       "where": "score Sub=",
       "function": "agent",
       "line": 667,
       "tuned_to": 757
+    },
+    {
+      "index": 78,
+      "default": 10000,
+      "where": "score Add=",
+      "function": "agent",
+      "line": 696,
+      "tuned_to": 19208
+    },
+    {
+      "index": 95,
+      "default": 15000,
+      "where": "score =",
+      "function": "agent",
+      "line": 766,
+      "tuned_to": 20117
     }
   ],
-  "best_score": 0.494
+  "best_score": 0.521
 }
