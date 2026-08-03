@@ -9,6 +9,25 @@ retrievable as a replay, so a submitted agent's **real ladder score rate** is a 
 quantity — not a rating, which moves and is rating-matched, but the plain fraction of public games
 it actually won.
 
+## All four submissions this project has made, as the ladder recorded them
+
+| submission | agent | archetype played | ladder score rate | public games | rating |
+|---|---|---|---:|---:|---:|
+| 54948560 | `official_dragapult` (c005) | Dragapult, 83/83 | **0.5783** | 83 | 719.7 |
+| 55011215 | `official_mega_lucario` (c017) | Mega Lucario, 157/157 | **0.4904** | 157 | 593.3 |
+| 55005237 | c015 anti-meta expert | Iono's Bellibolt, 107/107 | **0.4206** | 107 | 390.7 |
+| 55004756 | c014 Archaludon expert | Archaludon, 33/33 | **0.3333** | 33 | 471.4 |
+
+380 public games, all parsed, zero errors. Every agent played the archetype it was built for in
+every game — which is also a check on the classifier: it recovered our own deck correctly 380
+times out of 380.
+
+**Note the inversion.** c014 has the *higher rating* (471.4 vs 390.7) and the *lower* score rate
+(0.3333 vs 0.4206). Ratings are timestamped snapshots of a moving quantity, they are earned
+against rating-matched opponents, and c014's is over 33 games. This is the clearest illustration
+in this campaign of why a single rating reading establishes nothing — the rule c015 §16 and c016
+§21 both wrote down, now visible in our own four data points.
+
 ## Two anchors
 
 | agent | local field (off-mirror) | **ladder score rate** | games | rating at the time |
