@@ -41,6 +41,30 @@ P99 1035.6, max 1262.2. Our best sits near the 65th percentile.
 589.6 inside one hour on 2026-07-26. Every number above is a timestamped snapshot. No promotion,
 regression or champion claim in this contract rests on a single reading.
 
+### The one calibration point this contract has
+
+The rating is not the only thing the ladder tells us. Every public game a submission plays is
+retrievable as a replay, so the champion's **real ladder score rate** is measurable directly:
+
+| | value |
+|---|---|
+| `official_dragapult`, ref 54948560 | **0.5783 over 83 public games**, 0 unparsed |
+| the same agent on this contract's local panel | 0.4653 off-mirror over 720 games |
+| its rating at the time | 719.7 (≈ 65th percentile of 6,113 teams) |
+
+Two things follow.
+
+**The local panel is harder than the ladder at our band**, by about 11 points — it contains public
+community agents scoring 0.60–0.64 against each other, which is a stronger field than a 719-rated
+agent actually meets. So a local field score is a conservative proxy, not a pessimistic one by
+accident: it was built that way when the panel was made meta-representative.
+
+**Rating is bought with small sustained edges, not large ones.** keidroid measured a ~1155-rated
+agent at a 61.2% win rate over 260 games; we sit at 57.8% at 719.7. Roughly 435 rating points
+separate those two, and 3.4 percentage points of win rate. That is the scale a challenger has to
+move — and it is why this contract's ~+4-point promotion target, set before any result existed,
+is a *demanding* bar rather than a modest one.
+
 ## Upload commands, in the recommended order
 
 Run from the repository root. Each is one line and requires no edits.
