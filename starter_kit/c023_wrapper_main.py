@@ -78,6 +78,41 @@ from cg.api import (AreaType, CardType, EnergyType, OptionType, Pokemon,  # noqa
 
 _CARD = {c.cardId: c for c in all_card_data()}
 
+# A SECOND, independent instance of the base agent, used only as the planner's continuation
+# policy. It must not be the same object as `_base`: the sample agents keep module-level plan
+# state that is mutated by every call, and driving one instance with both real and simulated
+# observations would corrupt the real game's plan. Loaded lazily so a candidate with no planner
+# pays nothing.
+_sim = None
+_planner = None
+
+
+def _load_planner():
+    global _sim, _planner
+    if _planner is not None:
+        return _planner
+    spec = importlib.util.spec_from_file_location("c023_sim_agent",
+                                                  os.path.join(_HERE, "base_agent.py"))
+    m = importlib.util.module_from_spec(spec)
+    sys.modules["c023_sim_agent"] = m
+    cwd = os.getcwd()
+    try:
+        os.chdir(_HERE)
+        spec.loader.exec_module(m)
+    finally:
+        try:
+            os.chdir(cwd)
+        except Exception:
+            pass
+    _sim = m
+    pspec = importlib.util.spec_from_file_location("c023_planner_mod",
+                                                   os.path.join(_HERE, "planner.py"))
+    pm = importlib.util.module_from_spec(pspec)
+    sys.modules["c023_planner_mod"] = pm
+    pspec.loader.exec_module(pm)
+    _planner = pm
+    return _planner
+
 
 class View:
     """Everything an override rule is allowed to look at, resolved once per decision."""
@@ -196,6 +231,20 @@ def _bench_wide_setup(v, base_action):
     if v.context != SelectContext.SETUP_BENCH_POKEMON:
         return None
     return _bench_fill(v)
+
+
+# ---- F3: greedy option scoring ---------------------------------------------------------------
+# The sample scores every option in isolation against a hand-written constant, so it cannot see
+# that one action makes another reachable or that this turn's attack costs next turn's attacker.
+# `planner.py` plays the turn out through the engine's forward-search API and scores the board
+# each line leaves behind, with the base agent itself as the continuation policy.
+
+@rule("turn_planner")
+def _turn_planner(v, base_action):
+    pm = _load_planner()
+    if pm is None:
+        return None
+    return pm.plan(v.obs, base_action, MY_DECK, _sim, TH.get("planner"))
 
 
 def _legal(view, action) -> bool:

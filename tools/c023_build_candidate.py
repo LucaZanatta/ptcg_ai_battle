@@ -40,6 +40,7 @@ sys.path.insert(0, _REPO)
 OUT_ROOT = os.path.join(_REPO, "results", "c023_autonomous_meta_first_competition_sprint")
 AGENTS = os.path.join(OUT_ROOT, "agents")
 WRAPPER = os.path.join(_REPO, "starter_kit", "c023_wrapper_main.py")
+PLANNER = os.path.join(_REPO, "starter_kit", "c023_planner.py")
 
 ATTRIBUTION = {
     "official_dragapult": "Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-dragapult-ex-deck (Kiyota)",
@@ -87,6 +88,7 @@ def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
     os.makedirs(d, exist_ok=True)
     shutil.copyfile(os.path.join(bdir, "main.py"), os.path.join(d, "base_agent.py"))
     shutil.copyfile(WRAPPER, os.path.join(d, "main.py"))
+    shutil.copyfile(PLANNER, os.path.join(d, "planner.py"))
     with open(os.path.join(d, "deck.csv"), "w") as fh:
         fh.write("\n".join(str(c) for c in deck) + "\n")
     with open(os.path.join(d, "params.json"), "w") as fh:
@@ -106,6 +108,7 @@ def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
         "deck_sha256": sha256_file(os.path.join(d, "deck.csv")),
         "base_agent_sha256": sha256_file(os.path.join(d, "base_agent.py")),
         "wrapper_sha256": sha256_file(os.path.join(d, "main.py")),
+        "planner_sha256": sha256_file(os.path.join(d, "planner.py")),
         "params_sha256": sha256_file(os.path.join(d, "params.json")),
         "params": params,
         "dir": os.path.relpath(d, _REPO),
