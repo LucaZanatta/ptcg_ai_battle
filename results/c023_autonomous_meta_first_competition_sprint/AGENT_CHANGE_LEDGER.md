@@ -24,6 +24,60 @@ against a control measured in a different run.
 
 ---
 
+## F6 — the sample's own score constants (`tune`, then `ab_*`)
+
+**The failure class.** Every official sample decides by adding hand-chosen round numbers —
+`score = 40000`, `score += 250`, `return 20000`. None of them was ever measured against its
+alternatives. This is the largest untested surface in the agent, and unlike F1–F4 it does not
+require guessing *which* decision is wrong.
+
+**Change.** `tools/c023_paramize.py` rewrites 110 of those constants, by AST transform, into
+lookups whose defaults are the original values — restricted to constants that are genuinely
+weights (assigned to a scoring variable, or returned from a `*_score` function). Card IDs, deck
+sizes, energy costs and list indices are untouched. Verified rather than asserted: the
+parameterised agent is **action-identical to the sample over 1,263 decisions in 14 games**.
+
+### The search, and what it actually measured
+
+A (1+5) search over those 110 parameters, registered in full before it ran
+(`tuning/REGISTERED_PROTOCOL.md`): 1,000 games per arm, the incumbent re-measured every round in
+the same run as its challengers, acceptance requiring twice the standard error of the difference
+(4.47 points), and the output declared a *hypothesis* that must still clear confirmation and
+validation on fresh runs.
+
+Thirty-two rounds. Three acceptances. And the **pooled incumbent series** — the search's own
+re-measurements, which are the most precise strength instrument in this campaign — says:
+
+| incumbent | rounds | n | mean dev field |
+|---|---|---:|---:|
+| the untouched defaults | r0–r4 | 5 | **0.5062** |
+| + 1 accepted parameter | r5–r21 | 17 | 0.5067 |
+| + 4 accepted parameters | r22–r28 | 7 | **0.4984** |
+| + 9 accepted parameters | r29–r32 | 4 | **0.4987** |
+
+**The search walked downhill.** Its first accepted change was worth **+4.80 points when selected
+and +0.05 over the next seventeen re-measurements**; the next two left the incumbent about 0.8
+points *below* the defaults.
+
+**Why, exactly (D7).** All three acceptances fired on **low incumbent draws**, not on exceptional
+children — incumbent ranks 10, 2 and **1** out of 30, with the last two children scoring at or
+*below* the mean best child. The acceptance rule compares a maximum over five children against a
+**single** incumbent measurement, so a low incumbent is worth exactly as much as a good child.
+The rule should have compared against the incumbent's running mean. It was not changed mid-run,
+because choosing a threshold after seeing which rounds it accepts is what registration exists to
+prevent; the search was stopped instead, and replaced.
+
+### The clean test that replaced it
+
+`tuning/REGISTERED_AB.md`, registered before the search was stopped. Four arms, **no selection
+step**, 5,000 games each, decision threshold 2.0 points fixed in advance, and the validation panel
+for anything that clears it. The three parameters tested all say the same thing — *reach harder
+for a way to attack when the main line has not arrived* — which is **F5**, the one failure class
+the loss mining supports.
+
+**Result: see `EXECUTIVE_DECISION.md`.** The prediction registered before the run was that all
+three arms land within ±2 points of the control.
+
 ## F4 — bench exposure against a damage-spread deck (`bench_discipline_vs_spread`)
 
 **The failure class.** Marnie's Grimmsnarl's Shadow Bullet hits a *benched* Pokémon for 30 on top
