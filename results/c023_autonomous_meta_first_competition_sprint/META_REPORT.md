@@ -105,6 +105,69 @@ The same 60 cards, played by better logic, reach roughly 1084 where the official
 sample is large and is reachable without changing archetype.** This is the single most
 encouraging measurement in this report for a contract whose legal bases are the official samples.
 
+## 5b. What the ladder actually paired us against — our own replays
+
+Sections 2 and 3 are a third party's aggregation over other people's games. This section is ours.
+
+The Kaggle episode API returns the full replay of every public game a submission played, and a
+replay contains **both decks** — each agent's 60-card list is its own first action. So the
+champion's real ladder record is recoverable directly. `tools/c023_replays.py` does it: list
+episodes, fetch each replay, read both decks, classify the opponent by a signature card, record
+the reward, delete the 4 MB file.
+
+**`official_dragapult`, submission 54948560, 83 public episodes:**
+
+| opponent archetype | games | share | our score rate |
+|---|---:|---:|---:|
+| Alakazam | 19 | 22.9% | **0.737** |
+| Mega Lucario | 15 | 18.1% | 0.467 |
+| Marnie Grimmsnarl | 10 | 12.0% | 0.400 |
+| **Crustle Wall** | 9 | 10.8% | **0.222** |
+| unclassified | 7 | 8.4% | 0.857 |
+| Dragapult (mirror) | 6 | 7.2% | 1.000 |
+| Mega Kangaskhan | 5 | 6.0% | 0.600 |
+| Team Rocket Mewtwo | 3 | 3.6% | 0.333 |
+| Mega Abomasnow | 3 | 3.6% | 0.333 |
+| Archaludon | 2 | 2.4% | 0.500 |
+| Mega Froslass | 2 | 2.4% | 1.000 |
+| Cynthia Garchomp | 1 | 1.2% | 0.000 |
+| Teal Mask Ogerpon | 1 | 1.2% | 1.000 |
+
+### This corrects two things about this campaign's own design
+
+**1. The panel over-weighted Grimmsnarl for our rating band.** Marnie's Grimmsnarl is 58.8% of
+the 1100+ band, and this campaign built its dev panel and its `field_ladder_weighted` column
+around that. But matchmaking is rating-based, and at *our* rating Grimmsnarl is **12%** of
+opponents, behind Alakazam and Mega Lucario. Worse, our panel's Grimmsnarl agent puts us at
+**0.250** where the real ladder puts us at **0.400** — so the panel opponent is harder than the
+archetype we actually meet. Weighting 60% of the objective onto it was optimising for a band we
+do not play in.
+
+**2. The champion's actual worst matchup was not on the panel at all.** **Crustle Wall, 10.8% of
+our games, 0.222.** No official sample and no panel agent resembles it.
+
+The mechanism is exact, and it is in the card text rather than in a statistic:
+
+> **Crustle — Mysterious Rock Inn:** *Prevent all damage done to this Pokémon by attacks from your
+> opponent's Pokémon {ex}.*
+
+**Dragapult ex is a Pokémon ex, and it is this deck's only real attacker.** Against a Crustle in
+the Active Spot, Phantom Dive's 200 damage is zero. The sample knows — `no_damage_dex()` lists
+Crustle (345) alongside Drednaw, Milotic ex and Sylveon, and the attack planner scores that target
+at zero — but knowing a wall is immune is not the same as having an answer to it. The deck's
+non-ex attackers are Dreepy (Bite, 40) and Drakloak (Dragon Headbutt, 70) against 150 HP, and the
+agent's promotion logic never deliberately brings either in to attack.
+
+`pub_prvsiyan_crustle_wall` was added to the panel on the strength of this measurement — a public
+Tusk/Crustle/Terrakion agent running Crustle ×4 and Dwebble ×4.
+
+### What this section does not claim
+
+Eighty-three games, thirteen archetypes: most cells have single-digit counts, so the *shares* are
+better measured than the *per-archetype score rates*. Crustle Wall at 0.222 is 2 of 9. It is
+enough to say "this is where we lose and here is the mechanism"; it is not enough to put an
+interval on it.
+
 ## 6. Three decisions this report changes
 
 1. **Base selection.** `official_dragapult` is the presumptive base for the challenger branch,
