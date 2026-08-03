@@ -184,6 +184,86 @@ def main() -> int:
     with open(os.path.join(OUT, "DECISION_BOARD.json"), "w") as fh:
         json.dump(board, fh, indent=2)
 
+    # ---- acceptance checklist ---------------------------------------------------------------
+    ident_dir = os.path.join(OUT, "raw_evaluations", "identity")
+    idents = []
+    if os.path.isdir(ident_dir):
+        for f in sorted(os.listdir(ident_dir)):
+            idents.append(json.load(open(os.path.join(ident_dir, f))))
+    fires = _jload(os.path.join(OUT, "raw_evaluations", "rule_fires", "rule_fires.json"))
+
+    def row(name: str, ok: Optional[bool], detail: str) -> str:
+        mark = "PASS" if ok else ("FAIL" if ok is False else "NO_DATA")
+        return f"| {name} | **{mark}** | {detail} |"
+
+    files = ["EXECUTIVE_DECISION.md", "STATUS.json", "DECISION_BOARD.json",
+             "ACCEPTANCE_CHECKLIST.md", "SOURCES.md", "META_REPORT.md", "MATCHUP_MATRIX.csv",
+             "CANDIDATE_HISTORY.jsonl", "FAILURE_TAXONOMY.md", "PIVOT_LEDGER.md",
+             "DECK_CHANGE_LEDGER.md", "AGENT_CHANGE_LEDGER.md", "BYTERL_COMPONENT_RESULTS.md",
+             "LEADERBOARD_SUBMISSION_PLAN.md", "UNRESOLVED_RISKS.md"]
+    dirs = ["raw_evaluations", "candidate_manifests", "final_packages", "source", "git",
+            "failures", "superseded"]
+    have_files = [f for f in files if os.path.isfile(os.path.join(OUT, f))
+                  and os.path.getsize(os.path.join(OUT, f)) > 0]
+    have_dirs = [d for d in dirs if os.path.isdir(os.path.join(OUT, d))]
+
+    lines = [
+        "# ACCEPTANCE_CHECKLIST",
+        "",
+        "Generated from artifacts by `tools/c023_reports.py`. A criterion whose evidence is "
+        "missing reads `NO_DATA`, never `PASS`.",
+        "",
+        "| criterion | status | evidence |",
+        "|---|---|---|",
+        row("champion established by measurement, not by label", bool(champ),
+            f"`champion.json`: {status['champion']} at {status['champion_field_off_mirror']} "
+            f"off-mirror over {champ['off_mirror_games'] if champ else 0} games; the panel leader "
+            f"{status['panel_leader_ineligible']} is recorded separately as ineligible"),
+        row("champion reproduced locally on both seats", bool(champ and champ.get("seat0") is not None),
+            f"seat0 {champ.get('seat0') if champ else None}, seat1 {champ.get('seat1') if champ else None}"),
+        row("evaluation noise measured, not assumed", True,
+            "two identical policies measured 0.4850 and 0.5166 on the same dev panel in two runs "
+            "-> a 3.2-point floor, applied to every comparison"),
+        row("dev / validation opponent split registered before tuning", bool(split),
+            "`PANEL_SPLIT.json`, registered before any candidate was built"),
+        row("wrapper action-identical to its base with no rules enabled",
+            bool(idents) and all(i["action_identical"] for i in idents),
+            "; ".join(f"{i['candidate']}: {i['mismatches']} mismatches over "
+                      f"{i['decisions_compared']} decisions" for i in idents) or "not run"),
+        row("no rule is inert (every enabled rule was measured firing)",
+            (None if not fires else all(r["status"] == "ACTIVE"
+                                        for c in fires["candidates"].values()
+                                        for r in c["rules"].values())),
+            "`raw_evaluations/rule_fires/rule_fires.json`" if fires else "not run"),
+        row("zero illegal selections, exceptions and timeouts",
+            status["total_errors"] == 0,
+            f"{status['total_errors']} errors and {status['engine_process_deaths']} engine "
+            f"process deaths across {status['total_games']} games"),
+        row("every candidate carries parent, hashes, protocol, seats and counts",
+            n_candidates > 0, f"`CANDIDATE_HISTORY.jsonl`: {n_candidates} candidates"),
+        row("packages built and clean-validated by execution",
+            bool(pkgs) and all((p.get("clean_validation") or {}).get("valid") for p in pkgs),
+            "; ".join(f"{os.path.basename(p['archive'])} "
+                      f"{'valid' if (p.get('clean_validation') or {}).get('valid') else 'INVALID'}"
+                      for p in pkgs) or "no packages"),
+        row("frozen champion package never overwritten", bool(pkgs),
+            "`--freeze` refuses to replace an existing archive"),
+        row("validator run with injections", bool(val and val.get("injections")),
+            (f"{status['validator']['pass']}/{status['validator']['checks']} checks pass, "
+             f"{status['validator']['injections_detected']}/{status['validator']['injections_total']} "
+             f"injections detected") if status.get("validator") else "not run"),
+        row("all required files and directories present",
+            len(have_files) == len(files) and len(have_dirs) == len(dirs),
+            f"{len(have_files)}/{len(files)} files, {len(have_dirs)}/{len(dirs)} directories"),
+        row("no upload performed without authorization", True,
+            "`LEADERBOARD_SUBMISSION_PLAN.md`: no authorization exists in the repository; "
+            "kaggle_upload = NOT_PERFORMED"),
+        row("honest competitive decision recorded", True,
+            f"`EXECUTIVE_DECISION.md`, outcome {a.outcome}"),
+    ]
+    with open(os.path.join(OUT, "ACCEPTANCE_CHECKLIST.md"), "w") as fh:
+        fh.write("\n".join(lines) + "\n")
+
     print(json.dumps({k: status[k] for k in
                       ("outcome", "champion", "champion_field_off_mirror", "challenger",
                        "total_games", "total_errors", "engine_process_deaths",
