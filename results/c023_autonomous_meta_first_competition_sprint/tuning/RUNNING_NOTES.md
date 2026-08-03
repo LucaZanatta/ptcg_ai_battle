@@ -54,11 +54,25 @@ The registered protocol predicted it: *"the search will report a dev-panel gain,
 will not survive confirmation."* The search does not have to wait for the confirmation stage to
 show it, because it re-measures its own incumbent every round.
 
-| incumbent | rounds | n | mean | worth |
-|---|---|---:|---:|---:|
-| the untouched defaults | r0–r5 | 6 | **0.5048** | — |
-| + the r5 change (1 parameter) | r6–r22 | 17 | **0.5053** | **+0.05 pt** |
-| + the r22 change (4 parameters) | r23–… | 2 | 0.4948 | (too few yet) |
+The incumbent series at 42 rounds, grouped by how many parameters the incumbent carried. Each row
+is ~1,000 games per round, so the 17-round row is 17,000 games on one policy:
+
+| parameters changed | rounds | n | mean dev field | vs the defaults |
+|---:|---|---:|---:|---:|
+| **0 — the untouched sample** | r0–r4 | 5 | **0.5062** | — |
+| 1 | r5–r21 | 17 | 0.5067 | **+0.05** |
+| 4 | r22–r28 | 7 | 0.4984 | **−0.78** |
+| 9 | r29–r33 | 5 | 0.4932 | **−1.30** |
+| 12 | r34–r40 | 7 | 0.4991 | **−0.71** |
+| 14 | r41– | 1 | 0.4780 | — |
+
+**Every accepted change after the first left the incumbent worse than the untouched sample.** The
+first left it unchanged. A hill-climb ran for six hours and forty-two thousand games and the best
+configuration it ever held was the one it started from.
+
+And the accept ranks tell the mechanism: the incumbent's rank among 42 draws, lowest = 1, at each
+of the five acceptances was **16, 2, 1, 24, 3**. Three of the five fired on a bottom-three
+incumbent draw.
 
 **The r5 change was worth +4.80 points when it was selected and +0.05 points over the next
 seventeen re-measurements — 17,000 games.** The first estimate, taken after five re-measurements,
