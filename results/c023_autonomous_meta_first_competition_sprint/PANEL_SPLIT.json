@@ -41,6 +41,14 @@
     "rule": "The final panel runs every player, at the largest game count the remaining time allows, and is run ONCE per finalist. It reports the number; it does not choose the finalist."
   },
 
+  "amendment_1": {
+    "utc": "2026-08-03T18:10:00Z",
+    "change": "pub_prvsiyan_crustle_wall added to the VALIDATION panel only",
+    "why": "Our own 83 Kaggle ladder replays (META_REPORT 5b) showed Crustle Wall is 10.8% of the games the ladder pairs the champion against and its worst matchup at 0.222 -- and no opponent on either panel resembled it. The mechanism is exact: Crustle's Mysterious Rock Inn prevents all damage from attacks by Pokemon ex, and Dragapult ex is this deck's only attacker.",
+    "why_validation_and_not_dev": "The score-constant search registered in tuning/REGISTERED_PROTOCOL.md optimises the DEV panel. Putting Crustle there after the fact would let the search tune against a matchup that was chosen because we already knew we lose it, and would leave nothing held out to test the fix on. It goes on the validation panel so any anti-Crustle work is measured on evidence the search never saw.",
+    "what_did_not_change": "No dev-panel opponent was added, removed or reweighted, and no already-registered threshold moved."
+  },
+
   "scores_reported": {
     "field_off_mirror": "unweighted mean of per-opponent score rates, excluding the mirror. The primary number.",
     "field_ladder_weighted": "the same rates weighted by public-ladder archetype usage (META_REPORT §2). Secondary, and never used alone -- the usage shares are a third-party two-day-old snapshot with wide band-level uncertainty."
