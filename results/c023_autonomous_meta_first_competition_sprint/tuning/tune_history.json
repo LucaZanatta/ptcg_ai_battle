@@ -1,0 +1,102 @@
+{
+  "config": {
+    "base": "official_dragapult",
+    "param_source": "results/c023_autonomous_meta_first_competition_sprint/agents/_param_official_dragapult.py",
+    "slots": "results/c023_autonomous_meta_first_competition_sprint/agents/_param_official_dragapult_slots.json",
+    "opponents": "pub_tetsutani_grimmsnarl,pub_jazivxt_codex_alakazam,official_iono,official_mega_abomasnow,official_dragapult",
+    "games": 200,
+    "children": 5,
+    "rounds": 70,
+    "k_max": 5,
+    "sigma": 0.35,
+    "accept": null,
+    "procs": 20,
+    "seed": 20260803,
+    "deadline_utc": "2026-08-04T05:00:00Z",
+    "tag": "tune"
+  },
+  "accept_margin": 4.47,
+  "se_diff_points": 2.236,
+  "history": [
+    {
+      "round": 0,
+      "incumbent_score": 0.511,
+      "best_child": "tune_r0_c0",
+      "best_child_score": 0.51,
+      "gain_points": -0.1,
+      "accepted": false,
+      "n_changed_params": 0,
+      "elapsed_seconds": 471.1,
+      "utc": "2026-08-03T18:28:52Z"
+    },
+    {
+      "round": 1,
+      "incumbent_score": 0.508,
+      "best_child": "tune_r1_c1",
+      "best_child_score": 0.5245,
+      "gain_points": 1.65,
+      "accepted": false,
+      "n_changed_params": 0,
+      "elapsed_seconds": 458.3,
+      "utc": "2026-08-03T18:36:30Z"
+    },
+    {
+      "round": 2,
+      "incumbent_score": 0.504,
+      "best_child": "tune_r2_c3",
+      "best_child_score": 0.533,
+      "gain_points": 2.9,
+      "accepted": false,
+      "n_changed_params": 0,
+      "elapsed_seconds": 425.4,
+      "utc": "2026-08-03T18:43:35Z"
+    },
+    {
+      "round": 3,
+      "incumbent_score": 0.515,
+      "best_child": "tune_r3_c2",
+      "best_child_score": 0.508,
+      "gain_points": -0.7,
+      "accepted": false,
+      "n_changed_params": 0,
+      "elapsed_seconds": 424.0,
+      "utc": "2026-08-03T18:50:39Z"
+    },
+    {
+      "round": 4,
+      "incumbent_score": 0.493,
+      "best_child": "tune_r4_c2",
+      "best_child_score": 0.528,
+      "gain_points": 3.5,
+      "accepted": false,
+      "n_changed_params": 0,
+      "elapsed_seconds": 419.9,
+      "utc": "2026-08-03T18:57:39Z"
+    },
+    {
+      "round": 5,
+      "incumbent_score": 0.498,
+      "best_child": "tune_r5_c2",
+      "best_child_score": 0.546,
+      "gain_points": 4.8,
+      "accepted": true,
+      "n_changed_params": 1,
+      "elapsed_seconds": 410.2,
+      "utc": "2026-08-03T19:04:29Z"
+    }
+  ],
+  "incumbent_weights": {
+    "39": 42956
+  },
+  "incumbent_slots": [
+    {
+      "index": 39,
+      "default": 28000,
+      "where": "score =",
+      "function": "hand_score",
+      "line": 494,
+      "tuned_to": 42956
+    }
+  ],
+  "best_score": 0.546
+}
