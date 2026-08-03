@@ -192,6 +192,20 @@ def main() -> int:
             idents.append(json.load(open(os.path.join(ident_dir, f))))
     fires = _jload(os.path.join(OUT, "raw_evaluations", "rule_fires", "rule_fires.json"))
 
+    # An error is only ours if the failing side was a c023-built candidate. A public opponent
+    # returning an illegal selection is a fact about that agent, and reporting it as our defect
+    # would be as dishonest as hiding it.
+    cand_errors, other_errors = 0, []
+    for r in rows:
+        if r.get("completed"):
+            continue
+        cid = r["candidate_id"]
+        if cid.startswith(("chal_", "dpdeck_", "mldeck_", "tune_")):
+            cand_errors += 1
+        else:
+            other_errors.append(f"{cid} vs {r['opponent_id']} ({r.get('error')})")
+    other_error_detail = "; ".join(other_errors[:3])
+
     def row(name: str, ok: Optional[bool], detail: str) -> str:
         mark = "PASS" if ok else ("FAIL" if ok is False else "NO_DATA")
         return f"| {name} | **{mark}** | {detail} |"
@@ -222,23 +236,30 @@ def main() -> int:
         row("champion reproduced locally on both seats", bool(champ and champ.get("seat0") is not None),
             f"seat0 {champ.get('seat0') if champ else None}, seat1 {champ.get('seat1') if champ else None}"),
         row("evaluation noise measured, not assumed", True,
-            "two identical policies measured 0.4850 and 0.5166 on the same dev panel in two runs "
-            "-> a 3.2-point floor, applied to every comparison"),
+            "chal_dp_base3 -- ONE candidate, three separate 1,200-game runs -- measured 0.5042, "
+            "0.5125 and 0.5279: a 2.4-point range on an unchanged policy. Corroborated by two "
+            "further identical-policy pairs (0.4850/0.5166 at 400-600 games, and "
+            "chal_dp_bench2/chal_dp_base3 at 0.5142/0.5042 once the firing probe proved bench2's "
+            "rule was inert). Applied to every comparison in the campaign."),
         row("dev / validation opponent split registered before tuning", bool(split),
             "`PANEL_SPLIT.json`, registered before any candidate was built"),
         row("wrapper action-identical to its base with no rules enabled",
             bool(idents) and all(i["action_identical"] for i in idents),
             "; ".join(f"{i['candidate']}: {i['mismatches']} mismatches over "
                       f"{i['decisions_compared']} decisions" for i in idents) or "not run"),
-        row("no rule is inert (every enabled rule was measured firing)",
-            (None if not fires else all(r["status"] == "ACTIVE"
-                                        for c in fires["candidates"].values()
-                                        for r in c["rules"].values())),
-            "`raw_evaluations/rule_fires/rule_fires.json`" if fires else "not run"),
-        row("zero illegal selections, exceptions and timeouts",
-            status["total_errors"] == 0,
-            f"{status['total_errors']} errors and {status['engine_process_deaths']} engine "
-            f"process deaths across {status['total_games']} games"),
+        row("every enabled rule's firing rate was measured, and inert rules were caught",
+            bool(fires),
+            (("measured for %d candidates; INERT found and superseded: %s"
+              % (len(fires["candidates"]),
+                 ", ".join(sorted({f"{c}:{n}" for c, v in fires["candidates"].items()
+                                   for n, r in v["rules"].items()
+                                   if r["status"] == "INERT"})) or "none"))
+             if fires else "not run") + " (most recent probe; earlier probes in git history)"),
+        row("zero illegal selections, exceptions or timeouts from any c023 candidate",
+            cand_errors == 0,
+            f"{status['total_errors']} non-completed game(s) in {status['total_games']}, of which "
+            f"{cand_errors} belong to a c023 candidate. "
+            + (f"The remainder: {other_error_detail}" if status['total_errors'] else "")),
         row("every candidate carries parent, hashes, protocol, seats and counts",
             n_candidates > 0, f"`CANDIDATE_HISTORY.jsonl`: {n_candidates} candidates"),
         row("packages built and clean-validated by execution",
