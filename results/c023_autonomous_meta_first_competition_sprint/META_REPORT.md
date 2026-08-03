@@ -105,6 +105,35 @@ The same 60 cards, played by better logic, reach roughly 1084 where the official
 sample is large and is reachable without changing archetype.** This is the single most
 encouraging measurement in this report for a contract whose legal bases are the official samples.
 
+### And the attribution, measured
+
+`PREDICTIONS.md` P-B registered the prediction before the third cell was run: *the archetype's
+headroom is agent, not deck.* All three cells, same dev panel, 1,200 games each, one harness:
+
+| | agent | deck | dev field |
+|---|---|---|---:|
+| A | official Mega Lucario | its own official list | 0.4687 |
+| B | official Mega Lucario | the public tuned list `2a541d7bf3d9` | 0.4875 |
+| C | **`makthanithin`** | **the same public tuned list** | **0.5442** |
+
+| effect | size |
+|---|---:|
+| **deck** (B − A) | **+1.9 points** — inside this panel's ~2.4-point noise floor |
+| **agent** (C − B) | **+5.7 points** — three times larger, and outside it |
+
+**P-B confirmed.** Holding the deck fixed and changing only the agent is worth three times what
+holding the agent fixed and changing only the deck is worth, and only the agent effect clears the
+noise floor.
+
+This is the same conclusion `DECK_CHANGE_LEDGER.md` reaches from the opposite direction — 17 deck
+mutations of a *different* archetype, none of them worth anything over 1,200 games each — and it
+is what makes the deck branch's negative result a statement about this competition rather than
+about Dragapult's list in particular.
+
+It also sets the scale for anything that hopes to be a challenger: **+5.7 points is what a better
+agent on identical cards actually bought**, and this contract's registered promotion target of
+~+4 points sits just below it.
+
 ## 5b. What the ladder actually paired us against — our own replays
 
 Sections 2 and 3 are a third party's aggregation over other people's games. This section is ours.
