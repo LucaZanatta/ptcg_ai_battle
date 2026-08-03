@@ -1,0 +1,334 @@
+{
+  "tag": "mine_grimmsnarl",
+  "candidate": "chal_dp_base2",
+  "opponents": [
+    "pub_tetsutani_grimmsnarl"
+  ],
+  "games": 300,
+  "elapsed_seconds": 24.0,
+  "utc": "2026-08-03T17:33:39Z",
+  "overall": {
+    "won": 90,
+    "lost": 210,
+    "features": {
+      "turns": {
+        "won_mean": 9.344,
+        "lost_mean": 8.748,
+        "delta_lost_minus_won": -0.597,
+        "standardised": -0.299,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "decisions": {
+        "won_mean": 107.556,
+        "lost_mean": 81.39,
+        "delta_lost_minus_won": -26.165,
+        "standardised": -0.963,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "main_decisions": {
+        "won_mean": 48.722,
+        "lost_mean": 41.486,
+        "delta_lost_minus_won": -7.237,
+        "standardised": -0.567,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "attack_available": {
+        "won_mean": 39.044,
+        "lost_mean": 26.729,
+        "delta_lost_minus_won": -12.316,
+        "standardised": -0.902,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "attack_taken": {
+        "won_mean": 6.356,
+        "lost_mean": 4.7,
+        "delta_lost_minus_won": -1.656,
+        "standardised": -0.968,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "turns_attack_available": {
+        "won_mean": 6.356,
+        "lost_mean": 4.743,
+        "delta_lost_minus_won": -1.613,
+        "standardised": -0.952,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "turns_attacked": {
+        "won_mean": 6.356,
+        "lost_mean": 4.7,
+        "delta_lost_minus_won": -1.656,
+        "standardised": -0.968,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "missed_attack_turns": {
+        "won_mean": 0,
+        "lost_mean": 0.043,
+        "delta_lost_minus_won": 0.043,
+        "standardised": 0.208,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "retreat_available": {
+        "won_mean": 42.989,
+        "lost_mean": 31.733,
+        "delta_lost_minus_won": -11.256,
+        "standardised": -0.782,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "retreat_taken": {
+        "won_mean": 1.278,
+        "lost_mean": 1.138,
+        "delta_lost_minus_won": -0.14,
+        "standardised": -0.152,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "first_attack_turn": {
+        "won_mean": 2.244,
+        "lost_mean": 2.796,
+        "delta_lost_minus_won": 0.552,
+        "standardised": 0.366,
+        "won_n": 90,
+        "lost_n": 206
+      },
+      "active_zero_energy_main": {
+        "won_mean": 18.256,
+        "lost_mean": 17.957,
+        "delta_lost_minus_won": -0.298,
+        "standardised": -0.037,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "mean_bench": {
+        "won_mean": 3.305,
+        "lost_mean": 2.633,
+        "delta_lost_minus_won": -0.671,
+        "standardised": -0.64,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "mean_hand": {
+        "won_mean": 5.152,
+        "lost_mean": 4.972,
+        "delta_lost_minus_won": -0.18,
+        "standardised": -0.179,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "my_prize_min": {
+        "won_mean": 0,
+        "lost_mean": 0,
+        "delta_lost_minus_won": 0,
+        "standardised": 0.0,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "op_prize_min": {
+        "won_mean": 0.311,
+        "lost_mean": 0.31,
+        "delta_lost_minus_won": -0.002,
+        "standardised": -0.002,
+        "won_n": 90,
+        "lost_n": 210
+      },
+      "last_turn": {
+        "won_mean": 13.089,
+        "lost_mean": 11.324,
+        "delta_lost_minus_won": -1.765,
+        "standardised": -0.604,
+        "won_n": 90,
+        "lost_n": 210
+      }
+    },
+    "ranked_by_separation": [
+      "attack_taken",
+      "turns_attacked",
+      "decisions",
+      "turns_attack_available",
+      "attack_available",
+      "retreat_available",
+      "mean_bench",
+      "last_turn",
+      "main_decisions",
+      "first_attack_turn",
+      "turns",
+      "missed_attack_turns",
+      "mean_hand",
+      "retreat_taken",
+      "active_zero_energy_main",
+      "op_prize_min",
+      "my_prize_min"
+    ]
+  },
+  "per_opponent": {
+    "pub_tetsutani_grimmsnarl": {
+      "won": 90,
+      "lost": 210,
+      "features": {
+        "turns": {
+          "won_mean": 9.344,
+          "lost_mean": 8.748,
+          "delta_lost_minus_won": -0.597,
+          "standardised": -0.299,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "decisions": {
+          "won_mean": 107.556,
+          "lost_mean": 81.39,
+          "delta_lost_minus_won": -26.165,
+          "standardised": -0.963,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "main_decisions": {
+          "won_mean": 48.722,
+          "lost_mean": 41.486,
+          "delta_lost_minus_won": -7.237,
+          "standardised": -0.567,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "attack_available": {
+          "won_mean": 39.044,
+          "lost_mean": 26.729,
+          "delta_lost_minus_won": -12.316,
+          "standardised": -0.902,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "attack_taken": {
+          "won_mean": 6.356,
+          "lost_mean": 4.7,
+          "delta_lost_minus_won": -1.656,
+          "standardised": -0.968,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "turns_attack_available": {
+          "won_mean": 6.356,
+          "lost_mean": 4.743,
+          "delta_lost_minus_won": -1.613,
+          "standardised": -0.952,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "turns_attacked": {
+          "won_mean": 6.356,
+          "lost_mean": 4.7,
+          "delta_lost_minus_won": -1.656,
+          "standardised": -0.968,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "missed_attack_turns": {
+          "won_mean": 0,
+          "lost_mean": 0.043,
+          "delta_lost_minus_won": 0.043,
+          "standardised": 0.208,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "retreat_available": {
+          "won_mean": 42.989,
+          "lost_mean": 31.733,
+          "delta_lost_minus_won": -11.256,
+          "standardised": -0.782,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "retreat_taken": {
+          "won_mean": 1.278,
+          "lost_mean": 1.138,
+          "delta_lost_minus_won": -0.14,
+          "standardised": -0.152,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "first_attack_turn": {
+          "won_mean": 2.244,
+          "lost_mean": 2.796,
+          "delta_lost_minus_won": 0.552,
+          "standardised": 0.366,
+          "won_n": 90,
+          "lost_n": 206
+        },
+        "active_zero_energy_main": {
+          "won_mean": 18.256,
+          "lost_mean": 17.957,
+          "delta_lost_minus_won": -0.298,
+          "standardised": -0.037,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "mean_bench": {
+          "won_mean": 3.305,
+          "lost_mean": 2.633,
+          "delta_lost_minus_won": -0.671,
+          "standardised": -0.64,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "mean_hand": {
+          "won_mean": 5.152,
+          "lost_mean": 4.972,
+          "delta_lost_minus_won": -0.18,
+          "standardised": -0.179,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "my_prize_min": {
+          "won_mean": 0,
+          "lost_mean": 0,
+          "delta_lost_minus_won": 0,
+          "standardised": 0.0,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "op_prize_min": {
+          "won_mean": 0.311,
+          "lost_mean": 0.31,
+          "delta_lost_minus_won": -0.002,
+          "standardised": -0.002,
+          "won_n": 90,
+          "lost_n": 210
+        },
+        "last_turn": {
+          "won_mean": 13.089,
+          "lost_mean": 11.324,
+          "delta_lost_minus_won": -1.765,
+          "standardised": -0.604,
+          "won_n": 90,
+          "lost_n": 210
+        }
+      },
+      "ranked_by_separation": [
+        "attack_taken",
+        "turns_attacked",
+        "decisions",
+        "turns_attack_available",
+        "attack_available",
+        "retreat_available",
+        "mean_bench",
+        "last_turn",
+        "main_decisions",
+        "first_attack_turn",
+        "turns",
+        "missed_attack_turns",
+        "mean_hand",
+        "retreat_taken",
+        "active_zero_energy_main",
+        "op_prize_min",
+        "my_prize_min"
+      ]
+    }
+  }
+}

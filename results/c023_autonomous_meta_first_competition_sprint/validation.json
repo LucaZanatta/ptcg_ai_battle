@@ -1,0 +1,72 @@
+{
+  "utc": "2026-08-03T17:22:48Z",
+  "root": "results/c023_autonomous_meta_first_competition_sprint",
+  "checks": [
+    {
+      "id": "V01",
+      "title": "every summary score rate is recomputable from its own raw games",
+      "status": "PASS",
+      "detail": "7 tags recomputed"
+    },
+    {
+      "id": "V02",
+      "title": "no summary reports a candidate with zero completed games",
+      "status": "PASS",
+      "detail": "7 tags"
+    },
+    {
+      "id": "V03",
+      "title": "every raw game's job_id encodes its own candidate/opponent/seat",
+      "status": "PASS",
+      "detail": "16092 records"
+    },
+    {
+      "id": "V04",
+      "title": "every candidate manifest carries deck, base-agent and wrapper hashes",
+      "status": "PASS",
+      "detail": "26 manifests"
+    },
+    {
+      "id": "V05",
+      "title": "no arm reports fewer raw games than it requested without saying so",
+      "status": "PASS",
+      "detail": "7 tags"
+    },
+    {
+      "id": "V06",
+      "title": "no summary is older than the raw games it summarises",
+      "status": "PASS",
+      "detail": "7 tags"
+    },
+    {
+      "id": "V07",
+      "title": "champion.json's per-opponent cells exist in the raw games it cites",
+      "status": "PASS",
+      "detail": "9 cells"
+    },
+    {
+      "id": "V08",
+      "title": "error counts in summaries equal the raw non-completed rows",
+      "status": "PASS",
+      "detail": "7 tags"
+    },
+    {
+      "id": "V09",
+      "title": "every package manifest carries an executed clean validation",
+      "status": "NO_DATA",
+      "detail": "no package manifests"
+    },
+    {
+      "id": "V10",
+      "title": "every file and directory the contract names is present and non-empty",
+      "status": "FAIL",
+      "detail": "missing/empty: ['EXECUTIVE_DECISION.md', 'STATUS.json', 'DECISION_BOARD.json', 'ACCEPTANCE_CHECKLIST.md', 'FAILURE_TAXONOMY.md', 'PIVOT_LEDGER.md', 'DECK_CHANGE_LEDGER.md', 'BYTERL_COMPONENT_RESULTS.md', 'LEADERBOARD_SUBMISSION_PLAN.md', 'UNRESOLVED_RISKS.md']"
+    },
+    {
+      "id": "V11",
+      "title": "every evaluated candidate appears in CANDIDATE_HISTORY.jsonl",
+      "status": "PASS",
+      "detail": "36 recorded, 28 evaluated"
+    }
+  ]
+}

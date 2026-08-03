@@ -1,0 +1,175 @@
+{
+  "champion": "official_dragapult",
+  "decided_by": "highest off-mirror field score on the c023 round-robin AMONG SUBMISSION-ELIGIBLE bases -- every player measured on one panel, with one harness, in one protocol",
+  "eligibility_filter": [
+    "official_dragapult",
+    "official_mega_lucario",
+    "official_iono",
+    "official_mega_abomasnow"
+  ],
+  "panel_leader": "pub_jazivxt_rising_tide_v21",
+  "panel_leader_note": "the strongest player on the panel is not necessarily the champion: SOURCES.md classifies every community kernel LOCAL_BENCHMARK_ONLY, so it can be an opponent and never a base",
+  "panel_leader_field_off_mirror": 0.6417,
+  "field_off_mirror": 0.4653,
+  "field_ladder_weighted": 0.3301,
+  "off_mirror_games": 720,
+  "off_mirror_wilson95": [
+    0.4291,
+    0.5018
+  ],
+  "statistical_contenders": [],
+  "seat0": 0.4625,
+  "seat1": 0.4725,
+  "per_opponent": {
+    "official_iono": {
+      "score_rate": 0.6375,
+      "games": 80,
+      "wilson95": [
+        0.5281,
+        0.7343
+      ]
+    },
+    "official_mega_abomasnow": {
+      "score_rate": 0.4625,
+      "games": 80,
+      "wilson95": [
+        0.3575,
+        0.571
+      ]
+    },
+    "official_mega_lucario": {
+      "score_rate": 0.525,
+      "games": 80,
+      "wilson95": [
+        0.417,
+        0.6308
+      ]
+    },
+    "pub_jazivxt_codex_alakazam": {
+      "score_rate": 0.5375,
+      "games": 80,
+      "wilson95": [
+        0.429,
+        0.6425
+      ]
+    },
+    "pub_jazivxt_rising_tide_v21": {
+      "score_rate": 0.525,
+      "games": 80,
+      "wilson95": [
+        0.417,
+        0.6308
+      ]
+    },
+    "pub_makthanithin_lucario_1084": {
+      "score_rate": 0.375,
+      "games": 80,
+      "wilson95": [
+        0.2769,
+        0.4845
+      ]
+    },
+    "pub_prvsiyan_lucario_v12": {
+      "score_rate": 0.275,
+      "games": 80,
+      "wilson95": [
+        0.1892,
+        0.3814
+      ]
+    },
+    "pub_raunakdey_heuristic": {
+      "score_rate": 0.6,
+      "games": 80,
+      "wilson95": [
+        0.4905,
+        0.7004
+      ]
+    },
+    "pub_tetsutani_grimmsnarl": {
+      "score_rate": 0.25,
+      "games": 80,
+      "wilson95": [
+        0.1681,
+        0.3548
+      ]
+    }
+  },
+  "ranking": [
+    {
+      "player": "pub_jazivxt_rising_tide_v21",
+      "field_off_mirror": 0.6417,
+      "field_ladder_weighted": 0.4011,
+      "errors": 0,
+      "p99_ms": 802.61
+    },
+    {
+      "player": "pub_tetsutani_grimmsnarl",
+      "field_off_mirror": 0.6347,
+      "field_ladder_weighted": 0.6631,
+      "errors": 0,
+      "p99_ms": 412.49
+    },
+    {
+      "player": "pub_jazivxt_codex_alakazam",
+      "field_off_mirror": 0.6236,
+      "field_ladder_weighted": 0.3925,
+      "errors": 0,
+      "p99_ms": 805.48
+    },
+    {
+      "player": "pub_raunakdey_heuristic",
+      "field_off_mirror": 0.6236,
+      "field_ladder_weighted": 0.3537,
+      "errors": 0,
+      "p99_ms": 803.35
+    },
+    {
+      "player": "pub_makthanithin_lucario_1084",
+      "field_off_mirror": 0.4688,
+      "field_ladder_weighted": 0.4069,
+      "errors": 0,
+      "p99_ms": 268.35
+    },
+    {
+      "player": "official_dragapult",
+      "field_off_mirror": 0.4653,
+      "field_ladder_weighted": 0.3301,
+      "errors": 0,
+      "p99_ms": 232.84
+    },
+    {
+      "player": "pub_prvsiyan_lucario_v12",
+      "field_off_mirror": 0.4619,
+      "field_ladder_weighted": 0.4112,
+      "errors": 1,
+      "p99_ms": 231.92
+    },
+    {
+      "player": "official_mega_abomasnow",
+      "field_off_mirror": 0.3625,
+      "field_ladder_weighted": 0.4626,
+      "errors": 0,
+      "p99_ms": 246.83
+    },
+    {
+      "player": "official_mega_lucario",
+      "field_off_mirror": 0.3521,
+      "field_ladder_weighted": 0.3745,
+      "errors": 0,
+      "p99_ms": 227.14
+    },
+    {
+      "player": "official_iono",
+      "field_off_mirror": 0.3431,
+      "field_ladder_weighted": 0.3615,
+      "errors": 0,
+      "p99_ms": 205.29
+    }
+  ],
+  "source_tags": [
+    "rr_v1",
+    "rr_v1b",
+    "rr_v1c"
+  ],
+  "total_games": 8000
+}

@@ -1,0 +1,56 @@
+{
+  "registered_utc": "2026-08-03T17:02:00Z",
+  "registered_before": "any candidate was built or any tuning game was played",
+  "why_opponents_and_not_seeds": "The engine cannot be seeded, so a seed-level split is not available; but even if it were, it would hold out the wrong thing. With cheap games and a mutation loop, the failure mode is fitting the quirks of a handful of rule-based opponents, and only a split by OPPONENT IDENTITY detects that. Every tuning decision in this contract is made on the dev panel alone.",
+
+  "dev_panel": {
+    "opponents": [
+      "pub_tetsutani_grimmsnarl",
+      "pub_jazivxt_codex_alakazam",
+      "official_iono",
+      "official_mega_abomasnow",
+      "official_dragapult"
+    ],
+    "rationale": {
+      "pub_tetsutani_grimmsnarl": "stands in for ~60% of the 1000+ ladder bands; the single most important matchup and the champion's worst (0.250)",
+      "pub_jazivxt_codex_alakazam": "the Alakazam archetype, ~10-27% depending on band",
+      "official_iono": "an official sample, and the champion's best matchup -- included so a change that trades away a good matchup is visible",
+      "official_mega_abomasnow": "an official sample with a different plan shape",
+      "official_dragapult": "the mirror; a challenger that only beats its own parent is winning nothing"
+    }
+  },
+
+  "validation_panel": {
+    "opponents": [
+      "pub_makthanithin_lucario_1084",
+      "pub_prvsiyan_lucario_v12",
+      "pub_jazivxt_rising_tide_v21",
+      "pub_raunakdey_heuristic",
+      "official_mega_lucario"
+    ],
+    "rationale": {
+      "archetype_holdout": "NO search-based Mega Lucario implementation appears on the dev panel, and both validation Lucario agents are of that kind -- so an improvement that only works against the agents it was tuned on will fail here",
+      "implementation_holdout": "two further Alakazam implementations (rising_tide, raunakdey) distinct from the dev-panel one, so 'beats Alakazam' has to generalise across implementations",
+      "pub_makthanithin_lucario_1084": "the strongest publicly-attested agent available here (its author's kernel is titled with a 1084.5 leaderboard score)"
+    },
+    "rule": "No candidate is selected, ranked, promoted or killed on validation-panel evidence. It is read once per branch, after the dev-panel decision has already been made."
+  },
+
+  "final_holdout": {
+    "opponents": ["ALL TEN"],
+    "rule": "The final panel runs every player, at the largest game count the remaining time allows, and is run ONCE per finalist. It reports the number; it does not choose the finalist."
+  },
+
+  "scores_reported": {
+    "field_off_mirror": "unweighted mean of per-opponent score rates, excluding the mirror. The primary number.",
+    "field_ladder_weighted": "the same rates weighted by public-ladder archetype usage (META_REPORT §2). Secondary, and never used alone -- the usage shares are a third-party two-day-old snapshot with wide band-level uncertainty."
+  },
+
+  "promotion_rule": {
+    "screen": "dev panel, >= 400 games per candidate; keep only candidates whose dev field score point estimate exceeds the champion's",
+    "confirm": "dev panel, >= 1000 games, on survivors only",
+    "validate": "validation panel, >= 800 games, read once",
+    "promote_if": "a material broad-field improvement (~+4 points is the target, not a threshold) that survives on the validation panel with no catastrophic matchup (no opponent below 0.15) and no regression in errors, timeouts or illegal actions",
+    "note": "Smaller gains may still be retained when precise and strategically important -- e.g. a gain concentrated in the Grimmsnarl matchup, which is 60% of the top ladder bands."
+  }
+}

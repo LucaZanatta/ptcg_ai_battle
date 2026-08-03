@@ -47,16 +47,9 @@ _FILLER_BASIC = 119
 DEFAULTS: Dict[str, float] = {
     "max_root_options": 8,
     "max_turn_steps": 16,
-    # A SAFETY VALVE, not the work budget. Search effort is set by max_root_options x
-    # max_turn_steps so that a contended machine makes an arm slower and never weaker; a
-    # wall-clock work budget silently buys fewer lines under load and biases the measurement.
-    # This repository has had three results corrupted by exactly that.
-    "budget_ms": 700.0,
+    "budget_ms": 120.0,
     "min_turn": 2,
     "all_contexts": 0.0,         # 1.0 = plan at every single-select decision, not only MAIN
-    "prize_only": 0.0,           # 1.0 = override ONLY on an exact gain: strictly more prizes
-                                 # taken, fewer prizes conceded, or a terminal term
-    "determinization_rotation": 1.0,
     "override_margin": 1.0,      # keep the expert's action unless a line beats it by this much
     "w_prize_taken": 10000.0,
     "w_prize_lost": 12000.0,
@@ -107,10 +100,7 @@ def _visible_own_ids(obs, mi: int) -> List[int]:
     return out
 
 
-_ROT = [0]
-
-
-def _determinize(obs, mi: int, my_deck: List[int], rotate: bool = True):
+def _determinize(obs, mi: int, my_deck: List[int]):
     """A concrete world consistent with what we can see.
 
     Our own side is exact: the deck list is known, so the unseen remainder is exactly the deck
@@ -126,11 +116,6 @@ def _determinize(obs, mi: int, my_deck: List[int], rotate: bool = True):
         if remain[cid] > 0:
             remain[cid] -= 1
     pool = [c for c, n in sorted(remain.items()) for _ in range(n)]
-    # Rotate which unseen cards land in the prizes. Without this the SAME cards are hidden in
-    # every prize slot at every decision of every game -- a systematic bias, not a sample.
-    if rotate and pool:
-        _ROT[0] = (_ROT[0] + 1) % max(1, len(pool))
-        pool = pool[_ROT[0]:] + pool[:_ROT[0]]
     need = len(me.prize) + me.deckCount
     if len(pool) < need:                      # a card we could not account for; pad legally
         pool = pool + [_FILLER_BASIC] * (need - len(pool))
@@ -141,29 +126,6 @@ def _determinize(obs, mi: int, my_deck: List[int], rotate: bool = True):
     return (my_deck_pred, my_prize,
             [_FILLER_BASIC] * op.deckCount, [_FILLER_BASIC] * len(op.prize),
             [_FILLER_BASIC] * op.handCount, op_active)
-
-
-def _exact_gain(obs, mi: int, root_my_prizes: int, root_op_prizes: int):
-    """The part of a line's value that is not a matter of taste.
-
-    Prizes taken, prizes conceded and a terminal board are facts about the simulated line; every
-    other term in the evaluator is a hand-written opinion about board quality. `prize_only` mode
-    overrides the expert on this tuple alone, so an override can be wrong about the game but
-    never wrong about its own arithmetic.
-    """
-    st = obs.current
-    if st is None:
-        return (0, 0, 0)
-    me = st.players[mi]
-    op = st.players[1 - mi]
-    taken = root_op_prizes - len(op.prize)
-    lost = root_my_prizes - len(me.prize)
-    terminal = 0
-    if len(op.prize) == 0 or not _board(op):
-        terminal = 1
-    if len(me.prize) == 0 or not _board(me):
-        terminal = -1
-    return (terminal, taken, -lost)
 
 
 def _evaluate(obs, mi: int, root_my_prizes: int, root_op_prizes: int, w: Dict[str, float]) -> float:
@@ -300,9 +262,8 @@ def plan(obs, base_action: List[int], my_deck: List[int], base_agent,
     created: List[int] = []
     best_i, best_v = None, None
     base_v = None
-    exact: Dict[int, Any] = {}
     try:
-        d = _determinize(obs, mi, my_deck, bool(w["determinization_rotation"]))
+        d = _determinize(obs, mi, my_deck)
         root = search_begin(obs, d[0], d[1], d[2], d[3], d[4], d[5])
         created.append(root.searchId)
         for i in order:
@@ -319,7 +280,6 @@ def plan(obs, base_action: List[int], my_deck: List[int], base_agent,
             if leaf is None or leaf.current is None:
                 continue
             v = _evaluate(leaf, mi, root_my_prizes, root_op_prizes, w)
-            exact[i] = _exact_gain(leaf, mi, root_my_prizes, root_op_prizes)
             if base_action and i == int(base_action[0]):
                 base_v = v
             if best_v is None or v > best_v:
@@ -336,17 +296,6 @@ def plan(obs, base_action: List[int], my_deck: List[int], base_agent,
             search_end()
         except Exception:
             pass
-
-    if w["prize_only"]:
-        # Conservative admission: replace the expert only where the simulated line is strictly
-        # better on facts -- terminal result first, then prizes taken, then prizes conceded.
-        if not base_action or int(base_action[0]) not in exact:
-            return None
-        b = int(base_action[0])
-        cand = max((i for i in exact if i != b), key=lambda i: exact[i], default=None)
-        if cand is None or exact[cand] <= exact[b]:
-            return None
-        return [cand]
 
     if best_i is None:
         return None

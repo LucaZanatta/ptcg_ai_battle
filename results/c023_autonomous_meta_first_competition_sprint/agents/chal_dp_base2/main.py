@@ -78,51 +78,15 @@ from cg.api import (AreaType, CardType, EnergyType, OptionType, Pokemon,  # noqa
 
 _CARD = {c.cardId: c for c in all_card_data()}
 
-# A SECOND, independent instance of the base agent, used only as the planner's continuation
-# policy. It must not be the same object as `_base`: the sample agents keep module-level plan
-# state that is mutated by every call, and driving one instance with both real and simulated
-# observations would corrupt the real game's plan. Loaded lazily so a candidate with no planner
-# pays nothing.
-_sim = None
-_planner = None
-
-
-def _load_planner():
-    global _sim, _planner
-    if _planner is not None:
-        return _planner
-    spec = importlib.util.spec_from_file_location("c023_sim_agent",
-                                                  os.path.join(_HERE, "base_agent.py"))
-    m = importlib.util.module_from_spec(spec)
-    sys.modules["c023_sim_agent"] = m
-    cwd = os.getcwd()
-    try:
-        os.chdir(_HERE)
-        spec.loader.exec_module(m)
-    finally:
-        try:
-            os.chdir(cwd)
-        except Exception:
-            pass
-    _sim = m
-    pspec = importlib.util.spec_from_file_location("c023_planner_mod",
-                                                   os.path.join(_HERE, "planner.py"))
-    pm = importlib.util.module_from_spec(pspec)
-    sys.modules["c023_planner_mod"] = pm
-    pspec.loader.exec_module(pm)
-    _planner = pm
-    return _planner
-
 
 class View:
     """Everything an override rule is allowed to look at, resolved once per decision."""
 
-    __slots__ = ("obs", "obs_dict", "state", "select", "context", "options", "my_index", "me",
-                 "op", "card", "params")
+    __slots__ = ("obs", "state", "select", "context", "options", "my_index", "me", "op",
+                 "card", "params")
 
-    def __init__(self, obs, obs_dict=None):
+    def __init__(self, obs):
         self.obs = obs
-        self.obs_dict = obs_dict
         self.state = obs.current
         self.select = obs.select
         self.context = obs.select.context
@@ -234,118 +198,6 @@ def _bench_wide_setup(v, base_action):
     return _bench_fill(v)
 
 
-# ---- F3: greedy option scoring ---------------------------------------------------------------
-# The sample scores every option in isolation against a hand-written constant, so it cannot see
-# that one action makes another reachable or that this turn's attack costs next turn's attacker.
-# `planner.py` plays the turn out through the engine's forward-search API and scores the board
-# each line leaves behind, with the base agent itself as the continuation policy.
-
-@rule("turn_planner")
-def _turn_planner(v, base_action):
-    pm = _load_planner()
-    if pm is None:
-        return None
-    return pm.plan(v.obs, base_action, MY_DECK, _sim, TH.get("planner"))
-
-
-# ---- the veto primitive ----------------------------------------------------------------------
-# A rule that says "not that one" needs a replacement, and the only principled replacement is the
-# expert's own next preference. This asks it for exactly that: the observation is copied with the
-# vetoed options removed, the SIMULATION instance of the base agent is asked to choose from what
-# remains, and the answer is mapped back to the real option indices. The real instance is never
-# called twice for one decision, so its plan state advances exactly once.
-
-def _obs_without(obs_dict, banned):
-    import copy
-    d = copy.deepcopy(obs_dict)
-    sel = d.get("select")
-    if not sel:
-        return None, None
-    opts = sel.get("option") or []
-    keep = [i for i in range(len(opts)) if i not in banned]
-    if len(keep) < max(1, int(sel.get("minCount") or 0)):
-        return None, None
-    sel["option"] = [opts[i] for i in keep]
-    if sel.get("maxCount") is not None:
-        sel["maxCount"] = min(int(sel["maxCount"]), len(keep))
-    if sel.get("minCount") is not None:
-        sel["minCount"] = min(int(sel["minCount"]), len(keep))
-    return d, keep
-
-
-def _expert_choice_excluding(obs_dict, banned):
-    _load_planner()          # loads the simulation instance as a side effect
-    if _sim is None:
-        return None
-    d, keep = _obs_without(obs_dict, banned)
-    if d is None:
-        return None
-    try:
-        alt = _sim.agent(d)
-    except Exception:
-        return None
-    if not alt:
-        return None
-    try:
-        return [keep[i] for i in alt if 0 <= i < len(keep)]
-    except Exception:
-        return None
-
-
-# ---- F4: bench exposure against a damage-spread deck -----------------------------------------
-# Marnie's Grimmsnarl ex is 58.8% of the 1100+ ladder band and the champion scores 0.250 against
-# it. The mechanism is legible in the cards: Shadow Bullet hits a BENCHED Pokemon for 30 on top
-# of 180 to the active, Froslass puts a counter on every Pokemon with an Ability each checkup, and
-# Munkidori moves three counters a turn onto our side. Every small basic we bench is a prize on a
-# timer. The sample scores playing a Dreepy at 51000 -- the second-highest score in its table --
-# and does it regardless of what is across the board.
-#
-# Independent evidence that this is the right axis: `bench_wide_setup` lost 6.6 points *in this
-# matchup specifically* (0.242 vs 0.308) while costing 5.0 overall.
-
-_SPREAD_IDS = {646, 647, 648,      # Marnie's Impidimp / Morgrem / Grimmsnarl ex
-               104, 860,           # Froslass / Snorunt
-               112}                # Munkidori
-
-_SMALL_HP = 100                    # a benched Pokemon at or under this dies to chip damage
-
-
-def _opponent_is_spread(v):
-    for p in list(v.op.active) + list(v.op.bench):
-        if p is not None and p.id in _SPREAD_IDS:
-            return True
-    for c in v.op.discard:
-        if c.id in _SPREAD_IDS:
-            return True
-    return False
-
-
-@rule("bench_discipline_vs_spread")
-def _bench_discipline(v, base_action):
-    if v.context != SelectContext.MAIN or not base_action:
-        return None
-    i = int(base_action[0])
-    if i >= len(v.options):
-        return None
-    o = v.options[i]
-    if o.type != OptionType.PLAY:
-        return None
-    card = v.opt_card(o)
-    if card is None:
-        return None
-    d = _CARD.get(card.id)
-    if d is None or d.cardType != CardType.POKEMON:
-        return None
-    if d.hp > int(TH.get("bench_small_hp", _SMALL_HP)):
-        return None
-    if not _opponent_is_spread(v):
-        return None
-    bench = sum(1 for p in v.me.bench if p is not None)
-    if bench < int(TH.get("bench_cap", 2)):
-        return None
-    return _expert_choice_excluding(v.obs_dict, {i})
-
-
 def _legal(view, action) -> bool:
     sel = view.select
     n = len(sel.option)
@@ -364,7 +216,7 @@ def agent(obs_dict: dict) -> list[int]:
 
     # Parse our own view BEFORE the base runs, so nothing the base does can change what a rule
     # sees, then call the base so its plan state advances exactly as it would on its own.
-    view = View(obs, obs_dict)
+    view = View(obs)
     base_action = _base.agent(obs_dict)
 
     if not RULES_ON:

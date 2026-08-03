@@ -1,0 +1,16 @@
+{
+  "base": "official_dragapult",
+  "rules": {
+    "bench_discipline_vs_spread": true,
+    "turn_planner": true
+  },
+  "thresholds": {
+    "bench_cap": 2,
+    "bench_small_hp": 100,
+    "planner": {
+      "max_root_options": 10,
+      "max_turn_steps": 20,
+      "prize_only": 1.0
+    }
+  }
+}

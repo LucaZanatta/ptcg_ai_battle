@@ -1,0 +1,119 @@
+{
+  "base": "official_dragapult",
+  "seed_deck": [
+    119,
+    119,
+    119,
+    119,
+    120,
+    120,
+    120,
+    120,
+    121,
+    121,
+    121,
+    140,
+    184,
+    235,
+    235,
+    1071,
+    1079,
+    1079,
+    1080,
+    1086,
+    1086,
+    1086,
+    1086,
+    1097,
+    1097,
+    1120,
+    1120,
+    1120,
+    1120,
+    1121,
+    1121,
+    1121,
+    1121,
+    1152,
+    1152,
+    1152,
+    1156,
+    1182,
+    1182,
+    1182,
+    1198,
+    1198,
+    1198,
+    1198,
+    1210,
+    1210,
+    1227,
+    1227,
+    1227,
+    1227,
+    1256,
+    1256,
+    2,
+    2,
+    2,
+    2,
+    5,
+    5,
+    5,
+    5
+  ],
+  "built": [
+    {
+      "candidate_id": "dpdeck_d15_rarecandy3_dragapult4",
+      "mutation": {
+        "id": "d15_rarecandy3_dragapult4",
+        "remove": [
+          1156,
+          184
+        ],
+        "add": [
+          1079,
+          121
+        ],
+        "intent": "Combination of the two best single arms in deck_screen1: a third Rare Candy for the turn-two Dragapult ex, and a fourth Dragapult ex, paid for by the two singletons the agent scores lowest (Lucky Helmet 15, Latias ex 10 unless the active is one of three specific non-attackers)."
+      },
+      "deck_sha256": "4f0df42e2de5f61e25cb61c5795837b0cf11846dfbdcb1f9d798a82ead156eb8"
+    },
+    {
+      "candidate_id": "dpdeck_d16_rarecandy3_budew3",
+      "mutation": {
+        "id": "d16_rarecandy3_budew3",
+        "remove": [
+          1156,
+          1071
+        ],
+        "add": [
+          1079,
+          235
+        ],
+        "intent": "The best single arm combined with the tempo-defence arm: a third Rare Candy and a third Budew, paid for by Lucky Helmet and Meowth ex."
+      },
+      "deck_sha256": "dabd3d8bb6527f7400786f1bfe303e68504822d7dc6a332c2a145e1054b77206"
+    },
+    {
+      "candidate_id": "dpdeck_d17_rarecandy4_dragapult4",
+      "mutation": {
+        "id": "d17_rarecandy4_dragapult4",
+        "remove": [
+          1156,
+          184,
+          1210
+        ],
+        "add": [
+          1079,
+          121,
+          1079
+        ],
+        "intent": "Push the winning direction further: four Rare Candy and four Dragapult ex, paid for by both singletons and one Brock Scouting."
+      },
+      "deck_sha256": "21debd7c0af85e377721b466bd9daa0d09ef70fe0c793d1a6e330841a20d3422"
+    }
+  ],
+  "rejected": [],
+  "utc": "2026-08-03T17:11:16Z"
+}
