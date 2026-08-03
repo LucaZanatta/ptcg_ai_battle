@@ -292,8 +292,26 @@ CHECKS = [v01_summary_matches_raw, v02_no_zero_game_summaries, v03_identity_roun
 # --------------------------------------------------------------------------------------------
 
 def _copy_root(dst: str) -> str:
+    """A miniature but complete copy: all the small files, and the SMALLEST evaluation tag.
+
+    The live tree carries hundreds of megabytes of raw games and every injection needs its own
+    copy. One tag is enough to prove a check can fire -- the checks iterate over whatever tags
+    they find -- and copying all of them would make the injection suite cost more than the
+    campaign's experiments.
+    """
     shutil.copytree(OUT, dst, symlinks=True,
-                    ignore=shutil.ignore_patterns("final_packages", "source"))
+                    ignore=shutil.ignore_patterns("final_packages", "source", "raw_evaluations",
+                                                  "ladder_replays", "__pycache__"))
+    src_raw = os.path.join(OUT, "raw_evaluations")
+    dst_raw = os.path.join(dst, "raw_evaluations")
+    os.makedirs(dst_raw, exist_ok=True)
+    tags = [(os.path.getsize(os.path.join(src_raw, t, "games.jsonl")), t)
+            for t in os.listdir(src_raw)
+            if os.path.isfile(os.path.join(src_raw, t, "games.jsonl"))
+            and os.path.isfile(os.path.join(src_raw, t, "summary.json"))]
+    if tags:
+        t = min(tags)[1]
+        shutil.copytree(os.path.join(src_raw, t), os.path.join(dst_raw, t))
     return dst
 
 
@@ -373,13 +391,25 @@ def inject(root: str, cid: str) -> bool:
         # the summary still says zero errors -> V08 must fire
         return True
     if cid == "V11":
+        # Remove a candidate that IS evaluated in the copied tag. Dropping an arbitrary line
+        # would leave the check correctly silent, and an injection that cannot fire proves
+        # nothing about the check -- it only proves the injection was wrong.
         p = os.path.join(root, "CANDIDATE_HISTORY.jsonl")
         if not os.path.exists(p):
             return False
+        evaluated = {x["candidate_id"] for x in _rows(root, t)}
         lines = [l for l in open(p) if l.strip()]
+        victim = None
+        for l in lines:
+            if json.loads(l)["candidate_id"] in evaluated:
+                victim = l
+                break
+        if victim is None:
+            return False
         with open(p, "w") as fh:
-            for l in lines[1:]:
-                fh.write(l)
+            for l in lines:
+                if l is not victim:
+                    fh.write(l)
         return True
     return False
 

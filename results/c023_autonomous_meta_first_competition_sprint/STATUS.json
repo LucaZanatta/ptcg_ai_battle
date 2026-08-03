@@ -1,0 +1,91 @@
+{
+  "contract": "c023_autonomous_meta_first_competition_sprint",
+  "generated_utc": "2026-08-03T18:24:37Z",
+  "deadline_europe_rome": "2026-08-05T20:00:00+02:00",
+  "git": {
+    "commit": "c83a4c0d89d1a206cc24ed06697c4cbe701ef002",
+    "dirty": true,
+    "branch": "contract/c023_autonomous_meta_first_competition_sprint"
+  },
+  "outcome": "RESEARCH_SUCCESS",
+  "champion": "official_dragapult",
+  "champion_field_off_mirror": 0.4653,
+  "champion_final": {
+    "field_off_mirror": 0.492,
+    "games": 1120,
+    "pooled": 0.5607,
+    "wilson95": [
+      0.5315,
+      0.5895
+    ],
+    "per_opponent": {
+      "official_iono": 0.6375,
+      "official_mega_abomasnow": 0.4625,
+      "official_mega_lucario": 0.525,
+      "pub_jazivxt_codex_alakazam": 0.5375,
+      "pub_jazivxt_rising_tide_v21": 0.525,
+      "pub_makthanithin_lucario_1084": 0.375,
+      "pub_prvsiyan_crustle_wall": 0.7325,
+      "pub_prvsiyan_lucario_v12": 0.275,
+      "pub_raunakdey_heuristic": 0.6,
+      "pub_tetsutani_grimmsnarl": 0.25
+    }
+  },
+  "challenger": null,
+  "challenger_final": null,
+  "promoted": false,
+  "panel_leader_ineligible": "pub_jazivxt_rising_tide_v21",
+  "total_games": 60292,
+  "total_errors": 1,
+  "engine_process_deaths": 0,
+  "evaluation_tags": [
+    "bench_screen",
+    "crustle_panel",
+    "deck_confirm1",
+    "deck_screen1",
+    "decomp_screen",
+    "plan_screen1",
+    "rr_v1",
+    "rr_v1b",
+    "rr_v1c",
+    "rule_screen1",
+    "rule_screen2",
+    "rule_screen3",
+    "rule_screen4",
+    "smoke2",
+    "smoke3"
+  ],
+  "candidates_recorded": 59,
+  "packages": [
+    {
+      "name": "c023_champion_dragapult.tar.gz",
+      "sha256": "cf5bcd01a5028d1f3b90f3ce392113383e8b534e1ce9a1245286a3b93b266217",
+      "bytes": 1505820,
+      "clean_validation_valid": true
+    }
+  ],
+  "kaggle_upload": "NOT_PERFORMED",
+  "kaggle_upload_reason": "no explicit autonomous-submission authorization exists in the repository; see LEADERBOARD_SUBMISSION_PLAN.md. The competition deadline is 2026-08-16, so not uploading on 2026-08-05 forfeits nothing.",
+  "dev_panel": [
+    "pub_tetsutani_grimmsnarl",
+    "pub_jazivxt_codex_alakazam",
+    "official_iono",
+    "official_mega_abomasnow",
+    "official_dragapult"
+  ],
+  "validation_panel": [
+    "pub_makthanithin_lucario_1084",
+    "pub_prvsiyan_lucario_v12",
+    "pub_jazivxt_rising_tide_v21",
+    "pub_raunakdey_heuristic",
+    "official_mega_lucario"
+  ],
+  "validator": {
+    "checks": 11,
+    "pass": 10,
+    "fail": 1,
+    "no_data": 0,
+    "injections_detected": 0,
+    "injections_total": 0
+  }
+}
