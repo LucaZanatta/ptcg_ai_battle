@@ -34,14 +34,24 @@ implementations and two further Alakazam implementations, so archetype-generalis
 but there is no second Grimmsnarl agent to hold out, and that is the weakest point in the panel
 design.
 
-## R4 — the champion's own strength interval is ±3.6 points
+## R4 — the champion's own strength interval is ±3.6 points, and the run-to-run floor is ~1–3
 
-`official_dragapult`, 720 off-mirror games: 0.4653, Wilson 95% [0.4291, 0.5018]. Two *identical*
-policies measured 3.2 points apart on the same panel in two separate runs. Any claim of a small
-improvement that has not been re-measured at 1,200+ games is not distinguishable from that.
+`official_dragapult`, 720 off-mirror games: 0.4653, Wilson 95% [0.4291, 0.5018].
 
-This is why `deck_screen1`'s apparent +7.25 point winner evaporated to −0.12 at 1,200 games, and
-it is the standing reason to distrust any single-run screen result in this campaign.
+The run-to-run floor has **three independent measurements**, and the third is the strongest
+because the two policies are *provably* identical rather than assumed to be:
+
+| pair | games each | field scores | apart | how identity is known |
+|---|---:|---|---:|---|
+| `chal_dp_base` vs `chal_dp_base2` | 400 / 600 | 0.4850 / 0.5166 | **3.2 pp** | same wrapper, no rules, same deck |
+| `chal_dp_base2` (plan_screen1) vs (rule_screen1) | 1000 / 600 | 0.5060 / 0.5166 | 1.1 pp | the same candidate directory |
+| **`chal_dp_bench2` vs `chal_dp_base3`** | **1200 / 1200** | **0.5142 / 0.5042** | **1.0 pp** | the firing probe proved `bench2`'s only rule was **INERT** — 0 fires in 1,329 decisions — so the two were byte-equivalent policies |
+
+The third row is the primary estimate: **±1.0 point between identical policies at 1,200 games
+each**, rising to ~3 points at 400–600. Every comparison in this campaign is read against it.
+
+It is also why `deck_screen1`'s apparent +7.25 point winner evaporated to −0.12 at 1,200 games,
+and the standing reason to distrust any single-run screen result here.
 
 ## R5 — the engine cannot be seeded, so nothing is paired on the deal
 
