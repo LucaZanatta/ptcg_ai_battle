@@ -190,12 +190,45 @@ agent's promotion logic never deliberately brings either in to attack.
 `pub_prvsiyan_crustle_wall` was added to the panel on the strength of this measurement — a public
 Tusk/Crustle/Terrakion agent running Crustle ×4 and Dwebble ×4.
 
-### What this section does not claim
+### What this section does not claim — and the correction that followed
 
 Eighty-three games, thirteen archetypes: most cells have single-digit counts, so the *shares* are
-better measured than the *per-archetype score rates*. Crustle Wall at 0.222 is 2 of 9. It is
-enough to say "this is where we lose and here is the mechanism"; it is not enough to put an
-interval on it.
+better measured than the *per-archetype score rates*. Crustle Wall at 0.222 is **2 of 9**. It is
+enough to say "look here"; it is not enough to put an interval on it.
+
+**And looking there did not confirm it.** `pub_prvsiyan_crustle_wall` was added to the panel and
+the matchup was measured properly — 400 games per candidate, one opponent:
+
+| candidate | vs `pub_prvsiyan_crustle_wall` |
+|---|---:|
+| `official_dragapult` | **0.7325** |
+| `chal_dp_base4` (the same policy, wrapper build) | 0.6725 |
+| `pub_makthanithin_lucario_1084` | 0.3125 |
+| `official_mega_lucario` | 0.0950 |
+
+**The champion beats this Crustle implementation comfortably.** The ladder's 0.222 was two wins in
+nine games, and 400 controlled games put the same matchup near 0.70.
+
+So the planned anti-Crustle branch was **killed before a line of it was written**. Two readings of
+why, and they are not exclusive:
+
+- **Nine games is nine games.** A true rate of 0.5 produces 2-or-fewer wins in 9 about 9% of the
+  time. This is what a nine-game cell looks like when it is unlucky.
+- **"Crustle Wall" is not one agent.** `UNRESOLVED_RISKS.md` R3 warns that one implementation
+  standing in for an archetype cuts both ways, and here it cut in our favour: the public
+  Tusk/Crustle/Terrakion agent available to us may simply be weaker than whatever we met.
+
+Worth keeping, because it is the reason the archetype *looks* frightening on paper: this deck runs
+**Neutralization Zone**, a stadium that prevents all damage to Pokémon without a Rule Box from
+attacks by Pokémon ex — and every Pokémon in the list is non-ex. With that stadium down, Dragapult
+ex cannot damage anything. The champion's answer is already in its list: Team Rocket's Watchtower,
+scored **80000** — the highest number in its play table — whenever any stadium is out. The sample
+was built to displace stadiums, and against this deck that is the whole matchup.
+
+**The methodological point is the one to keep.** A 10.8%-share, 0.222-score cell from first-hand
+ladder data looked like the campaign's best remaining opportunity, and a 400-game controlled
+measurement retired it in eighty seconds. Acting on the nine-game number without measuring it
+would have spent the last night of the campaign fixing a matchup we win.
 
 ## 6. Three decisions this report changes
 
