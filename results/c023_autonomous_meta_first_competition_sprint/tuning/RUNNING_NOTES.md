@@ -37,6 +37,17 @@ That is the expected behaviour, it is why the registered protocol calls the sear
 *hypothesis*, and it is why `tune_best` must still clear confirmation on a fresh run and
 validation on a panel the search never saw.
 
+## The search's most useful output is not its winner
+
+A (1+5) search that re-measures its incumbent every round accumulates, over 70 rounds, **70,000
+games on essentially one or two policies**. At 1,000 games a measurement the standard error of a
+single round's incumbent score is ~1.6 points; over seventy of them it is about **0.2 points**.
+
+So the incumbent series is the most precise strength measurement in this entire campaign — an
+order of magnitude tighter than any deliberate arm — and it costs nothing extra. It is what turns
+"the accepted change shrank" from an impression into the number below, and it is why the search's
+negative result is worth more than its positive one.
+
 ## The shrinkage, measured inside the search itself
 
 The registered protocol predicted it: *"the search will report a dev-panel gain, and most of it
