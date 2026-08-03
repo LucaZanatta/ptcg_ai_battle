@@ -54,13 +54,15 @@ The registered protocol predicted it: *"the search will report a dev-panel gain,
 will not survive confirmation."* The search does not have to wait for the confirmation stage to
 show it, because it re-measures its own incumbent every round.
 
-| incumbent | rounds | scores | mean |
-|---|---|---|---:|
-| the untouched defaults | r0–r5 | 0.511, 0.508, 0.504, 0.515, 0.493, 0.498 | **0.5048** |
-| after the r5 change | r6–r10 | 0.514, 0.5035, 0.505, 0.512, 0.504 | **0.5077** |
+| incumbent | rounds | n | mean | worth |
+|---|---|---:|---:|---:|
+| the untouched defaults | r0–r5 | 6 | **0.5048** | — |
+| + the r5 change (1 parameter) | r6–r22 | 17 | **0.5053** | **+0.05 pt** |
+| + the r22 change (4 parameters) | r23–… | 2 | 0.4948 | (too few yet) |
 
-**The accepted change was worth +4.80 points when it was selected and +0.29 points when it was
-re-measured five times.**
+**The r5 change was worth +4.80 points when it was selected and +0.05 points over the next
+seventeen re-measurements — 17,000 games.** The first estimate, taken after five re-measurements,
+was +0.29; adding twelve more measurements took it to zero. It is not a small gain. It is nothing.
 
 That is selection bias with a number on it, from the campaign's own data and at no extra cost.
 Nothing was done differently between the two rows — same policy, same panel, same harness, 1,000
