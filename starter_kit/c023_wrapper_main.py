@@ -40,7 +40,10 @@ try:
         _PARAMS = json.load(_fh)
 except Exception:
     pass
-RULES_ON = {k for k, v in (_PARAMS.get("rules") or {}).items() if v}
+# Sorted, not a set: iteration order over a set depends on PYTHONHASHSEED, and two rules that
+# can fire on the same decision would then resolve differently between runs. A candidate must be
+# one policy, not a distribution over policies.
+RULES_ON = sorted(k for k, v in (_PARAMS.get("rules") or {}).items() if v)
 TH = _PARAMS.get("thresholds") or {}
 
 # ---- deck ---------------------------------------------------------------------------------
@@ -130,6 +133,69 @@ def rule(name):
         RULES[name] = fn
         return fn
     return deco
+
+
+# ---- F1: turn order -------------------------------------------------------------------------
+# The official Dragapult sample scores YES = -1 in SelectContext.IS_FIRST, so it always elects to
+# go SECOND. That is a single bit with a whole-game consequence and no measurement behind it in
+# the sample; a public Mega Lucario agent whose kernel is titled with a 1084.5 leaderboard score
+# makes the opposite choice. It is the cheapest testable decision in the whole agent.
+
+@rule("go_first")
+def _go_first(v, base_action):
+    if v.context != SelectContext.IS_FIRST:
+        return None
+    for i, o in enumerate(v.options):
+        if o.type == OptionType.YES:
+            return [i]
+    return None
+
+
+# ---- F2: opening bench width ---------------------------------------------------------------
+# The sample benches NOTHING at setup when it is the first player (`if my_index ==
+# state.firstPlayer or card.id != Dreepy: score = -1`) and only Dreepy when it is second. A deck
+# whose whole plan is Dreepy -> Drakloak -> Dragapult ex needs Dreepy on the board early, and an
+# empty bench also means a knocked-out active ends the game outright.
+
+def _basic_pref(cid):
+    # Dreepy first: it is the evolution line. Budew next: its item lock is the tempo defence.
+    # The three ex support Pokemon are LAST -- each is two prizes sitting on the bench.
+    order = {119: 0, 235: 1, 184: 2, 140: 3, 1071: 4}
+    return order.get(cid, 5)
+
+
+def _bench_fill(v, prefer_only=None):
+    cands = []
+    for i, o in enumerate(v.options):
+        c = v.opt_card(o)
+        if c is None:
+            continue
+        if prefer_only is not None and c.id not in prefer_only:
+            continue
+        cands.append((_basic_pref(c.id), i))
+    if not cands:
+        return None
+    cands.sort()
+    k = min(int(v.select.maxCount), len(cands))
+    if k < int(v.select.minCount):
+        return None
+    return [i for _, i in cands[:k]]
+
+
+@rule("bench_dreepy_always")
+def _bench_dreepy_always(v, base_action):
+    """Bench Dreepy at setup even when moving first -- the sample declines to."""
+    if v.context != SelectContext.SETUP_BENCH_POKEMON:
+        return None
+    return _bench_fill(v, prefer_only={119})
+
+
+@rule("bench_wide_setup")
+def _bench_wide_setup(v, base_action):
+    """Fill the opening bench, Dreepy and Budew first, ex support Pokemon last."""
+    if v.context != SelectContext.SETUP_BENCH_POKEMON:
+        return None
+    return _bench_fill(v)
 
 
 def _legal(view, action) -> bool:

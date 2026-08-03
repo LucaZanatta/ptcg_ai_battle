@@ -114,6 +114,7 @@ EXTRACTORS: Dict[str, str] = {
     "raunakdey07_pok-mon-tcg-advanced-heuristic-agent": "writefile",
     "prvsiyan_ptcg-ai-battle-search-audited-alakazam-v12": "payloads",
     "tetsutani_grimmsnarl-ex-damage-transfer-control": "asset",
+    "makthanithin_pokemon-tcg-ai-battle-1084-5-baseline": "writefile",
 }
 
 

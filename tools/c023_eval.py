@@ -179,7 +179,8 @@ def build_jobs(candidates: List[str], opponents: List[str], games: int, phase: s
 
 
 def run_jobs(jobs: List[Dict[str, Any]], procs: int, chunk: int = 1,
-             progress_every: int = 0, game_timeout: float = 600.0) -> List[Dict[str, Any]]:
+             progress_every: int = 0, game_timeout: float = 600.0,
+             worker=None) -> List[Dict[str, Any]]:
     """One game per forked child.
 
     A worker pool that plays many games per process cannot be used here. Several public agents
@@ -195,6 +196,7 @@ def run_jobs(jobs: List[Dict[str, Any]], procs: int, chunk: int = 1,
     """
     import tempfile
 
+    worker = worker or _play
     # Pre-import in the parent: children inherit these copy-on-write and start instantly.
     import kaggle_environments  # noqa: F401
     from cg import c023_players  # noqa: F401
@@ -212,7 +214,7 @@ def run_jobs(jobs: List[Dict[str, Any]], procs: int, chunk: int = 1,
         if pid == 0:  # child
             code = 0
             try:
-                rec = _play(job)
+                rec = worker(job)
                 with open(path, "w") as fh:
                     json.dump(rec, fh)
             except BaseException:  # noqa: BLE001

@@ -55,6 +55,8 @@ PUBLIC = {
                                 "public_kernel"),
     "pub_tetsutani_grimmsnarl": (os.path.join(KERNEL_SOURCES, "tetsutani_grimmsnarl-ex-damage-transfer-control"),
                                  "public_kernel"),
+    "pub_makthanithin_lucario_1084": (os.path.join(KERNEL_SOURCES, "makthanithin_pokemon-tcg-ai-battle-1084-5-baseline"),
+                                      "public_kernel"),
 }
 
 _load_counter = [0]
