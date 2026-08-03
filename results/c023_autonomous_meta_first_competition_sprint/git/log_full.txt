@@ -1,0 +1,690 @@
+commit 65b16788f0de8f603f056c68cba5c930aac78843
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 20:04:01 2026 +0200
+
+    c023: F3 verdict, and the finalisation script
+    
+    Three planner designs, eleven arms, ~26,000 games, every one at or below its same-run
+    control. The mechanism is measured, not inferred: with a board evaluator the arms order
+    monotonically in override rate; with an exact gate the override rate collapses to 0.07-0.4%
+    of decisions because the expert's turn is close to order-invariant; restricting to the
+    expert's own shortlist changes neither.
+    
+    The engine's forward-search API was never the problem. It works, a step costs 0.245 ms, and
+    the determinization of our own hidden cards is exact. There is simply very little for a
+    first-action search to decide in this agent.
+    
+    tools/c023_finalize.sh regenerates every report from raw data, runs the validator with
+    injections, captures source and git, and builds the results archive -- in that order, and
+    re-validates afterwards.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../AGENT_CHANGE_LEDGER.md                         | 29 ++++++++++++++++-
+ .../UNRESOLVED_RISKS.md                            | 17 ++++++++--
+ tools/c023_finalize.sh                             | 37 ++++++++++++++++++++++
+ 3 files changed, 80 insertions(+), 3 deletions(-)
+
+commit 445e94fd25ae0d82e717a281f08c3ea55542a35a
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 20:02:41 2026 +0200
+
+    c023: mine our own ladder replays -- first-hand evidence instead of a third-party snapshot
+    
+    The Kaggle episode API returns the full replay of every public game a submission played, and
+    a replay contains BOTH decks: each agent's 60-card list is its own first action. So for the
+    four agents this project has submitted we can recover, first-hand, which archetypes the
+    ladder actually paired us against, how often, and our result against each.
+    
+    Confirmed live on our Dragapult submission (ref 54948560): 83 public episodes available, and
+    a six-game sample already shows Marnie Grimmsnarl at 50% of opponents -- which is what the
+    third-party score-band census said, now measured on our own games.
+    
+    Replays are ~4 MB each; each is parsed and deleted, and requests are paced at 1.5 s.
+    
+    Also: the expert-shortlist planner is killed. short4 0.5033 and short3 0.4879 against a
+    same-run control of 0.5279 -- so restricting the search to the expert's own top-k did not
+    rescue it either.
+    
+    And a correction to the noise floor: chal_dp_base3, the SAME candidate, measured 0.5042,
+    0.5125 and 0.5279 across three separate 1,200-game runs. The run-to-run range is 2.4 points,
+    not the ~1 point the two-run comparison suggested.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../ladder_replays/LADDER_SUMMARY.json             |   38 +
+ .../ladder_replays/submission_54948560.json        |  133 +
+ .../raw_evaluations/rule_screen4/games.jsonl       | 3600 ++++++++++++++++++++
+ .../raw_evaluations/rule_screen4/summary.json      |  234 ++
+ tools/c023_replays.py                              |  213 ++
+ 5 files changed, 4218 insertions(+)
+
+commit 535db08a18d78a0cfda112adce9ccc15ba5e33c7
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:58:18 2026 +0200
+
+    c023: register the score-constant search protocol before it runs
+    
+    Acceptance margin (2 x SE of the difference = 4.47 points at 1,000 games per arm), the
+    objective (dev panel only), the hard stop (2026-08-04T05:00Z), and the two stages the winner
+    must still clear on fresh runs are all fixed here rather than chosen after seeing the answer.
+    
+    The prediction is registered too: the search will report a dev-panel gain and most of it will
+    not survive confirmation, because that is what a selection procedure over a noisy objective
+    does. The shrinkage is the measurement.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../AGENT_CHANGE_LEDGER.md                         | 62 +++++++++++++++++-
+ .../tuning/REGISTERED_PROTOCOL.md                  | 74 ++++++++++++++++++++++
+ 2 files changed, 133 insertions(+), 3 deletions(-)
+
+commit e9ec1f49e9ebe1b4297b12958109fcb600eca7e3
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:56:58 2026 +0200
+
+    c023: parameterise the sample agent's own 110 score constants, and a (1+lambda) search over them
+    
+    The official agents decide by adding hand-chosen round numbers -- score = 40000, score += 250,
+    return 20000 -- none of which was ever measured against the alternatives. tools/c023_paramize.py
+    rewrites them by AST transform into lookups whose defaults are the original values, restricted
+    to constants that are genuinely weights: assigned to a scoring variable, or returned from a
+    function whose name ends in _score. Card IDs, deck sizes, energy costs and list indices are
+    untouched.
+    
+    The transform is verified rather than asserted: the parameterised agent is action-identical to
+    the sample over 1,263 decisions in 14 games.
+    
+    c023_tune.py searches those 110 parameters with three defences registered before it runs -- the
+    incumbent is re-measured every round in the same run as its challengers, acceptance needs a
+    margin of twice the standard error of the difference, and whatever it produces is a HYPOTHESIS
+    that must still clear the registered confirm and validate stages. Perturbations are
+    multiplicative and sign-preserving so a -1 sentinel stays a sentinel.
+    
+    Also: exact-gain planner variants are null. prizeall 0.5167, koall 0.5142, control 0.5125,
+    koexact 0.5050 over 1,200 games each -- consistent with their measured 0.07-0.4% firing rate.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../agents/_param_official_dragapult.py            |  794 ++++
+ .../agents/_param_official_dragapult_slots.json    |  777 ++++
+ .../agents/chal_dp_param0/ATTRIBUTION.txt          |    5 +
+ .../agents/chal_dp_param0/base_agent.py            |  794 ++++
+ .../agents/chal_dp_param0/deck.csv                 |   60 +
+ .../agents/chal_dp_param0/main.py                  |  426 ++
+ .../agents/chal_dp_param0/params.json              |    5 +
+ .../agents/chal_dp_param0/planner.py               |  416 ++
+ .../candidate_manifests/chal_dp_param0.json        |   81 +
+ .../raw_evaluations/identity/chal_dp_param0.json   |   11 +
+ .../raw_evaluations/rule_screen3/games.jsonl       | 4800 ++++++++++++++++++++
+ .../raw_evaluations/rule_screen3/summary.json      |  302 ++
+ tools/c023_build_candidate.py                      |   17 +-
+ tools/c023_paramize.py                             |  152 +
+ tools/c023_tune.py                                 |  188 +
+ 15 files changed, 8824 insertions(+), 4 deletions(-)
+
+commit 38d7e6afa5d2afde0d61c960e7a1653101ab8afa
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:52:12 2026 +0200
+
+    c023: supersession records, the noise floor's third measurement, and a re-verified wrapper
+    
+    The cleanest noise-floor datum in the campaign turned out to be an accident: chal_dp_bench2
+    and chal_dp_base3 measured 0.5142 and 0.5042 over 1200 games each, and the firing probe
+    proved bench2's only rule never fired. Two provably identical policies, 1.0 point apart.
+    That replaces the two-run inference as R4's primary estimate.
+    
+    superseded/ records plan_screen1 (measured under a wall-clock work budget, retained for its
+    mechanism finding because a contention artefact would have depressed all four arms together
+    rather than ordering them by override rate), the three inert bench candidates (retained as
+    controls, superseded as challengers), and chal_dp_benchline (inert by construction, caught
+    before it cost a game).
+    
+    The wrapper has changed four times since its last identity check, so chal_dp_base4 was built
+    from the shipping bytes and re-verified: 0 mismatches over 1,086 decisions in 14 games.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../EXECUTIVE_DECISION.md                          |  26 +
+ .../UNRESOLVED_RISKS.md                            |  22 +-
+ .../agents/chal_dp_base4/ATTRIBUTION.txt           |   4 +
+ .../agents/chal_dp_base4/base_agent.py             | 853 +++++++++++++++++++++
+ .../agents/chal_dp_base4/deck.csv                  |  60 ++
+ .../agents/chal_dp_base4/main.py                   | 426 ++++++++++
+ .../agents/chal_dp_base4/params.json               |   4 +
+ .../agents/chal_dp_base4/planner.py                | 416 ++++++++++
+ .../candidate_manifests/chal_dp_base4.json         |  78 ++
+ .../raw_evaluations/identity/chal_dp_base4.json    |  11 +
+ .../superseded/README.md                           |  54 ++
+ starter_kit/c023_wrapper_main.py                   |   5 +
+ 12 files changed, 1953 insertions(+), 6 deletions(-)
+
+commit 4d457e59158c5f3c80484c89d640a3ffb3b4ed74
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:50:16 2026 +0200
+
+    c023: register two predictions before the runs that test them
+    
+    P-A: bench_discipline_vs_spread will not help. It fires on 8.4% of decisions, but with a
+    100 HP threshold the only cards it can veto in this deck are Dreepy and Budew -- and the
+    same rule with 119/120 protected measured INERT. So every firing is the agent being stopped
+    from developing its own evolution line, and the loss mining says winning games have a LARGER
+    mean bench (3.31 vs 2.63), not a smaller one.
+    
+    P-B: the archetype's headroom is agent, not deck. Official Mega Lucario on its own list
+    scores 0.4687; on the public tuned list two independent authors converged on, 0.4875 -- a
+    +1.9 point difference inside the noise floor, against a claimed 1084.5-vs-593.3 rating gap
+    for the same 60 cards. The third cell (that public agent, that deck, this panel) is the one
+    that closes the decomposition.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../PREDICTIONS.md                                 |  69 ++
+ .../agents/chal_dp_bench4f/ATTRIBUTION.txt         |   4 +
+ .../agents/chal_dp_bench4f/base_agent.py           | 853 +++++++++++++++++++++
+ .../agents/chal_dp_bench4f/deck.csv                |  60 ++
+ .../agents/chal_dp_bench4f/main.py                 | 426 ++++++++++
+ .../agents/chal_dp_bench4f/params.json             |  10 +
+ .../agents/chal_dp_bench4f/planner.py              | 416 ++++++++++
+ .../agents/chal_dp_benchline/ATTRIBUTION.txt       |   4 +
+ .../agents/chal_dp_benchline/base_agent.py         | 853 +++++++++++++++++++++
+ .../agents/chal_dp_benchline/deck.csv              |  60 ++
+ .../agents/chal_dp_benchline/main.py               | 426 ++++++++++
+ .../agents/chal_dp_benchline/params.json           |  14 +
+ .../agents/chal_dp_benchline/planner.py            | 416 ++++++++++
+ .../candidate_manifests/chal_dp_bench4f.json       |  84 ++
+ .../candidate_manifests/chal_dp_benchline.json     |  88 +++
+ .../raw_evaluations/rule_fires/rule_fires.json     |  30 +-
+ 16 files changed, 3790 insertions(+), 23 deletions(-)
+
+commit 2162d7bd5903e8501612d0001f37678b88fb8a7d
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:48:11 2026 +0200
+
+    c023: a rule that never fired, caught by a probe no outcome-based check could have
+    
+    bench_discipline_vs_spread measured 0.5142 against a 0.5042 control over 1,200 games each
+    and looked like a small win. It was INERT: 0 fires in 1,329 decisions. The View resolved a
+    PLAY option's card through its  field, and PLAY/EVOLVE/ATTACH options carry no area --
+    the card always comes from hand, which is what the sample agents assume. So the rule's
+    precondition never held, the candidate was byte-for-byte the control's policy, and its
+    +1.0-point 'improvement' is a third independent measurement of this panel's noise floor.
+    
+    tools/c023_rule_fires.py exists because that class of failure is invisible to every
+    outcome-based check: an override that never fires produces a null result indistinguishable
+    from a real one. It wraps each enabled rule, counts firings, and reports INERT.
+    
+    After the fix the rule fires on 8.4% of decisions and has never been evaluated. Also
+    measured: the planner-based conservative overrides fire on 0.07-0.4% of decisions, which
+    is too rare to move a field score -- because with the expert finishing the turn either way,
+    the order of the first action almost never changes the prize outcome.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../agents/chal_dp_bench2f/ATTRIBUTION.txt         |    4 +
+ .../agents/chal_dp_bench2f/base_agent.py           |  853 ++
+ .../agents/chal_dp_bench2f/deck.csv                |   60 +
+ .../agents/chal_dp_bench2f/main.py                 |  421 +
+ .../agents/chal_dp_bench2f/params.json             |   10 +
+ .../agents/chal_dp_bench2f/planner.py              |  416 +
+ .../agents/chal_dp_bench3f/ATTRIBUTION.txt         |    4 +
+ .../agents/chal_dp_bench3f/base_agent.py           |  853 ++
+ .../agents/chal_dp_bench3f/deck.csv                |   60 +
+ .../agents/chal_dp_bench3f/main.py                 |  421 +
+ .../agents/chal_dp_bench3f/params.json             |   10 +
+ .../agents/chal_dp_bench3f/planner.py              |  416 +
+ .../agents/chal_dp_bench_prizef/ATTRIBUTION.txt    |    4 +
+ .../agents/chal_dp_bench_prizef/base_agent.py      |  853 ++
+ .../agents/chal_dp_bench_prizef/deck.csv           |   60 +
+ .../agents/chal_dp_bench_prizef/main.py            |  421 +
+ .../agents/chal_dp_bench_prizef/params.json        |   16 +
+ .../agents/chal_dp_bench_prizef/planner.py         |  416 +
+ .../candidate_manifests/chal_dp_bench2f.json       |   84 +
+ .../candidate_manifests/chal_dp_bench3f.json       |   84 +
+ .../candidate_manifests/chal_dp_bench_prizef.json  |   90 +
+ .../failures/DEFECTS.md                            |  106 +
+ .../raw_evaluations/rule_fires/rule_fires.json     |   47 +
+ .../raw_evaluations/rule_screen2/games.jsonl       | 8400 ++++++++++++++++++++
+ .../raw_evaluations/rule_screen2/summary.json      |  506 ++
+ starter_kit/c023_wrapper_main.py                   |   11 +-
+ tools/c023_reports.py                              |   80 +
+ tools/c023_rule_fires.py                           |  135 +
+ 28 files changed, 14840 insertions(+), 1 deletion(-)
+
+commit 8f15227d7f32667cc6e1c52738f6c5c6a2b423fa
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:43:03 2026 +0200
+
+    c023: the veto primitive, conservative admission, and the expert shortlist
+    
+    Three mechanisms, each answering a measured failure of the previous one.
+    
+    The veto primitive: a rule that says 'not that one' needs a replacement, and the only
+    principled replacement is the expert's own next preference. The observation is copied with
+    the vetoed options removed and the SIMULATION instance of the base agent is asked to choose
+    from what remains -- so the real instance is still called exactly once per real decision and
+    its plan state advances exactly once.
+    
+    Conservative admission (prize_only): the planner overrides only on a lexicographic gain in
+    (terminal, prizes taken, prizes conceded) -- facts about the simulated line rather than
+    opinions about board quality. With use_ko_risk it also compares the prizes the opponent can
+    immediately take back, computed from their visible active, its attached energy and its
+    public attacks.
+    
+    The expert shortlist: plan_screen1 lost monotonically in override rate, so the search is now
+    restricted to the expert's own top-k, obtained by re-asking it with each previous choice
+    vetoed. Every candidate is expert-approved and the search only breaks the tie.
+    
+    Also: determinization now rotates which unseen cards land in the prizes -- without it the
+    same cards were hidden in every prize slot of every game, a systematic bias rather than a
+    sample.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../UNRESOLVED_RISKS.md                            | 101 +++
+ .../agents/chal_dp_koall/ATTRIBUTION.txt           |   4 +
+ .../agents/chal_dp_koall/base_agent.py             | 853 +++++++++++++++++++++
+ .../agents/chal_dp_koall/deck.csv                  |  60 ++
+ .../agents/chal_dp_koall/main.py                   | 383 +++++++++
+ .../agents/chal_dp_koall/params.json               |  15 +
+ .../agents/chal_dp_koall/planner.py                | 407 ++++++++++
+ .../agents/chal_dp_koexact/ATTRIBUTION.txt         |   4 +
+ .../agents/chal_dp_koexact/base_agent.py           | 853 +++++++++++++++++++++
+ .../agents/chal_dp_koexact/deck.csv                |  60 ++
+ .../agents/chal_dp_koexact/main.py                 | 383 +++++++++
+ .../agents/chal_dp_koexact/params.json             |  14 +
+ .../agents/chal_dp_koexact/planner.py              | 407 ++++++++++
+ .../agents/chal_dp_prizeall/ATTRIBUTION.txt        |   4 +
+ .../agents/chal_dp_prizeall/base_agent.py          | 853 +++++++++++++++++++++
+ .../agents/chal_dp_prizeall/deck.csv               |  60 ++
+ .../agents/chal_dp_prizeall/main.py                | 383 +++++++++
+ .../agents/chal_dp_prizeall/params.json            |  14 +
+ .../agents/chal_dp_prizeall/planner.py             | 407 ++++++++++
+ .../agents/chal_dp_short3/ATTRIBUTION.txt          |   4 +
+ .../agents/chal_dp_short3/base_agent.py            | 853 +++++++++++++++++++++
+ .../agents/chal_dp_short3/deck.csv                 |  60 ++
+ .../agents/chal_dp_short3/main.py                  | 412 ++++++++++
+ .../agents/chal_dp_short3/params.json              |  15 +
+ .../agents/chal_dp_short3/planner.py               | 416 ++++++++++
+ .../agents/chal_dp_short4/ATTRIBUTION.txt          |   4 +
+ .../agents/chal_dp_short4/base_agent.py            | 853 +++++++++++++++++++++
+ .../agents/chal_dp_short4/deck.csv                 |  60 ++
+ .../agents/chal_dp_short4/main.py                  | 412 ++++++++++
+ .../agents/chal_dp_short4/params.json              |  14 +
+ .../agents/chal_dp_short4/planner.py               | 416 ++++++++++
+ .../candidate_manifests/chal_dp_koall.json         |  89 +++
+ .../candidate_manifests/chal_dp_koexact.json       |  88 +++
+ .../candidate_manifests/chal_dp_prizeall.json      |  88 +++
+ .../candidate_manifests/chal_dp_short3.json        |  89 +++
+ .../candidate_manifests/chal_dp_short4.json        |  88 +++
+ starter_kit/c023_planner.py                        |  75 +-
+ starter_kit/c023_wrapper_main.py                   |  29 +
+ tools/c023_capture.py                              | 140 ++++
+ tools/c023_reports.py                              | 195 +++++
+ 40 files changed, 9657 insertions(+), 8 deletions(-)
+
+commit 068513a55943c264c7e8c79abe9c92250fefa1cb
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:35:26 2026 +0200
+
+    c023: deck co-optimization fails, the planner fails, and the loss profile says why
+    
+    B2 = FAIL. Seventeen constrained mutations of the official Dragapult list. The best screen
+    arm went +7.25 at 400 games to -0.12 at 1200. Nothing separated from a control measured in
+    the same run. The list is already tuned and this deck's ceiling is not in its 60 cards.
+    
+    F3 = KILLED, and the ordering is the finding: plan2 (planned at every decision, overrode
+    most) 0.479, plan4 0.485, plan3 0.491, plan1 (most conservative) 0.4985, control 0.506.
+    Monotone in override rate. A hand-written board evaluator is arguing with constants that
+    encode deck knowledge it does not have, and it loses that argument more often than it wins.
+    That is what motivates prize_only: override on facts -- prizes taken, prizes conceded,
+    terminal -- and never on taste.
+    
+    Loss mining vs Grimmsnarl, 300 games, 90-210: most of the table is confounded by game
+    length, but two features are not. First attack lands on turn 2.24 in wins and 2.80 in
+    losses, and mean bench is 3.31 against 2.63. We lose the games where the line comes online
+    late. The champion declines an available attack 0.043 times per game, so the tactical class
+    is ruled out by measurement rather than by argument.
+    
+    The champion is frozen and packaged: 1.5 MB, sha256 cf5bcd01, clean-validated by extraction
+    and play with zero errors, both seats and latency inside the self-imposed bound.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../AGENT_CHANGE_LEDGER.md                         |  102 +
+ .../BYTERL_COMPONENT_RESULTS.md                    |   88 +
+ .../CANDIDATE_HISTORY.jsonl                        |   36 +
+ .../DECK_CHANGE_LEDGER.md                          |   93 +
+ .../FAILURE_TAXONOMY.md                            |  114 +
+ .../LEADERBOARD_SUBMISSION_PLAN.md                 |   78 +
+ .../MATCHUP_MATRIX.csv                             |   11 +
+ .../META_REPORT.md                                 |  133 +
+ .../PANEL_SPLIT.json                               |   56 +
+ .../PIVOT_LEDGER.md                                |  107 +
+ .../SOURCES.md                                     |   88 +
+ .../agents/chal_dp_base/ATTRIBUTION.txt            |    4 +
+ .../agents/chal_dp_base/base_agent.py              |  853 ++
+ .../agents/chal_dp_base/deck.csv                   |   60 +
+ .../agents/chal_dp_base/main.py                    |  169 +
+ .../agents/chal_dp_base/params.json                |    4 +
+ .../agents/chal_dp_base2/ATTRIBUTION.txt           |    4 +
+ .../agents/chal_dp_base2/base_agent.py             |  853 ++
+ .../agents/chal_dp_base2/deck.csv                  |   60 +
+ .../agents/chal_dp_base2/main.py                   |  235 +
+ .../agents/chal_dp_base2/params.json               |    4 +
+ .../agents/chal_dp_base3/ATTRIBUTION.txt           |    4 +
+ .../agents/chal_dp_base3/base_agent.py             |  853 ++
+ .../agents/chal_dp_base3/deck.csv                  |   60 +
+ .../agents/chal_dp_base3/main.py                   |  383 +
+ .../agents/chal_dp_base3/params.json               |    4 +
+ .../agents/chal_dp_base3/planner.py                |  357 +
+ .../agents/chal_dp_bench2/ATTRIBUTION.txt          |    4 +
+ .../agents/chal_dp_bench2/base_agent.py            |  853 ++
+ .../agents/chal_dp_bench2/deck.csv                 |   60 +
+ .../agents/chal_dp_bench2/main.py                  |  383 +
+ .../agents/chal_dp_bench2/params.json              |   10 +
+ .../agents/chal_dp_bench2/planner.py               |  357 +
+ .../agents/chal_dp_bench3/ATTRIBUTION.txt          |    4 +
+ .../agents/chal_dp_bench3/base_agent.py            |  853 ++
+ .../agents/chal_dp_bench3/deck.csv                 |   60 +
+ .../agents/chal_dp_bench3/main.py                  |  383 +
+ .../agents/chal_dp_bench3/params.json              |   10 +
+ .../agents/chal_dp_bench3/planner.py               |  357 +
+ .../agents/chal_dp_bench_prize/ATTRIBUTION.txt     |    4 +
+ .../agents/chal_dp_bench_prize/base_agent.py       |  853 ++
+ .../agents/chal_dp_bench_prize/deck.csv            |   60 +
+ .../agents/chal_dp_bench_prize/main.py             |  383 +
+ .../agents/chal_dp_bench_prize/params.json         |   16 +
+ .../agents/chal_dp_bench_prize/planner.py          |  357 +
+ .../agents/chal_dp_plan1/ATTRIBUTION.txt           |    4 +
+ .../agents/chal_dp_plan1/base_agent.py             |  853 ++
+ .../agents/chal_dp_plan1/deck.csv                  |   60 +
+ .../agents/chal_dp_plan1/main.py                   |  284 +
+ .../agents/chal_dp_plan1/params.json               |    6 +
+ .../agents/chal_dp_plan1/planner.py                |  306 +
+ .../agents/chal_dp_plan2/ATTRIBUTION.txt           |    4 +
+ .../agents/chal_dp_plan2/base_agent.py             |  853 ++
+ .../agents/chal_dp_plan2/deck.csv                  |   60 +
+ .../agents/chal_dp_plan2/main.py                   |  284 +
+ .../agents/chal_dp_plan2/params.json               |   11 +
+ .../agents/chal_dp_plan2/planner.py                |  306 +
+ .../agents/chal_dp_plan3/ATTRIBUTION.txt           |    4 +
+ .../agents/chal_dp_plan3/base_agent.py             |  853 ++
+ .../agents/chal_dp_plan3/deck.csv                  |   60 +
+ .../agents/chal_dp_plan3/main.py                   |  284 +
+ .../agents/chal_dp_plan3/params.json               |   13 +
+ .../agents/chal_dp_plan3/planner.py                |  306 +
+ .../agents/chal_dp_plan4/ATTRIBUTION.txt           |    4 +
+ .../agents/chal_dp_plan4/base_agent.py             |  853 ++
+ .../agents/chal_dp_plan4/deck.csv                  |   60 +
+ .../agents/chal_dp_plan4/main.py                   |  284 +
+ .../agents/chal_dp_plan4/params.json               |   16 +
+ .../agents/chal_dp_plan4/planner.py                |  306 +
+ .../agents/chal_dp_prizeonly/ATTRIBUTION.txt       |    4 +
+ .../agents/chal_dp_prizeonly/base_agent.py         |  853 ++
+ .../agents/chal_dp_prizeonly/deck.csv              |   60 +
+ .../agents/chal_dp_prizeonly/main.py               |  383 +
+ .../agents/chal_dp_prizeonly/params.json           |   13 +
+ .../agents/chal_dp_prizeonly/planner.py            |  357 +
+ .../agents/chal_dp_r_benchdreepy/ATTRIBUTION.txt   |    4 +
+ .../agents/chal_dp_r_benchdreepy/base_agent.py     |  853 ++
+ .../agents/chal_dp_r_benchdreepy/deck.csv          |   60 +
+ .../agents/chal_dp_r_benchdreepy/main.py           |  235 +
+ .../agents/chal_dp_r_benchdreepy/params.json       |    6 +
+ .../agents/chal_dp_r_benchwide/ATTRIBUTION.txt     |    4 +
+ .../agents/chal_dp_r_benchwide/base_agent.py       |  853 ++
+ .../agents/chal_dp_r_benchwide/deck.csv            |   60 +
+ .../agents/chal_dp_r_benchwide/main.py             |  235 +
+ .../agents/chal_dp_r_benchwide/params.json         |    6 +
+ .../agents/chal_dp_r_gofirst/ATTRIBUTION.txt       |    4 +
+ .../agents/chal_dp_r_gofirst/base_agent.py         |  853 ++
+ .../agents/chal_dp_r_gofirst/deck.csv              |   60 +
+ .../agents/chal_dp_r_gofirst/main.py               |  235 +
+ .../agents/chal_dp_r_gofirst/params.json           |    6 +
+ .../dpdeck_d01_rarecandy3_helmet0/ATTRIBUTION.txt  |    4 +
+ .../dpdeck_d01_rarecandy3_helmet0/base_agent.py    |  853 ++
+ .../agents/dpdeck_d01_rarecandy3_helmet0/deck.csv  |   60 +
+ .../agents/dpdeck_d01_rarecandy3_helmet0/main.py   |  169 +
+ .../dpdeck_d01_rarecandy3_helmet0/params.json      |    4 +
+ .../agents/dpdeck_d02_boss4_brock1/ATTRIBUTION.txt |    4 +
+ .../agents/dpdeck_d02_boss4_brock1/base_agent.py   |  853 ++
+ .../agents/dpdeck_d02_boss4_brock1/deck.csv        |   60 +
+ .../agents/dpdeck_d02_boss4_brock1/main.py         |  169 +
+ .../agents/dpdeck_d02_boss4_brock1/params.json     |    4 +
+ .../ATTRIBUTION.txt                                |    4 +
+ .../dpdeck_d03_pokepad4_watchtower1/base_agent.py  |  853 ++
+ .../dpdeck_d03_pokepad4_watchtower1/deck.csv       |   60 +
+ .../agents/dpdeck_d03_pokepad4_watchtower1/main.py |  169 +
+ .../dpdeck_d03_pokepad4_watchtower1/params.json    |    4 +
+ .../dpdeck_d04_budew3_meowth0/ATTRIBUTION.txt      |    4 +
+ .../agents/dpdeck_d04_budew3_meowth0/base_agent.py |  853 ++
+ .../agents/dpdeck_d04_budew3_meowth0/deck.csv      |   60 +
+ .../agents/dpdeck_d04_budew3_meowth0/main.py       |  169 +
+ .../agents/dpdeck_d04_budew3_meowth0/params.json   |    4 +
+ .../ATTRIBUTION.txt                                |    4 +
+ .../base_agent.py                                  |  853 ++
+ .../dpdeck_d05_nightstretcher3_helmet0/deck.csv    |   60 +
+ .../dpdeck_d05_nightstretcher3_helmet0/main.py     |  169 +
+ .../dpdeck_d05_nightstretcher3_helmet0/params.json |    4 +
+ .../dpdeck_d06_psychic5_hammer3/ATTRIBUTION.txt    |    4 +
+ .../dpdeck_d06_psychic5_hammer3/base_agent.py      |  853 ++
+ .../agents/dpdeck_d06_psychic5_hammer3/deck.csv    |   60 +
+ .../agents/dpdeck_d06_psychic5_hammer3/main.py     |  169 +
+ .../agents/dpdeck_d06_psychic5_hammer3/params.json |    4 +
+ .../dpdeck_d07_rarecandy3_stamp0/ATTRIBUTION.txt   |    4 +
+ .../dpdeck_d07_rarecandy3_stamp0/base_agent.py     |  853 ++
+ .../agents/dpdeck_d07_rarecandy3_stamp0/deck.csv   |   60 +
+ .../agents/dpdeck_d07_rarecandy3_stamp0/main.py    |  169 +
+ .../dpdeck_d07_rarecandy3_stamp0/params.json       |    4 +
+ .../dpdeck_d08_dragapult4_latias0/ATTRIBUTION.txt  |    4 +
+ .../dpdeck_d08_dragapult4_latias0/base_agent.py    |  853 ++
+ .../agents/dpdeck_d08_dragapult4_latias0/deck.csv  |   60 +
+ .../agents/dpdeck_d08_dragapult4_latias0/main.py   |  169 +
+ .../dpdeck_d08_dragapult4_latias0/params.json      |    4 +
+ .../dpdeck_d09_fire3_pokepad4/ATTRIBUTION.txt      |    4 +
+ .../agents/dpdeck_d09_fire3_pokepad4/base_agent.py |  853 ++
+ .../agents/dpdeck_d09_fire3_pokepad4/deck.csv      |   60 +
+ .../agents/dpdeck_d09_fire3_pokepad4/main.py       |  169 +
+ .../agents/dpdeck_d09_fire3_pokepad4/params.json   |    4 +
+ .../ATTRIBUTION.txt                                |    4 +
+ .../base_agent.py                                  |  853 ++
+ .../dpdeck_d10_brock0_pad4_stretcher3/deck.csv     |   60 +
+ .../dpdeck_d10_brock0_pad4_stretcher3/main.py      |  169 +
+ .../dpdeck_d10_brock0_pad4_stretcher3/params.json  |    4 +
+ .../dpdeck_d11_hammer3_boss4/ATTRIBUTION.txt       |    4 +
+ .../agents/dpdeck_d11_hammer3_boss4/base_agent.py  |  853 ++
+ .../agents/dpdeck_d11_hammer3_boss4/deck.csv       |   60 +
+ .../agents/dpdeck_d11_hammer3_boss4/main.py        |  169 +
+ .../agents/dpdeck_d11_hammer3_boss4/params.json    |    4 +
+ .../ATTRIBUTION.txt                                |    4 +
+ .../base_agent.py                                  |  853 ++
+ .../deck.csv                                       |   60 +
+ .../main.py                                        |  169 +
+ .../params.json                                    |    4 +
+ .../ATTRIBUTION.txt                                |    4 +
+ .../base_agent.py                                  |  853 ++
+ .../deck.csv                                       |   60 +
+ .../main.py                                        |  169 +
+ .../params.json                                    |    4 +
+ .../ATTRIBUTION.txt                                |    4 +
+ .../dpdeck_d15_rarecandy3_dragapult4/base_agent.py |  853 ++
+ .../dpdeck_d15_rarecandy3_dragapult4/deck.csv      |   60 +
+ .../dpdeck_d15_rarecandy3_dragapult4/main.py       |  235 +
+ .../dpdeck_d15_rarecandy3_dragapult4/params.json   |    4 +
+ .../dpdeck_d16_rarecandy3_budew3/ATTRIBUTION.txt   |    4 +
+ .../dpdeck_d16_rarecandy3_budew3/base_agent.py     |  853 ++
+ .../agents/dpdeck_d16_rarecandy3_budew3/deck.csv   |   60 +
+ .../agents/dpdeck_d16_rarecandy3_budew3/main.py    |  235 +
+ .../dpdeck_d16_rarecandy3_budew3/params.json       |    4 +
+ .../ATTRIBUTION.txt                                |    4 +
+ .../dpdeck_d17_rarecandy4_dragapult4/base_agent.py |  853 ++
+ .../dpdeck_d17_rarecandy4_dragapult4/deck.csv      |   60 +
+ .../dpdeck_d17_rarecandy4_dragapult4/main.py       |  235 +
+ .../dpdeck_d17_rarecandy4_dragapult4/params.json   |    4 +
+ .../agents/mldeck_ml_public_tuned/ATTRIBUTION.txt  |    4 +
+ .../agents/mldeck_ml_public_tuned/base_agent.py    |  508 ++
+ .../agents/mldeck_ml_public_tuned/deck.csv         |   60 +
+ .../agents/mldeck_ml_public_tuned/main.py          |  284 +
+ .../agents/mldeck_ml_public_tuned/params.json      |    4 +
+ .../agents/mldeck_ml_public_tuned/planner.py       |  306 +
+ .../candidate_manifests/chal_dp_base.json          |   77 +
+ .../candidate_manifests/chal_dp_base2.json         |   77 +
+ .../candidate_manifests/chal_dp_base3.json         |   78 +
+ .../candidate_manifests/chal_dp_bench2.json        |   84 +
+ .../candidate_manifests/chal_dp_bench3.json        |   84 +
+ .../candidate_manifests/chal_dp_bench_prize.json   |   90 +
+ .../candidate_manifests/chal_dp_plan1.json         |   80 +
+ .../candidate_manifests/chal_dp_plan2.json         |   85 +
+ .../candidate_manifests/chal_dp_plan3.json         |   87 +
+ .../candidate_manifests/chal_dp_plan4.json         |   90 +
+ .../candidate_manifests/chal_dp_prizeonly.json     |   87 +
+ .../candidate_manifests/chal_dp_r_benchdreepy.json |   79 +
+ .../candidate_manifests/chal_dp_r_benchwide.json   |   79 +
+ .../candidate_manifests/chal_dp_r_gofirst.json     |   79 +
+ .../dpdeck_d01_rarecandy3_helmet0.json             |   77 +
+ .../dpdeck_d02_boss4_brock1.json                   |   77 +
+ .../dpdeck_d03_pokepad4_watchtower1.json           |   77 +
+ .../dpdeck_d04_budew3_meowth0.json                 |   77 +
+ .../dpdeck_d05_nightstretcher3_helmet0.json        |   77 +
+ .../dpdeck_d06_psychic5_hammer3.json               |   77 +
+ .../dpdeck_d07_rarecandy3_stamp0.json              |   77 +
+ .../dpdeck_d08_dragapult4_latias0.json             |   77 +
+ .../dpdeck_d09_fire3_pokepad4.json                 |   77 +
+ .../dpdeck_d10_brock0_pad4_stretcher3.json         |   77 +
+ .../dpdeck_d11_hammer3_boss4.json                  |   77 +
+ ...dpdeck_d13_rarecandy3_helmet0_boss4_brock1.json |   77 +
+ ...eck_d14_watchtower1_stamp0_rarecandy3_pad4.json |   77 +
+ .../dpdeck_d15_rarecandy3_dragapult4.json          |   77 +
+ .../dpdeck_d16_rarecandy3_budew3.json              |   77 +
+ .../dpdeck_d17_rarecandy4_dragapult4.json          |   77 +
+ .../mldeck_ml_public_tuned.json                    |   78 +
+ .../champion.json                                  |  175 +
+ .../decks/dpdeck_build.json                        |  119 +
+ .../decks/mldeck_build.json                        |   87 +
+ .../decks/mut_dragapult.json                       |   30 +
+ .../decks/mut_mega_lucario.json                    |   30 +
+ .../final_packages/c023_champion_dragapult.tar.gz  |  Bin 0 -> 1505820 bytes
+ .../c023_champion_dragapult_manifest.json          |  100 +
+ .../raw_evaluations/deck_confirm1/games.jsonl      | 8400 ++++++++++++++++++++
+ .../raw_evaluations/deck_confirm1/summary.json     |  506 ++
+ .../raw_evaluations/deck_screen1/games.jsonl       | 5600 +++++++++++++
+ .../raw_evaluations/deck_screen1/summary.json      |  982 +++
+ .../raw_evaluations/identity/chal_dp_base.json     |   11 +
+ .../raw_evaluations/identity/chal_dp_base2.json    |   11 +
+ .../raw_evaluations/mine_grimmsnarl/mining.json    |  334 +
+ .../raw_evaluations/mine_grimmsnarl/traces.jsonl   |  300 +
+ .../raw_evaluations/plan_screen1/games.jsonl       | 5000 ++++++++++++
+ .../raw_evaluations/plan_screen1/summary.json      |  370 +
+ .../raw_evaluations/rr_v1/games.jsonl              | 6480 +++++++++++++++
+ .../raw_evaluations/rr_v1/summary.json             |  934 +++
+ .../raw_evaluations/rr_v1b/games.jsonl             |  800 ++
+ .../raw_evaluations/rr_v1b/summary.json            |  143 +
+ .../raw_evaluations/rr_v1c/games.jsonl             |  720 ++
+ .../raw_evaluations/rr_v1c/summary.json            |  350 +
+ .../raw_evaluations/rule_screen1/games.jsonl       | 2400 ++++++
+ .../raw_evaluations/rule_screen1/summary.json      |  302 +
+ .../raw_evaluations/smoke2/games.jsonl             |   36 +
+ .../raw_evaluations/smoke2/summary.json            |  224 +
+ .../raw_evaluations/smoke3/games.jsonl             |   56 +
+ .../raw_evaluations/smoke3/summary.json            |  271 +
+ .../validation.json                                |   72 +
+ starter_kit/c023_planner.py                        |   57 +-
+ starter_kit/c023_wrapper_main.py                   |  107 +-
+ tools/c023_history.py                              |  121 +
+ 240 files changed, 77429 insertions(+), 7 deletions(-)
+
+commit ea8360d96731e08ea4965925315101c2ddefa2b4
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:21:59 2026 +0200
+
+    c023: the turn planner, and three killed rules
+    
+    rule_screen1, 600 games each on the dev panel, against a control measured in the same run:
+    go_first 0.4883, bench_dreepy_always 0.5033, bench_wide_setup 0.4667, control 0.5166. All
+    three are killed. The sample's choice to move SECOND and to keep a narrow opening bench are
+    both correct, and now have evidence: a wide bench against Marnie's Grimmsnarl -- Shadow
+    Bullet hits a benched Pokemon for 30, Froslass pings every ability Pokemon each checkup --
+    is surface area, not development.
+    
+    The noise floor this is read against: two identical policies measured 0.4850 and 0.5166 on
+    the same panel in two runs. Anything under 3.2 points is not evidence.
+    
+    planner.py replaces the greedy option score at a decision by playing the turn out through
+    the engine's forward-search API, with the base agent itself as the continuation policy.
+    Feasibility was measured before it was built: search_step 0.245 ms, search_begin 0.46 ms,
+    26/26 begins from a naive determinization, and our own deck/prize determinization is exact.
+    In play it costs 14.3 ms mean, 118.7 ms max, against 44 ms for the Alakazam agents leading
+    this panel. Every search handle is released on every path -- the engine's handle buffer has
+    capacity 7 and the eighth allocation aborts the process.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ starter_kit/c023_planner.py      | 306 +++++++++++++++++++++++++++
+ starter_kit/c023_wrapper_main.py |  49 +++++
+ tools/c023_build_candidate.py    |   3 +
+ tools/c023_validate.py           | 436 +++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 794 insertions(+)
+
+commit 23e393720d4066abae4d14b04584850acf262acb
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 19:07:38 2026 +0200
+
+    c023: champion truth -- official_dragapult, decided by measurement not by label
+    
+    An 8,000-game round-robin over ten players (four official samples, six public community
+    agents) on one panel with one harness. Among submission-eligible bases the order is
+    dragapult 0.4653, mega_abomasnow 0.3625, mega_lucario 0.3521, iono 0.3431 -- so c016's
+    'official_mega_lucario is our best candidate' does not survive contact with a panel that
+    actually ran dragapult as a candidate, and the Kaggle ladder agreed all along (719.7 vs
+    593.3).
+    
+    The panel LEADER is a community agent (jazivxt rising-tide, 0.6417) and cannot be the
+    champion: SOURCES.md classifies every community kernel LOCAL_BENCHMARK_ONLY, so it is an
+    opponent and never a base. champion.json records both numbers rather than one.
+    
+    Also: the wrapper is action-identical to its base over 941 decisions in 12 games, and the
+    dev/validation opponent split is registered before any tuning game was played.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ starter_kit/c023_players.py      |   2 +
+ starter_kit/c023_wrapper_main.py |  68 +++++++++++-
+ tools/c023_eval.py               |   6 +-
+ tools/c023_extract_kernels.py    |   1 +
+ tools/c023_matrix.py             | 203 ++++++++++++++++++++++++++++++++++++
+ tools/c023_mine.py               | 219 +++++++++++++++++++++++++++++++++++++++
+ tools/c023_package.py            | 169 ++++++++++++++++++++++++++++++
+ 7 files changed, 665 insertions(+), 3 deletions(-)
+
+commit ee14b54ce08ffe992ff3d16e720f9eafe28c41a0
+Author: LucaZ <lz9304@gmail.com>
+Date:   Mon Aug 3 18:48:38 2026 +0200
+
+    c023: infrastructure -- player registry, fork-per-game evaluation harness, candidate builder
+    
+    The harness forks one child per game rather than reusing pool workers. Several public
+    agents call the engine's search API without releasing every handle, and the engine's
+    handle buffer has capacity 7: the eighth allocation throws an uncaught C++ exception,
+    the worker dies by SIGABRT, and multiprocessing.Pool waits forever for a result that
+    will never arrive. The first run of this harness hung with every worker at 0% CPU for
+    exactly that reason.
+    
+    Two integrity probes ride along: identity fields travel with every job (never re-attached
+    by position), and each decision is compared against the mindless legal fallback, so an
+    agent whose module failed to load reads as broken rather than as weak. That probe caught
+    a real bug here -- restoring sys.path after import made tetsutani's lazily-imported
+    policy unavailable, and it played the fallback for a whole game while scoring 1/6.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+ .../CLAUDE_COMMAND.txt                             |  59 ++
+ .../CONTRACT.md                                    | 612 +++++++++++++++++++++
+ .../README.md                                      |  17 +
+ starter_kit/c023_players.py                        | 162 ++++++
+ starter_kit/c023_wrapper_main.py                   | 169 ++++++
+ tools/c023_build_candidate.py                      | 140 +++++
+ tools/c023_deck_search.py                          | 140 +++++
+ tools/c023_eval.py                                 | 390 +++++++++++++
+ tools/c023_extract_kernels.py                      | 223 ++++++++
+ tools/c023_identity.py                             | 118 ++++
+ 10 files changed, 2030 insertions(+)

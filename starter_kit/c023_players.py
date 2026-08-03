@@ -57,6 +57,10 @@ PUBLIC = {
                                  "public_kernel"),
     "pub_makthanithin_lucario_1084": (os.path.join(KERNEL_SOURCES, "makthanithin_pokemon-tcg-ai-battle-1084-5-baseline"),
                                       "public_kernel"),
+    # Added after our own ladder replays showed Crustle Wall is the champion's WORST real
+    # matchup (0.222 over 9 games) and that no panel opponent resembled it.
+    "pub_prvsiyan_crustle_wall": (os.path.join(KERNEL_SOURCES, "prvsiyan_ptcg-tusk-crustle-terrakion-v1-public"),
+                                  "public_kernel"),
 }
 
 _load_counter = [0]
@@ -115,7 +119,24 @@ class LoadedPlayer:
         self.deck_sha256 = sha256_file(deck_path) if os.path.exists(deck_path) else None
 
     def __call__(self, obs: Any) -> List[int]:
-        return self._mod.agent(obs)
+        # The working directory is set to the agent's own package for the duration of the call.
+        # Most agents read their deck.csv at import time, when the loader has already chdir'd --
+        # but some read it LAZILY, on the first call, by which time the loader has restored the
+        # cwd and the relative open() fails. (Same shape as the tetsutani sys.path defect: work
+        # deferred past the point where the loader had set things up.) Two agents share a process
+        # here, so the cwd cannot simply be left set; it is set and restored per call instead.
+        old = os.getcwd()
+        try:
+            os.chdir(self.dir)
+        except Exception:
+            pass
+        try:
+            return self._mod.agent(obs)
+        finally:
+            try:
+                os.chdir(old)
+            except Exception:
+                pass
 
     def close(self) -> None:
         """Drop the modules this load introduced, so the next load starts from zero state."""
@@ -148,7 +169,13 @@ def make_fresh(player_id: str) -> LoadedPlayer:
     # Package-style agents (tetsutani) import helper modules under their own top-level names.
     # Those must not survive the game, or the next load reuses this game's state.
     purge = [n for n in set(sys.modules) - before]
-    deck = list(mod.agent({"select": None, "logs": [], "current": None}))
+    # The deck handshake is also a CALL, and agents that read deck.csv lazily need the cwd set
+    # for it too -- not only for the import.
+    os.chdir(d)
+    try:
+        deck = list(mod.agent({"select": None, "logs": [], "current": None}))
+    finally:
+        os.chdir(old_cwd)
     return LoadedPlayer(player_id, d, mod, deck, purge)
 
 

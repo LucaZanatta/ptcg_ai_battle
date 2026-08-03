@@ -115,6 +115,8 @@ EXTRACTORS: Dict[str, str] = {
     "prvsiyan_ptcg-ai-battle-search-audited-alakazam-v12": "payloads",
     "tetsutani_grimmsnarl-ex-damage-transfer-control": "asset",
     "makthanithin_pokemon-tcg-ai-battle-1084-5-baseline": "writefile",
+    "prvsiyan_ptcg-tusk-crustle-terrakion-v1-public": "payloads",
+    "jazivxt_crustle-counter-al220-v29-agents-only": "writefile",
 }
 
 
