@@ -63,6 +63,17 @@ PUBLIC = {
                                   "public_kernel"),
 }
 
+# Our own two custom agents, extracted from the exact archives that were uploaded. They are on
+# the panel for one reason: their Kaggle ladder score rates are already measured (0.3333 and
+# 0.4206 over 33 and 107 public games), so measuring them locally turns the local-to-ladder
+# calibration from a line through two points into a line through four.
+OURS = {
+    "c014_archaludon_expert": (os.path.join(KERNEL_SOURCES, "c014_archaludon_expert"),
+                               "c023_prior_contract_submission"),
+    "c015_anti_meta_expert": (os.path.join(KERNEL_SOURCES, "c015_anti_meta_expert"),
+                              "c023_prior_contract_submission"),
+}
+
 _load_counter = [0]
 _SHA: Dict[str, str] = {}
 
@@ -81,7 +92,7 @@ def sha256_file(path: str) -> str:
 def registry() -> Dict[str, Any]:
     """Every player this repository can currently run, resolved and existence-checked."""
     out: Dict[str, Any] = {}
-    for src, origin_map in (("official", OFFICIAL), ("public", PUBLIC)):
+    for src, origin_map in (("official", OFFICIAL), ("public", PUBLIC), ("ours", OURS)):
         for pid, (d, origin) in origin_map.items():
             out[pid] = {"player_id": pid, "dir": d, "origin": origin, "source_class": src,
                         "exists": os.path.isfile(os.path.join(d, "main.py"))}
