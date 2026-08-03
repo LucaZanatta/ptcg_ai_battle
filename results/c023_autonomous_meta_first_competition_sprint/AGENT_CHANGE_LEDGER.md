@@ -24,6 +24,51 @@ against a control measured in a different run.
 
 ---
 
+## F4 — bench exposure against a damage-spread deck (`bench_discipline_vs_spread`)
+
+**The failure class.** Marnie's Grimmsnarl's Shadow Bullet hits a *benched* Pokémon for 30 on top
+of 180 to the active, Froslass puts a counter on every Pokémon with an Ability each checkup, and
+Munkidori moves three counters a turn onto our side. Every small basic we bench is a prize on a
+timer. The sample scores playing a Dreepy at 51000 — the second-highest number in its table —
+regardless of what is across the board.
+
+**Change.** When the opponent shows the Grimmsnarl / Froslass / Munkidori package and our bench
+already holds ≥ *cap*, veto playing a Pokémon with ≤100 HP and take **the expert's own next
+preference** instead (the veto primitive: the observation is copied with that option removed and
+the simulation instance of the base agent chooses from what remains).
+
+**This rule was measured twice, and the first measurement was of nothing.** In its original form
+the `View` resolved a PLAY option's card through its `area` field — and PLAY options carry no
+area, so the precondition never held. **0 fires in 1,329 decisions.** The 1,200-game evaluation
+that produced 0.5142 against a 0.5042 control was a measurement of the control policy under a
+different name. See `failures/DEFECTS.md` D2 and `superseded/README.md`.
+
+**The prediction, registered before the fixed rule ran** (`PREDICTIONS.md` P-A): *it will score at
+or below the control, and the loss will be concentrated in the Grimmsnarl matchup it was written
+for.* The reasoning was that the loss mining shows winning games with a **larger** mean bench
+(3.31 vs 2.63), and that with a 100 HP threshold the only cards the rule can veto in this deck are
+Dreepy and Budew — so every firing is the agent being stopped from developing its own evolution
+line. `chal_dp_benchline`, the same rule with the Dreepy/Drakloak line protected, measured
+**INERT**, which confirmed the rule's whole effect *is* blocking Dreepy.
+
+**Result — `bench_screen`, 2,000 games each, the highest-powered run in the campaign:**
+
+| arm | fire rate | dev field | vs control | vs Grimmsnarl |
+|---|---:|---:|---:|---:|
+| `bench_prizef` (cap 2 + exact-gain planner) | 17.6% | 0.5285 | +0.55 | 0.320 |
+| control `chal_dp_base3` | — | **0.5230** | — | **0.343** |
+| `bench2f` (cap 2) | 8.4% | 0.5145 | −0.85 | 0.340 |
+| `bench3f` (cap 3) | 7.2% | 0.4995 | **−2.35** | **0.268** |
+| `koexact` (planner, exact gate) | 0.4% | 0.4990 | −2.40 | 0.278 |
+
+**KILLED, and the prediction holds.** No arm exceeds the control by more than the noise floor, the
+two arms that actually change play both land below it, and `bench3f`'s loss is exactly where P-A
+said it would be — **−7.5 points against Grimmsnarl**, the matchup the rule was written for.
+
+The lesson is the one the mining already stated: against this deck, our losses are the games where
+the line comes online *late*, not the games where the bench is *wide*. A rule that suppresses
+development to reduce exposure is treating the symptom that correlates with winning.
+
 ## F1 — turn order (`go_first`)
 
 **The failure class.** The official Dragapult sample scores YES = −1 in `SelectContext.IS_FIRST`,
