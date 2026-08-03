@@ -98,6 +98,40 @@ decisions while staying deterministic within a process.
 
 ---
 
+---
+
+## D6 — a third lazy-initialisation defect, and a mid-campaign harness change
+
+**How it presented.** Adding `pub_prvsiyan_crustle_wall` to the panel — the Crustle Wall agent our
+own ladder replays identified as the champion's worst real matchup — failed immediately with
+`FileNotFoundError: /kaggle_simulations/agent/deck.csv`.
+
+**Root cause.** That agent reads its `deck.csv` **on first call**, not at import. The loader
+chdir'd into the agent's directory for the import and restored the working directory before the
+deck handshake, so the relative `open("deck.csv")` fell through to the Kaggle production path,
+which does not exist here. Structurally identical to D2: work deferred past the point where the
+loader had set things up.
+
+**Fix.** The working directory is now set to the agent's own package **for the duration of every
+call**, including the deck handshake, and restored afterwards. Two agents share a process, so the
+cwd cannot simply be left set.
+
+**Why this does not invalidate earlier evaluations — and why that claim needs stating.** This is a
+harness change made partway through the campaign, and `MATCHUP_MATRIX.csv` merges runs from both
+sides of it. It is sound because:
+
+1. **No other player reads a file at call time.** The four official samples and the five other
+   public agents all read `deck.csv` at import, when the loader already had the cwd set. For them
+   the change is a no-op.
+2. **It was verified, not assumed.** `tools/c023_identity.py` was re-run after the change:
+   `chal_dp_base4` remains action-identical to `official_dragapult`, 0 mismatches over 456
+   decisions.
+3. **The change can only make a previously-broken agent work**, never change a working one's
+   choices: `os.chdir` has no effect on an agent that touches no relative path during a call.
+
+The alternative — re-running 40,000 games to eliminate a difference that provably does not exist —
+would have cost the campaign's remaining Crustle work for nothing.
+
 ## Non-defect: a third-party agent's engine crash is not ours
 
 The `buffer full. capacity:7` abort originates in public agents that leak search handles. c023's
