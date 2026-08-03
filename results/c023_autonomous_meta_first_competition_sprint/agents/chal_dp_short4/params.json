@@ -1,0 +1,14 @@
+{
+  "base": "official_dragapult",
+  "rules": {
+    "shortlist_planner": true
+  },
+  "thresholds": {
+    "planner": {
+      "all_contexts": 1.0,
+      "max_turn_steps": 20,
+      "override_margin": 200.0
+    },
+    "shortlist_k": 4
+  }
+}

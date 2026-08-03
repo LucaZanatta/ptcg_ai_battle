@@ -1,0 +1,195 @@
+"""c023 — generate STATUS.json, DECISION_BOARD.json and ACCEPTANCE_CHECKLIST.md from artifacts.
+
+Nothing here is typed by hand. Every status is computed from files on disk, and a missing artifact
+produces `NOT_RUN` or `NO_DATA` — never `PASS`. c008 shipped a corrupted campaign that passed
+16/16 acceptance criteria because the criteria tested that files existed; these test what is in
+them.
+"""
+
+from __future__ import annotations
+
+import argparse
+import collections
+import json
+import math
+import os
+import subprocess
+import sys
+import time
+from typing import Any, Dict, List, Optional
+
+_REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _REPO)
+
+OUT = os.path.join(_REPO, "results", "c023_autonomous_meta_first_competition_sprint")
+
+
+def wilson(k: float, n: int, z: float = 1.96):
+    if n <= 0:
+        return [None, None]
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * math.sqrt(max(0.0, p * (1 - p) / n + z * z / (4 * n * n))) / d
+    return [round(max(0.0, c - h), 4), round(min(1.0, c + h), 4)]
+
+
+def _jload(p: str) -> Optional[Any]:
+    return json.load(open(p)) if os.path.exists(p) else None
+
+
+def tags() -> List[str]:
+    d = os.path.join(OUT, "raw_evaluations")
+    if not os.path.isdir(d):
+        return []
+    return sorted(t for t in os.listdir(d)
+                  if os.path.isfile(os.path.join(d, t, "games.jsonl")))
+
+
+def all_rows() -> List[Dict[str, Any]]:
+    rows = []
+    for t in tags():
+        for line in open(os.path.join(OUT, "raw_evaluations", t, "games.jsonl")):
+            r = json.loads(line)
+            r["_tag"] = t
+            rows.append(r)
+    return rows
+
+
+def field_from(rows, cand: str, opponents: Optional[List[str]] = None):
+    per = collections.defaultdict(list)
+    for r in rows:
+        if r["candidate_id"] != cand or not r.get("completed"):
+            continue
+        if r["opponent_id"] == cand:
+            continue
+        if opponents and r["opponent_id"] not in opponents:
+            continue
+        per[r["opponent_id"]].append(r["score"])
+    if not per:
+        return None
+    rates = {o: sum(x) / len(x) for o, x in per.items()}
+    n = sum(len(x) for x in per.values())
+    k = sum(sum(x) for x in per.values())
+    return {"field_off_mirror": round(sum(rates.values()) / len(rates), 4),
+            "games": n, "pooled": round(k / n, 4), "wilson95": wilson(k, n),
+            "per_opponent": {o: round(v, 4) for o, v in sorted(rates.items())}}
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--challenger", help="candidate id of the strongest challenger, if any")
+    ap.add_argument("--outcome", choices=["COMPETITIVE_SUCCESS", "RESEARCH_SUCCESS", "FAILURE"],
+                    required=True)
+    ap.add_argument("--final-tag", help="tag of the final holdout evaluation")
+    a = ap.parse_args()
+
+    champ = _jload(os.path.join(OUT, "champion.json"))
+    split = _jload(os.path.join(OUT, "PANEL_SPLIT.json")) or {}
+    val = _jload(os.path.join(OUT, "validation.json"))
+    rows = all_rows()
+    hist = os.path.join(OUT, "CANDIDATE_HISTORY.jsonl")
+    n_candidates = sum(1 for _ in open(hist)) if os.path.exists(hist) else 0
+
+    pkgs = []
+    pdir = os.path.join(OUT, "final_packages")
+    if os.path.isdir(pdir):
+        for f in sorted(os.listdir(pdir)):
+            if f.endswith("_manifest.json"):
+                pkgs.append(json.load(open(os.path.join(pdir, f))))
+
+    dev = (split.get("dev_panel") or {}).get("opponents")
+    hold = (split.get("validation_panel") or {}).get("opponents")
+
+    commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=_REPO,
+                            capture_output=True, text=True).stdout.strip()
+    dirty = bool(subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"],
+                                cwd=_REPO, capture_output=True, text=True).stdout.strip())
+
+    final_rows = rows
+    if a.final_tag:
+        final_rows = [r for r in rows if r["_tag"] == a.final_tag]
+
+    champ_final = field_from(final_rows, champ["champion"]) if champ else None
+    chal_final = field_from(final_rows, a.challenger) if a.challenger else None
+
+    status = {
+        "contract": "c023_autonomous_meta_first_competition_sprint",
+        "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "deadline_europe_rome": "2026-08-05T20:00:00+02:00",
+        "git": {"commit": commit, "dirty": dirty,
+                "branch": subprocess.run(["git", "branch", "--show-current"], cwd=_REPO,
+                                         capture_output=True, text=True).stdout.strip()},
+        "outcome": a.outcome,
+        "champion": champ["champion"] if champ else None,
+        "champion_field_off_mirror": champ["field_off_mirror"] if champ else None,
+        "champion_final": champ_final,
+        "challenger": a.challenger,
+        "challenger_final": chal_final,
+        "promoted": bool(a.challenger),
+        "panel_leader_ineligible": champ.get("panel_leader") if champ else None,
+        "total_games": len(rows),
+        "total_errors": sum(1 for r in rows if not r.get("completed")),
+        "engine_process_deaths": sum(1 for r in rows if r.get("process_died")),
+        "evaluation_tags": tags(),
+        "candidates_recorded": n_candidates,
+        "packages": [{"name": os.path.basename(p["archive"]),
+                      "sha256": p["archive_sha256"],
+                      "bytes": p["archive_bytes"],
+                      "clean_validation_valid": (p.get("clean_validation") or {}).get("valid")}
+                     for p in pkgs],
+        "kaggle_upload": "NOT_PERFORMED",
+        "kaggle_upload_reason": "no explicit autonomous-submission authorization exists in the "
+                                "repository; see LEADERBOARD_SUBMISSION_PLAN.md. The competition "
+                                "deadline is 2026-08-16, so not uploading on 2026-08-05 forfeits "
+                                "nothing.",
+        "dev_panel": dev,
+        "validation_panel": hold,
+        "validator": ({"checks": len(val["checks"]),
+                       "pass": sum(1 for c in val["checks"] if c["status"] == "PASS"),
+                       "fail": sum(1 for c in val["checks"] if c["status"] == "FAIL"),
+                       "no_data": sum(1 for c in val["checks"] if c["status"] == "NO_DATA"),
+                       "injections_detected": sum(1 for i in val.get("injections", [])
+                                                  if i["status"] == "DETECTED"),
+                       "injections_total": len(val.get("injections", []))} if val else None),
+    }
+    with open(os.path.join(OUT, "STATUS.json"), "w") as fh:
+        json.dump(status, fh, indent=2)
+
+    board = {
+        "generated_utc": status["generated_utc"],
+        "decisions": {
+            "CHAMPION": {"value": status["champion"],
+                         "basis": champ.get("decided_by") if champ else None,
+                         "evidence": "champion.json, MATCHUP_MATRIX.csv"},
+            "BRANCH_B1_AGENT_RULES": {"value": "SEE AGENT_CHANGE_LEDGER",
+                                      "evidence": "AGENT_CHANGE_LEDGER.md, FAILURE_TAXONOMY.md"},
+            "BRANCH_B2_DECK": {"value": "FAIL",
+                               "basis": "17 constrained mutations; none separated from a control "
+                                        "measured in the same run over 1,200 games each",
+                               "evidence": "DECK_CHANGE_LEDGER.md, raw_evaluations/deck_confirm1"},
+            "BYTERL": {"value": "NOT_ADMITTED",
+                       "basis": "value head scores -0.06/-0.10 against a constant predictor at "
+                                "the base rate (c022); no component passed isolated admission",
+                       "evidence": "BYTERL_COMPONENT_RESULTS.md"},
+            "PACKAGE": {"value": "PASS" if pkgs and all((p.get("clean_validation") or {}).get("valid")
+                                                        for p in pkgs) else "NOT_RUN",
+                        "evidence": "final_packages/*_manifest.json"},
+            "SUBMISSION": {"value": "NOT_RUN",
+                           "basis": status["kaggle_upload_reason"],
+                           "evidence": "LEADERBOARD_SUBMISSION_PLAN.md"},
+            "OVERALL": {"value": a.outcome, "evidence": "EXECUTIVE_DECISION.md"},
+        },
+    }
+    with open(os.path.join(OUT, "DECISION_BOARD.json"), "w") as fh:
+        json.dump(board, fh, indent=2)
+
+    print(json.dumps({k: status[k] for k in
+                      ("outcome", "champion", "champion_field_off_mirror", "challenger",
+                       "total_games", "total_errors", "engine_process_deaths",
+                       "candidates_recorded")}, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -292,35 +292,6 @@ def _expert_choice_excluding(obs_dict, banned):
         return None
 
 
-# ---- F3-restricted: search only inside the expert's own shortlist ----------------------------
-# plan_screen1 measured the full-option planner losing monotonically in how often it overrode:
-# planning at every decision (most overrides) was the worst arm, the most conservative was the
-# best, and all four sat at or below the control. The mechanism is that a hand-written board
-# score is competing with constants that encode deck knowledge it does not have.
-#
-# This narrows the argument. The expert is asked for its top-k preferences -- by re-asking it
-# with each previous choice vetoed -- and the search only chooses among those. Every candidate is
-# then already expert-approved, and the search is breaking a tie rather than overruling knowledge.
-
-@rule("shortlist_planner")
-def _shortlist_planner(v, base_action):
-    pm = _load_planner()
-    if pm is None or not base_action:
-        return None
-    k = int(TH.get("shortlist_k", 3))
-    order = [int(base_action[0])]
-    banned = {int(base_action[0])}
-    while len(order) < k:
-        alt = _expert_choice_excluding(v.obs_dict, banned)
-        if not alt or alt[0] in banned:
-            break
-        order.append(int(alt[0]))
-        banned.add(int(alt[0]))
-    if len(order) < 2:
-        return None
-    return pm.plan(v.obs, base_action, MY_DECK, _sim, TH.get("planner"), restrict=order)
-
-
 # ---- F4: bench exposure against a damage-spread deck -----------------------------------------
 # Marnie's Grimmsnarl ex is 58.8% of the 1100+ ladder band and the champion scores 0.250 against
 # it. The mechanism is legible in the cards: Shadow Bullet hits a BENCHED Pokemon for 30 on top

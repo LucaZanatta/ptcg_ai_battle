@@ -1,0 +1,15 @@
+{
+  "base": "official_dragapult",
+  "rules": {
+    "turn_planner": true
+  },
+  "thresholds": {
+    "planner": {
+      "all_contexts": 1.0,
+      "max_root_options": 10,
+      "max_turn_steps": 20,
+      "prize_only": 1.0,
+      "use_ko_risk": 1.0
+    }
+  }
+}

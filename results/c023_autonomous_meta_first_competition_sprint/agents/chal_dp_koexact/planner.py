@@ -314,8 +314,7 @@ def _to_dict(obs) -> Dict[str, Any]:
 
 
 def plan(obs, base_action: List[int], my_deck: List[int], base_agent,
-         cfg: Optional[Dict[str, float]] = None,
-         restrict: Optional[List[int]] = None) -> Optional[List[int]]:
+         cfg: Optional[Dict[str, float]] = None) -> Optional[List[int]]:
     """Return a better MAIN action than `base_action`, or None to keep the expert's."""
     w = dict(DEFAULTS)
     if cfg:
@@ -340,18 +339,10 @@ def plan(obs, base_action: List[int], my_deck: List[int], base_agent,
 
     # The expert's own choice is evaluated first, so a budget exhausted early still leaves a
     # meaningful comparison rather than an arbitrary one.
-    if restrict:
-        # Only options the expert itself ranked highly. This matters: searching every option
-        # means the evaluator argues with constants that encode deck knowledge it does not have,
-        # and the plan_screen1 arms lost monotonically in how often they overrode. Restricting
-        # to the expert's own shortlist means every candidate is already expert-approved and the
-        # search only has to break the tie.
-        order = [i for i in restrict if 0 <= i < len(sel.option)]
-    else:
-        order = [int(base_action[0])] if base_action else []
-        for i in range(len(sel.option)):
-            if i not in order:
-                order.append(i)
+    order = [int(base_action[0])] if base_action else []
+    for i in range(len(sel.option)):
+        if i not in order:
+            order.append(i)
     order = order[:int(w["max_root_options"])]
 
     root = None
