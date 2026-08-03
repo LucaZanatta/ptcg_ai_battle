@@ -1,0 +1,59 @@
+You are executing contract c023_autonomous_meta_first_competition_sprint.
+
+Repository root: current working directory.
+Hard deadline: Wednesday, August 5, 2026 at 20:00 Europe/Rome.
+
+Read first:
+
+1. contracts/c023_autonomous_meta_first_competition_sprint/CONTRACT.md
+2. the latest repository tree and Git state
+3. the latest complete c022 results, source, reports, and checkpoints
+4. prior champion packages and leaderboard evidence
+5. prior contracts only when needed to preserve conventions or understand evidence
+
+Then execute the contract autonomously.
+
+Do not stop after planning.
+Do not ask the user to select branches.
+Do not wait for feedback.
+Work until the hard deadline or until all credible useful work is complete and fully packaged.
+
+The objective is not to defend MCGS, ByteRL, or any predefined deck. The objective is to produce the strongest valid deck–agent candidate possible before the deadline.
+
+Default strategy:
+
+- freeze and reproduce the champion
+- mine meta and replay evidence
+- begin with no more than three serious branches
+- build stateful deck-specific experts
+- optimize decks and agents together
+- inspect losses and correct named failure classes
+- evaluate with paired controls and separate validation evidence
+- use ByteRL components only after isolated admission
+- preserve the champion
+- package the strongest challenger and any useful complementary candidate
+
+You have authority to kill, replace, merge, and redirect branches. When an approach fails, record the failure and pivot to the highest expected-value alternative.
+
+MCGS is not the default competitive branch. Revisit it only if genuinely new evidence justifies the cost.
+
+Do not begin a large fresh ByteRL training run unless it directly supports a candidate that can be evaluated before the deadline.
+
+Do not upload to Kaggle unless explicit autonomous-submission authorization already exists in the repository.
+
+At the deadline:
+
+- stop unfinished work
+- preserve partial evidence
+- regenerate final reports
+- run final validation
+- capture exact source and Git evidence
+- package candidates
+- create the final results archive
+- close with an honest competitive decision
+
+Canonical output directory:
+
+results/c023_autonomous_meta_first_competition_sprint/
+
+Execute now.
