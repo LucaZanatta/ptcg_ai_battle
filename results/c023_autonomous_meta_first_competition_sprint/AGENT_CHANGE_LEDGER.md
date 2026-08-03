@@ -155,4 +155,31 @@ and the expert already has hand-tuned constants for each of them.
 `shortlist_planner` asks the expert for its top-k — by re-asking it with each previous choice
 vetoed — and searches only those. Every candidate is then expert-approved and the search is
 breaking a tie rather than overruling knowledge. Fire rates: 0.13% (k=3, exact gate) and 0.32%
-(k=4, board evaluator with a 200-point margin). Result in `rule_screen4`.
+(k=4, board evaluator with a 200-point margin).
+
+`rule_screen4`, 1,200 games each:
+
+| arm | dev field | vs Grimmsnarl |
+|---|---:|---:|
+| control `chal_dp_base3` | **0.5279** | 0.352 |
+| `short4` (k=4, board evaluator, 200-pt margin) | 0.5033 | 0.317 |
+| `short3` (k=3, exact gate) | 0.4879 | 0.296 |
+
+**KILLED.** Both below the control. Restricting the search to expert-approved options did not
+rescue it.
+
+### F3 verdict
+
+Three designs, eleven arms, ~26,000 games. Every one at or below its same-run control. The
+mechanism is measured rather than inferred:
+
+1. with a board evaluator, the arms order **monotonically in override rate** — the more it
+   overruled the expert, the worse it did;
+2. with an exact gate, the override rate collapses to **0.07–0.4% of decisions**, because the
+   expert's turn is close to order-invariant and the first action almost never changes the prize
+   outcome;
+3. restricting to the expert's own shortlist changes neither.
+
+**A first-action search is the wrong instrument for this agent.** The engine's forward-search API
+works, is fast (0.245 ms per step), and the determinization of our own hidden cards is exact —
+none of that was the problem. The problem is that there is very little for it to decide.

@@ -47,8 +47,21 @@ because the two policies are *provably* identical rather than assumed to be:
 | `chal_dp_base2` (plan_screen1) vs (rule_screen1) | 1000 / 600 | 0.5060 / 0.5166 | 1.1 pp | the same candidate directory |
 | **`chal_dp_bench2` vs `chal_dp_base3`** | **1200 / 1200** | **0.5142 / 0.5042** | **1.0 pp** | the firing probe proved `bench2`'s only rule was **INERT** — 0 fires in 1,329 decisions — so the two were byte-equivalent policies |
 
-The third row is the primary estimate: **±1.0 point between identical policies at 1,200 games
-each**, rising to ~3 points at 400–600. Every comparison in this campaign is read against it.
+And the sharpest estimate of all, because it is the *same candidate directory* measured three
+times at the same game count:
+
+| run | candidate | games | dev field |
+|---|---|---:|---:|
+| `rule_screen2` | `chal_dp_base3` | 1200 | 0.5042 |
+| `rule_screen3` | `chal_dp_base3` | 1200 | 0.5125 |
+| `rule_screen4` | `chal_dp_base3` | 1200 | **0.5279** |
+
+**Range 2.4 points, SD ≈ 1.2, on one policy at 1,200 games per run.**
+
+That is the number every comparison in this campaign is read against — and it is larger than
+the ±1.0 the two-policy comparison suggested, so the earlier estimate was optimistic. At 400–600
+games the spread is ~3 points. **No difference under ~2.5 points at 1,200 games is evidence of
+anything**, which retires most of the small positive deltas in this campaign's screens.
 
 It is also why `deck_screen1`'s apparent +7.25 point winner evaporated to −0.12 at 1,200 games,
 and the standing reason to distrust any single-run screen result here.
