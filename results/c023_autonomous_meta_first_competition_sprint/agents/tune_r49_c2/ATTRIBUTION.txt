@@ -1,0 +1,5 @@
+base_agent.py: Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-dragapult-ex-deck (Kiyota)
+reuse class: SUBMISSION_REUSE_ALLOWED (see results/.../SOURCES.md)
+main.py, params.json: c023 contract code (this repository)
+base_agent.py is a DERIVATIVE of that sample: tools/c023_paramize.py replaced its heuristic score constants with parameter lookups whose defaults are the original values
+deck.csv: see DECK_CHANGE_LEDGER.md

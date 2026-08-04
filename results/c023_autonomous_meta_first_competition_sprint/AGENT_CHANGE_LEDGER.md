@@ -75,8 +75,45 @@ for anything that clears it. The three parameters tested all say the same thing 
 for a way to attack when the main line has not arrived* — which is **F5**, the one failure class
 the loss mining supports.
 
-**Result: see `EXECUTIVE_DECISION.md`.** The prediction registered before the run was that all
-three arms land within ±2 points of the control.
+**Result — `ab_dev`, 5,000 games per arm, zero errors:**
+
+| arm | what it changes | dev field | vs control |
+|---|---|---:|---:|
+| `ab_f5` | 39 + 56 + 75 together | 0.5116 | **+0.17** |
+| **`ab_ctrl`** | nothing | **0.5099** | — |
+| `ab_p56` | Crispin fetch | 0.5091 | −0.08 |
+| `ab_p39` | Latias ex fetch | 0.4968 | **−1.31** |
+
+**And on the validation panel, which no search or tuning ever saw — `ab_val`, 2,400 games each:**
+
+| arm | validation field |
+|---|---:|
+| `ab_f5` | 0.4971 |
+| `ab_ctrl` | 0.4960 |
+| difference | **+0.11** |
+
+**KILLED, and the registered prediction was exact.** `REGISTERED_AB.md` predicted "all three arms
+land within ±2 points of the control"; the largest deviation is −1.31, and the standard error of a
+difference at 5,000 games per arm is ~1.0 point.
+
+The single most useful number in the table: **parameter 39, which the search selected first and
+valued at +4.80 points, measures −1.31 in a clean unselected test.** Not smaller than claimed — the
+wrong sign.
+
+### F6 verdict
+
+Three independent lines of evidence, each capable of killing this on its own:
+
+1. **The search's own incumbent series**: 42,000 games, and every accepted change after the first
+   left the incumbent *below* the untouched sample.
+2. **A powered, unselected A/B**: 20,000 games across four arms, everything inside ±1.4 points, and
+   the search's flagship parameter negative.
+3. **A held-out validation panel**: 4,800 games, +0.11 points.
+
+**The official Dragapult sample's hand-written score constants are not improvable by search at
+this scale.** That is a stronger statement than "we did not find an improvement", because the
+instrument was calibrated: this campaign can resolve a 2-point difference at 5,000 games per arm,
+and there is no 2-point difference here to find.
 
 ## F4 — bench exposure against a damage-spread deck (`bench_discipline_vs_spread`)
 
