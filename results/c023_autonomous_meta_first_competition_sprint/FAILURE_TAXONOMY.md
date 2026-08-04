@@ -104,6 +104,80 @@ competing with constants that encode deck knowledge the evaluator does not have,
 that argument more often than it wins it. That is what motivated the `prize_only` variant — an
 override gated on facts (prizes taken, prizes conceded, terminal) rather than on taste.
 
+## F8 — the real ladder's answer: we lose the two-hit race, and it is a deck fact
+
+Everything above is mined from *panel* games — our opponents, our seeds. This section is mined
+from **83 real Kaggle ladder games the champion actually played**, read turn by turn out of their
+replays (`tools/c023_replay_mine.py`). 48 won, 35 lost.
+
+### The contrast
+
+| feature | won | lost | Δ | std |
+|---|---:|---:|---:|---:|
+| **prize lead at turn 9** | **0.000** | **−1.886** | −1.886 | −0.93 |
+| **mean bench size** | **3.558** | **2.503** | −1.055 | −0.87 |
+| prize lead at turn 7 | −0.312 | −1.543 | −1.230 | −0.85 |
+| prize lead at turn 5 | −0.312 | −1.029 | −0.716 | −0.76 |
+| prize lead at turn 3 | −0.146 | −0.457 | −0.311 | −0.60 |
+| cards left in deck (mean) | 28.13 | 31.23 | +3.10 | +0.42 |
+| **turn of our first attack** | 2.978 | **2.697** | −0.281 | −0.17 |
+| attacks taken | 5.792 | **6.229** | +0.437 | +0.13 |
+
+### Read it honestly: most of this table is the scoreboard
+
+Prize lead *is* the score. "We are behind on prizes in the games we lose" is not a finding, it is
+a restatement, and a small bench is largely **downstream of being knocked out** rather than a cause
+of it. The features are listed in full because suppressing the tautological ones would make the two
+that matter look better than they are.
+
+**And two of them contradict the local mining outright.** Against the panel's Grimmsnarl agent,
+losses were the games where we attacked *late* (first attack turn 2.80 in losses against 2.24 in
+wins). On the real ladder the sign flips: we attack **earlier** in losses (2.70 against 2.98) and
+**more often** (6.23 attacks against 5.79). F5 — "slow development" — is a property of that panel
+matchup, **not of how the champion loses on the ladder.** The campaign's most-cited failure class
+does not survive contact with real games.
+
+### What does survive: the game ends early, and only against the decks that out-muscle us
+
+Split by opponent archetype, the losses that matter are short:
+
+| opponent | won | lost | final turn, won | final turn, lost |
+|---|---:|---:|---:|---:|
+| **Mega Lucario** | 7 | 8 | 12.3 | **7.5** |
+| **Marnie Grimmsnarl** | 4 | 6 | 14.0 | **9.0** |
+| Alakazam | 14 | 5 | — | — |
+| Crustle Wall | 2 | 7 | — | — |
+| Dragapult (mirror) | 6 | 0 | — | — |
+
+Against Mega Lucario we also get **3.25 turns with an attack available in losses against 5.43 in
+wins** — we are not out-played over a long game, we are removed from one.
+
+**The mechanism is arithmetic, and it is in the card text:**
+
+| | HP | its attack | hits needed to kill Dragapult ex (320 HP) |
+|---|---:|---|---:|
+| Dragapult ex (ours) | 320 | Phantom Dive, **200** | — |
+| Mega Lucario ex | **340** | Mega Brave, **270** | **2** |
+| Marnie's Grimmsnarl ex | **320** | Shadow Bullet, **180** + 30 to a bench | 2 |
+
+Phantom Dive's 200 does not kill a 320 or 340 HP attacker. **Ours needs two hits and theirs needs
+two hits — but a Mega Lucario ex knocked out gives them three prizes to our two, and Grimmsnarl
+adds 30 to a benched Pokémon every single attack.** We lose the race on the exchange rate, not on
+the decisions.
+
+### Why this is the campaign's closing finding
+
+**It is a deck fact, and the deck is fixed by the archetype.** No override, no score constant, no
+turn-level search changes what 200 damage does to 340 hit points. That is a mechanism for the
+whole campaign's negative result — five branches, 28 candidates, ~90,000 games — rather than five
+separate shrugs.
+
+It also names the next campaign's first question precisely, and it is not "which constant":
+**does an official base exist whose attacker wins the two-hit race against the current
+320–350 HP format?** On this panel `official_dragapult` scores 0.325 against Grimmsnarl and 0.435
+against the 1084-rated Mega Lucario agent, while the same panel's Alakazam agents — whose attacker
+scales with hand size rather than a fixed 200 — sit at 0.60–0.64 overall.
+
 ## Classes considered and ruled out without a rule
 
 - **Declining available attacks.** Measured at 0.043 turns per game. Nothing to correct.
