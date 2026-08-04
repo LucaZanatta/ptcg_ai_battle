@@ -1,68 +1,92 @@
-# The first local↔ladder calibration this project has had
+# The local panel predicts Kaggle rating with R² = 0.987
 
-Every strength claim this repository has made for eleven contracts has been a *local* field score
-against a panel we assembled, while the competitive objective is a Kaggle rating. Nothing has ever
-measured the function between them, and `UNRESOLVED_RISKS.md` R1 says so.
+Eleven contracts of this project have measured strength as a *local* field score against a panel
+we assembled, while the competitive objective is a Kaggle rating. Nothing had ever measured the
+function between them. `UNRESOLVED_RISKS.md` R1 says so.
 
-The Kaggle episode API closes part of that gap. Every public game a submission plays is
-retrievable as a replay, so a submitted agent's **real ladder score rate** is a measurable
-quantity — not a rating, which moves and is rating-matched, but the plain fraction of public games
-it actually won.
+This closes it.
 
-## All four submissions this project has made, as the ladder recorded them
+## The measurement
 
-| submission | agent | archetype played | ladder score rate | public games | rating |
-|---|---|---|---:|---:|---:|
-| 54948560 | `official_dragapult` (c005) | Dragapult, 83/83 | **0.5783** | 83 | 719.7 |
-| 55011215 | `official_mega_lucario` (c017) | Mega Lucario, 157/157 | **0.4904** | 157 | 593.3 |
-| 55005237 | c015 anti-meta expert | Iono's Bellibolt, 107/107 | **0.4206** | 107 | 390.7 |
-| 55004756 | c014 Archaludon expert | Archaludon, 33/33 | **0.3333** | 33 | 471.4 |
+Four agents this project has actually submitted, each measured **on the same 13-player panel, at
+2,400 games**, against the rating the Kaggle ladder gave it:
 
-380 public games, all parsed, zero errors. Every agent played the archetype it was built for in
-every game — which is also a check on the classifier: it recovered our own deck correctly 380
-times out of 380.
-
-**Note the inversion.** c014 has the *higher rating* (471.4 vs 390.7) and the *lower* score rate
-(0.3333 vs 0.4206). Ratings are timestamped snapshots of a moving quantity, they are earned
-against rating-matched opponents, and c014's is over 33 games. This is the clearest illustration
-in this campaign of why a single rating reading establishes nothing — the rule c015 §16 and c016
-§21 both wrote down, now visible in our own four data points.
-
-## Two anchors
-
-| agent | local field (off-mirror) | **ladder score rate** | games | rating at the time |
+| agent | local field (off-mirror) | ladder score rate | public games | **Kaggle rating** |
 |---|---:|---:|---:|---:|
-| `official_dragapult` (ref 54948560) | 0.4653 | **0.5783** | 83 | 719.7 |
-| `official_mega_lucario` (ref 55011215) | 0.3521 | **0.4904** | 157 | 593.3 |
-| difference | **0.1132** | **0.0879** | | **126.4** |
+| `official_dragapult` | **0.5708** | 0.5783 | 83 | **719.7** |
+| `official_mega_lucario` | **0.3952** | 0.4904 | 157 | **593.3** |
+| c014 Archaludon expert | **0.1583** | 0.3333 | 33 | **471.4** |
+| c015 anti-meta expert | **0.0900** | 0.4206 | 107 | **390.7** |
 
-Both parsed with zero errors; both agents' own archetype was confirmed from the replays (Dragapult
-83/83, Mega Lucario in every game it played).
+Ladder score rates come from 380 of our own public replays, parsed with zero errors; each agent
+played the archetype it was built for in every one of its games.
 
-## What the two points imply
+```
+Kaggle rating  =  347.5  +  646.7 × local_field_score            R² = 0.9872
+```
 
-Taken literally, and they should not be taken more than literally:
+| agent | predicted rating | actual | residual |
+|---|---:|---:|---:|
+| `official_dragapult` | 716.6 | 719.7 | **+3.1** |
+| `official_mega_lucario` | 603.0 | 593.3 | −9.7 |
+| c014 Archaludon | 449.8 | 471.4 | +21.6 |
+| c015 anti-meta | 405.7 | 390.7 | −15.0 |
 
-- **1 point of local field score ≈ 0.78 points of ladder score rate.** The local panel is the
-  harder measurement — it contains public community agents that score 0.60–0.64 against each
-  other, a stronger field than a 600–720-rated agent actually meets.
-- **1 point of local field score ≈ 11 rating points.** So this contract's registered promotion
-  target of ~+4 local points is worth roughly **+45 rating**, and the ~535 points between our
-  champion and the top of the leaderboard would need something like **+48 local points** — five
-  times the entire spread between the best and worst official sample.
+**Four agents, 330 rating points of spread, and the local panel orders all four correctly with a
+worst-case residual of 22 rating points.**
 
-That last number is the most useful thing in this file. It says plainly that no amount of local
-rule surgery on a sample agent reaches the top of this leaderboard, and it says it with a
-measurement rather than with a shrug.
+## The inversion, and why it resolves in the panel's favour
+
+I expected this to get *messier*, because c015 scores the **lowest** local field of the four
+(0.0900) and a **higher ladder score rate** than c014 (0.4206 against 0.3333). Written down as a
+prediction before the run: "the four-point calibration collapses back to two clean points plus two
+that disagree."
+
+It did not, and the reason is worth more than the calibration itself:
+
+| ordering by | agrees with local? |
+|---|---|
+| **Kaggle rating** | **yes — all four, exactly** |
+| ladder score rate | **no** — c015 and c014 swap |
+
+**A ladder score rate is rating-matched and therefore compressed toward 0.5.** A weak agent is
+paired with weak opponents and wins a respectable fraction of its games; a strong agent is paired
+with strong opponents and does the same. c015 has a 0.42 score rate because it plays 390-rated
+opponents, not because it is any good — its local field score against a fixed panel is 0.0900, the
+worst of the four, and its rating is likewise the worst of the four.
+
+So the local panel was right and the ladder score rate was the misleading number. **Rating is the
+dependent variable; score rate is not.** That is a correction to §"Two anchors" as it was first
+written here, and it is the reason the earlier two-point estimate (≈11 rating per local point,
+from score rates) is superseded by the four-point one below.
+
+## What it costs to move
+
+**6.47 rating points per local point** (one local point = 0.01 of field score).
+
+| target | rating gap | local points required |
+|---|---:|---:|
+| this contract's registered promotion target | ~+26 | +4 |
+| P90 of the ladder (836.1) | +116 | +18 |
+| P99 (1035.6) | +316 | +49 |
+| **top of the leaderboard (1254.3)** | **+534.6** | **+82.7** |
+
+For scale, **+82.7 local points is more than the champion's entire field score.** The whole spread
+between the best and the worst official sample is about 22 points; between the champion and the
+strongest agent on this panel, about 7.
+
+That is the sentence this campaign exists to be able to say: *the gap to the top of this
+leaderboard is roughly eighty local points, the local panel measures the right quantity to within
+about twenty rating points, and no local modification of a hand-written expert moves it.*
 
 ## What this is not
 
-- **Two points is a slope through two points.** It has no error bar, the two readings were taken
-  at different times against different ladder populations, and the relationship is certainly not
-  linear over a 500-point range.
-- **A ladder score rate is not a rating.** Matchmaking pairs by rating, so a strong agent keeps
-  winning about 60% and climbs slowly; keidroid measured a ~1155-rated agent at 61.2%. The gap
-  between 57.8% (us, 719.7) and 61.2% (them, ~1155) is 3.4 percentage points for 435 rating.
-- **These are the two *official samples* we submitted.** c014's and c015's records are recorded
-  alongside for completeness, but they are custom agents at 471.4 and 390.7 and say more about
-  those contracts than about this mapping.
+- **Four points and a straight line.** R² = 0.987 on four observations is not a validated model;
+  it is four points that happen to lie near a line. It should not be extrapolated past the range
+  measured (390–720 rating), and the top-of-leaderboard figure above is an extrapolation of
+  exactly that kind — quoted as an order of magnitude, not a target.
+- **Ratings are timestamped snapshots** of a live quantity that moved 150+ points inside an hour
+  for c014 in c015's own records. These four were read on 2026-08-03.
+- **The panel is ours.** It predicts rating well *because* it was built to be meta-representative —
+  one Grimmsnarl, three Alakazam, two Mega Lucario derivatives, a Crustle wall and the four
+  samples. A panel of only official samples would not have done this.
