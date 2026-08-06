@@ -1,0 +1,89 @@
+{
+  "tag": "c024_azam_v4",
+  "meta": {
+    "utc": "2026-08-06T23:51:07Z",
+    "elapsed_seconds": 16.4,
+    "procs": 14,
+    "phase": "dev",
+    "games_per_pair": 40,
+    "candidates": [
+      "c024_azam_v1"
+    ],
+    "opponents": [
+      "official_dragapult",
+      "pub_romanrozen_v10_950",
+      "pub_tetsutani_grimmsnarl",
+      "pub_jazivxt_rising_tide_v21"
+    ],
+    "nproc_machine": 24,
+    "loadavg": [
+      4.4658203125,
+      2.490234375,
+      2.9580078125
+    ]
+  },
+  "requested_games": 160,
+  "completed_games": 160,
+  "errors": 0,
+  "summary": {
+    "c024_azam_v1": {
+      "candidate_id": "c024_azam_v1",
+      "requested_games": 160,
+      "completed_games": 160,
+      "errors": 0,
+      "field_score": 0.1875,
+      "field_score_off_mirror": 0.1875,
+      "pooled_score_rate": 0.1875,
+      "pooled_wilson95": [
+        0.1346,
+        0.255
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 40,
+          "score_rate": 0.3,
+          "wilson95": [
+            0.1807,
+            0.4543
+          ]
+        },
+        "pub_jazivxt_rising_tide_v21": {
+          "games": 40,
+          "score_rate": 0.175,
+          "wilson95": [
+            0.0875,
+            0.3195
+          ]
+        },
+        "pub_romanrozen_v10_950": {
+          "games": 40,
+          "score_rate": 0.125,
+          "wilson95": [
+            0.0546,
+            0.2611
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 40,
+          "score_rate": 0.15,
+          "wilson95": [
+            0.0706,
+            0.2907
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.2,
+        "seat1": 0.175,
+        "seat0_games": 80,
+        "seat1_games": 80
+      },
+      "latency_p99_ms": 178.4083,
+      "latency_max_ms": 178.4083,
+      "mean_game_seconds": 1.268,
+      "decisions": 9888,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.5882
+    }
+  }
+}

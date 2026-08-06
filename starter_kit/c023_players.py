@@ -103,6 +103,8 @@ PUBLIC.update({
 # the panel for one reason: their Kaggle ladder score rates are already measured (0.3333 and
 # 0.4206 over 33 and 107 public games), so measuring them locally turns the local-to-ladder
 # calibration from a line through two points into a line through four.
+C024_AGENTS = os.path.join(_REPO, "results", "c024_final_sprint", "agents")
+
 OURS = {
     "c014_archaludon_expert": (os.path.join(KERNEL_SOURCES, "c014_archaludon_expert"),
                                "c023_prior_contract_submission"),
@@ -138,6 +140,13 @@ def registry() -> Dict[str, Any]:
         for pid, (d, origin) in origin_map.items():
             out[pid] = {"player_id": pid, "dir": d, "origin": origin, "source_class": src,
                         "exists": os.path.isfile(os.path.join(d, "main.py"))}
+    for root in (C024_AGENTS,):
+        if os.path.isdir(root):
+            for name in sorted(os.listdir(root)):
+                d = os.path.join(root, name)
+                if os.path.isfile(os.path.join(d, "main.py")):
+                    out[name] = {"player_id": name, "dir": d, "origin": "c024_candidate",
+                                 "source_class": "candidate", "exists": True}
     if os.path.isdir(C023_AGENTS):
         for name in sorted(os.listdir(C023_AGENTS)):
             d = os.path.join(C023_AGENTS, name)
