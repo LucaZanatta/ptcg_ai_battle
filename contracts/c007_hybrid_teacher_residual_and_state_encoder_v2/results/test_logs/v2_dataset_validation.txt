@@ -1,0 +1,16 @@
+c007 AC-05 v2 dataset validation
+==================================================
+scanned 61312 decisions over 720 games
+strategic: 720 games / 61312 decisions; control: 48 games / 3829 decisions
+
+  [OK ] all_required_fields_present  missing in 0 records
+  [OK ] example_ids_recoverable  0 mismatches
+  [OK ] decision_indices_contiguous  0 games noncontiguous
+  [OK ] no_game_in_multiple_splits  {}
+  [OK ] plan_labels_populated  61312/61312
+  [OK ] terminal_outcome_present  61312/61312
+  [OK ] min_600_games  720 games
+  [OK ] min_50000_decisions  61312 decisions
+  [OK ] decisions_match_manifest  scanned 61312 vs manifest 61312
+
+ALL_OK = True

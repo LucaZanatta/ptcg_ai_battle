@@ -1,690 +1,843 @@
-commit 65b16788f0de8f603f056c68cba5c930aac78843
+commit aac420c280d64c098056f85d0faf00f2d65bd188
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 20:04:01 2026 +0200
+Date:   Thu Aug 6 00:22:27 2026 +0200
 
-    c023: F3 verdict, and the finalisation script
+    c023: the two-hit race over 22 meta archetypes, and it validates itself
     
-    Three planner designs, eleven arms, ~26,000 games, every one at or below its same-run
-    control. The mechanism is measured, not inferred: with a board evaluator the arms order
-    monotonically in override rate; with an exact gate the override rate collapses to 0.07-0.4%
-    of decisions because the expert's turn is close to order-invariant; restricting to the
-    expert's own shortlist changes neither.
+    A crude table built only from HP, damage and prize values -- no knowledge of the leaderboard --
+    ranks Marnie's Grimmsnarl first, which is the deck that actually owns 58.8% of the 1100+ band
+    and 61.1% of 1000-1099. That is the only external check available for the metric and it passes.
     
-    The engine's forward-search API was never the problem. It works, a step costs 0.245 ms, and
-    the determinization of our own hidden cards is exact. There is simply very little for a
-    first-action search to decide in this agent.
-    
-    tools/c023_finalize.sh regenerates every report from raw data, runs the validator with
-    injections, captures source and git, and builds the results archive -- in that order, and
-    re-validates afterwards.
+    It also corrects F8 in degree: Dragapult ranks 4th of 22 at 2.640 against Grimmsnarl's 3.094 --
+    about 15% behind the deck it meets most often above 1000 rating, and ahead of Mega Lucario. Not
+    a bad archetype; a behind one. An archetype-first pivot is worth making, a panic about having
+    chosen badly is not.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../AGENT_CHANGE_LEDGER.md                         | 29 ++++++++++++++++-
- .../UNRESOLVED_RISKS.md                            | 17 ++++++++--
- tools/c023_finalize.sh                             | 37 ++++++++++++++++++++++
- 3 files changed, 80 insertions(+), 3 deletions(-)
+ .../EXCHANGE_RATE.json                             | 334 +++++++++++++++++++++
+ .../EXCHANGE_RATE.md                               |  69 +++++
+ tools/c023_exchange.py                             | 203 +++++++++++++
+ 3 files changed, 606 insertions(+)
 
-commit 445e94fd25ae0d82e717a281f08c3ea55542a35a
+commit fae3b5323378a2dad4c6c7579b4983f4bcd2182f
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 20:02:41 2026 +0200
+Date:   Wed Aug 5 03:38:20 2026 +0200
 
-    c023: mine our own ladder replays -- first-hand evidence instead of a third-party snapshot
+    c023: record the user's submission authorization in the repository before using it
     
-    The Kaggle episode API returns the full replay of every public game a submission played, and
-    a replay contains BOTH decks: each agent's 60-card list is its own first action. So for the
-    four agents this project has submitted we can recover, first-hand, which archetypes the
-    ladder actually paired us against, how often, and our result against each.
+    Granted in session on 2026-08-05. Recorded verbatim so the authorization exists where the
+    contract requires it and the audit trail shows when it arrived.
     
-    Confirmed live on our Dragapult submission (ref 54948560): 83 public episodes available, and
-    a six-game sample already shows Marnie Grimmsnarl at 50% of opponents -- which is what the
-    third-party score-band census said, now measured on our own games.
-    
-    Replays are ~4 MB each; each is parsed and deleted, and requests are paced at 1.5 s.
-    
-    Also: the expert-shortlist planner is killed. short4 0.5033 and short3 0.4879 against a
-    same-run control of 0.5279 -- so restricting the search to the expert's own top-k did not
-    rescue it either.
-    
-    And a correction to the noise floor: chal_dp_base3, the SAME candidate, measured 0.5042,
-    0.5125 and 0.5279 across three separate 1,200-game runs. The run-to-run range is 2.4 points,
-    not the ~1 point the two-run comparison suggested.
+    What it will be used for is not a challenger -- none earned it. It is the champion, because the
+    wrong agent is on the ladder: our most recent submission is official_mega_lucario at 581.1 and
+    still drifting, while official_dragapult sits frozen at 719.7. The most recent submission is the
+    one that plays, and ours is the weaker of the two by ~139 rating.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../ladder_replays/LADDER_SUMMARY.json             |   38 +
- .../ladder_replays/submission_54948560.json        |  133 +
- .../raw_evaluations/rule_screen4/games.jsonl       | 3600 ++++++++++++++++++++
- .../raw_evaluations/rule_screen4/summary.json      |  234 ++
- tools/c023_replays.py                              |  213 ++
- 5 files changed, 4218 insertions(+)
+ .../SUBMISSION_AUTHORIZATION.md                    | 45 ++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-commit 535db08a18d78a0cfda112adce9ccc15ba5e33c7
+commit f067114d7b7bfdf7a6aeeb53dd647dfeff086d85
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:58:18 2026 +0200
+Date:   Tue Aug 4 22:07:38 2026 +0200
 
-    c023: register the score-constant search protocol before it runs
+    c023: F8 -- the real ladder's answer, and it retires F5
     
-    Acceptance margin (2 x SE of the difference = 4.47 points at 1,000 games per arm), the
-    objective (dev panel only), the hard stop (2026-08-04T05:00Z), and the two stages the winner
-    must still clear on fresh runs are all fixed here rather than chosen after seeing the answer.
+    83 real ladder games read turn by turn out of their replays, 48 won / 35 lost. Most of the
+    contrast table is the scoreboard -- prize lead IS the score, and a small bench is downstream of
+    being knocked out. Listed in full anyway, because suppressing the tautological rows would make
+    the others look better than they are.
     
-    The prediction is registered too: the search will report a dev-panel gain and most of it will
-    not survive confirmation, because that is what a selection procedure over a noisy objective
-    does. The shrinkage is the measurement.
+    Two rows contradict the local mining outright. Against the panel's Grimmsnarl agent, losses
+    were the games where we attacked LATE (2.80 vs 2.24). On the real ladder the sign flips: we
+    attack earlier in losses (2.70 vs 2.98) and more often (6.23 vs 5.79). F5 is a property of that
+    panel matchup, not of how the champion loses on the ladder.
+    
+    What survives is that the losses are SHORT, and only against the decks that out-muscle us:
+    Mega Lucario losses end on turn 7.5 against 12.3 in wins, Grimmsnarl 9.0 against 14.0. The
+    mechanism is arithmetic in the card text -- Phantom Dive does 200 into 320 and 340 HP attackers
+    that hit back for 270 and 180+30, and a knocked-out Mega gives them three prizes to our two.
+    
+    It is a deck fact, and the deck is fixed by the archetype. No override, no score constant and
+    no turn-level search changes what 200 damage does to 340 hit points. That is one mechanism for
+    the whole campaign's negative result rather than five separate shrugs.
+    
+    Quiet-window latency, single process: mean 0.29 ms, median per-game p99 0.31 ms. The 1,378 ms
+    outlier in the contended final panel was contention, as R8 said it would be.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../AGENT_CHANGE_LEDGER.md                         | 62 +++++++++++++++++-
- .../tuning/REGISTERED_PROTOCOL.md                  | 74 ++++++++++++++++++++++
- 2 files changed, 133 insertions(+), 3 deletions(-)
+ .../FAILURE_TAXONOMY.md                            |   74 +
+ .../ladder_replays/loss_mining_54948560.json       | 3212 ++++++++++++++++++++
+ .../raw_evaluations/latency_quiet/games.jsonl      |   60 +
+ .../raw_evaluations/latency_quiet/summary.json     |  132 +
+ 4 files changed, 3478 insertions(+)
 
-commit e9ec1f49e9ebe1b4297b12958109fcb600eca7e3
+commit ad8173f3f82c403ee1f4d851aae9098a83d221d1
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:56:58 2026 +0200
+Date:   Tue Aug 4 22:03:30 2026 +0200
 
-    c023: parameterise the sample agent's own 110 score constants, and a (1+lambda) search over them
+    c023: mine the champion's real ladder losses turn by turn
     
-    The official agents decide by adding hand-chosen round numbers -- score = 40000, score += 250,
-    return 20000 -- none of which was ever measured against the alternatives. tools/c023_paramize.py
-    rewrites them by AST transform into lookups whose defaults are the original values, restricted
-    to constants that are genuinely weights: assigned to a scoring variable, or returned from a
-    function whose name ends in _score. Card IDs, deck sizes, energy costs and list indices are
-    untouched.
-    
-    The transform is verified rather than asserted: the parameterised agent is action-identical to
-    the sample over 1,263 decisions in 14 games.
-    
-    c023_tune.py searches those 110 parameters with three defences registered before it runs -- the
-    incumbent is re-measured every round in the same run as its challengers, acceptance needs a
-    margin of twice the standard error of the difference, and whatever it produces is a HYPOTHESIS
-    that must still clear the registered confirm and validate stages. Perturbations are
-    multiplicative and sign-preserving so a -1 sentinel stays a sentinel.
-    
-    Also: exact-gain planner variants are null. prizeall 0.5167, koall 0.5142, control 0.5125,
-    koexact 0.5050 over 1,200 games each -- consistent with their measured 0.07-0.4% firing rate.
+    c023_replays.py used these replays for the decks and the reward and left everything inside the
+    game unread. This reads it: a Kaggle replay carries the full observation stream, so the same
+    features the local mining extracts can be extracted from real ladder games instead -- real
+    opponents, at our rating, playing decks nobody on our panel plays.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../agents/_param_official_dragapult.py            |  794 ++++
- .../agents/_param_official_dragapult_slots.json    |  777 ++++
- .../agents/chal_dp_param0/ATTRIBUTION.txt          |    5 +
- .../agents/chal_dp_param0/base_agent.py            |  794 ++++
- .../agents/chal_dp_param0/deck.csv                 |   60 +
- .../agents/chal_dp_param0/main.py                  |  426 ++
- .../agents/chal_dp_param0/params.json              |    5 +
- .../agents/chal_dp_param0/planner.py               |  416 ++
- .../candidate_manifests/chal_dp_param0.json        |   81 +
- .../raw_evaluations/identity/chal_dp_param0.json   |   11 +
- .../raw_evaluations/rule_screen3/games.jsonl       | 4800 ++++++++++++++++++++
- .../raw_evaluations/rule_screen3/summary.json      |  302 ++
- tools/c023_build_candidate.py                      |   17 +-
- tools/c023_paramize.py                             |  152 +
- tools/c023_tune.py                                 |  188 +
- 15 files changed, 8824 insertions(+), 4 deletions(-)
+ tools/c023_replay_mine.py | 242 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 242 insertions(+)
 
-commit 38d7e6afa5d2afde0d61c960e7a1653101ab8afa
+commit 26a21e313e3d2813096287e55e15829b64e54c2e
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:52:12 2026 +0200
+Date:   Tue Aug 4 21:42:44 2026 +0200
 
-    c023: supersession records, the noise floor's third measurement, and a re-verified wrapper
+    c023: the local panel predicts Kaggle rating with R2 = 0.987
     
-    The cleanest noise-floor datum in the campaign turned out to be an accident: chal_dp_bench2
-    and chal_dp_base3 measured 0.5142 and 0.5042 over 1200 games each, and the firing probe
-    proved bench2's only rule never fired. Two provably identical policies, 1.0 point apart.
-    That replaces the two-run inference as R4's primary estimate.
+    Four submitted agents, all measured on the SAME 13-player panel at 2,400 games, against the
+    rating the ladder gave them:
     
-    superseded/ records plan_screen1 (measured under a wall-clock work budget, retained for its
-    mechanism finding because a contention artefact would have depressed all four arms together
-    rather than ordering them by override rate), the three inert bench candidates (retained as
-    controls, superseded as challengers), and chal_dp_benchline (inert by construction, caught
-    before it cost a game).
+      dragapult     local 0.5708  rating 719.7   predicted 716.6   resid  +3.1
+      mega_lucario  local 0.3952  rating 593.3   predicted 603.0   resid  -9.7
+      c014          local 0.1583  rating 471.4   predicted 449.8   resid +21.6
+      c015          local 0.0900  rating 390.7   predicted 405.7   resid -15.0
     
-    The wrapper has changed four times since its last identity check, so chal_dp_base4 was built
-    from the shipping bytes and re-verified: 0 mismatches over 1,086 decisions in 14 games.
+      rating = 347.5 + 646.7 * local_field,  R2 = 0.9872
+    
+    I predicted this would get messier because c015 scores the lowest local field and a higher
+    ladder SCORE RATE than c014. It did not, and the reason is worth more than the calibration:
+    ladder score rate is rating-matched and compressed toward 0.5 -- a weak agent plays weak
+    opponents and wins a respectable share. Rating is the dependent variable; score rate is not.
+    Ordering by rating agrees with local for all four; ordering by score rate does not.
+    
+    6.47 rating points per local point. The gap to the top of the leaderboard is 534.6 rating =
+    +82.7 local points -- more than the champion's entire field score, and about four times the
+    spread between the best and worst official sample.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../EXECUTIVE_DECISION.md                          |  26 +
- .../UNRESOLVED_RISKS.md                            |  22 +-
- .../agents/chal_dp_base4/ATTRIBUTION.txt           |   4 +
- .../agents/chal_dp_base4/base_agent.py             | 853 +++++++++++++++++++++
- .../agents/chal_dp_base4/deck.csv                  |  60 ++
- .../agents/chal_dp_base4/main.py                   | 426 ++++++++++
- .../agents/chal_dp_base4/params.json               |   4 +
- .../agents/chal_dp_base4/planner.py                | 416 ++++++++++
- .../candidate_manifests/chal_dp_base4.json         |  78 ++
- .../raw_evaluations/identity/chal_dp_base4.json    |  11 +
- .../superseded/README.md                           |  54 ++
- starter_kit/c023_wrapper_main.py                   |   5 +
- 12 files changed, 1953 insertions(+), 6 deletions(-)
+ .../ladder_replays/LADDER_CALIBRATION.md           |  128 +-
+ .../raw_evaluations/calib_panel/games.jsonl        | 1440 ++++
+ .../raw_evaluations/calib_panel/summary.json       |  286 +
+ .../raw_evaluations/calib_panel2/games.jsonl       | 7200 ++++++++++++++++++++
+ .../raw_evaluations/calib_panel2/summary.json      |  410 ++
+ .../raw_evaluations/final_panel/games.jsonl        | 5000 ++++++++++++++
+ .../raw_evaluations/final_panel/summary.json       |  294 +
+ 7 files changed, 14706 insertions(+), 52 deletions(-)
 
-commit 4d457e59158c5f3c80484c89d640a3ffb3b4ed74
+commit ae4af5dfb06fb12d276c21b5fc1cc682c01da890
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:50:16 2026 +0200
+Date:   Tue Aug 4 02:59:19 2026 +0200
 
-    c023: register two predictions before the runs that test them
+    c023: F6 killed by three independent lines, and the registered prediction was exact
     
-    P-A: bench_discipline_vs_spread will not help. It fires on 8.4% of decisions, but with a
-    100 HP threshold the only cards it can veto in this deck are Dreepy and Budew -- and the
-    same rule with 119/120 protected measured INERT. So every firing is the agent being stopped
-    from developing its own evolution line, and the loss mining says winning games have a LARGER
-    mean bench (3.31 vs 2.63), not a smaller one.
+    ab_dev, 5,000 games per arm, zero errors:
+      ab_f5   0.5116  +0.17
+      ab_ctrl 0.5099    --
+      ab_p56  0.5091  -0.08
+      ab_p39  0.4968  -1.31
     
-    P-B: the archetype's headroom is agent, not deck. Official Mega Lucario on its own list
-    scores 0.4687; on the public tuned list two independent authors converged on, 0.4875 -- a
-    +1.9 point difference inside the noise floor, against a claimed 1084.5-vs-593.3 rating gap
-    for the same 60 cards. The third cell (that public agent, that deck, this panel) is the one
-    that closes the decomposition.
+    ab_val, the held-out panel, 2,400 games each: ab_f5 0.4971 vs ab_ctrl 0.4960, +0.11.
+    
+    REGISTERED_AB.md predicted all three arms land within +/-2 points of the control. The largest
+    deviation is -1.31 against a ~1.0-point standard error.
+    
+    The number that matters: parameter 39, which the search selected first and valued at +4.80,
+    measures -1.31 in a clean unselected test. Not smaller than claimed -- the wrong sign.
+    
+    The sample's hand-written score constants are not improvable by search at this scale, and that
+    is a stronger claim than 'we did not find an improvement' because the instrument was
+    calibrated: 2 points is resolvable at 5,000 games per arm, and there is no 2-point difference
+    here.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../PREDICTIONS.md                                 |  69 ++
- .../agents/chal_dp_bench4f/ATTRIBUTION.txt         |   4 +
- .../agents/chal_dp_bench4f/base_agent.py           | 853 +++++++++++++++++++++
- .../agents/chal_dp_bench4f/deck.csv                |  60 ++
- .../agents/chal_dp_bench4f/main.py                 | 426 ++++++++++
- .../agents/chal_dp_bench4f/params.json             |  10 +
- .../agents/chal_dp_bench4f/planner.py              | 416 ++++++++++
- .../agents/chal_dp_benchline/ATTRIBUTION.txt       |   4 +
- .../agents/chal_dp_benchline/base_agent.py         | 853 +++++++++++++++++++++
- .../agents/chal_dp_benchline/deck.csv              |  60 ++
- .../agents/chal_dp_benchline/main.py               | 426 ++++++++++
- .../agents/chal_dp_benchline/params.json           |  14 +
- .../agents/chal_dp_benchline/planner.py            | 416 ++++++++++
- .../candidate_manifests/chal_dp_bench4f.json       |  84 ++
- .../candidate_manifests/chal_dp_benchline.json     |  88 +++
- .../raw_evaluations/rule_fires/rule_fires.json     |  30 +-
- 16 files changed, 3790 insertions(+), 23 deletions(-)
+ .../AGENT_CHANGE_LEDGER.md                         |    41 +-
+ .../{tune_r42_c0 => ab_ctrl}/ATTRIBUTION.txt       |     0
+ .../agents/{tune_r42_c0 => ab_ctrl}/base_agent.py  |     0
+ .../agents/{tune_r42_c0 => ab_ctrl}/deck.csv       |     0
+ .../agents/{tune_r42_c0 => ab_ctrl}/main.py        |     0
+ .../agents/ab_ctrl/params.json                     |     5 +
+ .../agents/{tune_r42_c0 => ab_ctrl}/planner.py     |     0
+ .../agents/{tune_r42_c1 => ab_f5}/ATTRIBUTION.txt  |     0
+ .../agents/{tune_r42_c1 => ab_f5}/base_agent.py    |     0
+ .../agents/{tune_r42_c1 => ab_f5}/deck.csv         |     0
+ .../agents/{tune_r42_c1 => ab_f5}/main.py          |     0
+ .../agents/ab_f5/params.json                       |     9 +
+ .../agents/{tune_r42_c1 => ab_f5}/planner.py       |     0
+ .../agents/{tune_r42_c2 => ab_p39}/ATTRIBUTION.txt |     0
+ .../agents/{tune_r42_c2 => ab_p39}/base_agent.py   |     0
+ .../agents/{tune_r42_c2 => ab_p39}/deck.csv        |     0
+ .../agents/{tune_r42_c2 => ab_p39}/main.py         |     0
+ .../agents/ab_p39/params.json                      |     7 +
+ .../agents/{tune_r42_c2 => ab_p39}/planner.py      |     0
+ .../agents/{tune_r42_c3 => ab_p56}/ATTRIBUTION.txt |     0
+ .../agents/{tune_r42_c3 => ab_p56}/base_agent.py   |     0
+ .../agents/{tune_r42_c3 => ab_p56}/deck.csv        |     0
+ .../agents/{tune_r42_c3 => ab_p56}/main.py         |     0
+ .../agents/ab_p56/params.json                      |     7 +
+ .../agents/{tune_r42_c3 => ab_p56}/planner.py      |     0
+ .../agents/tune_r42_c3/params.json                 |    24 -
+ .../{tune_r42_c4 => tune_r49_c0}/ATTRIBUTION.txt   |     0
+ .../{tune_r42_c4 => tune_r49_c0}/base_agent.py     |     0
+ .../agents/{tune_r42_c4 => tune_r49_c0}/deck.csv   |     0
+ .../agents/{tune_r42_c4 => tune_r49_c0}/main.py    |     0
+ .../agents/tune_r49_c0/params.json                 |    20 +
+ .../agents/{tune_r42_c4 => tune_r49_c0}/planner.py |     0
+ .../{tune_r42_inc => tune_r49_c1}/ATTRIBUTION.txt  |     0
+ .../{tune_r42_inc => tune_r49_c1}/base_agent.py    |     0
+ .../agents/{tune_r42_inc => tune_r49_c1}/deck.csv  |     0
+ .../agents/{tune_r42_inc => tune_r49_c1}/main.py   |     0
+ .../{tune_r42_c1 => tune_r49_c1}/params.json       |     3 +-
+ .../{tune_r42_inc => tune_r49_c1}/planner.py       |     0
+ .../agents/tune_r49_c2/ATTRIBUTION.txt             |     5 +
+ .../agents/tune_r49_c2/base_agent.py               |   794 +
+ .../agents/tune_r49_c2/deck.csv                    |    60 +
+ .../agents/tune_r49_c2/main.py                     |   426 +
+ .../{tune_r42_c4 => tune_r49_c2}/params.json       |     6 +-
+ .../agents/tune_r49_c2/planner.py                  |   416 +
+ .../agents/tune_r49_c3/ATTRIBUTION.txt             |     5 +
+ .../agents/tune_r49_c3/base_agent.py               |   794 +
+ .../agents/tune_r49_c3/deck.csv                    |    60 +
+ .../agents/tune_r49_c3/main.py                     |   426 +
+ .../{tune_r42_c0 => tune_r49_c3}/params.json       |     8 +-
+ .../agents/tune_r49_c3/planner.py                  |   416 +
+ .../agents/tune_r49_c4/ATTRIBUTION.txt             |     5 +
+ .../agents/tune_r49_c4/base_agent.py               |   794 +
+ .../agents/tune_r49_c4/deck.csv                    |    60 +
+ .../agents/tune_r49_c4/main.py                     |   426 +
+ .../{tune_r42_c2 => tune_r49_c4}/params.json       |     5 +-
+ .../agents/tune_r49_c4/planner.py                  |   416 +
+ .../agents/tune_r49_inc/ATTRIBUTION.txt            |     5 +
+ .../agents/tune_r49_inc/base_agent.py              |   794 +
+ .../agents/tune_r49_inc/deck.csv                   |    60 +
+ .../agents/tune_r49_inc/main.py                    |   426 +
+ .../{tune_r42_inc => tune_r49_inc}/params.json     |     0
+ .../agents/tune_r49_inc/planner.py                 |   416 +
+ .../candidate_manifests/ab_ctrl.json               |    81 +
+ .../candidate_manifests/ab_f5.json                 |    85 +
+ .../candidate_manifests/ab_p39.json                |    83 +
+ .../candidate_manifests/ab_p56.json                |    83 +
+ .../candidate_manifests/tune_r43_c0.json           |    98 +
+ .../candidate_manifests/tune_r43_c1.json           |   100 +
+ .../candidate_manifests/tune_r43_c2.json           |    98 +
+ .../candidate_manifests/tune_r43_c3.json           |   101 +
+ .../candidate_manifests/tune_r43_c4.json           |    97 +
+ .../candidate_manifests/tune_r43_inc.json          |    96 +
+ .../candidate_manifests/tune_r44_c0.json           |    97 +
+ .../candidate_manifests/tune_r44_c1.json           |   100 +
+ .../candidate_manifests/tune_r44_c2.json           |    97 +
+ .../candidate_manifests/tune_r44_c3.json           |    98 +
+ .../candidate_manifests/tune_r44_c4.json           |    99 +
+ .../candidate_manifests/tune_r44_inc.json          |    96 +
+ .../candidate_manifests/tune_r45_c0.json           |    98 +
+ .../candidate_manifests/tune_r45_c1.json           |   101 +
+ .../candidate_manifests/tune_r45_c2.json           |    97 +
+ .../candidate_manifests/tune_r45_c3.json           |    96 +
+ .../candidate_manifests/tune_r45_c4.json           |    97 +
+ .../candidate_manifests/tune_r45_inc.json          |    96 +
+ .../candidate_manifests/tune_r46_c0.json           |    99 +
+ .../candidate_manifests/tune_r46_c1.json           |   100 +
+ .../candidate_manifests/tune_r46_c2.json           |   101 +
+ .../candidate_manifests/tune_r46_c3.json           |   100 +
+ .../candidate_manifests/tune_r46_c4.json           |    98 +
+ .../candidate_manifests/tune_r46_inc.json          |    96 +
+ .../candidate_manifests/tune_r47_c0.json           |    99 +
+ .../candidate_manifests/tune_r47_c1.json           |    99 +
+ .../candidate_manifests/tune_r47_c2.json           |    98 +
+ .../candidate_manifests/tune_r47_c3.json           |   101 +
+ .../candidate_manifests/tune_r47_c4.json           |    97 +
+ .../candidate_manifests/tune_r47_inc.json          |    96 +
+ .../candidate_manifests/tune_r48_c0.json           |    99 +
+ .../candidate_manifests/tune_r48_c1.json           |    97 +
+ .../candidate_manifests/tune_r48_c2.json           |   100 +
+ .../candidate_manifests/tune_r48_c3.json           |    99 +
+ .../candidate_manifests/tune_r48_c4.json           |    97 +
+ .../candidate_manifests/tune_r48_inc.json          |    96 +
+ .../candidate_manifests/tune_r49_c0.json           |    96 +
+ .../candidate_manifests/tune_r49_c1.json           |    97 +
+ .../candidate_manifests/tune_r49_c2.json           |    99 +
+ .../candidate_manifests/tune_r49_c3.json           |    98 +
+ .../candidate_manifests/tune_r49_c4.json           |    99 +
+ .../candidate_manifests/tune_r49_inc.json          |    96 +
+ .../raw_evaluations/ab_dev/games.jsonl             | 20000 +++++++++++++++++++
+ .../raw_evaluations/ab_dev/summary.json            |   302 +
+ .../raw_evaluations/ab_val/games.jsonl             |  4800 +++++
+ .../raw_evaluations/ab_val/summary.json            |   183 +
+ .../raw_evaluations/tune_r42/games.jsonl           |  6000 ++++++
+ .../raw_evaluations/tune_r42/summary.json          |   424 +
+ .../raw_evaluations/tune_r43/games.jsonl           |  6000 ++++++
+ .../raw_evaluations/tune_r43/summary.json          |   424 +
+ .../raw_evaluations/tune_r44/games.jsonl           |  6000 ++++++
+ .../raw_evaluations/tune_r44/summary.json          |   424 +
+ .../raw_evaluations/tune_r45/games.jsonl           |  6000 ++++++
+ .../raw_evaluations/tune_r45/summary.json          |   424 +
+ .../raw_evaluations/tune_r46/games.jsonl           |  6000 ++++++
+ .../raw_evaluations/tune_r46/summary.json          |   424 +
+ .../raw_evaluations/tune_r47/games.jsonl           |  6000 ++++++
+ .../raw_evaluations/tune_r47/summary.json          |   424 +
+ .../raw_evaluations/tune_r48/games.jsonl           |  6000 ++++++
+ .../raw_evaluations/tune_r48/summary.json          |   424 +
+ .../tuning/tune_history.json                       |    79 +-
+ 127 files changed, 81684 insertions(+), 38 deletions(-)
 
-commit 2162d7bd5903e8501612d0001f37678b88fb8a7d
+commit 4fe2787b1dbe0c7dd9d62d6ef28417baa2aa50e4
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:48:11 2026 +0200
+Date:   Tue Aug 4 01:30:18 2026 +0200
 
-    c023: a rule that never fired, caught by a probe no outcome-based check could have
+    c023: the search's final table -- every accepted change left the incumbent worse than the defaults
     
-    bench_discipline_vs_spread measured 0.5142 against a 0.5042 control over 1,200 games each
-    and looked like a small win. It was INERT: 0 fires in 1,329 decisions. The View resolved a
-    PLAY option's card through its  field, and PLAY/EVOLVE/ATTACH options carry no area --
-    the card always comes from hand, which is what the sample agents assume. So the rule's
-    precondition never held, the candidate was byte-for-byte the control's policy, and its
-    +1.0-point 'improvement' is a third independent measurement of this panel's noise floor.
+    params  n   mean dev field   vs defaults
+      0     5      0.5062            --
+      1    17      0.5067          +0.05
+      4     7      0.4984          -0.78
+      9     5      0.4932          -1.30
+     12     7      0.4991          -0.71
+     14     1      0.4780            --
     
-    tools/c023_rule_fires.py exists because that class of failure is invisible to every
-    outcome-based check: an override that never fires produces a null result indistinguishable
-    from a real one. It wraps each enabled rule, counts firings, and reports INERT.
-    
-    After the fix the rule fires on 8.4% of decisions and has never been evaluated. Also
-    measured: the planner-based conservative overrides fire on 0.07-0.4% of decisions, which
-    is too rare to move a field score -- because with the expert finishing the turn either way,
-    the order of the first action almost never changes the prize outcome.
+    A hill-climb ran six hours and forty-two thousand games, and the best configuration it ever
+    held was the one it started from. Accept ranks of the incumbent among 42 draws, lowest = 1:
+    16, 2, 1, 24, 3 -- three of five fired on a bottom-three draw.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../agents/chal_dp_bench2f/ATTRIBUTION.txt         |    4 +
- .../agents/chal_dp_bench2f/base_agent.py           |  853 ++
- .../agents/chal_dp_bench2f/deck.csv                |   60 +
- .../agents/chal_dp_bench2f/main.py                 |  421 +
- .../agents/chal_dp_bench2f/params.json             |   10 +
- .../agents/chal_dp_bench2f/planner.py              |  416 +
- .../agents/chal_dp_bench3f/ATTRIBUTION.txt         |    4 +
- .../agents/chal_dp_bench3f/base_agent.py           |  853 ++
- .../agents/chal_dp_bench3f/deck.csv                |   60 +
- .../agents/chal_dp_bench3f/main.py                 |  421 +
- .../agents/chal_dp_bench3f/params.json             |   10 +
- .../agents/chal_dp_bench3f/planner.py              |  416 +
- .../agents/chal_dp_bench_prizef/ATTRIBUTION.txt    |    4 +
- .../agents/chal_dp_bench_prizef/base_agent.py      |  853 ++
- .../agents/chal_dp_bench_prizef/deck.csv           |   60 +
- .../agents/chal_dp_bench_prizef/main.py            |  421 +
- .../agents/chal_dp_bench_prizef/params.json        |   16 +
- .../agents/chal_dp_bench_prizef/planner.py         |  416 +
- .../candidate_manifests/chal_dp_bench2f.json       |   84 +
- .../candidate_manifests/chal_dp_bench3f.json       |   84 +
- .../candidate_manifests/chal_dp_bench_prizef.json  |   90 +
- .../failures/DEFECTS.md                            |  106 +
- .../raw_evaluations/rule_fires/rule_fires.json     |   47 +
- .../raw_evaluations/rule_screen2/games.jsonl       | 8400 ++++++++++++++++++++
- .../raw_evaluations/rule_screen2/summary.json      |  506 ++
- starter_kit/c023_wrapper_main.py                   |   11 +-
- tools/c023_reports.py                              |   80 +
- tools/c023_rule_fires.py                           |  135 +
- 28 files changed, 14840 insertions(+), 1 deletion(-)
+ .../agents/tune_r35_c1/params.json                 |   19 -
+ .../agents/tune_r35_c4/params.json                 |   20 -
+ .../{tune_r35_c0 => tune_r42_c0}/ATTRIBUTION.txt   |    0
+ .../{tune_r35_c0 => tune_r42_c0}/base_agent.py     |    0
+ .../agents/{tune_r35_c0 => tune_r42_c0}/deck.csv   |    0
+ .../agents/{tune_r35_c0 => tune_r42_c0}/main.py    |    0
+ .../agents/tune_r42_c0/params.json                 |   22 +
+ .../agents/{tune_r35_c0 => tune_r42_c0}/planner.py |    0
+ .../{tune_r35_c1 => tune_r42_c1}/ATTRIBUTION.txt   |    0
+ .../{tune_r35_c1 => tune_r42_c1}/base_agent.py     |    0
+ .../agents/{tune_r35_c1 => tune_r42_c1}/deck.csv   |    0
+ .../agents/{tune_r35_c1 => tune_r42_c1}/main.py    |    0
+ .../{tune_r35_c3 => tune_r42_c1}/params.json       |    8 +-
+ .../agents/{tune_r35_c1 => tune_r42_c1}/planner.py |    0
+ .../{tune_r35_c2 => tune_r42_c2}/ATTRIBUTION.txt   |    0
+ .../{tune_r35_c2 => tune_r42_c2}/base_agent.py     |    0
+ .../agents/{tune_r35_c2 => tune_r42_c2}/deck.csv   |    0
+ .../agents/{tune_r35_c2 => tune_r42_c2}/main.py    |    0
+ .../{tune_r35_c2 => tune_r42_c2}/params.json       |   10 +-
+ .../agents/{tune_r35_c2 => tune_r42_c2}/planner.py |    0
+ .../{tune_r35_c3 => tune_r42_c3}/ATTRIBUTION.txt   |    0
+ .../{tune_r35_c3 => tune_r42_c3}/base_agent.py     |    0
+ .../agents/{tune_r35_c3 => tune_r42_c3}/deck.csv   |    0
+ .../agents/{tune_r35_c3 => tune_r42_c3}/main.py    |    0
+ .../agents/tune_r42_c3/params.json                 |   24 +
+ .../agents/{tune_r35_c3 => tune_r42_c3}/planner.py |    0
+ .../{tune_r35_c4 => tune_r42_c4}/ATTRIBUTION.txt   |    0
+ .../{tune_r35_c4 => tune_r42_c4}/base_agent.py     |    0
+ .../agents/{tune_r35_c4 => tune_r42_c4}/deck.csv   |    0
+ .../agents/{tune_r35_c4 => tune_r42_c4}/main.py    |    0
+ .../{tune_r35_c0 => tune_r42_c4}/params.json       |   12 +-
+ .../agents/{tune_r35_c4 => tune_r42_c4}/planner.py |    0
+ .../{tune_r35_inc => tune_r42_inc}/ATTRIBUTION.txt |    0
+ .../{tune_r35_inc => tune_r42_inc}/base_agent.py   |    0
+ .../agents/{tune_r35_inc => tune_r42_inc}/deck.csv |    0
+ .../agents/{tune_r35_inc => tune_r42_inc}/main.py  |    0
+ .../{tune_r35_inc => tune_r42_inc}/params.json     |    4 +-
+ .../{tune_r35_inc => tune_r42_inc}/planner.py      |    0
+ .../candidate_manifests/tune_r36_c0.json           |   97 +
+ .../candidate_manifests/tune_r36_c1.json           |   96 +
+ .../candidate_manifests/tune_r36_c2.json           |   95 +
+ .../candidate_manifests/tune_r36_c3.json           |   97 +
+ .../candidate_manifests/tune_r36_c4.json           |   97 +
+ .../candidate_manifests/tune_r36_inc.json          |   94 +
+ .../candidate_manifests/tune_r37_c0.json           |   99 +
+ .../candidate_manifests/tune_r37_c1.json           |   96 +
+ .../candidate_manifests/tune_r37_c2.json           |   95 +
+ .../candidate_manifests/tune_r37_c3.json           |   96 +
+ .../candidate_manifests/tune_r37_c4.json           |   97 +
+ .../candidate_manifests/tune_r37_inc.json          |   94 +
+ .../candidate_manifests/tune_r38_c0.json           |   99 +
+ .../candidate_manifests/tune_r38_c1.json           |   95 +
+ .../candidate_manifests/tune_r38_c2.json           |   95 +
+ .../candidate_manifests/tune_r38_c3.json           |   98 +
+ .../candidate_manifests/tune_r38_c4.json           |   96 +
+ .../candidate_manifests/tune_r38_inc.json          |   94 +
+ .../candidate_manifests/tune_r39_c0.json           |   98 +
+ .../candidate_manifests/tune_r39_c1.json           |   98 +
+ .../candidate_manifests/tune_r39_c2.json           |   96 +
+ .../candidate_manifests/tune_r39_c3.json           |   98 +
+ .../candidate_manifests/tune_r39_c4.json           |   96 +
+ .../candidate_manifests/tune_r39_inc.json          |   94 +
+ .../candidate_manifests/tune_r40_c0.json           |   99 +
+ .../candidate_manifests/tune_r40_c1.json           |   96 +
+ .../candidate_manifests/tune_r40_c2.json           |   96 +
+ .../candidate_manifests/tune_r40_c3.json           |   97 +
+ .../candidate_manifests/tune_r40_c4.json           |   99 +
+ .../candidate_manifests/tune_r40_inc.json          |   94 +
+ .../candidate_manifests/tune_r41_c0.json           |   96 +
+ .../candidate_manifests/tune_r41_c1.json           |   98 +
+ .../candidate_manifests/tune_r41_c2.json           |   97 +
+ .../candidate_manifests/tune_r41_c3.json           |   98 +
+ .../candidate_manifests/tune_r41_c4.json           |   96 +
+ .../candidate_manifests/tune_r41_inc.json          |   94 +
+ .../candidate_manifests/tune_r42_c0.json           |   98 +
+ .../candidate_manifests/tune_r42_c1.json           |   98 +
+ .../candidate_manifests/tune_r42_c2.json           |   98 +
+ .../candidate_manifests/tune_r42_c3.json           |  100 +
+ .../candidate_manifests/tune_r42_c4.json           |   99 +
+ .../candidate_manifests/tune_r42_inc.json          |   96 +
+ .../raw_evaluations/tune_r35/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r35/summary.json          |  424 ++
+ .../raw_evaluations/tune_r36/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r36/summary.json          |  424 ++
+ .../raw_evaluations/tune_r37/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r37/summary.json          |  424 ++
+ .../raw_evaluations/tune_r38/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r38/summary.json          |  424 ++
+ .../raw_evaluations/tune_r39/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r39/summary.json          |  424 ++
+ .../raw_evaluations/tune_r40/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r40/summary.json          |  424 ++
+ .../raw_evaluations/tune_r41/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r41/summary.json          |  424 ++
+ .../tuning/RUNNING_NOTES.md                        |   24 +-
+ .../tuning/tune_history.json                       |  103 +-
+ 96 files changed, 49210 insertions(+), 63 deletions(-)
 
-commit 8f15227d7f32667cc6e1c52738f6c5c6a2b423fa
+commit aa4aa34ed6a8ddb2e9c72d11a82bdfeb11729484
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:43:03 2026 +0200
+Date:   Tue Aug 4 00:42:00 2026 +0200
 
-    c023: the veto primitive, conservative admission, and the expert shortlist
+    c023: the fourth acceptance is the exception, and it changes nothing
     
-    Three mechanisms, each answering a measured failure of the previous one.
+    r34 was won by the child (0.5570, the run's maximum) against an incumbent near the mean --
+    unlike r22 and r29, which were won by the incumbent's two lowest draws. Worth stating because
+    the D7 pattern is not universal.
     
-    The veto primitive: a rule that says 'not that one' needs a replacement, and the only
-    principled replacement is the expert's own next preference. The observation is copied with
-    the vetoed options removed and the SIMULATION instance of the base agent is asked to choose
-    from what remains -- so the real instance is still called exactly once per real decision and
-    its plan state advances exactly once.
+    It is also, to three decimals, the expected maximum of the run: 175 children drawn, and the
+    maximum of 175 draws at SD 0.0127 sits around 0.544-0.557. Four acceptances in 35 rounds
+    against ~1.7 expected under the null is more than expected and not remarkably more.
     
-    Conservative admission (prize_only): the planner overrides only on a lexicographic gain in
-    (terminal, prizes taken, prizes conceded) -- facts about the simulated line rather than
-    opinions about board quality. With use_ko_risk it also compares the prizes the opponent can
-    immediately take back, computed from their visible active, its attached energy and its
-    public attacks.
-    
-    The expert shortlist: plan_screen1 lost monotonically in override rate, so the search is now
-    restricted to the expert's own top-k, obtained by re-asking it with each previous choice
-    vetoed. Every candidate is expert-approved and the search only breaks the tie.
-    
-    Also: determinization now rotates which unseen cards land in the prizes -- without it the
-    same cards were hidden in every prize slot of every game, a systematic bias rather than a
-    sample.
+    The acceptance count was never the decisive evidence. If the accepted changes were real, the
+    incumbent series would be rising. It is falling, over ten thousand games per configuration.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../UNRESOLVED_RISKS.md                            | 101 +++
- .../agents/chal_dp_koall/ATTRIBUTION.txt           |   4 +
- .../agents/chal_dp_koall/base_agent.py             | 853 +++++++++++++++++++++
- .../agents/chal_dp_koall/deck.csv                  |  60 ++
- .../agents/chal_dp_koall/main.py                   | 383 +++++++++
- .../agents/chal_dp_koall/params.json               |  15 +
- .../agents/chal_dp_koall/planner.py                | 407 ++++++++++
- .../agents/chal_dp_koexact/ATTRIBUTION.txt         |   4 +
- .../agents/chal_dp_koexact/base_agent.py           | 853 +++++++++++++++++++++
- .../agents/chal_dp_koexact/deck.csv                |  60 ++
- .../agents/chal_dp_koexact/main.py                 | 383 +++++++++
- .../agents/chal_dp_koexact/params.json             |  14 +
- .../agents/chal_dp_koexact/planner.py              | 407 ++++++++++
- .../agents/chal_dp_prizeall/ATTRIBUTION.txt        |   4 +
- .../agents/chal_dp_prizeall/base_agent.py          | 853 +++++++++++++++++++++
- .../agents/chal_dp_prizeall/deck.csv               |  60 ++
- .../agents/chal_dp_prizeall/main.py                | 383 +++++++++
- .../agents/chal_dp_prizeall/params.json            |  14 +
- .../agents/chal_dp_prizeall/planner.py             | 407 ++++++++++
- .../agents/chal_dp_short3/ATTRIBUTION.txt          |   4 +
- .../agents/chal_dp_short3/base_agent.py            | 853 +++++++++++++++++++++
- .../agents/chal_dp_short3/deck.csv                 |  60 ++
- .../agents/chal_dp_short3/main.py                  | 412 ++++++++++
- .../agents/chal_dp_short3/params.json              |  15 +
- .../agents/chal_dp_short3/planner.py               | 416 ++++++++++
- .../agents/chal_dp_short4/ATTRIBUTION.txt          |   4 +
- .../agents/chal_dp_short4/base_agent.py            | 853 +++++++++++++++++++++
- .../agents/chal_dp_short4/deck.csv                 |  60 ++
- .../agents/chal_dp_short4/main.py                  | 412 ++++++++++
- .../agents/chal_dp_short4/params.json              |  14 +
- .../agents/chal_dp_short4/planner.py               | 416 ++++++++++
- .../candidate_manifests/chal_dp_koall.json         |  89 +++
- .../candidate_manifests/chal_dp_koexact.json       |  88 +++
- .../candidate_manifests/chal_dp_prizeall.json      |  88 +++
- .../candidate_manifests/chal_dp_short3.json        |  89 +++
- .../candidate_manifests/chal_dp_short4.json        |  88 +++
- starter_kit/c023_planner.py                        |  75 +-
- starter_kit/c023_wrapper_main.py                   |  29 +
- tools/c023_capture.py                              | 140 ++++
- tools/c023_reports.py                              | 195 +++++
- 40 files changed, 9657 insertions(+), 8 deletions(-)
+ .../agents/tune_r33_inc/params.json                |   15 -
+ .../{tune_r33_c0 => tune_r35_c0}/ATTRIBUTION.txt   |    0
+ .../{tune_r33_c0 => tune_r35_c0}/base_agent.py     |    0
+ .../agents/{tune_r33_c0 => tune_r35_c0}/deck.csv   |    0
+ .../agents/{tune_r33_c0 => tune_r35_c0}/main.py    |    0
+ .../agents/tune_r35_c0/params.json                 |   23 +
+ .../agents/{tune_r33_c0 => tune_r35_c0}/planner.py |    0
+ .../{tune_r33_c1 => tune_r35_c1}/ATTRIBUTION.txt   |    0
+ .../{tune_r33_c1 => tune_r35_c1}/base_agent.py     |    0
+ .../agents/{tune_r33_c1 => tune_r35_c1}/deck.csv   |    0
+ .../agents/{tune_r33_c1 => tune_r35_c1}/main.py    |    0
+ .../{tune_r33_c1 => tune_r35_c1}/params.json       |    8 +-
+ .../agents/{tune_r33_c1 => tune_r35_c1}/planner.py |    0
+ .../{tune_r33_c2 => tune_r35_c2}/ATTRIBUTION.txt   |    0
+ .../{tune_r33_c2 => tune_r35_c2}/base_agent.py     |    0
+ .../agents/{tune_r33_c2 => tune_r35_c2}/deck.csv   |    0
+ .../agents/{tune_r33_c2 => tune_r35_c2}/main.py    |    0
+ .../{tune_r33_c2 => tune_r35_c2}/params.json       |   10 +-
+ .../agents/{tune_r33_c2 => tune_r35_c2}/planner.py |    0
+ .../{tune_r33_c3 => tune_r35_c3}/ATTRIBUTION.txt   |    0
+ .../{tune_r33_c3 => tune_r35_c3}/base_agent.py     |    0
+ .../agents/{tune_r33_c3 => tune_r35_c3}/deck.csv   |    0
+ .../agents/{tune_r33_c3 => tune_r35_c3}/main.py    |    0
+ .../{tune_r33_c3 => tune_r35_c3}/params.json       |    6 +-
+ .../agents/{tune_r33_c3 => tune_r35_c3}/planner.py |    0
+ .../{tune_r33_c4 => tune_r35_c4}/ATTRIBUTION.txt   |    0
+ .../{tune_r33_c4 => tune_r35_c4}/base_agent.py     |    0
+ .../agents/{tune_r33_c4 => tune_r35_c4}/deck.csv   |    0
+ .../agents/{tune_r33_c4 => tune_r35_c4}/main.py    |    0
+ .../{tune_r33_c0 => tune_r35_c4}/params.json       |   12 +-
+ .../agents/{tune_r33_c4 => tune_r35_c4}/planner.py |    0
+ .../{tune_r33_inc => tune_r35_inc}/ATTRIBUTION.txt |    0
+ .../{tune_r33_inc => tune_r35_inc}/base_agent.py   |    0
+ .../agents/{tune_r33_inc => tune_r35_inc}/deck.csv |    0
+ .../agents/{tune_r33_inc => tune_r35_inc}/main.py  |    0
+ .../{tune_r33_c4 => tune_r35_inc}/params.json      |    5 +-
+ .../{tune_r33_inc => tune_r35_inc}/planner.py      |    0
+ .../candidate_manifests/tune_r34_c0.json           |   93 +
+ .../candidate_manifests/tune_r34_c1.json           |   92 +
+ .../candidate_manifests/tune_r34_c2.json           |   94 +
+ .../candidate_manifests/tune_r34_c3.json           |   94 +
+ .../candidate_manifests/tune_r34_c4.json           |   93 +
+ .../candidate_manifests/tune_r34_inc.json          |   91 +
+ .../candidate_manifests/tune_r35_c0.json           |   99 +
+ .../candidate_manifests/tune_r35_c1.json           |   95 +
+ .../candidate_manifests/tune_r35_c2.json           |   98 +
+ .../candidate_manifests/tune_r35_c3.json           |   96 +
+ .../candidate_manifests/tune_r35_c4.json           |   96 +
+ .../candidate_manifests/tune_r35_inc.json          |   94 +
+ .../raw_evaluations/tune_r33/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r33/summary.json          |  424 ++
+ .../raw_evaluations/tune_r34/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r34/summary.json          |  424 ++
+ .../tuning/RUNNING_NOTES.md                        |   22 +
+ .../tuning/tune_history.json                       |   53 +-
+ 55 files changed, 14104 insertions(+), 33 deletions(-)
 
-commit 068513a55943c264c7e8c79abe9c92250fefa1cb
+commit a79284e27f90d9f81d9426845365a6e033d1b215
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:35:26 2026 +0200
+Date:   Tue Aug 4 00:28:21 2026 +0200
 
-    c023: deck co-optimization fails, the planner fails, and the loss profile says why
-    
-    B2 = FAIL. Seventeen constrained mutations of the official Dragapult list. The best screen
-    arm went +7.25 at 400 games to -0.12 at 1200. Nothing separated from a control measured in
-    the same run. The list is already tuned and this deck's ceiling is not in its 60 cards.
-    
-    F3 = KILLED, and the ordering is the finding: plan2 (planned at every decision, overrode
-    most) 0.479, plan4 0.485, plan3 0.491, plan1 (most conservative) 0.4985, control 0.506.
-    Monotone in override rate. A hand-written board evaluator is arguing with constants that
-    encode deck knowledge it does not have, and it loses that argument more often than it wins.
-    That is what motivates prize_only: override on facts -- prizes taken, prizes conceded,
-    terminal -- and never on taste.
-    
-    Loss mining vs Grimmsnarl, 300 games, 90-210: most of the table is confounded by game
-    length, but two features are not. First attack lands on turn 2.24 in wins and 2.80 in
-    losses, and mean bench is 3.31 against 2.63. We lose the games where the line comes online
-    late. The champion declines an available attack 0.043 times per game, so the tactical class
-    is ruled out by measurement rather than by argument.
-    
-    The champion is frozen and packaged: 1.5 MB, sha256 cf5bcd01, clean-validated by extraction
-    and play with zero errors, both seats and latency inside the self-imposed bound.
+    c023: F6 in the agent ledger -- the score-constant search, and why its own incumbent series buried it
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../AGENT_CHANGE_LEDGER.md                         |  102 +
- .../BYTERL_COMPONENT_RESULTS.md                    |   88 +
- .../CANDIDATE_HISTORY.jsonl                        |   36 +
- .../DECK_CHANGE_LEDGER.md                          |   93 +
- .../FAILURE_TAXONOMY.md                            |  114 +
- .../LEADERBOARD_SUBMISSION_PLAN.md                 |   78 +
- .../MATCHUP_MATRIX.csv                             |   11 +
- .../META_REPORT.md                                 |  133 +
- .../PANEL_SPLIT.json                               |   56 +
- .../PIVOT_LEDGER.md                                |  107 +
- .../SOURCES.md                                     |   88 +
- .../agents/chal_dp_base/ATTRIBUTION.txt            |    4 +
- .../agents/chal_dp_base/base_agent.py              |  853 ++
- .../agents/chal_dp_base/deck.csv                   |   60 +
- .../agents/chal_dp_base/main.py                    |  169 +
- .../agents/chal_dp_base/params.json                |    4 +
- .../agents/chal_dp_base2/ATTRIBUTION.txt           |    4 +
- .../agents/chal_dp_base2/base_agent.py             |  853 ++
- .../agents/chal_dp_base2/deck.csv                  |   60 +
- .../agents/chal_dp_base2/main.py                   |  235 +
- .../agents/chal_dp_base2/params.json               |    4 +
- .../agents/chal_dp_base3/ATTRIBUTION.txt           |    4 +
- .../agents/chal_dp_base3/base_agent.py             |  853 ++
- .../agents/chal_dp_base3/deck.csv                  |   60 +
- .../agents/chal_dp_base3/main.py                   |  383 +
- .../agents/chal_dp_base3/params.json               |    4 +
- .../agents/chal_dp_base3/planner.py                |  357 +
- .../agents/chal_dp_bench2/ATTRIBUTION.txt          |    4 +
- .../agents/chal_dp_bench2/base_agent.py            |  853 ++
- .../agents/chal_dp_bench2/deck.csv                 |   60 +
- .../agents/chal_dp_bench2/main.py                  |  383 +
- .../agents/chal_dp_bench2/params.json              |   10 +
- .../agents/chal_dp_bench2/planner.py               |  357 +
- .../agents/chal_dp_bench3/ATTRIBUTION.txt          |    4 +
- .../agents/chal_dp_bench3/base_agent.py            |  853 ++
- .../agents/chal_dp_bench3/deck.csv                 |   60 +
- .../agents/chal_dp_bench3/main.py                  |  383 +
- .../agents/chal_dp_bench3/params.json              |   10 +
- .../agents/chal_dp_bench3/planner.py               |  357 +
- .../agents/chal_dp_bench_prize/ATTRIBUTION.txt     |    4 +
- .../agents/chal_dp_bench_prize/base_agent.py       |  853 ++
- .../agents/chal_dp_bench_prize/deck.csv            |   60 +
- .../agents/chal_dp_bench_prize/main.py             |  383 +
- .../agents/chal_dp_bench_prize/params.json         |   16 +
- .../agents/chal_dp_bench_prize/planner.py          |  357 +
- .../agents/chal_dp_plan1/ATTRIBUTION.txt           |    4 +
- .../agents/chal_dp_plan1/base_agent.py             |  853 ++
- .../agents/chal_dp_plan1/deck.csv                  |   60 +
- .../agents/chal_dp_plan1/main.py                   |  284 +
- .../agents/chal_dp_plan1/params.json               |    6 +
- .../agents/chal_dp_plan1/planner.py                |  306 +
- .../agents/chal_dp_plan2/ATTRIBUTION.txt           |    4 +
- .../agents/chal_dp_plan2/base_agent.py             |  853 ++
- .../agents/chal_dp_plan2/deck.csv                  |   60 +
- .../agents/chal_dp_plan2/main.py                   |  284 +
- .../agents/chal_dp_plan2/params.json               |   11 +
- .../agents/chal_dp_plan2/planner.py                |  306 +
- .../agents/chal_dp_plan3/ATTRIBUTION.txt           |    4 +
- .../agents/chal_dp_plan3/base_agent.py             |  853 ++
- .../agents/chal_dp_plan3/deck.csv                  |   60 +
- .../agents/chal_dp_plan3/main.py                   |  284 +
- .../agents/chal_dp_plan3/params.json               |   13 +
- .../agents/chal_dp_plan3/planner.py                |  306 +
- .../agents/chal_dp_plan4/ATTRIBUTION.txt           |    4 +
- .../agents/chal_dp_plan4/base_agent.py             |  853 ++
- .../agents/chal_dp_plan4/deck.csv                  |   60 +
- .../agents/chal_dp_plan4/main.py                   |  284 +
- .../agents/chal_dp_plan4/params.json               |   16 +
- .../agents/chal_dp_plan4/planner.py                |  306 +
- .../agents/chal_dp_prizeonly/ATTRIBUTION.txt       |    4 +
- .../agents/chal_dp_prizeonly/base_agent.py         |  853 ++
- .../agents/chal_dp_prizeonly/deck.csv              |   60 +
- .../agents/chal_dp_prizeonly/main.py               |  383 +
- .../agents/chal_dp_prizeonly/params.json           |   13 +
- .../agents/chal_dp_prizeonly/planner.py            |  357 +
- .../agents/chal_dp_r_benchdreepy/ATTRIBUTION.txt   |    4 +
- .../agents/chal_dp_r_benchdreepy/base_agent.py     |  853 ++
- .../agents/chal_dp_r_benchdreepy/deck.csv          |   60 +
- .../agents/chal_dp_r_benchdreepy/main.py           |  235 +
- .../agents/chal_dp_r_benchdreepy/params.json       |    6 +
- .../agents/chal_dp_r_benchwide/ATTRIBUTION.txt     |    4 +
- .../agents/chal_dp_r_benchwide/base_agent.py       |  853 ++
- .../agents/chal_dp_r_benchwide/deck.csv            |   60 +
- .../agents/chal_dp_r_benchwide/main.py             |  235 +
- .../agents/chal_dp_r_benchwide/params.json         |    6 +
- .../agents/chal_dp_r_gofirst/ATTRIBUTION.txt       |    4 +
- .../agents/chal_dp_r_gofirst/base_agent.py         |  853 ++
- .../agents/chal_dp_r_gofirst/deck.csv              |   60 +
- .../agents/chal_dp_r_gofirst/main.py               |  235 +
- .../agents/chal_dp_r_gofirst/params.json           |    6 +
- .../dpdeck_d01_rarecandy3_helmet0/ATTRIBUTION.txt  |    4 +
- .../dpdeck_d01_rarecandy3_helmet0/base_agent.py    |  853 ++
- .../agents/dpdeck_d01_rarecandy3_helmet0/deck.csv  |   60 +
- .../agents/dpdeck_d01_rarecandy3_helmet0/main.py   |  169 +
- .../dpdeck_d01_rarecandy3_helmet0/params.json      |    4 +
- .../agents/dpdeck_d02_boss4_brock1/ATTRIBUTION.txt |    4 +
- .../agents/dpdeck_d02_boss4_brock1/base_agent.py   |  853 ++
- .../agents/dpdeck_d02_boss4_brock1/deck.csv        |   60 +
- .../agents/dpdeck_d02_boss4_brock1/main.py         |  169 +
- .../agents/dpdeck_d02_boss4_brock1/params.json     |    4 +
- .../ATTRIBUTION.txt                                |    4 +
- .../dpdeck_d03_pokepad4_watchtower1/base_agent.py  |  853 ++
- .../dpdeck_d03_pokepad4_watchtower1/deck.csv       |   60 +
- .../agents/dpdeck_d03_pokepad4_watchtower1/main.py |  169 +
- .../dpdeck_d03_pokepad4_watchtower1/params.json    |    4 +
- .../dpdeck_d04_budew3_meowth0/ATTRIBUTION.txt      |    4 +
- .../agents/dpdeck_d04_budew3_meowth0/base_agent.py |  853 ++
- .../agents/dpdeck_d04_budew3_meowth0/deck.csv      |   60 +
- .../agents/dpdeck_d04_budew3_meowth0/main.py       |  169 +
- .../agents/dpdeck_d04_budew3_meowth0/params.json   |    4 +
- .../ATTRIBUTION.txt                                |    4 +
- .../base_agent.py                                  |  853 ++
- .../dpdeck_d05_nightstretcher3_helmet0/deck.csv    |   60 +
- .../dpdeck_d05_nightstretcher3_helmet0/main.py     |  169 +
- .../dpdeck_d05_nightstretcher3_helmet0/params.json |    4 +
- .../dpdeck_d06_psychic5_hammer3/ATTRIBUTION.txt    |    4 +
- .../dpdeck_d06_psychic5_hammer3/base_agent.py      |  853 ++
- .../agents/dpdeck_d06_psychic5_hammer3/deck.csv    |   60 +
- .../agents/dpdeck_d06_psychic5_hammer3/main.py     |  169 +
- .../agents/dpdeck_d06_psychic5_hammer3/params.json |    4 +
- .../dpdeck_d07_rarecandy3_stamp0/ATTRIBUTION.txt   |    4 +
- .../dpdeck_d07_rarecandy3_stamp0/base_agent.py     |  853 ++
- .../agents/dpdeck_d07_rarecandy3_stamp0/deck.csv   |   60 +
- .../agents/dpdeck_d07_rarecandy3_stamp0/main.py    |  169 +
- .../dpdeck_d07_rarecandy3_stamp0/params.json       |    4 +
- .../dpdeck_d08_dragapult4_latias0/ATTRIBUTION.txt  |    4 +
- .../dpdeck_d08_dragapult4_latias0/base_agent.py    |  853 ++
- .../agents/dpdeck_d08_dragapult4_latias0/deck.csv  |   60 +
- .../agents/dpdeck_d08_dragapult4_latias0/main.py   |  169 +
- .../dpdeck_d08_dragapult4_latias0/params.json      |    4 +
- .../dpdeck_d09_fire3_pokepad4/ATTRIBUTION.txt      |    4 +
- .../agents/dpdeck_d09_fire3_pokepad4/base_agent.py |  853 ++
- .../agents/dpdeck_d09_fire3_pokepad4/deck.csv      |   60 +
- .../agents/dpdeck_d09_fire3_pokepad4/main.py       |  169 +
- .../agents/dpdeck_d09_fire3_pokepad4/params.json   |    4 +
- .../ATTRIBUTION.txt                                |    4 +
- .../base_agent.py                                  |  853 ++
- .../dpdeck_d10_brock0_pad4_stretcher3/deck.csv     |   60 +
- .../dpdeck_d10_brock0_pad4_stretcher3/main.py      |  169 +
- .../dpdeck_d10_brock0_pad4_stretcher3/params.json  |    4 +
- .../dpdeck_d11_hammer3_boss4/ATTRIBUTION.txt       |    4 +
- .../agents/dpdeck_d11_hammer3_boss4/base_agent.py  |  853 ++
- .../agents/dpdeck_d11_hammer3_boss4/deck.csv       |   60 +
- .../agents/dpdeck_d11_hammer3_boss4/main.py        |  169 +
- .../agents/dpdeck_d11_hammer3_boss4/params.json    |    4 +
- .../ATTRIBUTION.txt                                |    4 +
- .../base_agent.py                                  |  853 ++
- .../deck.csv                                       |   60 +
- .../main.py                                        |  169 +
- .../params.json                                    |    4 +
- .../ATTRIBUTION.txt                                |    4 +
- .../base_agent.py                                  |  853 ++
- .../deck.csv                                       |   60 +
- .../main.py                                        |  169 +
- .../params.json                                    |    4 +
- .../ATTRIBUTION.txt                                |    4 +
- .../dpdeck_d15_rarecandy3_dragapult4/base_agent.py |  853 ++
- .../dpdeck_d15_rarecandy3_dragapult4/deck.csv      |   60 +
- .../dpdeck_d15_rarecandy3_dragapult4/main.py       |  235 +
- .../dpdeck_d15_rarecandy3_dragapult4/params.json   |    4 +
- .../dpdeck_d16_rarecandy3_budew3/ATTRIBUTION.txt   |    4 +
- .../dpdeck_d16_rarecandy3_budew3/base_agent.py     |  853 ++
- .../agents/dpdeck_d16_rarecandy3_budew3/deck.csv   |   60 +
- .../agents/dpdeck_d16_rarecandy3_budew3/main.py    |  235 +
- .../dpdeck_d16_rarecandy3_budew3/params.json       |    4 +
- .../ATTRIBUTION.txt                                |    4 +
- .../dpdeck_d17_rarecandy4_dragapult4/base_agent.py |  853 ++
- .../dpdeck_d17_rarecandy4_dragapult4/deck.csv      |   60 +
- .../dpdeck_d17_rarecandy4_dragapult4/main.py       |  235 +
- .../dpdeck_d17_rarecandy4_dragapult4/params.json   |    4 +
- .../agents/mldeck_ml_public_tuned/ATTRIBUTION.txt  |    4 +
- .../agents/mldeck_ml_public_tuned/base_agent.py    |  508 ++
- .../agents/mldeck_ml_public_tuned/deck.csv         |   60 +
- .../agents/mldeck_ml_public_tuned/main.py          |  284 +
- .../agents/mldeck_ml_public_tuned/params.json      |    4 +
- .../agents/mldeck_ml_public_tuned/planner.py       |  306 +
- .../candidate_manifests/chal_dp_base.json          |   77 +
- .../candidate_manifests/chal_dp_base2.json         |   77 +
- .../candidate_manifests/chal_dp_base3.json         |   78 +
- .../candidate_manifests/chal_dp_bench2.json        |   84 +
- .../candidate_manifests/chal_dp_bench3.json        |   84 +
- .../candidate_manifests/chal_dp_bench_prize.json   |   90 +
- .../candidate_manifests/chal_dp_plan1.json         |   80 +
- .../candidate_manifests/chal_dp_plan2.json         |   85 +
- .../candidate_manifests/chal_dp_plan3.json         |   87 +
- .../candidate_manifests/chal_dp_plan4.json         |   90 +
- .../candidate_manifests/chal_dp_prizeonly.json     |   87 +
- .../candidate_manifests/chal_dp_r_benchdreepy.json |   79 +
- .../candidate_manifests/chal_dp_r_benchwide.json   |   79 +
- .../candidate_manifests/chal_dp_r_gofirst.json     |   79 +
- .../dpdeck_d01_rarecandy3_helmet0.json             |   77 +
- .../dpdeck_d02_boss4_brock1.json                   |   77 +
- .../dpdeck_d03_pokepad4_watchtower1.json           |   77 +
- .../dpdeck_d04_budew3_meowth0.json                 |   77 +
- .../dpdeck_d05_nightstretcher3_helmet0.json        |   77 +
- .../dpdeck_d06_psychic5_hammer3.json               |   77 +
- .../dpdeck_d07_rarecandy3_stamp0.json              |   77 +
- .../dpdeck_d08_dragapult4_latias0.json             |   77 +
- .../dpdeck_d09_fire3_pokepad4.json                 |   77 +
- .../dpdeck_d10_brock0_pad4_stretcher3.json         |   77 +
- .../dpdeck_d11_hammer3_boss4.json                  |   77 +
- ...dpdeck_d13_rarecandy3_helmet0_boss4_brock1.json |   77 +
- ...eck_d14_watchtower1_stamp0_rarecandy3_pad4.json |   77 +
- .../dpdeck_d15_rarecandy3_dragapult4.json          |   77 +
- .../dpdeck_d16_rarecandy3_budew3.json              |   77 +
- .../dpdeck_d17_rarecandy4_dragapult4.json          |   77 +
- .../mldeck_ml_public_tuned.json                    |   78 +
- .../champion.json                                  |  175 +
- .../decks/dpdeck_build.json                        |  119 +
- .../decks/mldeck_build.json                        |   87 +
- .../decks/mut_dragapult.json                       |   30 +
- .../decks/mut_mega_lucario.json                    |   30 +
- .../final_packages/c023_champion_dragapult.tar.gz  |  Bin 0 -> 1505820 bytes
- .../c023_champion_dragapult_manifest.json          |  100 +
- .../raw_evaluations/deck_confirm1/games.jsonl      | 8400 ++++++++++++++++++++
- .../raw_evaluations/deck_confirm1/summary.json     |  506 ++
- .../raw_evaluations/deck_screen1/games.jsonl       | 5600 +++++++++++++
- .../raw_evaluations/deck_screen1/summary.json      |  982 +++
- .../raw_evaluations/identity/chal_dp_base.json     |   11 +
- .../raw_evaluations/identity/chal_dp_base2.json    |   11 +
- .../raw_evaluations/mine_grimmsnarl/mining.json    |  334 +
- .../raw_evaluations/mine_grimmsnarl/traces.jsonl   |  300 +
- .../raw_evaluations/plan_screen1/games.jsonl       | 5000 ++++++++++++
- .../raw_evaluations/plan_screen1/summary.json      |  370 +
- .../raw_evaluations/rr_v1/games.jsonl              | 6480 +++++++++++++++
- .../raw_evaluations/rr_v1/summary.json             |  934 +++
- .../raw_evaluations/rr_v1b/games.jsonl             |  800 ++
- .../raw_evaluations/rr_v1b/summary.json            |  143 +
- .../raw_evaluations/rr_v1c/games.jsonl             |  720 ++
- .../raw_evaluations/rr_v1c/summary.json            |  350 +
- .../raw_evaluations/rule_screen1/games.jsonl       | 2400 ++++++
- .../raw_evaluations/rule_screen1/summary.json      |  302 +
- .../raw_evaluations/smoke2/games.jsonl             |   36 +
- .../raw_evaluations/smoke2/summary.json            |  224 +
- .../raw_evaluations/smoke3/games.jsonl             |   56 +
- .../raw_evaluations/smoke3/summary.json            |  271 +
- .../validation.json                                |   72 +
- starter_kit/c023_planner.py                        |   57 +-
- starter_kit/c023_wrapper_main.py                   |  107 +-
- tools/c023_history.py                              |  121 +
- 240 files changed, 77429 insertions(+), 7 deletions(-)
+ .../AGENT_CHANGE_LEDGER.md                         |   54 +
+ .../{tune_r30_c0 => tune_r33_c0}/ATTRIBUTION.txt   |    0
+ .../{tune_r30_c0 => tune_r33_c0}/base_agent.py     |    0
+ .../agents/{tune_r30_c0 => tune_r33_c0}/deck.csv   |    0
+ .../agents/{tune_r30_c0 => tune_r33_c0}/main.py    |    0
+ .../{tune_r30_c1 => tune_r33_c0}/params.json       |   10 +-
+ .../agents/{tune_r30_c0 => tune_r33_c0}/planner.py |    0
+ .../{tune_r30_c1 => tune_r33_c1}/ATTRIBUTION.txt   |    0
+ .../{tune_r30_c1 => tune_r33_c1}/base_agent.py     |    0
+ .../agents/{tune_r30_c1 => tune_r33_c1}/deck.csv   |    0
+ .../agents/{tune_r30_c1 => tune_r33_c1}/main.py    |    0
+ .../{tune_r30_c0 => tune_r33_c1}/params.json       |    3 +-
+ .../agents/{tune_r30_c1 => tune_r33_c1}/planner.py |    0
+ .../{tune_r30_c2 => tune_r33_c2}/ATTRIBUTION.txt   |    0
+ .../{tune_r30_c2 => tune_r33_c2}/base_agent.py     |    0
+ .../agents/{tune_r30_c2 => tune_r33_c2}/deck.csv   |    0
+ .../agents/{tune_r30_c2 => tune_r33_c2}/main.py    |    0
+ .../{tune_r30_c2 => tune_r33_c2}/params.json       |    6 +-
+ .../agents/{tune_r30_c2 => tune_r33_c2}/planner.py |    0
+ .../{tune_r30_c3 => tune_r33_c3}/ATTRIBUTION.txt   |    0
+ .../{tune_r30_c3 => tune_r33_c3}/base_agent.py     |    0
+ .../agents/{tune_r30_c3 => tune_r33_c3}/deck.csv   |    0
+ .../agents/{tune_r30_c3 => tune_r33_c3}/main.py    |    0
+ .../{tune_r30_c3 => tune_r33_c3}/params.json       |    4 +-
+ .../agents/{tune_r30_c3 => tune_r33_c3}/planner.py |    0
+ .../{tune_r30_c4 => tune_r33_c4}/ATTRIBUTION.txt   |    0
+ .../{tune_r30_c4 => tune_r33_c4}/base_agent.py     |    0
+ .../agents/{tune_r30_c4 => tune_r33_c4}/deck.csv   |    0
+ .../agents/{tune_r30_c4 => tune_r33_c4}/main.py    |    0
+ .../{tune_r30_c4 => tune_r33_c4}/params.json       |    4 +-
+ .../agents/{tune_r30_c4 => tune_r33_c4}/planner.py |    0
+ .../{tune_r30_inc => tune_r33_inc}/ATTRIBUTION.txt |    0
+ .../{tune_r30_inc => tune_r33_inc}/base_agent.py   |    0
+ .../agents/{tune_r30_inc => tune_r33_inc}/deck.csv |    0
+ .../agents/{tune_r30_inc => tune_r33_inc}/main.py  |    0
+ .../{tune_r30_inc => tune_r33_inc}/params.json     |    0
+ .../{tune_r30_inc => tune_r33_inc}/planner.py      |    0
+ .../candidate_manifests/tune_r31_c0.json           |   94 +
+ .../candidate_manifests/tune_r31_c1.json           |   95 +
+ .../candidate_manifests/tune_r31_c2.json           |   92 +
+ .../candidate_manifests/tune_r31_c3.json           |   92 +
+ .../candidate_manifests/tune_r31_c4.json           |   95 +
+ .../candidate_manifests/tune_r31_inc.json          |   91 +
+ .../candidate_manifests/tune_r32_c0.json           |   94 +
+ .../candidate_manifests/tune_r32_c1.json           |   95 +
+ .../candidate_manifests/tune_r32_c2.json           |   93 +
+ .../candidate_manifests/tune_r32_c3.json           |   93 +
+ .../candidate_manifests/tune_r32_c4.json           |   95 +
+ .../candidate_manifests/tune_r32_inc.json          |   91 +
+ .../candidate_manifests/tune_r33_c0.json           |   96 +
+ .../candidate_manifests/tune_r33_c1.json           |   93 +
+ .../candidate_manifests/tune_r33_c2.json           |   94 +
+ .../candidate_manifests/tune_r33_c3.json           |   94 +
+ .../candidate_manifests/tune_r33_c4.json           |   93 +
+ .../candidate_manifests/tune_r33_inc.json          |   91 +
+ .../raw_evaluations/tune_r30/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r30/summary.json          |  424 ++
+ .../raw_evaluations/tune_r31/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r31/summary.json          |  424 ++
+ .../raw_evaluations/tune_r32/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r32/summary.json          |  424 ++
+ .../tuning/tune_history.json                       |   35 +-
+ 62 files changed, 21056 insertions(+), 13 deletions(-)
 
-commit ea8360d96731e08ea4965925315101c2ddefa2b4
+commit 216be5089998cd0812a5ff3ed80764af99ac7138
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:21:59 2026 +0200
+Date:   Tue Aug 4 00:07:02 2026 +0200
 
-    c023: the turn planner, and three killed rules
+    c023: register the powered A/B that replaces the rest of the search, before stopping it
     
-    rule_screen1, 600 games each on the dev panel, against a control measured in the same run:
-    go_first 0.4883, bench_dreepy_always 0.5033, bench_wide_setup 0.4667, control 0.5166. All
-    three are killed. The sample's choice to move SECOND and to keep a narrow opening bench are
-    both correct, and now have evidence: a wide bench against Marnie's Grimmsnarl -- Shadow
-    Bullet hits a benched Pokemon for 30, Froslass pings every ability Pokemon each checkup --
-    is surface area, not development.
+    The search is walking downhill: defaults 0.5062 (n=5), +1 param 0.5067 (n=17), +4 params
+    0.4984 (n=7), +9 params 0.4720. All three acceptances fired on low incumbent draws -- ranks
+    10, 2 and 1 of 30 -- and the last two were won by children that were not better than average.
+    More rounds produce more of this.
     
-    The noise floor this is read against: two identical policies measured 0.4850 and 0.5166 on
-    the same panel in two runs. Anything under 3.2 points is not evidence.
+    What replaces it is the test the search's one substantive suggestion deserves: four arms, no
+    selection step, 5,000 games each, a 2.0-point threshold fixed before the run, and the
+    validation panel for anything that clears it. Parameters 39, 56 and 75 all say 'reach harder
+    for a way to attack when the main line has not arrived', which is F5, the one failure class
+    the mining supports.
     
-    planner.py replaces the greedy option score at a decision by playing the turn out through
-    the engine's forward-search API, with the base agent itself as the continuation policy.
-    Feasibility was measured before it was built: search_step 0.245 ms, search_begin 0.46 ms,
-    26/26 begins from a naive determinization, and our own deck/prize determinization is exact.
-    In play it costs 14.3 ms mean, 118.7 ms max, against 44 ms for the Alakazam agents leading
-    this panel. Every search handle is released on every path -- the engine's handle buffer has
-    capacity 7 and the eighth allocation aborts the process.
+    Predicted: all three arms land within +/-2 points of the control. A negative from a clean
+    design is worth considerably more than a negative from a broken one.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- starter_kit/c023_planner.py      | 306 +++++++++++++++++++++++++++
- starter_kit/c023_wrapper_main.py |  49 +++++
- tools/c023_build_candidate.py    |   3 +
- tools/c023_validate.py           | 436 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 794 insertions(+)
+ .../agents/tune_r25_c2/params.json                 |   13 -
+ .../agents/tune_r25_c3/params.json                 |   12 -
+ .../agents/tune_r25_inc/params.json                |   10 -
+ .../{tune_r25_c0 => tune_r30_c0}/ATTRIBUTION.txt   |    0
+ .../{tune_r25_c0 => tune_r30_c0}/base_agent.py     |    0
+ .../agents/{tune_r25_c0 => tune_r30_c0}/deck.csv   |    0
+ .../agents/{tune_r25_c0 => tune_r30_c0}/main.py    |    0
+ .../{tune_r25_c1 => tune_r30_c0}/params.json       |   10 +-
+ .../agents/{tune_r25_c0 => tune_r30_c0}/planner.py |    0
+ .../{tune_r25_c1 => tune_r30_c1}/ATTRIBUTION.txt   |    0
+ .../{tune_r25_c1 => tune_r30_c1}/base_agent.py     |    0
+ .../agents/{tune_r25_c1 => tune_r30_c1}/deck.csv   |    0
+ .../agents/{tune_r25_c1 => tune_r30_c1}/main.py    |    0
+ .../agents/tune_r30_c1/params.json                 |   20 +
+ .../agents/{tune_r25_c1 => tune_r30_c1}/planner.py |    0
+ .../{tune_r25_c2 => tune_r30_c2}/ATTRIBUTION.txt   |    0
+ .../{tune_r25_c2 => tune_r30_c2}/base_agent.py     |    0
+ .../agents/{tune_r25_c2 => tune_r30_c2}/deck.csv   |    0
+ .../agents/{tune_r25_c2 => tune_r30_c2}/main.py    |    0
+ .../agents/tune_r30_c2/params.json                 |   18 +
+ .../agents/{tune_r25_c2 => tune_r30_c2}/planner.py |    0
+ .../{tune_r25_c3 => tune_r30_c3}/ATTRIBUTION.txt   |    0
+ .../{tune_r25_c3 => tune_r30_c3}/base_agent.py     |    0
+ .../agents/{tune_r25_c3 => tune_r30_c3}/deck.csv   |    0
+ .../agents/{tune_r25_c3 => tune_r30_c3}/main.py    |    0
+ .../{tune_r25_c0 => tune_r30_c3}/params.json       |    9 +-
+ .../agents/{tune_r25_c3 => tune_r30_c3}/planner.py |    0
+ .../{tune_r25_c4 => tune_r30_c4}/ATTRIBUTION.txt   |    0
+ .../{tune_r25_c4 => tune_r30_c4}/base_agent.py     |    0
+ .../agents/{tune_r25_c4 => tune_r30_c4}/deck.csv   |    0
+ .../agents/{tune_r25_c4 => tune_r30_c4}/main.py    |    0
+ .../agents/tune_r30_c4/params.json                 |   17 +
+ .../agents/{tune_r25_c4 => tune_r30_c4}/planner.py |    0
+ .../{tune_r25_inc => tune_r30_inc}/ATTRIBUTION.txt |    0
+ .../{tune_r25_inc => tune_r30_inc}/base_agent.py   |    0
+ .../agents/{tune_r25_inc => tune_r30_inc}/deck.csv |    0
+ .../agents/{tune_r25_inc => tune_r30_inc}/main.py  |    0
+ .../{tune_r25_c4 => tune_r30_inc}/params.json      |    9 +-
+ .../{tune_r25_inc => tune_r30_inc}/planner.py      |    0
+ .../candidate_manifests/tune_r26_c0.json           |   86 +
+ .../candidate_manifests/tune_r26_c1.json           |   88 +
+ .../candidate_manifests/tune_r26_c2.json           |   90 +
+ .../candidate_manifests/tune_r26_c3.json           |   87 +
+ .../candidate_manifests/tune_r26_c4.json           |   91 +
+ .../candidate_manifests/tune_r26_inc.json          |   86 +
+ .../candidate_manifests/tune_r27_c0.json           |   89 +
+ .../candidate_manifests/tune_r27_c1.json           |   91 +
+ .../candidate_manifests/tune_r27_c2.json           |   87 +
+ .../candidate_manifests/tune_r27_c3.json           |   89 +
+ .../candidate_manifests/tune_r27_c4.json           |   88 +
+ .../candidate_manifests/tune_r27_inc.json          |   86 +
+ .../candidate_manifests/tune_r28_c0.json           |   88 +
+ .../candidate_manifests/tune_r28_c1.json           |   89 +
+ .../candidate_manifests/tune_r28_c2.json           |   90 +
+ .../candidate_manifests/tune_r28_c3.json           |   91 +
+ .../candidate_manifests/tune_r28_c4.json           |   89 +
+ .../candidate_manifests/tune_r28_inc.json          |   86 +
+ .../candidate_manifests/tune_r29_c0.json           |   89 +
+ .../candidate_manifests/tune_r29_c1.json           |   90 +
+ .../candidate_manifests/tune_r29_c2.json           |   88 +
+ .../candidate_manifests/tune_r29_c3.json           |   91 +
+ .../candidate_manifests/tune_r29_c4.json           |   91 +
+ .../candidate_manifests/tune_r29_inc.json          |   86 +
+ .../candidate_manifests/tune_r30_c0.json           |   92 +
+ .../candidate_manifests/tune_r30_c1.json           |   96 +
+ .../candidate_manifests/tune_r30_c2.json           |   94 +
+ .../candidate_manifests/tune_r30_c3.json           |   92 +
+ .../candidate_manifests/tune_r30_c4.json           |   93 +
+ .../candidate_manifests/tune_r30_inc.json          |   91 +
+ .../raw_evaluations/tune_r25/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r25/summary.json          |  424 ++
+ .../raw_evaluations/tune_r26/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r26/summary.json          |  424 ++
+ .../raw_evaluations/tune_r27/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r27/summary.json          |  424 ++
+ .../raw_evaluations/tune_r28/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r28/summary.json          |  424 ++
+ .../raw_evaluations/tune_r29/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r29/summary.json          |  424 ++
+ .../tuning/REGISTERED_AB.md                        |   88 +
+ .../tuning/tune_history.json                       |  104 +-
+ 81 files changed, 35069 insertions(+), 45 deletions(-)
 
-commit 23e393720d4066abae4d14b04584850acf262acb
+commit 26ed47425cc805c3da245e5a693db3508aec9fd6
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 19:07:38 2026 +0200
+Date:   Mon Aug 3 23:32:42 2026 +0200
 
-    c023: champion truth -- official_dragapult, decided by measurement not by label
+    c023: the accepted parameter is worth zero, over 17,000 re-measurement games
     
-    An 8,000-game round-robin over ten players (four official samples, six public community
-    agents) on one panel with one harness. Among submission-eligible bases the order is
-    dragapult 0.4653, mega_abomasnow 0.3625, mega_lucario 0.3521, iono 0.3431 -- so c016's
-    'official_mega_lucario is our best candidate' does not survive contact with a panel that
-    actually ran dragapult as a candidate, and the Kaggle ladder agreed all along (719.7 vs
-    593.3).
-    
-    The panel LEADER is a community agent (jazivxt rising-tide, 0.6417) and cannot be the
-    champion: SOURCES.md classifies every community kernel LOCAL_BENCHMARK_ONLY, so it is an
-    opponent and never a base. champion.json records both numbers rather than one.
-    
-    Also: the wrapper is action-identical to its base over 941 decisions in 12 games, and the
-    dev/validation opponent split is registered before any tuning game was played.
+    +4.80 points when selected. +0.29 after five re-measurements. +0.05 after seventeen. Not a
+    small gain -- nothing.
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- starter_kit/c023_players.py      |   2 +
- starter_kit/c023_wrapper_main.py |  68 +++++++++++-
- tools/c023_eval.py               |   6 +-
- tools/c023_extract_kernels.py    |   1 +
- tools/c023_matrix.py             | 203 ++++++++++++++++++++++++++++++++++++
- tools/c023_mine.py               | 219 +++++++++++++++++++++++++++++++++++++++
- tools/c023_package.py            | 169 ++++++++++++++++++++++++++++++
- 7 files changed, 665 insertions(+), 3 deletions(-)
+ .../agents/tune_r23_c1/params.json                 |   15 -
+ .../{tune_r23_c0 => tune_r25_c0}/ATTRIBUTION.txt   |    0
+ .../{tune_r23_c0 => tune_r25_c0}/base_agent.py     |    0
+ .../agents/{tune_r23_c0 => tune_r25_c0}/deck.csv   |    0
+ .../agents/{tune_r23_c0 => tune_r25_c0}/main.py    |    0
+ .../{tune_r23_c4 => tune_r25_c0}/params.json       |    3 +-
+ .../agents/{tune_r23_c0 => tune_r25_c0}/planner.py |    0
+ .../{tune_r23_c1 => tune_r25_c1}/ATTRIBUTION.txt   |    0
+ .../{tune_r23_c1 => tune_r25_c1}/base_agent.py     |    0
+ .../agents/{tune_r23_c1 => tune_r25_c1}/deck.csv   |    0
+ .../agents/{tune_r23_c1 => tune_r25_c1}/main.py    |    0
+ .../{tune_r23_c2 => tune_r25_c1}/params.json       |    5 +-
+ .../agents/{tune_r23_c1 => tune_r25_c1}/planner.py |    0
+ .../{tune_r23_c2 => tune_r25_c2}/ATTRIBUTION.txt   |    0
+ .../{tune_r23_c2 => tune_r25_c2}/base_agent.py     |    0
+ .../agents/{tune_r23_c2 => tune_r25_c2}/deck.csv   |    0
+ .../agents/{tune_r23_c2 => tune_r25_c2}/main.py    |    0
+ .../{tune_r23_c0 => tune_r25_c2}/params.json       |    9 +-
+ .../agents/{tune_r23_c2 => tune_r25_c2}/planner.py |    0
+ .../{tune_r23_c3 => tune_r25_c3}/ATTRIBUTION.txt   |    0
+ .../{tune_r23_c3 => tune_r25_c3}/base_agent.py     |    0
+ .../agents/{tune_r23_c3 => tune_r25_c3}/deck.csv   |    0
+ .../agents/{tune_r23_c3 => tune_r25_c3}/main.py    |    0
+ .../agents/tune_r25_c3/params.json                 |   12 +
+ .../agents/{tune_r23_c3 => tune_r25_c3}/planner.py |    0
+ .../{tune_r23_c4 => tune_r25_c4}/ATTRIBUTION.txt   |    0
+ .../{tune_r23_c4 => tune_r25_c4}/base_agent.py     |    0
+ .../agents/{tune_r23_c4 => tune_r25_c4}/deck.csv   |    0
+ .../agents/{tune_r23_c4 => tune_r25_c4}/main.py    |    0
+ .../{tune_r23_c3 => tune_r25_c4}/params.json       |    8 +-
+ .../agents/{tune_r23_c4 => tune_r25_c4}/planner.py |    0
+ .../{tune_r23_inc => tune_r25_inc}/ATTRIBUTION.txt |    0
+ .../{tune_r23_inc => tune_r25_inc}/base_agent.py   |    0
+ .../agents/{tune_r23_inc => tune_r25_inc}/deck.csv |    0
+ .../agents/{tune_r23_inc => tune_r25_inc}/main.py  |    0
+ .../{tune_r23_inc => tune_r25_inc}/params.json     |    0
+ .../{tune_r23_inc => tune_r25_inc}/planner.py      |    0
+ .../candidate_manifests/tune_r24_c0.json           |   91 +
+ .../candidate_manifests/tune_r24_c1.json           |   91 +
+ .../candidate_manifests/tune_r24_c2.json           |   89 +
+ .../candidate_manifests/tune_r24_c3.json           |   88 +
+ .../candidate_manifests/tune_r24_c4.json           |   89 +
+ .../candidate_manifests/tune_r24_inc.json          |   86 +
+ .../candidate_manifests/tune_r25_c0.json           |   87 +
+ .../candidate_manifests/tune_r25_c1.json           |   88 +
+ .../candidate_manifests/tune_r25_c2.json           |   89 +
+ .../candidate_manifests/tune_r25_c3.json           |   88 +
+ .../candidate_manifests/tune_r25_c4.json           |   88 +
+ .../candidate_manifests/tune_r25_inc.json          |   86 +
+ .../raw_evaluations/tune_r23/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r23/summary.json          |  424 ++
+ .../raw_evaluations/tune_r24/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r24/summary.json          |  424 ++
+ .../tuning/RUNNING_NOTES.md                        |   16 +-
+ .../tuning/tune_history.json                       |   24 +-
+ 55 files changed, 13963 insertions(+), 37 deletions(-)
 
-commit ee14b54ce08ffe992ff3d16e720f9eafe28c41a0
+commit e5baf9c3b74b7942792a57a833fe56958e636b77
 Author: LucaZ <lz9304@gmail.com>
-Date:   Mon Aug 3 18:48:38 2026 +0200
+Date:   Mon Aug 3 23:17:53 2026 +0200
 
-    c023: infrastructure -- player registry, fork-per-game evaluation harness, candidate builder
+    c023: D7 -- the acceptance rule is asymmetric, and both acceptances prove it
     
-    The harness forks one child per game rather than reusing pool workers. Several public
-    agents call the engine's search API without releasing every handle, and the engine's
-    handle buffer has capacity 7: the eighth allocation throws an uncaught C++ exception,
-    the worker dies by SIGABRT, and multiprocessing.Pool waits forever for a result that
-    will never arrive. The first run of this harness hung with every worker at 0% CPU for
-    exactly that reason.
+    Twenty-three rounds, two acceptances, and both fired on the two LOWEST incumbent draws in the
+    run. r22's winning child scored 0.5240, which is below the mean best child of 0.5245: it did
+    not win by being good, it won because the incumbent drew its minimum of 0.4750.
     
-    Two integrity probes ride along: identity fields travel with every job (never re-attached
-    by position), and each decision is compared against the mindless legal fallback, so an
-    agent whose module failed to load reads as broken rather than as weak. That probe caught
-    a real bug here -- restoring sys.path after import made tetsutani's lazily-imported
-    policy unavailable, and it played the fallback for a whole game while scoring 1/6.
+    The rule is best_child - incumbent >= margin with the incumbent measured once per round. That
+    controls for machine conditions but not for the incumbent's own sampling noise -- the child
+    side already takes a maximum over five draws while the incumbent side is a single draw, so a
+    low incumbent is worth exactly as much as a high child. It should have compared against the
+    incumbent's running mean, whose standard error after twenty rounds is ~0.2 points rather than
+    ~1.0.
+    
+    The protocol is not changed mid-run; choosing a rule after seeing which rounds it accepts is
+    the thing the registration exists to prevent. The search finishes under the registered rule,
+    the post-hoc analysis uses the pooled incumbent series, and the confirm and validate stages on
+    fresh runs are out of the defect's reach.
+    
+    Three of the four accepted parameters point the same way as F5: reach harder for a way to
+    attack when the main line has not arrived (Latias ex fetch, Crispin fetch, a smaller penalty
+    for promoting the backup body).
     
     Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
 
- .../CLAUDE_COMMAND.txt                             |  59 ++
- .../CONTRACT.md                                    | 612 +++++++++++++++++++++
- .../README.md                                      |  17 +
- starter_kit/c023_players.py                        | 162 ++++++
- starter_kit/c023_wrapper_main.py                   | 169 ++++++
- tools/c023_build_candidate.py                      | 140 +++++
- tools/c023_deck_search.py                          | 140 +++++
- tools/c023_eval.py                                 | 390 +++++++++++++
- tools/c023_extract_kernels.py                      | 223 ++++++++
- tools/c023_identity.py                             | 118 ++++
- 10 files changed, 2030 insertions(+)
+ .../agents/tune_r17_c1/params.json                 |   12 -
+ .../agents/tune_r17_c4/params.json                 |    9 -
+ .../agents/tune_r17_inc/params.json                |    7 -
+ .../{tune_r17_c0 => tune_r23_c0}/ATTRIBUTION.txt   |    0
+ .../{tune_r17_c0 => tune_r23_c0}/base_agent.py     |    0
+ .../agents/{tune_r17_c0 => tune_r23_c0}/deck.csv   |    0
+ .../agents/{tune_r17_c0 => tune_r23_c0}/main.py    |    0
+ .../agents/tune_r23_c0/params.json                 |   14 +
+ .../agents/{tune_r17_c0 => tune_r23_c0}/planner.py |    0
+ .../{tune_r17_c1 => tune_r23_c1}/ATTRIBUTION.txt   |    0
+ .../{tune_r17_c1 => tune_r23_c1}/base_agent.py     |    0
+ .../agents/{tune_r17_c1 => tune_r23_c1}/deck.csv   |    0
+ .../agents/{tune_r17_c1 => tune_r23_c1}/main.py    |    0
+ .../agents/tune_r23_c1/params.json                 |   15 +
+ .../agents/{tune_r17_c1 => tune_r23_c1}/planner.py |    0
+ .../{tune_r17_c2 => tune_r23_c2}/ATTRIBUTION.txt   |    0
+ .../{tune_r17_c2 => tune_r23_c2}/base_agent.py     |    0
+ .../agents/{tune_r17_c2 => tune_r23_c2}/deck.csv   |    0
+ .../agents/{tune_r17_c2 => tune_r23_c2}/main.py    |    0
+ .../{tune_r17_c0 => tune_r23_c2}/params.json       |    7 +-
+ .../agents/{tune_r17_c2 => tune_r23_c2}/planner.py |    0
+ .../{tune_r17_c3 => tune_r23_c3}/ATTRIBUTION.txt   |    0
+ .../{tune_r17_c3 => tune_r23_c3}/base_agent.py     |    0
+ .../agents/{tune_r17_c3 => tune_r23_c3}/deck.csv   |    0
+ .../agents/{tune_r17_c3 => tune_r23_c3}/main.py    |    0
+ .../agents/tune_r23_c3/params.json                 |   14 +
+ .../agents/{tune_r17_c3 => tune_r23_c3}/planner.py |    0
+ .../{tune_r17_c4 => tune_r23_c4}/ATTRIBUTION.txt   |    0
+ .../{tune_r17_c4 => tune_r23_c4}/base_agent.py     |    0
+ .../agents/{tune_r17_c4 => tune_r23_c4}/deck.csv   |    0
+ .../agents/{tune_r17_c4 => tune_r23_c4}/main.py    |    0
+ .../{tune_r17_c3 => tune_r23_c4}/params.json       |    6 +-
+ .../agents/{tune_r17_c4 => tune_r23_c4}/planner.py |    0
+ .../{tune_r17_inc => tune_r23_inc}/ATTRIBUTION.txt |    0
+ .../{tune_r17_inc => tune_r23_inc}/base_agent.py   |    0
+ .../agents/{tune_r17_inc => tune_r23_inc}/deck.csv |    0
+ .../agents/{tune_r17_inc => tune_r23_inc}/main.py  |    0
+ .../{tune_r17_c2 => tune_r23_inc}/params.json      |    4 +-
+ .../{tune_r17_inc => tune_r23_inc}/planner.py      |    0
+ .../candidate_manifests/tune_r18_c0.json           |   88 +
+ .../candidate_manifests/tune_r18_c1.json           |   84 +
+ .../candidate_manifests/tune_r18_c2.json           |   87 +
+ .../candidate_manifests/tune_r18_c3.json           |   86 +
+ .../candidate_manifests/tune_r18_c4.json           |   88 +
+ .../candidate_manifests/tune_r18_inc.json          |   83 +
+ .../candidate_manifests/tune_r19_c0.json           |   88 +
+ .../candidate_manifests/tune_r19_c1.json           |   85 +
+ .../candidate_manifests/tune_r19_c2.json           |   84 +
+ .../candidate_manifests/tune_r19_c3.json           |   85 +
+ .../candidate_manifests/tune_r19_c4.json           |   84 +
+ .../candidate_manifests/tune_r19_inc.json          |   83 +
+ .../candidate_manifests/tune_r20_c0.json           |   86 +
+ .../candidate_manifests/tune_r20_c1.json           |   88 +
+ .../candidate_manifests/tune_r20_c2.json           |   85 +
+ .../candidate_manifests/tune_r20_c3.json           |   85 +
+ .../candidate_manifests/tune_r20_c4.json           |   88 +
+ .../candidate_manifests/tune_r20_inc.json          |   83 +
+ .../candidate_manifests/tune_r21_c0.json           |   84 +
+ .../candidate_manifests/tune_r21_c1.json           |   84 +
+ .../candidate_manifests/tune_r21_c2.json           |   88 +
+ .../candidate_manifests/tune_r21_c3.json           |   84 +
+ .../candidate_manifests/tune_r21_c4.json           |   86 +
+ .../candidate_manifests/tune_r21_inc.json          |   83 +
+ .../candidate_manifests/tune_r22_c0.json           |   86 +
+ .../candidate_manifests/tune_r22_c1.json           |   85 +
+ .../candidate_manifests/tune_r22_c2.json           |   84 +
+ .../candidate_manifests/tune_r22_c3.json           |   86 +
+ .../candidate_manifests/tune_r22_c4.json           |   86 +
+ .../candidate_manifests/tune_r22_inc.json          |   83 +
+ .../candidate_manifests/tune_r23_c0.json           |   90 +
+ .../candidate_manifests/tune_r23_c1.json           |   91 +
+ .../candidate_manifests/tune_r23_c2.json           |   87 +
+ .../candidate_manifests/tune_r23_c3.json           |   90 +
+ .../candidate_manifests/tune_r23_c4.json           |   88 +
+ .../candidate_manifests/tune_r23_inc.json          |   86 +
+ .../raw_evaluations/tune_r17/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r17/summary.json          |  424 ++
+ .../raw_evaluations/tune_r18/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r18/summary.json          |  424 ++
+ .../raw_evaluations/tune_r19/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r19/summary.json          |  424 ++
+ .../raw_evaluations/tune_r20/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r20/summary.json          |  424 ++
+ .../raw_evaluations/tune_r21/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r21/summary.json          |  424 ++
+ .../raw_evaluations/tune_r22/games.jsonl           | 6000 ++++++++++++++++++++
+ .../raw_evaluations/tune_r22/summary.json          |  424 ++
+ .../tuning/RUNNING_NOTES.md                        |   82 +-
+ .../tuning/tune_history.json                       |   97 +-
+ 89 files changed, 41848 insertions(+), 54 deletions(-)

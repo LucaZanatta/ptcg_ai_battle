@@ -1,0 +1,149 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "teacher_id": "dragapult",
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "architectures": {
+    "S1_STATELESS": {
+      "recurrent": false,
+      "cfg": {
+        "emb": 32,
+        "h": 160,
+        "h2": 128
+      },
+      "param_target": [
+        150000,
+        500000
+      ],
+      "param_hard_max": 750000,
+      "param_count_in_target": true
+    },
+    "S2_RECURRENT": {
+      "recurrent": true,
+      "cfg": {
+        "emb": 32,
+        "h": 160,
+        "h2": 128,
+        "cc": 64,
+        "hr": 128
+      },
+      "param_target": [
+        250000,
+        650000
+      ],
+      "param_hard_max": 900000,
+      "recurrence": "single GRU over game decision sequence; reset at game start; prev context+action as explicit inputs; full BPTT (max game length 127 <= no truncation needed)",
+      "param_count_in_target": true
+    }
+  },
+  "seeds": {
+    "S1_STATELESS": [
+      101,
+      202,
+      303
+    ],
+    "S2_RECURRENT": [
+      111,
+      222,
+      333
+    ]
+  },
+  "optimizer": {
+    "name": "adam",
+    "lr": 0.0015,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.0,
+    "batch_decisions_s1": 256,
+    "batch_s2": "per_game",
+    "max_epochs": {
+      "S1_STATELESS": 40,
+      "S2_RECURRENT": 30
+    },
+    "patience": 6,
+    "blas_threads": "OMP_NUM_THREADS=1 for reproducibility"
+  },
+  "loss": {
+    "single_choice": "masked softmax cross-entropy",
+    "unordered_multiselect": "masked per-option BCE",
+    "ordered": "none present -> safe fallback (not trained as BCE)",
+    "importance_weighting": {
+      "FORCED": 0.0,
+      "ROUTINE": 1.0,
+      "TACTICAL": 2.0,
+      "HIGH_IMPACT": 4.0
+    }
+  },
+  "early_stopping_metric": "importance_weighted_teacher_action_agreement (validation)",
+  "checkpoint_selection": "best validation importance-weighted agreement per seed; best seed per architecture; test opened once after freeze",
+  "offline_metrics": [
+    "overall_exact_agreement",
+    "importance_weighted_agreement",
+    "agreement_by_taxonomy",
+    "agreement_by_context",
+    "agreement_by_semantic_type",
+    "top2_agreement",
+    "top3_agreement",
+    "multiselect_exact_set",
+    "multiselect_element_f1",
+    "calibration",
+    "fallback_rate",
+    "test_nll",
+    "param_count",
+    "model_size_bytes",
+    "cpu_latency_p50_p95_p99_max"
+  ],
+  "gameplay_gauntlet": {
+    "opponents": [
+      "mega_lucario",
+      "mega_abomasnow",
+      "iono",
+      "teacher_mirror"
+    ],
+    "control": "det_starter (deterministic, reported separately)",
+    "both_seats": true,
+    "protocol": "c004/c005 sequential balanced round-robin"
+  },
+  "noninferiority_test": {
+    "metric": "student score vs teacher (win=1,draw=0.5,loss=0)",
+    "bound": "one-sided 95% lower bound (5th percentile, seat-balanced bootstrap)",
+    "margin": 0.05,
+    "pass_threshold": ">= 0.45",
+    "games": "100 seat0 + 100 seat1, extend +50/orientation to 400 if ambiguous"
+  },
+  "memory_decision_rule": "MEMORY_MATTERS if S2 improves high-impact test agreement by >= 2pp, OR game-level importance-weighted agreement 95% bootstrap interval > 0, OR material gameplay improvement; else MEMORY_NOT_JUSTIFIED",
+  "best_student_rule": "reliability-eligible; passes non-inferiority; highest gauntlet strength; no major regression; higher high-impact test agreement; lower fallback; lower P99; smaller model. NONE if neither passes non-inferiority.",
+  "submission_gate": "SUBMIT iff best student exists AND non-inferiority passes AND no major regression AND perfect official-eval reliability AND package validation passes AND P99+size pass",
+  "rl_readiness_gate": "READY_FOR_RL iff best student exists AND submission gate passes (or misses only for non-policy operational issue) AND not materially weaker than teacher AND decoder covers >=99% of teacher decisions without strategic fallback AND memory decision resolved AND frozen checkpoint+eval reproducible",
+  "emergency_correction_policy": "a single documented code-defect correction that invalidates all runs may restart every affected model fairly; otherwise no changes after freeze",
+  "dataset": {
+    "source_manifest": "sequence_dataset_manifest.json",
+    "split_file_sha256": {
+      "train": "e5d5b3c880bf8c709b0e7add5f60785bfdb8ae7afc6bf078ede2bb14245c19b6",
+      "validation": "760ca505a44c1a58fa703f1c6cbde5e0098715db3443d9b03ef3d43f3d725d58",
+      "test": "123f3dfdf34d167d05a0b01741c676c6d3fb254e3672d9bfbbf66e0a0db8c4e6"
+    },
+    "sequence_index_sha256": "0a94a8bf617d45a45487a743fe24d637a19120ae2eeea3386508b61e0c1b70d4"
+  },
+  "feature_schema": {
+    "GDENSE": 328,
+    "GROWS": 2,
+    "ODENSE": 158,
+    "OROWS": 2,
+    "PREV": 52,
+    "N_CTX": 50,
+    "CARD_FEAT": 52
+  },
+  "card_vocabulary": {
+    "source_hash": "53aa2eeb7dc4872ed2a559eb73b8799ccd08d078c06fc4a7fa87dcc2ad578aa1",
+    "vocab_size": 1270
+  },
+  "taxonomy_sha256": "b1e7c3e01b9fb14914761c836125b79eaff88aa04cf2b9e54b37698072111c68",
+  "decoder_coverage_sha256": "77ab8b8d2b49c19dccee3c41f8f971303077c12b21234dccbe179c658992261d",
+  "actual_param_counts": {
+    "S1_STATELESS": 152673,
+    "S2_RECURRENT": 273441
+  }
+}

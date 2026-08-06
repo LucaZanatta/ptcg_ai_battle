@@ -1,0 +1,18 @@
+built V_plan_a: +1 -1 compiles=True | spread allocation uses plan_a.counter when the planned main target is a benched Pokemon (plan_a.attack != 0), matching the ACTUAL attack plan instead of the active-target plan_b.counter (main.py L705).
+built V_reset: +2 -0 compiles=True | reset plan_a.counter/plan_b.counter at the start of MAIN planning so a stale spread allocation from a prior turn can never leak into a later DAMAGE_COUNTER_ANY (AttackPlan.counter is a class attr never reset; main.py L55/L213-216).
+built V_thresh: +1 -1 compiles=True | correct the DAMAGE_COUNTER_ANY HP-band threshold so targets just above the 200 main-damage line are still prioritised when few counters remain (main.py L709: 210<=hp<=200+remain becomes 200<hp<=200+max(remain,60)).
+built V_greedy: +6 -9 compiles=True | replace the plan_b/HP-band spread heuristic with a knockout-maximizing rule computed from the CURRENT board: prioritise targets KO-able by the remaining counters (weighted by prize value), then near-KO targets, with plan_b as a small tiebreak (main.py L703-714).
+A/B: 50 games/combo x 8 combos x 5 arms, TWO independent batches (games are random_device-seeded)
+[batch 1] teacher mvf 0.5687 (n=400)
+  V_plan_a: mvf 0.5025 diff -0.0663 LCB90 -0.1237 P(improve) 0.028
+  V_reset: mvf 0.5275 diff -0.0412 LCB90 -0.0975 P(improve) 0.124
+  V_thresh: mvf 0.5350 diff -0.0337 LCB90 -0.0912 P(improve) 0.160
+  V_greedy: mvf 0.5450 diff -0.0237 LCB90 -0.0800 P(improve) 0.239
+[batch 2] teacher mvf 0.5363
+  V_plan_a: diff +0.0000 LCB90 -0.0563 P(improve) 0.495
+  V_reset: diff +0.0238 LCB90 -0.0325 P(improve) 0.742
+  V_thresh: diff +0.0187 LCB90 -0.0388 P(improve) 0.703
+  V_greedy: diff +0.0062 LCB90 -0.0525 P(improve) 0.574
+NO variant passed the positive-label gate (honest negative)
+
+DONE: admitted=None, 0 labels, 201.1s

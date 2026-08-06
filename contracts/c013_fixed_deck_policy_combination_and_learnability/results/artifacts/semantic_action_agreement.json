@@ -1,0 +1,446 @@
+{
+  "OPPONENT_OVERLAP": "INCONCLUSIVE",
+  "applicability": {
+    "C012_SOUP_622_633": {
+      "CONTENT_DRIVEN": 3436,
+      "POSITIONAL": 591,
+      "UNSTABLE": 83
+    },
+    "P0_711": {
+      "CONTENT_DRIVEN": 3400,
+      "POSITIONAL": 617,
+      "UNSTABLE": 93
+    },
+    "S611": {
+      "CONTENT_DRIVEN": 3396,
+      "POSITIONAL": 603,
+      "UNSTABLE": 111
+    },
+    "S622": {
+      "CONTENT_DRIVEN": 3338,
+      "POSITIONAL": 651,
+      "UNSTABLE": 121
+    },
+    "S633": {
+      "CONTENT_DRIVEN": 3448,
+      "POSITIONAL": 559,
+      "UNSTABLE": 103
+    },
+    "dragapult": {
+      "CONTENT_DRIVEN": 3102,
+      "POSITIONAL": 955,
+      "UNSTABLE": 53
+    },
+    "iono": {
+      "CONTENT_DRIVEN": 1738,
+      "POSITIONAL": 2372
+    },
+    "mega_abomasnow": {
+      "CONTENT_DRIVEN": 986,
+      "POSITIONAL": 3124
+    },
+    "mega_lucario": {
+      "CONTENT_DRIVEN": 1633,
+      "POSITIONAL": 2477
+    }
+  },
+  "applicability_rate_content_driven": {
+    "C012_SOUP_622_633": 0.8360097323600973,
+    "P0_711": 0.8272506082725061,
+    "S611": 0.8262773722627738,
+    "S622": 0.8121654501216545,
+    "S633": 0.8389294403892944,
+    "dragapult": 0.7547445255474453,
+    "iono": 0.42287104622871047,
+    "mega_abomasnow": 0.23990267639902677,
+    "mega_lucario": 0.397323600973236
+  },
+  "counts": {
+    "computable_measures": 8,
+    "discriminates_for_lucario": 0,
+    "discriminates_opposite": 0,
+    "lucario_highest": 7
+  },
+  "decision_rule": {
+    "INCONCLUSIVE": "primary n < 100, or <5 measures computable, or every CI spans 0",
+    "NOT_SUPPORTED": ">=2 measures discriminate opposite, OR Lucario not highest on a majority",
+    "PARTIALLY_SUPPORTED": ">=2 measures discriminate for Lucario AND Lucario highest on a majority",
+    "SUPPORTED": ">=5 of 8 measures discriminate for Lucario AND no measure discriminates opposite",
+    "bootstrap": {
+      "n": 10000,
+      "paired": true,
+      "seed": 424242
+    },
+    "excluded_as_evidence": [
+      "deck composition overlap",
+      "source-code similarity",
+      "win rates"
+    ],
+    "inconclusive_checked_first": true,
+    "measures": [
+      "top1_agreement",
+      "action_type_agreement",
+      "set_jaccard",
+      "target_agreement",
+      "energy_commitment_agreement",
+      "attack_pass_timing_agreement",
+      "promotion_agreement",
+      "phase_conditioned_top1"
+    ],
+    "permutation_k": 4,
+    "permutation_seed": 20260726,
+    "primary_population": "states where teacher AND all three official opponents are CONTENT_DRIVEN",
+    "registered_before_results": true
+  },
+  "deck_context": {
+    "jaccard": {
+      "iono": 0.15625,
+      "mega_abomasnow": 0.06896551724137931,
+      "mega_lucario": 0.08333333333333333
+    },
+    "note": "reported as context; excluded from the verdict by DECISION_RULE",
+    "shared_distinct_cards": {
+      "iono": 5,
+      "mega_abomasnow": 2,
+      "mega_lucario": 3
+    }
+  },
+  "n_primary": 611,
+  "n_states_total": 4110,
+  "pairwise_exact_identity": {
+    "dragapult|iono": {
+      "attack_or_pass_identity": 0.431438127090301,
+      "attack_or_pass_n": 299,
+      "energy_identity": 0.4838709677419355,
+      "energy_n": 93,
+      "exact_choice_identity": 0.3960720130932897,
+      "n": 611,
+      "promotion_identity": 0.35714285714285715,
+      "promotion_n": 98
+    },
+    "dragapult|mega_abomasnow": {
+      "attack_or_pass_identity": 0.33444816053511706,
+      "attack_or_pass_n": 299,
+      "energy_identity": 0.4946236559139785,
+      "energy_n": 93,
+      "exact_choice_identity": 0.37643207855973815,
+      "n": 611,
+      "promotion_identity": 0.6224489795918368,
+      "promotion_n": 98
+    },
+    "dragapult|mega_lucario": {
+      "attack_or_pass_identity": 0.3979933110367893,
+      "attack_or_pass_n": 299,
+      "energy_identity": 0.5698924731182796,
+      "energy_n": 93,
+      "exact_choice_identity": 0.4353518821603928,
+      "n": 611,
+      "promotion_identity": 0.6224489795918368,
+      "promotion_n": 98
+    },
+    "iono|mega_abomasnow": {
+      "attack_or_pass_identity": 0.7157190635451505,
+      "attack_or_pass_n": 299,
+      "energy_identity": 0.8709677419354839,
+      "energy_n": 93,
+      "exact_choice_identity": 0.6415711947626841,
+      "n": 611,
+      "promotion_identity": 0.01020408163265306,
+      "promotion_n": 98
+    },
+    "mega_lucario|iono": {
+      "attack_or_pass_identity": 0.5250836120401338,
+      "attack_or_pass_n": 299,
+      "energy_identity": 0.4731182795698925,
+      "energy_n": 93,
+      "exact_choice_identity": 0.513911620294599,
+      "n": 611,
+      "promotion_identity": 0.01020408163265306,
+      "promotion_n": 98
+    },
+    "mega_lucario|mega_abomasnow": {
+      "attack_or_pass_identity": 0.6755852842809364,
+      "attack_or_pass_n": 299,
+      "energy_identity": 0.41935483870967744,
+      "energy_n": 93,
+      "exact_choice_identity": 0.762684124386252,
+      "n": 611,
+      "promotion_identity": 1.0,
+      "promotion_n": 98
+    }
+  },
+  "per_measure": {
+    "action_type_agreement": {
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": true,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.09492635024549917,
+        "ci_low": 0.02782324058919805,
+        "diff": 0.062193126022913214,
+        "excludes_zero": true,
+        "mean_x": 0.5613747954173486,
+        "mean_y": 0.49918166939443537,
+        "n": 611
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.06382978723404253,
+        "ci_low": -0.016366612111292977,
+        "diff": 0.022913256955810146,
+        "excludes_zero": false,
+        "mean_x": 0.5613747954173486,
+        "mean_y": 0.5384615384615384,
+        "n": 611
+      },
+      "means": {
+        "iono": 0.5384615384615384,
+        "mega_abomasnow": 0.49918166939443537,
+        "mega_lucario": 0.5613747954173486
+      },
+      "n": 611
+    },
+    "attack_pass_timing_agreement": {
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": false,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.04682274247491636,
+        "ci_low": -0.006688963210702337,
+        "diff": 0.02006688963210701,
+        "excludes_zero": false,
+        "mean_x": 0.6454849498327759,
+        "mean_y": 0.6254180602006689,
+        "n": 299
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.026755852842809347,
+        "ci_low": -0.08026755852842804,
+        "diff": -0.026755852842809347,
+        "excludes_zero": false,
+        "mean_x": 0.6454849498327759,
+        "mean_y": 0.6722408026755853,
+        "n": 299
+      },
+      "means": {
+        "iono": 0.6722408026755853,
+        "mega_abomasnow": 0.6254180602006689,
+        "mega_lucario": 0.6454849498327759
+      },
+      "n": 299
+    },
+    "energy_commitment_agreement": {
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": true,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.15053763440860213,
+        "ci_low": -0.12903225806451613,
+        "diff": 0.010752688172043001,
+        "excludes_zero": false,
+        "mean_x": 0.5806451612903226,
+        "mean_y": 0.5698924731182796,
+        "n": 93
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.15053763440860218,
+        "ci_low": -0.10752688172043012,
+        "diff": 0.021505376344086113,
+        "excludes_zero": false,
+        "mean_x": 0.5806451612903226,
+        "mean_y": 0.5591397849462365,
+        "n": 93
+      },
+      "means": {
+        "iono": 0.5591397849462365,
+        "mega_abomasnow": 0.5698924731182796,
+        "mega_lucario": 0.5806451612903226
+      },
+      "n": 93
+    },
+    "phase_conditioned_top1": {
+      "by_phase": {
+        "early": {
+          "iono": 0.44482758620689655,
+          "mega_abomasnow": 0.3448275862068966,
+          "mega_lucario": 0.4068965517241379,
+          "n": 290
+        },
+        "late": {
+          "iono": 0.38562091503267976,
+          "mega_abomasnow": 0.46405228758169936,
+          "mega_lucario": 0.5228758169934641,
+          "n": 153
+        },
+        "mid": {
+          "iono": 0.3392857142857143,
+          "mega_abomasnow": 0.36904761904761907,
+          "mega_lucario": 0.4226190476190476,
+          "n": 168
+        }
+      },
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": true,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.09169394435351827,
+        "ci_low": 0.02454991816693941,
+        "diff": 0.058919803600654685,
+        "excludes_zero": true,
+        "mean_x": 0.4402618657937807,
+        "mean_y": 0.381342062193126,
+        "n": 611
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.09165302782324058,
+        "ci_low": -0.011456628477905073,
+        "diff": 0.039279869067103124,
+        "excludes_zero": false,
+        "mean_x": 0.4402618657937807,
+        "mean_y": 0.40098199672667756,
+        "n": 611
+      },
+      "means": {
+        "iono": 0.40098199672667756,
+        "mega_abomasnow": 0.381342062193126,
+        "mega_lucario": 0.4402618657937807
+      },
+      "n": 611
+    },
+    "promotion_agreement": {
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": true,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.0,
+        "ci_low": 0.0,
+        "diff": 0.0,
+        "excludes_zero": false,
+        "mean_x": 0.6224489795918368,
+        "mean_y": 0.6224489795918368,
+        "n": 98
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.3673469387755102,
+        "ci_low": 0.010204081632653073,
+        "diff": 0.1938775510204082,
+        "excludes_zero": true,
+        "mean_x": 0.6224489795918368,
+        "mean_y": 0.42857142857142855,
+        "n": 98
+      },
+      "means": {
+        "iono": 0.42857142857142855,
+        "mega_abomasnow": 0.6224489795918368,
+        "mega_lucario": 0.6224489795918368
+      },
+      "n": 98
+    },
+    "set_jaccard": {
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": true,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.09169394435351827,
+        "ci_low": 0.024549918166939466,
+        "diff": 0.058919803600654685,
+        "excludes_zero": true,
+        "mean_x": 0.44435351882160395,
+        "mean_y": 0.38543371522094927,
+        "n": 611
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.09165302782324058,
+        "ci_low": -0.011456628477905073,
+        "diff": 0.039279869067103124,
+        "excludes_zero": false,
+        "mean_x": 0.44435351882160395,
+        "mean_y": 0.40507364975450083,
+        "n": 611
+      },
+      "means": {
+        "iono": 0.40507364975450083,
+        "mega_abomasnow": 0.38543371522094927,
+        "mega_lucario": 0.44435351882160395
+      },
+      "n": 611
+    },
+    "target_agreement": {
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": true,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.20161290322580638,
+        "ci_low": -0.024193548387096753,
+        "diff": 0.08870967741935487,
+        "excludes_zero": false,
+        "mean_x": 0.7096774193548387,
+        "mean_y": 0.6209677419354839,
+        "n": 124
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.18548387096774188,
+        "ci_low": -0.040322580645161255,
+        "diff": 0.07258064516129037,
+        "excludes_zero": false,
+        "mean_x": 0.7096774193548387,
+        "mean_y": 0.6370967741935484,
+        "n": 124
+      },
+      "means": {
+        "iono": 0.6370967741935484,
+        "mega_abomasnow": 0.6209677419354839,
+        "mega_lucario": 0.7096774193548387
+      },
+      "n": 124
+    },
+    "top1_agreement": {
+      "discriminates_for_lucario": false,
+      "discriminates_opposite": false,
+      "lucario_highest": true,
+      "lucario_vs_abomasnow": {
+        "ci_high": 0.09169394435351827,
+        "ci_low": 0.02454991816693941,
+        "diff": 0.058919803600654685,
+        "excludes_zero": true,
+        "mean_x": 0.4402618657937807,
+        "mean_y": 0.381342062193126,
+        "n": 611
+      },
+      "lucario_vs_iono": {
+        "ci_high": 0.09165302782324058,
+        "ci_low": -0.011456628477905073,
+        "diff": 0.039279869067103124,
+        "excludes_zero": false,
+        "mean_x": 0.4402618657937807,
+        "mean_y": 0.40098199672667756,
+        "n": 611
+      },
+      "means": {
+        "iono": 0.40098199672667756,
+        "mega_abomasnow": 0.381342062193126,
+        "mega_lucario": 0.4402618657937807
+      },
+      "n": 611
+    }
+  },
+  "raw_sha256": "6c54f9832521c970097af8bc454fcc65593da7f59dd980640a608482807e68cd",
+  "secondary_per_pair": {
+    "iono": {
+      "n": 1508,
+      "top1_agreement": 0.41909814323607425
+    },
+    "mega_abomasnow": {
+      "n": 894,
+      "top1_agreement": 0.41834451901565994
+    },
+    "mega_lucario": {
+      "n": 1424,
+      "top1_agreement": 0.5140449438202247
+    }
+  },
+  "transfer_gain_states": {
+    "n": 193,
+    "operationalisation": "states arising in games whose opponent seat is Mega Lucario; no such set is registered in c010-c012",
+    "teacher_lucario_top1": 0.40932642487046633
+  }
+}

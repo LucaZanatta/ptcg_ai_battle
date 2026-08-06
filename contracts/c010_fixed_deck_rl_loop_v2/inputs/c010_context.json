@@ -1,0 +1,51 @@
+{
+  "contract": "c010_fixed_deck_rl_loop_v2",
+  "objective": "Test reproducibility and extendability of the fixed-deck PPO agent loop.",
+  "frozen_deck": "c005 Dragapult",
+  "baseline": {
+    "candidate": "c007 V2-A",
+    "teacher_score": 0.16,
+    "strategic_field_score": 0.1525
+  },
+  "incumbent": {
+    "candidate": "c008 R1 seed 101 validation-selected checkpoint resolved through c009",
+    "teacher_score": 0.22,
+    "strategic_field_score": 0.255
+  },
+  "arms": {
+    "A": {
+      "purpose": "exact reproducibility from V2-A",
+      "seeds": [
+        311,
+        322,
+        333
+      ],
+      "max_games_per_seed": 12000
+    },
+    "B": {
+      "purpose": "exact continuation from incumbent",
+      "seeds": [
+        411,
+        422,
+        433
+      ],
+      "max_games_per_seed": 7500
+    },
+    "C": {
+      "purpose": "minimally stabilized continuation from incumbent",
+      "seeds": [
+        511,
+        522,
+        533
+      ],
+      "max_games_per_seed": 20000,
+      "changes": {
+        "learning_rate": 3e-05,
+        "rollout_game_target": 256,
+        "minimum_trainable_decisions": 32768
+      }
+    }
+  },
+  "hard_training_game_maximum": 120000,
+  "teacher_submission_ref": "54948560"
+}

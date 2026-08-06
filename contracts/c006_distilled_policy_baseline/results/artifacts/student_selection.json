@@ -1,0 +1,43 @@
+{
+  "contract": "c006",
+  "best_student": "NONE",
+  "best_student_reason": "Neither student passes teacher non-inferiority (S1 one-sided LB=0.085, S2 LB=0.125; both << 0.45). Per \u00a715, BEST_STUDENT=NONE (a student is not chosen merely for beating the other).",
+  "reliability_eligible": {
+    "S1_STATELESS": true,
+    "S2_RECURRENT": true
+  },
+  "non_inferior_vs_teacher": {
+    "S1_STATELESS": false,
+    "S2_RECURRENT": false
+  },
+  "noninferiority": {
+    "S1_STATELESS": {
+      "point": 0.12000000000000001,
+      "one_sided_lb_95": 0.08499999999999999
+    },
+    "S2_RECURRENT": {
+      "point": 0.17,
+      "one_sided_lb_95": 0.125
+    }
+  },
+  "gauntlet_mean_vs_field": {
+    "S1_STATELESS": 0.1875,
+    "S2_RECURRENT": 0.15000000000000002
+  },
+  "high_impact_test_agreement": {
+    "S1_STATELESS": 0.6951122432733641,
+    "S2_RECURRENT": 0.6896990925011941
+  },
+  "major_regressions": 8,
+  "memory_decision": {
+    "decision": "MEMORY_NOT_JUSTIFIED",
+    "high_impact_gain_pp": 0.09082652134423386,
+    "game_level_iw_diff_ci95": [
+      -0.029052024328405642,
+      0.015547702611435421
+    ],
+    "offline_thresholds": "high-impact gain 0.09pp < 2pp AND game-level iw-diff CI includes 0",
+    "gameplay_note": "S2 vs teacher point 0.170 > S1 0.120, but S2 gauntlet strength 0.150 < S1 0.188; no material gameplay improvement can be claimed for a policy that is not non-inferior. S2 ~ S1 offline (matched inputs), so 'memory does not help' is robust, not an inference-time artifact."
+  },
+  "selection_rule": "\u00a715: reliability-eligible AND non-inferior first; NONE if neither non-inferior."
+}

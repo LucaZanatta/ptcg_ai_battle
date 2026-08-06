@@ -1,0 +1,128 @@
+{
+  "source": "c006 sequence_dataset (all splits)",
+  "total_decisions": 19050,
+  "total_games": 240,
+  "projection_scale_to_600_games": 2.5,
+  "admission_targets": {
+    "min_examples": 300,
+    "min_two_meaningful": 200
+  },
+  "candidates": {
+    "dragapult_damage_counter": {
+      "total": 3108,
+      "non_forced": 2664,
+      "ge2_options": 2664,
+      "ge2_meaningful": 2664,
+      "by_importance": {
+        "HIGH_IMPACT": 2664,
+        "FORCED": 444
+      },
+      "multiselect": 0,
+      "projected_600_games_meaningful": 6660.0,
+      "projected_600_games_total": 7770.0
+    },
+    "promotion_to_active": {
+      "total": 730,
+      "non_forced": 551,
+      "ge2_options": 551,
+      "ge2_meaningful": 551,
+      "by_importance": {
+        "HIGH_IMPACT": 551,
+        "FORCED": 179
+      },
+      "multiselect": 0,
+      "projected_600_games_meaningful": 1377.5,
+      "projected_600_games_total": 1825.0
+    },
+    "energy_attachment_target": {
+      "total": 542,
+      "non_forced": 531,
+      "ge2_options": 466,
+      "ge2_meaningful": 466,
+      "by_importance": {
+        "TACTICAL": 531,
+        "FORCED": 11
+      },
+      "multiselect": 0,
+      "projected_600_games_meaningful": 1165.0,
+      "projected_600_games_total": 1355.0
+    },
+    "search_card_target": {
+      "total": 3177,
+      "non_forced": 3115,
+      "ge2_options": 2959,
+      "ge2_meaningful": 2959,
+      "by_importance": {
+        "TACTICAL": 3115,
+        "FORCED": 62
+      },
+      "multiselect": 0,
+      "projected_600_games_meaningful": 7397.5,
+      "projected_600_games_total": 7942.5
+    },
+    "attack_choice_in_MAIN": {
+      "total": 6199,
+      "non_forced": 6199,
+      "ge2_options": 6199,
+      "ge2_meaningful": 6199,
+      "by_importance": {
+        "HIGH_IMPACT": 6199
+      },
+      "multiselect": 0,
+      "projected_600_games_meaningful": 15497.5,
+      "projected_600_games_total": 15497.5
+    },
+    "attack_target": {
+      "total": 0,
+      "non_forced": 0,
+      "ge2_options": 0,
+      "ge2_meaningful": 0,
+      "by_importance": {},
+      "multiselect": 0,
+      "projected_600_games_meaningful": 0.0,
+      "projected_600_games_total": 0.0
+    },
+    "retreat_switch": {
+      "total": 443,
+      "non_forced": 413,
+      "ge2_options": 413,
+      "ge2_meaningful": 413,
+      "by_importance": {
+        "HIGH_IMPACT": 413,
+        "FORCED": 30
+      },
+      "multiselect": 0,
+      "projected_600_games_meaningful": 1032.5,
+      "projected_600_games_total": 1107.5
+    },
+    "evolution_target": {
+      "total": 143,
+      "non_forced": 85,
+      "ge2_options": 85,
+      "ge2_meaningful": 85,
+      "by_importance": {
+        "FORCED": 58,
+        "TACTICAL": 85
+      },
+      "multiselect": 0,
+      "projected_600_games_meaningful": 212.5,
+      "projected_600_games_total": 357.5
+    }
+  },
+  "all_semantic_type_counts": {
+    "attack_choice_in_MAIN": 6199,
+    "search_card_target": 3177,
+    "main_board_action": 3119,
+    "dragapult_damage_counter": 3108,
+    "promotion_to_active": 730,
+    "multiselect_discard_resource": 557,
+    "energy_attachment_target": 542,
+    "retreat_switch": 443,
+    "resource_discard_or_move": 405,
+    "bench_placement": 370,
+    "evolution_target": 143,
+    "coin_or_setup_flag": 120,
+    "count_choice": 70,
+    "ability_activation": 67
+  }
+}

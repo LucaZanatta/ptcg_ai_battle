@@ -1,0 +1,15 @@
+{
+  "submission_D_amended": "DO_NOT_SUBMIT",
+  "status": "SKIPPED_BY_GATE",
+  "archive": null,
+  "archive_built": false,
+  "reason": "no already-trained checkpoint passes the amended gate (teacher non-inferiority FAIL; major regressions present)",
+  "gate": {
+    "reliability_zero_defects": true,
+    "teacher_non_inferiority": false,
+    "reproducible_improvement_over_teacher": false,
+    "no_major_regression": false,
+    "exact_frozen_deck": true
+  },
+  "note": "No package is built for a non-qualifying checkpoint (\u00a717). No retraining was performed and no checkpoint was modified."
+}

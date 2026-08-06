@@ -1,0 +1,115 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "test_opened": true,
+  "test_decisions": 2264,
+  "test_games": 33,
+  "models": {
+    "S1_STATELESS": {
+      "n": 2264,
+      "overall_exact_agreement": 0.7323321554770318,
+      "importance_weighted_agreement": 0.6951122432733641,
+      "nonforced_exact_agreement": 0.7100478468899522,
+      "top2_agreement_single": 0.8700460829493087,
+      "top3_agreement_single": 0.9285714285714286,
+      "multiselect_exact_set": 0.574468085106383,
+      "multiselect_element_precision": 0.782608695652174,
+      "multiselect_element_recall": 0.7346938775510204,
+      "multiselect_element_f1": 0.7578947368421053,
+      "multiselect_n": 94,
+      "test_nll_mean": 0.8299213221472713,
+      "calibration_ece": 0.0510929705502114,
+      "mean_confidence": 0.7723667742752247,
+      "single_choice_accuracy": 0.7419354838709677,
+      "fallback_decisions": 0,
+      "forced_bypass_decisions": 174,
+      "fallback_rate": 0.0,
+      "latency_ms": {
+        "p50": 0.032244499999999995,
+        "p95": 0.04956649999999999,
+        "p99": 0.07072806999999998,
+        "max": 0.239623
+      },
+      "param_count": 152673,
+      "model_size_bytes": 1223360
+    },
+    "S2_RECURRENT": {
+      "n": 2264,
+      "overall_exact_agreement": 0.7248233215547704,
+      "importance_weighted_agreement": 0.6896990925011941,
+      "nonforced_exact_agreement": 0.7019138755980862,
+      "top2_agreement_single": 0.8820276497695853,
+      "top3_agreement_single": 0.9308755760368663,
+      "multiselect_exact_set": 0.43617021276595747,
+      "multiselect_element_precision": 0.6795580110497238,
+      "multiselect_element_recall": 0.6275510204081632,
+      "multiselect_element_f1": 0.6525198938992043,
+      "multiselect_n": 94,
+      "test_nll_mean": 0.8127283748047818,
+      "calibration_ece": 0.051102955160227545,
+      "mean_confidence": 0.7745682357013465,
+      "single_choice_accuracy": 0.7400921658986175,
+      "fallback_decisions": 0,
+      "forced_bypass_decisions": 174,
+      "fallback_rate": 0.0,
+      "latency_ms": {
+        "p50": 0.0588585,
+        "p95": 0.09154699999999999,
+        "p99": 0.10645616999999995,
+        "max": 0.986341
+      },
+      "param_count": 273441,
+      "model_size_bytes": 2192100
+    }
+  },
+  "memory_ablation": {
+    "high_impact_test_agreement_S1": 0.6748410535876476,
+    "high_impact_test_agreement_S2": 0.6757493188010899,
+    "high_impact_gain_pp": 0.09082652134423386,
+    "game_level_iw_agreement_diff_mean": -0.005932285567316788,
+    "game_level_iw_diff_ci95": [
+      -0.029052024328405642,
+      0.015547702611435421
+    ],
+    "s2_minus_s1_overall_exact": -0.007508833922261426,
+    "memory_decision_offline": "MEMORY_NOT_JUSTIFIED",
+    "rule": "MEMORY_MATTERS if high-impact test gain >=2pp OR game-level iw-diff 95% CI lower bound >0 (gameplay may still promote to MEMORY_MATTERS on material game improvement)"
+  },
+  "agreement_by_taxonomy": {
+    "S1_STATELESS": {
+      "FORCED": {
+        "agreement": 1.0,
+        "n": 174
+      },
+      "HIGH_IMPACT": {
+        "agreement": 0.6748410535876476,
+        "n": 1101
+      },
+      "ROUTINE": {
+        "agreement": 0.8712871287128713,
+        "n": 101
+      },
+      "TACTICAL": {
+        "agreement": 0.7353603603603603,
+        "n": 888
+      }
+    },
+    "S2_RECURRENT": {
+      "FORCED": {
+        "agreement": 1.0,
+        "n": 174
+      },
+      "HIGH_IMPACT": {
+        "agreement": 0.6757493188010899,
+        "n": 1101
+      },
+      "ROUTINE": {
+        "agreement": 0.8910891089108911,
+        "n": 101
+      },
+      "TACTICAL": {
+        "agreement": 0.7128378378378378,
+        "n": 888
+      }
+    }
+  }
+}

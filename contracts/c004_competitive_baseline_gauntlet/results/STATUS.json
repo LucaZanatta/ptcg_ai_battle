@@ -1,0 +1,38 @@
+{
+  "contract": "c004_competitive_baseline_gauntlet",
+  "status": "PASS",
+  "acceptance_criteria_total": 10,
+  "acceptance_criteria_passed": 10,
+  "acceptance_criteria_failed": 0,
+  "initial_head": "afe52dbbbc75e6ee592bb4a6878fd4dfa43d0525",
+  "final_head": "9cc842681fedde99f8aec131a8ef46d052bce7c5",
+  "implementation_commits": [
+    "30189fd1a73491bc3d8aa6afff3a1880dae647ed",
+    "e584734ae3e69f5a65b1d8eed7d9f142d18ed6a1",
+    "9cc842681fedde99f8aec131a8ef46d052bce7c5"
+  ],
+  "admitted_candidates": ["det_starter", "det_cabt", "random_starter", "random_cabt"],
+  "primary_baseline": "det_starter",
+  "backup_baseline": "det_cabt",
+  "smoke_games": 40,
+  "gauntlet_games": 400,
+  "blocking_issues": [],
+  "known_limitations": [
+    "No strategic agents exist locally: all four candidates are the two trivial baselines (deterministic first-option, uniform random) over two decks (starter, cabt). The gauntlet is a deck x policy factorial over the only complete baselines available; the primary/backup are both deterministic (no policy diversity). This is why the c005 hypothesis proposes the first strategic step.",
+    "The two deterministic candidates share identical agent policy source and differ only by deck; primary/backup order (det_starter vs det_cabt) is within statistical noise (head-to-head 0.495, CI [0.43,0.56]) and resolved by the predefined worst-matchup-lower-bound tiebreak.",
+    "Engine trajectories are not reproducible (std::random_device); recorded honestly (engine_rng_controlled=false). Gauntlet analysis IS reproducible from the fixed capture (seeded bootstrap).",
+    "Runtime SelectContext coverage is a subset of the enum (expected for sampled games)."
+  ],
+  "results": {
+    "candidates_discovered": 4,
+    "candidates_admitted": 4,
+    "candidates_rejected": {"random_starter": "REJECTED_STRENGTH", "random_cabt": "REJECTED_STRENGTH"},
+    "bradley_terry_ranking": ["det_cabt", "det_starter", "random_starter", "random_cabt"],
+    "reliability_gate": "all four eligible (0 invalid actions, 0 attributable agent exceptions, 0 timeouts across 400 games)",
+    "primary_worst_matchup": {"opponent": "det_cabt", "balanced_rate": 0.505, "lower_bound_95": 0.435},
+    "p99_latency_ms": {"det_starter": 0.0027, "det_cabt": 0.0027, "random_starter": 0.0103, "random_cabt": 0.0129},
+    "overall_seat0_winrate": 0.54,
+    "tactical_failures_for_primary": {"main_decisions": 5774, "declined_available_attack": 3122},
+    "tests_total": 113
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "rows": [
+    {
+      "row": "c016 public champion candidate",
+      "candidate": "official_mega_lucario",
+      "role": "CHALLENGER",
+      "fidelity": "EXACT",
+      "vs_dragapult": 0.52,
+      "package_sha256": null,
+      "kaggle_ref": null,
+      "score": null,
+      "note": "NOT uploaded \u2014 competitive gate failed; preserved for the next contract"
+    },
+    {
+      "row": "Dragapult temporary control",
+      "candidate": "official dragapult",
+      "role": "CONTROL",
+      "fidelity": "EXACT",
+      "vs_dragapult": null,
+      "package_sha256": null,
+      "kaggle_ref": "54948560",
+      "score": "719.7",
+      "note": "temporary internal champion only \u2014 the strongest confirmed package the project owns; explicitly not a winning target"
+    },
+    {
+      "row": "c014 custom Archaludon",
+      "candidate": "c014 public-meta-v0",
+      "role": "CONTROL",
+      "fidelity": "n/a (from-scratch priority table)",
+      "vs_dragapult": 0.09,
+      "package_sha256": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+      "kaggle_ref": "55004756",
+      "score": "516.8",
+      "note": "operationally valid, competitively weak \u2014 evidence that a simplistic rewrite does not reproduce a strong public agent"
+    },
+    {
+      "row": "c015 custom Iono",
+      "candidate": "c015 anti-meta-v0",
+      "role": "ARCHIVE",
+      "fidelity": "n/a (from-scratch priority table)",
+      "vs_dragapult": 0.04,
+      "package_sha256": "ea507a6cb53e1ea03d876c8309e3f50e1db343f75ceb2d4ede2ad9fef1098f4e",
+      "kaggle_ref": "55005237",
+      "score": "412.9",
+      "note": "thesis falsified locally and reporting integrity defective (3 defects); negative lesson only"
+    },
+    {
+      "row": "c016 runner-up public candidate",
+      "candidate": "official_mega_abomasnow",
+      "role": "CHALLENGER",
+      "fidelity": "EXACT",
+      "vs_dragapult": 0.5025,
+      "package_sha256": null,
+      "kaggle_ref": null,
+      "score": null,
+      "note": "preserved as the next candidate if the leader is externally weak"
+    }
+  ],
+  "next_action": {
+    "next_action": "fix one named defect: base condition safe_control_ge_0.90",
+    "rationale": "no candidate cleared the competitive gate, so \u00a718 forbids uploading; the exact failed condition is the single next target",
+    "all_failed_gates": [
+      "base condition safe_control_ge_0.90",
+      "base condition vs_c014_ge_0.65"
+    ]
+  },
+  "champion_declared": false,
+  "champion_note": "no final champion is declared. \u00a721 forbids declaring one from an accepted upload, and the public score is a live ladder rating whose readings have moved by >150 points within minutes."
+}

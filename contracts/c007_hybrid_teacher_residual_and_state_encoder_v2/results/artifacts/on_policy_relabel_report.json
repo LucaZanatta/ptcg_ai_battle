@@ -1,0 +1,18 @@
+{
+  "admitted_contexts": [
+    "DAMAGE_COUNTER",
+    "DAMAGE_COUNTER_ANY"
+  ],
+  "on_policy_games": 160,
+  "on_policy_admitted_decisions": 2400,
+  "overrides_during_run": 0,
+  "disagreements": 665,
+  "near_threshold_abstentions": 439,
+  "ood_boundary_states": 14,
+  "relabel_protocol": "validated controlled-variant A/B (\u00a712) restricted to admitted contexts",
+  "reproducible_variant_improvement": false,
+  "new_positive_residual_labels": 0,
+  "residual_head_retrained_once": true,
+  "residual_head_change": "none \u2014 no positive on-policy labels; the two-batch A/B found no reproducible improvement, so the residual head stays the null (no-override) head",
+  "final_h2_identical_to_candidate": true
+}

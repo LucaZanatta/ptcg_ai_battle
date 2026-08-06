@@ -1,0 +1,20 @@
+{
+  "counts": {
+    "train": {
+      "games": 504,
+      "decisions": 43111
+    },
+    "validation": {
+      "games": 112,
+      "decisions": 9355
+    },
+    "test": {
+      "games": 104,
+      "decisions": 8846
+    }
+  },
+  "no_leakage": true,
+  "leaking": {},
+  "excluded_invalid_or_nonterminal": 0,
+  "control_valid": 48
+}

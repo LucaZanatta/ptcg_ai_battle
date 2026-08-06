@@ -1,0 +1,6 @@
+# SKIPPED_BY_GATE (SUBMISSION_D_AMENDED=DO_NOT_SUBMIT). Command that WOULD run on SUBMIT:
+kaggle competitions submit pokemon-tcg-ai-battle \
+  -f contracts/c009_amendment_c008/results/artifacts/submission_D_amended_rl.tar.gz \
+  -m "c009 amended c008: R1_101 9488406"
+# Teacher refresh (read-only, executed this run):
+kaggle competitions submissions pokemon-tcg-ai-battle -v

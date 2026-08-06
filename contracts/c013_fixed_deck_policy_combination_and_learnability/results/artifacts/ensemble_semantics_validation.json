@@ -1,0 +1,47 @@
+{
+  "logit_vs_probability_are_different_functions": {
+    "logit_rule": [
+      0.8619451243439965,
+      0.07075276434565322,
+      0.06730211131035037
+    ],
+    "probability_rule": [
+      0.5784673235211023,
+      0.22123427021902112,
+      0.2002984062598767
+    ],
+    "max_abs_difference": 0.2834778008228942,
+    "conclusion": "the two registered rules disagree whenever components disagree"
+  },
+  "multiselect_recomputation": {
+    "recomputed_per_step": [
+      0.0,
+      0.51248959373947,
+      0.48751040626053
+    ],
+    "naive_renormalisation_of_one_averaged_vector": [
+      0.0,
+      0.5248330261535401,
+      0.47516697384645995
+    ],
+    "max_abs_difference": 0.012343432414070099,
+    "conclusion": "\u00a79 requires each component to be renormalised over the shrinking legal set and re-averaged; renormalising a single previously averaged distribution is a different distribution"
+  },
+  "ensemble_is_not_a_weight_soup": {
+    "ensemble_of_two_maps": [
+      0.75,
+      1.25
+    ],
+    "map_at_averaged_weights": [
+      0.0,
+      0.5
+    ],
+    "max_abs_difference": 0.75,
+    "conclusion": "a ReLU network at averaged parameters is not the average of the networks, so \u00a72 forbids treating the families as equivalent"
+  },
+  "equal_weights_only": {
+    "weights": "1/n for n components",
+    "tuned_after_results": false
+  },
+  "forced_decisions": "bypass ensemble scoring entirely (\u00a79)"
+}

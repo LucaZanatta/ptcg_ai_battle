@@ -1,0 +1,24 @@
+{
+  "probe_id": "P90",
+  "name": "evidence_validator",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "mode": "final",
+    "n_checks": 135,
+    "n_passed": 135,
+    "n_critical_failures": 0,
+    "n_submission_blockers": 0,
+    "submission_blockers": [],
+    "critical_failures": [],
+    "not_exercised": [],
+    "overall": "PASS"
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/evidence_validation.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/test_logs/evidence_validation.txt"
+  ]
+}

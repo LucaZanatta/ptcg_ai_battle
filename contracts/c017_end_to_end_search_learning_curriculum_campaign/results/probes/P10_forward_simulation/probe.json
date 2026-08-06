@@ -1,0 +1,21 @@
+{
+  "probe_id": "P10_forward_simulation",
+  "status": "FAIL_TAINTED",
+  "blocking": false,
+  "what_was_tested": "whether the competition simulator state can be forked and advanced independently, which bounded forward search (§14) requires",
+  "finding": {
+    "env_clone_exists": true,
+    "single_clone_succeeds": true,
+    "clone_latency_ms_p50": 5.29,
+    "nested_clone_run_corrupts_parent": true,
+    "observed_failure": "SIGSEGV / core dump when a cloned episode is advanced while the parent episode is mid-run",
+    "secondary_symptom": "parent episodes terminate after 1-2 decisions; 0 of 6 games completed, 8 decisions total where ~500 were expected"
+  },
+  "root_cause": "the engine is a native library (cg/libcg.so) holding process-global state. env.clone() copies the Python wrapper but both wrappers then address the same native game state, so advancing the clone destroys the parent. This is a property of the simulator, not of the search code.",
+  "smallest_fallback_applied": "search runs at depth 0: candidates are generated and scored by the visible-state heuristic evaluator with deterministic tie-breaking and mandatory baseline retention, with NO state cloning and NO forward simulation",
+  "honest_consequence": "the 'search teacher' is a heuristic ACTION RANKER, not a forward search. Any downstream claim that improvement came from lookahead is unsupported and is labelled as such. Trajectory labels remain a strict superset of baseline play because the baseline action is always a candidate and wins ties.",
+  "artifacts_tainted": ["search summaries", "trajectories", "distilled policy", "curriculum policies"],
+  "taint_kind": "DIAGNOSTIC_ONLY for any lookahead claim; TRUSTED for legality, latency and imitation evidence",
+  "why_not_blocking": "§7.3 lists the blockers; simulator lookahead capability is not among them. §11 explicitly says not to force online search when the interface does not support it, and directs the pipeline to continue through the offline teacher and policy training.",
+  "does_not_affect": "the baseline submission (ref 55011215), which contains no search code"
+}

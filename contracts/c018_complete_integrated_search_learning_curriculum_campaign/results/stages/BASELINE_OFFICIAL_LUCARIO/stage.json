@@ -1,0 +1,24 @@
+{
+  "stage": "BASELINE_OFFICIAL_LUCARIO",
+  "candidate_id": "official_mega_lucario",
+  "description": "the official sample agent, byte-identical; the incumbent anchor",
+  "produced": true,
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "panel_result": {
+    "games": 400,
+    "overall_rate": 0.58,
+    "overall_ci": [
+      0.5311,
+      0.6274
+    ],
+    "worst_matchup": "mega_abomasnow",
+    "worst_matchup_rate": 0.47
+  },
+  "package": null,
+  "package_sha256": null,
+  "clean_extraction_ok": null,
+  "submittable": false,
+  "status": "NON_SUBMITTABLE",
+  "reason": "no clean-validated inference-only package exists for this stage; it is evaluated and archived but cannot be uploaded"
+}

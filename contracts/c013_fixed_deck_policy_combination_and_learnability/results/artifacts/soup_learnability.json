@@ -1,0 +1,362 @@
+{
+  "SOUP_LEARNABILITY": "NOT_IMPROVED",
+  "bootstrap": {
+    "n": 10000,
+    "seed": 515151
+  },
+  "candidates": [
+    {
+      "candidate_id": "Q1_902_g5184",
+      "composite": 0.357,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.013333333333333308,
+          0.11111111111111105
+        ],
+        "gain": 0.04888888888888887,
+        "p_gain_gt_0": 0.9372
+      },
+      "method": "VALUE_REFIT",
+      "n_games": 750,
+      "strategic_field": 0.3822222222222222,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.13,
+          0.020000000000000018
+        ],
+        "gain": -0.053333333333333344,
+        "p_gain_gt_0": 0.0747
+      },
+      "teacher_score": 0.3
+    },
+    {
+      "candidate_id": "Q2_SOUP_recombined",
+      "composite": 0.3503333333333334,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.020000000000000018,
+          0.10222222222222221
+        ],
+        "gain": 0.040000000000000036,
+        "p_gain_gt_0": 0.8983
+      },
+      "method": "COMPONENT_CONTINUE_RECOMBINE",
+      "n_games": 750,
+      "strategic_field": 0.37333333333333335,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.1333333333333333,
+          0.01666666666666672
+        ],
+        "gain": -0.05666666666666664,
+        "p_gain_gt_0": 0.0637
+      },
+      "teacher_score": 0.2966666666666667
+    },
+    {
+      "candidate_id": "Q0_901_g10320",
+      "composite": 0.3486666666666667,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.039999999999999925,
+          0.08444444444444443
+        ],
+        "gain": 0.022222222222222254,
+        "p_gain_gt_0": 0.7599
+      },
+      "method": "DIRECT_CONTINUATION",
+      "n_games": 750,
+      "strategic_field": 0.35555555555555557,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.10666666666666663,
+          0.046666666666666634
+        ],
+        "gain": -0.030000000000000027,
+        "p_gain_gt_0": 0.206
+      },
+      "teacher_score": 0.3233333333333333
+    },
+    {
+      "candidate_id": "Q1_902_g10256",
+      "composite": 0.344,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.02444444444444438,
+          0.09999999999999998
+        ],
+        "gain": 0.0377777777777778,
+        "p_gain_gt_0": 0.8811
+      },
+      "method": "VALUE_REFIT",
+      "n_games": 750,
+      "strategic_field": 0.3711111111111111,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.14666666666666664,
+          0.006666666666666654
+        ],
+        "gain": -0.07,
+        "p_gain_gt_0": 0.0315
+      },
+      "teacher_score": 0.2833333333333333
+    },
+    {
+      "candidate_id": "Q2A_903_g5152",
+      "composite": 0.3396666666666667,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.037777777777777743,
+          0.08666666666666667
+        ],
+        "gain": 0.024444444444444435,
+        "p_gain_gt_0": 0.7813
+      },
+      "method": "COMPONENT_CONTINUE_RECOMBINE",
+      "n_games": 750,
+      "strategic_field": 0.35777777777777775,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.1333333333333333,
+          0.019999999999999962
+        ],
+        "gain": -0.05666666666666664,
+        "p_gain_gt_0": 0.066
+      },
+      "teacher_score": 0.2966666666666667
+    },
+    {
+      "candidate_id": "Q2_PROB_recombined",
+      "composite": 0.33666666666666667,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.04222222222222222,
+          0.08222222222222214
+        ],
+        "gain": 0.020000000000000018,
+        "p_gain_gt_0": 0.7371
+      },
+      "method": "COMPONENT_CONTINUE_RECOMBINE",
+      "n_games": 750,
+      "strategic_field": 0.35333333333333333,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.12000000000000005,
+          0.02999999999999997
+        ],
+        "gain": -0.04666666666666669,
+        "p_gain_gt_0": 0.1109
+      },
+      "teacher_score": 0.30666666666666664
+    },
+    {
+      "candidate_id": "Q2_LOGIT_recombined",
+      "composite": 0.335,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.048888888888888926,
+          0.0733333333333333
+        ],
+        "gain": 0.011111111111111072,
+        "p_gain_gt_0": 0.638
+      },
+      "method": "COMPONENT_CONTINUE_RECOMBINE",
+      "n_games": 750,
+      "strategic_field": 0.3444444444444444,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.12,
+          0.02999999999999997
+        ],
+        "gain": -0.04666666666666669,
+        "p_gain_gt_0": 0.1081
+      },
+      "teacher_score": 0.30666666666666664
+    },
+    {
+      "candidate_id": "Q0_901_g5184",
+      "composite": 0.33366666666666667,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.06,
+          0.06
+        ],
+        "gain": 0.0,
+        "p_gain_gt_0": 0.4914
+      },
+      "method": "DIRECT_CONTINUATION",
+      "n_games": 750,
+      "strategic_field": 0.3333333333333333,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.11333333333333329,
+          0.03999999999999998
+        ],
+        "gain": -0.03666666666666668,
+        "p_gain_gt_0": 0.1618
+      },
+      "teacher_score": 0.31666666666666665
+    },
+    {
+      "candidate_id": "Q2B_904_g5200",
+      "composite": 0.32566666666666666,
+      "confirmed_field_improvement": false,
+      "confirmed_improvement": false,
+      "confirmed_teacher_improvement": false,
+      "field_gain_vs_phase2_start": {
+        "ci95": [
+          -0.02888888888888891,
+          0.09333333333333338
+        ],
+        "gain": 0.03111111111111109,
+        "p_gain_gt_0": 0.8275
+      },
+      "method": "COMPONENT_CONTINUE_RECOMBINE",
+      "n_games": 750,
+      "strategic_field": 0.3644444444444444,
+      "teacher_gain_vs_phase2_start": {
+        "ci95": [
+          -0.17999999999999997,
+          -0.033333333333333326
+        ],
+        "gain": -0.10666666666666666,
+        "p_gain_gt_0": 0.0014
+      },
+      "teacher_score": 0.24666666666666667
+    }
+  ],
+  "decision_rule": {
+    "confirmed_improvement": "positive gain vs the Phase 2 start whose bootstrap 95% CI excludes zero, on the registered panel",
+    "methods": {
+      "Q0": "DIRECT_CONTINUATION",
+      "Q1": "VALUE_REFIT",
+      "Q2": "COMPONENT_CONTINUE_RECOMBINE"
+    },
+    "training_reward_may_not_decide": true
+  },
+  "methods_confirmed_working": [],
+  "panel": "confirmation",
+  "phase2_start": {
+    "candidate_id": "C012_SOUP_622_633",
+    "composite": 0.35,
+    "n_games": 750,
+    "strategic_field": 0.3333333333333333,
+    "teacher_score": 0.35333333333333333
+  },
+  "training_context": {
+    "Q0": {
+      "completed_games": 12016,
+      "inrun": [
+        {
+          "field": 0.43333333333333335,
+          "games": null,
+          "teacher": 0.275
+        },
+        {
+          "field": 0.3333333333333333,
+          "games": 5184,
+          "teacher": 0.425
+        },
+        {
+          "field": 0.43333333333333335,
+          "games": 10320,
+          "teacher": 0.42500000000000004
+        }
+      ],
+      "n_inrun_evaluations": 3,
+      "n_inrun_evaluations_with_scores": 3,
+      "note": "training-side only; \u00a717 requires a CONFIRMED panel result before any method may be called working",
+      "seed": 901,
+      "stop_reason": "budget_reached"
+    },
+    "Q1": {
+      "completed_games": 12368,
+      "inrun": [
+        {
+          "field": 0.3666666666666667,
+          "games": null,
+          "teacher": 0.275
+        },
+        {
+          "field": 0.3333333333333333,
+          "games": 5184,
+          "teacher": 0.275
+        },
+        {
+          "field": 0.31666666666666665,
+          "games": 10256,
+          "teacher": 0.25
+        }
+      ],
+      "n_inrun_evaluations": 3,
+      "n_inrun_evaluations_with_scores": 3,
+      "note": "training-side only; \u00a717 requires a CONFIRMED panel result before any method may be called working",
+      "seed": 902,
+      "stop_reason": "budget_reached"
+    },
+    "Q2A": {
+      "completed_games": 10192,
+      "inrun": [
+        {
+          "field": 0.4000000000000001,
+          "games": null,
+          "teacher": 0.275
+        },
+        {
+          "field": 0.35000000000000003,
+          "games": 5152,
+          "teacher": 0.25
+        }
+      ],
+      "n_inrun_evaluations": 2,
+      "n_inrun_evaluations_with_scores": 2,
+      "note": "training-side only; \u00a717 requires a CONFIRMED panel result before any method may be called working",
+      "seed": 903,
+      "stop_reason": "budget_reached"
+    },
+    "Q2B": {
+      "completed_games": 10336,
+      "inrun": [
+        {
+          "field": 0.4166666666666667,
+          "games": null,
+          "teacher": 0.3
+        },
+        {
+          "field": 0.3,
+          "games": 5200,
+          "teacher": 0.2
+        }
+      ],
+      "n_inrun_evaluations": 2,
+      "n_inrun_evaluations_with_scores": 2,
+      "note": "training-side only; \u00a717 requires a CONFIRMED panel result before any method may be called working",
+      "seed": 904,
+      "stop_reason": "budget_reached"
+    }
+  }
+}

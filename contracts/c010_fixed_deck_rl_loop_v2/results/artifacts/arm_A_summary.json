@@ -1,0 +1,445 @@
+{
+  "arm": "A",
+  "seeds": [
+    311,
+    322,
+    333
+  ],
+  "n_seeds": 3,
+  "games_done_total": 36330,
+  "training_game_rows": 36330,
+  "terminal_game_rows": 36330,
+  "updates_total": 273,
+  "trainable_decisions_total": 2588567,
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0
+  },
+  "stop_reasons": {
+    "311": "budget_reached",
+    "322": "budget_reached",
+    "333": "budget_reached"
+  },
+  "initializations": {
+    "311": {
+      "from": "B0_v2a",
+      "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6"
+    },
+    "322": {
+      "from": "B0_v2a",
+      "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6"
+    },
+    "333": {
+      "from": "B0_v2a",
+      "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6"
+    }
+  },
+  "registered_checkpoints": [
+    "A_311_g10108",
+    "A_311_g12103",
+    "A_311_g2527",
+    "A_311_g5054",
+    "A_311_g7581",
+    "A_322_g10115",
+    "A_322_g12110",
+    "A_322_g2534",
+    "A_322_g5061",
+    "A_322_g7588",
+    "A_333_g10122",
+    "A_333_g12117",
+    "A_333_g2541",
+    "A_333_g5068",
+    "A_333_g7595"
+  ],
+  "evaluation_point_coverage": {
+    "registered_points": [
+      2500,
+      5000,
+      7500,
+      10000,
+      12000
+    ],
+    "per_seed": {
+      "311": {
+        "reached": [
+          2500,
+          5000,
+          7500,
+          10000,
+          12000
+        ],
+        "missing": [],
+        "terminal_below_registered_point": null,
+        "final_games": 12103
+      },
+      "322": {
+        "reached": [
+          2500,
+          5000,
+          7500,
+          10000,
+          12000
+        ],
+        "missing": [],
+        "terminal_below_registered_point": null,
+        "final_games": 12110
+      },
+      "333": {
+        "reached": [
+          2500,
+          5000,
+          7500,
+          10000,
+          12000
+        ],
+        "missing": [],
+        "terminal_below_registered_point": null,
+        "final_games": 12117
+      }
+    },
+    "all_seeds_reached_every_registered_point": true
+  },
+  "per_seed": {
+    "311": {
+      "arm": "A",
+      "seed": 311,
+      "initialization": "B0_v2a",
+      "initialization_sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+      "games_done": 12103,
+      "budget": 12000,
+      "updates": 91,
+      "trainable_decisions": 860685,
+      "stop_reason": "budget_reached",
+      "elapsed_seconds": 6131.9,
+      "games_per_hour": 7105.5,
+      "checkpoints": {
+        "2527": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/checkpoints/ckpt_g2527.npz",
+          "sha256": "e6bf7f1092b9858a7257824c336edabd7382c7619584faf68096a98d467f4af6",
+          "training_games": 2527,
+          "registered_eval_point": 2500,
+          "arm": "A",
+          "seed": 311,
+          "updates": 19,
+          "parent": "B0_v2a"
+        },
+        "5054": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/checkpoints/ckpt_g5054.npz",
+          "sha256": "2b6898e3effca212ddbf0e3117ffe1bda69676e367d604bd9a42b6b40108272b",
+          "training_games": 5054,
+          "registered_eval_point": 5000,
+          "arm": "A",
+          "seed": 311,
+          "updates": 38,
+          "parent": "2527"
+        },
+        "7581": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/checkpoints/ckpt_g7581.npz",
+          "sha256": "bfd192665fad2e3be698478fe28f3e84a6820245a1ec1580354dfb680640c799",
+          "training_games": 7581,
+          "registered_eval_point": 7500,
+          "arm": "A",
+          "seed": 311,
+          "updates": 57,
+          "parent": "5054"
+        },
+        "10108": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/checkpoints/ckpt_g10108.npz",
+          "sha256": "d30fb8a73448eb7b1a95382ff80d4ada77c9bd3edfa520b7c385bb519e6ebed6",
+          "training_games": 10108,
+          "registered_eval_point": 10000,
+          "arm": "A",
+          "seed": 311,
+          "updates": 76,
+          "parent": "7581"
+        },
+        "12103": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/checkpoints/ckpt_g12103.npz",
+          "sha256": "21b67778fdae5e8679529f80ca1005a466f94d34c668ee8b05bc7dcccb72c556",
+          "training_games": 12103,
+          "registered_eval_point": 12000,
+          "arm": "A",
+          "seed": 311,
+          "updates": 91,
+          "parent": "10108"
+        }
+      },
+      "lagged_snapshots": [
+        "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/checkpoints/lagged_g5054.npz",
+        "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed311/checkpoints/lagged_g10108.npz"
+      ],
+      "opponent_distribution": {
+        "dragapult": 4649,
+        "mega_lucario": 2648,
+        "__control__": 1158,
+        "iono": 2560,
+        "lagged::lagged_g5054.npz": 913,
+        "lagged::lagged_g10108.npz": 175
+      },
+      "seat_distribution": {
+        "0": 6079,
+        "1": 6024
+      },
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "ordered_blocks": 0,
+        "fallbacks": 0,
+        "non_terminal": 0
+      },
+      "ppo_config": {
+        "gamma": 0.997,
+        "gae_lambda": 0.95,
+        "clip": 0.2,
+        "value_coef": 0.5,
+        "entropy_coef_start": 0.01,
+        "entropy_coef_end": 0.002,
+        "entropy_schedule": "linear over budget",
+        "max_grad_norm": 0.5,
+        "epochs": 4,
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 1e-05,
+        "rollout_game_target": 128,
+        "min_trainable_decisions": 8192,
+        "minibatch": 512,
+        "advantage_normalization": "per update",
+        "value_clipping": true,
+        "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+      }
+    },
+    "322": {
+      "arm": "A",
+      "seed": 322,
+      "initialization": "B0_v2a",
+      "initialization_sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+      "games_done": 12110,
+      "budget": 12000,
+      "updates": 91,
+      "trainable_decisions": 856644,
+      "stop_reason": "budget_reached",
+      "elapsed_seconds": 6102.7,
+      "games_per_hour": 7143.7,
+      "checkpoints": {
+        "2534": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/checkpoints/ckpt_g2534.npz",
+          "sha256": "20ef429e2912587c7c83db97fdd4562e5724419af79860a2962024e972dc4fbc",
+          "training_games": 2534,
+          "registered_eval_point": 2500,
+          "arm": "A",
+          "seed": 322,
+          "updates": 19,
+          "parent": "B0_v2a"
+        },
+        "5061": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/checkpoints/ckpt_g5061.npz",
+          "sha256": "dcc1fb7810a33af441c181282aa25d9bff916f0c9bee4f77cf5b861abab5443c",
+          "training_games": 5061,
+          "registered_eval_point": 5000,
+          "arm": "A",
+          "seed": 322,
+          "updates": 38,
+          "parent": "2534"
+        },
+        "7588": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/checkpoints/ckpt_g7588.npz",
+          "sha256": "29cc53e458b5967441c941cfb446fc1ed4b6346a6dd9219e10095f66b59ec1b7",
+          "training_games": 7588,
+          "registered_eval_point": 7500,
+          "arm": "A",
+          "seed": 322,
+          "updates": 57,
+          "parent": "5061"
+        },
+        "10115": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/checkpoints/ckpt_g10115.npz",
+          "sha256": "db22ecfdb94a87958f76e8657e28f12a54c86b48f284363a0ccb3b6c793d7b0b",
+          "training_games": 10115,
+          "registered_eval_point": 10000,
+          "arm": "A",
+          "seed": 322,
+          "updates": 76,
+          "parent": "7588"
+        },
+        "12110": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/checkpoints/ckpt_g12110.npz",
+          "sha256": "c684495d51aa4ed5066cd6af346bfceb5ca70993bd10742ddaf9dc1a93498a96",
+          "training_games": 12110,
+          "registered_eval_point": 12000,
+          "arm": "A",
+          "seed": 322,
+          "updates": 91,
+          "parent": "10115"
+        }
+      },
+      "lagged_snapshots": [
+        "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/checkpoints/lagged_g5061.npz",
+        "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed322/checkpoints/lagged_g10115.npz"
+      ],
+      "opponent_distribution": {
+        "dragapult": 4554,
+        "mega_lucario": 2612,
+        "iono": 2622,
+        "__control__": 1253,
+        "lagged::lagged_g5061.npz": 914,
+        "lagged::lagged_g10115.npz": 155
+      },
+      "seat_distribution": {
+        "0": 6168,
+        "1": 5942
+      },
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "ordered_blocks": 0,
+        "fallbacks": 0,
+        "non_terminal": 0
+      },
+      "ppo_config": {
+        "gamma": 0.997,
+        "gae_lambda": 0.95,
+        "clip": 0.2,
+        "value_coef": 0.5,
+        "entropy_coef_start": 0.01,
+        "entropy_coef_end": 0.002,
+        "entropy_schedule": "linear over budget",
+        "max_grad_norm": 0.5,
+        "epochs": 4,
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 1e-05,
+        "rollout_game_target": 128,
+        "min_trainable_decisions": 8192,
+        "minibatch": 512,
+        "advantage_normalization": "per update",
+        "value_clipping": true,
+        "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+      }
+    },
+    "333": {
+      "arm": "A",
+      "seed": 333,
+      "initialization": "B0_v2a",
+      "initialization_sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+      "games_done": 12117,
+      "budget": 12000,
+      "updates": 91,
+      "trainable_decisions": 871238,
+      "stop_reason": "budget_reached",
+      "elapsed_seconds": 6180.5,
+      "games_per_hour": 7057.9,
+      "checkpoints": {
+        "2541": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/checkpoints/ckpt_g2541.npz",
+          "sha256": "32279bfd85c6ddcd1a0908f1dd6064e29b6cff7d4819ab706f4a0a6c16b18de7",
+          "training_games": 2541,
+          "registered_eval_point": 2500,
+          "arm": "A",
+          "seed": 333,
+          "updates": 19,
+          "parent": "B0_v2a"
+        },
+        "5068": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/checkpoints/ckpt_g5068.npz",
+          "sha256": "a0b19d8a2378e2243f59301adfb4354f88d3e56c702b12ec9e3cb69ef40d28bf",
+          "training_games": 5068,
+          "registered_eval_point": 5000,
+          "arm": "A",
+          "seed": 333,
+          "updates": 38,
+          "parent": "2541"
+        },
+        "7595": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/checkpoints/ckpt_g7595.npz",
+          "sha256": "f096d9d3809b86045afde1f1913cd58698e9eed7ea4891574fe754536be2e798",
+          "training_games": 7595,
+          "registered_eval_point": 7500,
+          "arm": "A",
+          "seed": 333,
+          "updates": 57,
+          "parent": "5068"
+        },
+        "10122": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/checkpoints/ckpt_g10122.npz",
+          "sha256": "bb273112e8e63b0de571c888e8b5310e9a7419e5ce1146bb694b2dbf115aaa5a",
+          "training_games": 10122,
+          "registered_eval_point": 10000,
+          "arm": "A",
+          "seed": 333,
+          "updates": 76,
+          "parent": "7595"
+        },
+        "12117": {
+          "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/checkpoints/ckpt_g12117.npz",
+          "sha256": "c407c5bca89aee19b463a9c32c5f3545c339021167082d0ad3263030e55e4a8a",
+          "training_games": 12117,
+          "registered_eval_point": 12000,
+          "arm": "A",
+          "seed": 333,
+          "updates": 91,
+          "parent": "10122"
+        }
+      },
+      "lagged_snapshots": [
+        "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/checkpoints/lagged_g5068.npz",
+        "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_A/seed333/checkpoints/lagged_g10122.npz"
+      ],
+      "opponent_distribution": {
+        "__control__": 1238,
+        "mega_lucario": 2647,
+        "iono": 2576,
+        "dragapult": 4580,
+        "lagged::lagged_g5068.npz": 901,
+        "lagged::lagged_g10122.npz": 175
+      },
+      "seat_distribution": {
+        "0": 6125,
+        "1": 5992
+      },
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "ordered_blocks": 0,
+        "fallbacks": 0,
+        "non_terminal": 0
+      },
+      "ppo_config": {
+        "gamma": 0.997,
+        "gae_lambda": 0.95,
+        "clip": 0.2,
+        "value_coef": 0.5,
+        "entropy_coef_start": 0.01,
+        "entropy_coef_end": 0.002,
+        "entropy_schedule": "linear over budget",
+        "max_grad_norm": 0.5,
+        "epochs": 4,
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 1e-05,
+        "rollout_game_target": 128,
+        "min_trainable_decisions": 8192,
+        "minibatch": 512,
+        "advantage_normalization": "per update",
+        "value_clipping": true,
+        "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+      }
+    }
+  },
+  "files": {
+    "training_games": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_A_training_games.jsonl.gz",
+    "training_games_sha256": "52c404a6c449a5291a97a6a46117d8bee4d1e559e497a81d9e3b1ec1e82176b0",
+    "updates": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/arm_A_updates.jsonl.gz",
+    "updates_sha256": "4f07173b6e5357cb15ec5c62f2990e798fe0e0bfa28c0021b24b236bca0ff82a"
+  },
+  "consistency": {
+    "row_count_matches_stream": true,
+    "terminal_rows_equal_games_done": true,
+    "rows_at_least_terminal": true,
+    "all_seeds_reached_budget": true,
+    "single_initialization_source": true,
+    "zero_invalid_actions": true
+  }
+}

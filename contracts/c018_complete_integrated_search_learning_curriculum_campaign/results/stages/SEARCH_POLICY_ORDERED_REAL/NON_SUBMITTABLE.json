@@ -1,0 +1,24 @@
+{
+  "stage": "SEARCH_POLICY_ORDERED_REAL",
+  "candidate_id": "m04_guided_ordering_only",
+  "description": "real search with learned candidate ordering and the HEURISTIC leaf evaluator",
+  "produced": true,
+  "checkpoint": "m03_curriculum.npz",
+  "checkpoint_sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08",
+  "panel_result": {
+    "games": 400,
+    "overall_rate": 0.2125,
+    "overall_ci": [
+      0.1752,
+      0.2552
+    ],
+    "worst_matchup": "dragapult",
+    "worst_matchup_rate": 0.12
+  },
+  "package": null,
+  "package_sha256": null,
+  "clean_extraction_ok": null,
+  "submittable": false,
+  "status": "NON_SUBMITTABLE",
+  "reason": "no clean-validated inference-only package exists for this stage; it is evaluated and archived but cannot be uploaded"
+}

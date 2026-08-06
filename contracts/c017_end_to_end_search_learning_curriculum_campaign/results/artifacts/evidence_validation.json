@@ -1,0 +1,115 @@
+{
+  "n_checks": 13,
+  "n_passed": 13,
+  "n_critical_failures": 0,
+  "checks": [
+    {
+      "check": "no_stale_contract_identifier",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "hits": []
+      }
+    },
+    {
+      "check": "no_zero_denominator_success",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "hits": []
+      }
+    },
+    {
+      "check": "panel_denominators_match_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "mismatches": []
+      }
+    },
+    {
+      "check": "every_panel_record_self_identifies",
+      "passed": true,
+      "critical": true,
+      "detail": null
+    },
+    {
+      "check": "no_game_zero_promotion",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "game_zero_entries": 1
+      }
+    },
+    {
+      "check": "planned_mix_not_reported_as_actual",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "blocks": 2
+      }
+    },
+    {
+      "check": "checkpoint_freshness_content_addressed",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "status": "PASS",
+        "distinct_eval_checkpoint_hashes": 1,
+        "content_addressed": true,
+        "note": "each evaluation runs against a path that varies with the checkpoint bytes, so a per-path hash cache cannot return a stale value"
+      }
+    },
+    {
+      "check": "search_redaction_clean",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "redaction_clean": true
+      }
+    },
+    {
+      "check": "baseline_package_hash_matches_submission",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "submitted": "44416b1c1056063b5f10ac5eabe003d6d88cc4e82c0d6869e7f286331d7f9e66",
+        "on_disk": "44416b1c1056063b5f10ac5eabe003d6d88cc4e82c0d6869e7f286331d7f9e66"
+      }
+    },
+    {
+      "check": "source_bundle_present:complete_repository_source.zip",
+      "passed": true,
+      "critical": false,
+      "detail": null
+    },
+    {
+      "check": "source_bundle_present:c017_competition_source_bundle.zip",
+      "passed": true,
+      "critical": false,
+      "detail": null
+    },
+    {
+      "check": "c005_to_c016_unmodified",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "files_checked": 2050,
+        "modified": []
+      }
+    },
+    {
+      "check": "pass_requires_baseline_and_trusted_post_baseline_submission",
+      "passed": true,
+      "critical": false,
+      "detail": {
+        "accepted_baseline": true,
+        "accepted_post_baseline": false,
+        "consequence": "PASS is unavailable without BOTH; c017 finishes PARTIAL when no post-baseline candidate qualifies"
+      }
+    }
+  ],
+  "overall": "PASS",
+  "accepted_baseline": true,
+  "accepted_post_baseline": false
+}

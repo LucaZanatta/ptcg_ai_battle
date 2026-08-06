@@ -1,0 +1,25 @@
+test_attach_beats_item_plays_when_energy_not_yet_attached (tests.test_c014_expert.AttachmentOutranksCardPlays.test_attach_beats_item_plays_when_energy_not_yet_attached) ... ok
+test_attach_is_deprioritised_once_spent (tests.test_c014_expert.AttachmentOutranksCardPlays.test_attach_is_deprioritised_once_spent) ... ok
+test_benching_outranks_items_when_bench_is_empty (tests.test_c014_expert.BenchLiability.test_benching_outranks_items_when_bench_is_empty) ... ok
+test_deck_contains_the_evolution_line (tests.test_c014_expert.DeckIntegrity.test_deck_contains_the_evolution_line) ... ok
+test_deck_is_exactly_60_cards (tests.test_c014_expert.DeckIntegrity.test_deck_is_exactly_60_cards) ... ok
+test_deck_is_not_dragapult (tests.test_c014_expert.DeckIntegrity.test_deck_is_not_dragapult) ... ok
+test_basic_metal_energy_is_discarded_before_other_cards (tests.test_c014_expert.DiscardBanksEnergy.test_basic_metal_energy_is_discarded_before_other_cards) ... ok
+test_duraludon_is_discarded_last (tests.test_c014_expert.DiscardBanksEnergy.test_duraludon_is_discarded_last) ... ok
+test_evolve_beats_every_other_main_action (tests.test_c014_expert.EvolutionIsTopPriority.test_evolve_beats_every_other_main_action) ... ok
+test_deck_returned_on_none_select_and_state_resets (tests.test_c014_expert.LegalityAndFallback.test_deck_returned_on_none_select_and_state_resets) ... ok
+test_determinism_same_state_same_choice (tests.test_c014_expert.LegalityAndFallback.test_determinism_same_state_same_choice) ... ok
+test_malformed_state_does_not_raise (tests.test_c014_expert.LegalityAndFallback.test_malformed_state_does_not_raise) ... ok
+test_multiselect_respects_min_and_max (tests.test_c014_expert.LegalityAndFallback.test_multiselect_respects_min_and_max) ... ok
+test_unknown_context_falls_back_legally (tests.test_c014_expert.LegalityAndFallback.test_unknown_context_falls_back_legally) ... ok
+test_source_contains_no_search_or_learning (tests.test_c014_expert.NoForbiddenTechniques.test_source_contains_no_search_or_learning) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c014_expert.py:183: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/tools/c014_archaludon_expert.py' mode='r' encoding='UTF-8'>
+  src = open(os.path.join(_REPO, "tools", "c014_archaludon_expert.py")).read().lower()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_cinderace_preferred_as_setup_active (tests.test_c014_expert.SetupAndPromotion.test_cinderace_preferred_as_setup_active) ... ok
+test_promotion_prefers_archaludon (tests.test_c014_expert.SetupAndPromotion.test_promotion_prefers_archaludon) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.002s
+
+OK

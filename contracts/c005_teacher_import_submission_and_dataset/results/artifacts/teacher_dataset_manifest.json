@@ -1,0 +1,39 @@
+{
+  "teacher_id": "dragapult",
+  "teacher_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "backup": "mega_lucario",
+  "opponents": [
+    "mega_lucario",
+    "mega_abomasnow",
+    "iono",
+    "__control__",
+    "dragapult"
+  ],
+  "generated_at_utc": "2026-07-24T09:20:09.688913+00:00",
+  "total_games": 240,
+  "valid_games": 240,
+  "teacher_decisions": 19050,
+  "stopping_reason": "targets_met",
+  "splits": {
+    "train": 13795,
+    "validation": 2991,
+    "test": 2264
+  },
+  "split_games": {
+    "train": 170,
+    "validation": 37,
+    "test": 33
+  },
+  "min_games": 240,
+  "target_decisions": 8000,
+  "high_impact_contexts": [
+    "ACTIVATE",
+    "DISCARD",
+    "EVOLVE",
+    "MAIN",
+    "SWITCH",
+    "TO_ACTIVE",
+    "TO_BENCH",
+    "TO_HAND"
+  ]
+}

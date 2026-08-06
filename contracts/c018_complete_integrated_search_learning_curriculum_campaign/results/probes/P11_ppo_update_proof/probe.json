@@ -1,0 +1,29 @@
+{
+  "probe_id": "P11",
+  "name": "ppo_update_proof",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "raw_game_rows": 81920,
+    "raw_games_completed": 81920,
+    "reported_games": 81920,
+    "games_match": true,
+    "raw_update_rows": 80,
+    "recounted_optimizer_steps": 66604,
+    "reported_optimizer_steps": 66604,
+    "steps_match": true,
+    "blocks_that_moved_weights": 80,
+    "blocks": 80,
+    "distinct_post_update_hashes": 80,
+    "all_losses_finite": true,
+    "trainable_decisions": 4252231
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/curriculum_report.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_curriculum_games.jsonl.gz",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/rollouts/m03_curriculum_updates.jsonl.gz"
+  ]
+}

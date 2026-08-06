@@ -1,0 +1,114 @@
+{
+  "det_cabt": {
+    "opponents": [
+      {
+        "opponent": "det_starter",
+        "balanced_rate": 0.495,
+        "lower_bound_95": 0.42500000000000004,
+        "upper_bound_95": 0.565
+      },
+      {
+        "opponent": "random_starter",
+        "balanced_rate": 0.8500000000000001,
+        "lower_bound_95": 0.7250000000000001,
+        "upper_bound_95": 0.95
+      },
+      {
+        "opponent": "random_cabt",
+        "balanced_rate": 0.875,
+        "lower_bound_95": 0.7749999999999999,
+        "upper_bound_95": 0.975
+      }
+    ],
+    "worst": {
+      "opponent": "det_starter",
+      "balanced_rate": 0.495,
+      "lower_bound_95": 0.42500000000000004,
+      "upper_bound_95": 0.565
+    }
+  },
+  "det_starter": {
+    "opponents": [
+      {
+        "opponent": "det_cabt",
+        "balanced_rate": 0.505,
+        "lower_bound_95": 0.435,
+        "upper_bound_95": 0.575
+      },
+      {
+        "opponent": "random_starter",
+        "balanced_rate": 0.775,
+        "lower_bound_95": 0.625,
+        "upper_bound_95": 0.8999999999999999
+      },
+      {
+        "opponent": "random_cabt",
+        "balanced_rate": 0.8999999999999999,
+        "lower_bound_95": 0.8,
+        "upper_bound_95": 0.975
+      }
+    ],
+    "worst": {
+      "opponent": "det_cabt",
+      "balanced_rate": 0.505,
+      "lower_bound_95": 0.435,
+      "upper_bound_95": 0.575
+    }
+  },
+  "random_cabt": {
+    "opponents": [
+      {
+        "opponent": "det_cabt",
+        "balanced_rate": 0.125,
+        "lower_bound_95": 0.025,
+        "upper_bound_95": 0.225
+      },
+      {
+        "opponent": "det_starter",
+        "balanced_rate": 0.1,
+        "lower_bound_95": 0.025,
+        "upper_bound_95": 0.2
+      },
+      {
+        "opponent": "random_starter",
+        "balanced_rate": 0.275,
+        "lower_bound_95": 0.15,
+        "upper_bound_95": 0.42500000000000004
+      }
+    ],
+    "worst": {
+      "opponent": "det_cabt",
+      "balanced_rate": 0.125,
+      "lower_bound_95": 0.025,
+      "upper_bound_95": 0.225
+    }
+  },
+  "random_starter": {
+    "opponents": [
+      {
+        "opponent": "det_cabt",
+        "balanced_rate": 0.15000000000000002,
+        "lower_bound_95": 0.05,
+        "upper_bound_95": 0.275
+      },
+      {
+        "opponent": "det_starter",
+        "balanced_rate": 0.225,
+        "lower_bound_95": 0.1,
+        "upper_bound_95": 0.35
+      },
+      {
+        "opponent": "random_cabt",
+        "balanced_rate": 0.725,
+        "lower_bound_95": 0.575,
+        "upper_bound_95": 0.8500000000000001
+      }
+    ],
+    "worst": {
+      "opponent": "det_cabt",
+      "balanced_rate": 0.15000000000000002,
+      "lower_bound_95": 0.05,
+      "upper_bound_95": 0.275
+    }
+  }
+}

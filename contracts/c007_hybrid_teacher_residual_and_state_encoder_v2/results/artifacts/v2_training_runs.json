@@ -1,0 +1,720 @@
+{
+  "contract": "c007",
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "max_epochs": 22,
+  "batch_size": 256,
+  "patience": 5,
+  "lr": 0.0015,
+  "aux_coef": {
+    "plan": 0.3,
+    "support": 0.3,
+    "value": 0.3
+  },
+  "param_count": 538770,
+  "wall_seconds": 2921.6,
+  "runs": {
+    "V2_A": {
+      "101": {
+        "best_val_iw": 0.7017504821243139,
+        "best_epoch": 8,
+        "param_count": 536961,
+        "checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_seed101.npz",
+        "sha256": "4764bea6ce9dce4bc54c16125e3bde422e8dbb5e8016b64879c48c318aa01310",
+        "history": [
+          {
+            "epoch": 0,
+            "train_loss": 1.7571628460794604,
+            "val_iw_agreement": 0.6211244622459575,
+            "val_exact": 0.6443613041154462,
+            "sec": 31.9
+          },
+          {
+            "epoch": 1,
+            "train_loss": 1.303158469488798,
+            "val_iw_agreement": 0.664701082925382,
+            "val_exact": 0.6856226616782469,
+            "sec": 31.3
+          },
+          {
+            "epoch": 2,
+            "train_loss": 1.1778462425927345,
+            "val_iw_agreement": 0.6846906987093903,
+            "val_exact": 0.7020844468198825,
+            "sec": 30.9
+          },
+          {
+            "epoch": 3,
+            "train_loss": 1.0908953357922777,
+            "val_iw_agreement": 0.6752336448598131,
+            "val_exact": 0.6963121325494388,
+            "sec": 31.2
+          },
+          {
+            "epoch": 4,
+            "train_loss": 1.029288850131673,
+            "val_iw_agreement": 0.6862483311081442,
+            "val_exact": 0.705184393372528,
+            "sec": 31.0
+          },
+          {
+            "epoch": 5,
+            "train_loss": 0.9638982818648545,
+            "val_iw_agreement": 0.6906616229046135,
+            "val_exact": 0.7095670764297167,
+            "sec": 31.0
+          },
+          {
+            "epoch": 6,
+            "train_loss": 0.904141584334958,
+            "val_iw_agreement": 0.6957053849577214,
+            "val_exact": 0.7129877071084981,
+            "sec": 31.2
+          },
+          {
+            "epoch": 7,
+            "train_loss": 0.8498338417530458,
+            "val_iw_agreement": 0.7005637145824062,
+            "val_exact": 0.7167290219134153,
+            "sec": 31.0
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.8065565808887522,
+            "val_iw_agreement": 0.7017504821243139,
+            "val_exact": 0.7190807055050775,
+            "sec": 30.6
+          },
+          {
+            "epoch": 9,
+            "train_loss": 0.7612521375747445,
+            "val_iw_agreement": 0.6883622607921673,
+            "val_exact": 0.7093532870122929,
+            "sec": 34.3
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.7258618254454682,
+            "val_iw_agreement": 0.6918483904465212,
+            "val_exact": 0.7107429182255478,
+            "sec": 33.8
+          },
+          {
+            "epoch": 11,
+            "train_loss": 0.6857011960740677,
+            "val_iw_agreement": 0.6931835039311675,
+            "val_exact": 0.7152324959914484,
+            "sec": 30.9
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.6458713324555991,
+            "val_iw_agreement": 0.6918113039608367,
+            "val_exact": 0.7129877071084981,
+            "sec": 30.9
+          },
+          {
+            "epoch": 13,
+            "train_loss": 0.6256275035600798,
+            "val_iw_agreement": 0.6920338228749444,
+            "val_exact": 0.711811865312667,
+            "sec": 31.0
+          }
+        ]
+      },
+      "202": {
+        "best_val_iw": 0.7074618009197449,
+        "best_epoch": 8,
+        "param_count": 536961,
+        "checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_seed202.npz",
+        "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+        "history": [
+          {
+            "epoch": 0,
+            "train_loss": 1.7781354181061209,
+            "val_iw_agreement": 0.6150793650793651,
+            "val_exact": 0.6413682522715125,
+            "sec": 32.4
+          },
+          {
+            "epoch": 1,
+            "train_loss": 1.3371984065912952,
+            "val_iw_agreement": 0.6655540720961282,
+            "val_exact": 0.6853019775521112,
+            "sec": 35.5
+          },
+          {
+            "epoch": 2,
+            "train_loss": 1.1735700706264625,
+            "val_iw_agreement": 0.6815754339118825,
+            "val_exact": 0.7012292891501871,
+            "sec": 36.0
+          },
+          {
+            "epoch": 3,
+            "train_loss": 1.0996505896116526,
+            "val_iw_agreement": 0.6700044503782822,
+            "val_exact": 0.6896846606092999,
+            "sec": 33.3
+          },
+          {
+            "epoch": 4,
+            "train_loss": 1.034369479946083,
+            "val_iw_agreement": 0.6999332443257676,
+            "val_exact": 0.7163014430785676,
+            "sec": 31.3
+          },
+          {
+            "epoch": 5,
+            "train_loss": 0.9901374503384851,
+            "val_iw_agreement": 0.6974113632992137,
+            "val_exact": 0.7157669695350081,
+            "sec": 31.5
+          },
+          {
+            "epoch": 6,
+            "train_loss": 0.9264909338915693,
+            "val_iw_agreement": 0.7028630766948524,
+            "val_exact": 0.7202565473009086,
+            "sec": 34.3
+          },
+          {
+            "epoch": 7,
+            "train_loss": 0.8881609942093268,
+            "val_iw_agreement": 0.6968921524996291,
+            "val_exact": 0.7165152324959915,
+            "sec": 35.7
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.8371280608537,
+            "val_iw_agreement": 0.7074618009197449,
+            "val_exact": 0.7253874933190807,
+            "sec": 35.0
+          },
+          {
+            "epoch": 9,
+            "train_loss": 0.7892231620072581,
+            "val_iw_agreement": 0.6986723038124907,
+            "val_exact": 0.7169428113308391,
+            "sec": 33.9
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.7454641119777895,
+            "val_iw_agreement": 0.6941106660732829,
+            "val_exact": 0.7143773383217531,
+            "sec": 35.7
+          },
+          {
+            "epoch": 11,
+            "train_loss": 0.7045187478470933,
+            "val_iw_agreement": 0.6914404391039906,
+            "val_exact": 0.7115980758952432,
+            "sec": 36.5
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.6716564085065511,
+            "val_iw_agreement": 0.7068313306631063,
+            "val_exact": 0.7245323356493854,
+            "sec": 35.5
+          },
+          {
+            "epoch": 13,
+            "train_loss": 0.6487367199163694,
+            "val_iw_agreement": 0.698449784898383,
+            "val_exact": 0.7177979690005345,
+            "sec": 35.1
+          }
+        ]
+      },
+      "303": {
+        "best_val_iw": 0.703678979379914,
+        "best_epoch": 12,
+        "param_count": 536961,
+        "checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_seed303.npz",
+        "sha256": "b6f749051341ee8144e89a236690b951f795f04a66af4fad64accf31a95f64fc",
+        "history": [
+          {
+            "epoch": 0,
+            "train_loss": 1.7906171163767841,
+            "val_iw_agreement": 0.6074024625426495,
+            "val_exact": 0.6333511491181186,
+            "sec": 35.1
+          },
+          {
+            "epoch": 1,
+            "train_loss": 1.3399777555823504,
+            "val_iw_agreement": 0.6609182613855511,
+            "val_exact": 0.6780331373597007,
+            "sec": 33.7
+          },
+          {
+            "epoch": 2,
+            "train_loss": 1.1876202721675775,
+            "val_iw_agreement": 0.6699673638925976,
+            "val_exact": 0.689363976483164,
+            "sec": 31.5
+          },
+          {
+            "epoch": 3,
+            "train_loss": 1.1062453536151575,
+            "val_iw_agreement": 0.6865450229936211,
+            "val_exact": 0.7055050774986639,
+            "sec": 31.4
+          },
+          {
+            "epoch": 4,
+            "train_loss": 1.0365386401339833,
+            "val_iw_agreement": 0.689845720219552,
+            "val_exact": 0.7053981827899519,
+            "sec": 31.1
+          },
+          {
+            "epoch": 5,
+            "train_loss": 0.9712025686451597,
+            "val_iw_agreement": 0.6958537309004599,
+            "val_exact": 0.713201496525922,
+            "sec": 31.1
+          },
+          {
+            "epoch": 6,
+            "train_loss": 0.9211451797652984,
+            "val_iw_agreement": 0.6934060228452752,
+            "val_exact": 0.7115980758952432,
+            "sec": 31.4
+          },
+          {
+            "epoch": 7,
+            "train_loss": 0.8752365791932528,
+            "val_iw_agreement": 0.7013425307817831,
+            "val_exact": 0.7180117584179583,
+            "sec": 31.6
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.8440627946517416,
+            "val_iw_agreement": 0.70019284972556,
+            "val_exact": 0.7180117584179583,
+            "sec": 31.7
+          },
+          {
+            "epoch": 9,
+            "train_loss": 0.7867117159479083,
+            "val_iw_agreement": 0.6963729417000445,
+            "val_exact": 0.7142704436130412,
+            "sec": 32.2
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.753022066821942,
+            "val_iw_agreement": 0.6935543687880137,
+            "val_exact": 0.7121325494388028,
+            "sec": 32.1
+          },
+          {
+            "epoch": 11,
+            "train_loss": 0.7181549643497693,
+            "val_iw_agreement": 0.7017133956386293,
+            "val_exact": 0.7201496525921967,
+            "sec": 31.8
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.6692183829611402,
+            "val_iw_agreement": 0.703678979379914,
+            "val_exact": 0.7216461785141636,
+            "sec": 32.0
+          },
+          {
+            "epoch": 13,
+            "train_loss": 0.6455208840364323,
+            "val_iw_agreement": 0.7000074172971369,
+            "val_exact": 0.7202565473009086,
+            "sec": 32.4
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.6232947613837047,
+            "val_iw_agreement": 0.6873609256786827,
+            "val_exact": 0.7080705505077499,
+            "sec": 32.1
+          },
+          {
+            "epoch": 15,
+            "train_loss": 0.5978154471480293,
+            "val_iw_agreement": 0.6917371309894674,
+            "val_exact": 0.7127739176910743,
+            "sec": 32.6
+          },
+          {
+            "epoch": 16,
+            "train_loss": 0.5695991242763415,
+            "val_iw_agreement": 0.6892523364485982,
+            "val_exact": 0.709139497594869,
+            "sec": 32.7
+          },
+          {
+            "epoch": 17,
+            "train_loss": 0.562096130815338,
+            "val_iw_agreement": 0.6986352173268061,
+            "val_exact": 0.7185462319615179,
+            "sec": 32.1
+          }
+        ]
+      },
+      "selected_seed": 202,
+      "selected_checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_selected.npz"
+    },
+    "V2_B": {
+      "101": {
+        "best_val_iw": 0.70019284972556,
+        "best_epoch": 10,
+        "param_count": 538770,
+        "checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_B_seed101.npz",
+        "sha256": "8b768480cd79f40c2520dfc3eb2ed824e8a8d1dfb3db98a42a81924fe07c367b",
+        "history": [
+          {
+            "epoch": 0,
+            "train_loss": 2.217312465830405,
+            "val_iw_agreement": 0.6029891707461801,
+            "val_exact": 0.6305718866916088,
+            "sec": 31.3
+          },
+          {
+            "epoch": 1,
+            "train_loss": 1.6343221136162185,
+            "val_iw_agreement": 0.6540943480195817,
+            "val_exact": 0.6774986638161411,
+            "sec": 31.5
+          },
+          {
+            "epoch": 2,
+            "train_loss": 1.4147930817127132,
+            "val_iw_agreement": 0.679016466399644,
+            "val_exact": 0.6957776590058792,
+            "sec": 31.0
+          },
+          {
+            "epoch": 3,
+            "train_loss": 1.2791470249865915,
+            "val_iw_agreement": 0.6683355585224744,
+            "val_exact": 0.6876536611437734,
+            "sec": 31.6
+          },
+          {
+            "epoch": 4,
+            "train_loss": 1.1907287189233478,
+            "val_iw_agreement": 0.6784601691143747,
+            "val_exact": 0.697381079636558,
+            "sec": 31.2
+          },
+          {
+            "epoch": 5,
+            "train_loss": 1.1185284903838733,
+            "val_iw_agreement": 0.6875463581071057,
+            "val_exact": 0.706467129877071,
+            "sec": 31.3
+          },
+          {
+            "epoch": 6,
+            "train_loss": 1.0423471104965076,
+            "val_iw_agreement": 0.6890298175344904,
+            "val_exact": 0.7084981293425976,
+            "sec": 31.2
+          },
+          {
+            "epoch": 7,
+            "train_loss": 0.9919859929619069,
+            "val_iw_agreement": 0.6963358552143599,
+            "val_exact": 0.7153393907001604,
+            "sec": 31.3
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.9384432107766637,
+            "val_iw_agreement": 0.6919596499035752,
+            "val_exact": 0.7114911811865313,
+            "sec": 31.0
+          },
+          {
+            "epoch": 9,
+            "train_loss": 0.8928934618460597,
+            "val_iw_agreement": 0.6943702714730752,
+            "val_exact": 0.7122394441475147,
+            "sec": 31.8
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.8581878939554982,
+            "val_iw_agreement": 0.70019284972556,
+            "val_exact": 0.718439337252806,
+            "sec": 31.2
+          },
+          {
+            "epoch": 11,
+            "train_loss": 0.813060388413024,
+            "val_iw_agreement": 0.6944815309301291,
+            "val_exact": 0.7151256012827365,
+            "sec": 31.2
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.7853415208933071,
+            "val_iw_agreement": 0.683652277110221,
+            "val_exact": 0.7034740780331373,
+            "sec": 31.4
+          },
+          {
+            "epoch": 13,
+            "train_loss": 0.7608958392162538,
+            "val_iw_agreement": 0.6970404984423676,
+            "val_exact": 0.7161945483698557,
+            "sec": 31.1
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.7535758185855698,
+            "val_iw_agreement": 0.6868417148790981,
+            "val_exact": 0.709246392303581,
+            "sec": 31.4
+          },
+          {
+            "epoch": 15,
+            "train_loss": 0.7158796110032256,
+            "val_iw_agreement": 0.6895861148197597,
+            "val_exact": 0.7128808123997862,
+            "sec": 31.5
+          }
+        ]
+      },
+      "202": {
+        "best_val_iw": 0.6937027147307521,
+        "best_epoch": 8,
+        "param_count": 538770,
+        "checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_B_seed202.npz",
+        "sha256": "37b2c434562ab01d61dfc08659618e1efff89b1690ef6c417ddb1c890340e067",
+        "history": [
+          {
+            "epoch": 0,
+            "train_loss": 2.239898714726275,
+            "val_iw_agreement": 0.6091084408841418,
+            "val_exact": 0.6319615179048637,
+            "sec": 31.7
+          },
+          {
+            "epoch": 1,
+            "train_loss": 1.6414962455616873,
+            "val_iw_agreement": 0.6553552885328586,
+            "val_exact": 0.6765366114377338,
+            "sec": 32.0
+          },
+          {
+            "epoch": 2,
+            "train_loss": 1.4023610832864069,
+            "val_iw_agreement": 0.6743806556890669,
+            "val_exact": 0.6940673436664885,
+            "sec": 31.9
+          },
+          {
+            "epoch": 3,
+            "train_loss": 1.2725199929625832,
+            "val_iw_agreement": 0.6659991099243435,
+            "val_exact": 0.6844468198824158,
+            "sec": 32.1
+          },
+          {
+            "epoch": 4,
+            "train_loss": 1.1888032099346901,
+            "val_iw_agreement": 0.6862854175938288,
+            "val_exact": 0.7036878674505612,
+            "sec": 32.0
+          },
+          {
+            "epoch": 5,
+            "train_loss": 1.12257503731434,
+            "val_iw_agreement": 0.6842827473668596,
+            "val_exact": 0.703901656867985,
+            "sec": 31.1
+          },
+          {
+            "epoch": 6,
+            "train_loss": 1.045193242660895,
+            "val_iw_agreement": 0.6877688770212135,
+            "val_exact": 0.7077498663816141,
+            "sec": 31.1
+          },
+          {
+            "epoch": 7,
+            "train_loss": 1.0060507475167029,
+            "val_iw_agreement": 0.6869529743361519,
+            "val_exact": 0.7077498663816141,
+            "sec": 31.4
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.9532756613243155,
+            "val_iw_agreement": 0.6937027147307521,
+            "val_exact": 0.7140566541956174,
+            "sec": 31.4
+          },
+          {
+            "epoch": 9,
+            "train_loss": 0.8990381686015286,
+            "val_iw_agreement": 0.6879543094496365,
+            "val_exact": 0.707963655799038,
+            "sec": 31.2
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.868939508689366,
+            "val_iw_agreement": 0.6794244177421748,
+            "val_exact": 0.7017637626937466,
+            "sec": 31.3
+          },
+          {
+            "epoch": 11,
+            "train_loss": 0.8221869646530594,
+            "val_iw_agreement": 0.6892152499629135,
+            "val_exact": 0.7097808658471406,
+            "sec": 31.3
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.8042940035615734,
+            "val_iw_agreement": 0.6901053256193443,
+            "val_exact": 0.7108498129342598,
+            "sec": 31.1
+          },
+          {
+            "epoch": 13,
+            "train_loss": 0.7607547553178002,
+            "val_iw_agreement": 0.6842456608811749,
+            "val_exact": 0.7053981827899519,
+            "sec": 31.4
+          }
+        ]
+      },
+      "303": {
+        "best_val_iw": 0.6956682984720368,
+        "best_epoch": 9,
+        "param_count": 538770,
+        "checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_B_seed303.npz",
+        "sha256": "a86f342e79c976240c14627a7184f7d48844ef73dc1b72bf9f8c960cc67c65ac",
+        "history": [
+          {
+            "epoch": 0,
+            "train_loss": 2.2431548857062946,
+            "val_iw_agreement": 0.5935692033822875,
+            "val_exact": 0.6168893639764832,
+            "sec": 31.3
+          },
+          {
+            "epoch": 1,
+            "train_loss": 1.674329160870716,
+            "val_iw_agreement": 0.6645156504969589,
+            "val_exact": 0.6808123997862106,
+            "sec": 31.5
+          },
+          {
+            "epoch": 2,
+            "train_loss": 1.4559822828658868,
+            "val_iw_agreement": 0.6731568016614745,
+            "val_exact": 0.6929983965793693,
+            "sec": 31.9
+          },
+          {
+            "epoch": 3,
+            "train_loss": 1.3156140236792182,
+            "val_iw_agreement": 0.6740839638035899,
+            "val_exact": 0.6918225547835383,
+            "sec": 31.4
+          },
+          {
+            "epoch": 4,
+            "train_loss": 1.2171685710988596,
+            "val_iw_agreement": 0.6812416555407209,
+            "val_exact": 0.6990913949759487,
+            "sec": 31.0
+          },
+          {
+            "epoch": 5,
+            "train_loss": 1.131658671066719,
+            "val_iw_agreement": 0.6868417148790981,
+            "val_exact": 0.7067878140032069,
+            "sec": 31.0
+          },
+          {
+            "epoch": 6,
+            "train_loss": 1.0734247440857878,
+            "val_iw_agreement": 0.6700786233496514,
+            "val_exact": 0.689363976483164,
+            "sec": 31.0
+          },
+          {
+            "epoch": 7,
+            "train_loss": 1.01574126696392,
+            "val_iw_agreement": 0.6928497255600059,
+            "val_exact": 0.7137359700694815,
+            "sec": 30.9
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.9736464407870972,
+            "val_iw_agreement": 0.6924417742174751,
+            "val_exact": 0.7114911811865313,
+            "sec": 31.1
+          },
+          {
+            "epoch": 9,
+            "train_loss": 0.9356237790266686,
+            "val_iw_agreement": 0.6956682984720368,
+            "val_exact": 0.7140566541956174,
+            "sec": 31.2
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.893433023711485,
+            "val_iw_agreement": 0.6916629580180982,
+            "val_exact": 0.7109567076429717,
+            "sec": 31.3
+          },
+          {
+            "epoch": 11,
+            "train_loss": 0.854864453322394,
+            "val_iw_agreement": 0.6816866933689364,
+            "val_exact": 0.7045430251202566,
+            "sec": 31.2
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.816566563608947,
+            "val_iw_agreement": 0.693517282302329,
+            "val_exact": 0.7138428647781935,
+            "sec": 31.1
+          },
+          {
+            "epoch": 13,
+            "train_loss": 0.7884439184063586,
+            "val_iw_agreement": 0.6869529743361519,
+            "val_exact": 0.7088188134687333,
+            "sec": 30.9
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.7714311987461419,
+            "val_iw_agreement": 0.6924417742174751,
+            "val_exact": 0.7129877071084981,
+            "sec": 30.8
+          }
+        ]
+      },
+      "selected_seed": 101,
+      "selected_checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_B_selected.npz"
+    }
+  }
+}

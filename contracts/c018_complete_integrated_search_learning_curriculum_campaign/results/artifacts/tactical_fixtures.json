@@ -1,0 +1,2108 @@
+{
+  "probe_id": "P05",
+  "categories": {
+    "missed_lethal": 3,
+    "wrong_attack_or_target": 3,
+    "energy_attachment_route": 3,
+    "evolution_timing": 3,
+    "bench_liability": 3,
+    "resource_reservation": 3,
+    "search_card_sequencing": 3
+  },
+  "categories_covered": 7,
+  "categories_total": 7,
+  "fixtures": {
+    "missed_lethal": [
+      {
+        "game": 1,
+        "decision": 73,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          7,
+          7,
+          13,
+          12,
+          14
+        ],
+        "n_options": 6,
+        "own_bench_size": 4,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            3
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": 0.115667,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.024,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.024,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.024,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          3
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 11,
+          "ms": 1.98
+        },
+        "determinization": {
+          "archetype": "iono",
+          "confidence": 0.8333,
+          "counts": {
+            "my_deck": 37,
+            "my_prize": 6,
+            "my_hand": 6,
+            "opp_deck": 44,
+            "opp_prize": 6,
+            "opp_hand": 4
+          }
+        }
+      },
+      {
+        "game": 1,
+        "decision": 106,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          9,
+          7,
+          13,
+          13,
+          12,
+          14
+        ],
+        "n_options": 7,
+        "own_bench_size": 5,
+        "baseline_action": [
+          2
+        ],
+        "candidate_selects": [
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": 0.621645,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.510167,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.510167,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.510167,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          3
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 10,
+          "ms": 2.3
+        },
+        "determinization": {
+          "archetype": "iono",
+          "confidence": 0.7647,
+          "counts": {
+            "my_deck": 23,
+            "my_prize": 2,
+            "my_hand": 9,
+            "opp_deck": 39,
+            "opp_prize": 6,
+            "opp_hand": 1
+          }
+        }
+      },
+      {
+        "game": 1,
+        "decision": 115,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          9,
+          7,
+          9,
+          7,
+          7,
+          13,
+          13,
+          12,
+          14
+        ],
+        "n_options": 9,
+        "own_bench_size": 5,
+        "baseline_action": [
+          4
+        ],
+        "candidate_selects": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            4
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.895906,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.646061,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.646061,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              4
+            ],
+            "depth": 4,
+            "heuristic_value": 0.645833,
+            "learned_value": null,
+            "is_baseline": true
+          }
+        ],
+        "chosen_line": [
+          1
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            4
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 10,
+          "ms": 99.39
+        },
+        "determinization": {
+          "archetype": "iono",
+          "confidence": 0.7778,
+          "counts": {
+            "my_deck": 19,
+            "my_prize": 1,
+            "my_hand": 10,
+            "opp_deck": 38,
+            "opp_prize": 6,
+            "opp_hand": 1
+          }
+        }
+      }
+    ],
+    "wrong_attack_or_target": [
+      {
+        "game": 0,
+        "decision": 24,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          7,
+          9,
+          13,
+          12,
+          14
+        ],
+        "n_options": 6,
+        "own_bench_size": 4,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            3
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 3,
+            "heuristic_value": 0.085471,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          3
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 12,
+          "ms": 2.35
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 0.5,
+          "counts": {
+            "my_deck": 31,
+            "my_prize": 6,
+            "my_hand": 4,
+            "opp_deck": 40,
+            "opp_prize": 6,
+            "opp_hand": 7
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 30,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          13,
+          12,
+          14
+        ],
+        "n_options": 4,
+        "own_bench_size": 4,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.138236,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.103562,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.011307,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": -0.013367,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          0
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 13,
+          "ms": 2.67
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 0.52,
+          "counts": {
+            "my_deck": 22,
+            "my_prize": 6,
+            "my_hand": 5,
+            "opp_deck": 33,
+            "opp_prize": 6,
+            "opp_hand": 5
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 31,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          13,
+          12,
+          14
+        ],
+        "n_options": 3,
+        "own_bench_size": 5,
+        "baseline_action": [
+          0
+        ],
+        "candidate_selects": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.130807,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.014455,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.011307,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          0
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 11,
+          "ms": 1.97
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 0.52,
+          "counts": {
+            "my_deck": 22,
+            "my_prize": 6,
+            "my_hand": 4,
+            "opp_deck": 33,
+            "opp_prize": 6,
+            "opp_hand": 5
+          }
+        }
+      }
+    ],
+    "energy_attachment_route": [
+      {
+        "game": 0,
+        "decision": 10,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          8,
+          8,
+          8,
+          7,
+          7,
+          8,
+          8,
+          8,
+          7,
+          14
+        ],
+        "n_options": 11,
+        "own_bench_size": 2,
+        "baseline_action": [
+          4
+        ],
+        "candidate_selects": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            4
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.096,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              4
+            ],
+            "depth": 4,
+            "heuristic_value": 0.048,
+            "learned_value": null,
+            "is_baseline": true
+          }
+        ],
+        "chosen_line": [
+          1
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            4
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 13,
+          "ms": 1.7
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 41,
+            "my_prize": 6,
+            "my_hand": 8,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 12,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          7,
+          8,
+          8,
+          8,
+          12,
+          14
+        ],
+        "n_options": 7,
+        "own_bench_size": 2,
+        "baseline_action": [
+          0
+        ],
+        "candidate_selects": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.082,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.082,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.082,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": 0.082,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          0
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 7,
+          "ms": 1.89
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 36,
+            "my_prize": 6,
+            "my_hand": 5,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 14,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          8,
+          8,
+          8,
+          7,
+          12,
+          14
+        ],
+        "n_options": 7,
+        "own_bench_size": 2,
+        "baseline_action": [
+          4
+        ],
+        "candidate_selects": [
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              4
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          4
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 7,
+          "ms": 1.5
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 35,
+            "my_prize": 6,
+            "my_hand": 5,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      }
+    ],
+    "evolution_timing": [
+      {
+        "game": 0,
+        "decision": 44,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          7,
+          7,
+          9,
+          9,
+          14
+        ],
+        "n_options": 6,
+        "own_bench_size": 4,
+        "baseline_action": [
+          3
+        ],
+        "candidate_selects": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": -0.276788,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": -0.322282,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": -0.322282,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          2
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            3
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 16,
+          "ms": 3.24
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 0.5116,
+          "counts": {
+            "my_deck": 11,
+            "my_prize": 5,
+            "my_hand": 5,
+            "opp_deck": 20,
+            "opp_prize": 3,
+            "opp_hand": 5
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 47,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          7,
+          9,
+          9,
+          14
+        ],
+        "n_options": 5,
+        "own_bench_size": 4,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          1
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 7,
+          "ms": 3.87
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 0.5116,
+          "counts": {
+            "my_deck": 8,
+            "my_prize": 5,
+            "my_hand": 6,
+            "opp_deck": 20,
+            "opp_prize": 3,
+            "opp_hand": 5
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 49,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          9,
+          9,
+          14
+        ],
+        "n_options": 4,
+        "own_bench_size": 4,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": -0.300263,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": -0.322282,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          1
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 8,
+          "ms": 3.85
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 0.5116,
+          "counts": {
+            "my_deck": 7,
+            "my_prize": 5,
+            "my_hand": 6,
+            "opp_deck": 20,
+            "opp_prize": 3,
+            "opp_hand": 5
+          }
+        }
+      }
+    ],
+    "bench_liability": [
+      {
+        "game": 0,
+        "decision": 4,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          8,
+          7,
+          7,
+          8,
+          7,
+          7,
+          14
+        ],
+        "n_options": 7,
+        "own_bench_size": 0,
+        "baseline_action": [
+          2
+        ],
+        "candidate_selects": [
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            1
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.0,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          2
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            1
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 10,
+          "ms": 1.79
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 45,
+            "my_prize": 6,
+            "my_hand": 8,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 6,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          8,
+          7,
+          8,
+          7,
+          7,
+          7,
+          14
+        ],
+        "n_options": 7,
+        "own_bench_size": 0,
+        "baseline_action": [
+          5
+        ],
+        "candidate_selects": [
+          [
+            5
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              5
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.0,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          5
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 9,
+          "ms": 2.32
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 44,
+            "my_prize": 6,
+            "my_hand": 8,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 7,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          8,
+          8,
+          7,
+          8,
+          8,
+          7,
+          7,
+          10,
+          14
+        ],
+        "n_options": 9,
+        "own_bench_size": 1,
+        "baseline_action": [
+          7
+        ],
+        "candidate_selects": [
+          [
+            7
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              7
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.024,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          7
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 14,
+          "ms": 1.91
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 44,
+            "my_prize": 6,
+            "my_hand": 7,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      }
+    ],
+    "resource_reservation": [
+      {
+        "game": 0,
+        "decision": 1,
+        "select_context": 41,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          1,
+          2
+        ],
+        "n_options": 2,
+        "own_bench_size": 0,
+        "baseline_action": [
+          0
+        ],
+        "candidate_selects": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.0,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          0
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            1
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 6,
+          "ms": 0.85
+        },
+        "determinization": {
+          "archetype": "unknown",
+          "confidence": 0.0,
+          "counts": {
+            "my_deck": 60,
+            "my_prize": 0,
+            "my_hand": 0,
+            "opp_deck": 60,
+            "opp_prize": 0,
+            "opp_hand": 0
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 3,
+        "select_context": 38,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          0,
+          0
+        ],
+        "n_options": 2,
+        "own_bench_size": 0,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": -0.014,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": -0.014,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          1
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 7,
+          "ms": 8.81
+        },
+        "determinization": {
+          "archetype": "unknown",
+          "confidence": 0.0,
+          "counts": {
+            "my_deck": 47,
+            "my_prize": 6,
+            "my_hand": 6,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 8,
+        "select_context": 8,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          3,
+          3
+        ],
+        "n_options": 2,
+        "own_bench_size": 1,
+        "baseline_action": [
+          0
+        ],
+        "candidate_selects": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.034,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          0
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            1
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 7,
+          "ms": 0.93
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 44,
+            "my_prize": 6,
+            "my_hand": 7,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      }
+    ],
+    "search_card_sequencing": [
+      {
+        "game": 0,
+        "decision": 5,
+        "select_context": 7,
+        "min_count": 0,
+        "max_count": 1,
+        "root_option_types": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "n_options": 9,
+        "own_bench_size": 0,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": 0.01,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          1
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 10,
+          "ms": 1.79
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 45,
+            "my_prize": 6,
+            "my_hand": 7,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 11,
+        "select_context": 0,
+        "min_count": 1,
+        "max_count": 1,
+        "root_option_types": [
+          7,
+          7,
+          7,
+          7,
+          12,
+          14
+        ],
+        "n_options": 6,
+        "own_bench_size": 2,
+        "baseline_action": [
+          1
+        ],
+        "candidate_selects": [
+          [
+            0
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.082,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.058,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": 0.058,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          0
+        ],
+        "line_label": "search_preferred_alternative",
+        "dominated_lines": [
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 12,
+          "ms": 1.74
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 41,
+            "my_prize": 6,
+            "my_hand": 7,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      },
+      {
+        "game": 0,
+        "decision": 13,
+        "select_context": 7,
+        "min_count": 0,
+        "max_count": 1,
+        "root_option_types": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "n_options": 6,
+        "own_bench_size": 2,
+        "baseline_action": [
+          3
+        ],
+        "candidate_selects": [
+          [
+            3
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ]
+        ],
+        "leaf_decomposition": [
+          {
+            "candidate": [
+              3
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": true
+          },
+          {
+            "candidate": [
+              1
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              2
+            ],
+            "depth": 4,
+            "heuristic_value": 0.106,
+            "learned_value": null,
+            "is_baseline": false
+          },
+          {
+            "candidate": [
+              0
+            ],
+            "depth": 4,
+            "heuristic_value": 0.082,
+            "learned_value": null,
+            "is_baseline": false
+          }
+        ],
+        "chosen_line": [
+          3
+        ],
+        "line_label": "baseline_retained",
+        "dominated_lines": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ]
+        ],
+        "nodes_depth_time": {
+          "depth_max": 4,
+          "distinct_successors": 7,
+          "ms": 1.8
+        },
+        "determinization": {
+          "archetype": "dragapult",
+          "confidence": 1.0,
+          "counts": {
+            "my_deck": 36,
+            "my_prize": 6,
+            "my_hand": 4,
+            "opp_deck": 47,
+            "opp_prize": 6,
+            "opp_hand": 6
+          }
+        }
+      }
+    ]
+  }
+}

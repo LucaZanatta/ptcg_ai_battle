@@ -1,0 +1,264 @@
+test_deck_selection_deterministic_60 (test_agent_integration.TestDeckSelection.test_deck_selection_deterministic_60) ... ok
+test_deck_validation_summary (test_agent_integration.TestDeckSelection.test_deck_validation_summary)
+Deck determinism + rejection, assertions only (c002 §5.4: no file writes). ... ok
+test_invalid_deck_length_rejected (test_agent_integration.TestDeckSelection.test_invalid_deck_length_rejected) ... ok
+test_malformed_card_id_rejected (test_agent_integration.TestDeckSelection.test_malformed_card_id_rejected) ... ok
+test_agent_runs_as_both_players (test_agent_integration.TestHarnessSmoke.test_agent_runs_as_both_players) ... /home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:36: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  reasoning: Optional[str] = Field(
+/home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:39: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  perceived_threat_level: Optional[PerceivedThreatLevel] = Field(
+/home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:42: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  action: Optional[BaseAction] = Field(default=None, access=DataAccessLevel.PERSONAL)
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: Successfully loaded OpenSpiel environments: 31.
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_amazons
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_backgammon
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_ant_foraging
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_checkers
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_chess
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_clobber
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game_arena
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_connect_four
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dark_hex
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dots_and_boxes
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_gin_rummy
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_go
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_goofspiel
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_havannah
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hearts
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hex
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_lines_of_action
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_mancala
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_matching_pennies_3p
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_negotiation
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_oshi_zumo
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_othello
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_game
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_tic_tac_toe
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_ultimate_tic_tac_toe
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.
+ok
+test_capture_does_not_touch_historical_results (test_episode_capture.TestNoContractResultWrites.test_capture_does_not_touch_historical_results) ... ok
+test_json_safe_and_records_omitted (test_episode_capture.TestNormalizeObservation.test_json_safe_and_records_omitted) ... ok
+test_capturing_agent_preserves_result (test_episode_capture.TestSafeBehaviorUnchanged.test_capturing_agent_preserves_result) ... ok
+test_deck_selection_deterministic (test_episode_capture.TestSafeBehaviorUnchanged.test_deck_selection_deterministic) ... ok
+test_selector_deterministic (test_episode_capture.TestSafeBehaviorUnchanged.test_selector_deterministic) ... ok
+test_stable_and_distinct (test_episode_capture.TestSeedDerivation.test_stable_and_distinct) ... ok
+test_decision_and_terminal_serialization (test_episode_capture.TestSerialization.test_decision_and_terminal_serialization) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_episode_capture.py:81: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpcrkxs3hb/g.jsonl' mode='r' encoding='utf-8'>
+  records = [json.loads(l) for l in open(path, encoding="utf-8")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_jsonl_roundtrip_valid (test_episode_capture.TestSerialization.test_jsonl_roundtrip_valid) ... ok
+test_inconsistent_ordering_detected (test_episode_capture.TestValidatorDetection.test_inconsistent_ordering_detected) ... ok
+test_malformed_json_detected (test_episode_capture.TestValidatorDetection.test_malformed_json_detected) ... ok
+test_out_of_bounds_index_detected (test_episode_capture.TestValidatorDetection.test_out_of_bounds_index_detected) ... ok
+test_manifest_loads_and_has_required_keys (test_runtime_assets.TestManifestLoading.test_manifest_loads_and_has_required_keys) ... ok
+test_symlink_target_ok_and_mismatch (test_runtime_assets.TestSymlinkValidation.test_symlink_target_ok_and_mismatch) ... ok
+test_all_required_assets_pass (test_runtime_assets.TestVerifierCurrentEnv.test_all_required_assets_pass) ... ok
+test_verifier_exit_zero_current_env (test_runtime_assets.TestVerifierCurrentEnv.test_verifier_exit_zero_current_env) ... ok
+test_missing_required_asset_nonzero_exit (test_runtime_assets.TestVerifierNegative.test_missing_required_asset_nonzero_exit) ... ok
+test_load_real_deck_is_valid (test_safe_policy.TestDeck.test_load_real_deck_is_valid) ... ok
+test_parse_deck_ignores_blank_lines (test_safe_policy.TestDeck.test_parse_deck_ignores_blank_lines) ... ok
+test_parse_deck_malformed_id_raises (test_safe_policy.TestDeck.test_parse_deck_malformed_id_raises) ... ok
+test_parse_deck_success (test_safe_policy.TestDeck.test_parse_deck_success) ... ok
+test_parse_deck_wrong_length_raises (test_safe_policy.TestDeck.test_parse_deck_wrong_length_raises) ... ok
+test_all_contexts_compatible (test_safe_policy.TestSelectContextCoverage.test_all_contexts_compatible) ... ok
+test_select_for_duck_typed (test_safe_policy.TestSelectFor.test_select_for_duck_typed) ... ok
+test_select_for_zero (test_safe_policy.TestSelectFor.test_select_for_zero) ... ok
+test_deterministic_repeated (test_safe_policy.TestSelectIndices.test_deterministic_repeated) ... ok
+test_many_options_multi_selection (test_safe_policy.TestSelectIndices.test_many_options_multi_selection) ... ok
+test_many_options_one_selection (test_safe_policy.TestSelectIndices.test_many_options_one_selection) ... ok
+test_max_gt_options_raises (test_safe_policy.TestSelectIndices.test_max_gt_options_raises) ... ok
+test_min_gt_max_raises (test_safe_policy.TestSelectIndices.test_min_gt_max_raises) ... ok
+test_min_zero_max_positive (test_safe_policy.TestSelectIndices.test_min_zero_max_positive) ... ok
+test_negative_counts_raise (test_safe_policy.TestSelectIndices.test_negative_counts_raise) ... ok
+test_no_duplicates_and_in_range (test_safe_policy.TestSelectIndices.test_no_duplicates_and_in_range) ... ok
+test_non_integer_counts_raise (test_safe_policy.TestSelectIndices.test_non_integer_counts_raise) ... ok
+test_one_option_one_selection (test_safe_policy.TestSelectIndices.test_one_option_one_selection) ... ok
+test_zero_options_zero_counts (test_safe_policy.TestSelectIndices.test_zero_options_zero_counts) ... ok
+test_count_out_of_bounds_raise (test_safe_policy.TestValidateBoundsAndSelection.test_count_out_of_bounds_raise) ... ok
+test_duplicates_raise (test_safe_policy.TestValidateBoundsAndSelection.test_duplicates_raise) ... ok
+test_non_list_raises (test_safe_policy.TestValidateBoundsAndSelection.test_non_list_raises) ... ok
+test_out_of_range_raise (test_safe_policy.TestValidateBoundsAndSelection.test_out_of_range_raise) ... ok
+test_valid_selection_ok (test_safe_policy.TestValidateBoundsAndSelection.test_valid_selection_ok) ... ok
+test_validate_bounds_ok (test_safe_policy.TestValidateBoundsAndSelection.test_validate_bounds_ok) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 1.373s
+
+OK
+{
+  "manifest": "runtime_assets.json",
+  "total": 13,
+  "required_failures": 0,
+  "exit_code": 0,
+  "assets": [
+    {
+      "name": "safe_agent_entrypoint",
+      "path": "starter_kit/main.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": true,
+      "ok": true,
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "name": "safe_policy_module",
+      "path": "starter_kit/safe_policy.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": true,
+      "ok": true,
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "name": "episode_capture_module",
+      "path": "starter_kit/episode_capture.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": true,
+      "ok": true,
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "name": "cabt_api",
+      "path": "starter_kit/api.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "size=26933, sha256 ok"
+    },
+    {
+      "name": "cabt_sim_bindings",
+      "path": "starter_kit/sim.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "size=1966, sha256 ok"
+    },
+    {
+      "name": "cabt_game_driver",
+      "path": "starter_kit/game.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "size=2225, sha256 ok"
+    },
+    {
+      "name": "cabt_utils",
+      "path": "starter_kit/utils.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "size=1970, sha256 ok"
+    },
+    {
+      "name": "starter_kit_package_init",
+      "path": "starter_kit/__init__.py",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "size=0, sha256 ok"
+    },
+    {
+      "name": "competition_deck",
+      "path": "starter_kit/deck.csv",
+      "kind": "file",
+      "asset_type": "data",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "size=245, sha256 ok"
+    },
+    {
+      "name": "cabt_native_engine",
+      "path": "starter_kit/libcg.so",
+      "kind": "file",
+      "asset_type": "binary",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "size=1338304, sha256 ok"
+    },
+    {
+      "name": "cg_root_symlink",
+      "path": "cg",
+      "kind": "symlink",
+      "asset_type": "symlink",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "-> starter_kit"
+    },
+    {
+      "name": "cg_inner_symlink",
+      "path": "starter_kit/cg",
+      "kind": "symlink",
+      "asset_type": "symlink",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "-> ."
+    },
+    {
+      "name": "kaggle_environments_cabt",
+      "path": "kaggle_environments:cabt",
+      "kind": "python_env",
+      "asset_type": "external",
+      "required": true,
+      "must_be_tracked": false,
+      "ok": true,
+      "status": "PASS",
+      "detail": "import ok; env 'cabt' registered"
+    }
+  ]
+}
+{
+  "manifest": "../../../../tmp/tmp3e5tn76_.json",
+  "total": 1,
+  "required_failures": 1,
+  "exit_code": 1,
+  "assets": [
+    {
+      "name": "definitely_missing",
+      "path": "no/such/file_xyz.bin",
+      "kind": "file",
+      "asset_type": "source",
+      "required": true,
+      "must_be_tracked": true,
+      "ok": false,
+      "status": "FAIL",
+      "detail": "file missing"
+    }
+  ]
+}

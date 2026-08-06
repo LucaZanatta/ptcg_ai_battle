@@ -1,0 +1,151 @@
+{
+  "regressions": [
+    {
+      "student": "S1",
+      "opponent": "mega_lucario",
+      "student_seat_balanced": 0.25,
+      "teacher_seat_balanced": 0.5,
+      "delta_pp": -25.0,
+      "prob_regression": 0.9705,
+      "major_regression": true
+    },
+    {
+      "student": "S1",
+      "opponent": "mega_abomasnow",
+      "student_seat_balanced": 0.25,
+      "teacher_seat_balanced": 0.6,
+      "delta_pp": -35.0,
+      "prob_regression": 0.998,
+      "major_regression": true
+    },
+    {
+      "student": "S1",
+      "opponent": "iono",
+      "student_seat_balanced": 0.125,
+      "teacher_seat_balanced": 0.7666666666666667,
+      "delta_pp": -64.16666666666667,
+      "prob_regression": 1.0,
+      "major_regression": true
+    },
+    {
+      "student": "S1",
+      "opponent": "mirror",
+      "student_seat_balanced": 0.125,
+      "teacher_seat_balanced": 0.55,
+      "delta_pp": -42.50000000000001,
+      "prob_regression": 1.0,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "mega_lucario",
+      "student_seat_balanced": 0.175,
+      "teacher_seat_balanced": 0.5,
+      "delta_pp": -32.5,
+      "prob_regression": 0.9985,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "mega_abomasnow",
+      "student_seat_balanced": 0.15,
+      "teacher_seat_balanced": 0.6,
+      "delta_pp": -44.99999999999999,
+      "prob_regression": 0.9995,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "iono",
+      "student_seat_balanced": 0.15,
+      "teacher_seat_balanced": 0.7666666666666667,
+      "delta_pp": -61.66666666666667,
+      "prob_regression": 1.0,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "mirror",
+      "student_seat_balanced": 0.125,
+      "teacher_seat_balanced": 0.55,
+      "delta_pp": -42.50000000000001,
+      "prob_regression": 1.0,
+      "major_regression": true
+    }
+  ],
+  "major_regressions": [
+    {
+      "student": "S1",
+      "opponent": "mega_lucario",
+      "student_seat_balanced": 0.25,
+      "teacher_seat_balanced": 0.5,
+      "delta_pp": -25.0,
+      "prob_regression": 0.9705,
+      "major_regression": true
+    },
+    {
+      "student": "S1",
+      "opponent": "mega_abomasnow",
+      "student_seat_balanced": 0.25,
+      "teacher_seat_balanced": 0.6,
+      "delta_pp": -35.0,
+      "prob_regression": 0.998,
+      "major_regression": true
+    },
+    {
+      "student": "S1",
+      "opponent": "iono",
+      "student_seat_balanced": 0.125,
+      "teacher_seat_balanced": 0.7666666666666667,
+      "delta_pp": -64.16666666666667,
+      "prob_regression": 1.0,
+      "major_regression": true
+    },
+    {
+      "student": "S1",
+      "opponent": "mirror",
+      "student_seat_balanced": 0.125,
+      "teacher_seat_balanced": 0.55,
+      "delta_pp": -42.50000000000001,
+      "prob_regression": 1.0,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "mega_lucario",
+      "student_seat_balanced": 0.175,
+      "teacher_seat_balanced": 0.5,
+      "delta_pp": -32.5,
+      "prob_regression": 0.9985,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "mega_abomasnow",
+      "student_seat_balanced": 0.15,
+      "teacher_seat_balanced": 0.6,
+      "delta_pp": -44.99999999999999,
+      "prob_regression": 0.9995,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "iono",
+      "student_seat_balanced": 0.15,
+      "teacher_seat_balanced": 0.7666666666666667,
+      "delta_pp": -61.66666666666667,
+      "prob_regression": 1.0,
+      "major_regression": true
+    },
+    {
+      "student": "S2",
+      "opponent": "mirror",
+      "student_seat_balanced": 0.125,
+      "teacher_seat_balanced": 0.55,
+      "delta_pp": -42.50000000000001,
+      "prob_regression": 1.0,
+      "major_regression": true
+    }
+  ],
+  "rule": "major regression iff student seat-balanced >=10pp below teacher vs same opponent AND bootstrap P(regression>=10pp) >= 0.90"
+}

@@ -1,0 +1,168 @@
+{
+  "tag": "c020_recheck",
+  "protocol": {
+    "frozen_at_commit": "3b03cfe3479bcf518fa7d0f458a5ffc27410cac7",
+    "candidates": [
+      "ptcg_ismcts_hybrid_v0",
+      "ptcg_ismcts_v0"
+    ],
+    "opponents": [
+      "dragapult",
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow"
+    ],
+    "games_per_pair": 10,
+    "total_games": 80,
+    "seed_base": 1990,
+    "seed_list": [
+      1990,
+      1991,
+      1992,
+      1993,
+      1994,
+      1995,
+      1996,
+      1997,
+      1998,
+      1999,
+      11997,
+      11998,
+      11999,
+      12000,
+      12001,
+      12002,
+      12003,
+      12004,
+      12005,
+      12006,
+      22004,
+      22005,
+      22006,
+      22007,
+      22008,
+      22009,
+      22010,
+      22011,
+      22012,
+      22013,
+      32011,
+      32012,
+      32013,
+      32014,
+      32015,
+      32016,
+      32017,
+      32018,
+      32019,
+      32020
+    ],
+    "seat_assignment": "alternating by pair index; identical across candidates",
+    "identical_opponent_and_seat_schedule_across_candidates": true,
+    "identical_agent_side_seeds_across_candidates": true,
+    "identical_environment_randomness_across_candidates": false,
+    "environment_seed_available": false,
+    "uncontrolled_variance_note": "kaggle_environments make('cabt') accepts no seed, so shuffle/flip randomness is not paired between candidates. Differences smaller than the reported Wilson intervals should not be read as method differences.",
+    "scoring": "win 1.0, draw 0.5, loss 0.0; unscored unless both seats are DONE",
+    "ranking": "external score evidence, then common-panel field score, then score vs frozen baseline/Dragapult, then worst meaningful matchup, then package reliability and latency (\u00a711)",
+    "config": {
+      "mcts": {
+        "simulations_per_determinization": 12,
+        "determinizations": 1,
+        "max_ms_per_decision": 120
+      },
+      "byterl_checkpoint": "contracts/c019_dual_method_campaign_ptcg_mcts_and_byterl/results/byterl/checkpoints/scaled2/scaled2_v40357.pt",
+      "leaf_value_calibrated": true
+    },
+    "deck": "mega_lucario, frozen for both methods (\u00a74)",
+    "safe_random_agents": "not included; \u00a711 makes them reliability checks only"
+  },
+  "results": [
+    {
+      "candidate_id": "ptcg_ismcts_v0",
+      "dragapult_games": 10,
+      "dragapult_rate": 0.1,
+      "dragapult_ci": [
+        0.0179,
+        0.4042
+      ],
+      "mega_lucario_games": 10,
+      "mega_lucario_rate": 0.4,
+      "mega_lucario_ci": [
+        0.1682,
+        0.6873
+      ],
+      "iono_games": 10,
+      "iono_rate": 0.7,
+      "iono_ci": [
+        0.3968,
+        0.8922
+      ],
+      "mega_abomasnow_games": 10,
+      "mega_abomasnow_rate": 0.8,
+      "mega_abomasnow_ci": [
+        0.4902,
+        0.9433
+      ],
+      "games": 40,
+      "field_score": 0.5,
+      "field_ci": [
+        0.352,
+        0.648
+      ],
+      "worst_matchup": "dragapult",
+      "worst_matchup_rate": 0.1,
+      "mean_search_match_ms": 4850.4,
+      "max_search_match_ms": 10191.6,
+      "mean_game_seconds": 5.26,
+      "max_game_seconds": 10.96,
+      "incomplete_games": 0
+    },
+    {
+      "candidate_id": "ptcg_ismcts_hybrid_v0",
+      "dragapult_games": 10,
+      "dragapult_rate": 0.0,
+      "dragapult_ci": [
+        -0.0,
+        0.2775
+      ],
+      "mega_lucario_games": 10,
+      "mega_lucario_rate": 0.1,
+      "mega_lucario_ci": [
+        0.0179,
+        0.4042
+      ],
+      "iono_games": 10,
+      "iono_rate": 0.2,
+      "iono_ci": [
+        0.0567,
+        0.5098
+      ],
+      "mega_abomasnow_games": 10,
+      "mega_abomasnow_rate": 0.1,
+      "mega_abomasnow_ci": [
+        0.0179,
+        0.4042
+      ],
+      "games": 40,
+      "field_score": 0.1,
+      "field_ci": [
+        0.0396,
+        0.2305
+      ],
+      "worst_matchup": "dragapult",
+      "worst_matchup_rate": 0.0,
+      "mean_search_match_ms": 4330.6,
+      "max_search_match_ms": 8816.4,
+      "mean_game_seconds": 4.7,
+      "max_game_seconds": 9.24,
+      "incomplete_games": 0
+    }
+  ],
+  "played_games": 80,
+  "scored_games": 80,
+  "incomplete_games": 0,
+  "raw_file": "final_panel/c020_recheck_raw_games.jsonl.gz",
+  "raw_sha256": "3370b56028b2c9ebc30ec18cdfa132a7c3cca0a310c0fa778d7ff617bb02182d",
+  "wall_clock_s": 71.1
+}

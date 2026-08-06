@@ -1,0 +1,19 @@
+{
+  "prefix": "smoke",
+  "games": 6,
+  "decisions": 356,
+  "trusted_decisions": 331,
+  "trajectory_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/smoke_trajectories.jsonl.gz",
+  "trajectory_sha256": "30497b824a14a25da17d098eea183b100740e737ad9accbec2016b663259ff0a",
+  "feature_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/smoke_features.npz",
+  "config": {
+    "beam_width": 3,
+    "max_candidates": 4,
+    "max_depth": 4,
+    "max_nodes": 40,
+    "max_ms_per_decision": 2500,
+    "max_match_ms": 60000,
+    "version": "c018.search.v1"
+  },
+  "uses_c017_labels": false
+}

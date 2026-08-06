@@ -1,0 +1,52 @@
+{
+  "competition": "pokemon-tcg-ai-battle",
+  "snapshot_at_utc": "2026-08-01T00:18:25.337074+00:00",
+  "run_mode": "score-band stratified sample",
+  "aggregate_only": true,
+  "minimum_classified_teams_to_publish": 3,
+  "score_bands": [
+    "1100+",
+    "1000-1099",
+    "900-999",
+    "800-899",
+    "700-799",
+    "600-699",
+    "500-599"
+  ],
+  "leaderboard_teams": 3314,
+  "matched_submissions": 3314,
+  "decks_retrieved": 1474,
+  "decks_not_retrieved": 1840,
+  "retrieval_coverage": 0.4447797223898612,
+  "http_429_skipped_teams": 1840,
+  "classified_teams": 1474,
+  "overall_ranking_rows": 38,
+  "not_aggregated_teams": 1840,
+  "classification_coverage": 0.4447797223898612,
+  "unique_replays_processed": 1297,
+  "aggregate_error_events": 1840,
+  "api_request_summary": {
+    "request_interval_seconds": 2.0,
+    "batch_size": 100,
+    "batch_cooldown_seconds": 60.0,
+    "batch_cooldowns": 96,
+    "total_api_requests": 9619,
+    "submission_to_episode_cooldown_seconds": 60.0,
+    "team_submission_endpoint_calls": 3314,
+    "temporary_submission_cache_hits": 0,
+    "api_error_events": 1840,
+    "http_429_skipped_requests": 1840,
+    "non_429_error_events": 0
+  },
+  "outputs": [
+    "score_band_top10.csv",
+    "overall_deck_ranking.csv",
+    "classification_coverage.csv",
+    "aggregate_error_summary.csv",
+    "archetype_rules.csv",
+    "score_band_deck_top10.png",
+    "score_band_deck_share_heatmap.png",
+    "leaderboard_deck_meta_report.html",
+    "representative_card_images"
+  ]
+}

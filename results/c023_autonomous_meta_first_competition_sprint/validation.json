@@ -1,42 +1,42 @@
 {
-  "utc": "2026-08-03T18:25:20Z",
+  "utc": "2026-08-05T22:26:27Z",
   "root": "results/c023_autonomous_meta_first_competition_sprint",
   "checks": [
     {
       "id": "V01",
       "title": "every summary score rate is recomputable from its own raw games",
       "status": "PASS",
-      "detail": "15 tags recomputed"
+      "detail": "70 tags recomputed"
     },
     {
       "id": "V02",
       "title": "no summary reports a candidate with zero completed games",
       "status": "PASS",
-      "detail": "15 tags"
+      "detail": "70 tags"
     },
     {
       "id": "V03",
       "title": "every raw game's job_id encodes its own candidate/opponent/seat",
       "status": "PASS",
-      "detail": "60292 records"
+      "detail": "392792 records"
     },
     {
       "id": "V04",
       "title": "every candidate manifest carries deck, base-agent and wrapper hashes",
       "status": "PASS",
-      "detail": "49 manifests"
+      "detail": "347 manifests"
     },
     {
       "id": "V05",
       "title": "no arm reports fewer raw games than it requested without saying so",
       "status": "PASS",
-      "detail": "15 tags"
+      "detail": "70 tags"
     },
     {
       "id": "V06",
       "title": "no summary is older than the raw games it summarises",
       "status": "PASS",
-      "detail": "15 tags"
+      "detail": "70 tags"
     },
     {
       "id": "V07",
@@ -48,7 +48,7 @@
       "id": "V08",
       "title": "error counts in summaries equal the raw non-completed rows",
       "status": "PASS",
-      "detail": "15 tags"
+      "detail": "70 tags"
     },
     {
       "id": "V09",
@@ -66,7 +66,7 @@
       "id": "V11",
       "title": "every evaluated candidate appears in CANDIDATE_HISTORY.jsonl",
       "status": "PASS",
-      "detail": "59 recorded, 51 evaluated"
+      "detail": "359 recorded, 351 evaluated"
     }
   ],
   "injections": [
@@ -98,7 +98,7 @@
     {
       "check": "V06",
       "injection": "backdate a summary behind its games.jsonl",
-      "status": "DETECTED"
+      "status": "UNDETECTED"
     },
     {
       "check": "V07",

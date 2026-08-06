@@ -1,0 +1,194 @@
+{
+  "contract": "c010_fixed_deck_rl_loop_v2",
+  "chain_final_heads": {
+    "c005": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+    "c006": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+    "c007": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+    "c008": "fb6e592c8c333f758014e2d2e94a39261bb63fe6",
+    "c009": "e868dfbbeefc30bcf246cd60e0f51bf6d0043eb8"
+  },
+  "c010_initial_head": "c245fc0608b2bb87bab93cce63338e05fbbfe113",
+  "teacher_id": "dragapult",
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "frozen_deck_fingerprint": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a",
+  "frozen_teacher_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "B0": {
+    "candidate_id": "B0_v2a",
+    "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_selected.npz",
+    "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6"
+  },
+  "I0": {
+    "candidate_id": "R1_101",
+    "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed101/checkpoints/ckpt_g10040.npz",
+    "sha256": "b172b4dc79477821105043398bf04169ead884c0e01975ae2374de915072c682",
+    "training_games": 10040
+  },
+  "c009_derived_scores": {
+    "B0_v2a": {
+      "teacher": 0.16,
+      "field_c010_3opp": 0.15333333333333332,
+      "field_c009_4opp": 0.1525,
+      "per_opponent": {
+        "mega_lucario": 0.16999999999999998,
+        "iono": 0.16999999999999998,
+        "mega_abomasnow": 0.12,
+        "dragapult": 0.15
+      },
+      "n_teacher": 400
+    },
+    "R1_101": {
+      "teacher": 0.22,
+      "field_c010_3opp": 0.29,
+      "field_c009_4opp": 0.255,
+      "per_opponent": {
+        "mega_lucario": 0.36,
+        "iono": 0.24,
+        "mega_abomasnow": 0.27,
+        "dragapult": 0.15
+      },
+      "n_teacher": 400
+    }
+  },
+  "expected_c009_scores": {
+    "B0_v2a": {
+      "teacher": 0.16,
+      "field4": 0.1525
+    },
+    "R1_101": {
+      "teacher": 0.22,
+      "field4": 0.255
+    }
+  },
+  "c010_registered_baselines": {
+    "field_definition": "c010 \u00a717: average balanced score vs Lucario, Iono, Abomasnow (the Dragapult mirror is NOT part of the field; it is the separate teacher score)",
+    "B0": {
+      "teacher": 0.16,
+      "field": 0.15333333333333332
+    },
+    "I0": {
+      "teacher": 0.22,
+      "field": 0.29
+    },
+    "note": "c010 \u00a71 and inputs/c010_context.json quote 15.25% / 25.50% for the field; those are c009's 4-opponent (mirror-inclusive) values, verified above. Under c010's registered \u00a717 metric the same raw games give 15.33% and 29.00%. c010 gates use the \u00a717 values throughout \u2014 using the lower quoted incumbent field would silently weaken the incumbent's protection."
+  },
+  "teacher_submission_ref": "54948560",
+  "runtime_deps": {
+    "numpy": "ok",
+    "scipy": "ok",
+    "kaggle_environments": "ok",
+    "cg": "ok"
+  },
+  "checks": [
+    {
+      "check": "c005_status_and_head",
+      "ok": true,
+      "detail": "{'status': 'PASS', 'head': '4137d983c6a05c0eea8332718d3e7f3acc7b7830'}"
+    },
+    {
+      "check": "c006_status_and_head",
+      "ok": true,
+      "detail": "{'status': 'PASS', 'head': '08ebac88385444a69d0615b7976dea9dbddeb79a'}"
+    },
+    {
+      "check": "c007_status_and_head",
+      "ok": true,
+      "detail": "{'status': 'PASS', 'head': '1f3fc63aaa36be0a45ffce8481c563c89ffa0577'}"
+    },
+    {
+      "check": "c008_status_and_head",
+      "ok": true,
+      "detail": "{'status': 'PASS', 'head': 'fb6e592c8c333f758014e2d2e94a39261bb63fe6'}"
+    },
+    {
+      "check": "c009_status_and_head",
+      "ok": true,
+      "detail": "{'status': 'PASS', 'head': 'e868dfbbeefc30bcf246cd60e0f51bf6d0043eb8'}"
+    },
+    {
+      "check": "commit_chain",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c010_branches_from_c009_final",
+      "ok": true,
+      "detail": "c245fc0608b2bb87bab93cce63338e05fbbfe113"
+    },
+    {
+      "check": "frozen_teacher_main_sha",
+      "ok": true,
+      "detail": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+    },
+    {
+      "check": "frozen_teacher_deck_sha",
+      "ok": true,
+      "detail": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724"
+    },
+    {
+      "check": "frozen_deck_id",
+      "ok": true,
+      "detail": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab"
+    },
+    {
+      "check": "frozen_deck_60_cards",
+      "ok": true,
+      "detail": "60"
+    },
+    {
+      "check": "c009_best_saved_is_R1_101",
+      "ok": true,
+      "detail": "R1_101"
+    },
+    {
+      "check": "i0_is_c008_R1_seed101_near_10040",
+      "ok": true,
+      "detail": "10040"
+    },
+    {
+      "check": "B0_checkpoint_hash_verified",
+      "ok": true,
+      "detail": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6"
+    },
+    {
+      "check": "I0_checkpoint_hash_verified",
+      "ok": true,
+      "detail": "b172b4dc79477821105043398bf04169ead884c0e01975ae2374de915072c682"
+    },
+    {
+      "check": "c009_raw_reproduces_B0_v2a_teacher",
+      "ok": true,
+      "detail": "0.16 vs 0.16"
+    },
+    {
+      "check": "c009_raw_reproduces_B0_v2a_field_c009_definition",
+      "ok": true,
+      "detail": "0.1525 vs 0.1525 (4-opponent, mirror-inclusive)"
+    },
+    {
+      "check": "c009_raw_reproduces_R1_101_teacher",
+      "ok": true,
+      "detail": "0.22 vs 0.22"
+    },
+    {
+      "check": "c009_raw_reproduces_R1_101_field_c009_definition",
+      "ok": true,
+      "detail": "0.255 vs 0.255 (4-opponent, mirror-inclusive)"
+    },
+    {
+      "check": "opponents_present",
+      "ok": true,
+      "detail": "{'dragapult': True, 'mega_lucario': True, 'iono': True, 'mega_abomasnow': True}"
+    },
+    {
+      "check": "teacher_submission_ref",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "runtime_deps",
+      "ok": true,
+      "detail": "{'numpy': 'ok', 'scipy': 'ok', 'kaggle_environments': 'ok', 'cg': 'ok'}"
+    }
+  ],
+  "all_ok": true
+}

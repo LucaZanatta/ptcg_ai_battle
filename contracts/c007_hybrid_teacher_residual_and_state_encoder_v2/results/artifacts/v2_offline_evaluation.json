@@ -1,0 +1,261 @@
+{
+  "contract": "c007",
+  "results": {
+    "V2_A": {
+      "checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_selected.npz",
+      "param_count": 536961,
+      "c007_test": {
+        "n": 8846,
+        "exact_agreement": 0.722699525209134,
+        "importance_weighted_agreement": 0.7077729392269452,
+        "nonforced_agreement": 0.7087044294026837
+      },
+      "c007_test_by_importance": {
+        "ROUTINE": {
+          "match": 300,
+          "n": 447,
+          "acc": 0.6711409395973155
+        },
+        "HIGH_IMPACT": {
+          "match": 3365,
+          "n": 4777,
+          "acc": 0.7044169981159724
+        },
+        "TACTICAL": {
+          "match": 2303,
+          "n": 3197,
+          "acc": 0.7203628401626525
+        },
+        "FORCED": {
+          "match": 425,
+          "n": 425,
+          "acc": 1.0
+        }
+      },
+      "c007_test_by_semantic_type": {
+        "attack_choice_in_MAIN": {
+          "match": 1877,
+          "n": 2930,
+          "acc": 0.6406143344709898
+        },
+        "dragapult_damage_counter": {
+          "match": 1225,
+          "n": 1548,
+          "acc": 0.791343669250646
+        },
+        "search_card_target": {
+          "match": 1155,
+          "n": 1503,
+          "acc": 0.7684630738522954
+        },
+        "main_board_action": {
+          "match": 817,
+          "n": 1306,
+          "acc": 0.6255742725880551
+        },
+        "promotion_to_active": {
+          "match": 289,
+          "n": 311,
+          "acc": 0.9292604501607717
+        },
+        "energy_attachment_target": {
+          "match": 251,
+          "n": 276,
+          "acc": 0.9094202898550725
+        },
+        "multiselect_discard_resource": {
+          "match": 131,
+          "n": 239,
+          "acc": 0.5481171548117155
+        },
+        "retreat_switch": {
+          "match": 202,
+          "n": 216,
+          "acc": 0.9351851851851852
+        },
+        "resource_discard_or_move": {
+          "match": 155,
+          "n": 181,
+          "acc": 0.856353591160221
+        },
+        "bench_placement": {
+          "match": 112,
+          "n": 152,
+          "acc": 0.7368421052631579
+        },
+        "evolution_target": {
+          "match": 64,
+          "n": 69,
+          "acc": 0.927536231884058
+        },
+        "coin_or_setup_flag": {
+          "match": 52,
+          "n": 52,
+          "acc": 1.0
+        },
+        "ability_activation": {
+          "match": 32,
+          "n": 32,
+          "acc": 1.0
+        },
+        "count_choice": {
+          "match": 31,
+          "n": 31,
+          "acc": 1.0
+        }
+      },
+      "c006_test_backeval": {
+        "n": 2264,
+        "exact_agreement": 0.7248233215547704,
+        "importance_weighted_agreement": 0.7002069734118771
+      },
+      "calibration": {
+        "ece": 0.023742368273687923,
+        "n": 3989,
+        "mean_conf": 0.7367541869606775,
+        "mean_acc": 0.7300075206818751
+      },
+      "option_set_sensitivity": {
+        "tested": 400,
+        "argmax_changed_on_option_removal": 1,
+        "change_rate": 0.0025
+      },
+      "latency_single_process": {
+        "n": 1500,
+        "p50_ms": 0.31766649999999996,
+        "p95_ms": 0.3949375,
+        "p99_ms": 0.46507481,
+        "mean_ms": 0.3270771493333333
+      }
+    },
+    "V2_B": {
+      "checkpoint": "/home/luca/kaggle/ptcg_ai_battle/contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_B_selected.npz",
+      "param_count": 538770,
+      "c007_test": {
+        "n": 8846,
+        "exact_agreement": 0.7186298892154647,
+        "importance_weighted_agreement": 0.7039577633049443,
+        "nonforced_agreement": 0.7044294026837667
+      },
+      "c007_test_by_importance": {
+        "ROUTINE": {
+          "match": 301,
+          "n": 447,
+          "acc": 0.6733780760626398
+        },
+        "HIGH_IMPACT": {
+          "match": 3352,
+          "n": 4777,
+          "acc": 0.7016956248691647
+        },
+        "TACTICAL": {
+          "match": 2279,
+          "n": 3197,
+          "acc": 0.71285580231467
+        },
+        "FORCED": {
+          "match": 425,
+          "n": 425,
+          "acc": 1.0
+        }
+      },
+      "c007_test_by_semantic_type": {
+        "attack_choice_in_MAIN": {
+          "match": 1937,
+          "n": 2930,
+          "acc": 0.6610921501706485
+        },
+        "dragapult_damage_counter": {
+          "match": 1149,
+          "n": 1548,
+          "acc": 0.7422480620155039
+        },
+        "search_card_target": {
+          "match": 1135,
+          "n": 1503,
+          "acc": 0.7551563539587491
+        },
+        "main_board_action": {
+          "match": 809,
+          "n": 1306,
+          "acc": 0.6194486983154671
+        },
+        "promotion_to_active": {
+          "match": 291,
+          "n": 311,
+          "acc": 0.9356913183279743
+        },
+        "energy_attachment_target": {
+          "match": 248,
+          "n": 276,
+          "acc": 0.8985507246376812
+        },
+        "multiselect_discard_resource": {
+          "match": 132,
+          "n": 239,
+          "acc": 0.5523012552301255
+        },
+        "retreat_switch": {
+          "match": 203,
+          "n": 216,
+          "acc": 0.9398148148148148
+        },
+        "resource_discard_or_move": {
+          "match": 159,
+          "n": 181,
+          "acc": 0.8784530386740331
+        },
+        "bench_placement": {
+          "match": 112,
+          "n": 152,
+          "acc": 0.7368421052631579
+        },
+        "evolution_target": {
+          "match": 67,
+          "n": 69,
+          "acc": 0.9710144927536232
+        },
+        "coin_or_setup_flag": {
+          "match": 52,
+          "n": 52,
+          "acc": 1.0
+        },
+        "ability_activation": {
+          "match": 32,
+          "n": 32,
+          "acc": 1.0
+        },
+        "count_choice": {
+          "match": 31,
+          "n": 31,
+          "acc": 1.0
+        }
+      },
+      "c006_test_backeval": {
+        "n": 2264,
+        "exact_agreement": 0.7221731448763251,
+        "importance_weighted_agreement": 0.7016398662633339
+      },
+      "calibration": {
+        "ece": 0.05373558076209382,
+        "n": 3989,
+        "mean_conf": 0.7725418348599267,
+        "mean_acc": 0.7257458009526198
+      },
+      "option_set_sensitivity": {
+        "tested": 400,
+        "argmax_changed_on_option_removal": 0,
+        "change_rate": 0.0
+      },
+      "latency_single_process": {
+        "n": 1500,
+        "p50_ms": 0.326773,
+        "p95_ms": 0.37265355,
+        "p99_ms": 0.40893473999999996,
+        "mean_ms": 0.3324527373333333
+      }
+    }
+  },
+  "wall_seconds": 10.8,
+  "selected_best_by_test_iw": "V2_A"
+}

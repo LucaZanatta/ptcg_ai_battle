@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "baseline",
+      "kind": "package",
+      "trust": "TRUSTED",
+      "artifact": "packages/submission_J_official_mega_lucario_baseline.tar.gz",
+      "sha256": "44416b1c1056063b5f10ac5eabe003d6d88cc4e82c0d6869e7f286331d7f9e66",
+      "kaggle_ref": "55011215"
+    },
+    {
+      "id": "search_teacher",
+      "kind": "labels",
+      "trust": "TAINTED",
+      "tainted_by": [
+        "P10_forward_simulation"
+      ],
+      "interface_version": "c017.search.v1",
+      "artifact": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/trajectories/scaled_trajectories.jsonl.gz",
+      "sha256": "30cea3b9681de39811fa566bb73a18bbff3ce42ed7a72f25691bc2dc63f38a23"
+    },
+    {
+      "id": "trajectories",
+      "kind": "dataset",
+      "trust": "TAINTED",
+      "schema_version": "c017.trajectory.v1",
+      "decisions": 3616,
+      "split_by": "game_index (no game straddles two splits)"
+    },
+    {
+      "id": "distilled_policy",
+      "kind": "checkpoint",
+      "trust": "TAINTED",
+      "tainted_by": [
+        "P10_forward_simulation"
+      ],
+      "artifact": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/c017_policy_value.pt",
+      "sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+    },
+    {
+      "id": "curriculum",
+      "kind": "training_run",
+      "trust": "DIAGNOSTIC_ONLY",
+      "tainted_by": [
+        "P10_forward_simulation",
+        "reduced_scale"
+      ],
+      "performance_promotions": 0
+    },
+    {
+      "id": "final_panel",
+      "kind": "evaluation",
+      "trust": "TRUSTED",
+      "games": 320
+    }
+  ],
+  "edges": [
+    {
+      "from": "baseline",
+      "to": "search_teacher"
+    },
+    {
+      "from": "search_teacher",
+      "to": "trajectories"
+    },
+    {
+      "from": "trajectories",
+      "to": "distilled_policy"
+    },
+    {
+      "from": "distilled_policy",
+      "to": "curriculum"
+    },
+    {
+      "from": "baseline",
+      "to": "final_panel"
+    },
+    {
+      "from": "distilled_policy",
+      "to": "final_panel"
+    }
+  ],
+  "taint_propagation": "P10 taints the search teacher; taint flows to trajectories, the distilled policy and the curriculum. The baseline and the final panel are untainted because neither depends on search."
+}

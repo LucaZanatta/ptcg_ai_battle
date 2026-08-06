@@ -1,0 +1,132 @@
+{
+  "contract": "c009",
+  "defect": "c008 evaluator assigned arm labels positionally (zip) over results returned by multiprocessing imap_unordered, which yields COMPLETION order, not submission order.",
+  "defective_code": {
+    "file": "tools/c008_final_eval.py",
+    "function": "strategic()",
+    "pattern": "res = _run(...)  # imap_unordered\\nfor j, r in zip(jobs, res): r['arm'] = j['arm']",
+    "note": "the c008 source comment ('attach arm label (imap loses it otherwise)') shows the label was known to be lost and was then re-attached by position \u2014 the error."
+  },
+  "scope": {
+    "affected": [
+      "strategic field aggregates",
+      "held-out Mega Abomasnow report",
+      "matchup matrix",
+      "global ranking/mean-vs-field",
+      "improvement report",
+      "regression report",
+      "best-arm conclusion"
+    ],
+    "not_affected_by_this_defect": [
+      "teacher non-inferiority (each candidate ran in its own pool call and all aggregate fields came from worker-returned values)",
+      "reliability (per-candidate pool call; count/sum aggregates only)",
+      "training curves and checkpoint selection (no multiprocessing relabeling)"
+    ]
+  },
+  "synthetic_reproduction": {
+    "jobs": 160,
+    "completion_order_differs": true,
+    "permutation": "last 2 jobs of each arm block complete after the first 2 of the next",
+    "c008_pattern_mislabeled": 12,
+    "c008_pattern_mislabel_rate": 0.075,
+    "c009_protocol_mislabeled": 0,
+    "note": "reordering must cross an arm-block boundary to mislabel; a purely within-block permutation leaves positional labels accidentally correct, which is why c008's corruption is concentrated at block boundaries",
+    "defect_reproduced": true
+  },
+  "multiprocessing_reproduction": {
+    "jobs": 80,
+    "nproc": 8,
+    "completion_order_differs_from_submission": true,
+    "first_10_submitted": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "first_10_completed": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "c008_pattern_mislabeled": 24,
+    "c008_pattern_mislabel_rate": 0.3,
+    "c009_protocol_mislabeled": 0,
+    "defect_reproduced": true
+  },
+  "forensic_c008_artifacts": {
+    "raw_rows": 1600,
+    "expected_per_cell": 80,
+    "per_arm_totals": {
+      "teacher": 400,
+      "R0": 400,
+      "R1": 400,
+      "R2": 400
+    },
+    "cells_with_wrong_count": {
+      "R0|__control__": 83,
+      "R0|mega_lucario": 77,
+      "R1|__control__": 78,
+      "R1|mega_lucario": 82,
+      "R2|__control__": 82,
+      "R2|mega_lucario": 78,
+      "teacher|__control__": 77,
+      "teacher|mega_lucario": 83
+    },
+    "n_cells_wrong": 8,
+    "seat_imbalanced_cells": {
+      "R0|__control__": [
+        40,
+        43
+      ],
+      "R0|mega_lucario": [
+        37,
+        40
+      ],
+      "R1|__control__": [
+        40,
+        38
+      ],
+      "R1|mega_lucario": [
+        42,
+        40
+      ],
+      "R2|__control__": [
+        40,
+        42
+      ],
+      "R2|mega_lucario": [
+        38,
+        40
+      ],
+      "teacher|__control__": [
+        40,
+        37
+      ],
+      "teacher|mega_lucario": [
+        43,
+        40
+      ]
+    },
+    "min_provably_mislabeled_games": 10,
+    "affected_opponents": [
+      "__control__",
+      "mega_lucario"
+    ],
+    "boundary_signature": "wrong counts occur only at arm-block boundaries (first opponent 'mega_lucario' and last opponent '__control__' of each 400-job arm block), the exact signature of positional reattachment after unordered completion",
+    "corruption_confirmed": true
+  },
+  "reproduced": true
+}

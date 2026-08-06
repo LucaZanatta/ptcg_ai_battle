@@ -1,0 +1,1325 @@
+{
+  "probe_id": "P90",
+  "mode": "final",
+  "not_exercised": [],
+  "principle": "every check re-derives from raw artifacts; a summary asserting a number is never evidence for it",
+  "n_checks": 135,
+  "n_passed": 135,
+  "n_critical_failures": 0,
+  "n_submission_blockers": 0,
+  "submission_blockers": [],
+  "checks": [
+    {
+      "check": "real_search_counters_nonzero:ratecheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 1006,
+        "step_ok": 14205
+      }
+    },
+    {
+      "check": "multi_step_depth_ge_2:ratecheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "max_depth_reached": 4
+      }
+    },
+    {
+      "check": "distinct_successors_observed:ratecheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "distinct_successors": 8178
+      }
+    },
+    {
+      "check": "not_static_scoring:ratecheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "searched decisions with zero search_step calls means a static scorer"
+      }
+    },
+    {
+      "check": "lifecycle_balanced:ratecheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "end_calls": 1006,
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "no_hidden_information_violation:ratecheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "does_not_use_c017_labels:ratecheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "uses_c017_labels": false
+      }
+    },
+    {
+      "check": "real_search_counters_nonzero:budgetcheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 183,
+        "step_ok": 2667
+      }
+    },
+    {
+      "check": "multi_step_depth_ge_2:budgetcheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "max_depth_reached": 4
+      }
+    },
+    {
+      "check": "distinct_successors_observed:budgetcheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "distinct_successors": 1624
+      }
+    },
+    {
+      "check": "not_static_scoring:budgetcheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "searched decisions with zero search_step calls means a static scorer"
+      }
+    },
+    {
+      "check": "lifecycle_balanced:budgetcheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "end_calls": 183,
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "no_hidden_information_violation:budgetcheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "does_not_use_c017_labels:budgetcheck_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "uses_c017_labels": false
+      }
+    },
+    {
+      "check": "real_search_counters_nonzero:vertical_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 233,
+        "step_ok": 3274
+      }
+    },
+    {
+      "check": "multi_step_depth_ge_2:vertical_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "max_depth_reached": 4
+      }
+    },
+    {
+      "check": "distinct_successors_observed:vertical_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "distinct_successors": 1858
+      }
+    },
+    {
+      "check": "not_static_scoring:vertical_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "searched decisions with zero search_step calls means a static scorer"
+      }
+    },
+    {
+      "check": "lifecycle_balanced:vertical_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "end_calls": 233,
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "no_hidden_information_violation:vertical_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "does_not_use_c017_labels:vertical_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "uses_c017_labels": false
+      }
+    },
+    {
+      "check": "real_search_counters_nonzero:scaled_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 11151,
+        "step_ok": 158881
+      }
+    },
+    {
+      "check": "multi_step_depth_ge_2:scaled_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "max_depth_reached": 4
+      }
+    },
+    {
+      "check": "distinct_successors_observed:scaled_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "distinct_successors": 91570
+      }
+    },
+    {
+      "check": "not_static_scoring:scaled_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "searched decisions with zero search_step calls means a static scorer"
+      }
+    },
+    {
+      "check": "lifecycle_balanced:scaled_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "end_calls": 11151,
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "no_hidden_information_violation:scaled_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "does_not_use_c017_labels:scaled_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "uses_c017_labels": false
+      }
+    },
+    {
+      "check": "real_search_counters_nonzero:scaled2_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 42857,
+        "step_ok": 609875
+      }
+    },
+    {
+      "check": "multi_step_depth_ge_2:scaled2_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "max_depth_reached": 4
+      }
+    },
+    {
+      "check": "distinct_successors_observed:scaled2_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "distinct_successors": 353448
+      }
+    },
+    {
+      "check": "not_static_scoring:scaled2_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "searched decisions with zero search_step calls means a static scorer"
+      }
+    },
+    {
+      "check": "lifecycle_balanced:scaled2_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "end_calls": 42857,
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "no_hidden_information_violation:scaled2_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "does_not_use_c017_labels:scaled2_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "uses_c017_labels": false
+      }
+    },
+    {
+      "check": "real_search_counters_nonzero:smoke_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "begin_ok": 331,
+        "step_ok": 4681
+      }
+    },
+    {
+      "check": "multi_step_depth_ge_2:smoke_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "max_depth_reached": 4
+      }
+    },
+    {
+      "check": "distinct_successors_observed:smoke_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "distinct_successors": 2645
+      }
+    },
+    {
+      "check": "not_static_scoring:smoke_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "searched decisions with zero search_step calls means a static scorer"
+      }
+    },
+    {
+      "check": "lifecycle_balanced:smoke_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "end_calls": 331,
+        "release_errors": 0
+      }
+    },
+    {
+      "check": "no_hidden_information_violation:smoke_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "does_not_use_c017_labels:smoke_search_summary.json",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "uses_c017_labels": false
+      }
+    },
+    {
+      "check": "successor_traces_are_multi_step",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "traces": 60,
+        "max_depth_in_traces": 4
+      }
+    },
+    {
+      "check": "trajectory_rows_present:scaled2_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "rows": 47086
+      }
+    },
+    {
+      "check": "legal_mask_matches_options:scaled2_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "label_within_legal_range:scaled2_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "trusted_rows_have_successors:scaled2_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "a trusted row must have come from real successors"
+      }
+    },
+    {
+      "check": "no_game_straddles_splits:scaled2_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "straddling": []
+      }
+    },
+    {
+      "check": "outcomes_reconcile:scaled2_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "trajectory_rows_present:scaled_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "rows": 12245
+      }
+    },
+    {
+      "check": "legal_mask_matches_options:scaled_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "label_within_legal_range:scaled_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "trusted_rows_have_successors:scaled_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "a trusted row must have come from real successors"
+      }
+    },
+    {
+      "check": "no_game_straddles_splits:scaled_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "straddling": []
+      }
+    },
+    {
+      "check": "outcomes_reconcile:scaled_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "trajectory_rows_present:smoke_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "rows": 356
+      }
+    },
+    {
+      "check": "legal_mask_matches_options:smoke_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "label_within_legal_range:smoke_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "trusted_rows_have_successors:smoke_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "a trusted row must have come from real successors"
+      }
+    },
+    {
+      "check": "no_game_straddles_splits:smoke_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "straddling": []
+      }
+    },
+    {
+      "check": "outcomes_reconcile:smoke_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "trajectory_rows_present:budgetcheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "rows": 202
+      }
+    },
+    {
+      "check": "legal_mask_matches_options:budgetcheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "label_within_legal_range:budgetcheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "trusted_rows_have_successors:budgetcheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "a trusted row must have come from real successors"
+      }
+    },
+    {
+      "check": "no_game_straddles_splits:budgetcheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "straddling": []
+      }
+    },
+    {
+      "check": "outcomes_reconcile:budgetcheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "trajectory_rows_present:vertical_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "rows": 265
+      }
+    },
+    {
+      "check": "legal_mask_matches_options:vertical_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "label_within_legal_range:vertical_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "trusted_rows_have_successors:vertical_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "a trusted row must have come from real successors"
+      }
+    },
+    {
+      "check": "no_game_straddles_splits:vertical_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "straddling": []
+      }
+    },
+    {
+      "check": "outcomes_reconcile:vertical_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "trajectory_rows_present:ratecheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "rows": 1106
+      }
+    },
+    {
+      "check": "legal_mask_matches_options:ratecheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "label_within_legal_range:ratecheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "trusted_rows_have_successors:ratecheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "note": "a trusted row must have come from real successors"
+      }
+    },
+    {
+      "check": "no_game_straddles_splits:ratecheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "straddling": []
+      }
+    },
+    {
+      "check": "outcomes_reconcile:ratecheck_trajectories.jsonl.gz",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "distill_optimizer_steps_nonzero",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "optimizer_steps": 7080
+      }
+    },
+    {
+      "check": "distill_losses_finite",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "losses_finite": true
+      }
+    },
+    {
+      "check": "distill_checkpoint_hash_changed",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "before": "f476b862eeb0",
+        "after": "0903a0755e95"
+      }
+    },
+    {
+      "check": "distill_trained_on_trusted_rows_only",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "trusted_rows_only": true
+      }
+    },
+    {
+      "check": "distill_steps_match_history",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "reported": 7080,
+        "history_cumulative": 7080,
+        "history_batch_sum": 7080
+      }
+    },
+    {
+      "check": "distill_weights_moved_every_epoch",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "epochs": 60,
+        "distinct_epoch_hashes": 60
+      }
+    },
+    {
+      "check": "distill_reload_is_exact",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "reload_hash_matches": true,
+        "reload_metrics_identical": true
+      }
+    },
+    {
+      "check": "distill_predictions_always_legal",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "legal_prediction_rate": 1.0
+      }
+    },
+    {
+      "check": "distill_does_not_continue_c017",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "continues_c017_checkpoint": false
+      }
+    },
+    {
+      "check": "distill_row_count_matches_trajectory_source",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "trajectory_summary": 42857,
+        "distill_report": 42857
+      }
+    },
+    {
+      "check": "rollouts_are_raw_not_virtual",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "raw_rollout_file": "rollouts/m03_curriculum_games.jsonl.gz",
+        "raw_game_rows": 81920,
+        "note": "a curriculum with no per-game rows on disk played no games"
+      }
+    },
+    {
+      "check": "curriculum_actual_simulator_games_nonzero",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "raw_game_rows": 81920,
+        "raw_completed": 81920,
+        "note": "c017 counted scheduled games while playing none"
+      }
+    },
+    {
+      "check": "reported_games_match_raw_rows",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "reported": 81920,
+        "recounted": 81920
+      }
+    },
+    {
+      "check": "reported_completions_match_raw_rows",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "reported": 81920,
+        "recounted": 81920
+      }
+    },
+    {
+      "check": "curriculum_optimizer_steps_nonzero",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "recounted_updates": 66604,
+        "update_rows": 80
+      }
+    },
+    {
+      "check": "reported_steps_match_raw_updates",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "reported": 66604,
+        "recounted": 66604
+      }
+    },
+    {
+      "check": "curriculum_losses_finite",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "update_rows": 80
+      }
+    },
+    {
+      "check": "every_update_block_moved_weights",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "update_rows": 80,
+        "blocks_that_moved": 80
+      }
+    },
+    {
+      "check": "curriculum_checkpoint_progressed",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "distinct_post_update_hashes": 80
+      }
+    },
+    {
+      "check": "actual_mix_recomputed_from_raw_matches_report",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "blocks": 80,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "planned_and_actual_are_distinct_fields",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "blocks": 80
+      }
+    },
+    {
+      "check": "self_play_share_actually_increases",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "realised_lagged_share_by_block": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.092,
+          "9": 0.119,
+          "10": 0.085,
+          "11": 0.096,
+          "12": 0.082,
+          "13": 0.1,
+          "14": 0.104,
+          "15": 0.108,
+          "16": 0.102,
+          "17": 0.101,
+          "18": 0.096,
+          "19": 0.122,
+          "20": 0.296,
+          "21": 0.308,
+          "22": 0.3,
+          "23": 0.289,
+          "24": 0.292,
+          "25": 0.29,
+          "26": 0.3,
+          "27": 0.311,
+          "28": 0.289,
+          "29": 0.293,
+          "30": 0.312,
+          "31": 0.283,
+          "32": 0.322,
+          "33": 0.284,
+          "34": 0.286,
+          "35": 0.304,
+          "36": 0.532,
+          "37": 0.489,
+          "38": 0.538,
+          "39": 0.513,
+          "40": 0.496,
+          "41": 0.518,
+          "42": 0.519,
+          "43": 0.486,
+          "44": 0.496,
+          "45": 0.494,
+          "46": 0.472,
+          "47": 0.495,
+          "48": 0.51,
+          "49": 0.482,
+          "50": 0.484,
+          "51": 0.499,
+          "52": 0.506,
+          "53": 0.529,
+          "54": 0.515,
+          "55": 0.503,
+          "56": 0.702,
+          "57": 0.705,
+          "58": 0.697,
+          "59": 0.699,
+          "60": 0.684,
+          "61": 0.7,
+          "62": 0.685,
+          "63": 0.731,
+          "64": 0.684,
+          "65": 0.706,
+          "66": 0.681,
+          "67": 0.706,
+          "68": 0.679,
+          "69": 0.684,
+          "70": 0.706,
+          "71": 0.706,
+          "72": 0.699,
+          "73": 0.702,
+          "74": 0.714,
+          "75": 0.705,
+          "76": 0.704,
+          "77": 0.718,
+          "78": 0.683,
+          "79": 0.688
+        }
+      }
+    },
+    {
+      "check": "history_non_empty",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "blocks": 80
+      }
+    },
+    {
+      "check": "no_game_zero_promotion",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "zero_game_blocks": 0
+      }
+    },
+    {
+      "check": "lagged_snapshot_paths_unique",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "snapshots": 80,
+        "distinct": 80
+      }
+    },
+    {
+      "check": "lagged_snapshot_contents_differ",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "note": "identical snapshot hashes mean self-play never advanced"
+      }
+    },
+    {
+      "check": "panel_denominators_match_raw",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "mismatches": []
+      }
+    },
+    {
+      "check": "panel_records_self_identify",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "no_zero_denominator_rate",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "c005_to_c017_unmodified",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "files_checked": 2169,
+        "changed": []
+      }
+    },
+    {
+      "check": "immutability_baseline_substantive",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "files_checked": 2169
+      }
+    },
+    {
+      "check": "package_manifest_present",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "manifests": 4
+      }
+    },
+    {
+      "check": "package_hash_matches_manifest:submission_K_official_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "manifest": "4d17ab86d8e8",
+        "on_disk": "4d17ab86d8e8"
+      }
+    },
+    {
+      "check": "packaged_search_module_matches_source:submission_K_official_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "packaged": "de136713d488",
+        "policy_only": false
+      }
+    },
+    {
+      "check": "clean_extraction_ok:submission_K_official_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "games_completed": 100,
+        "games_played": 100
+      }
+    },
+    {
+      "check": "packaged_learned_component_ran:submission_K_official_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "searched": 6102,
+        "decisions": 6709,
+        "rate": 0.9095,
+        "policy_ok": null,
+        "policy_only": false,
+        "note": "completing games proves nothing; the baseline fallback also completes games"
+      }
+    },
+    {
+      "check": "packaged_no_hidden_information:submission_K_official_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "package_hash_matches_manifest:submission_L_guided_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "manifest": "e87320a84419",
+        "on_disk": "e87320a84419"
+      }
+    },
+    {
+      "check": "packaged_search_module_matches_source:submission_L_guided_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "packaged": "de136713d488",
+        "policy_only": false
+      }
+    },
+    {
+      "check": "clean_extraction_ok:submission_L_guided_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "games_completed": 100,
+        "games_played": 100
+      }
+    },
+    {
+      "check": "packaged_learned_component_ran:submission_L_guided_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "searched": 6628,
+        "decisions": 7365,
+        "rate": 0.8999,
+        "policy_ok": null,
+        "policy_only": false,
+        "note": "completing games proves nothing; the baseline fallback also completes games"
+      }
+    },
+    {
+      "check": "packaged_no_hidden_information:submission_L_guided_search_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "package_hash_matches_manifest:submission_M_trained_policy_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "manifest": "e0ce129c94df",
+        "on_disk": "e0ce129c94df"
+      }
+    },
+    {
+      "check": "packaged_search_module_matches_source:submission_M_trained_policy_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "packaged": "",
+        "policy_only": true
+      }
+    },
+    {
+      "check": "clean_extraction_ok:submission_M_trained_policy_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "games_completed": 100,
+        "games_played": 100
+      }
+    },
+    {
+      "check": "packaged_learned_component_ran:submission_M_trained_policy_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "searched": 0,
+        "decisions": 5813,
+        "rate": 0.0,
+        "policy_ok": 5813,
+        "policy_only": true,
+        "note": "completing games proves nothing; the baseline fallback also completes games"
+      }
+    },
+    {
+      "check": "packaged_no_hidden_information:submission_M_trained_policy_v0",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "package_hash_matches_manifest:vertical_package_smoke",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "manifest": "e2ecdc0187bf",
+        "on_disk": "e2ecdc0187bf"
+      }
+    },
+    {
+      "check": "packaged_search_module_matches_source:vertical_package_smoke",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "packaged": "de136713d488",
+        "policy_only": false
+      }
+    },
+    {
+      "check": "clean_extraction_ok:vertical_package_smoke",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "games_completed": 4,
+        "games_played": 4
+      }
+    },
+    {
+      "check": "packaged_learned_component_ran:vertical_package_smoke",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": {
+        "searched": 297,
+        "decisions": 324,
+        "rate": 0.9167,
+        "policy_ok": null,
+        "policy_only": false,
+        "note": "completing games proves nothing; the baseline fallback also completes games"
+      }
+    },
+    {
+      "check": "packaged_no_hidden_information:vertical_package_smoke",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": true,
+      "detail": null
+    },
+    {
+      "check": "source_bundle_present:complete_repository_source.zip",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "source_bundle_present:c018_competition_source_bundle.zip",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": null
+    },
+    {
+      "check": "pass_requires_accepted_post_baseline_submission",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "claims_pass": false,
+        "accepted_post_baseline": false,
+        "rule": "PASS is unavailable without an accepted post-baseline c018 submission"
+      }
+    },
+    {
+      "check": "no_skipped_criteria_counted_as_pass",
+      "passed": true,
+      "critical": true,
+      "submission_blocker": false,
+      "detail": {
+        "mode": "final",
+        "not_exercised": [],
+        "rule": "at final judgement an absent milestone is a failure, never a free pass"
+      }
+    }
+  ],
+  "overall": "PASS"
+}

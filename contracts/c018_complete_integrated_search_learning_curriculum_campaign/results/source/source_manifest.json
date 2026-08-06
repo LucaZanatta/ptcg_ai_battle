@@ -1,0 +1,378 @@
+{
+  "contract": "c018",
+  "git_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "git_tree": "b8d7d4e12e2239b85bc00ba63cc2369ce64826b9",
+  "branch": "contract/c018_complete_integrated_search_learning_curriculum_campaign",
+  "parent_commit": "d8a34b1bac60dc57ec7b0c356c3b261cc10d95da",
+  "bundles": {
+    "complete_repository_source.zip": {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/complete_repository_source.zip",
+      "present": true,
+      "sha256": "a1c00fbc674e1c105f31c7da9461858310e7e78cda74786c9560b5b76a9ba75b",
+      "bytes": 18621798,
+      "note": null,
+      "files": 387
+    },
+    "c018_competition_source_bundle.zip": {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/c018_competition_source_bundle.zip",
+      "present": true,
+      "sha256": "f6024ea08484c3fefae11cc35f671575834d0b794bae618613317d79fc5164ae",
+      "bytes": 180025,
+      "note": null,
+      "files": 38
+    }
+  },
+  "inspection_files": [
+    {
+      "path": "tools/c018_search.py",
+      "present": true,
+      "sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "bytes": 21622,
+      "note": null,
+      "role": "official search API adapter + context manager; determinization and archetype classifier; candidate generator; beam planner; heuristic leaf evaluator"
+    },
+    {
+      "path": "tools/c018_trajectories.py",
+      "present": true,
+      "sha256": "1842cec02c030e8ffdb7a89a9619cb0f2f35e860fcfe8f818372dd78170ab717",
+      "bytes": 10054,
+      "note": null,
+      "role": "trajectory schema, writer and feature export"
+    },
+    {
+      "path": "tools/c018_distill.py",
+      "present": true,
+      "sha256": "1f2a3bcb4de501ad3e29150f5efc6191fe138b15d469e35ddd693e1e8b1d0301",
+      "bytes": 11634,
+      "note": null,
+      "role": "supervised trainer (M02)"
+    },
+    {
+      "path": "tools/c018_curriculum.py",
+      "present": true,
+      "sha256": "da5bedef98250613519eb64999a74355471c5472bfa4d7f8cbe0806d33b9cf60",
+      "bytes": 12515,
+      "note": null,
+      "role": "PPO curriculum scheduler (M03)"
+    },
+    {
+      "path": "tools/c018_guided.py",
+      "present": true,
+      "sha256": "73662f99185e5198e0bbe0540a1b3492f5b2f7b2437b613fac03a3f124434396",
+      "bytes": 5706,
+      "note": null,
+      "role": "guided-search integration (M04)"
+    },
+    {
+      "path": "tools/c018_panel.py",
+      "present": true,
+      "sha256": "6469599494922b6d5b9480b4831d20ba22f7c1b26401c40befa2d8f33d89a20e",
+      "bytes": 14434,
+      "note": null,
+      "role": "identity-safe evaluator (P17)"
+    },
+    {
+      "path": "tools/c018_package.py",
+      "present": true,
+      "sha256": "624ef1735da2c0303ad960f6fce731fc5467757bb85ca8a8809cdb319ad82037",
+      "bytes": 20860,
+      "note": null,
+      "role": "package builder and submission entrypoint"
+    },
+    {
+      "path": "tools/c018_validate.py",
+      "present": true,
+      "sha256": "372120dee22717821faed63eed429a2da7fca89466de400934aae2ec06e32421",
+      "bytes": 22662,
+      "note": null,
+      "role": "evidence validator (P90)"
+    },
+    {
+      "path": "tools/c018_probes.py",
+      "present": true,
+      "sha256": "c0c4193b836fe627d60fbd1d01bf89be98455515e217b195333ba51739b8f869",
+      "bytes": 24531,
+      "note": null,
+      "role": "probes P02-P08"
+    },
+    {
+      "path": "tools/c018_probes_train.py",
+      "present": true,
+      "sha256": "64f159d8e8599ea9d626d5c876a6d3994b4ff6343c2537586bf988fe3ddd0381",
+      "bytes": 35032,
+      "note": null,
+      "role": "probes P09-P17, P30"
+    },
+    {
+      "path": "tools/c018_diagnostics.py",
+      "present": true,
+      "sha256": "bc6f4dd0b947c12b3ba708bc6b1bdcce420f1d6d16081391b7d2a637074bb26b",
+      "bytes": 10195,
+      "note": null,
+      "role": "guidance/latency/continuation diagnostics (P13/P15/P16)"
+    },
+    {
+      "path": "tools/c018_vertical.py",
+      "present": true,
+      "sha256": "33a808d5635496de9f2c1aec8d8e9c069cf8a4311754c1579b0731c7f5d7827f",
+      "bytes": 8099,
+      "note": null,
+      "role": "thin end-to-end vertical (P30)"
+    },
+    {
+      "path": "tools/c018_export_check.py",
+      "present": true,
+      "sha256": "47149b9281a36822c64dfe6bf9659e10a320f987250cc6efc4daf5a4f81a9e52",
+      "bytes": 4377,
+      "note": null,
+      "role": "torch->numpy export round-trip gate"
+    },
+    {
+      "path": "tools/c018_tree.py",
+      "present": true,
+      "sha256": "236e01865acbb093479a2f46d6d5d6dadde5b68681e0fc8a22bed18f1f004137",
+      "bytes": 22800,
+      "note": null,
+      "role": "results tree assembler"
+    },
+    {
+      "path": "tools/c018_submit.py",
+      "present": true,
+      "sha256": "f28aea4fb69e52caa9d7b8ce4d5e8611173caa62a4973cb2dc580d31be4105da",
+      "bytes": 13175,
+      "note": null,
+      "role": "Kaggle upload and acceptance polling"
+    },
+    {
+      "path": "tools/c018_fixtures.py",
+      "present": true,
+      "sha256": "09ac8e701ca3d61f2df7e4d4a1cd157d7f0b45f770066ba3d83dd6b2bad4d454",
+      "bytes": 14631,
+      "note": null,
+      "role": "tactical fixtures, per-decision branch proof, lifecycle, throughput (P01/P02/P05/P06)"
+    },
+    {
+      "path": "tools/c018_metrics.py",
+      "present": true,
+      "sha256": "8565cde0fde51060d93e283071aa6ec1ae41182e65bb54de8a03b4b7c7bb71c1",
+      "bytes": 12181,
+      "note": null,
+      "role": "held-out metric depth and trajectory integrity (P07/P08/P10)"
+    },
+    {
+      "path": "tools/c018_curriculum_audit.py",
+      "present": true,
+      "sha256": "a3de0b0e771d553c7093be8abbb5090b1c75e1321af9ee31a244dd2d6093a8de",
+      "bytes": 7000,
+      "note": null,
+      "role": "\u00a726/\u00a727 curriculum compliance audit"
+    },
+    {
+      "path": "tools/c018_stages.py",
+      "present": true,
+      "sha256": "a0d5b7a0a4de9fb9a3b4b8121446eff3cabaec3ffdad0fa18ffbfef5c5a152e3",
+      "bytes": 5324,
+      "note": null,
+      "role": "\u00a729 stage registry with explicit non-production records"
+    },
+    {
+      "path": "tools/c018_baseline_anchor.py",
+      "present": true,
+      "sha256": "790a925c19dc95b11d970255083bc51ade2825b8abbee517e3d6c6fa013fd9a5",
+      "bytes": 5512,
+      "note": null,
+      "role": "AC-01 baseline package and accepted-reference verification"
+    },
+    {
+      "path": "tools/c018_reports.py",
+      "present": true,
+      "sha256": "855370756f92f94d9e4166590380eb22915964665dfacfc8bc6676ffd0cbba27",
+      "bytes": 38178,
+      "note": null,
+      "role": "STATUS, README, SUMMARY and the \u00a739 decision board"
+    },
+    {
+      "path": "tools/c018_repair_pass.py",
+      "present": true,
+      "sha256": "116fc839355aee289d28d5a6016e519b11f363cad31c90aed45e2b996076e4eb",
+      "bytes": 11762,
+      "note": null,
+      "role": "\u00a77 Pass B defect ranking and consolidated rerun record"
+    },
+    {
+      "path": "tools/c018_layout.py",
+      "present": true,
+      "sha256": "714ef86b794fca38af5f6c380352d7ac7ddf2ed34a1c7bfc0fcb5b271d309748",
+      "bytes": 14625,
+      "note": null,
+      "role": "\u00a735 results-tree layout conformance"
+    },
+    {
+      "path": "tools/c011_torch_model.py",
+      "present": true,
+      "sha256": "dc7f4f2e2f5d2d44f1d5abb8976eb70980b13bd9a1f99a4261bd9c3bce657248",
+      "bytes": 12533,
+      "note": null,
+      "role": "policy/value model (CUDA port)"
+    },
+    {
+      "path": "tools/c011_torch_ppo.py",
+      "present": true,
+      "sha256": "9e278b7edc8d2998fbe4876dbd8cd014478b5ec40d5a80fed9e6182c311f5a1e",
+      "bytes": 7225,
+      "note": null,
+      "role": "PPO trainer"
+    },
+    {
+      "path": "cg/rl_env.py",
+      "present": true,
+      "sha256": "35c9a2f6470276ebb321a64a22928c85e5177839f8df5dc2289985e809735702",
+      "bytes": 7534,
+      "note": null,
+      "role": "PPO rollout (real simulator games)"
+    },
+    {
+      "path": "cg/rl_policy.py",
+      "present": true,
+      "sha256": "780c26453703ab3b86c869d9de35e7e38041dc18210954356e4b401114bd8d97",
+      "bytes": 10342,
+      "note": null,
+      "role": "runtime numpy policy"
+    },
+    {
+      "path": "cg/state_encoder_v2.py",
+      "present": true,
+      "sha256": "874c0c8c2b05774715abbc6e1b0d8f2c4900cb30fe7a6d9194b70ea370df76f6",
+      "bytes": 18405,
+      "note": null,
+      "role": "featurizer"
+    },
+    {
+      "path": "cg/api.py",
+      "present": true,
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced",
+      "bytes": 26933,
+      "note": null,
+      "role": "official search API"
+    },
+    {
+      "path": "tests/test_c018.py",
+      "present": true,
+      "sha256": "8c23e3f419e44a2f6ac5d7022115ec11312cf38f3638bbd9a9dc4a8cc404ae8b",
+      "bytes": 15299,
+      "note": null,
+      "role": "c018 unit tests"
+    }
+  ],
+  "milestones": {
+    "M00_parent": {
+      "manifest": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/milestones/M00_parent/manifest.json",
+      "title": "resolved c017 parent and immutable baseline",
+      "config_hash": "44136fa355b3678a1146ad16f7e8649e"
+    },
+    "M01_real_search": {
+      "manifest": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/milestones/M01_real_search/manifest.json",
+      "title": "first trusted official-API multi-step planner",
+      "config_hash": "1de8550665ef7226236796a49e97edb7"
+    },
+    "M02_distilled": {
+      "manifest": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/milestones/M02_distilled/manifest.json",
+      "title": "best trusted search-distilled model",
+      "config_hash": "42d0509aee421cf83fc0b92b3b6b98d7"
+    },
+    "M03_curriculum": {
+      "manifest": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/milestones/M03_curriculum/manifest.json",
+      "title": "best actual PPO curriculum checkpoint",
+      "config_hash": "7900f268e6d79e12c80105db7add1854"
+    },
+    "M04_guided_search": {
+      "manifest": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/milestones/M04_guided_search/manifest.json",
+      "title": "best trusted guided-search candidate",
+      "config_hash": "1de8550665ef7226236796a49e97edb7"
+    },
+    "M05_submitted": {
+      "manifest": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/source/milestones/M05_submitted/manifest.json",
+      "title": "exact source/config/checkpoint/package uploaded",
+      "config_hash": "44136fa355b3678a1146ad16f7e8649e"
+    }
+  },
+  "hashed_files": 624,
+  "environment": {
+    "torch": "2.13.0+cu132",
+    "cuda_available": true,
+    "cuda_version": "13.2",
+    "device": "NVIDIA GeForce RTX 5070",
+    "parent_commit_used_for_patch": "d8a34b1bac60dc57ec7b0c356c3b261cc10d95da"
+  },
+  "budget": {
+    "floors": [
+      {
+        "floor": "real search_begin roots >= 200",
+        "actual": 42857,
+        "required": 200,
+        "met": true
+      },
+      {
+        "floor": "real search_step calls >= 5000",
+        "actual": 609875,
+        "required": 5000,
+        "met": true
+      },
+      {
+        "floor": "trusted search-labelled decisions >= 10000",
+        "actual": 42857,
+        "required": 10000,
+        "met": true
+      },
+      {
+        "floor": "actual PPO curriculum games >= 20000",
+        "actual": 81920,
+        "required": 20000,
+        "met": true
+      },
+      {
+        "floor": "optimizer steps total >= 1000",
+        "actual": 73684,
+        "required": 1000,
+        "met": true
+      },
+      {
+        "floor": "final-panel games >= 600",
+        "actual": 2400,
+        "required": 600,
+        "met": true
+      },
+      {
+        "floor": "accepted post-baseline submissions >= 1",
+        "actual": 0,
+        "required": 1,
+        "met": false
+      }
+    ],
+    "all_floors_met": false,
+    "missed": [
+      "accepted post-baseline submissions >= 1"
+    ],
+    "targets": [
+      {
+        "target": "trusted search-labelled decisions 30,000-60,000",
+        "actual": 42857,
+        "in_band": true,
+        "note": "floor of 10,000 met; the band was not reached because scaling to 30,000 would have cost more than the remaining floors were worth and forced M02 and M03 to be re-run on top"
+      },
+      {
+        "target": "actual curriculum games 40,000-100,000",
+        "actual": 81920,
+        "in_band": true
+      },
+      {
+        "target": "final-panel games 1,200-2,000",
+        "actual": 2400,
+        "in_band": false,
+        "note": "six \u00a729 stages x 4 opponents x 100 games per pair exceeds the band; recorded as exceeded rather than presented as inside it"
+      }
+    ],
+    "uploads_used": 0,
+    "uploads_allowed": 2
+  }
+}

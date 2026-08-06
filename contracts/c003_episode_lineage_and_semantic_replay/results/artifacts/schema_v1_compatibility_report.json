@@ -1,0 +1,28 @@
+{
+  "c002_file_present": true,
+  "c002_summary": {
+    "path": "contracts/c002_reproducible_episode_capture/results/artifacts/episodes/episodes.jsonl",
+    "schema_versions": {
+      "1": 2553
+    },
+    "record_types": {
+      "game_start": 60,
+      "decision": 2433,
+      "game_terminal": 60
+    },
+    "decisions": 2433,
+    "detected_schema": 1,
+    "v2_only_fields_legacy_unavailable": [
+      "agent_id",
+      "decision_source",
+      "fallback_reason",
+      "game_seed",
+      "record_id",
+      "run_id",
+      "select_context",
+      "used_fallback"
+    ]
+  },
+  "unsupported_rejected": true,
+  "unsupported_error": "line 1: unsupported schema_version 99 (supported: [1, 2])"
+}

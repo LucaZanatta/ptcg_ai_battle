@@ -1,0 +1,38 @@
+{
+  "probe_id": "P08",
+  "name": "outcome_and_split_integrity",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "games": 900,
+    "rows": 47086,
+    "rows_whose_outcome_disagrees_with_game": 0,
+    "games_straddling_splits": 0,
+    "split_counts": {
+      "train": 32930,
+      "validation": 6721,
+      "test": 7435
+    },
+    "split_by": "game_index",
+    "rows_with_null_outcome": 0,
+    "seat_balance": {
+      "0": 24362,
+      "1": 22724
+    },
+    "opponent_mix": {
+      "dragapult": 12235,
+      "iono": 10979,
+      "mega_abomasnow": 12127,
+      "mega_lucario": 11745
+    },
+    "generator_win_rate_vs_mixed_field": 0.2344,
+    "games_completed": 900
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/scaled2_search_summary.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_trajectories.jsonl.gz"
+  ]
+}

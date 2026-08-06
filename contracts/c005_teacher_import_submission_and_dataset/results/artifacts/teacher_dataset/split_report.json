@@ -1,0 +1,59 @@
+{
+  "strata": {
+    "('mega_lucario', 0, 'loss')": 11,
+    "('mega_lucario', 0, 'win')": 13,
+    "('mega_lucario', 1, 'loss')": 17,
+    "('mega_lucario', 1, 'win')": 7,
+    "('mega_abomasnow', 0, 'loss')": 11,
+    "('mega_abomasnow', 0, 'win')": 13,
+    "('mega_abomasnow', 1, 'win')": 13,
+    "('mega_abomasnow', 1, 'loss')": 11,
+    "('iono', 0, 'win')": 19,
+    "('iono', 0, 'loss')": 5,
+    "('iono', 1, 'loss')": 8,
+    "('iono', 1, 'win')": 16,
+    "('__control__', 0, 'loss')": 5,
+    "('__control__', 0, 'win')": 19,
+    "('__control__', 1, 'win')": 16,
+    "('__control__', 1, 'loss')": 8,
+    "('dragapult', 0, 'loss')": 16,
+    "('dragapult', 0, 'win')": 8,
+    "('dragapult', 1, 'loss')": 14,
+    "('dragapult', 1, 'win')": 10
+  },
+  "seed": 424242,
+  "split_by": "whole_game",
+  "target_ratio": [
+    0.7,
+    0.15,
+    0.15
+  ],
+  "stratify_by": [
+    "opponent",
+    "teacher_seat",
+    "outcome"
+  ],
+  "games": {
+    "train": 170,
+    "validation": 37,
+    "test": 33
+  },
+  "decisions": {
+    "train": 13795,
+    "validation": 2991,
+    "test": 2264
+  },
+  "test_frozen": true,
+  "no_game_in_multiple_splits": true,
+  "leakage_detected": false,
+  "high_impact_contexts_present": [
+    "ACTIVATE",
+    "DISCARD",
+    "EVOLVE",
+    "MAIN",
+    "SWITCH",
+    "TO_ACTIVE",
+    "TO_BENCH",
+    "TO_HAND"
+  ]
+}

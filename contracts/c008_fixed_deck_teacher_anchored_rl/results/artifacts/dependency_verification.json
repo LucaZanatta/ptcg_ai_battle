@@ -1,0 +1,117 @@
+{
+  "contract": "c008_fixed_deck_teacher_anchored_rl",
+  "c005_final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+  "c006_final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+  "c007_final_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+  "c008_initial_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+  "teacher_id": "dragapult",
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "frozen_teacher_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "frozen_teacher_deck_sha256": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+  "v2a_checkpoint_sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+  "c007_dataset_sha256": {
+    "train": "90a219bc0210d7ffe9782095b6f240123fd1e4338d980604e82aa50428f4e40c",
+    "validation": "bbdfee0cb7ebe91b5ae23fed281ee228d04b1820f8868bbdfd5a715d063b491c",
+    "test": "518b2b5762fe0aed5892118e61692cdab299c2acd1fe3c78fefc15e4e4763540"
+  },
+  "teacher_submission_ref": "54948560",
+  "runtime_deps": {
+    "numpy": "ok",
+    "scipy": "ok",
+    "kaggle_environments": "ok",
+    "cg": "ok"
+  },
+  "checks": [
+    {
+      "check": "c005_pass_head",
+      "ok": true,
+      "detail": "4137d983c6a05c0eea8332718d3e7f3acc7b7830"
+    },
+    {
+      "check": "c006_pass_head",
+      "ok": true,
+      "detail": "08ebac88385444a69d0615b7976dea9dbddeb79a"
+    },
+    {
+      "check": "c007_pass_head",
+      "ok": true,
+      "detail": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577"
+    },
+    {
+      "check": "commit_chain",
+      "ok": true,
+      "detail": {
+        "c006_init": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+        "c007_init": "08ebac88385444a69d0615b7976dea9dbddeb79a"
+      }
+    },
+    {
+      "check": "c008_branches_from_c007_final",
+      "ok": true,
+      "detail": {
+        "c008_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577"
+      }
+    },
+    {
+      "check": "frozen_teacher_main_sha",
+      "ok": true,
+      "detail": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+    },
+    {
+      "check": "frozen_teacher_deck_sha",
+      "ok": true,
+      "detail": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724"
+    },
+    {
+      "check": "frozen_deck_id",
+      "ok": true,
+      "detail": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab"
+    },
+    {
+      "check": "c007_v2a_checkpoint_present",
+      "ok": true,
+      "detail": {
+        "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+        "size": 4302612
+      }
+    },
+    {
+      "check": "c007_dataset_no_leakage",
+      "ok": true,
+      "detail": {
+        "leaking": {}
+      }
+    },
+    {
+      "check": "c007_encoder_schema_present",
+      "ok": true,
+      "detail": "b1328b6bfdb9344456ec9ed2fd7f972025e3763314ee23106a946f67b1288ad8"
+    },
+    {
+      "check": "teacher_submission_ref",
+      "ok": true,
+      "detail": "54948560"
+    },
+    {
+      "check": "teacher_sources_present",
+      "ok": true,
+      "detail": {
+        "dragapult": true,
+        "mega_lucario": true,
+        "iono": true,
+        "mega_abomasnow": true
+      }
+    },
+    {
+      "check": "runtime_deps",
+      "ok": true,
+      "detail": {
+        "numpy": "ok",
+        "scipy": "ok",
+        "kaggle_environments": "ok",
+        "cg": "ok"
+      }
+    }
+  ],
+  "all_ok": true
+}

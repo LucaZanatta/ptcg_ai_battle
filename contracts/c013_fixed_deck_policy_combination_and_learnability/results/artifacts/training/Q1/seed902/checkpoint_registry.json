@@ -1,0 +1,34 @@
+{
+  "5184": {
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/ckpt_g5184.npz",
+    "sha256": "8f99bbea5594b5c106e9683331bb97ae70d73c4f3465a53b9a2dc7f39a57c533",
+    "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/trainer_g5184.pt",
+    "trainer_state_sha256": "a6dfb38232561dce4607c24303ff79254a6ca25c7e63d56d5782bed7028f9ccf",
+    "trainer_state_id": "Q1902-u12-8f99bbea5594",
+    "training_games": 5184,
+    "registered_eval_point": 5000,
+    "arm": "Q1",
+    "seed": 902,
+    "updates": 12,
+    "inrun_eval": {
+      "teacher": 0.275,
+      "field": 0.3333333333333333
+    }
+  },
+  "10256": {
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/ckpt_g10256.npz",
+    "sha256": "e4cb44bdccbda67f40e7ab45000fcc14b0241ad673c6e32bf8d59af19ec26c37",
+    "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/trainer_g10256.pt",
+    "trainer_state_sha256": "df8afad514ec4075ac5e816f5fe0a038a3998af1672731ec872fd67773748ed4",
+    "trainer_state_id": "Q1902-u24-e4cb44bdccbd",
+    "training_games": 10256,
+    "registered_eval_point": 10000,
+    "arm": "Q1",
+    "seed": 902,
+    "updates": 24,
+    "inrun_eval": {
+      "teacher": 0.25,
+      "field": 0.31666666666666665
+    }
+  }
+}

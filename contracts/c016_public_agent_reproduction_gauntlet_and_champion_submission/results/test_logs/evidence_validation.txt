@@ -1,0 +1,36 @@
+[PASS] no_prior_contract_identifier_in_c016_reports
+    {"hits": []}
+[PASS] required_status_fields_present
+    {"missing": []}
+[PASS] null_selection_fields_are_correct_when_gate_fails
+    {"note": "gate FAIL, so no candidate may be recorded as selected"}
+[PASS] published_rates_and_denominators_match_raw_games
+    {"mismatches": []}
+[PASS] no_zero_opportunity_success_claims
+    {"hits": [], "rule": "zero opportunities must be reported as NOT_OBSERVED, never as a rate"}
+[PASS] every_game_record_is_self_identifying
+    {"problems": []}
+[PASS] aggregation_selects_by_field_not_position
+    {"note": "agg() filters records by candidate_id/opponent_id/seat/phase"}
+[PASS] public_claims_labelled_not_asserted_as_fact
+    {"unlabelled": []}
+[PASS](non-critical) path_c_not_used_without_review
+    {"strength_path": null}
+[PASS](non-critical) no_selection_so_no_permission_requirement
+    {"note": "competitive gate did not select a candidate"}
+[PASS] no_benchmark_only_source_packaged
+    {"archives": []}
+[PASS] package_absent_is_consistent_with_gate
+    {"note": "no package built; only valid when the competitive gate did not pass"}
+[PASS] c005_to_c015_unmodified
+    {"files_checked": 1938, "modified": []}
+[PASS] no_baseline_file_missing
+    {"missing": []}
+[PASS] immutability_baseline_is_substantive
+    {"files_checked": 1938}
+[PASS](non-critical) non_pass_status_is_consistent
+    {"status": "PARTIAL", "gates": {"fidelity_gate": true, "competitive_gate": false, "package_gate": false, "accepted_reference": false}}
+[PASS] accepted_reference_alone_does_not_grant_pass
+    {"note": "\u00a72: an accepted upload is never sufficient on its own"}
+
+overall: PASS (17/17)

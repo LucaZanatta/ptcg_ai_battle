@@ -1,0 +1,65 @@
+{
+  "root_probe": "P10_forward_simulation",
+  "artifacts": [
+    {
+      "artifact": "search trajectories",
+      "trust_status": "TAINTED",
+      "tainted_by": [
+        "P10_forward_simulation"
+      ],
+      "usable_for": [
+        "debugging",
+        "training",
+        "evaluation"
+      ],
+      "submittable": false
+    },
+    {
+      "artifact": "distilled policy checkpoint",
+      "trust_status": "TAINTED",
+      "tainted_by": [
+        "P10_forward_simulation"
+      ],
+      "usable_for": [
+        "debugging",
+        "evaluation"
+      ],
+      "submittable": false
+    },
+    {
+      "artifact": "curriculum run",
+      "trust_status": "DIAGNOSTIC_ONLY",
+      "tainted_by": [
+        "P10_forward_simulation",
+        "reduced_scale"
+      ],
+      "usable_for": [
+        "debugging"
+      ],
+      "submittable": false
+    },
+    {
+      "artifact": "baseline package",
+      "trust_status": "TRUSTED",
+      "tainted_by": [],
+      "usable_for": [
+        "debugging",
+        "evaluation",
+        "submission"
+      ],
+      "submittable": true,
+      "why_untainted": "contains no search or learned component"
+    },
+    {
+      "artifact": "final panel",
+      "trust_status": "TRUSTED",
+      "tainted_by": [],
+      "usable_for": [
+        "evaluation",
+        "selection"
+      ],
+      "submittable": false
+    }
+  ],
+  "propagation_rule": "P10 taints the search teacher; taint flows to trajectories, the distilled policy and the curriculum. The baseline and the final panel do not depend on search and are untainted."
+}

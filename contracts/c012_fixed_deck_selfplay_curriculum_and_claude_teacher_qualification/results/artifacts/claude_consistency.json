@@ -1,0 +1,13 @@
+{
+  "available": true,
+  "n_repeat": 13,
+  "top1_agreement": 1.0,
+  "top3_overlap": 0.9615384615384616,
+  "mean_abs_confidence_delta": 0.03999999999999999,
+  "confidence_stability": 0.96,
+  "per_tag_top1": {
+    "board_development": 1.0
+  },
+  "no_session_persistence": true,
+  "note": "Each repetition is an independent `claude -p` invocation; no session id is reused between a primary label and its repeat."
+}

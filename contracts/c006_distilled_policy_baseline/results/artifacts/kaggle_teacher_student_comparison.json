@@ -1,0 +1,31 @@
+{
+  "contract": "c006",
+  "competition": "pokemon-tcg-ai-battle",
+  "teacher": {
+    "submission_ref": "54948560",
+    "recorded_public_score": "617.8",
+    "live_public_score": "674.6",
+    "live_status": "SubmissionStatus.COMPLETE",
+    "retrieved_at_utc": "2026-07-24T11:53:50.088974+00:00"
+  },
+  "student": {
+    "submitted": false,
+    "submission_ref": null,
+    "public_score": null,
+    "reason": "SUBMISSION_B=DO_NOT_SUBMIT; no student is non-inferior to the teacher"
+  },
+  "local_evidence": {
+    "student_noninferiority_LB95_vs_teacher": {
+      "S1_STATELESS": 0.08499999999999999,
+      "S2_RECURRENT": 0.125
+    },
+    "student_gauntlet_mean_vs_field": {
+      "S1": 0.1875,
+      "S2": 0.15000000000000002,
+      "teacher": 0.6041666666666667,
+      "control": 0.10625000000000001
+    }
+  },
+  "promotion_decision": "NO_STUDENT_SUBMISSION",
+  "maturity_caveat": "Teacher public scores are timestamped ladder snapshots (recorded 617.8 -> live 674.6); no student score exists to compare."
+}

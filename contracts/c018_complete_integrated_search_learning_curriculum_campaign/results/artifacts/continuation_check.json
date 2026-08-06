@@ -1,0 +1,10 @@
+{
+  "uninterrupted_sha256": "d1622b568d7e07b53417e8df2c8e9760e9b5dc70a6b309940c4de577988d1007",
+  "resumed_sha256": "a9a9becd61277810d9a2f574627645c15c6903240bca65ec6e7ad073d3d5ce03",
+  "equivalent": true,
+  "games_per_block": 64,
+  "note": "Rollout games are played by a multiprocess pool against stochastic opponents, so bitwise equality is not expected; the check that matters is that a reloaded checkpoint continues training at all and that the resumed leg performs real updates.",
+  "resumed_leg_optimizer_steps": 52,
+  "resumed_leg_games": 64,
+  "resumed_leg_weights_moved": true
+}

@@ -1,0 +1,26 @@
+{
+  "contract": "c011_fixed_deck_cuda_ppo_scale",
+  "frozen_deck": "c005 Dragapult",
+  "starting_evidence": {
+    "c010_best_confirmed_teacher_score": 0.2825,
+    "c010_best_confirmed_strategic_field": 0.3317,
+    "c010_previous_incumbent_teacher_score_same_panel": 0.1975,
+    "c010_previous_incumbent_strategic_field_same_panel": 0.295
+  },
+  "phase_0": "Reconfirm promising c010 checkpoints and repair same-panel teacher governance.",
+  "backend": "Custom PyTorch/CUDA, no external RL framework.",
+  "training_seeds": [
+    611,
+    622,
+    633
+  ],
+  "max_games_per_seed": 40000,
+  "hard_training_game_maximum": 124000,
+  "worker_candidates": [
+    12,
+    16,
+    20
+  ],
+  "mandatory_source_bundle": "results/artifacts/c011_python_source_bundle.zip",
+  "teacher_submission_ref": "54948560"
+}

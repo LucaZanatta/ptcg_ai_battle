@@ -1,0 +1,43 @@
+{
+  "rows": [
+    {
+      "row": "c014 meta-proven",
+      "stable_version": "public-meta-v0",
+      "current_experiment": "none (closed)",
+      "thesis": "Cinderace loads energy onto a benched Duraludon, evolve to Archaludon ex, win with a 220-damage attack that cancels its own Fire weakness",
+      "package_sha256": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+      "kaggle_ref": "55004756",
+      "status": "COMPLETE",
+      "public_score_latest_reading": "589.6",
+      "main_weakness": "Explosiveness opener rarely available; slow energy assembly",
+      "next_single_change": "make the energy accelerator reliable"
+    },
+    {
+      "row": "c015 anti-meta",
+      "stable_version": "anti-meta-v0",
+      "current_experiment": "none (closed)",
+      "thesis": "This deck should beat Archaludon ex metal tempo because Electric Streamer attaches unlimited Basic {L} Energy from hand every turn against a target that can attach only once per turn, and because Voltaic Chain converts that stockpile directly into damage scaling by +20 for every {L} Energy attached across all of my Iono's Pokemon, while covering c014's weakness to disruption/tempo decks that punish its slow energy assembly.",
+      "package_sha256": "ea507a6cb53e1ea03d876c8309e3f50e1db343f75ceb2d4ede2ad9fef1098f4e",
+      "kaggle_ref": "55005237",
+      "status": "COMPLETE",
+      "public_score_latest_reading": "619.4",
+      "main_weakness": "engine online but damage arrives too late (falsifier fired: 0.36 vs target)",
+      "next_single_change": "shorten turns-to-first-meaningful-damage"
+    },
+    {
+      "row": "Dragapult control",
+      "stable_version": "c005 frozen teacher",
+      "current_experiment": "none - control only",
+      "thesis": "official sample rule agent, preserved as control and evaluation opponent",
+      "package_sha256": null,
+      "kaggle_ref": "54948560",
+      "status": "COMPLETE",
+      "public_score_latest_reading": "719.7",
+      "main_weakness": "n/a - not a development branch",
+      "next_single_change": "none; never resubmitted"
+    }
+  ],
+  "champion_rule": "champion is decided on EXTERNAL evidence only, never from a single pending or one-shot reading",
+  "champion_declared": false,
+  "champion_note": "No champion is declared. The public score is a LIVE ladder rating: c014's ref 55004756 read 600.0 at upload, 754.5 twenty minutes later, and 589.6 now. Declaring a champion from any one reading is exactly the premature call \u00a716 forbids."
+}

@@ -1,0 +1,50 @@
+{
+  "contract": "c006_distilled_student",
+  "teacher_id": "dragapult",
+  "teacher_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "objective": "behavioral_cloning",
+  "no_training_in_c005": true,
+  "data": {
+    "train": "teacher_dataset/train.jsonl.gz",
+    "validation": "teacher_dataset/validation.jsonl.gz",
+    "test": "teacher_dataset/test.jsonl.gz",
+    "test_frozen": true,
+    "label_field": "teacher_action_indices",
+    "input_fields": ["observation", "legal_options", "select_context", "min_count", "max_count"],
+    "split_by": "whole_game"
+  },
+  "model": {
+    "type": "structured_legal_option_scorer",
+    "param_budget": [1000000, 5000000],
+    "state_encoder": {"card_embedding_dim": 64, "per_pokemon_mlp": [128, 128],
+                      "board_pool": "attention", "global_mlp": [256, 256]},
+    "context_embedding_dim": 64,
+    "option_encoder": {"optiontype_embedding_dim": 32, "option_mlp": [128, 128],
+                       "cross_attend_state": true},
+    "policy_head": "dot_product_plus_mlp",
+    "value_head": false,
+    "card_features_source": "cg.api.all_card_data",
+    "vocab": "card_ids in teacher deck + all observed in dataset; <UNK> shared"
+  },
+  "masking": {"score_only_legal_options": true, "no_fixed_action_space": true,
+              "pad_and_mask_variable_option_lists": true,
+              "multiselect_loss": "multi_label_bce over options"},
+  "training": {"optimizer": "adamw", "weight_decay": 0.01, "lr": 3e-4,
+               "lr_schedule": "cosine_with_warmup", "warmup_steps": 500,
+               "max_epochs": 30, "batch_size": 256, "early_stopping": {"metric": "val_exact_agreement", "patience": 4},
+               "weighting": {"high_importance_weight": 2.0, "inverse_freq_context_weight": true},
+               "seed": 606, "deterministic_dataloader": true,
+               "checkpointing": {"best_on": "val_exact_agreement", "save_vocab_with_model": true}},
+  "inference": {"target": "cpu", "p99_latency_ms_target": 50, "package_size_mb_target": 100},
+  "evaluation_gates": {
+    "exact_action_agreement_test_min": 0.75,
+    "top2_agreement_test_min": 0.90,
+    "high_impact_context_agreement_reported": ["MAIN", "ATTACK", "SWITCH", "EVOLVE"],
+    "forced_context_agreement": true,
+    "student_vs_teacher_full_game": true,
+    "strategic_gauntlet_comparison": true,
+    "reliability_zero_defects": true,
+    "p99_latency_ms_max": 50,
+    "submission_B_criteria": "reliability pass AND win-rate-vs-teacher 95% bootstrap CI not below 0.45 AND exact_agreement>=0.75"
+  }
+}

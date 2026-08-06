@@ -1,0 +1,171 @@
+{
+  "contract": "c007",
+  "name": "state_encoder_v2",
+  "consumes": "raw cabt observation dict (identical offline and at runtime)",
+  "dims": {
+    "CARD_FEAT": 52,
+    "N_BOARD": 12,
+    "SLOT_DYN": 36,
+    "N_HAND": 12,
+    "HAND_DYN": 2,
+    "N_DISCARD": 16,
+    "OPT_DENSE": 51,
+    "OPT_ROWS": 2,
+    "GLOBAL": 211,
+    "N_CTX": 49,
+    "N_OPTTYPE": 17,
+    "N_AREA": 13,
+    "vocab_size": 1270
+  },
+  "board": {
+    "n_slots": 12,
+    "slot_order": [
+      "self_active",
+      "self_bench_0",
+      "self_bench_1",
+      "self_bench_2",
+      "self_bench_3",
+      "self_bench_4",
+      "opp_active",
+      "opp_bench_0",
+      "opp_bench_1",
+      "opp_bench_2",
+      "opp_bench_3",
+      "opp_bench_4"
+    ],
+    "per_slot": {
+      "card_row": "int -> card encoder (semantic + zero-init id residual)",
+      "slot_dyn_dim": 36,
+      "slot_dyn_fields": {
+        "present": [
+          0,
+          1
+        ],
+        "is_self": [
+          1,
+          1
+        ],
+        "is_active": [
+          2,
+          1
+        ],
+        "slot_index_norm": [
+          3,
+          1
+        ],
+        "hp_norm": [
+          4,
+          1
+        ],
+        "maxhp_norm": [
+          5,
+          1
+        ],
+        "damage_norm": [
+          6,
+          1
+        ],
+        "remaining_frac": [
+          7,
+          1
+        ],
+        "n_energy_norm": [
+          8,
+          1
+        ],
+        "energy_type_counts": [
+          9,
+          12
+        ],
+        "n_energy_cards_norm": [
+          21,
+          1
+        ],
+        "n_tools_norm": [
+          22,
+          1
+        ],
+        "has_tool": [
+          23,
+          1
+        ],
+        "n_preevo_norm": [
+          24,
+          1
+        ],
+        "appear_this_turn": [
+          25,
+          1
+        ],
+        "status": [
+          26,
+          5
+        ],
+        "ko_hp_le_200": [
+          31,
+          1
+        ],
+        "ko_hp_le_60": [
+          32,
+          1
+        ],
+        "prize_yield_norm": [
+          33,
+          1
+        ],
+        "is_ex": [
+          34,
+          1
+        ],
+        "is_megaex": [
+          35,
+          1
+        ]
+      }
+    },
+    "no_averaging": true
+  },
+  "hand": {
+    "n_slots": 12,
+    "per_slot": [
+      "card_row",
+      "dup_count_norm",
+      "playable"
+    ],
+    "mask": true,
+    "encoder": "DeepSets masked mean+max"
+  },
+  "discard": {
+    "n_slots": 16,
+    "window": "most recent N cards",
+    "summary_tail": "per-card-type counts in global (self+opp)",
+    "encoder": "DeepSets masked mean+max"
+  },
+  "options": {
+    "per_option_dense_dim": 51,
+    "referenced_card_rows": 2,
+    "encoder": "cross-option DeepSets (each score depends on the option set)"
+  },
+  "global_dim": 211,
+  "history": {
+    "fields": [
+      "previous_context",
+      "previous_action_type",
+      "previous_card_identity(52-d semantics)",
+      "previous_attack_phantom/has",
+      "previous_selected_count",
+      "present"
+    ],
+    "reset_at_game_start": true,
+    "note": "actual previous SELECTED option identity (c006 gap fixed)"
+  },
+  "card_semantics": {
+    "feat_dim": 52,
+    "unseen_cards": "deterministic 52-d features + ZERO-init id residual (no random untrained id embeddings) [7.6]"
+  },
+  "hidden_information": {
+    "opponent_hand": "count only (never card ids)",
+    "prizes": "counts only (face-down identities never revealed)",
+    "own_deck_order": "not represented (hidden); deck composition inference is a teacher-privileged LABEL, never a runtime input"
+  }
+}

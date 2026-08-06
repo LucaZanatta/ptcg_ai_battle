@@ -1,0 +1,116 @@
+{
+  "contract": "c010",
+  "probe_config": {
+    "nproc": 7,
+    "omp_threads": 4,
+    "updates_per_probe": 2,
+    "checkpoints_written": false
+  },
+  "probes": {
+    "A": {
+      "arm": "A",
+      "seed": 311,
+      "updates": 2,
+      "games": 266,
+      "elapsed_seconds": 60.9,
+      "games_per_hour": 15721.1,
+      "decisions_per_game": 63.04,
+      "mean_update_seconds": 14.4,
+      "mean_rollout_seconds": 15.7,
+      "nproc": 7,
+      "wall_seconds_including_startup": 61.2,
+      "omp_threads": 4
+    },
+    "B": {
+      "arm": "B",
+      "seed": 411,
+      "updates": 2,
+      "games": 266,
+      "elapsed_seconds": 71.6,
+      "games_per_hour": 13376.6,
+      "decisions_per_game": 72.31,
+      "mean_update_seconds": 19.4,
+      "mean_rollout_seconds": 16.1,
+      "nproc": 7,
+      "wall_seconds_including_startup": 71.9,
+      "omp_threads": 4
+    },
+    "C": {
+      "arm": "C",
+      "seed": 511,
+      "updates": 2,
+      "games": 889,
+      "elapsed_seconds": 224.8,
+      "games_per_hour": 14237.8,
+      "decisions_per_game": 74.45,
+      "mean_update_seconds": 61.9,
+      "mean_rollout_seconds": 50.2,
+      "nproc": 7,
+      "wall_seconds_including_startup": 225.2,
+      "omp_threads": 4
+    }
+  },
+  "resources": {
+    "peak_child_rss_mb": 4289.5,
+    "artifact_disk_mb_before": 9.18,
+    "artifact_disk_mb_after": 13.69,
+    "probe_disk_growth_mb": 4.51,
+    "free_disk_gb": 224.0,
+    "cpu_count": 24
+  },
+  "projection": {
+    "A": {
+      "max_games": 36000,
+      "solo_games_per_hour": 15721.1,
+      "assumed_concurrent_seeds": 3,
+      "assumed_efficiency": 0.6,
+      "projected_aggregate_games_per_hour": 28298.0,
+      "projected_hours": 1.27,
+      "decisions_per_game": 63.04,
+      "mean_update_seconds": 14.4,
+      "mean_rollout_seconds": 15.7
+    },
+    "B": {
+      "max_games": 22500,
+      "solo_games_per_hour": 13376.6,
+      "assumed_concurrent_seeds": 3,
+      "assumed_efficiency": 0.6,
+      "projected_aggregate_games_per_hour": 24077.9,
+      "projected_hours": 0.93,
+      "decisions_per_game": 72.31,
+      "mean_update_seconds": 19.4,
+      "mean_rollout_seconds": 16.1
+    },
+    "C": {
+      "max_games": 60000,
+      "solo_games_per_hour": 14237.8,
+      "assumed_concurrent_seeds": 3,
+      "assumed_efficiency": 0.6,
+      "projected_aggregate_games_per_hour": 25628.0,
+      "projected_hours": 2.34,
+      "decisions_per_game": 74.45,
+      "mean_update_seconds": 61.9,
+      "mean_rollout_seconds": 50.2
+    }
+  },
+  "projected_training_hours": 4.55,
+  "projected_evaluation": {
+    "estimated_games": 16900,
+    "assumed_games_per_hour": 100800,
+    "projected_hours": 0.17,
+    "basis": "c009 identity-safe evaluation measured ~28 games/s at nproc 16"
+  },
+  "projected_total_hours": 4.72,
+  "budget_check": {
+    "registered_total_training_games": 118500,
+    "hard_maximum": 120000,
+    "within_hard_maximum": true,
+    "evaluation_counted_separately": true
+  },
+  "feasibility": "FEASIBLE",
+  "notes": [
+    "Probes use the identical training code path (same rollout rule, same PPO update); only the number of updates is truncated and no checkpoints are written.",
+    "Arm C's larger rollout (256 games / 32,768 decisions) makes each update ~4x heavier but proportionally rarer, so games/hour stays within ~15% of Arms A/B.",
+    "Concurrency efficiency is an execution detail (how many seeds share the machine); it is not a registered experimental parameter and changing it does not alter any arm."
+  ]
+}

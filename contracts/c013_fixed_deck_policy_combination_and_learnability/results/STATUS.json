@@ -1,0 +1,66 @@
+{
+  "contract": "c013_fixed_deck_policy_combination_and_learnability",
+  "status": "PARTIAL",
+  "decisions": {
+    "COMBINATION_RESULT": "WEIGHT_SOUP_WINS",
+    "SOUP_LEARNABILITY": "NOT_IMPROVED",
+    "Q3": "SKIPPED_BY_GATE",
+    "CURRICULUM_SMOKE": "PASS",
+    "OPPONENT_OVERLAP": "INCONCLUSIVE",
+    "CLAUDE_SEMANTIC_PREFLIGHT": "PARTIAL",
+    "SUBMISSION_G": "DO_NOT_SUBMIT",
+    "TRUE_BEST_AGENT": "SOUP13_SOUP+P1_822",
+    "PACKAGE_FEASIBLE_BEST_AGENT": "SOUP13_SOUP+P1_822"
+  },
+  "acceptance_criteria": {
+    "total": 16,
+    "executed": 16
+  },
+  "validation": {
+    "overall": "FAIL",
+    "n_checks": 54,
+    "n_passed": 52,
+    "unacknowledged_critical_failures": [],
+    "acknowledged_deviations": [
+      {
+        "check": "smoke_within_cap",
+        "document": "results/failures/DEVIATION_curriculum_smoke_exceeded_its_registered_cap.md"
+      }
+    ]
+  },
+  "budget": {
+    "learnability_completed_games": 44912,
+    "learnability_cap": 50000,
+    "curriculum_smoke_completed_games": 10112,
+    "curriculum_smoke_cap": 10000,
+    "total": 55024,
+    "hard_maximum": 62000,
+    "within_hard_maximum": true
+  },
+  "source_bundle": {
+    "files": 93,
+    "categories": [
+      "c013_source",
+      "claude_io",
+      "claude_prompt",
+      "claude_schema",
+      "command",
+      "contract",
+      "decision",
+      "environment",
+      "git_patch",
+      "inputs",
+      "references",
+      "supporting_source",
+      "test"
+    ]
+  },
+  "reasons": [
+    "documented deviation: smoke_within_cap (results/failures/DEVIATION_curriculum_smoke_exceeded_its_registered_cap.md)",
+    "CLAUDE_SEMANTIC_PREFLIGHT = PARTIAL: only 6 of \u00a727's 10 named decision categories demonstrated (attachment, evolution, multi-select, promotion, search, target selection), \u00a729 requires >= 8; 1 residual bucket(s) ['other'] are not \u00a727 categories and are not counted"
+  ],
+  "git": {
+    "branch": "contract/c013_fixed_deck_policy_combination_and_learnability",
+    "head": "a7d78dd56b7d4a9b75c5e5fa2e6828fc3bdfb477"
+  }
+}

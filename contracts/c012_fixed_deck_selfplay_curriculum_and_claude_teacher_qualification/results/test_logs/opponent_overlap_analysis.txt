@@ -1,0 +1,24 @@
+{
+  "OPPONENT_OVERLAP": "SUPPORTED",
+  "mean_top1_agreement": 0.8433862433862435,
+  "n_policy_pairs": 15,
+  "n_distribution_pairs": 153,
+  "interpretation": "Learned elites agree with one another far more than they agree with the rule teacher, so an elite-only population would narrow the state distribution. That is the risk the adaptive curriculum caps elite share at 45% to manage.",
+  "per_pair_top1": {
+    "C_522_g20220|I0_incumbent": 0.8253968253968254,
+    "C_522_g20220|SOUP_622+633": 0.873015873015873,
+    "C_522_g20220|S_611_g40127": 0.9047619047619048,
+    "C_522_g20220|S_622_g39983": 0.8888888888888888,
+    "C_522_g20220|S_633_g30176": 0.8571428571428571,
+    "I0_incumbent|SOUP_622+633": 0.7301587301587301,
+    "I0_incumbent|S_611_g40127": 0.7619047619047619,
+    "I0_incumbent|S_622_g39983": 0.7936507936507936,
+    "I0_incumbent|S_633_g30176": 0.7301587301587301,
+    "SOUP_622+633|S_611_g40127": 0.873015873015873,
+    "SOUP_622+633|S_622_g39983": 0.9206349206349206,
+    "SOUP_622+633|S_633_g30176": 0.9206349206349206,
+    "S_611_g40127|S_622_g39983": 0.8571428571428571,
+    "S_611_g40127|S_633_g30176": 0.8571428571428571,
+    "S_622_g39983|S_633_g30176": 0.8571428571428571
+  }
+}

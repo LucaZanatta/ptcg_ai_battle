@@ -1,0 +1,61 @@
+{
+  "by_seed": {
+    "611": {
+      "final_entropy": 0.3253463341353031,
+      "first_entropy": 0.3916237832501877,
+      "final_approx_kl": 0.003927781589640771,
+      "final_clip_fraction": 0.040102721666920034,
+      "final_grad_norm": 1.5846074322095285,
+      "final_explained_variance_in_sample": 0.779711886728053,
+      "final_return_mean": -0.02097736207276998,
+      "first_return_mean": -0.1266148821833974,
+      "learning_rate": 3e-05,
+      "precision_mode": "FP32_CUDA",
+      "device": "cuda",
+      "updates": 92,
+      "mean_rollout_seconds": 33.30108695652174,
+      "mean_update_seconds": 6.654347826086957,
+      "mean_gpu_util_pct": 52.108695652173914,
+      "max_vram_used_mib": 2325.0,
+      "min_ram_available_gib": 30.45
+    },
+    "622": {
+      "final_entropy": 0.3201822847241664,
+      "first_entropy": 0.39698728657405796,
+      "final_approx_kl": 0.00436207901142969,
+      "final_clip_fraction": 0.040814348759541985,
+      "final_grad_norm": 1.6451923378551279,
+      "final_explained_variance_in_sample": 0.7877327244025696,
+      "final_return_mean": -0.058488627092220025,
+      "first_return_mean": -0.14564241455582608,
+      "learning_rate": 3e-05,
+      "precision_mode": "FP32_CUDA",
+      "device": "cuda",
+      "updates": 93,
+      "mean_rollout_seconds": 32.71720430107527,
+      "mean_update_seconds": 6.5569892473118285,
+      "mean_gpu_util_pct": 54.16129032258065,
+      "max_vram_used_mib": 2127.0,
+      "min_ram_available_gib": 31.32
+    },
+    "633": {
+      "final_entropy": 0.31652843357287636,
+      "first_entropy": 0.40044837011847384,
+      "final_approx_kl": 0.00455703115552036,
+      "final_clip_fraction": 0.04024458082113121,
+      "final_grad_norm": 1.5181547993606375,
+      "final_explained_variance_in_sample": 0.7697125069165401,
+      "final_return_mean": -0.06690046883313769,
+      "first_return_mean": -0.166353348004635,
+      "learning_rate": 3e-05,
+      "precision_mode": "FP32_CUDA",
+      "device": "cuda",
+      "updates": 92,
+      "mean_rollout_seconds": 32.530434782608694,
+      "mean_update_seconds": 6.542391304347827,
+      "mean_gpu_util_pct": 54.57608695652174,
+      "max_vram_used_mib": 2125.0,
+      "min_ram_available_gib": 31.66
+    }
+  }
+}

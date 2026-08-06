@@ -1,0 +1,31 @@
+{
+  "contract": "c002_reproducible_episode_capture",
+  "status": "PARTIAL",
+  "acceptance_criteria_total": 8,
+  "acceptance_criteria_passed": 7,
+  "acceptance_criteria_failed": 1,
+  "initial_head": "283f31c102af92040bd7620088921e7424fab656",
+  "final_head": "ff6e94bd0c81dc173d1704be0337e738458ab05b",
+  "implementation_commits": [
+    "f4b741d85e8e984f20b8476c61908dd95abfe713",
+    "ff6e94bd0c81dc173d1704be0337e738458ab05b"
+  ],
+  "blocking_issues": [],
+  "known_limitations": [
+    "AC-04 condition 3 is only partially met: derived seeds and seat assignments reproduce, but engine-dependent decision counts and winners do NOT reproduce because libcg.so seeds std::mt19937 from std::random_device (OS entropy) with no seed API; configuration.seed is ignored. Record-level policy determinism (safe decision per recorded observation) does reproduce (157/157). See failures/AC04_engine_nondeterminism.md.",
+    "Runtime coverage observed 11/49 SelectContext values in the sampled games; enum coverage (all 49) is proven separately. This is expected, not a defect.",
+    "Starter-kit runtime assets (api/sim/game/utils/__init__/deck.csv/libcg.so) remain untracked external assets, declared with sha256 in runtime_assets.json (native .so is .gitignored)."
+  ],
+  "benchmark": {
+    "games_required": 60,
+    "games_completed": 60,
+    "games_failed": 0,
+    "invalid_safe_selections": 0,
+    "unique_seeds": true,
+    "jsonl_records": 2553,
+    "decision_records": 2433,
+    "runtime_contexts_observed": 11,
+    "enum_contexts_total": 49,
+    "tests_total": 46
+  }
+}

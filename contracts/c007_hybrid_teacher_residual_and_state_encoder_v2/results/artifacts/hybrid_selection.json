@@ -1,0 +1,45 @@
+{
+  "contract": "c007",
+  "state_encoder_v2": "ACCEPT",
+  "teacher_instrumentation": "VALID",
+  "residual_contexts": [
+    "dragapult_damage_counter"
+  ],
+  "best_hybrid_conditions": {
+    "instrumentation_valid": true,
+    "encoder_accepted": true,
+    "at_least_one_residual_context": true,
+    "reliability_perfect": true,
+    "teacher_non_inferiority_passed": false,
+    "at_least_one_reproducible_improvement": false,
+    "no_major_regression": true
+  },
+  "best_hybrid": "NONE",
+  "submission_C": "DO_NOT_SUBMIT",
+  "promotion_decision": "NO_HYBRID_SUBMISSION",
+  "residual_rl_readiness": "NOT_READY",
+  "rl_readiness_conditions": {
+    "h2_non_inferiority": false,
+    "h2_reproducible_improvement": false,
+    "residual_contexts_and_gates_stable": true,
+    "on_policy_synchronization_valid": true,
+    "override_telemetry_defines_constrained_action_space": true,
+    "frozen_h2_exists": true,
+    "no_major_regression": true
+  },
+  "highest_leverage_blocker": "no controlled variant reproducibly beats the teacher's damage-counter allocation (best 2-batch improvement LCB <= 0); the tuned rule-based teacher has no exploitable seam a one-rule residual can beat",
+  "evidence": {
+    "h2_non_inferiority_lb": 0.4625,
+    "h2_non_inferiority_point": 0.49124999999999996,
+    "h2_non_inferior_strict_gate": false,
+    "h2_action_identical_to_teacher": true,
+    "h2_overrides_total": 0,
+    "h2_non_inferior": false,
+    "reproducible_improvement": false,
+    "major_regression": false,
+    "reliability_perfect": true,
+    "improvement_labels": 0,
+    "admitted_variant": null,
+    "h0_parity_pass": true
+  }
+}

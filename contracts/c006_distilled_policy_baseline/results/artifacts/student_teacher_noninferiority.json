@@ -1,0 +1,50 @@
+{
+  "contract": "c006",
+  "students": {
+    "S1_STATELESS": {
+      "n_games": 200,
+      "n_seat0": 100,
+      "n_seat1": 100,
+      "point_estimate": 0.12000000000000001,
+      "one_sided_lb_95": 0.08499999999999999,
+      "one_sided_ub_95": 0.16,
+      "margin": 0.05,
+      "pass_threshold": 0.45,
+      "non_inferior": false,
+      "rounds": [
+        {
+          "total_games": 200,
+          "point": 0.12000000000000001,
+          "lower_bound_95_one_sided": 0.08499999999999999,
+          "upper_bound_95_one_sided": 0.16,
+          "n_seat0": 100,
+          "n_seat1": 100,
+          "n_boot": 3000
+        }
+      ]
+    },
+    "S2_RECURRENT": {
+      "n_games": 200,
+      "n_seat0": 100,
+      "n_seat1": 100,
+      "point_estimate": 0.17,
+      "one_sided_lb_95": 0.125,
+      "one_sided_ub_95": 0.215,
+      "margin": 0.05,
+      "pass_threshold": 0.45,
+      "non_inferior": false,
+      "rounds": [
+        {
+          "total_games": 200,
+          "point": 0.17,
+          "lower_bound_95_one_sided": 0.125,
+          "upper_bound_95_one_sided": 0.215,
+          "n_seat0": 100,
+          "n_seat1": 100,
+          "n_boot": 3000
+        }
+      ]
+    }
+  },
+  "method": "seat-balanced bootstrap, one-sided 95% lower bound (5th pct), win=1/draw=.5/loss=0"
+}

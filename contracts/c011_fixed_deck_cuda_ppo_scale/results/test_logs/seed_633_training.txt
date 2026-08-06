@@ -1,0 +1,107 @@
+[S s633] initialised from C_522_g20220 (974051fad562) on cuda/torch.float32 [weight fidelity verified on 4 tensors] -- WARM RESTART: the c010 checkpoint carries no trainer state to restore
+[S s633] g=448 upd=1 ret=-0.166 ev=0.76 brier0=0.219 auc0=0.66 ent=0.400 kl=0.0030 clip=0.033 gn=1.24 roll=35s up=6.8s gpu=56.0%
+[S s633] g=896 upd=2 ret=-0.135 ev=0.77 brier0=0.231 auc0=0.64 ent=0.390 kl=0.0030 clip=0.032 gn=1.25 roll=33s up=6.3s gpu=55.0%
+[S s633] g=1360 upd=3 ret=-0.127 ev=0.76 brier0=0.223 auc0=0.66 ent=0.388 kl=0.0029 clip=0.032 gn=1.30 roll=33s up=6.4s gpu=54.0%
+[S s633] g=1808 upd=4 ret=-0.178 ev=0.76 brier0=0.213 auc0=0.67 ent=0.392 kl=0.0032 clip=0.034 gn=1.26 roll=33s up=6.5s gpu=52.0%
+[S s633] g=2256 upd=5 ret=-0.157 ev=0.77 brier0=0.222 auc0=0.69 ent=0.391 kl=0.0032 clip=0.033 gn=1.31 roll=33s up=6.3s gpu=60.0%
+[S s633] g=2688 upd=6 ret=-0.147 ev=0.75 brier0=0.227 auc0=0.65 ent=0.391 kl=0.0029 clip=0.033 gn=1.34 roll=31s up=6.4s gpu=56.0%
+[S s633] g=3136 upd=7 ret=-0.158 ev=0.76 brier0=0.217 auc0=0.70 ent=0.388 kl=0.0030 clip=0.031 gn=1.27 roll=33s up=6.4s gpu=56.0%
+[S s633] g=3568 upd=8 ret=-0.100 ev=0.78 brier0=0.226 auc0=0.68 ent=0.387 kl=0.0030 clip=0.033 gn=1.31 roll=33s up=6.5s gpu=57.0%
+[S s633] g=4016 upd=9 ret=-0.130 ev=0.76 brier0=0.224 auc0=0.67 ent=0.389 kl=0.0033 clip=0.035 gn=1.25 roll=32s up=6.6s gpu=52.0%
+[S s633] g=4464 upd=10 ret=-0.126 ev=0.75 brier0=0.230 auc0=0.67 ent=0.391 kl=0.0031 clip=0.032 gn=1.31 roll=33s up=6.7s gpu=54.0%
+[S s633] g=4928 upd=11 ret=-0.116 ev=0.75 brier0=0.223 auc0=0.69 ent=0.385 kl=0.0031 clip=0.032 gn=1.28 roll=33s up=6.5s gpu=53.0%
+[S s633] g=5376 upd=12 ret=-0.091 ev=0.78 brier0=0.210 auc0=0.74 ent=0.379 kl=0.0030 clip=0.031 gn=1.27 roll=34s up=6.7s gpu=54.0%
+  lagged snapshot @ 5376 -> lagged_g5376.npz
+  checkpoint @ 5376 (eval point 5000) + full trainer state
+[S s633] g=5808 upd=13 ret=-0.056 ev=0.78 brier0=0.232 auc0=0.65 ent=0.380 kl=0.0030 clip=0.031 gn=1.32 roll=32s up=6.5s gpu=56.0%
+[S s633] g=6256 upd=14 ret=-0.105 ev=0.75 brier0=0.224 auc0=0.66 ent=0.382 kl=0.0032 clip=0.034 gn=1.31 roll=33s up=6.4s gpu=55.0%
+[S s633] g=6688 upd=15 ret=-0.081 ev=0.74 brier0=0.234 auc0=0.63 ent=0.380 kl=0.0030 clip=0.031 gn=1.41 roll=32s up=6.3s gpu=54.0%
+[S s633] g=7136 upd=16 ret=-0.073 ev=0.78 brier0=0.223 auc0=0.72 ent=0.377 kl=0.0032 clip=0.034 gn=1.33 roll=34s up=6.6s gpu=57.0%
+[S s633] g=7584 upd=17 ret=-0.043 ev=0.78 brier0=0.231 auc0=0.65 ent=0.373 kl=0.0031 clip=0.033 gn=1.31 roll=33s up=6.7s gpu=57.0%
+[S s633] g=8032 upd=18 ret=-0.032 ev=0.77 brier0=0.232 auc0=0.67 ent=0.368 kl=0.0032 clip=0.033 gn=1.30 roll=33s up=6.6s gpu=58.0%
+[S s633] g=8464 upd=19 ret=-0.090 ev=0.76 brier0=0.215 auc0=0.70 ent=0.373 kl=0.0033 clip=0.034 gn=1.37 roll=33s up=6.5s gpu=55.0%
+[S s633] g=8912 upd=20 ret=-0.117 ev=0.76 brier0=0.228 auc0=0.64 ent=0.367 kl=0.0032 clip=0.033 gn=1.31 roll=33s up=6.5s gpu=55.0%
+[S s633] g=9360 upd=21 ret=-0.053 ev=0.77 brier0=0.227 auc0=0.69 ent=0.363 kl=0.0033 clip=0.034 gn=1.32 roll=32s up=6.5s gpu=55.0%
+[S s633] g=9792 upd=22 ret=-0.126 ev=0.76 brier0=0.223 auc0=0.67 ent=0.363 kl=0.0035 clip=0.036 gn=1.33 roll=33s up=6.3s gpu=56.0%
+[S s633] g=10224 upd=23 ret=-0.119 ev=0.77 brier0=0.221 auc0=0.68 ent=0.370 kl=0.0032 clip=0.035 gn=1.38 roll=33s up=6.6s gpu=56.0%
+  checkpoint @ 10224 (eval point 10000) + full trainer state
+[S s633] g=10672 upd=24 ret=-0.111 ev=0.78 brier0=0.221 auc0=0.68 ent=0.368 kl=0.0030 clip=0.031 gn=1.41 roll=33s up=6.3s gpu=55.0%
+  lagged snapshot @ 10672 -> lagged_g10672.npz
+[S s633] g=11104 upd=25 ret=-0.064 ev=0.78 brier0=0.226 auc0=0.70 ent=0.365 kl=0.0033 clip=0.035 gn=1.29 roll=33s up=6.5s gpu=55.0%
+[S s633] g=11520 upd=26 ret=-0.089 ev=0.76 brier0=0.230 auc0=0.66 ent=0.362 kl=0.0034 clip=0.034 gn=1.36 roll=32s up=6.5s gpu=56.0%
+[S s633] g=11968 upd=27 ret=-0.079 ev=0.76 brier0=0.227 auc0=0.69 ent=0.358 kl=0.0033 clip=0.035 gn=1.36 roll=33s up=6.5s gpu=55.0%
+[S s633] g=12400 upd=28 ret=-0.057 ev=0.77 brier0=0.233 auc0=0.67 ent=0.360 kl=0.0035 clip=0.035 gn=1.33 roll=32s up=6.6s gpu=56.0%
+[S s633] g=12832 upd=29 ret=-0.095 ev=0.78 brier0=0.226 auc0=0.68 ent=0.357 kl=0.0033 clip=0.033 gn=1.37 roll=33s up=6.5s gpu=54.0%
+[S s633] g=13264 upd=30 ret=-0.024 ev=0.76 brier0=0.229 auc0=0.68 ent=0.359 kl=0.0034 clip=0.035 gn=1.37 roll=33s up=6.6s gpu=54.0%
+[S s633] g=13712 upd=31 ret=-0.032 ev=0.77 brier0=0.227 auc0=0.68 ent=0.358 kl=0.0035 clip=0.036 gn=1.37 roll=32s up=6.7s gpu=55.0%
+[S s633] g=14160 upd=32 ret=-0.036 ev=0.76 brier0=0.229 auc0=0.67 ent=0.356 kl=0.0036 clip=0.035 gn=1.35 roll=33s up=6.7s gpu=55.0%
+[S s633] g=14608 upd=33 ret=-0.029 ev=0.77 brier0=0.230 auc0=0.66 ent=0.354 kl=0.0034 clip=0.034 gn=1.40 roll=33s up=6.5s gpu=53.0%
+[S s633] g=15040 upd=34 ret=-0.057 ev=0.78 brier0=0.215 auc0=0.71 ent=0.356 kl=0.0034 clip=0.035 gn=1.36 roll=32s up=6.8s gpu=59.0%
+  checkpoint @ 15040 (eval point 15000) + full trainer state
+[S s633] g=15472 upd=35 ret=-0.050 ev=0.78 brier0=0.228 auc0=0.67 ent=0.355 kl=0.0033 clip=0.035 gn=1.39 roll=31s up=6.3s gpu=54.0%
+[S s633] g=15888 upd=36 ret=-0.012 ev=0.78 brier0=0.231 auc0=0.68 ent=0.354 kl=0.0034 clip=0.036 gn=1.36 roll=32s up=6.5s gpu=54.0%
+  lagged snapshot @ 15888 -> lagged_g15888.npz
+[S s633] g=16320 upd=37 ret=-0.009 ev=0.75 brier0=0.232 auc0=0.67 ent=0.357 kl=0.0036 clip=0.035 gn=1.42 roll=32s up=6.6s gpu=58.0%
+[S s633] g=16736 upd=38 ret=-0.036 ev=0.74 brier0=0.228 auc0=0.67 ent=0.355 kl=0.0038 clip=0.037 gn=1.38 roll=31s up=6.4s gpu=51.0%
+[S s633] g=17184 upd=39 ret=-0.090 ev=0.77 brier0=0.224 auc0=0.66 ent=0.355 kl=0.0034 clip=0.034 gn=1.41 roll=33s up=6.4s gpu=54.0%
+[S s633] g=17616 upd=40 ret=-0.067 ev=0.80 brier0=0.227 auc0=0.67 ent=0.363 kl=0.0034 clip=0.035 gn=1.37 roll=33s up=6.6s gpu=54.0%
+[S s633] g=18064 upd=41 ret=-0.045 ev=0.78 brier0=0.233 auc0=0.65 ent=0.350 kl=0.0035 clip=0.036 gn=1.37 roll=33s up=6.6s gpu=56.0%
+[S s633] g=18496 upd=42 ret=-0.040 ev=0.78 brier0=0.226 auc0=0.67 ent=0.355 kl=0.0034 clip=0.034 gn=1.40 roll=33s up=6.6s gpu=53.0%
+[S s633] g=18928 upd=43 ret=-0.011 ev=0.77 brier0=0.237 auc0=0.65 ent=0.352 kl=0.0036 clip=0.037 gn=1.38 roll=33s up=6.5s gpu=54.0%
+[S s633] g=19360 upd=44 ret=-0.002 ev=0.77 brier0=0.236 auc0=0.65 ent=0.348 kl=0.0037 clip=0.036 gn=1.33 roll=32s up=6.6s gpu=55.0%
+[S s633] g=19792 upd=45 ret=-0.053 ev=0.78 brier0=0.232 auc0=0.65 ent=0.358 kl=0.0036 clip=0.037 gn=1.47 roll=32s up=6.6s gpu=54.0%
+[S s633] g=20224 upd=46 ret=+0.002 ev=0.77 brier0=0.219 auc0=0.71 ent=0.361 kl=0.0035 clip=0.035 gn=1.46 roll=32s up=6.4s gpu=58.0%
+  checkpoint @ 20224 (eval point 20000) + full trainer state
+[S s633] g=20656 upd=47 ret=-0.007 ev=0.77 brier0=0.233 auc0=0.66 ent=0.355 kl=0.0038 clip=0.038 gn=1.39 roll=33s up=6.5s gpu=54.0%
+[S s633] g=21088 upd=48 ret=-0.113 ev=0.76 brier0=0.213 auc0=0.70 ent=0.365 kl=0.0034 clip=0.033 gn=1.51 roll=33s up=6.5s gpu=57.0%
+  lagged snapshot @ 21088 -> lagged_g21088.npz
+[S s633] g=21520 upd=49 ret=-0.064 ev=0.76 brier0=0.230 auc0=0.65 ent=0.355 kl=0.0036 clip=0.036 gn=1.38 roll=33s up=6.4s gpu=56.0%
+[S s633] g=21936 upd=50 ret=-0.076 ev=0.78 brier0=0.233 auc0=0.64 ent=0.360 kl=0.0035 clip=0.036 gn=1.45 roll=31s up=6.5s gpu=56.0%
+[S s633] g=22368 upd=51 ret=-0.059 ev=0.77 brier0=0.234 auc0=0.65 ent=0.358 kl=0.0035 clip=0.035 gn=1.42 roll=33s up=6.8s gpu=55.0%
+[S s633] g=22800 upd=52 ret=-0.018 ev=0.79 brier0=0.231 auc0=0.69 ent=0.353 kl=0.0037 clip=0.039 gn=1.40 roll=33s up=6.7s gpu=55.0%
+[S s633] g=23232 upd=53 ret=-0.064 ev=0.76 brier0=0.233 auc0=0.64 ent=0.356 kl=0.0035 clip=0.036 gn=1.38 roll=34s up=6.6s gpu=57.0%
+[S s633] g=23680 upd=54 ret=-0.098 ev=0.75 brier0=0.217 auc0=0.70 ent=0.352 kl=0.0037 clip=0.036 gn=1.43 roll=34s up=6.6s gpu=52.0%
+[S s633] g=24112 upd=55 ret=-0.018 ev=0.77 brier0=0.222 auc0=0.72 ent=0.357 kl=0.0039 clip=0.038 gn=1.43 roll=33s up=6.6s gpu=54.0%
+[S s633] g=24544 upd=56 ret=-0.038 ev=0.78 brier0=0.215 auc0=0.72 ent=0.353 kl=0.0036 clip=0.037 gn=1.45 roll=32s up=6.6s gpu=55.0%
+[S s633] g=24976 upd=57 ret=-0.062 ev=0.76 brier0=0.225 auc0=0.67 ent=0.347 kl=0.0036 clip=0.037 gn=1.43 roll=32s up=6.4s gpu=53.0%
+[S s633] g=25408 upd=58 ret=-0.039 ev=0.76 brier0=0.232 auc0=0.65 ent=0.354 kl=0.0038 clip=0.037 gn=1.45 roll=32s up=6.5s gpu=55.0%
+[S s633] g=25840 upd=59 ret=-0.069 ev=0.74 brier0=0.227 auc0=0.66 ent=0.352 kl=0.0038 clip=0.038 gn=1.41 roll=32s up=6.4s gpu=56.0%
+[S s633] g=26272 upd=60 ret=-0.038 ev=0.77 brier0=0.234 auc0=0.67 ent=0.349 kl=0.0036 clip=0.037 gn=1.43 roll=32s up=6.4s gpu=55.0%
+  lagged snapshot @ 26272 -> lagged_g26272.npz
+[S s633] g=26704 upd=61 ret=-0.004 ev=0.79 brier0=0.234 auc0=0.66 ent=0.355 kl=0.0038 clip=0.038 gn=1.41 roll=31s up=6.6s gpu=53.0%
+[S s633] g=27136 upd=62 ret=+0.004 ev=0.76 brier0=0.228 auc0=0.68 ent=0.354 kl=0.0037 clip=0.038 gn=1.40 roll=32s up=6.7s gpu=54.0%
+[S s633] g=27552 upd=63 ret=-0.001 ev=0.76 brier0=0.239 auc0=0.62 ent=0.354 kl=0.0039 clip=0.038 gn=1.46 roll=32s up=6.4s gpu=55.0%
+[S s633] g=27984 upd=64 ret=+0.027 ev=0.77 brier0=0.228 auc0=0.66 ent=0.344 kl=0.0037 clip=0.036 gn=1.38 roll=32s up=6.6s gpu=51.0%
+[S s633] g=28416 upd=65 ret=-0.016 ev=0.77 brier0=0.232 auc0=0.65 ent=0.349 kl=0.0038 clip=0.038 gn=1.42 roll=33s up=6.6s gpu=55.0%
+[S s633] g=28848 upd=66 ret=-0.017 ev=0.78 brier0=0.224 auc0=0.68 ent=0.344 kl=0.0037 clip=0.036 gn=1.40 roll=32s up=6.5s gpu=55.0%
+[S s633] g=29296 upd=67 ret=-0.085 ev=0.78 brier0=0.219 auc0=0.67 ent=0.348 kl=0.0037 clip=0.036 gn=1.48 roll=34s up=6.7s gpu=51.0%
+[S s633] g=29728 upd=68 ret=-0.063 ev=0.76 brier0=0.227 auc0=0.66 ent=0.350 kl=0.0039 clip=0.039 gn=1.44 roll=32s up=6.6s gpu=56.0%
+[S s633] g=30176 upd=69 ret=-0.121 ev=0.75 brier0=0.227 auc0=0.67 ent=0.342 kl=0.0040 clip=0.038 gn=1.44 roll=34s up=6.8s gpu=46.0%
+  checkpoint @ 30176 (eval point 30000) + full trainer state
+[S s633] g=30608 upd=70 ret=-0.073 ev=0.78 brier0=0.230 auc0=0.67 ent=0.337 kl=0.0038 clip=0.037 gn=1.42 roll=32s up=6.4s gpu=50.0%
+[S s633] g=31040 upd=71 ret=-0.045 ev=0.76 brier0=0.243 auc0=0.63 ent=0.342 kl=0.0040 clip=0.039 gn=1.51 roll=32s up=6.6s gpu=53.0%
+[S s633] g=31472 upd=72 ret=-0.046 ev=0.77 brier0=0.233 auc0=0.66 ent=0.346 kl=0.0040 clip=0.039 gn=1.47 roll=33s up=6.7s gpu=51.0%
+  lagged snapshot @ 31472 -> lagged_g31472.npz
+[S s633] g=31904 upd=73 ret=-0.012 ev=0.77 brier0=0.229 auc0=0.69 ent=0.345 kl=0.0041 clip=0.039 gn=1.49 roll=32s up=6.5s gpu=58.0%
+[S s633] g=32352 upd=74 ret=-0.050 ev=0.76 brier0=0.225 auc0=0.67 ent=0.344 kl=0.0043 clip=0.041 gn=1.47 roll=33s up=6.6s gpu=56.0%
+[S s633] g=32784 upd=75 ret=-0.075 ev=0.78 brier0=0.236 auc0=0.63 ent=0.341 kl=0.0039 clip=0.037 gn=1.51 roll=32s up=6.5s gpu=54.0%
+[S s633] g=33216 upd=76 ret=-0.039 ev=0.77 brier0=0.225 auc0=0.68 ent=0.334 kl=0.0042 clip=0.040 gn=1.48 roll=31s up=6.6s gpu=55.0%
+[S s633] g=33648 upd=77 ret=-0.046 ev=0.75 brier0=0.235 auc0=0.63 ent=0.333 kl=0.0040 clip=0.039 gn=1.44 roll=33s up=6.8s gpu=51.0%
+[S s633] g=34080 upd=78 ret=+0.005 ev=0.79 brier0=0.229 auc0=0.69 ent=0.331 kl=0.0042 clip=0.040 gn=1.47 roll=32s up=6.6s gpu=56.0%
+[S s633] g=34496 upd=79 ret=-0.032 ev=0.79 brier0=0.214 auc0=0.72 ent=0.329 kl=0.0039 clip=0.037 gn=1.47 roll=32s up=6.5s gpu=48.0%
+[S s633] g=34928 upd=80 ret=-0.077 ev=0.77 brier0=0.225 auc0=0.68 ent=0.343 kl=0.0040 clip=0.038 gn=1.52 roll=32s up=6.8s gpu=56.0%
+[S s633] g=35360 upd=81 ret=-0.009 ev=0.78 brier0=0.234 auc0=0.66 ent=0.330 kl=0.0039 clip=0.038 gn=1.50 roll=31s up=6.4s gpu=54.0%
+[S s633] g=35792 upd=82 ret=+0.006 ev=0.79 brier0=0.224 auc0=0.70 ent=0.323 kl=0.0042 clip=0.039 gn=1.50 roll=33s up=6.5s gpu=57.0%
+[S s633] g=36224 upd=83 ret=-0.018 ev=0.78 brier0=0.224 auc0=0.69 ent=0.331 kl=0.0045 clip=0.040 gn=1.50 roll=32s up=6.4s gpu=53.0%
+[S s633] g=36656 upd=84 ret=-0.065 ev=0.77 brier0=0.229 auc0=0.65 ent=0.328 kl=0.0044 clip=0.041 gn=1.46 roll=32s up=6.6s gpu=54.0%
+  lagged snapshot @ 36656 -> lagged_g36656.npz
+[S s633] g=37088 upd=85 ret=-0.016 ev=0.80 brier0=0.224 auc0=0.69 ent=0.325 kl=0.0042 clip=0.038 gn=1.43 roll=32s up=6.4s gpu=51.0%
+[S s633] g=37488 upd=86 ret=+0.008 ev=0.77 brier0=0.227 auc0=0.68 ent=0.325 kl=0.0040 clip=0.037 gn=1.49 roll=31s up=6.4s gpu=52.0%
+[S s633] g=37920 upd=87 ret=-0.040 ev=0.78 brier0=0.226 auc0=0.68 ent=0.325 kl=0.0041 clip=0.038 gn=1.49 roll=33s up=6.7s gpu=54.0%
+[S s633] g=38368 upd=88 ret=-0.005 ev=0.79 brier0=0.221 auc0=0.70 ent=0.321 kl=0.0041 clip=0.040 gn=1.46 roll=32s up=6.8s gpu=58.0%
+[S s633] g=38800 upd=89 ret=-0.052 ev=0.78 brier0=0.225 auc0=0.68 ent=0.319 kl=0.0041 clip=0.038 gn=1.48 roll=32s up=6.5s gpu=55.0%
+[S s633] g=39232 upd=90 ret=-0.002 ev=0.77 brier0=0.230 auc0=0.66 ent=0.320 kl=0.0043 clip=0.041 gn=1.54 roll=33s up=6.6s gpu=54.0%
+[S s633] g=39648 upd=91 ret=+0.010 ev=0.78 brier0=0.234 auc0=0.65 ent=0.317 kl=0.0047 clip=0.043 gn=1.50 roll=31s up=6.6s gpu=56.0%
+[S s633] g=40064 upd=92 ret=-0.067 ev=0.77 brier0=0.223 auc0=0.69 ent=0.317 kl=0.0046 clip=0.040 gn=1.52 roll=32s up=6.5s gpu=54.0%
+  checkpoint @ 40064 (eval point 40000) + full trainer state
+[S s633] DONE games=40064 updates=92 stop=budget_reached 39965.7 g/h

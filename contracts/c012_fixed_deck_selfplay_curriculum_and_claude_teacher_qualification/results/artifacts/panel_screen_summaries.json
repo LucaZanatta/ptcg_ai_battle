@@ -1,0 +1,7939 @@
+{
+  "T_teacher": {
+    "candidate_id": "T_teacher",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "mega_lucario": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "iono": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.6499999999999999,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.44999999999999996,
+          0.8500000000000001
+        ],
+        "one_sided_lb95": 0.49750000000000083
+      }
+    },
+    "teacher_score": null,
+    "teacher_one_sided_lb95": null,
+    "strategic_field_score": 0.5166666666666666,
+    "promotion_composite": null,
+    "reliability": {
+      "games": 60,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 50.37678492999997,
+    "field_ci95": [
+      0.39999999999999997,
+      0.6333333333333334
+    ],
+    "field_one_sided_lb95": 0.4166666666666667
+  },
+  "B0_v2a": {
+    "candidate_id": "B0_v2a",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.15,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.05,
+          0.275
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_lucario": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.15,
+    "teacher_one_sided_lb95": 0.05,
+    "strategic_field_score": 0.18333333333333335,
+    "promotion_composite": 0.165,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 78.96873375999951,
+    "field_ci95": [
+      0.09999999999999999,
+      0.2833333333333334
+    ],
+    "field_one_sided_lb95": 0.10000000000000002,
+    "composite_ci95": [
+      0.09375,
+      0.2425
+    ]
+  },
+  "I0_incumbent": {
+    "candidate_id": "I0_incumbent",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.125,
+          0.4
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.2833333333333333,
+    "promotion_composite": 0.265,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 76.17299587999943,
+    "field_ci95": [
+      0.1829166666666668,
+      0.39999999999999997
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.17875000000000002,
+      0.35624999999999996
+    ]
+  },
+  "A_311_g2527": {
+    "candidate_id": "A_311_g2527",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.25,
+    "promotion_composite": 0.22250000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 99.1779428499998,
+    "field_ci95": [
+      0.15,
+      0.36666666666666664
+    ],
+    "field_one_sided_lb95": 0.16666666666666666,
+    "composite_ci95": [
+      0.14250000000000002,
+      0.31124999999999997
+    ]
+  },
+  "A_311_g5054": {
+    "candidate_id": "A_311_g5054",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.3,
+    "promotion_composite": 0.24500000000000002,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 96.37002176000037,
+    "field_ci95": [
+      0.19999999999999998,
+      0.4166666666666667
+    ],
+    "field_one_sided_lb95": 0.20000000000000004,
+    "composite_ci95": [
+      0.16621875000000003,
+      0.33125
+    ]
+  },
+  "A_311_g7581": {
+    "candidate_id": "A_311_g7581",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15,
+          0.42500000000000004
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.2333333333333333,
+    "promotion_composite": 0.25625000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 101.44362839999951,
+    "field_ci95": [
+      0.13333333333333333,
+      0.3499999999999999
+    ],
+    "field_one_sided_lb95": 0.15,
+    "composite_ci95": [
+      0.17125,
+      0.35
+    ]
+  },
+  "A_311_g10108": {
+    "candidate_id": "A_311_g10108",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.21666666666666667,
+    "promotion_composite": 0.20750000000000002,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 90.87418995999965,
+    "field_ci95": [
+      0.11666666666666665,
+      0.31666666666666665
+    ],
+    "field_one_sided_lb95": 0.13333333333333333,
+    "composite_ci95": [
+      0.12746875000000002,
+      0.29125
+    ]
+  },
+  "A_311_g12103": {
+    "candidate_id": "A_311_g12103",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.19999999999999998
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.09875000000000043,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.19999999999999998,
+    "strategic_field_score": 0.3,
+    "promotion_composite": 0.3,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 101.95159276000037,
+    "field_ci95": [
+      0.19999999999999998,
+      0.4166666666666667
+    ],
+    "field_one_sided_lb95": 0.21666666666666667,
+    "composite_ci95": [
+      0.21000000000000005,
+      0.39
+    ]
+  },
+  "A_322_g2534": {
+    "candidate_id": "A_322_g2534",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.125,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.05,
+        "ci95": [
+          0.025,
+          0.225
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_lucario": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      }
+    },
+    "teacher_score": 0.125,
+    "teacher_one_sided_lb95": 0.05,
+    "strategic_field_score": 0.21666666666666667,
+    "promotion_composite": 0.16625,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 63.6911865000001,
+    "field_ci95": [
+      0.11666666666666668,
+      0.3166666666666667
+    ],
+    "field_one_sided_lb95": 0.13333333333333333,
+    "composite_ci95": [
+      0.09996875000000002,
+      0.24128125000000017
+    ]
+  },
+  "A_322_g5061": {
+    "candidate_id": "A_322_g5061",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.1,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.3499999999999999,
+    "promotion_composite": 0.2675,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 57.4355933000004,
+    "field_ci95": [
+      0.2333333333333333,
+      0.46666666666666673
+    ],
+    "field_one_sided_lb95": 0.25,
+    "composite_ci95": [
+      0.1825,
+      0.35875
+    ]
+  },
+  "A_322_g7588": {
+    "candidate_id": "A_322_g7588",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.175,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.075,
+          0.3
+        ],
+        "one_sided_lb95": 0.07500000000000001
+      },
+      "mega_lucario": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.0,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.175,
+    "teacher_one_sided_lb95": 0.07500000000000001,
+    "strategic_field_score": 0.15,
+    "promotion_composite": 0.16375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 76.38912704000029,
+    "field_ci95": [
+      0.06666666666666667,
+      0.2333333333333333
+    ],
+    "field_one_sided_lb95": 0.08333333333333333,
+    "composite_ci95": [
+      0.09375,
+      0.24125000000000002
+    ]
+  },
+  "A_322_g10115": {
+    "candidate_id": "A_322_g10115",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.15000000000000002,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.275
+        ],
+        "one_sided_lb95": 0.075
+      },
+      "mega_lucario": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "iono": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.15000000000000002,
+    "teacher_one_sided_lb95": 0.075,
+    "strategic_field_score": 0.26666666666666666,
+    "promotion_composite": 0.2025,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 62.56179407000009,
+    "field_ci95": [
+      0.16666666666666666,
+      0.3666666666666667
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.1325,
+      0.2825312500000001
+    ]
+  },
+  "A_322_g12110": {
+    "candidate_id": "A_322_g12110",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.32499999999999996,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.32499999999999996,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.25,
+    "promotion_composite": 0.29125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 87.01019405000031,
+    "field_ci95": [
+      0.15,
+      0.3666666666666667
+    ],
+    "field_one_sided_lb95": 0.16666666666666666,
+    "composite_ci95": [
+      0.20125,
+      0.3862812500000001
+    ]
+  },
+  "A_333_g2541": {
+    "candidate_id": "A_333_g2541",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.15,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.3
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.2166666666666667,
+    "promotion_composite": 0.2625,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 110.14540723999997,
+    "field_ci95": [
+      0.11666666666666668,
+      0.3166666666666667
+    ],
+    "field_one_sided_lb95": 0.13333333333333333,
+    "composite_ci95": [
+      0.1775,
+      0.355
+    ]
+  },
+  "A_333_g5068": {
+    "candidate_id": "A_333_g5068",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.375,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.45,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.175,
+          0.575
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.27499999999999997,
+    "promotion_composite": 0.23375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 79.72699675999942,
+    "field_ci95": [
+      0.16666666666666666,
+      0.3833333333333333
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.1525,
+      0.315
+    ]
+  },
+  "A_333_g7595": {
+    "candidate_id": "A_333_g7595",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.22499999999999998,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.35000000000000003
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.05,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.15
+        ],
+        "one_sided_lb95": 0.0
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30125000000000457
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.22499999999999998,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.15,
+    "promotion_composite": 0.19125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 102.30686390999989,
+    "field_ci95": [
+      0.06666666666666667,
+      0.25
+    ],
+    "field_one_sided_lb95": 0.08333333333333333,
+    "composite_ci95": [
+      0.11375,
+      0.275
+    ]
+  },
+  "A_333_g10122": {
+    "candidate_id": "A_333_g10122",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.1,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.025,
+          0.2
+        ],
+        "one_sided_lb95": 0.025
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      },
+      "iono": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.1,
+    "teacher_one_sided_lb95": 0.025,
+    "strategic_field_score": 0.21666666666666667,
+    "promotion_composite": 0.1525,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 101.07130104999979,
+    "field_ci95": [
+      0.11666666666666668,
+      0.3166666666666667
+    ],
+    "field_one_sided_lb95": 0.13333333333333333,
+    "composite_ci95": [
+      0.08750000000000001,
+      0.22378125000000015
+    ]
+  },
+  "A_333_g12117": {
+    "candidate_id": "A_333_g12117",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.375,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.225,
+          0.525
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.375,
+    "teacher_one_sided_lb95": 0.25,
+    "strategic_field_score": 0.23333333333333336,
+    "promotion_composite": 0.31125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 73.50120891999947,
+    "field_ci95": [
+      0.13333333333333333,
+      0.3333333333333333
+    ],
+    "field_one_sided_lb95": 0.15,
+    "composite_ci95": [
+      0.22121875000000002,
+      0.40878125000000015
+    ]
+  },
+  "B_411_g2508": {
+    "candidate_id": "B_411_g2508",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.15,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.2675,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 87.18791872000034,
+    "field_ci95": [
+      0.23333333333333336,
+      0.4666666666666666
+    ],
+    "field_one_sided_lb95": 0.25,
+    "composite_ci95": [
+      0.18375,
+      0.35625
+    ]
+  },
+  "B_411_g5016": {
+    "candidate_id": "B_411_g5016",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.22499999999999998,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.22499999999999998,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.26666666666666666,
+    "promotion_composite": 0.24375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 99.10206123000019,
+    "field_ci95": [
+      0.16666666666666666,
+      0.3833333333333333
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.16496875000000003,
+      0.32753125000000016
+    ]
+  },
+  "B_411_g7524": {
+    "candidate_id": "B_411_g7524",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.125,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.05,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.025,
+          0.225
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.125,
+    "teacher_one_sided_lb95": 0.05,
+    "strategic_field_score": 0.3,
+    "promotion_composite": 0.20375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 112.57803357999948,
+    "field_ci95": [
+      0.18333333333333335,
+      0.4166666666666667
+    ],
+    "field_one_sided_lb95": 0.20000000000000004,
+    "composite_ci95": [
+      0.13125,
+      0.28125
+    ]
+  },
+  "B_422_g2508": {
+    "candidate_id": "B_422_g2508",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.15000000000000002,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.8,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.35,
+          0.65
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.31666666666666665,
+    "promotion_composite": 0.3075,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 170.68043905999951,
+    "field_ci95": [
+      0.21666666666666667,
+      0.4166666666666667
+    ],
+    "field_one_sided_lb95": 0.2333333333333333,
+    "composite_ci95": [
+      0.22125,
+      0.39875
+    ]
+  },
+  "B_422_g5016": {
+    "candidate_id": "B_422_g5016",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.225,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.225,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.26666666666666666,
+    "promotion_composite": 0.24375000000000002,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 120.15332000999992,
+    "field_ci95": [
+      0.16666666666666666,
+      0.3666666666666667
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.16496875,
+      0.33249999999999996
+    ]
+  },
+  "B_422_g7524": {
+    "candidate_id": "B_422_g7524",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.45,
+        "ci95": [
+          0.22499999999999998,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.15,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.0,
+          0.3
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.23333333333333336,
+    "promotion_composite": 0.2975,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 83.53968795999967,
+    "field_ci95": [
+      0.13333333333333333,
+      0.3333333333333333
+    ],
+    "field_one_sided_lb95": 0.15,
+    "composite_ci95": [
+      0.2125,
+      0.39375
+    ]
+  },
+  "B_433_g2508": {
+    "candidate_id": "B_433_g2508",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.45,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.31666666666666665,
+    "promotion_composite": 0.32125000000000004,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 105.41926111999946,
+    "field_ci95": [
+      0.21666666666666667,
+      0.43333333333333335
+    ],
+    "field_one_sided_lb95": 0.2333333333333333,
+    "composite_ci95": [
+      0.22999999999999998,
+      0.41128125000000015
+    ]
+  },
+  "B_433_g5016": {
+    "candidate_id": "B_433_g5016",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.15,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.05,
+          0.275
+        ],
+        "one_sided_lb95": 0.075
+      },
+      "mega_lucario": {
+        "point": 0.6499999999999999,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.44999999999999996,
+          0.8500000000000001
+        ],
+        "one_sided_lb95": 0.45
+      },
+      "iono": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.15,
+    "teacher_one_sided_lb95": 0.075,
+    "strategic_field_score": 0.4333333333333333,
+    "promotion_composite": 0.27749999999999997,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 79.53978978000013,
+    "field_ci95": [
+      0.3166666666666667,
+      0.5499999999999999
+    ],
+    "field_one_sided_lb95": 0.3333333333333333,
+    "composite_ci95": [
+      0.19875000000000004,
+      0.36125
+    ]
+  },
+  "B_433_g7524": {
+    "candidate_id": "B_433_g7524",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.3,
+    "promotion_composite": 0.31375000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 82.90562574999873,
+    "field_ci95": [
+      0.19999999999999998,
+      0.4166666666666667
+    ],
+    "field_one_sided_lb95": 0.21666666666666667,
+    "composite_ci95": [
+      0.22250000000000003,
+      0.40875000000000006
+    ]
+  },
+  "C_511_g2748": {
+    "candidate_id": "C_511_g2748",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.15000000000000002,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.275
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_lucario": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.35
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.15000000000000002,
+    "teacher_one_sided_lb95": 0.05,
+    "strategic_field_score": 0.15000000000000002,
+    "promotion_composite": 0.15000000000000002,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 92.05680212000036,
+    "field_ci95": [
+      0.06666666666666667,
+      0.25
+    ],
+    "field_one_sided_lb95": 0.08333333333333333,
+    "composite_ci95": [
+      0.08,
+      0.2275
+    ]
+  },
+  "C_511_g5012": {
+    "candidate_id": "C_511_g5012",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.2675,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 76.66405727999854,
+    "field_ci95": [
+      0.25,
+      0.4666666666666666
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.18500000000000003,
+      0.3525
+    ]
+  },
+  "C_511_g7660": {
+    "candidate_id": "C_511_g7660",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.15,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.05,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.05,
+          0.275
+        ],
+        "one_sided_lb95": 0.075
+      },
+      "mega_lucario": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "mega_abomasnow": {
+        "point": 0.05,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.15
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.15,
+    "teacher_one_sided_lb95": 0.075,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.24,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 65.68144998000025,
+    "field_ci95": [
+      0.25,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.16874999999999998,
+      0.31875000000000003
+    ]
+  },
+  "C_511_g10316": {
+    "candidate_id": "C_511_g10316",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.28333333333333327,
+    "promotion_composite": 0.2925,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 73.30112442000012,
+    "field_ci95": [
+      0.18333333333333335,
+      0.39999999999999997
+    ],
+    "field_one_sided_lb95": 0.19999999999999998,
+    "composite_ci95": [
+      0.20125,
+      0.38875
+    ]
+  },
+  "C_511_g15108": {
+    "candidate_id": "C_511_g15108",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.3333333333333333,
+    "promotion_composite": 0.315,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 88.93729574000034,
+    "field_ci95": [
+      0.21666666666666667,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.23333333333333336,
+    "composite_ci95": [
+      0.22375,
+      0.41250000000000003
+    ]
+  },
+  "C_511_g20292": {
+    "candidate_id": "C_511_g20292",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.125,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.025,
+          0.225
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_lucario": {
+        "point": 0.15,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.3
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.05,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.15
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.125,
+    "teacher_one_sided_lb95": 0.05,
+    "strategic_field_score": 0.18333333333333335,
+    "promotion_composite": 0.15125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 112.98365373000004,
+    "field_ci95": [
+      0.09999999999999999,
+      0.26666666666666666
+    ],
+    "field_one_sided_lb95": 0.11666666666666665,
+    "composite_ci95": [
+      0.08625000000000001,
+      0.22374999999999998
+    ]
+  },
+  "C_522_g2728": {
+    "candidate_id": "C_522_g2728",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.15,
+          0.4006250000000023
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.15000000000000002,
+          0.5
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.26666666666666666,
+    "promotion_composite": 0.27125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 94.47341939999976,
+    "field_ci95": [
+      0.16666666666666666,
+      0.3666666666666667
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.18125,
+      0.3625
+    ]
+  },
+  "C_522_g5428": {
+    "candidate_id": "C_522_g5428",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.175,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.075,
+          0.3
+        ],
+        "one_sided_lb95": 0.07500000000000001
+      },
+      "mega_lucario": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.175,
+    "teacher_one_sided_lb95": 0.07500000000000001,
+    "strategic_field_score": 0.21666666666666667,
+    "promotion_composite": 0.19375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 79.73352284999959,
+    "field_ci95": [
+      0.13333333333333333,
+      0.3166666666666667
+    ],
+    "field_one_sided_lb95": 0.13333333333333333,
+    "composite_ci95": [
+      0.11625000000000002,
+      0.2750312500000001
+    ]
+  },
+  "C_522_g7624": {
+    "candidate_id": "C_522_g7624",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.125,
+          0.375
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.3025,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 98.76827104999958,
+    "field_ci95": [
+      0.25,
+      0.48333333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.21750000000000003,
+      0.3925
+    ]
+  },
+  "C_522_g10236": {
+    "candidate_id": "C_522_g10236",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.125,
+          0.375
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.3333333333333333,
+    "promotion_composite": 0.28750000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 107.82396227000018,
+    "field_ci95": [
+      0.21666666666666667,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.23333333333333336,
+    "composite_ci95": [
+      0.20125,
+      0.38
+    ]
+  },
+  "C_522_g15424": {
+    "candidate_id": "C_522_g15424",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.175,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.075,
+          0.3
+        ],
+        "one_sided_lb95": 0.07500000000000001
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.175,
+    "teacher_one_sided_lb95": 0.07500000000000001,
+    "strategic_field_score": 0.3,
+    "promotion_composite": 0.23125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 55.08018079999968,
+    "field_ci95": [
+      0.18333333333333335,
+      0.4166666666666667
+    ],
+    "field_one_sided_lb95": 0.20000000000000004,
+    "composite_ci95": [
+      0.15371875000000002,
+      0.31503125000000015
+    ]
+  },
+  "C_522_g20220": {
+    "candidate_id": "C_522_g20220",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.175,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.0,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.2833333333333334,
+    "promotion_composite": 0.2925,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 97.86453089999961,
+    "field_ci95": [
+      0.18333333333333335,
+      0.3833333333333333
+    ],
+    "field_one_sided_lb95": 0.19999999999999998,
+    "composite_ci95": [
+      0.20375000000000001,
+      0.3825
+    ]
+  },
+  "C_533_g2772": {
+    "candidate_id": "C_533_g2772",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.22499999999999998,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.7,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.39999999999999997
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.22499999999999998,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.28125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 119.95890771999939,
+    "field_ci95": [
+      0.23333333333333336,
+      0.4666666666666666
+    ],
+    "field_one_sided_lb95": 0.25000000000000006,
+    "composite_ci95": [
+      0.19625,
+      0.36875
+    ]
+  },
+  "C_533_g5052": {
+    "candidate_id": "C_533_g5052",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.175,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.075,
+          0.3
+        ],
+        "one_sided_lb95": 0.07500000000000001
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      }
+    },
+    "teacher_score": 0.175,
+    "teacher_one_sided_lb95": 0.07500000000000001,
+    "strategic_field_score": 0.43333333333333335,
+    "promotion_composite": 0.29125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 61.88926989000009,
+    "field_ci95": [
+      0.30000000000000004,
+      0.55
+    ],
+    "field_one_sided_lb95": 0.3333333333333333,
+    "composite_ci95": [
+      0.20875,
+      0.3812812500000001
+    ]
+  },
+  "C_533_g7720": {
+    "candidate_id": "C_533_g7720",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.15,
+          0.4
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.3333333333333333,
+    "promotion_composite": 0.30125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 92.69206689999945,
+    "field_ci95": [
+      0.21666666666666667,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.2333333333333333,
+    "composite_ci95": [
+      0.21000000000000002,
+      0.39625
+    ]
+  },
+  "C_533_g10356": {
+    "candidate_id": "C_533_g10356",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.21666666666666667,
+    "promotion_composite": 0.20750000000000002,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 74.04848170000044,
+    "field_ci95": [
+      0.11666666666666668,
+      0.3166666666666667
+    ],
+    "field_one_sided_lb95": 0.13333333333333333,
+    "composite_ci95": [
+      0.12875,
+      0.29125
+    ]
+  },
+  "C_533_g15168": {
+    "candidate_id": "C_533_g15168",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.125,
+          0.4
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.25,
+    "promotion_composite": 0.25,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 98.45770901000004,
+    "field_ci95": [
+      0.15,
+      0.35000000000000003
+    ],
+    "field_one_sided_lb95": 0.16666666666666666,
+    "composite_ci95": [
+      0.16625,
+      0.3400312500000002
+    ]
+  },
+  "C_533_g19952": {
+    "candidate_id": "C_533_g19952",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.175,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.075,
+          0.3
+        ],
+        "one_sided_lb95": 0.07500000000000001
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.175,
+    "teacher_one_sided_lb95": 0.07500000000000001,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.26125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 105.1265203600004,
+    "field_ci95": [
+      0.25,
+      0.4833333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.18125000000000002,
+      0.34875
+    ]
+  },
+  "S_611_g5440": {
+    "candidate_id": "S_611_g5440",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.45,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.22499999999999998
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.8,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.35,
+          0.65
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "mega_abomasnow": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.22499999999999998,
+    "strategic_field_score": 0.4666666666666666,
+    "promotion_composite": 0.4025,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 85.36277756000014,
+    "field_ci95": [
+      0.35000000000000003,
+      0.5833333333333334
+    ],
+    "field_one_sided_lb95": 0.3666666666666667,
+    "composite_ci95": [
+      0.30374999999999996,
+      0.4987500000000001
+    ]
+  },
+  "S_611_g10320": {
+    "candidate_id": "S_611_g10320",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.15,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.0,
+          0.3
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.26666666666666666,
+    "promotion_composite": 0.28500000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 83.4052878799998,
+    "field_ci95": [
+      0.16666666666666666,
+      0.3666666666666667
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.19874999999999998,
+      0.37750000000000006
+    ]
+  },
+  "S_611_g15120": {
+    "candidate_id": "S_611_g15120",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.32499999999999996,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.32499999999999996,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.2833333333333333,
+    "promotion_composite": 0.30624999999999997,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 65.11075936000042,
+    "field_ci95": [
+      0.18333333333333335,
+      0.38333333333333336
+    ],
+    "field_one_sided_lb95": 0.19999999999999998,
+    "composite_ci95": [
+      0.21375000000000002,
+      0.4025
+    ]
+  },
+  "S_611_g20287": {
+    "candidate_id": "S_611_g20287",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.22499999999999998,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.15,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.7,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.39999999999999997
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.3512500000000045
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.22499999999999998,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.28875,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 45.74959797999982,
+    "field_ci95": [
+      0.26666666666666666,
+      0.46666666666666673
+    ],
+    "field_one_sided_lb95": 0.2833333333333333,
+    "composite_ci95": [
+      0.20500000000000002,
+      0.37625000000000003
+    ]
+  },
+  "S_611_g30223": {
+    "candidate_id": "S_611_g30223",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      },
+      "iono": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.26666666666666666,
+    "promotion_composite": 0.3125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 54.31189775999923,
+    "field_ci95": [
+      0.16666666666666666,
+      0.3833333333333333
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.22249999999999998,
+      0.41
+    ]
+  },
+  "S_611_g40127": {
+    "candidate_id": "S_611_g40127",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.2833333333333333,
+    "promotion_composite": 0.30625,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 93.02577470999944,
+    "field_ci95": [
+      0.18333333333333335,
+      0.39999999999999997
+    ],
+    "field_one_sided_lb95": 0.19999999999999998,
+    "composite_ci95": [
+      0.21625,
+      0.4
+    ]
+  },
+  "S_622_g5328": {
+    "candidate_id": "S_622_g5328",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.15,
+          0.425
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.3166666666666667,
+    "promotion_composite": 0.29375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 126.1046440000001,
+    "field_ci95": [
+      0.20000000000000004,
+      0.43333333333333335
+    ],
+    "field_one_sided_lb95": 0.21666666666666667,
+    "composite_ci95": [
+      0.2025,
+      0.38625
+    ]
+  },
+  "S_622_g10096": {
+    "candidate_id": "S_622_g10096",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.34375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 84.57545357000004,
+    "field_ci95": [
+      0.25,
+      0.4833333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.25246875,
+      0.4362500000000001
+    ]
+  },
+  "S_622_g15296": {
+    "candidate_id": "S_622_g15296",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "mega_abomasnow": {
+        "point": 0.05,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.15
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.3225,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 81.8105173199998,
+    "field_ci95": [
+      0.25,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.23500000000000004,
+      0.41875
+    ]
+  },
+  "S_622_g20032": {
+    "candidate_id": "S_622_g20032",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.15,
+          0.425
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      },
+      "mega_lucario": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.15000000000000002,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.30875,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 73.22504325999981,
+    "field_ci95": [
+      0.23333333333333336,
+      0.4666666666666666
+    ],
+    "field_one_sided_lb95": 0.25000000000000006,
+    "composite_ci95": [
+      0.2175,
+      0.40375
+    ]
+  },
+  "S_622_g30319": {
+    "candidate_id": "S_622_g30319",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.15,
+          0.425
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1487500000000004,
+          0.5
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.30875,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 111.50268645999994,
+    "field_ci95": [
+      0.2333333333333333,
+      0.4666666666666666
+    ],
+    "field_one_sided_lb95": 0.25,
+    "composite_ci95": [
+      0.2225,
+      0.4025
+    ]
+  },
+  "S_622_g39983": {
+    "candidate_id": "S_622_g39983",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.2833333333333334,
+    "promotion_composite": 0.32,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 102.46899575999994,
+    "field_ci95": [
+      0.16666666666666666,
+      0.39999999999999997
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.2275,
+      0.41874999999999996
+    ]
+  },
+  "S_633_g5376": {
+    "candidate_id": "S_633_g5376",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.425,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.275,
+          0.575
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_lucario": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.425,
+    "teacher_one_sided_lb95": 0.3,
+    "strategic_field_score": 0.26666666666666666,
+    "promotion_composite": 0.35375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 90.95932324000003,
+    "field_ci95": [
+      0.16666666666666666,
+      0.36708333333333487
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.25875000000000004,
+      0.45124999999999993
+    ]
+  },
+  "S_633_g10224": {
+    "candidate_id": "S_633_g10224",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.2,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.07500000000000001,
+          0.325
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.2,
+    "teacher_one_sided_lb95": 0.1,
+    "strategic_field_score": 0.3833333333333333,
+    "promotion_composite": 0.28250000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 65.53083850000114,
+    "field_ci95": [
+      0.26666666666666666,
+      0.5
+    ],
+    "field_one_sided_lb95": 0.2833333333333333,
+    "composite_ci95": [
+      0.19625,
+      0.37124999999999997
+    ]
+  },
+  "S_633_g15040": {
+    "candidate_id": "S_633_g15040",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.42500000000000004,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.45,
+        "ci95": [
+          0.275,
+          0.575
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      }
+    },
+    "teacher_score": 0.42500000000000004,
+    "teacher_one_sided_lb95": 0.3,
+    "strategic_field_score": 0.4166666666666667,
+    "promotion_composite": 0.42125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 154.7535204400001,
+    "field_ci95": [
+      0.3,
+      0.5499999999999999
+    ],
+    "field_one_sided_lb95": 0.31666666666666665,
+    "composite_ci95": [
+      0.3225,
+      0.525
+    ]
+  },
+  "S_633_g20224": {
+    "candidate_id": "S_633_g20224",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.6499999999999999,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.44999999999999996,
+          0.8500000000000001
+        ],
+        "one_sided_lb95": 0.5
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.1,
+          0.4
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.3833333333333333,
+    "promotion_composite": 0.365,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 54.731411199999826,
+    "field_ci95": [
+      0.2833333333333333,
+      0.5
+    ],
+    "field_one_sided_lb95": 0.3,
+    "composite_ci95": [
+      0.27249999999999996,
+      0.45753125000000017
+    ]
+  },
+  "S_633_g30176": {
+    "candidate_id": "S_633_g30176",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15,
+          0.425
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.31625000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 69.66456268999997,
+    "field_ci95": [
+      0.25,
+      0.48333333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.23000000000000004,
+      0.4075000000000001
+    ]
+  },
+  "S_633_g40064": {
+    "candidate_id": "S_633_g40064",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.15,
+          0.425
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.38333333333333336,
+    "promotion_composite": 0.32375000000000004,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 123.17161838999996,
+    "field_ci95": [
+      0.26666666666666666,
+      0.5
+    ],
+    "field_one_sided_lb95": 0.2833333333333334,
+    "composite_ci95": [
+      0.2325,
+      0.41750000000000004
+    ]
+  },
+  "P0_711_g5216": {
+    "candidate_id": "P0_711_g5216",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.225,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.1,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.25
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.225,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.23333333333333336,
+    "promotion_composite": 0.22875,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 53.73060739999899,
+    "field_ci95": [
+      0.13333333333333333,
+      0.3333333333333333
+    ],
+    "field_one_sided_lb95": 0.15,
+    "composite_ci95": [
+      0.14625000000000002,
+      0.31753125000000015
+    ]
+  },
+  "P0_711_g10304": {
+    "candidate_id": "P0_711_g10304",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.4,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.45,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.25,
+          0.55
+        ],
+        "one_sided_lb95": 0.275
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.7,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.39999999999999997
+      },
+      "mega_abomasnow": {
+        "point": 0.15,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.0,
+          0.3
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.4,
+    "teacher_one_sided_lb95": 0.275,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.385,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 69.0068583199999,
+    "field_ci95": [
+      0.26666666666666666,
+      0.48333333333333334
+    ],
+    "field_one_sided_lb95": 0.2833333333333333,
+    "composite_ci95": [
+      0.29000000000000004,
+      0.4837812500000002
+    ]
+  },
+  "P0_711_g15040": {
+    "candidate_id": "P0_711_g15040",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.275,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.15,
+          0.425
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.35
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.275,
+    "teacher_one_sided_lb95": 0.15000000000000002,
+    "strategic_field_score": 0.2833333333333334,
+    "promotion_composite": 0.27875000000000005,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 144.67882385000001,
+    "field_ci95": [
+      0.18333333333333335,
+      0.38333333333333336
+    ],
+    "field_one_sided_lb95": 0.19999999999999998,
+    "composite_ci95": [
+      0.19,
+      0.36875
+    ]
+  },
+  "P0_711_g20144": {
+    "candidate_id": "P0_711_g20144",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.7,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.1,
+          0.4
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.4166666666666667,
+    "promotion_composite": 0.3525,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 102.26025968000008,
+    "field_ci95": [
+      0.3,
+      0.5333333333333333
+    ],
+    "field_one_sided_lb95": 0.3166666666666667,
+    "composite_ci95": [
+      0.26,
+      0.44503125000000016
+    ]
+  },
+  "P0_711_g25296": {
+    "candidate_id": "P0_711_g25296",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.3225,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 75.623454,
+    "field_ci95": [
+      0.23333333333333336,
+      0.4666666666666666
+    ],
+    "field_one_sided_lb95": 0.25,
+    "composite_ci95": [
+      0.2325,
+      0.42
+    ]
+  },
+  "P0_722_g5200": {
+    "candidate_id": "P0_722_g5200",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.4,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.45,
+        "ci95": [
+          0.25,
+          0.55
+        ],
+        "one_sided_lb95": 0.275
+      },
+      "mega_lucario": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.4,
+    "teacher_one_sided_lb95": 0.275,
+    "strategic_field_score": 0.25000000000000006,
+    "promotion_composite": 0.3325,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 90.0900161400003,
+    "field_ci95": [
+      0.15,
+      0.36666666666666664
+    ],
+    "field_one_sided_lb95": 0.16666666666666666,
+    "composite_ci95": [
+      0.23625000000000002,
+      0.43125
+    ]
+  },
+  "P0_722_g10320": {
+    "candidate_id": "P0_722_g10320",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.225,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "mega_abomasnow": {
+        "point": 0.6000000000000001,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.8,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.4,
+          0.8
+        ],
+        "one_sided_lb95": 0.44999999999999996
+      }
+    },
+    "teacher_score": 0.225,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.38333333333333336,
+    "promotion_composite": 0.29625,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 77.77166203999964,
+    "field_ci95": [
+      0.26666666666666666,
+      0.5
+    ],
+    "field_one_sided_lb95": 0.3,
+    "composite_ci95": [
+      0.20996874999999998,
+      0.3825
+    ]
+  },
+  "P0_722_g15408": {
+    "candidate_id": "P0_722_g15408",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.125,
+          0.4
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.3025,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 75.73292554999963,
+    "field_ci95": [
+      0.25000000000000006,
+      0.48333333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.21371875,
+      0.39375000000000004
+    ]
+  },
+  "P0_722_g20048": {
+    "candidate_id": "P0_722_g20048",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.3833333333333333,
+    "promotion_composite": 0.3375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 73.6445661199989,
+    "field_ci95": [
+      0.26666666666666666,
+      0.5
+    ],
+    "field_one_sided_lb95": 0.2833333333333333,
+    "composite_ci95": [
+      0.24625000000000002,
+      0.43374999999999997
+    ]
+  },
+  "P0_722_g25152": {
+    "candidate_id": "P0_722_g25152",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.42500000000000004,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.45,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.275,
+          0.575
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_lucario": {
+        "point": 0.6,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.4,
+          0.8
+        ],
+        "one_sided_lb95": 0.44999999999999996
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.42500000000000004,
+    "teacher_one_sided_lb95": 0.3,
+    "strategic_field_score": 0.46666666666666673,
+    "promotion_composite": 0.44375000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 70.6304525,
+    "field_ci95": [
+      0.35000000000000003,
+      0.5833333333333334
+    ],
+    "field_one_sided_lb95": 0.3666666666666667,
+    "composite_ci95": [
+      0.345,
+      0.5425000000000001
+    ]
+  },
+  "P0_733_g5200": {
+    "candidate_id": "P0_733_g5200",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.125,
+          0.375
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.36666666666666664,
+    "promotion_composite": 0.3025,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 105.6733259700002,
+    "field_ci95": [
+      0.25,
+      0.4833333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.21621875,
+      0.39
+    ]
+  },
+  "P0_733_g10368": {
+    "candidate_id": "P0_733_g10368",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.125,
+          0.375
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.3833333333333333,
+    "promotion_composite": 0.31,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 75.25371700000001,
+    "field_ci95": [
+      0.26666666666666666,
+      0.5
+    ],
+    "field_one_sided_lb95": 0.2833333333333333,
+    "composite_ci95": [
+      0.22125,
+      0.4025
+    ]
+  },
+  "P0_733_g15056": {
+    "candidate_id": "P0_733_g15056",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.425,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.275,
+          0.575
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_lucario": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      }
+    },
+    "teacher_score": 0.425,
+    "teacher_one_sided_lb95": 0.3,
+    "strategic_field_score": 0.3333333333333333,
+    "promotion_composite": 0.38375000000000004,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 68.75372718000114,
+    "field_ci95": [
+      0.21666666666666667,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.23333333333333336,
+    "composite_ci95": [
+      0.28375000000000006,
+      0.48124999999999996
+    ]
+  },
+  "P0_733_g20192": {
+    "candidate_id": "P0_733_g20192",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.3,
+    "promotion_composite": 0.3275,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 89.09352708000033,
+    "field_ci95": [
+      0.18333333333333335,
+      0.4166666666666667
+    ],
+    "field_one_sided_lb95": 0.20000000000000004,
+    "composite_ci95": [
+      0.23000000000000004,
+      0.425
+    ]
+  },
+  "P0_733_g25280": {
+    "candidate_id": "P0_733_g25280",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.475,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.25,
+          0.675
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.35833333333333334,
+    "promotion_composite": 0.35375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 95.05774344999924,
+    "field_ci95": [
+      0.2416666666666667,
+      0.47500000000000003
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.2625,
+      0.45
+    ]
+  },
+  "P1_811_g5120": {
+    "candidate_id": "P1_811_g5120",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.15000000000000002,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.2833333333333334,
+    "promotion_composite": 0.2925,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 76.18279988000016,
+    "field_ci95": [
+      0.18333333333333335,
+      0.39999999999999997
+    ],
+    "field_one_sided_lb95": 0.19999999999999998,
+    "composite_ci95": [
+      0.2,
+      0.38375
+    ]
+  },
+  "P1_811_g10128": {
+    "candidate_id": "P1_811_g10128",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.45,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.05,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.0,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.0,
+          0.15
+        ],
+        "one_sided_lb95": 0.0
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.30000000000000004,
+    "promotion_composite": 0.31375000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 64.10919345999959,
+    "field_ci95": [
+      0.19999999999999998,
+      0.39999999999999997
+    ],
+    "field_one_sided_lb95": 0.21666666666666667,
+    "composite_ci95": [
+      0.2225,
+      0.405
+    ]
+  },
+  "P1_811_g15200": {
+    "candidate_id": "P1_811_g15200",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.19999999999999998,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.34375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 73.46677587999993,
+    "field_ci95": [
+      0.25,
+      0.4833333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.25125,
+      0.44250000000000006
+    ]
+  },
+  "P1_811_g20224": {
+    "candidate_id": "P1_811_g20224",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.375,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.225,
+          0.525
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.375,
+    "teacher_one_sided_lb95": 0.25,
+    "strategic_field_score": 0.3666666666666667,
+    "promotion_composite": 0.37125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 66.06100760000025,
+    "field_ci95": [
+      0.25,
+      0.48333333333333334
+    ],
+    "field_one_sided_lb95": 0.26666666666666666,
+    "composite_ci95": [
+      0.275,
+      0.4700312500000001
+    ]
+  },
+  "P1_811_g25216": {
+    "candidate_id": "P1_811_g25216",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.42500000000000004,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.45,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.275,
+          0.575
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "mega_lucario": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "iono": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.42500000000000004,
+    "teacher_one_sided_lb95": 0.3,
+    "strategic_field_score": 0.31666666666666665,
+    "promotion_composite": 0.37625000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 72.35185800000042,
+    "field_ci95": [
+      0.21666666666666665,
+      0.4333333333333333
+    ],
+    "field_one_sided_lb95": 0.2333333333333333,
+    "composite_ci95": [
+      0.28,
+      0.47500000000000003
+    ]
+  },
+  "P1_822_g5120": {
+    "candidate_id": "P1_822_g5120",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.19999999999999998,
+          0.45
+        ],
+        "one_sided_lb95": 0.22499999999999998
+      },
+      "mega_lucario": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.22499999999999998,
+    "strategic_field_score": 0.4166666666666667,
+    "promotion_composite": 0.36625,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 53.838077260000915,
+    "field_ci95": [
+      0.3,
+      0.5333333333333333
+    ],
+    "field_one_sided_lb95": 0.31666666666666665,
+    "composite_ci95": [
+      0.27625000000000005,
+      0.45875
+    ]
+  },
+  "P1_822_g10128": {
+    "candidate_id": "P1_822_g10128",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.45,
+        "ci95": [
+          0.22499999999999998,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.3475000000000008
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15000000000000002
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.35000000000000003,
+    "promotion_composite": 0.35,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 72.42463725000044,
+    "field_ci95": [
+      0.23333333333333336,
+      0.4666666666666666
+    ],
+    "field_one_sided_lb95": 0.25,
+    "composite_ci95": [
+      0.25875,
+      0.4450312500000001
+    ]
+  },
+  "P1_822_g15088": {
+    "candidate_id": "P1_822_g15088",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.4000000000000001,
+    "promotion_composite": 0.34500000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 89.10816876999947,
+    "field_ci95": [
+      0.2833333333333333,
+      0.5166666666666667
+    ],
+    "field_one_sided_lb95": 0.3,
+    "composite_ci95": [
+      0.2525,
+      0.44
+    ]
+  },
+  "P1_822_g20096": {
+    "candidate_id": "P1_822_g20096",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.22499999999999998,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.15,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.35000000000000003
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.6000000000000001,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.8,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.4,
+          0.8
+        ],
+        "one_sided_lb95": 0.44999999999999996
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "mega_abomasnow": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      }
+    },
+    "teacher_score": 0.22499999999999998,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.5,
+    "promotion_composite": 0.34875,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 85.84157814999958,
+    "field_ci95": [
+      0.3833333333333333,
+      0.6166666666666666
+    ],
+    "field_one_sided_lb95": 0.39999999999999997,
+    "composite_ci95": [
+      0.26250000000000007,
+      0.43875000000000003
+    ]
+  },
+  "P1_822_g25104": {
+    "candidate_id": "P1_822_g25104",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.44999999999999996,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.3
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.7,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.39999999999999997
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.39999999999999997,
+    "promotion_composite": 0.3725,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 82.2926047199995,
+    "field_ci95": [
+      0.2833333333333334,
+      0.5166666666666667
+    ],
+    "field_one_sided_lb95": 0.3,
+    "composite_ci95": [
+      0.28,
+      0.46625
+    ]
+  },
+  "P1_833_g5136": {
+    "candidate_id": "P1_833_g5136",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.3,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.175,
+          0.45
+        ],
+        "one_sided_lb95": 0.175
+      },
+      "mega_lucario": {
+        "point": 0.39999999999999997,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.25,
+          0.55
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.45,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.5,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.25,
+          0.65
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.3,
+    "teacher_one_sided_lb95": 0.175,
+    "strategic_field_score": 0.3333333333333333,
+    "promotion_composite": 0.315,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 55.22785605999966,
+    "field_ci95": [
+      0.2333333333333333,
+      0.43333333333333335
+    ],
+    "field_one_sided_lb95": 0.25,
+    "composite_ci95": [
+      0.22621875000000002,
+      0.40875
+    ]
+  },
+  "P1_833_g10176": {
+    "candidate_id": "P1_833_g10176",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.225,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "iono": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.39999999999999997
+      },
+      "mega_abomasnow": {
+        "point": 0.15000000000000002,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.0,
+          0.30000000000000004
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.225,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.3333333333333333,
+    "promotion_composite": 0.27375,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 97.68910919999979,
+    "field_ci95": [
+      0.2333333333333333,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.24999999999999997,
+    "composite_ci95": [
+      0.19371875000000002,
+      0.36
+    ]
+  },
+  "P1_833_g15232": {
+    "candidate_id": "P1_833_g15232",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.375,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.225,
+          0.525
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_lucario": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "mega_abomasnow": {
+        "point": 0.30000000000000004,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      }
+    },
+    "teacher_score": 0.375,
+    "teacher_one_sided_lb95": 0.25,
+    "strategic_field_score": 0.4166666666666667,
+    "promotion_composite": 0.39375000000000004,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 98.24483697999962,
+    "field_ci95": [
+      0.3,
+      0.5333333333333333
+    ],
+    "field_one_sided_lb95": 0.31666666666666665,
+    "composite_ci95": [
+      0.295,
+      0.4925
+    ]
+  },
+  "P1_833_g20224": {
+    "candidate_id": "P1_833_g20224",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.225,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.075,
+          0.4
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.75,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.8,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.55,
+          0.95
+        ],
+        "one_sided_lb95": 0.6
+      },
+      "mega_abomasnow": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.44166666666666665,
+    "promotion_composite": 0.39125,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 91.02734389999956,
+    "field_ci95": [
+      0.3333333333333333,
+      0.5583333333333333
+    ],
+    "field_one_sided_lb95": 0.3499999999999999,
+    "composite_ci95": [
+      0.29375,
+      0.48750000000000004
+    ]
+  },
+  "P1_833_g25280": {
+    "candidate_id": "P1_833_g25280",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.35,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.35,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.2,
+          0.5
+        ],
+        "one_sided_lb95": 0.225
+      },
+      "mega_lucario": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.1,
+        "ci95": [
+          0.1,
+          0.44999999999999996
+        ],
+        "one_sided_lb95": 0.1
+      },
+      "iono": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      }
+    },
+    "teacher_score": 0.35,
+    "teacher_one_sided_lb95": 0.225,
+    "strategic_field_score": 0.3333333333333333,
+    "promotion_composite": 0.3425,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 93.6214266000002,
+    "field_ci95": [
+      0.21666666666666667,
+      0.45
+    ],
+    "field_one_sided_lb95": 0.23333333333333336,
+    "composite_ci95": [
+      0.24621875000000001,
+      0.4362812500000001
+    ]
+  },
+  "SOUP_611+622": {
+    "candidate_id": "SOUP_611+622",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.32499999999999996,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.35,
+        "ci95": [
+          0.175,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.55,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.7,
+        "ci95": [
+          0.35,
+          0.75
+        ],
+        "one_sided_lb95": 0.35
+      },
+      "iono": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.1,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.32499999999999996,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.4000000000000001,
+    "promotion_composite": 0.35875,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 59.51378267999973,
+    "field_ci95": [
+      0.2833333333333334,
+      0.5166666666666667
+    ],
+    "field_one_sided_lb95": 0.3,
+    "composite_ci95": [
+      0.265,
+      0.45375000000000004
+    ]
+  },
+  "SOUP_611+633": {
+    "candidate_id": "SOUP_611+633",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.225,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.25,
+        "ci95": [
+          0.1,
+          0.35
+        ],
+        "one_sided_lb95": 0.125
+      },
+      "mega_lucario": {
+        "point": 0.35,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.4,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.15000000000000002,
+          0.55
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "iono": {
+        "point": 0.3,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.1,
+          0.5
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.1,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.05,
+          0.39999999999999997
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.225,
+    "teacher_one_sided_lb95": 0.125,
+    "strategic_field_score": 0.28333333333333327,
+    "promotion_composite": 0.25125000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 101.44100100999992,
+    "field_ci95": [
+      0.16666666666666666,
+      0.39999999999999997
+    ],
+    "field_one_sided_lb95": 0.18333333333333335,
+    "composite_ci95": [
+      0.16625,
+      0.34125000000000005
+    ]
+  },
+  "SOUP_622+633": {
+    "candidate_id": "SOUP_622+633",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.25,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.3,
+        "ci95": [
+          0.125,
+          0.4
+        ],
+        "one_sided_lb95": 0.15
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.2,
+          0.6000000000000001
+        ],
+        "one_sided_lb95": 0.25
+      },
+      "iono": {
+        "point": 0.6499999999999999,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.7,
+        "seat1_mean": 0.6,
+        "ci95": [
+          0.44999999999999996,
+          0.8500000000000001
+        ],
+        "one_sided_lb95": 0.5
+      },
+      "mega_abomasnow": {
+        "point": 0.2,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.2,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "one_sided_lb95": 0.05
+      }
+    },
+    "teacher_score": 0.25,
+    "teacher_one_sided_lb95": 0.15,
+    "strategic_field_score": 0.4166666666666666,
+    "promotion_composite": 0.325,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 115.73417026000016,
+    "field_ci95": [
+      0.3,
+      0.5333333333333333
+    ],
+    "field_one_sided_lb95": 0.3166666666666667,
+    "composite_ci95": [
+      0.23375,
+      0.4175
+    ]
+  },
+  "SOUP_611+622+633": {
+    "candidate_id": "SOUP_611+622+633",
+    "panels": [
+      "screen"
+    ],
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.325,
+        "n": 40,
+        "n_seat0": 20,
+        "n_seat1": 20,
+        "seat0_mean": 0.25,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.19999999999999998,
+          0.475
+        ],
+        "one_sided_lb95": 0.2
+      },
+      "mega_lucario": {
+        "point": 0.5,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.6,
+        "seat1_mean": 0.4,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "one_sided_lb95": 0.30000000000000004
+      },
+      "iono": {
+        "point": 0.6,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.7,
+        "seat1_mean": 0.5,
+        "ci95": [
+          0.4,
+          0.8
+        ],
+        "one_sided_lb95": 0.4
+      },
+      "mega_abomasnow": {
+        "point": 0.25,
+        "n": 20,
+        "n_seat0": 10,
+        "n_seat1": 10,
+        "seat0_mean": 0.3,
+        "seat1_mean": 0.2,
+        "ci95": [
+          0.05,
+          0.45
+        ],
+        "one_sided_lb95": 0.1
+      }
+    },
+    "teacher_score": 0.325,
+    "teacher_one_sided_lb95": 0.2,
+    "strategic_field_score": 0.45,
+    "promotion_composite": 0.38125000000000003,
+    "reliability": {
+      "games": 100,
+      "defects": 0,
+      "invalid": 0,
+      "exceptions": 0,
+      "timeouts": 0,
+      "fallbacks": 0
+    },
+    "latency_p99_max_ms": 71.59372026999984,
+    "field_ci95": [
+      0.3333333333333333,
+      0.5666666666666668
+    ],
+    "field_one_sided_lb95": 0.35000000000000003,
+    "composite_ci95": [
+      0.28750000000000003,
+      0.47625
+    ]
+  }
+}

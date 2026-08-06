@@ -1,0 +1,53 @@
+{
+  "CLAUDE_SEMANTIC_PREFLIGHT": "PARTIAL",
+  "n_primary": 28,
+  "n_repeated": 10,
+  "schema_valid_rate_strict": 0.8214285714285714,
+  "schema_valid_rate_after_delimiter_repair": 1.0,
+  "delimiter_repair_rate": 0.17857142857142858,
+  "legal_action_rate": 1.0,
+  "hidden_information_violations": 0,
+  "semantically_grounded_rate": 1.0,
+  "model_verified_rate": 1.0,
+  "repeat_top1_agreement": 0.9,
+  "repeat_mean_top3_overlap": 0.9666666666666666,
+  "categories_demonstrated": [
+    "attach_energy",
+    "evolve",
+    "multi_select",
+    "other",
+    "promote",
+    "search",
+    "target"
+  ],
+  "contract_categories_demonstrated": [
+    "attachment",
+    "evolution",
+    "multi-select",
+    "promotion",
+    "search",
+    "target selection"
+  ],
+  "residual_buckets_not_counted": [
+    "other"
+  ],
+  "categories_required": 8,
+  "contract_category_list": [
+    "setup",
+    "search",
+    "attachment",
+    "evolution",
+    "attack",
+    "target selection",
+    "promotion",
+    "multi-select",
+    "Iono failure",
+    "Abomasnow failure"
+  ],
+  "shortfalls": [
+    "only 6 of \u00a727's 10 named decision categories demonstrated (attachment, evolution, multi-select, promotion, search, target selection), \u00a729 requires >= 8; 1 residual bucket(s) ['other'] are not \u00a727 categories and are not counted"
+  ],
+  "teacher_superiority_claimed": false,
+  "claude_labels_trained_any_policy": false,
+  "note": "\u00a729 forbids any teacher-superiority claim from these labels and \u00a736 forbids them influencing policy weights. Neither happened: no training arm consumed Claude output, and no comparison of Claude against the frozen teacher is made anywhere in c013."
+}

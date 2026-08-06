@@ -1,0 +1,12 @@
+# Test side-effect check (AC-03)
+
+Modified TRACKED files before running tests twice:
+(none)
+
+Modified TRACKED files after running tests twice:
+(none)
+
+c000+c001 results dir content hash BEFORE: 36a0a3ff585b7290e4b05ead1c5299098b89949e74c3319bc367d9599ba993aa  -
+c000+c001 results dir content hash AFTER:  36a0a3ff585b7290e4b05ead1c5299098b89949e74c3319bc367d9599ba993aa  -
+
+RESULT: PASS — no tracked source or historical contract result changed by tests.

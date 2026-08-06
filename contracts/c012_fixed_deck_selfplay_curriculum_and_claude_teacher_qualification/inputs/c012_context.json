@@ -1,0 +1,61 @@
+{
+  "contract": "c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification",
+  "objective": "Repair c011, freeze the true incumbent, test adaptive elite population self-play, analyze opponent overlap, and qualify Claude Opus offline without training on its labels.",
+  "frozen_deck": "c005 Dragapult",
+  "teacher_submission_ref": "54948560",
+  "machine": {
+    "os": "Ubuntu 24.04 native Linux",
+    "cpu": "AMD Ryzen 9 7900X, 12 cores / 24 threads",
+    "ram_gib": 61,
+    "gpu": "NVIDIA GeForce RTX 5070",
+    "gpu_vram_mib": 12227,
+    "pytorch": "2.12.1+cu130",
+    "cuda_available": true
+  },
+  "training_arms": {
+    "P0": {
+      "purpose": "unchanged c011 population continuation control",
+      "seeds": [
+        711,
+        722,
+        733
+      ],
+      "max_completed_games_per_seed": 30000
+    },
+    "P1": {
+      "purpose": "adaptive elite population self-play",
+      "seeds": [
+        811,
+        822,
+        833
+      ],
+      "max_completed_games_per_seed": 30000,
+      "elite_fraction_schedule": [
+        0.15,
+        0.25,
+        0.35,
+        0.45
+      ]
+    }
+  },
+  "hard_training_maximum": 184000,
+  "claude": {
+    "access": "Claude Code",
+    "requested_model": "Opus",
+    "primary_state_maximum": 300,
+    "repeat_state_maximum": 60,
+    "tools_enabled": false,
+    "labels_used_for_training": false
+  },
+  "forbidden": [
+    "deck mutation",
+    "deck search",
+    "architecture change",
+    "reward shaping",
+    "teacher replay",
+    "KL optimization",
+    "Claude-label training",
+    "pure 100% mirror self-play",
+    "broad hyperparameter sweep"
+  ]
+}

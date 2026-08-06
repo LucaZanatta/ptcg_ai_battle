@@ -1,0 +1,13 @@
+{
+  "contract": "c007",
+  "admitted_variant": null,
+  "admitted_context": "DAMAGE_COUNTER_ANY",
+  "target_labels": 2000,
+  "n_labels": 0,
+  "context_decisions_scanned": 0,
+  "variant_teacher_differences": 0,
+  "labels_file": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/improvement_labels.jsonl.gz",
+  "policy_level_improvement": null,
+  "wall_seconds": 201.1,
+  "note": "labels are the admitted variant's action where it deviates from the teacher in the admitted context; the improvement claim is the policy-level A/B, not these rows."
+}

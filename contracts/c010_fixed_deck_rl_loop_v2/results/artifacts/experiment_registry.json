@@ -1,0 +1,267 @@
+{
+  "contract": "c010_fixed_deck_rl_loop_v2",
+  "frozen_before_training": true,
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "frozen_deck_fingerprint": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a",
+  "chain_final_heads": {
+    "c005": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+    "c006": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+    "c007": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+    "c008": "fb6e592c8c333f758014e2d2e94a39261bb63fe6",
+    "c009": "e868dfbbeefc30bcf246cd60e0f51bf6d0043eb8"
+  },
+  "exact_r1_recipe": {
+    "gamma": 0.997,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "value_coef": 0.5,
+    "entropy_coef_start": 0.01,
+    "entropy_coef_end": 0.002,
+    "entropy_schedule": "linear over budget",
+    "max_grad_norm": 0.5,
+    "epochs": 4,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 1e-05,
+    "rollout_game_target": 128,
+    "min_trainable_decisions": 8192,
+    "minibatch": 512,
+    "advantage_normalization": "per update",
+    "value_clipping": true,
+    "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+  },
+  "exact_r1_provenance": {
+    "c008_registration": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/experiment_registration.json",
+    "c008_registration_sha256": "c8a9fcabf81679e22ad82b03c31a47fac0068ba1f1d077d1a054535d15664e28",
+    "c008_implementation": "tools/train_rl.py",
+    "c008_implementation_sha256": "36789259dbfd14ddcbfa307d71b7c5159421f55f80d892d0467929340252afaa",
+    "implementation_matches_both_thresholds_rule": true,
+    "reused_modules": {
+      "ppo": "16c1e9ade5bc59ec4d499e1c9989f83ae59bc665ffeb205557dbbb8cff90b85b",
+      "rl_policy": "780c26453703ab3b86c869d9de35e7e38041dc18210954356e4b401114bd8d97",
+      "rl_env": "35c9a2f6470276ebb321a64a22928c85e5177839f8df5dc2289985e809735702"
+    }
+  },
+  "environment": {
+    "reused_from": "c008/c009 validated environment and action decoder",
+    "step": "one trainable step per non-forced selection; forced decisions bypass policy loss",
+    "masking": "legal-action masking; illegal options have exactly zero probability",
+    "multi_select": "sequential masked-without-replacement log-prob sums; variable cardinality uses the registered STOP decoder",
+    "unsupported_forms": "explicit defect, never silent teacher fallback",
+    "reward": {
+      "win": 1,
+      "draw": 0,
+      "loss": -1,
+      "intermediate": 0
+    }
+  },
+  "population": {
+    "with_lagged": {
+      "teacher": 0.35,
+      "mega_lucario": 0.2,
+      "iono": 0.2,
+      "lagged_selfplay": 0.15,
+      "control": 0.1
+    },
+    "before_lagged": "15% redistributed proportionally across teacher/lucario/iono (0.42 / 0.24 / 0.24), control 0.10",
+    "seats": "~50/50, sampled per game and recorded",
+    "lagged_rule": "snapshot every 5,000 games after 5,000; keep 3 most recent; sample uniformly; never the current mutable parameters",
+    "abomasnow": "EVALUATION ONLY \u2014 never a training opponent",
+    "identical_across_arms": true
+  },
+  "arms": {
+    "A": {
+      "purpose": "exact reproducibility from B0",
+      "initialization": "B0",
+      "recipe": "exact_r1",
+      "ppo": {
+        "gamma": 0.997,
+        "gae_lambda": 0.95,
+        "clip": 0.2,
+        "value_coef": 0.5,
+        "entropy_coef_start": 0.01,
+        "entropy_coef_end": 0.002,
+        "entropy_schedule": "linear over budget",
+        "max_grad_norm": 0.5,
+        "epochs": 4,
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 1e-05,
+        "rollout_game_target": 128,
+        "min_trainable_decisions": 8192,
+        "minibatch": 512,
+        "advantage_normalization": "per update",
+        "value_clipping": true,
+        "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+      },
+      "seeds": [
+        311,
+        322,
+        333
+      ],
+      "max_games_per_seed": 12000,
+      "planned_minimum_per_seed": 10000,
+      "evaluation_points": [
+        0,
+        2500,
+        5000,
+        7500,
+        10000,
+        12000
+      ],
+      "early_stop": [
+        "reliability failure",
+        "checkpoint corruption",
+        "two confirmed catastrophic regressions",
+        "global compute safety limit"
+      ],
+      "note": "a weak small screen alone may NOT terminate a reproducibility seed early"
+    },
+    "B": {
+      "purpose": "exact continuation from I0",
+      "initialization": "I0",
+      "recipe": "exact_r1",
+      "ppo": {
+        "gamma": 0.997,
+        "gae_lambda": 0.95,
+        "clip": 0.2,
+        "value_coef": 0.5,
+        "entropy_coef_start": 0.01,
+        "entropy_coef_end": 0.002,
+        "entropy_schedule": "linear over budget",
+        "max_grad_norm": 0.5,
+        "epochs": 4,
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 1e-05,
+        "rollout_game_target": 128,
+        "min_trainable_decisions": 8192,
+        "minibatch": 512,
+        "advantage_normalization": "per update",
+        "value_clipping": true,
+        "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+      },
+      "seeds": [
+        411,
+        422,
+        433
+      ],
+      "max_games_per_seed": 7500,
+      "evaluation_points": [
+        0,
+        2500,
+        5000,
+        7500
+      ],
+      "early_stop": [
+        "two consecutive confirmation evaluations with teacher AND field >=5pp below I0 at >=90% probability of genuine regression"
+      ]
+    },
+    "C": {
+      "purpose": "minimally stabilized continuation from I0",
+      "initialization": "I0",
+      "recipe": "exact_r1_plus_three_changes",
+      "ppo": {
+        "gamma": 0.997,
+        "gae_lambda": 0.95,
+        "clip": 0.2,
+        "value_coef": 0.5,
+        "entropy_coef_start": 0.01,
+        "entropy_coef_end": 0.002,
+        "entropy_schedule": "linear over budget",
+        "max_grad_norm": 0.5,
+        "epochs": 4,
+        "optimizer": "AdamW",
+        "learning_rate": 3e-05,
+        "weight_decay": 1e-05,
+        "rollout_game_target": 256,
+        "min_trainable_decisions": 32768,
+        "minibatch": 512,
+        "advantage_normalization": "per update",
+        "value_clipping": true,
+        "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+      },
+      "seeds": [
+        511,
+        522,
+        533
+      ],
+      "max_games_per_seed": 20000,
+      "evaluation_points": [
+        0,
+        2500,
+        5000,
+        7500,
+        10000,
+        15000,
+        20000
+      ],
+      "changes_vs_exact_r1": {
+        "learning_rate": 3e-05,
+        "rollout_game_target": 256,
+        "min_trainable_decisions": 32768
+      },
+      "early_stop": [
+        "two confirmed severe regressions",
+        "three consecutive registered evaluations after game 7,500 with no point gain above 1.5pp on either teacher or field score"
+      ],
+      "diagnostics_only": "KL to I0 and to the previous promoted checkpoint is LOGGED only; it is never optimized"
+    }
+  },
+  "budgets": {
+    "arm_A": 36000,
+    "arm_B": 22500,
+    "arm_C": 60000,
+    "total": 118500,
+    "hard_maximum_including_spillover": 120000,
+    "evaluation_games_counted_separately": true
+  },
+  "panels": {
+    "screen": {
+      "teacher": 20,
+      "mega_lucario": 10,
+      "iono": 10,
+      "mega_abomasnow": 10,
+      "per_seat": true,
+      "total_per_checkpoint": 100
+    },
+    "confirmation": {
+      "teacher": 100,
+      "mega_lucario": 50,
+      "iono": 50,
+      "mega_abomasnow": 50,
+      "per_seat": true,
+      "total_per_checkpoint": 500
+    },
+    "final": {
+      "teacher": 200,
+      "mega_lucario": 100,
+      "iono": 100,
+      "mega_abomasnow": 100,
+      "per_seat": true,
+      "total_per_finalist": 1000,
+      "teacher_extension_to": 800
+    },
+    "control": "diagnostic only; excluded from promotion metrics"
+  },
+  "nomination_rule": [
+    "promotion composite exceeds branch best",
+    "teacher score improves by >= 3pp",
+    "strategic-field score improves by >= 4pp",
+    "it is the branch's final registered checkpoint"
+  ],
+  "gates": {
+    "major_regression": "candidate <= baseline - 0.07 AND bootstrap P(regression) >= 0.90",
+    "exact_reproducibility": "\u00a718 (six conditions)",
+    "exact_continuation": "\u00a719",
+    "stabilized_continuation": "\u00a720",
+    "promotion": "\u00a721 (I0 replaced only on a strictly better, statistically supported, regression-free candidate)",
+    "teacher_non_inferiority": "one-sided 95% lower bound >= 0.47 (unchanged c008 rule)",
+    "submission": "\u00a723"
+  },
+  "teacher_submission_ref": "54948560",
+  "protected": [
+    "B0",
+    "I0"
+  ]
+}

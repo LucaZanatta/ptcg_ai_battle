@@ -1,0 +1,6 @@
+# SKIPPED_BY_GATE (SUBMISSION_F=DO_NOT_SUBMIT). Command that WOULD run on SUBMIT:
+kaggle competitions submit pokemon-tcg-ai-battle \
+  -f .../submission_F_selfplay_curriculum.tar.gz \
+  -m "c012 Submission F: TRUE_INCUMBENT fixed deck 4efbdf7"
+# Teacher refresh (read-only, executed this run):
+kaggle competitions submissions pokemon-tcg-ai-battle -v

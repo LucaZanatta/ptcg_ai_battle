@@ -1,0 +1,23 @@
+{
+  "stage": "SEARCH_HEURISTIC_REAL",
+  "candidate_id": "m01_heuristic_search",
+  "description": "baseline under real official-API forward search with the heuristic leaf evaluator",
+  "produced": true,
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "panel_result": {
+    "games": 400,
+    "overall_rate": 0.21,
+    "overall_ci": [
+      0.1729,
+      0.2526
+    ],
+    "worst_matchup": "dragapult",
+    "worst_matchup_rate": 0.14
+  },
+  "package": "submission_K_official_search_v0",
+  "package_sha256": "4d17ab86d8e820077b6370bab845fe031cb2fb9171f3408adf6db7a0936178a9",
+  "clean_extraction_ok": true,
+  "submittable": true,
+  "status": "SUBMITTABLE"
+}

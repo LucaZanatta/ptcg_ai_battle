@@ -1,0 +1,102 @@
+# c008 R0 training log (per-seed train.log concatenated)
+
+===== R0/seed101 =====
+[R0 s101] g=297 upd=1 ret=-0.499 ev=0.41 ent=1.495 kl=0.0046 clip=0.047 gn=0.18 roll=22s up=13s
+[R0 s101] g=540 upd=2 ret=-0.581 ev=0.62 ent=1.480 kl=0.0042 clip=0.040 gn=0.19 roll=18s up=15s
+[R0 s101] g=756 upd=3 ret=-0.630 ev=0.75 ent=1.457 kl=0.0038 clip=0.040 gn=0.20 roll=17s up=15s
+[R0 s101] g=981 upd=4 ret=-0.678 ev=0.77 ent=1.416 kl=0.0050 clip=0.052 gn=0.22 roll=17s up=13s
+[R0 s101] g=1197 upd=5 ret=-0.708 ev=0.75 ent=1.405 kl=0.0042 clip=0.048 gn=0.27 roll=18s up=15s
+  SCREEN @ 1197: blend=0.174 T=0.07500000000000001 L=0.375 I=0.0 C=0.5 defects={'invalid': 0, 'exception': 0, 'fallback': 0, 'ordered': 0, 'incomplete': 0}
+[R0 s101] g=1386 upd=6 ret=-0.655 ev=0.75 ent=1.369 kl=0.0049 clip=0.059 gn=0.29 roll=16s up=14s
+[R0 s101] g=1593 upd=7 ret=-0.751 ev=0.81 ent=1.371 kl=0.0051 clip=0.061 gn=0.30 roll=17s up=14s
+[R0 s101] g=1782 upd=8 ret=-0.698 ev=0.77 ent=1.355 kl=0.0065 clip=0.083 gn=0.33 roll=16s up=14s
+[R0 s101] g=1971 upd=9 ret=-0.722 ev=0.76 ent=1.356 kl=0.0065 clip=0.087 gn=0.31 roll=16s up=14s
+[R0 s101] g=2160 upd=10 ret=-0.612 ev=0.80 ent=1.336 kl=0.0063 clip=0.080 gn=0.33 roll=16s up=16s
+[R0 s101] g=2367 upd=11 ret=-0.626 ev=0.82 ent=1.342 kl=0.0063 clip=0.081 gn=0.35 roll=17s up=15s
+[R0 s101] g=2556 upd=12 ret=-0.601 ev=0.84 ent=1.297 kl=0.0077 clip=0.103 gn=0.40 roll=17s up=15s
+  SCREEN @ 2556: blend=0.205 T=0.05 L=0.42500000000000004 I=0.07500000000000001 C=0.6 defects={'invalid': 0, 'exception': 0, 'fallback': 0, 'ordered': 0, 'incomplete': 0}
+[R0 s101] g=2745 upd=13 ret=-0.690 ev=0.82 ent=1.315 kl=0.0085 clip=0.109 gn=0.44 roll=17s up=14s
+[R0 s101] g=2934 upd=14 ret=-0.630 ev=0.86 ent=1.308 kl=0.0079 clip=0.104 gn=0.45 roll=17s up=15s
+[R0 s101] g=3123 upd=15 ret=-0.612 ev=0.84 ent=1.290 kl=0.0102 clip=0.132 gn=0.44 roll=17s up=14s
+[R0 s101] g=3303 upd=16 ret=-0.552 ev=0.84 ent=1.263 kl=0.0113 clip=0.146 gn=0.51 roll=16s up=13s
+[R0 s101] g=3483 upd=17 ret=-0.560 ev=0.82 ent=1.250 kl=0.0127 clip=0.154 gn=0.50 roll=16s up=14s
+[R0 s101] g=3654 upd=18 ret=-0.592 ev=0.85 ent=1.250 kl=0.0110 clip=0.140 gn=0.53 roll=16s up=14s
+[R0 s101] g=3834 upd=19 ret=-0.602 ev=0.84 ent=1.251 kl=0.0142 clip=0.167 gn=0.57 roll=16s up=13s
+[R0 s101] g=4014 upd=20 ret=-0.601 ev=0.81 ent=1.216 kl=0.0113 clip=0.143 gn=0.52 roll=16s up=13s
+[R0 s101] g=4194 upd=21 ret=-0.671 ev=0.85 ent=1.223 kl=0.0121 clip=0.154 gn=0.56 roll=17s up=14s
+[R0 s101] g=4356 upd=22 ret=-0.642 ev=0.83 ent=1.231 kl=0.0135 clip=0.166 gn=0.57 roll=15s up=14s
+[R0 s101] g=4518 upd=23 ret=-0.651 ev=0.84 ent=1.198 kl=0.0150 clip=0.177 gn=0.67 roll=15s up=12s
+[R0 s101] g=4698 upd=24 ret=-0.549 ev=0.85 ent=1.188 kl=0.0156 clip=0.178 gn=0.59 roll=16s up=13s
+[R0 s101] g=4878 upd=25 ret=-0.614 ev=0.83 ent=1.195 kl=0.0149 clip=0.174 gn=0.60 roll=16s up=13s
+[R0 s101] g=5067 upd=26 ret=-0.667 ev=0.83 ent=1.174 kl=0.0135 clip=0.160 gn=0.59 roll=17s up=13s
+  lagged snapshot @ 5067 (keep 1)
+  SCREEN @ 5067: blend=0.170 T=0.05 L=0.2 I=0.0 C=1.0 defects={'invalid': 0, 'exception': 0, 'fallback': 0, 'ordered': 0, 'incomplete': 0}
+DONE R0 s101: 5067 games, stop=R0_weak_vs_all_at_5000, selected contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed101/checkpoints/ckpt_g2556.npz blend 0.20500000000000002
+
+===== R0/seed202 =====
+[R0 s202] g=297 upd=1 ret=-0.046 ev=0.30 ent=1.470 kl=0.0049 clip=0.053 gn=0.30 roll=21s up=13s
+[R0 s202] g=549 upd=2 ret=-0.128 ev=0.42 ent=1.447 kl=0.0046 clip=0.045 gn=0.28 roll=19s up=15s
+[R0 s202] g=765 upd=3 ret=-0.228 ev=0.64 ent=1.423 kl=0.0042 clip=0.047 gn=0.27 roll=17s up=15s
+[R0 s202] g=981 upd=4 ret=-0.293 ev=0.71 ent=1.390 kl=0.0049 clip=0.054 gn=0.29 roll=17s up=17s
+[R0 s202] g=1170 upd=5 ret=-0.351 ev=0.78 ent=1.395 kl=0.0045 clip=0.050 gn=0.28 roll=16s up=15s
+  SCREEN @ 1170: blend=0.121 T=0.0 L=0.3 I=0.025 C=0.39999999999999997 defects={'invalid': 0, 'exception': 0, 'fallback': 0, 'ordered': 0, 'incomplete': 0}
+[R0 s202] g=1377 upd=6 ret=-0.558 ev=0.79 ent=1.392 kl=0.0045 clip=0.053 gn=0.30 roll=16s up=15s
+[R0 s202] g=1575 upd=7 ret=-0.563 ev=0.80 ent=1.358 kl=0.0047 clip=0.055 gn=0.29 roll=16s up=15s
+[R0 s202] g=1764 upd=8 ret=-0.637 ev=0.82 ent=1.329 kl=0.0051 clip=0.063 gn=0.30 roll=15s up=13s
+[R0 s202] g=1935 upd=9 ret=-0.611 ev=0.82 ent=1.317 kl=0.0068 clip=0.087 gn=0.35 roll=15s up=15s
+[R0 s202] g=2115 upd=10 ret=-0.662 ev=0.79 ent=1.322 kl=0.0081 clip=0.111 gn=0.36 roll=16s up=16s
+[R0 s202] g=2295 upd=11 ret=-0.610 ev=0.86 ent=1.306 kl=0.0075 clip=0.098 gn=0.40 roll=16s up=13s
+[R0 s202] g=2475 upd=12 ret=-0.565 ev=0.84 ent=1.296 kl=0.0083 clip=0.105 gn=0.41 roll=16s up=14s
+[R0 s202] g=2646 upd=13 ret=-0.628 ev=0.86 ent=1.263 kl=0.0077 clip=0.101 gn=0.42 roll=16s up=14s
+  SCREEN @ 2646: blend=0.129 T=0.0 L=0.275 I=0.0 C=0.6 defects={'invalid': 0, 'exception': 0, 'fallback': 0, 'ordered': 0, 'incomplete': 0}
+[R0 s202] g=2826 upd=14 ret=-0.681 ev=0.75 ent=1.279 kl=0.0094 clip=0.122 gn=0.43 roll=16s up=15s
+[R0 s202] g=2997 upd=15 ret=-0.572 ev=0.83 ent=1.240 kl=0.0096 clip=0.123 gn=0.55 roll=16s up=14s
+[R0 s202] g=3159 upd=16 ret=-0.644 ev=0.81 ent=1.285 kl=0.0108 clip=0.138 gn=0.50 roll=16s up=13s
+[R0 s202] g=3330 upd=17 ret=-0.607 ev=0.85 ent=1.308 kl=0.0127 clip=0.159 gn=0.54 roll=16s up=12s
+[R0 s202] g=3492 upd=18 ret=-0.655 ev=0.84 ent=1.300 kl=0.0123 clip=0.147 gn=0.58 roll=15s up=13s
+[R0 s202] g=3663 upd=19 ret=-0.615 ev=0.86 ent=1.288 kl=0.0099 clip=0.129 gn=0.51 roll=16s up=13s
+[R0 s202] g=3843 upd=20 ret=-0.670 ev=0.83 ent=1.276 kl=0.0120 clip=0.147 gn=0.57 roll=16s up=11s
+[R0 s202] g=4032 upd=21 ret=-0.665 ev=0.81 ent=1.262 kl=0.0130 clip=0.163 gn=0.54 roll=17s up=13s
+[R0 s202] g=4212 upd=22 ret=-0.663 ev=0.83 ent=1.245 kl=0.0129 clip=0.158 gn=0.55 roll=16s up=12s
+[R0 s202] g=4383 upd=23 ret=-0.656 ev=0.82 ent=1.250 kl=0.0113 clip=0.140 gn=0.58 roll=16s up=13s
+[R0 s202] g=4581 upd=24 ret=-0.676 ev=0.81 ent=1.264 kl=0.0125 clip=0.155 gn=0.56 roll=17s up=13s
+[R0 s202] g=4770 upd=25 ret=-0.574 ev=0.84 ent=1.256 kl=0.0134 clip=0.154 gn=0.60 roll=16s up=14s
+[R0 s202] g=4941 upd=26 ret=-0.624 ev=0.84 ent=1.272 kl=0.0140 clip=0.173 gn=0.61 roll=16s up=13s
+[R0 s202] g=5121 upd=27 ret=-0.609 ev=0.86 ent=1.265 kl=0.0135 clip=0.161 gn=0.61 roll=16s up=14s
+  lagged snapshot @ 5121 (keep 1)
+  SCREEN @ 5121: blend=0.165 T=0.025 L=0.3 I=0.0 C=0.8 defects={'invalid': 0, 'exception': 0, 'fallback': 0, 'ordered': 0, 'incomplete': 0}
+[R0 s202] g=5292 upd=28 ret=-0.472 ev=0.80 ent=1.229 kl=0.0134 clip=0.161 gn=0.68 roll=13s up=14s
+[R0 s202] g=5445 upd=29 ret=-0.438 ev=0.81 ent=1.254 kl=0.0170 clip=0.185 gn=0.84 roll=12s up=12s
+[R0 s202] g=5589 upd=30 ret=-0.466 ev=0.79 ent=1.272 kl=0.0168 clip=0.189 gn=0.70 roll=12s up=14s
+[R0 s202] g=5733 upd=31 ret=-0.367 ev=0.81 ent=1.215 kl=0.0155 clip=0.177 gn=0.74 roll=11s up=12s
+[R0 s202] g=5895 upd=32 ret=-0.410 ev=0.82 ent=1.189 kl=0.0155 clip=0.178 gn=0.72 roll=13s up=11s
+[R0 s202] g=6048 upd=33 ret=-0.453 ev=0.80 ent=1.207 kl=0.0146 clip=0.168 gn=0.75 roll=13s up=12s
+[R0 s202] g=6201 upd=34 ret=-0.469 ev=0.82 ent=1.190 kl=0.0160 clip=0.185 gn=0.73 roll=12s up=11s
+[R0 s202] g=6354 upd=35 ret=-0.501 ev=0.84 ent=1.178 kl=0.0160 clip=0.183 gn=0.69 roll=12s up=13s
+[R0 s202] g=6516 upd=36 ret=-0.457 ev=0.81 ent=1.164 kl=0.0159 clip=0.178 gn=0.76 roll=13s up=12s
+[R0 s202] g=6678 upd=37 ret=-0.387 ev=0.85 ent=1.155 kl=0.0159 clip=0.181 gn=0.69 roll=13s up=11s
+[R0 s202] g=6840 upd=38 ret=-0.398 ev=0.86 ent=1.156 kl=0.0153 clip=0.170 gn=0.72 roll=13s up=11s
+[R0 s202] g=6993 upd=39 ret=-0.383 ev=0.80 ent=1.139 kl=0.0173 clip=0.182 gn=0.73 roll=12s up=14s
+[R0 s202] g=7146 upd=40 ret=-0.423 ev=0.83 ent=1.167 kl=0.0212 clip=0.209 gn=0.85 roll=12s up=12s
+[R0 s202] g=7308 upd=41 ret=-0.396 ev=0.84 ent=1.138 kl=0.0187 clip=0.200 gn=0.80 roll=12s up=15s
+[R0 s202] g=7470 upd=42 ret=-0.451 ev=0.84 ent=1.172 kl=0.0187 clip=0.194 gn=0.75 roll=13s up=14s
+[R0 s202] g=7623 upd=43 ret=-0.406 ev=0.86 ent=1.159 kl=0.0194 clip=0.192 gn=0.78 roll=12s up=13s
+[R0 s202] g=7776 upd=44 ret=-0.455 ev=0.84 ent=1.181 kl=0.0188 clip=0.195 gn=0.78 roll=12s up=13s
+[R0 s202] g=7938 upd=45 ret=-0.468 ev=0.86 ent=1.166 kl=0.0182 clip=0.184 gn=0.81 roll=13s up=14s
+[R0 s202] g=8100 upd=46 ret=-0.371 ev=0.81 ent=1.196 kl=0.0193 clip=0.202 gn=0.78 roll=13s up=21s
+[R0 s202] g=8262 upd=47 ret=-0.399 ev=0.83 ent=1.161 kl=0.0218 clip=0.209 gn=0.88 roll=13s up=14s
+[R0 s202] g=8424 upd=48 ret=-0.458 ev=0.83 ent=1.170 kl=0.0195 clip=0.198 gn=0.83 roll=13s up=16s
+[R0 s202] g=8586 upd=49 ret=-0.541 ev=0.83 ent=1.140 kl=0.0239 clip=0.219 gn=0.80 roll=13s up=12s
+[R0 s202] g=8739 upd=50 ret=-0.365 ev=0.86 ent=1.130 kl=0.0205 clip=0.205 gn=0.81 roll=12s up=15s
+[R0 s202] g=8901 upd=51 ret=-0.405 ev=0.85 ent=1.139 kl=0.0210 clip=0.202 gn=0.80 roll=13s up=17s
+[R0 s202] g=9054 upd=52 ret=-0.378 ev=0.86 ent=1.151 kl=0.0209 clip=0.205 gn=0.87 roll=12s up=14s
+[R0 s202] g=9207 upd=53 ret=-0.402 ev=0.82 ent=1.116 kl=0.0248 clip=0.212 gn=0.98 roll=12s up=13s
+[R0 s202] g=9360 upd=54 ret=-0.306 ev=0.82 ent=1.122 kl=0.0213 clip=0.207 gn=0.93 roll=12s up=15s
+[R0 s202] g=9513 upd=55 ret=-0.423 ev=0.85 ent=1.101 kl=0.0209 clip=0.202 gn=0.85 roll=12s up=14s
+[R0 s202] g=9675 upd=56 ret=-0.399 ev=0.83 ent=1.102 kl=0.0234 clip=0.209 gn=0.84 roll=13s up=16s
+[R0 s202] g=9837 upd=57 ret=-0.419 ev=0.82 ent=1.067 kl=0.0243 clip=0.207 gn=0.88 roll=13s up=13s
+[R0 s202] g=9990 upd=58 ret=-0.439 ev=0.86 ent=1.097 kl=0.0273 clip=0.221 gn=1.06 roll=12s up=13s
+[R0 s202] g=10143 upd=59 ret=-0.462 ev=0.87 ent=1.083 kl=0.0233 clip=0.212 gn=0.86 roll=12s up=15s
+  lagged snapshot @ 10143 (keep 2)
+  SCREEN @ 10143: blend=0.166 T=0.0 L=0.42500000000000004 I=0.0 C=0.6 defects={'invalid': 0, 'exception': 0, 'fallback': 0, 'ordered': 0, 'incomplete': 0}
+DONE R0 s202: 10143 games, stop=budget_reached, selected contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed202/checkpoints/ckpt_g10143.npz blend 0.16625

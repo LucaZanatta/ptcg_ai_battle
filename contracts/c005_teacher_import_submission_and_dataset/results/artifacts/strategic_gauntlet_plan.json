@@ -1,0 +1,40 @@
+{
+  "run_id": "strat_d5a85cdef1d422a0",
+  "admitted": [
+    "dragapult",
+    "mega_lucario",
+    "mega_abomasnow",
+    "iono"
+  ],
+  "pairs": [
+    [
+      "dragapult",
+      "iono"
+    ],
+    [
+      "dragapult",
+      "mega_abomasnow"
+    ],
+    [
+      "dragapult",
+      "mega_lucario"
+    ],
+    [
+      "iono",
+      "mega_abomasnow"
+    ],
+    [
+      "iono",
+      "mega_lucario"
+    ],
+    [
+      "mega_abomasnow",
+      "mega_lucario"
+    ]
+  ],
+  "batching": {
+    "initial_per_seat": 20,
+    "extend_per_seat": 10,
+    "max_per_seat": 100
+  }
+}

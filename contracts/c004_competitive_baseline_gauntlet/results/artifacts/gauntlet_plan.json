@@ -1,0 +1,44 @@
+{
+  "run_id": "gauntlet_117cb0e425666898",
+  "admitted": [
+    "det_starter",
+    "det_cabt",
+    "random_starter",
+    "random_cabt"
+  ],
+  "pairs": [
+    [
+      "det_cabt",
+      "det_starter"
+    ],
+    [
+      "det_cabt",
+      "random_cabt"
+    ],
+    [
+      "det_cabt",
+      "random_starter"
+    ],
+    [
+      "det_starter",
+      "random_cabt"
+    ],
+    [
+      "det_starter",
+      "random_starter"
+    ],
+    [
+      "random_cabt",
+      "random_starter"
+    ]
+  ],
+  "batching": {
+    "initial_per_seat": 20,
+    "extend_per_seat": 10,
+    "max_per_seat": 100,
+    "stop_hi": 0.55,
+    "stop_lo": 0.45,
+    "bootstrap": 2000
+  },
+  "seat_orders": "both (A-seat0-vs-B and B-seat0-vs-A)"
+}

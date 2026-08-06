@@ -1,0 +1,13 @@
+{
+  "next_step": "CONTINUE_FIXED_DECK_RL",
+  "training_loop_status": "VALIDATED",
+  "scale_result": "EXTENDED",
+  "deck_gate_met": false,
+  "highest_leverage_blocker": "Absolute strength against the frozen teacher's own strategic field. The loop now demonstrably extends (EXTENDED, three seeds), but the promoted agent scores 0.367 on the field where the FROZEN TEACHER scores 0.545 on the identical panel -- a 0.178 gap, and the \u00a724 submission gate additionally needs a teacher head-to-head lower bound of 0.47 against the measured 0.295. The measured mechanism is early-game credit assignment: value AUC against ACTUAL outcomes is 0.67 in the first fifth of a game versus 0.90 in the fourth fifth, and 40,000 games per seed did not move it (early Brier 0.228 against ~0.25 for a base-rate predictor). More PPO on this value head buys field score slowly; the head itself is the constraint.",
+  "best_agent": "S_633_g30176",
+  "decisions": {
+    "scale_result": "EXTENDED",
+    "promotion": "PROMOTE_NEW_AGENT",
+    "submission_F": "DO_NOT_SUBMIT"
+  }
+}

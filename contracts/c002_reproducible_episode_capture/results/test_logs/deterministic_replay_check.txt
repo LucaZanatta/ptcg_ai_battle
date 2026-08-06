@@ -1,0 +1,58 @@
+== Deterministic replay check ==
+
+[1] My-layer determinism (base_seed=777, first 5 games):
+    derived seeds      reproduce: True
+    seat assignments   reproduce: True
+      safe_vs_safe-000         cohort=safe_vs_safe         safe_seat=both seed=1206434174798331798
+      safe_vs_safe-001         cohort=safe_vs_safe         safe_seat=both seed=2649129215687295205
+      safe_vs_safe-002         cohort=safe_vs_safe         safe_seat=both seed=4091824256576258612
+      safe_vs_safe-003         cohort=safe_vs_safe         safe_seat=both seed=5534519297465222019
+      safe_vs_safe-004         cohort=safe_vs_safe         safe_seat=both seed=6977214338354185426
+
+[2] Engine trajectory determinism (same subset run live twice):
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: Successfully loaded OpenSpiel environments: 31.
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_amazons
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_backgammon
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_ant_foraging
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_checkers
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_chess
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_clobber
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game_arena
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_connect_four
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dark_hex
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dots_and_boxes
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_gin_rummy
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_go
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_goofspiel
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_havannah
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hearts
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hex
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_lines_of_action
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_mancala
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_matching_pennies_3p
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_negotiation
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_oshi_zumo
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_othello
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_game
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_tic_tac_toe
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_ultimate_tic_tac_toe
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit
+[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.
+    decision counts    reproduce: False
+    winners            reproduce: False
+    run1 (decisions, winner): [(53, 1), (35, 0), (45, 0), (50, 1), (20, 1)]
+    run2 (decisions, winner): [(23, 0), (29, 0), (37, 0), (34, 1), (168, 0)]
+    ROOT CAUSE: libcg.so seeds std::mt19937 from std::random_device (OS
+    entropy); no seed API is exported and configuration.seed is ignored.
+
+[3] Record-level policy determinism (recompute safe decisions from records):
+    safe decisions re-derived from recorded observations: 157
+    byte-identical to recorded selected_indices: True (mismatches=0)
+
+SUMMARY: my-layer seeds/seats + record-level policy REPRODUCE; engine
+trajectory (counts/winners) does NOT (external, unseedable engine RNG).

@@ -1,0 +1,22 @@
+c008 AC-01 dependency + immutability
+==================================================
+chain c005 4137d983c6a0 -> c006 08ebac883854 -> c007 1f3fc63aaa36 -> c008 init 1f3fc63aaa36
+teacher dragapult deck sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab  ref 54948560
+
+  [OK ] c005_pass_head
+  [OK ] c006_pass_head
+  [OK ] c007_pass_head
+  [OK ] commit_chain
+  [OK ] c008_branches_from_c007_final
+  [OK ] frozen_teacher_main_sha
+  [OK ] frozen_teacher_deck_sha
+  [OK ] frozen_deck_id
+  [OK ] c007_v2a_checkpoint_present
+  [OK ] c007_dataset_no_leakage
+  [OK ] c007_encoder_schema_present
+  [OK ] teacher_submission_ref
+  [OK ] teacher_sources_present
+  [OK ] runtime_deps
+
+immutability baseline: c005 250f c006 114f c007 154f
+ALL_OK = True

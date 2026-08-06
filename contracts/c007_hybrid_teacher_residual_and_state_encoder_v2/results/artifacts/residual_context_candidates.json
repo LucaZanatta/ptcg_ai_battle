@@ -1,0 +1,86 @@
+{
+  "candidate_pool": [
+    "search_card_target",
+    "dragapult_damage_counter",
+    "promotion_to_active",
+    "energy_attachment_target",
+    "retreat_switch",
+    "evolution_target"
+  ],
+  "stats": {
+    "search_card_target": {
+      "total": 9293,
+      "non_forced": 8995,
+      "two_meaningful": 8583,
+      "forced": 298,
+      "ordered": 0,
+      "multiselect": 442
+    },
+    "dragapult_damage_counter": {
+      "total": 9150,
+      "non_forced": 8394,
+      "two_meaningful": 8394,
+      "forced": 756,
+      "ordered": 0,
+      "multiselect": 0
+    },
+    "promotion_to_active": {
+      "total": 1915,
+      "non_forced": 1425,
+      "two_meaningful": 1425,
+      "forced": 490,
+      "ordered": 0,
+      "multiselect": 0
+    },
+    "energy_attachment_target": {
+      "total": 1452,
+      "non_forced": 1422,
+      "two_meaningful": 1232,
+      "forced": 30,
+      "ordered": 0,
+      "multiselect": 0
+    },
+    "retreat_switch": {
+      "total": 1214,
+      "non_forced": 1149,
+      "two_meaningful": 1149,
+      "forced": 65,
+      "ordered": 0,
+      "multiselect": 0
+    },
+    "evolution_target": {
+      "total": 346,
+      "non_forced": 181,
+      "two_meaningful": 181,
+      "forced": 165,
+      "ordered": 0,
+      "multiselect": 0
+    }
+  },
+  "ece_in_context": {
+    "search_card_target": {
+      "ece": 0.08329950196696947,
+      "n_single": 2878
+    },
+    "dragapult_damage_counter": {
+      "ece": 0.014491972318341283,
+      "n_single": 3000
+    },
+    "promotion_to_active": {
+      "ece": 0.014894173434129417,
+      "n_single": 1915
+    },
+    "energy_attachment_target": {
+      "ece": 0.026646731360315916,
+      "n_single": 1452
+    },
+    "retreat_switch": {
+      "ece": 0.07296813154840878,
+      "n_single": 1214
+    },
+    "evolution_target": {
+      "ece": 0.017855965189679107,
+      "n_single": 346
+    }
+  }
+}

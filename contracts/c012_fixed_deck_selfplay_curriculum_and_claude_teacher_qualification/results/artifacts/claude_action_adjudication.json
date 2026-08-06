@@ -1,0 +1,5 @@
+{
+  "note": "\u00a741 action adjudication requires VALID branching; branching is INVALID on this simulator, so no adjudication was run and no superiority claim is made.",
+  "adjudicated": false,
+  "reason": "The simulator exposes a forward-search API, but no observation captured through the standard agent interface carried the `search_begin_input` payload that `search_begin` requires, so a saved position could not be restored and branched under matched stochastic conditions."
+}

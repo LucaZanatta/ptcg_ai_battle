@@ -1,0 +1,204 @@
+{
+  "contract": "c009",
+  "total_games": 4100,
+  "deck_fingerprint": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a",
+  "deck_cards": 60,
+  "phases": {
+    "A": 800,
+    "B": 900,
+    "C": 2400
+  },
+  "per_candidate": {
+    "B0_v2a": 800,
+    "R0_101": 100,
+    "R0_202": 500,
+    "R1_101": 800,
+    "R1_202": 100,
+    "R2_101": 500,
+    "R2_202": 100,
+    "R2_303": 800,
+    "T_teacher": 400
+  },
+  "per_candidate_opponent_seat": {
+    "B0_v2a|dragapult|0": 250,
+    "B0_v2a|dragapult|1": 250,
+    "B0_v2a|iono|0": 50,
+    "B0_v2a|iono|1": 50,
+    "B0_v2a|mega_abomasnow|0": 50,
+    "B0_v2a|mega_abomasnow|1": 50,
+    "B0_v2a|mega_lucario|0": 50,
+    "B0_v2a|mega_lucario|1": 50,
+    "R0_101|dragapult|0": 50,
+    "R0_101|dragapult|1": 50,
+    "R0_202|dragapult|0": 100,
+    "R0_202|dragapult|1": 100,
+    "R0_202|iono|0": 50,
+    "R0_202|iono|1": 50,
+    "R0_202|mega_abomasnow|0": 50,
+    "R0_202|mega_abomasnow|1": 50,
+    "R0_202|mega_lucario|0": 50,
+    "R0_202|mega_lucario|1": 50,
+    "R1_101|dragapult|0": 250,
+    "R1_101|dragapult|1": 250,
+    "R1_101|iono|0": 50,
+    "R1_101|iono|1": 50,
+    "R1_101|mega_abomasnow|0": 50,
+    "R1_101|mega_abomasnow|1": 50,
+    "R1_101|mega_lucario|0": 50,
+    "R1_101|mega_lucario|1": 50,
+    "R1_202|dragapult|0": 50,
+    "R1_202|dragapult|1": 50,
+    "R2_101|dragapult|0": 100,
+    "R2_101|dragapult|1": 100,
+    "R2_101|iono|0": 50,
+    "R2_101|iono|1": 50,
+    "R2_101|mega_abomasnow|0": 50,
+    "R2_101|mega_abomasnow|1": 50,
+    "R2_101|mega_lucario|0": 50,
+    "R2_101|mega_lucario|1": 50,
+    "R2_202|dragapult|0": 50,
+    "R2_202|dragapult|1": 50,
+    "R2_303|dragapult|0": 250,
+    "R2_303|dragapult|1": 250,
+    "R2_303|iono|0": 50,
+    "R2_303|iono|1": 50,
+    "R2_303|mega_abomasnow|0": 50,
+    "R2_303|mega_abomasnow|1": 50,
+    "R2_303|mega_lucario|0": 50,
+    "R2_303|mega_lucario|1": 50,
+    "T_teacher|dragapult|0": 50,
+    "T_teacher|dragapult|1": 50,
+    "T_teacher|iono|0": 50,
+    "T_teacher|iono|1": 50,
+    "T_teacher|mega_abomasnow|0": 50,
+    "T_teacher|mega_abomasnow|1": 50,
+    "T_teacher|mega_lucario|0": 50,
+    "T_teacher|mega_lucario|1": 50
+  },
+  "seat_balance_ok": true,
+  "identity_reports": [
+    {
+      "n_jobs": 800,
+      "n_results": 800,
+      "unique_submitted": 800,
+      "unique_returned": 800,
+      "missing": 0,
+      "unexpected": 0,
+      "cells": 16,
+      "terminal": 800,
+      "defects": 0,
+      "problems": [],
+      "ok": true,
+      "phase": "A",
+      "candidates": [
+        "B0_v2a",
+        "R0_101",
+        "R0_202",
+        "R1_101",
+        "R1_202",
+        "R2_101",
+        "R2_202",
+        "R2_303"
+      ],
+      "opponents": [
+        "dragapult"
+      ],
+      "per_seat": 50,
+      "wall_seconds": 31.3
+    },
+    {
+      "n_jobs": 900,
+      "n_results": 900,
+      "unique_submitted": 900,
+      "unique_returned": 900,
+      "missing": 0,
+      "unexpected": 0,
+      "cells": 6,
+      "terminal": 900,
+      "defects": 0,
+      "problems": [],
+      "ok": true,
+      "phase": "B",
+      "candidates": [
+        "B0_v2a",
+        "R1_101",
+        "R2_303"
+      ],
+      "opponents": [
+        "dragapult"
+      ],
+      "per_seat": 150,
+      "wall_seconds": 35.8
+    },
+    {
+      "n_jobs": 2000,
+      "n_results": 2000,
+      "unique_submitted": 2000,
+      "unique_returned": 2000,
+      "missing": 0,
+      "unexpected": 0,
+      "cells": 40,
+      "terminal": 2000,
+      "defects": 0,
+      "problems": [],
+      "ok": true,
+      "phase": "C",
+      "candidates": [
+        "T_teacher",
+        "B0_v2a",
+        "R1_101",
+        "R2_101",
+        "R0_202"
+      ],
+      "opponents": [
+        "mega_lucario",
+        "iono",
+        "mega_abomasnow",
+        "dragapult"
+      ],
+      "per_seat": 50,
+      "wall_seconds": 77.5
+    },
+    {
+      "n_jobs": 400,
+      "n_results": 400,
+      "unique_submitted": 400,
+      "unique_returned": 400,
+      "missing": 0,
+      "unexpected": 0,
+      "cells": 8,
+      "terminal": 400,
+      "defects": 0,
+      "problems": [],
+      "ok": true,
+      "phase": "C",
+      "candidates": [
+        "R2_303"
+      ],
+      "opponents": [
+        "mega_lucario",
+        "iono",
+        "mega_abomasnow",
+        "dragapult"
+      ],
+      "per_seat": 50,
+      "wall_seconds": 17.8,
+      "supplement_reason": "R2_101 (n=100, teacher point 0.160) and R2_303 (n=400, 0.158) are statistically tied on the teacher score; the naive argmax favoured the smaller-sample estimate. Evaluate both in Phase C so the registered 11.1 tie-break (strategic field, then held-out) decides on real evidence."
+    }
+  ],
+  "terminal": 4100,
+  "defects": 0,
+  "raw_sha256": "fa8d6890ba311c69879289d36ceb321d7f31abf4cab31de9de300d7d5144b1ec",
+  "wall_seconds": 145.5,
+  "phase_d_ran": false,
+  "supplements": [
+    {
+      "candidates": [
+        "R2_303"
+      ],
+      "phase": "C",
+      "games": 400,
+      "reason": "R2_101 (n=100, teacher point 0.160) and R2_303 (n=400, 0.158) are statistically tied on the teacher score; the naive argmax favoured the smaller-sample estimate. Evaluate both in Phase C so the registered 11.1 tie-break (strategic field, then held-out) decides on real evidence."
+    }
+  ]
+}

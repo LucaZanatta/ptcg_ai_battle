@@ -1,0 +1,23 @@
+# NOT EXECUTED.
+#
+# c016 built no package and made no upload. The competitive gate (§18) failed: no candidate
+# passed BOTH the base conditions and a strength path.
+#
+#   official_mega_lucario   strength path B PASS  |  base conditions FAIL
+#                           (safe control 0.833 < 0.90; vs c014 0.625 < 0.65)
+#   official_mega_abomasnow base conditions PASS  |  no strength path
+#                           (0.502 vs Dragapult < 0.55; field 0.407 < 0.55)
+#   official_iono           base conditions PASS  |  no strength path
+#
+# §2 and §18 forbid uploading a weak package merely to complete the contract, so
+# submission_J_public_champion_v0.tar.gz was deliberately not built.
+#
+# The command that WOULD run, once a candidate clears the gate and is packaged and validated:
+#
+# kaggle competitions submit pokemon-tcg-ai-battle \
+#   -f contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/submission_J_public_champion_v0.tar.gz \
+#   -m "c016 public-champion-v0 <candidate-id> <fidelity> <short-git-sha>"
+#
+# Permission note: the official sample agents are classified SUBMISSION_REUSE_ALLOWED with
+# attribution recorded in REUSE_PERMISSION_MATRIX.md, so an upload would be permitted on
+# permission grounds. It is the COMPETITIVE gate, not permission, that blocked it.

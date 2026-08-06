@@ -1,0 +1,204 @@
+{
+  "contract": "c009_amendment_c008",
+  "chain_final_heads": {
+    "c005": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+    "c006": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+    "c007": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+    "c008": "fb6e592c8c333f758014e2d2e94a39261bb63fe6"
+  },
+  "c009_initial_head": "fb6e592c8c333f758014e2d2e94a39261bb63fe6",
+  "teacher_id": "dragapult",
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "frozen_teacher_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "frozen_teacher_deck_sha256": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+  "v2a_baseline": {
+    "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_selected.npz",
+    "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6"
+  },
+  "c008_selected_checkpoints": {
+    "R0/seed101": {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed101/checkpoints/ckpt_g2556.npz",
+      "sha256": "70b09768c3357e16d390cc56d2903d7fe468e75efbe2986292957c34278278f7",
+      "size": 4511078,
+      "validation_blend": 0.20500000000000002,
+      "games": 2556
+    },
+    "R0/seed202": {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed202/checkpoints/ckpt_g10143.npz",
+      "sha256": "7ba39771e272e330412900391818317e21222ae0260e980cfa567ec4987cc521",
+      "size": 4511078,
+      "validation_blend": 0.16625,
+      "games": 10143
+    },
+    "R1/seed101": {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed101/checkpoints/ckpt_g10040.npz",
+      "sha256": "b172b4dc79477821105043398bf04169ead884c0e01975ae2374de915072c682",
+      "size": 4511078,
+      "validation_blend": 0.405,
+      "games": 10040
+    },
+    "R1/seed202": {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed202/checkpoints/ckpt_g5130.npz",
+      "sha256": "545cbd26a28cddcdd78a68be8237d14fbaf62fe2aa98603eb38da02758f42ce8",
+      "size": 4511078,
+      "validation_blend": 0.3375,
+      "games": 5130
+    },
+    "R2/seed101": {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R2/seed101/checkpoints/ckpt_g2534.npz",
+      "sha256": "a492ce20e14b26af1a272621c2bf5e7a9c67217131b8f7beb495f44b1be45a30",
+      "size": 4511078,
+      "validation_blend": 0.305,
+      "games": 2534
+    },
+    "R2/seed202": {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R2/seed202/checkpoints/ckpt_g20083.npz",
+      "sha256": "aec2ea82530a233aede020162d885f1667df109fed4c897adf339a2118d5ae96",
+      "size": 4511078,
+      "validation_blend": 0.31125,
+      "games": 20083
+    },
+    "R2/seed303": {
+      "path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R2/seed303/checkpoints/ckpt_g5054.npz",
+      "sha256": "19fc9fb71db752c56dc1655d147fa4ffed47eb50b0d02915d14cbf9d451ccf93",
+      "size": 4511078,
+      "validation_blend": 0.335,
+      "games": 5054
+    }
+  },
+  "teacher_submission_ref": "54948560",
+  "runtime_deps": {
+    "numpy": "ok",
+    "scipy": "ok",
+    "kaggle_environments": "ok",
+    "cg": "ok"
+  },
+  "checks": [
+    {
+      "check": "c005_status_and_head",
+      "ok": true,
+      "detail": {
+        "status": "PASS",
+        "final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830"
+      }
+    },
+    {
+      "check": "c006_status_and_head",
+      "ok": true,
+      "detail": {
+        "status": "PASS",
+        "final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a"
+      }
+    },
+    {
+      "check": "c007_status_and_head",
+      "ok": true,
+      "detail": {
+        "status": "PASS",
+        "final_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577"
+      }
+    },
+    {
+      "check": "c008_status_and_head",
+      "ok": true,
+      "detail": {
+        "status": "PASS",
+        "final_head": "fb6e592c8c333f758014e2d2e94a39261bb63fe6"
+      }
+    },
+    {
+      "check": "commit_chain",
+      "ok": true,
+      "detail": {
+        "c006": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+        "c007": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+        "c008": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577"
+      }
+    },
+    {
+      "check": "c009_branches_from_c008_final",
+      "ok": true,
+      "detail": {
+        "c009_head": "fb6e592c8c333f758014e2d2e94a39261bb63fe6"
+      }
+    },
+    {
+      "check": "frozen_teacher_main_sha",
+      "ok": true,
+      "detail": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+    },
+    {
+      "check": "frozen_teacher_deck_sha",
+      "ok": true,
+      "detail": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724"
+    },
+    {
+      "check": "frozen_deck_id",
+      "ok": true,
+      "detail": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab"
+    },
+    {
+      "check": "v2a_baseline_checkpoint_present",
+      "ok": true,
+      "detail": {
+        "path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_selected.npz",
+        "sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6"
+      }
+    },
+    {
+      "check": "all_c008_selected_checkpoints_present",
+      "ok": true,
+      "detail": {
+        "n_present": 7,
+        "missing": []
+      }
+    },
+    {
+      "check": "checkpoint_hashes_distinct",
+      "ok": true,
+      "detail": {
+        "n_distinct": 7
+      }
+    },
+    {
+      "check": "c008_required_artifacts_readable",
+      "ok": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "c008_source_readable",
+      "ok": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "teacher_submission_ref",
+      "ok": true,
+      "detail": "54948560"
+    },
+    {
+      "check": "strategic_opponents_present",
+      "ok": true,
+      "detail": {
+        "dragapult": true,
+        "mega_lucario": true,
+        "iono": true,
+        "mega_abomasnow": true
+      }
+    },
+    {
+      "check": "runtime_deps",
+      "ok": true,
+      "detail": {
+        "numpy": "ok",
+        "scipy": "ok",
+        "kaggle_environments": "ok",
+        "cg": "ok"
+      }
+    }
+  ],
+  "all_ok": true
+}

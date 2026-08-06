@@ -1,0 +1,163 @@
+{
+  "milestone": "M05_submitted",
+  "title": "exact source/config/checkpoint/package uploaded",
+  "git_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "git_tree": "b8d7d4e12e2239b85bc00ba63cc2369ce64826b9",
+  "branch": "contract/c018_complete_integrated_search_learning_curriculum_campaign",
+  "sources": [
+    {
+      "path": "tools/c018_package.py",
+      "present": true,
+      "sha256": "624ef1735da2c0303ad960f6fce731fc5467757bb85ca8a8809cdb319ad82037",
+      "bytes": 20860,
+      "note": null
+    },
+    {
+      "path": "tools/c018_submit.py",
+      "present": true,
+      "sha256": "f28aea4fb69e52caa9d7b8ce4d5e8611173caa62a4973cb2dc580d31be4105da",
+      "bytes": 13175,
+      "note": null
+    }
+  ],
+  "configs": {},
+  "config_hash": "44136fa355b3678a1146ad16f7e8649e",
+  "deck": {
+    "path": "cg/deck.csv",
+    "present": true,
+    "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799",
+    "bytes": 245,
+    "note": null
+  },
+  "checkpoints": [],
+  "result_artifacts": [
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/submission_K_official_search_v0_manifest.json",
+      "present": true,
+      "sha256": "9014ead3756a1d4cbe0ff624786ba2035d15f0a7118bb0120911d04c295444d7",
+      "bytes": 4016,
+      "note": null
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/submission_L_guided_search_v0_manifest.json",
+      "present": true,
+      "sha256": "246db15067a6f404ded8ee3f581ef8770461b3f05faf7e296f1b607ad8449031",
+      "bytes": 7228,
+      "note": null
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/submission_M_trained_policy_v0_manifest.json",
+      "present": true,
+      "sha256": "d271380468c4af0ee69832161e4cf3b0ed7422b8281ac39183d0f31301e6fe0a",
+      "bytes": 7638,
+      "note": null
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/final_panel/final_panel_results.json",
+      "present": true,
+      "sha256": "6aed7b10663428a5fb82afdc5b9b2ab387d181a8471c2fc688a7b48132f9360f",
+      "bytes": 4050,
+      "note": null
+    }
+  ],
+  "command": "python tools/c018_package.py && python tools/c018_submit.py",
+  "packages": [
+    {
+      "name": "submission_K_official_search_v0",
+      "sha256": "4d17ab86d8e820077b6370bab845fe031cb2fb9171f3408adf6db7a0936178a9",
+      "bytes": 505273
+    },
+    {
+      "name": "submission_L_guided_search_v0",
+      "sha256": "e87320a8441986749467a8f185e298aace4f2db0e38314508a06cd4051818365",
+      "bytes": 4171838
+    },
+    {
+      "name": "submission_M_trained_policy_v0",
+      "sha256": "e0ce129c94df88a9f2a66ffb254a9f0d6c91f5537274e3b4af6b79fe5aae3e41",
+      "bytes": 4170060
+    }
+  ],
+  "submission": null,
+  "submission_decision": {
+    "outcome": "NO_UPLOAD",
+    "rule": "DECISION_RULES.md \u00a74 as corrected by Amendment 3, enforced in tools/c018_submit.py:promotion_gate",
+    "reason": "no candidate cleared any of the three pre-registered promotion clauses on the frozen panel; \u00a734 forbids uploading a candidate known to be catastrophically weaker, and \u00a76.1's accepted-submission floor is therefore unmet by decision rather than by omission",
+    "consequence": "PASS is unreachable; PARTIAL is the honest status (\u00a738)",
+    "per_package": [
+      {
+        "package": "submission_K_official_search_v0",
+        "failed_gates": [
+          "pre_registered_promotion_gate"
+        ],
+        "promotion_gate": {
+          "candidate": "m01_heuristic_search",
+          "overall": 0.21,
+          "baseline_overall": 0.58,
+          "delta_vs_baseline": -0.37,
+          "worst_matchup_rate": 0.14,
+          "dragapult_rate": 0.14,
+          "baseline_dragapult_rate": 0.54,
+          "clauses": {
+            "a_improvement": false,
+            "b_important_matchup": false,
+            "c_high_information_near_parity": false
+          },
+          "rule": "DECISION_RULES \u00a74 as corrected by Amendment 3"
+        }
+      },
+      {
+        "package": "submission_L_guided_search_v0",
+        "failed_gates": [
+          "pre_registered_promotion_gate"
+        ],
+        "promotion_gate": {
+          "candidate": "m04_guided_search",
+          "overall": 0.215,
+          "baseline_overall": 0.58,
+          "delta_vs_baseline": -0.365,
+          "worst_matchup_rate": 0.15,
+          "dragapult_rate": 0.17,
+          "baseline_dragapult_rate": 0.54,
+          "clauses": {
+            "a_improvement": false,
+            "b_important_matchup": false,
+            "c_high_information_near_parity": false
+          },
+          "rule": "DECISION_RULES \u00a74 as corrected by Amendment 3",
+          "upload2_extra": {
+            "upload1_overall": 0.21,
+            "outranks_upload1": true,
+            "matches_official_baseline": false
+          }
+        }
+      },
+      {
+        "package": "submission_M_trained_policy_v0",
+        "failed_gates": [
+          "pre_registered_promotion_gate"
+        ],
+        "promotion_gate": {
+          "candidate": "m03_curriculum_policy",
+          "overall": 0.2475,
+          "baseline_overall": 0.58,
+          "delta_vs_baseline": -0.3325,
+          "worst_matchup_rate": 0.16,
+          "dragapult_rate": 0.22,
+          "baseline_dragapult_rate": 0.54,
+          "clauses": {
+            "a_improvement": false,
+            "b_important_matchup": false,
+            "c_high_information_near_parity": false
+          },
+          "rule": "DECISION_RULES \u00a74 as corrected by Amendment 3",
+          "upload2_extra": {
+            "upload1_overall": 0.21,
+            "outranks_upload1": true,
+            "matches_official_baseline": false
+          }
+        }
+      }
+    ]
+  }
+}

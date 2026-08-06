@@ -1,0 +1,66 @@
+{
+  "status": "ok",
+  "selection_rule": [
+    "highest Bradley-Terry strength",
+    "if top intervals substantially overlap: higher worst-matchup lower bound",
+    "then lower P99 latency",
+    "then simpler/more reproducible (deterministic)"
+  ],
+  "reliability_gate": {
+    "det_cabt": true,
+    "det_starter": true,
+    "random_cabt": true,
+    "random_starter": true
+  },
+  "bradley_terry_strength": {
+    "det_cabt": 2.426065604833196,
+    "det_starter": 2.415176544266031,
+    "random_cabt": 0.27978129945939856,
+    "random_starter": 0.6100000829545952
+  },
+  "primary_baseline": "det_starter",
+  "backup_baseline": "det_cabt",
+  "tiebreak_used": "worst_matchup_lower_bound -> p99_latency -> deterministic_simplicity",
+  "candidate_rankings": [
+    "det_cabt",
+    "det_starter",
+    "random_starter",
+    "random_cabt"
+  ],
+  "worst_matchup": {
+    "det_cabt": {
+      "opponent": "det_starter",
+      "balanced_rate": 0.495,
+      "lower_bound_95": 0.42500000000000004,
+      "upper_bound_95": 0.565
+    },
+    "det_starter": {
+      "opponent": "det_cabt",
+      "balanced_rate": 0.505,
+      "lower_bound_95": 0.435,
+      "upper_bound_95": 0.575
+    },
+    "random_cabt": {
+      "opponent": "det_cabt",
+      "balanced_rate": 0.125,
+      "lower_bound_95": 0.025,
+      "upper_bound_95": 0.225
+    },
+    "random_starter": {
+      "opponent": "det_cabt",
+      "balanced_rate": 0.15000000000000002,
+      "lower_bound_95": 0.05,
+      "upper_bound_95": 0.275
+    }
+  },
+  "p99_latency_ms": {
+    "det_cabt": 0.002705,
+    "det_starter": 0.002654,
+    "random_cabt": 0.012864,
+    "random_starter": 0.010259
+  },
+  "rejections": {
+    "random_cabt": "REJECTED_STRENGTH",
+    "random_starter": "REJECTED_STRENGTH"
+  }
+}

@@ -1,0 +1,36 @@
+/home/luca/kaggle/ptcg_ai_battle/tools/acquire_teachers.py:69: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+  tf.extractall(dst)
+# Teacher acquisition — 2026-07-24T09:03:57.208861+00:00
+$ kaggle kernels output kiyotah/a-sample-rule-based-agent-dragapult-ex-deck
+(exit 0)
+Output file downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult/submission.tar.gz
+Kernel log downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult/a-sample-rule-based-agent-dragapult-ex-deck.log
+$ kaggle kernels pull kiyotah/a-sample-rule-based-agent-dragapult-ex-deck -m
+(exit 0)
+Source code and metadata downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult/src
+$ kaggle kernels output kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck
+(exit 0)
+Output file downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_lucario/submission.tar.gz
+Kernel log downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_lucario/a-sample-rule-based-agent-mega-lucario-ex-deck.log
+$ kaggle kernels pull kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck -m
+(exit 0)
+Source code and metadata downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_lucario/src
+$ kaggle kernels output kiyotah/a-sample-rule-based-agent-mega-abomasnow-ex-deck
+(exit 0)
+Output file downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_abomasnow/submission.tar.gz
+Kernel log downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_abomasnow/a-sample-rule-based-agent-mega-abomasnow-ex-deck.log
+$ kaggle kernels pull kiyotah/a-sample-rule-based-agent-mega-abomasnow-ex-deck -m
+(exit 0)
+Source code and metadata downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/mega_abomasnow/src
+$ kaggle kernels output kiyotah/a-sample-rule-based-agent-iono-s-deck
+(exit 0)
+Output file downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/iono/submission.tar.gz
+Kernel log downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/iono/a-sample-rule-based-agent-iono-s-deck.log
+$ kaggle kernels pull kiyotah/a-sample-rule-based-agent-iono-s-deck -m
+(exit 0)
+Source code and metadata downloaded to contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/iono/src
+$ git clone --depth 1 https://github.com/wmh/ptcg-abc
+(exit 0)
+Cloning into 'contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/ptcg-abc'...
+
+official acquired: 4/4 | benchmark: ok

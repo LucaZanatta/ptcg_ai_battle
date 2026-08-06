@@ -63,6 +63,42 @@ PUBLIC = {
                                   "public_kernel"),
 }
 
+# The c024 additions. The c023 panel was assembled by vote count and archetype coverage; these
+# were selected on a different criterion -- the author advertises a ladder rating in the title.
+# Every one of them claims a number above our champion's 788.1, and none had ever been run here.
+# Same classification as everything else in PUBLIC: opponents and sources of technique, never a
+# submission base, because the Kaggle API exposes no licence field for a notebook.
+C024_KERNELS = os.path.join(_REPO, "external_refs", "c024_public_kernels", "_extracted")
+
+PUBLIC.update({
+    "pub_soutasakurai_libraryout_1208": (
+        os.path.join(C024_KERNELS, "soutasakurai_max-elo-1208-libraryout-w-crustle-great-tusk"),
+        "public_kernel"),
+    "pub_prvsiyan_tusk_1208_v24": (
+        os.path.join(C024_KERNELS, "prvsiyan_ptcg-ai-battle-static-deck-tusk-1208-v24"),
+        "public_kernel"),
+    "pub_prvsiyan_lopunny_1208": (
+        os.path.join(C024_KERNELS, "prvsiyan_ptcg-rmy-surface-souta-1208-loader-v1"),
+        "public_kernel"),
+    "pub_ryotasueyoshi_alakazam_5th": (
+        os.path.join(C024_KERNELS, "ryotasueyoshi_rule-based-not-psychic-alakazam-best-5th"),
+        "public_kernel"),
+    "pub_masamikobayashi_archaludon": (
+        os.path.join(C024_KERNELS, "masamikobayashi_a-sample-archaludon-75-wr-vs-my-1300-starmie"),
+        "public_kernel"),
+    "pub_romanrozen_v10_950": (
+        os.path.join(C024_KERNELS, "romanrozen_strong-start-baseline-agent-v10-lb-950"),
+        "public_kernel"),
+    "pub_borealis27_1050": (
+        os.path.join(C024_KERNELS, "borealis27_elo-1050-rule-based-agent-matchup-tests"),
+        "public_kernel"),
+    "pub_aristophanivan_multiply_940": (
+        os.path.join(C024_KERNELS, "aristophanivan_multiply-agent-best-940-lb"),
+        "public_kernel"),
+    "pub_penguin069_915": (
+        os.path.join(C024_KERNELS, "penguin069_public-scores-915"), "public_kernel"),
+})
+
 # Our own two custom agents, extracted from the exact archives that were uploaded. They are on
 # the panel for one reason: their Kaggle ladder score rates are already measured (0.3333 and
 # 0.4206 over 33 and 107 public games), so measuring them locally turns the local-to-ladder
@@ -72,6 +108,12 @@ OURS = {
                                "c023_prior_contract_submission"),
     "c015_anti_meta_expert": (os.path.join(KERNEL_SOURCES, "c015_anti_meta_expert"),
                               "c023_prior_contract_submission"),
+}
+
+# player_id -> the name the kernel itself declares as its competition callable, for the kernels
+# that do not call it `agent`. Taken from the kernel's own EXPECTED_FINAL_CALLABLE constant.
+_ENTRYPOINT_ALIASES = {
+    "pub_prvsiyan_lopunny_1208": "mega_lopunny_cleanroom_entrypoint",
 }
 
 _load_counter = [0]
@@ -177,6 +219,21 @@ def make_fresh(player_id: str) -> LoadedPlayer:
         spec.loader.exec_module(mod)
     finally:
         os.chdir(old_cwd)
+    # Not every kernel names its competition callable `agent`. The prvsiyan Lopunny loader
+    # declares `EXPECTED_FINAL_CALLABLE = 'mega_lopunny_cleanroom_entrypoint'` and leaves the
+    # binding to its own submission builder, which the extractor does not run. Without this the
+    # module loads cleanly and then every decision raises AttributeError -- 6 errored games and
+    # no score, which is how it first showed up. Bind by the kernel's own declared name; never
+    # guess, and never fall back to "the only function that takes one argument".
+    if not hasattr(mod, "agent"):
+        alias = _ENTRYPOINT_ALIASES.get(player_id)
+        if alias and hasattr(mod, alias):
+            mod.agent = getattr(mod, alias)
+        else:
+            raise AttributeError(
+                f"{player_id}: main.py exposes no `agent`; add its declared entry point to "
+                f"_ENTRYPOINT_ALIASES (module defines: "
+                f"{[n for n in vars(mod) if callable(vars(mod)[n]) and not n.startswith('_')][:8]})")
     # Package-style agents (tetsutani) import helper modules under their own top-level names.
     # Those must not survive the game, or the next load reuses this game's state.
     purge = [n for n in set(sys.modules) - before]

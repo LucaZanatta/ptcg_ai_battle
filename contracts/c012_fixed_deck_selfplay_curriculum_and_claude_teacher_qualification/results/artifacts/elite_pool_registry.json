@@ -1,0 +1,42 @@
+{
+  "note": "Diverse strong frozen policies used as fixed opponents (\u00a723). Diversity is enforced by lineage (arm, seed) so the pool is not several near-copies of one branch.",
+  "n": 4,
+  "elite_pool": [
+    {
+      "id": "SOUP_622+633",
+      "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+      "teacher": 0.38,
+      "field": 0.39000000000000007,
+      "composite": 0.3845,
+      "lineage": "SOUP_None"
+    },
+    {
+      "id": "S_622_g39983",
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+      "sha256": "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+      "teacher": 0.345,
+      "field": 0.33666666666666667,
+      "composite": 0.34125,
+      "lineage": "S_622"
+    },
+    {
+      "id": "S_633_g10224",
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g10224.npz",
+      "sha256": "38a5e5b9a6adc740a63efc104d611fd9e35fcc9e9c44b97737da396c5985454d",
+      "teacher": 0.325,
+      "field": 0.31499999999999995,
+      "composite": 0.3205,
+      "lineage": "S_633"
+    },
+    {
+      "id": "S_611_g40127",
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+      "sha256": "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+      "teacher": 0.32,
+      "field": 0.3916666666666666,
+      "composite": 0.35225,
+      "lineage": "S_611"
+    }
+  ]
+}

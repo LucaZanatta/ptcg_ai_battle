@@ -1,0 +1,78 @@
+{
+  "observed": {
+    "os": "Linux 6.17.0-40-generic",
+    "os_pretty": "Ubuntu 24.04.4 LTS",
+    "python": "3.13.13",
+    "executable": "/home/luca/kaggle/ptcg_ai_battle/.venv/bin/python",
+    "cpu_model": "AMD Ryzen 9 7900X 12-Core Processor",
+    "cpu_cores_physical": 12,
+    "cpu_threads": 24,
+    "ram_gib": 62.0,
+    "ram_available_gib": 42.3,
+    "disk_free_gib": 202.9,
+    "torch": "2.13.0+cu132",
+    "torch_cuda": "13.2",
+    "cudnn": 92000,
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 5070",
+    "gpu_capability": "12.0",
+    "vram_total_mib": 11752,
+    "vram_free_mib": 10075,
+    "driver": "595.71.05"
+  },
+  "registered": {
+    "profile_name": "luca_ptcg_training_pc",
+    "captured_at": "2026-07-25T13:15:30+02:00",
+    "os": "Ubuntu 24.04.4 LTS native Linux",
+    "cpu": {
+      "model": "AMD Ryzen 9 7900X",
+      "cores": 12,
+      "threads": 24,
+      "l3_mib": 64
+    },
+    "ram_gib": 61,
+    "gpu": {
+      "model": "NVIDIA GeForce RTX 5070",
+      "vram_mib": 12227,
+      "compute_capability": "12.0",
+      "power_limit_w": 250
+    },
+    "driver": "595.71.05",
+    "python": "3.13.13",
+    "pytorch": "2.12.1+cu130",
+    "pytorch_cuda": "13.0",
+    "cuda_available": true,
+    "disk_free_gib_at_capture": 209
+  },
+  "registered_vs_observed": {
+    "pytorch": {
+      "registered": "2.12.1+cu130",
+      "observed": "2.13.0+cu132"
+    },
+    "pytorch_cuda": {
+      "registered": "13.0",
+      "observed": "13.2"
+    },
+    "vram_mib": {
+      "registered": 12227,
+      "observed": 11752
+    },
+    "ram_gib": {
+      "registered": 61,
+      "observed": 62.0
+    },
+    "cpu": {
+      "registered": "AMD Ryzen 9 7900X",
+      "observed": "AMD Ryzen 9 7900X 12-Core Processor"
+    }
+  },
+  "drift_is_blocking": false,
+  "drift_note": "The registered profile is a declaration made when the contract was written. Observed values govern every c011 decision; the diff is recorded rather than silently reconciled. None of the differences reduces capability (PyTorch and CUDA are newer).",
+  "preflight": {
+    "cuda_available": true,
+    "vram_free_ge_8gib": true,
+    "ram_available_ge_12gib": true,
+    "disk_free_ge_100gib": true
+  },
+  "preflight_all_pass": true
+}

@@ -1,0 +1,742 @@
+{
+  "section": "\u00a735",
+  "directories_created": 26,
+  "placements": 146,
+  "method": "hard links, so a file's contract-specified path and its working path are the same inode -- provably identical bytes, no duplication of hundreds of MB of checkpoints",
+  "empty_directories_with_stated_reason": [
+    "search/roots",
+    "training/optimizer_states"
+  ],
+  "records": [
+    {
+      "source": "artifacts/parent_resolution.json",
+      "dest": "baseline/parent_resolution.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/immutability_baseline_pre_c018.json",
+      "dest": "baseline/immutability_baseline_pre_c018.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/baseline_anchor.json",
+      "dest": "baseline/baseline_anchor.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/thin_vertical.json",
+      "dest": "integration/thin_vertical.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/defect_ranking.json",
+      "dest": "integration/defect_ranking.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/export_round_trip.json",
+      "dest": "integration/export_round_trip.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/node_budget_defect.json",
+      "dest": "integration/node_budget_defect.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/lifecycle_extended.json",
+      "dest": "search/lifecycle/lifecycle_extended.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/branch_proof.json",
+      "dest": "search/traces/branch_proof.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/tactical_fixtures.json",
+      "dest": "search/fixtures/tactical_fixtures.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/throughput.json",
+      "dest": "search/latency/throughput.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/guided_latency.json",
+      "dest": "search/latency/guided_latency.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/guidance_comparison.json",
+      "dest": "models/guided/guidance_comparison.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/trajectory_integrity.json",
+      "dest": "trajectories/integrity/trajectory_integrity.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/heldout_metrics.json",
+      "dest": "training/evaluations/heldout_metrics.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/heldout_metrics_11k.json",
+      "dest": "training/evaluations/heldout_metrics_11k_control.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/curriculum_audit.json",
+      "dest": "training/evaluations/curriculum_audit.json",
+      "status": "already linked"
+    },
+    {
+      "source": "artifacts/continuation_check.json",
+      "dest": "training/resume_probes/continuation_check.json",
+      "status": "already linked"
+    },
+    {
+      "source": "training/distillation_report.json",
+      "dest": "models/distillation/distillation_report.json",
+      "status": "already linked"
+    },
+    {
+      "source": "training/curriculum_report.json",
+      "dest": "models/curriculum/curriculum_report.json",
+      "status": "already linked"
+    },
+    {
+      "source": "training/m02_distilled_11k_report.json",
+      "dest": "models/distillation/m02_distilled_11k_control_report.json",
+      "status": "already linked"
+    },
+    {
+      "source": "training/m03_curriculum_40k_report.json",
+      "dest": "models/curriculum/m03_curriculum_40k_fallback_report.json",
+      "status": "already linked"
+    },
+    {
+      "source": "search/ratecheck_search_summary.json",
+      "dest": "search/traces/ratecheck_search_summary.json",
+      "status": "already linked"
+    },
+    {
+      "source": "search/budgetcheck_search_summary.json",
+      "dest": "search/traces/budgetcheck_search_summary.json",
+      "status": "already linked"
+    },
+    {
+      "source": "search/vertical_search_summary.json",
+      "dest": "search/traces/vertical_search_summary.json",
+      "status": "already linked"
+    },
+    {
+      "source": "search/scaled_search_summary.json",
+      "dest": "search/traces/scaled_search_summary.json",
+      "status": "already linked"
+    },
+    {
+      "source": "search/scaled2_search_summary.json",
+      "dest": "search/traces/scaled2_search_summary.json",
+      "status": "already linked"
+    },
+    {
+      "source": "search/smoke_search_summary.json",
+      "dest": "search/traces/smoke_search_summary.json",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/scaled2_trajectories.jsonl.gz",
+      "dest": "trajectories/trusted/scaled2_trajectories.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/scaled_trajectories.jsonl.gz",
+      "dest": "trajectories/trusted/scaled_trajectories.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/smoke_trajectories.jsonl.gz",
+      "dest": "trajectories/diagnostic/smoke_trajectories.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/budgetcheck_trajectories.jsonl.gz",
+      "dest": "trajectories/diagnostic/budgetcheck_trajectories.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/vertical_trajectories.jsonl.gz",
+      "dest": "trajectories/trusted/vertical_trajectories.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/ratecheck_trajectories.jsonl.gz",
+      "dest": "trajectories/diagnostic/ratecheck_trajectories.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/budgetcheck_features.npz",
+      "dest": "trajectories/trusted/budgetcheck_features.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/scaled_features.npz",
+      "dest": "trajectories/trusted/scaled_features.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/vertical_features.npz",
+      "dest": "trajectories/trusted/vertical_features.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/scaled2_features.npz",
+      "dest": "trajectories/trusted/scaled2_features.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/ratecheck_features.npz",
+      "dest": "trajectories/trusted/ratecheck_features.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "trajectories/smoke_features.npz",
+      "dest": "trajectories/trusted/smoke_features.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/p13_uninterrupted_games.jsonl.gz",
+      "dest": "training/raw_rollouts/p13_uninterrupted_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/m03_curriculum_games.jsonl.gz",
+      "dest": "training/raw_rollouts/m03_curriculum_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/p13_partA_games.jsonl.gz",
+      "dest": "training/raw_rollouts/p13_partA_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/m03_smoke_games.jsonl.gz",
+      "dest": "training/raw_rollouts/m03_smoke_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/vertical_curric_games.jsonl.gz",
+      "dest": "training/raw_rollouts/vertical_curric_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/m03_curriculum_40k_games.jsonl.gz",
+      "dest": "training/raw_rollouts/m03_curriculum_40k_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/p13_partB_games.jsonl.gz",
+      "dest": "training/raw_rollouts/p13_partB_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/m03_curriculum_40k_updates.jsonl.gz",
+      "dest": "training/raw_rollouts/m03_curriculum_40k_updates.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/p13_uninterrupted_updates.jsonl.gz",
+      "dest": "training/raw_rollouts/p13_uninterrupted_updates.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/p13_partA_updates.jsonl.gz",
+      "dest": "training/raw_rollouts/p13_partA_updates.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/p13_partB_updates.jsonl.gz",
+      "dest": "training/raw_rollouts/p13_partB_updates.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/vertical_curric_updates.jsonl.gz",
+      "dest": "training/raw_rollouts/vertical_curric_updates.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/m03_smoke_updates.jsonl.gz",
+      "dest": "training/raw_rollouts/m03_smoke_updates.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "rollouts/m03_curriculum_updates.jsonl.gz",
+      "dest": "training/raw_rollouts/m03_curriculum_updates.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m02_distilled_11k.pt",
+      "dest": "models/distillation/m02_distilled_11k.pt",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m02_smoke.pt",
+      "dest": "models/distillation/m02_smoke.pt",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m02_distilled.pt",
+      "dest": "models/distillation/m02_distilled.pt",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m02_distilled.npz",
+      "dest": "models/distillation/m02_distilled.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum.pt",
+      "dest": "models/curriculum/m03_curriculum.pt",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum.npz",
+      "dest": "models/curriculum/m03_curriculum.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_40k.npz",
+      "dest": "models/curriculum/m03_curriculum_40k.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_40k.pt",
+      "dest": "models/curriculum/m03_curriculum_40k.pt",
+      "status": "already linked"
+    },
+    {
+      "source": "test_logs/evidence_validation.txt",
+      "dest": "training/logs/evidence_validation.txt",
+      "status": "already linked"
+    },
+    {
+      "source": "final_panel/raw_games.jsonl.gz",
+      "dest": "search/raw_games/raw_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "final_panel/vertical_raw_games.jsonl.gz",
+      "dest": "search/raw_games/vertical_raw_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "final_panel/probe_raw_games.jsonl.gz",
+      "dest": "search/raw_games/probe_raw_games.jsonl.gz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b12_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b12_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b67_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b67_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b53_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b53_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b34_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b34_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b73_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b73_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b52_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b52_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b35_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b35_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b63_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b63_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b33_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b33_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b16_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b16_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b19_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b19_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b36_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b36_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b45_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b45_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b01_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b01_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b75_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b75_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b26_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b26_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b55_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b55_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b30_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b30_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b66_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b66_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b05_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b05_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b18_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b18_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b37_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b37_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b70_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b70_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b60_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b60_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b10_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b10_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b41_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b41_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b76_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b76_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b57_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b57_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b09_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b09_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b22_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b22_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b46_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b46_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b42_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b42_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b25_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b25_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b40_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b40_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b58_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b58_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b31_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b31_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b06_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b06_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b11_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b11_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b29_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b29_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b79_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b79_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b14_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b14_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b59_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b59_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b00_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b00_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b43_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b43_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b71_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b71_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b28_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b28_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b72_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b72_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b48_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b48_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b20_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b20_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b65_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b65_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b49_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b49_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b23_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b23_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b62_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b62_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b68_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b68_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b08_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b08_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b51_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b51_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b02_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b02_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b38_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b38_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b74_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b74_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b78_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b78_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b13_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b13_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b15_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b15_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b17_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b17_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b56_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b56_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b39_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b39_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b69_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b69_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b03_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b03_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b44_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b44_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b64_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b64_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b07_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b07_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b54_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b54_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b04_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b04_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b47_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b47_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b77_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b77_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b21_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b21_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b50_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b50_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b24_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b24_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b61_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b61_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b27_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b27_current.npz",
+      "status": "already linked"
+    },
+    {
+      "source": "checkpoints/m03_curriculum_b32_current.npz",
+      "dest": "training/checkpoints/m03_curriculum_b32_current.npz",
+      "status": "already linked"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "reliability": {
+    "games": 600,
+    "completed": 600,
+    "not_completed": [],
+    "invalid_selections": 0,
+    "exceptions": 0,
+    "env_exceptions": 0,
+    "timeouts": 0,
+    "agent_errors": 0,
+    "seats": {
+      "0": 300,
+      "1": 300
+    },
+    "opponents": {
+      "__c014__": 100,
+      "dragapult": 100,
+      "mega_lucario": 100,
+      "mega_abomasnow": 100,
+      "__safe__": 100,
+      "__self__": 100
+    },
+    "total_decisions": 59721,
+    "fallbacks": 243,
+    "hard_gates": {
+      "zero_invalid_selections": true,
+      "zero_exceptions": true,
+      "zero_timeouts": true,
+      "all_games_classified": true,
+      "both_seats_tested": true
+    }
+  },
+  "latency": {
+    "p99_gate_ms": 250.0,
+    "max_gate_ms": 1000.0,
+    "max_gate_source": "self-imposed; the competition's per-decision limit is not obtainable from client-rendered pages (see CURRENT_COMPETITION_FACTS.md). runTimeout=3000s per episode is the only verified bound and is not approached.",
+    "worst_game_p99_ms": 1.6098770138341933,
+    "worst_game_max_ms": 132.65389497973956,
+    "median_of_game_p50_ms": 0.021033993107266724,
+    "gates": {
+      "p99_within_250ms": true,
+      "max_within_self_imposed_bound": true
+    }
+  },
+  "coherence": {
+    "games_audited": 90,
+    "decisions_sampled": 8811,
+    "setup_success_rate": 0.9333,
+    "engine_online_rate_bellibolt_in_play": 0.7889,
+    "mechanism_a_electric_streamer": {
+      "opportunities": 3613,
+      "executions": 1206,
+      "execution_rate_when_available": 0.3338,
+      "definition": "available = a Basic {L} in hand AND Bellibolt ex in play"
+    },
+    "mechanism_b_voltaic_chain": {
+      "opportunities": 0,
+      "executions": 0,
+      "note": "counted by the expert over decisions where an attack was the chosen phase and Voltaic Chain was legal; see expert counters in the raw traces"
+    },
+    "attachment_to_engine_rate": 1.0,
+    "empty_bench_decisions_per_game": 6.633,
+    "rule_usage": {
+      "main_ability_electric_streamer": 1582,
+      "forced": 1512,
+      "attach_from_basic_l": 1171,
+      "main_play": 981,
+      "search": 698,
+      "attach_to_engine": 557,
+      "discard_protect_engine": 512,
+      "promote": 465,
+      "main_retreat": 294,
+      "main_evolve": 288,
+      "main_attack": 271,
+      "main_attach": 240,
+      "setup_bench": 113,
+      "say_yes": 48,
+      "setup_active": 31,
+      "no_rule_for_context_26": 25,
+      "draw_max": 23
+    },
+    "fallback_decisions": 25,
+    "fallback_rate": 0.00284,
+    "fallback_reasons": {
+      "no_rule_for_context_26": 25
+    },
+    "score_rate_by_opponent": {
+      "__c014__": 0.36,
+      "dragapult": 0.04,
+      "mega_lucario": 0.2,
+      "mega_abomasnow": 0.12,
+      "__safe__": 0.61,
+      "__self__": 0.45
+    },
+    "score_rate_by_opponent_and_seat": {
+      "__c014__|seat0": 0.46,
+      "dragapult|seat0": 0.02,
+      "mega_lucario|seat0": 0.18,
+      "mega_abomasnow|seat0": 0.16,
+      "__safe__|seat0": 0.62,
+      "__self__|seat0": 0.48,
+      "__c014__|seat1": 0.26,
+      "dragapult|seat1": 0.06,
+      "mega_lucario|seat1": 0.22,
+      "mega_abomasnow|seat1": 0.08,
+      "__safe__|seat1": 0.6,
+      "__self__|seat1": 0.42
+    },
+    "score_rate_vs_target_c014": 0.36,
+    "target_games": 100,
+    "top_loss_opponents": {
+      "dragapult": 96,
+      "mega_abomasnow": 88,
+      "mega_lucario": 80
+    },
+    "next_loss_mode": {
+      "id": "cinderace_explosiveness_opener_rarely_available",
+      "statement": "Cinderace reaches the Active Spot via Explosiveness in only a minority of games, so Turbo Flare - the deck's only energy accelerator, attaching 3 Basic Energy to the bench - is usually unavailable and the deck must reach {M}{M}{M} through one manual attachment per turn.",
+      "why_single": "it is upstream of every other weakness measured here: slow energy is what makes the evolve-turn weakness window long enough to be punished.",
+      "measured_by": "attacks_by_intended_attacker and attacker_reached_full_energy_rate"
+    }
+  }
+}

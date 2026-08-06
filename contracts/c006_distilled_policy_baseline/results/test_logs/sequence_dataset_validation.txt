@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "train": {
+      "games": 170,
+      "decisions": 13795
+    },
+    "validation": {
+      "games": 37,
+      "decisions": 2991
+    },
+    "test": {
+      "games": 33,
+      "decisions": 2264
+    }
+  },
+  "split_membership_preserved": true,
+  "step_monotonic_violations": 0,
+  "turn_nondecreasing_violations": 0,
+  "all_ok": true
+}
+{
+  "total_decisions": 16786,
+  "distinct_exact_states": 16683,
+  "exact_conflict_records": 0,
+  "upper_bound_stateless_exact_agreement": 1.0,
+  "near_conflict_records": 14,
+  "upper_bound_under_near_hash": 0.9996,
+  "top_contexts": []
+}

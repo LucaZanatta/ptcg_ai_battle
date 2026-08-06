@@ -1,0 +1,269 @@
+{
+  "from_commands_run": {
+    "tools/c012_phase0.py": [
+      ".venv/bin/python tools/c012_phase0.py                       # deps, immutability, candidate registry"
+    ],
+    "tools/c012_eval.py": [
+      ".venv/bin/python tools/c012_eval.py --panel confirmation \\",
+      ".venv/bin/python tools/c012_eval.py --panel confirmation \\",
+      ".venv/bin/python tools/c012_eval.py --panel screen --candidates ALL_NEW --nproc 16",
+      ".venv/bin/python tools/c012_eval.py --panel confirmation --candidates \"<best 2 per seed>\" --nproc 16",
+      ".venv/bin/python tools/c012_eval.py --panel final \\"
+    ],
+    "tools/c012_elite.py": [
+      ".venv/bin/python tools/c012_elite.py --stage register       # ensembles + soups, weights frozen first",
+      ".venv/bin/python tools/c012_elite.py --stage freeze          # TRUE_INCUMBENT / ELITE / POOL"
+    ],
+    "tools/c012_overlap.py": [
+      ".venv/bin/python tools/c012_overlap.py --stage crossplay --nproc 16 --games-per-pair 12",
+      ".venv/bin/python tools/c012_overlap.py --stage analyze",
+      ".venv/bin/python tools/c012_overlap.py --stage lock          # writes curriculum_registry.sha256"
+    ],
+    "tools/c012_train_population.py": [
+      ".venv/bin/python tools/c012_train_population.py --arm $1 --seed $2 \\"
+    ],
+    "tools/c012_decide.py": [
+      ".venv/bin/python tools/c012_decide.py"
+    ],
+    "tools/c012_hard_states.py": [
+      ".venv/bin/python tools/c012_hard_states.py --primary 240 --repeat 48"
+    ],
+    "tools/c012_claude_label.py": [
+      ".venv/bin/python tools/c012_claude_label.py --stage preflight",
+      ".venv/bin/python tools/c012_claude_label.py --stage label  --n 60 --max-cost 22",
+      ".venv/bin/python tools/c012_claude_label.py --stage repeat --n 40 --max-cost 12"
+    ],
+    "tools/c012_claude_qualify.py": [
+      ".venv/bin/python tools/c012_claude_qualify.py"
+    ],
+    "tools/c012_validate_evidence.py": [
+      ".venv/bin/python tools/c012_validate_evidence.py --quiet"
+    ],
+    "tools/c012_build_source_bundle.py": [
+      ".venv/bin/python tools/c012_build_source_bundle.py --stage all"
+    ],
+    "tools/c012_reports.py": [
+      ".venv/bin/python tools/c012_reports.py"
+    ],
+    "tools/c012_summary.py": [
+      ".venv/bin/python tools/c012_summary.py"
+    ]
+  },
+  "c012_python_files": [
+    "tools/c012_build_source_bundle.py",
+    "tools/c012_claude_label.py",
+    "tools/c012_claude_qualify.py",
+    "tools/c012_consolidate.py",
+    "tools/c012_decide.py",
+    "tools/c012_elite.py",
+    "tools/c012_eval.py",
+    "tools/c012_hard_states.py",
+    "tools/c012_overlap.py",
+    "tools/c012_phase0.py",
+    "tools/c012_ppo.py",
+    "tools/c012_reports.py",
+    "tools/c012_summary.py",
+    "tools/c012_train_population.py",
+    "tools/c012_trainer_state.py",
+    "tools/c012_validate_evidence.py"
+  ],
+  "import_graph": {
+    "tools/c012_build_source_bundle.py": [
+      "argparse",
+      "ast",
+      "csv",
+      "gzip",
+      "hashlib",
+      "io",
+      "json",
+      "os",
+      "shutil",
+      "subprocess",
+      "sys",
+      "tempfile",
+      "zipfile"
+    ],
+    "tools/c012_claude_label.py": [
+      "argparse",
+      "c012_eval",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "os",
+      "subprocess",
+      "sys",
+      "time"
+    ],
+    "tools/c012_claude_qualify.py": [
+      "argparse",
+      "c012_eval",
+      "collections",
+      "gzip",
+      "json",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "tools/c012_consolidate.py": [
+      "c012_eval",
+      "gzip",
+      "hashlib",
+      "json",
+      "os",
+      "shutil",
+      "sys"
+    ],
+    "tools/c012_decide.py": [
+      "argparse",
+      "c012_eval",
+      "collections",
+      "csv",
+      "gzip",
+      "json",
+      "numpy",
+      "os",
+      "subprocess",
+      "sys"
+    ],
+    "tools/c012_elite.py": [
+      "argparse",
+      "c012_eval",
+      "cg",
+      "cg.teachers",
+      "gzip",
+      "hashlib",
+      "json",
+      "numpy",
+      "os",
+      "sys",
+      "time"
+    ],
+    "tools/c012_eval.py": [
+      "argparse",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "numpy",
+      "os",
+      "sys",
+      "time"
+    ],
+    "tools/c012_hard_states.py": [
+      "argparse",
+      "c012_eval",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "numpy",
+      "os",
+      "pickle",
+      "sys"
+    ],
+    "tools/c012_overlap.py": [
+      "argparse",
+      "c012_eval",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "csv",
+      "gzip",
+      "hashlib",
+      "json",
+      "numpy",
+      "os",
+      "pickle",
+      "sys",
+      "time"
+    ],
+    "tools/c012_phase0.py": [
+      "argparse",
+      "c012_eval",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "os",
+      "platform",
+      "shutil",
+      "subprocess",
+      "sys",
+      "torch"
+    ],
+    "tools/c012_ppo.py": [
+      "__future__",
+      "c011_torch_ppo",
+      "cg",
+      "numpy",
+      "os",
+      "sys",
+      "typing"
+    ],
+    "tools/c012_reports.py": [
+      "json",
+      "os",
+      "subprocess",
+      "sys"
+    ],
+    "tools/c012_summary.py": [
+      "gzip",
+      "json",
+      "os",
+      "sys"
+    ],
+    "tools/c012_train_population.py": [
+      "argparse",
+      "c011_torch_model",
+      "c011_torch_ppo",
+      "c012_ppo",
+      "c012_trainer_state",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "multiprocessing",
+      "numpy",
+      "os",
+      "shutil",
+      "subprocess",
+      "sys",
+      "time",
+      "torch"
+    ],
+    "tools/c012_trainer_state.py": [
+      "__future__",
+      "dataclasses",
+      "numpy",
+      "os",
+      "random",
+      "torch",
+      "typing"
+    ],
+    "tools/c012_validate_evidence.py": [
+      "argparse",
+      "c012_eval",
+      "c012_trainer_state",
+      "cg",
+      "collections",
+      "csv",
+      "gzip",
+      "json",
+      "numpy",
+      "os",
+      "sys"
+    ]
+  },
+  "n_tracked_python": 196,
+  "n_untracked_python": 1,
+  "n_members": 197
+}

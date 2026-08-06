@@ -1,0 +1,109 @@
+{
+  "categories": {
+    "initial setup and active/bench priorities": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "setup_active": 31,
+        "setup_bench": 113
+      }
+    },
+    "search-target priorities": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "search": 698
+      }
+    },
+    "turn-order/card-play priorities": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "main_play": 981
+      }
+    },
+    "bench-space and liability rules": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "main_play": 981
+      }
+    },
+    "evolution ordering": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "main_evolve": 288
+      }
+    },
+    "attachment target and energy conservation": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "main_attach": 240,
+        "attach_to_intended_attacker": 0
+      }
+    },
+    "attack selection": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "main_attack": 271,
+        "attack_max_damage": 0
+      }
+    },
+    "target selection": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "main_play": 981,
+        "attack_max_damage": 0
+      }
+    },
+    "promotion after knockout": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "promote": 465
+      }
+    },
+    "forced/multi-select handling": {
+      "implemented": true,
+      "exercised": true,
+      "rule_hits": {
+        "forced": 1512
+      }
+    },
+    "deck-required prize/resource tracking": {
+      "implemented": true,
+      "exercised": true,
+      "evidence": "every decision trace carries the resource block (prizes, {M} in hand and discard, bench, stadium, supporter/energy spent, intended attacker)"
+    },
+    "deterministic fallback": {
+      "implemented": true,
+      "exercised": true,
+      "evidence": "implemented and unit-tested; fired 25 times in 8811 sampled decisions (rate 0.00284)"
+    }
+  },
+  "all_implemented": true,
+  "all_exercised": true,
+  "rule_usage_observed": {
+    "main_ability_electric_streamer": 1582,
+    "forced": 1512,
+    "attach_from_basic_l": 1171,
+    "main_play": 981,
+    "search": 698,
+    "attach_to_engine": 557,
+    "discard_protect_engine": 512,
+    "promote": 465,
+    "main_retreat": 294,
+    "main_evolve": 288,
+    "main_attack": 271,
+    "main_attach": 240,
+    "setup_bench": 113,
+    "say_yes": 48,
+    "setup_active": 31,
+    "no_rule_for_context_26": 25,
+    "draw_max": 23
+  }
+}

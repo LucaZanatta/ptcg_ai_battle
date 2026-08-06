@@ -1,0 +1,305 @@
+STAGE A
+[
+  {
+    "candidate_id": "official_iono",
+    "safe_games": 40,
+    "safe_rate": 0.975,
+    "dragapult_games": 80,
+    "dragapult_rate": 0.35,
+    "dragapult_wilson_lo": 0.2545,
+    "invalid": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "violations": 0,
+    "p99_latency_ms": 1.148,
+    "passes_safe_gate": true,
+    "passes_reliability": true
+  },
+  {
+    "candidate_id": "official_mega_lucario",
+    "safe_games": 40,
+    "safe_rate": 0.85,
+    "dragapult_games": 80,
+    "dragapult_rate": 0.4062,
+    "dragapult_wilson_lo": 0.3053,
+    "invalid": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "violations": 0,
+    "p99_latency_ms": 1.397,
+    "passes_safe_gate": true,
+    "passes_reliability": true
+  },
+  {
+    "candidate_id": "official_mega_abomasnow",
+    "safe_games": 40,
+    "safe_rate": 0.875,
+    "dragapult_games": 80,
+    "dragapult_rate": 0.4625,
+    "dragapult_wilson_lo": 0.3575,
+    "invalid": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "violations": 0,
+    "p99_latency_ms": 1.142,
+    "passes_safe_gate": true,
+    "passes_reliability": true
+  }
+]
+
+STAGE B
+[
+  {
+    "candidate_id": "official_iono",
+    "dragapult_games": 200,
+    "dragapult_rate": 0.29,
+    "iono_games": 100,
+    "iono_rate": 0.54,
+    "mega_lucario_games": 100,
+    "mega_lucario_rate": 0.22,
+    "mega_abomasnow_games": 100,
+    "mega_abomasnow_rate": 0.71,
+    "__c014___games": 100,
+    "__c014___rate": 0.9,
+    "__c015___games": 100,
+    "__c015___rate": 0.92,
+    "__safe___games": 50,
+    "__safe___rate": 0.98,
+    "field_mean": 0.49,
+    "violations": 0,
+    "invalid": 0,
+    "exceptions": 0,
+    "timeouts": 0
+  },
+  {
+    "candidate_id": "official_mega_lucario",
+    "dragapult_games": 200,
+    "dragapult_rate": 0.485,
+    "iono_games": 100,
+    "iono_rate": 0.79,
+    "mega_lucario_games": 100,
+    "mega_lucario_rate": 0.54,
+    "mega_abomasnow_games": 100,
+    "mega_abomasnow_rate": 0.47,
+    "__c014___games": 100,
+    "__c014___rate": 0.625,
+    "__c015___games": 100,
+    "__c015___rate": 0.91,
+    "__safe___games": 50,
+    "__safe___rate": 0.82,
+    "field_mean": 0.6,
+    "violations": 0,
+    "invalid": 0,
+    "exceptions": 0,
+    "timeouts": 0
+  },
+  {
+    "candidate_id": "official_mega_abomasnow",
+    "dragapult_games": 200,
+    "dragapult_rate": 0.5,
+    "iono_games": 100,
+    "iono_rate": 0.27,
+    "mega_lucario_games": 100,
+    "mega_lucario_rate": 0.51,
+    "mega_abomasnow_games": 100,
+    "mega_abomasnow_rate": 0.45,
+    "__c014___games": 100,
+    "__c014___rate": 0.69,
+    "__c015___games": 100,
+    "__c015___rate": 0.93,
+    "__safe___games": 50,
+    "__safe___rate": 0.94,
+    "field_mean": 0.41,
+    "violations": 0,
+    "invalid": 0,
+    "exceptions": 0,
+    "timeouts": 0
+  }
+]
+
+CONFIRMATION
+{
+  "top2": [
+    "official_mega_abomasnow",
+    "official_mega_lucario"
+  ],
+  "confirmation": [
+    {
+      "candidate_id": "official_mega_abomasnow",
+      "confirm_dragapult_games": 200,
+      "confirm_dragapult_rate": 0.53,
+      "confirm_dragapult_wilson_lo": 0.4609,
+      "confirm_field_games": 300,
+      "confirm_field_mean": 0.45,
+      "confirm_iono": 0.37,
+      "confirm_mega_lucario": 0.49,
+      "confirm_mega_abomasnow": 0.49
+    },
+    {
+      "candidate_id": "official_mega_lucario",
+      "confirm_dragapult_games": 200,
+      "confirm_dragapult_rate": 0.535,
+      "confirm_dragapult_wilson_lo": 0.4659,
+      "confirm_field_games": 300,
+      "confirm_field_mean": 0.6133,
+      "confirm_iono": 0.8,
+      "confirm_mega_lucario": 0.5,
+      "confirm_mega_abomasnow": 0.54
+    }
+  ],
+  "dragapult_control_same_seeds": {
+    "iono": {
+      "games": 100,
+      "score": 64.0,
+      "score_rate": 0.64,
+      "wilson95": [
+        0.5424,
+        0.7273
+      ],
+      "seat0": 50,
+      "seat1": 50
+    },
+    "mega_lucario": {
+      "games": 100,
+      "score": 56.0,
+      "score_rate": 0.56,
+      "wilson95": [
+        0.4623,
+        0.6533
+      ],
+      "seat0": 50,
+      "seat1": 50
+    },
+    "mega_abomasnow": {
+      "games": 100,
+      "score": 58.0,
+      "score_rate": 0.58,
+      "wilson95": [
+        0.4821,
+        0.672
+      ],
+      "seat0": 50,
+      "seat1": 50
+    }
+  },
+  "dragapult_control_field_mean": 0.5933,
+  "crossplay": {
+    "games": 300,
+    "score": 159.0,
+    "score_rate": 0.53,
+    "wilson95": [
+      0.4735,
+      0.5857
+    ],
+    "seat0": 150,
+    "seat1": 150
+  }
+}
+
+CONFIRMATION TOPUP
+{
+  "top2": [
+    "official_mega_abomasnow",
+    "official_mega_lucario"
+  ],
+  "confirmation": [
+    {
+      "candidate_id": "official_mega_abomasnow",
+      "confirm_dragapult_games": 400,
+      "confirm_dragapult_rate": 0.5025,
+      "confirm_dragapult_wilson_lo": 0.4537,
+      "confirm_field_games": 600,
+      "confirm_field_mean": 0.4067,
+      "confirm_iono": 0.295,
+      "confirm_mega_lucario": 0.445,
+      "confirm_mega_abomasnow": 0.48
+    },
+    {
+      "candidate_id": "official_mega_lucario",
+      "confirm_dragapult_games": 400,
+      "confirm_dragapult_rate": 0.52,
+      "confirm_dragapult_wilson_lo": 0.4711,
+      "confirm_field_games": 600,
+      "confirm_field_mean": 0.6142,
+      "confirm_iono": 0.805,
+      "confirm_mega_lucario": 0.5075,
+      "confirm_mega_abomasnow": 0.53
+    }
+  ],
+  "dragapult_control_same_seeds": {
+    "iono": {
+      "games": 200,
+      "score": 131.0,
+      "score_rate": 0.655,
+      "wilson95": [
+        0.5868,
+        0.7174
+      ],
+      "seat0": 100,
+      "seat1": 100
+    },
+    "mega_lucario": {
+      "games": 200,
+      "score": 99.0,
+      "score_rate": 0.495,
+      "wilson95": [
+        0.4265,
+        0.5637
+      ],
+      "seat0": 100,
+      "seat1": 100
+    },
+    "mega_abomasnow": {
+      "games": 200,
+      "score": 105.0,
+      "score_rate": 0.525,
+      "wilson95": [
+        0.456,
+        0.5931
+      ],
+      "seat0": 100,
+      "seat1": 100
+    }
+  },
+  "dragapult_control_field_mean": 0.5583,
+  "crossplay": {
+    "games": 300,
+    "score": 159.0,
+    "score_rate": 0.53,
+    "wilson95": [
+      0.4735,
+      0.5857
+    ],
+    "seat0": 150,
+    "seat1": 150
+  },
+  "topup_note": "confirmation extended to the pre-registered strength-path minimums (>=400 vs Dragapult, >=600 field) in a single fixed-target pass"
+}
+
+SELECTION
+{
+  "competitive_gate": "FAIL",
+  "selected_candidate_id": null,
+  "strength_path": null,
+  "best_candidate_id": "official_mega_lucario",
+  "exact_failed_gates": [
+    "base condition safe_control_ge_0.90",
+    "base condition vs_c014_ge_0.65"
+  ],
+  "ranking_applied": [
+    "1 passes reproduction fidelity (EXACT or FAITHFUL_CLEAN_ROOM)",
+    "2 passes all reliability and package-feasibility hard gates",
+    "3 score rate vs Dragapult on independent confirmation",
+    "4 mean score rate across official Iono, Mega Lucario, Mega Abomasnow on independent confirmation",
+    "5 direct cross-play vs the other finalist",
+    "6 lower p99 latency",
+    "7 stronger current public evidence quality"
+  ],
+  "ranked_order": [
+    "official_mega_lucario",
+    "official_mega_abomasnow",
+    "official_iono"
+  ],
+  "upload_authorised": false,
+  "note": "\u00a72/\u00a77 forbid uploading a weak package merely to complete the contract; a failing competitive gate produces PARTIAL with the best candidate preserved"
+}

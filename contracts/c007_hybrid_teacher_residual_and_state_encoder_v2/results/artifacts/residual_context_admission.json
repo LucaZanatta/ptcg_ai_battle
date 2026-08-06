@@ -1,0 +1,173 @@
+{
+  "contract": "c007",
+  "candidate_pool": [
+    "search_card_target",
+    "dragapult_damage_counter",
+    "promotion_to_active",
+    "energy_attachment_target",
+    "retreat_switch",
+    "evolution_target"
+  ],
+  "counterfactual_context": "dragapult_damage_counter",
+  "admission": {
+    "search_card_target": {
+      "stats": {
+        "total": 9293,
+        "non_forced": 8995,
+        "two_meaningful": 8583,
+        "forced": 298,
+        "ordered": 0,
+        "multiselect": 442
+      },
+      "ece_in_context": {
+        "ece": 0.08329950196696947,
+        "n_single": 2878
+      },
+      "criteria": {
+        "c1_min_300_examples": true,
+        "c2_min_200_two_meaningful": true,
+        "c3_decoder_supported": true,
+        "c4_teacher_sync_valid": true,
+        "c5_counterfactual_stable": false,
+        "c6_h1_calibration_ok": true,
+        "c7_not_primarily_forced": true,
+        "c8_no_future_teacher_state_corruption": true
+      },
+      "admitted": false
+    },
+    "dragapult_damage_counter": {
+      "stats": {
+        "total": 9150,
+        "non_forced": 8394,
+        "two_meaningful": 8394,
+        "forced": 756,
+        "ordered": 0,
+        "multiselect": 0
+      },
+      "ece_in_context": {
+        "ece": 0.014491972318341283,
+        "n_single": 3000
+      },
+      "criteria": {
+        "c1_min_300_examples": true,
+        "c2_min_200_two_meaningful": true,
+        "c3_decoder_supported": true,
+        "c4_teacher_sync_valid": true,
+        "c5_counterfactual_stable": true,
+        "c6_h1_calibration_ok": true,
+        "c7_not_primarily_forced": true,
+        "c8_no_future_teacher_state_corruption": true
+      },
+      "admitted": true
+    },
+    "promotion_to_active": {
+      "stats": {
+        "total": 1915,
+        "non_forced": 1425,
+        "two_meaningful": 1425,
+        "forced": 490,
+        "ordered": 0,
+        "multiselect": 0
+      },
+      "ece_in_context": {
+        "ece": 0.014894173434129417,
+        "n_single": 1915
+      },
+      "criteria": {
+        "c1_min_300_examples": true,
+        "c2_min_200_two_meaningful": true,
+        "c3_decoder_supported": true,
+        "c4_teacher_sync_valid": true,
+        "c5_counterfactual_stable": false,
+        "c6_h1_calibration_ok": true,
+        "c7_not_primarily_forced": true,
+        "c8_no_future_teacher_state_corruption": true
+      },
+      "admitted": false
+    },
+    "energy_attachment_target": {
+      "stats": {
+        "total": 1452,
+        "non_forced": 1422,
+        "two_meaningful": 1232,
+        "forced": 30,
+        "ordered": 0,
+        "multiselect": 0
+      },
+      "ece_in_context": {
+        "ece": 0.026646731360315916,
+        "n_single": 1452
+      },
+      "criteria": {
+        "c1_min_300_examples": true,
+        "c2_min_200_two_meaningful": true,
+        "c3_decoder_supported": true,
+        "c4_teacher_sync_valid": true,
+        "c5_counterfactual_stable": false,
+        "c6_h1_calibration_ok": true,
+        "c7_not_primarily_forced": true,
+        "c8_no_future_teacher_state_corruption": true
+      },
+      "admitted": false
+    },
+    "retreat_switch": {
+      "stats": {
+        "total": 1214,
+        "non_forced": 1149,
+        "two_meaningful": 1149,
+        "forced": 65,
+        "ordered": 0,
+        "multiselect": 0
+      },
+      "ece_in_context": {
+        "ece": 0.07296813154840878,
+        "n_single": 1214
+      },
+      "criteria": {
+        "c1_min_300_examples": true,
+        "c2_min_200_two_meaningful": true,
+        "c3_decoder_supported": true,
+        "c4_teacher_sync_valid": true,
+        "c5_counterfactual_stable": false,
+        "c6_h1_calibration_ok": true,
+        "c7_not_primarily_forced": true,
+        "c8_no_future_teacher_state_corruption": true
+      },
+      "admitted": false
+    },
+    "evolution_target": {
+      "stats": {
+        "total": 346,
+        "non_forced": 181,
+        "two_meaningful": 181,
+        "forced": 165,
+        "ordered": 0,
+        "multiselect": 0
+      },
+      "ece_in_context": {
+        "ece": 0.017855965189679107,
+        "n_single": 346
+      },
+      "criteria": {
+        "c1_min_300_examples": true,
+        "c2_min_200_two_meaningful": false,
+        "c3_decoder_supported": true,
+        "c4_teacher_sync_valid": true,
+        "c5_counterfactual_stable": false,
+        "c6_h1_calibration_ok": true,
+        "c7_not_primarily_forced": true,
+        "c8_no_future_teacher_state_corruption": true
+      },
+      "admitted": false
+    }
+  },
+  "admitted_contexts": [
+    "dragapult_damage_counter"
+  ],
+  "max_admitted": 3,
+  "criteria_definitions": {
+    "c5_counterfactual_stable": "A counterfactual A/B was run in this context AND its CONCLUSION reproduced across two independent 400-game batches. For the damage-counter context the reproduced conclusion is 'no variant improvement' (LCB not > 0 in both batches); point estimates are noise-dominated (sign-flipping), but the no-improvement conclusion is stable. Contexts without any counterfactual A/B cannot satisfy c5. 'Stable' therefore means a completed, reproducible counterfactual verdict \u2014 NOT that a variant is stably better.",
+    "c8_no_future_teacher_state_corruption": "The teacher recomputes its plan at each MAIN and reads the board fresh; a leaf sub-decision override (damage-counter placement) cannot desynchronize its cached plan."
+  },
+  "note": "Admission = a valid, safe intervention point (structural + sync + calibration + stable counterfactual). It is SEPARATE from whether an improvement exists there (AC-08). Only the damage-counter context has a counterfactual A/B, so it is the only admissible context; the A/B found no reproducible improvement, so no residual override is beneficial (BEST_HYBRID decided in AC-13)."
+}

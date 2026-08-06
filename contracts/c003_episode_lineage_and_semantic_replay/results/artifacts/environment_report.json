@@ -1,0 +1,76 @@
+{
+  "environment": {
+    "python_version": "3.13.13",
+    "python_implementation": "CPython",
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "kaggle_environments_version": "1.30.1"
+  },
+  "engine": {
+    "path": "starter_kit/libcg.so",
+    "sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb",
+    "size_bytes": 1338304
+  },
+  "deck": {
+    "path": "cg/deck.csv",
+    "syntax_ok": true,
+    "error": null,
+    "canonical": {
+      "deck_id": "sha256:7e7bca6783abe61e572a7224ca2210c4969fe6238257f3de9eaf35996f6d163a",
+      "card_count": 60,
+      "distinct_cards": 9,
+      "cards": [
+        {
+          "card_id": 3,
+          "count": 35
+        },
+        {
+          "card_id": 721,
+          "count": 2
+        },
+        {
+          "card_id": 722,
+          "count": 4
+        },
+        {
+          "card_id": 723,
+          "count": 4
+        },
+        {
+          "card_id": 1145,
+          "count": 4
+        },
+        {
+          "card_id": 1158,
+          "count": 1
+        },
+        {
+          "card_id": 1205,
+          "count": 2
+        },
+        {
+          "card_id": 1227,
+          "count": 4
+        },
+        {
+          "card_id": 1235,
+          "count": 4
+        }
+      ],
+      "source": {
+        "path": "cg/deck.csv",
+        "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799"
+      }
+    }
+  },
+  "required_assets_failures": 0,
+  "checks": {
+    "python_ok": true,
+    "kaggle_environments_present": true,
+    "engine_present": true,
+    "deck_syntax_ok": true,
+    "required_assets_ok": true
+  },
+  "all_ok": true
+}

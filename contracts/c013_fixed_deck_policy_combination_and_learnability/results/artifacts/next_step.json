@@ -1,0 +1,35 @@
+{
+  "next_steps": [
+    {
+      "priority": 1,
+      "step": "Stop trying to improve the soup by continuation",
+      "rationale": "Q0/Q1/Q2 all fail to produce a confirmed improvement, and the strategic-field tendency is positive but underpowered at ~12,000 games per arm. Either commit a budget large enough to resolve a ~0.04 field effect, or change the objective \u2014 not another 12,000-game arm."
+    },
+    {
+      "priority": 2,
+      "step": "Close the gap to the frozen teacher on the strategic field",
+      "rationale": "the teacher scores ~0.55 on the field against ~0.37 for the best RL candidate. That, not the soup, is the binding constraint on SUBMISSION_G, and no amount of policy combination has moved it."
+    },
+    {
+      "priority": 3,
+      "step": "Rebuild the semantic benchmark with phase- and opponent-stratified sampling",
+      "rationale": "the Claude preflight is PARTIAL only because the sampler stratified by option type and never drew attack, setup, or matchup-failure states. 8 of \u00a727's 10 categories are reachable with a different sampler."
+    },
+    {
+      "priority": 4,
+      "step": "Investigate the shared opponent skeleton",
+      "rationale": "Lucario and Abomasnow are identical on all 98 promotion decisions. If the official agents share a promotion routine, exploiting it is a concrete edge that no amount of self-play discovers."
+    }
+  ],
+  "decisions": {
+    "COMBINATION_RESULT": "WEIGHT_SOUP_WINS",
+    "SOUP_LEARNABILITY": "NOT_IMPROVED",
+    "Q3": "SKIPPED_BY_GATE",
+    "CURRICULUM_SMOKE": "PASS",
+    "OPPONENT_OVERLAP": "INCONCLUSIVE",
+    "CLAUDE_SEMANTIC_PREFLIGHT": "PARTIAL",
+    "SUBMISSION_G": "DO_NOT_SUBMIT",
+    "TRUE_BEST_AGENT": "SOUP13_SOUP+P1_822",
+    "PACKAGE_FEASIBLE_BEST_AGENT": "SOUP13_SOUP+P1_822"
+  }
+}

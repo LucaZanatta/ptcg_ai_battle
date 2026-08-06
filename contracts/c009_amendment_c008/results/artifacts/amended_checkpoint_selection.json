@@ -1,0 +1,166 @@
+{
+  "contract": "c009",
+  "c008_evaluation": "REPAIRED",
+  "rl_improved_over_initialization": "YES",
+  "best_saved_checkpoint": "R1_101_ckpt_g10040",
+  "best_saved_candidate_id": "R1_101",
+  "teacher_noninferiority": "FAIL",
+  "rl_feasibility_recalibrated": "INCONCLUSIVE",
+  "submission_D_amended": "DO_NOT_SUBMIT",
+  "submission_gate": {
+    "reliability_zero_defects": true,
+    "teacher_non_inferiority": false,
+    "reproducible_improvement_over_teacher": false,
+    "no_major_regression": false,
+    "exact_frozen_deck": true
+  },
+  "promotion_decision": "NO_RL_SUBMISSION",
+  "next_step": "FIXED_DECK_SELECTIVE_SEARCH",
+  "next_step_conditions": {
+    "a_rl_improves_over_b0": true,
+    "b_two_seeds_or_batches_show_signal": true,
+    "c_best_not_catastrophically_below_teacher": false,
+    "d_one_clear_addressable_blocker": true
+  },
+  "next_step_criteria_note": "'catastrophically below teacher' is pre-stated here as teacher score < 0.25 OR major regression on more than 50% of field matchups; the best checkpoint scores 0.22 with 3/4 major regressions. Even under a laxer reading of that condition, \u00a715's expected-value clause selects FIXED_DECK_SELECTIVE_SEARCH: the measured improvement rate leaves the 0.47 bound out of reach for a comparable PPO budget.",
+  "highest_leverage_blocker": "Sparse terminal-reward credit assignment cannot close the teacher gap at the measured learning rate: c008 spent 95,666 training games to move the teacher score from 0.160 (untouched V2-A) to 0.220, leaving 0.250 to the 0.47 non-inferiority bound \u2014 roughly 4x the total improvement achieved so far. Teacher-anchored PPO on the fixed deck improves its own initialization but is the wrong instrument for closing a >2x strength gap.",
+  "within_arm_best": {
+    "R0": {
+      "chosen": "R0_202",
+      "basis": "teacher score statistically tied among ['R0_202', 'R0_101']; broken on strategic-field score (\u00a711.1 #2)",
+      "candidates": {
+        "R0_101": {
+          "teacher_point": 0.01,
+          "teacher_n": 100,
+          "teacher_lb95": 0.0,
+          "field": null,
+          "held_out": null,
+          "c008_validation_metric": 0.20500000000000002,
+          "is_median_representative": false,
+          "is_best_by_c008_validation": true
+        },
+        "R0_202": {
+          "teacher_point": 0.03,
+          "teacher_n": 100,
+          "teacher_lb95": 0.01,
+          "field": 0.10000000000000002,
+          "held_out": 0.07,
+          "c008_validation_metric": 0.16625,
+          "is_median_representative": true,
+          "is_best_by_c008_validation": false
+        }
+      }
+    },
+    "R1": {
+      "chosen": "R1_101",
+      "basis": "teacher score statistically tied among ['R1_101', 'R1_202']; broken on strategic-field score (\u00a711.1 #2)",
+      "candidates": {
+        "R1_101": {
+          "teacher_point": 0.22,
+          "teacher_n": 400,
+          "teacher_lb95": 0.1875,
+          "field": 0.255,
+          "held_out": 0.27,
+          "c008_validation_metric": 0.405,
+          "is_median_representative": false,
+          "is_best_by_c008_validation": true
+        },
+        "R1_202": {
+          "teacher_point": 0.17,
+          "teacher_n": 100,
+          "teacher_lb95": 0.11,
+          "field": null,
+          "held_out": null,
+          "c008_validation_metric": 0.3375,
+          "is_median_representative": true,
+          "is_best_by_c008_validation": false
+        }
+      }
+    },
+    "R2": {
+      "chosen": "R2_303",
+      "basis": "teacher score statistically tied among ['R2_101', 'R2_303', 'R2_202']; broken on strategic-field score (\u00a711.1 #2)",
+      "candidates": {
+        "R2_303": {
+          "teacher_point": 0.1575,
+          "teacher_n": 400,
+          "teacher_lb95": 0.1275,
+          "field": 0.2275,
+          "held_out": 0.15000000000000002,
+          "c008_validation_metric": 0.335,
+          "is_median_representative": false,
+          "is_best_by_c008_validation": true
+        },
+        "R2_202": {
+          "teacher_point": 0.12,
+          "teacher_n": 100,
+          "teacher_lb95": 0.07,
+          "field": null,
+          "held_out": null,
+          "c008_validation_metric": 0.31125,
+          "is_median_representative": true,
+          "is_best_by_c008_validation": false
+        },
+        "R2_101": {
+          "teacher_point": 0.16,
+          "teacher_n": 100,
+          "teacher_lb95": 0.1,
+          "field": 0.185,
+          "held_out": 0.16,
+          "c008_validation_metric": 0.305,
+          "is_median_representative": false,
+          "is_best_by_c008_validation": false
+        }
+      }
+    }
+  },
+  "seeds_showing_signal_over_b0": [
+    "R1_101",
+    "R2_303"
+  ],
+  "reproducible_improvement_over_teacher": [],
+  "major_regressions": {
+    "B0_v2a": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "R0_202": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "R1_101": [
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "R2_101": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "R2_303": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ]
+  },
+  "c008_anchor_finding": {
+    "replay_coef_observed_range": [
+      0.2678333333333333,
+      0.5
+    ],
+    "kl_coef_observed_range": [
+      0.030100000000000005,
+      0.05
+    ],
+    "low_anchor_phase_reached": false,
+    "interpretation": "c008 registered a replay-coefficient decay to 0.05 and a reference-KL decay to 0.01, but every R2 seed early-stopped at 10k-20k of its 50k budget, so the replay coefficient never fell below ~0.27 and the KL coefficient never below ~0.030. R2 therefore spent its entire life in the high-anchor regime, which is consistent with its teacher score (0.158) being statistically indistinguishable from the untouched initialization B0 (0.160). This is an algorithmic/budget limitation of the c008 run, not evidence that anchoring cannot work."
+  },
+  "total_evaluation_games": 4100
+}

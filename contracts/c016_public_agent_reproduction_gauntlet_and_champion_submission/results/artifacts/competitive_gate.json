@@ -1,0 +1,26 @@
+{
+  "competitive_gate": "FAIL",
+  "selected_candidate_id": null,
+  "strength_path": null,
+  "best_candidate_id": "official_mega_lucario",
+  "exact_failed_gates": [
+    "base condition safe_control_ge_0.90",
+    "base condition vs_c014_ge_0.65"
+  ],
+  "ranking_applied": [
+    "1 passes reproduction fidelity (EXACT or FAITHFUL_CLEAN_ROOM)",
+    "2 passes all reliability and package-feasibility hard gates",
+    "3 score rate vs Dragapult on independent confirmation",
+    "4 mean score rate across official Iono, Mega Lucario, Mega Abomasnow on independent confirmation",
+    "5 direct cross-play vs the other finalist",
+    "6 lower p99 latency",
+    "7 stronger current public evidence quality"
+  ],
+  "ranked_order": [
+    "official_mega_lucario",
+    "official_mega_abomasnow",
+    "official_iono"
+  ],
+  "upload_authorised": false,
+  "note": "\u00a72/\u00a77 forbid uploading a weak package merely to complete the contract; a failing competitive gate produces PARTIAL with the best candidate preserved"
+}

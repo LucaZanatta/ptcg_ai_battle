@@ -1,0 +1,52 @@
+{
+  "seed": 999,
+  "initialization": "C_522_g20220",
+  "initialization_sha256": "974051fad562ee88b4521a978f748ce7e82638d543281ca64c60d5ab52b0280d",
+  "continuation_kind": "warm_restart",
+  "continuation_note": "The c010 incumbent stores policy weights only, so optimizer moments, schedules, RNG streams and the opponent sampler start fresh. Every c011 checkpoint from update 1 onward carries full trainer state, so the NEXT continuation can be literal.",
+  "games_done": 912,
+  "budget": 500,
+  "updates": 2,
+  "trainable_decisions": 66907,
+  "stop_reason": "smoke_complete",
+  "elapsed_seconds": 82.7,
+  "games_per_hour": 39703.9,
+  "device": "cuda",
+  "precision_mode": "FP32_CUDA",
+  "workers": 16,
+  "checkpoints": {
+    "912": {
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed999/checkpoints/ckpt_g912_terminal.npz",
+      "sha256": "e269fe81ff1bffd0f9da67eff368440e46dc1e3f7d98fb4fd03fc3d46950db0f",
+      "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed999/checkpoints/trainer_g912_terminal.pt",
+      "trainer_state_sha256": "75e9db715673b5044d8015023a14d3826162f9fc5992640b0b7ae3035ecfccf5",
+      "trainer_state_id": "S999-u1-1fa3001426b9",
+      "training_games": 912,
+      "registered_eval_point": null,
+      "terminal_below_registered_point": true,
+      "unreached_registered_point": 5000,
+      "nearest_registered_point_reached": 0,
+      "seed": 999,
+      "updates": 2,
+      "parent": "C_522_g20220"
+    }
+  },
+  "lagged_snapshots": [],
+  "opponent_distribution": {
+    "iono": 220,
+    "dragapult": 375,
+    "__control__": 83,
+    "mega_lucario": 234
+  },
+  "seat_distribution": {
+    "0": 443,
+    "1": 469
+  },
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "fallbacks": 0,
+    "ordered_blocks": 0
+  }
+}

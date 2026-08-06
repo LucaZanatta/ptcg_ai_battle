@@ -1,0 +1,3573 @@
+{
+  "schema_version": "c018.trajectory.v1",
+  "search_version": "c018.search.v1",
+  "config": {
+    "beam_width": 3,
+    "max_candidates": 4,
+    "max_depth": 4,
+    "max_nodes": 40,
+    "max_ms_per_decision": 2500,
+    "max_match_ms": 60000,
+    "version": "c018.search.v1"
+  },
+  "games": 6,
+  "decisions": 265,
+  "trusted_decisions": 233,
+  "trusted_fraction": 0.8792,
+  "real_search_counters": {
+    "decisions": 265,
+    "searched": 233,
+    "begin_calls": 233,
+    "begin_ok": 233,
+    "begin_errors": 0,
+    "step_calls": 3307,
+    "step_ok": 3274,
+    "step_errors": 33,
+    "release_calls": 3507,
+    "release_errors": 0,
+    "end_calls": 233,
+    "end_errors": 0,
+    "nodes": 3274,
+    "max_depth_reached": 4,
+    "distinct_successors": 1858,
+    "baseline_retained": 170,
+    "changed_action": 63,
+    "fallbacks": 32,
+    "match_ms": 186.91,
+    "hidden_information_violations": 0
+  },
+  "games_completed": 6,
+  "invalid_actions": 0,
+  "split_counts": {
+    "train": 153,
+    "validation": 41,
+    "test": 71
+  },
+  "split_by": "game_index",
+  "trajectory_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/vertical_trajectories.jsonl.gz",
+  "trajectory_sha256": "94d1413ba82a25b80b39a4614407aa4642ec5899f94c7bf9e310dc31fc7ea6c9",
+  "feature_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/vertical_features.npz",
+  "uses_c017_labels": false,
+  "games_meta": [
+    {
+      "game_index": 0,
+      "opponent_id": "dragapult",
+      "seat": 0,
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "completed": true,
+      "outcome": 0.0,
+      "decisions": 67,
+      "invalid": 0
+    },
+    {
+      "game_index": 1,
+      "opponent_id": "iono",
+      "seat": 1,
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "completed": true,
+      "outcome": 1.0,
+      "decisions": 7,
+      "invalid": 0
+    },
+    {
+      "game_index": 2,
+      "opponent_id": "mega_abomasnow",
+      "seat": 0,
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "completed": true,
+      "outcome": 0.0,
+      "decisions": 36,
+      "invalid": 0
+    },
+    {
+      "game_index": 3,
+      "opponent_id": "mega_lucario",
+      "seat": 1,
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "completed": true,
+      "outcome": 0.0,
+      "decisions": 43,
+      "invalid": 0
+    },
+    {
+      "game_index": 4,
+      "opponent_id": "dragapult",
+      "seat": 0,
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "completed": true,
+      "outcome": 0.0,
+      "decisions": 41,
+      "invalid": 0
+    },
+    {
+      "game_index": 5,
+      "opponent_id": "iono",
+      "seat": 1,
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "completed": true,
+      "outcome": 0.0,
+      "decisions": 71,
+      "invalid": 0
+    }
+  ],
+  "sample_traces": [
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.024,
+          "heuristic_value": -0.024,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.024,
+          "heuristic_value": -0.024,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "unknown",
+        "confidence": 0.0,
+        "counts": {
+          "my_deck": 60,
+          "my_prize": 0,
+          "my_hand": 0,
+          "opp_deck": 60,
+          "opp_prize": 0,
+          "opp_hand": 0
+        }
+      },
+      "ms": 1.97
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 9,
+      "scores": [
+        {
+          "candidate": [
+            2
+          ],
+          "value": 0.01,
+          "heuristic_value": 0.01,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.01,
+          "heuristic_value": 0.01,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.01,
+          "heuristic_value": 0.01,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": 0.01,
+          "heuristic_value": 0.01,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 46,
+          "my_prize": 6,
+          "my_hand": 7,
+          "opp_deck": 47,
+          "opp_prize": 6,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.48
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 8,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": 0.034,
+          "heuristic_value": 0.034,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.034,
+          "heuristic_value": 0.034,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.034,
+          "heuristic_value": 0.034,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": 0.034,
+          "heuristic_value": 0.034,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 45,
+          "my_prize": 6,
+          "my_hand": 7,
+          "opp_deck": 47,
+          "opp_prize": 6,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.66
+    },
+    {
+      "n_options": 6,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.034,
+          "heuristic_value": 0.034,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.024,
+          "heuristic_value": 0.024,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": 0.024,
+          "heuristic_value": 0.024,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": 0.024,
+          "heuristic_value": 0.024,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 45,
+          "my_prize": 6,
+          "my_hand": 6,
+          "opp_deck": 47,
+          "opp_prize": 6,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.45
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.034,
+          "heuristic_value": 0.034,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.034,
+          "heuristic_value": 0.034,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 45,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 47,
+          "opp_prize": 6,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.09
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 15,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": 0.028,
+          "heuristic_value": 0.028,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": 0.014,
+          "heuristic_value": 0.014,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.014,
+          "heuristic_value": 0.014,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.014,
+          "heuristic_value": 0.014,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 44,
+          "my_prize": 6,
+          "my_hand": 6,
+          "opp_deck": 44,
+          "opp_prize": 6,
+          "opp_hand": 5
+        }
+      },
+      "ms": 1.98
+    },
+    {
+      "n_options": 11,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            5
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 41,
+          "my_prize": 6,
+          "my_hand": 8,
+          "opp_deck": 44,
+          "opp_prize": 6,
+          "opp_hand": 5
+        }
+      },
+      "ms": 1.71
+    },
+    {
+      "n_options": 14,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 9,
+      "scores": [
+        {
+          "candidate": [
+            2
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": 0.062,
+          "heuristic_value": 0.062,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 41,
+          "my_prize": 6,
+          "my_hand": 7,
+          "opp_deck": 44,
+          "opp_prize": 6,
+          "opp_hand": 5
+        }
+      },
+      "ms": 1.72
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.038,
+          "heuristic_value": 0.038,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.014,
+          "heuristic_value": 0.014,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 41,
+          "my_prize": 6,
+          "my_hand": 6,
+          "opp_deck": 44,
+          "opp_prize": 6,
+          "opp_hand": 5
+        }
+      },
+      "ms": 0.98
+    },
+    {
+      "n_options": 3,
+      "candidates": 3,
+      "depth_max": 4,
+      "distinct_successors": 11,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.053667,
+          "heuristic_value": -0.053667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.053667,
+          "heuristic_value": -0.053667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.053667,
+          "heuristic_value": -0.053667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 41,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 43,
+          "opp_prize": 5,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.55
+    },
+    {
+      "n_options": 13,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 8,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 40,
+          "my_prize": 6,
+          "my_hand": 6,
+          "opp_deck": 43,
+          "opp_prize": 5,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.74
+    },
+    {
+      "n_options": 12,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 40,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 43,
+          "opp_prize": 5,
+          "opp_hand": 6
+        }
+      },
+      "ms": 2.0
+    },
+    {
+      "n_options": 4,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 9,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.053667,
+          "heuristic_value": -0.053667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.073667,
+          "heuristic_value": -0.073667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.087667,
+          "heuristic_value": -0.087667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.087667,
+          "heuristic_value": -0.087667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 40,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 43,
+          "opp_prize": 5,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.84
+    },
+    {
+      "n_options": 3,
+      "candidates": 3,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 2,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.029667,
+          "heuristic_value": -0.029667,
+          "depth": 2,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.049667,
+          "heuristic_value": -0.049667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 40,
+          "my_prize": 6,
+          "my_hand": 3,
+          "opp_deck": 43,
+          "opp_prize": 5,
+          "opp_hand": 6
+        }
+      },
+      "ms": 0.97
+    },
+    {
+      "n_options": 11,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            8
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 39,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 1.94
+    },
+    {
+      "n_options": 6,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            4
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 39,
+          "my_prize": 6,
+          "my_hand": 3,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 1.76
+    },
+    {
+      "n_options": 11,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            8
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 38,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 1.97
+    },
+    {
+      "n_options": 13,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 9,
+      "scores": [
+        {
+          "candidate": [
+            10
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 38,
+          "my_prize": 6,
+          "my_hand": 3,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 2.54
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.005667,
+          "heuristic_value": -0.005667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 38,
+          "my_prize": 6,
+          "my_hand": 3,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 1.16
+    },
+    {
+      "n_options": 18,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            15
+          ],
+          "value": 0.008333,
+          "heuristic_value": 0.008333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": 0.008333,
+          "heuristic_value": 0.008333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.008333,
+          "heuristic_value": 0.008333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": 0.008333,
+          "heuristic_value": 0.008333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 35,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 1.78
+    },
+    {
+      "n_options": 20,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.001667,
+          "heuristic_value": -0.001667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.001667,
+          "heuristic_value": -0.001667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.001667,
+          "heuristic_value": -0.001667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.001667,
+          "heuristic_value": -0.001667,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 35,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 1.73
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": 0.018333,
+          "heuristic_value": 0.018333,
+          "depth": 2,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.001667,
+          "heuristic_value": -0.001667,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 35,
+          "my_prize": 6,
+          "my_hand": 3,
+          "opp_deck": 42,
+          "opp_prize": 5,
+          "opp_hand": 4
+        }
+      },
+      "ms": 0.83
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 35,
+          "my_prize": 6,
+          "my_hand": 3,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.94
+    },
+    {
+      "n_options": 15,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 7,
+      "scores": [
+        {
+          "candidate": [
+            11
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 34,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.98
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 34,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.2
+    },
+    {
+      "n_options": 11,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 8,
+      "scores": [
+        {
+          "candidate": [
+            5
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 31,
+          "my_prize": 6,
+          "my_hand": 6,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 2.31
+    },
+    {
+      "n_options": 8,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 31,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 3.1
+    },
+    {
+      "n_options": 11,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            7
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 30,
+          "my_prize": 6,
+          "my_hand": 6,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 2.08
+    },
+    {
+      "n_options": 11,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            6
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 30,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 2.2
+    },
+    {
+      "n_options": 7,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            5
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 30,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 2.01
+    },
+    {
+      "n_options": 10,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.083333,
+          "heuristic_value": -0.083333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 29,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 1.95
+    },
+    {
+      "n_options": 4,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 7,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.074882,
+          "heuristic_value": -0.074882,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.093333,
+          "heuristic_value": -0.093333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.107333,
+          "heuristic_value": -0.107333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.131333,
+          "heuristic_value": -0.131333,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 1.0,
+        "counts": {
+          "my_deck": 29,
+          "my_prize": 6,
+          "my_hand": 4,
+          "opp_deck": 41,
+          "opp_prize": 4,
+          "opp_hand": 6
+        }
+      },
+      "ms": 2.05
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 11,
+      "scores": [
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.065818,
+          "heuristic_value": -0.065818,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.152437,
+          "heuristic_value": -0.152437,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.152437,
+          "heuristic_value": -0.152437,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.19292,
+          "heuristic_value": -0.19292,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.6818,
+        "counts": {
+          "my_deck": 28,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 34,
+          "opp_prize": 4,
+          "opp_hand": 3
+        }
+      },
+      "ms": 2.51
+    },
+    {
+      "n_options": 6,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.075818,
+          "heuristic_value": -0.075818,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.075818,
+          "heuristic_value": -0.075818,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.075818,
+          "heuristic_value": -0.075818,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.075818,
+          "heuristic_value": -0.075818,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.6818,
+        "counts": {
+          "my_deck": 28,
+          "my_prize": 6,
+          "my_hand": 5,
+          "opp_deck": 34,
+          "opp_prize": 4,
+          "opp_hand": 3
+        }
+      },
+      "ms": 2.49
+    },
+    {
+      "n_options": 6,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 9,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.001964,
+          "heuristic_value": -0.001964,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.11375,
+          "heuristic_value": -0.11375,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.11375,
+          "heuristic_value": -0.11375,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.117525,
+          "heuristic_value": -0.117525,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.6923,
+        "counts": {
+          "my_deck": 27,
+          "my_prize": 5,
+          "my_hand": 7,
+          "opp_deck": 30,
+          "opp_prize": 4,
+          "opp_hand": 2
+        }
+      },
+      "ms": 2.68
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.001964,
+          "heuristic_value": -0.001964,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.001964,
+          "heuristic_value": -0.001964,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.001964,
+          "heuristic_value": -0.001964,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.001964,
+          "heuristic_value": -0.001964,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.6923,
+        "counts": {
+          "my_deck": 27,
+          "my_prize": 5,
+          "my_hand": 7,
+          "opp_deck": 30,
+          "opp_prize": 4,
+          "opp_hand": 2
+        }
+      },
+      "ms": 2.47
+    },
+    {
+      "n_options": 11,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            4
+          ],
+          "value": -0.011964,
+          "heuristic_value": -0.011964,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.011964,
+          "heuristic_value": -0.011964,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 26,
+          "my_prize": 4,
+          "my_hand": 9,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.88
+    },
+    {
+      "n_options": 4,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 26,
+          "my_prize": 4,
+          "my_hand": 8,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.49
+    },
+    {
+      "n_options": 9,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 26,
+          "my_prize": 4,
+          "my_hand": 8,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.69
+    },
+    {
+      "n_options": 6,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 7,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 26,
+          "my_prize": 4,
+          "my_hand": 7,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.92
+    },
+    {
+      "n_options": 15,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            11
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 25,
+          "my_prize": 4,
+          "my_hand": 8,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.86
+    },
+    {
+      "n_options": 10,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            5
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 10,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.73
+    },
+    {
+      "n_options": 9,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 11,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.00745,
+          "heuristic_value": -0.00745,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 9,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 3.32
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 8,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 1.91
+    },
+    {
+      "n_options": 4,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 8,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.7
+    },
+    {
+      "n_options": 8,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 7,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 8,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.48
+    },
+    {
+      "n_options": 7,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 7,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 7,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.54
+    },
+    {
+      "n_options": 6,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": 0.023363,
+          "heuristic_value": 0.023363,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.006648,
+          "heuristic_value": -0.006648,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 6,
+          "opp_deck": 29,
+          "opp_prize": 4,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.44
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            4
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 22,
+          "my_prize": 4,
+          "my_hand": 6,
+          "opp_deck": 28,
+          "opp_prize": 3,
+          "opp_hand": 2
+        }
+      },
+      "ms": 2.74
+    },
+    {
+      "n_options": 8,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 9,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.045633,
+          "heuristic_value": -0.045633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 21,
+          "my_prize": 4,
+          "my_hand": 7,
+          "opp_deck": 28,
+          "opp_prize": 3,
+          "opp_hand": 2
+        }
+      },
+      "ms": 2.97
+    },
+    {
+      "n_options": 5,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 16,
+          "my_prize": 4,
+          "my_hand": 5,
+          "opp_deck": 28,
+          "opp_prize": 3,
+          "opp_hand": 2
+        }
+      },
+      "ms": 2.77
+    },
+    {
+      "n_options": 4,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 7,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.091995,
+          "heuristic_value": -0.091995,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 16,
+          "my_prize": 4,
+          "my_hand": 4,
+          "opp_deck": 28,
+          "opp_prize": 3,
+          "opp_hand": 2
+        }
+      },
+      "ms": 3.03
+    },
+    {
+      "n_options": 3,
+      "candidates": 3,
+      "depth_max": 4,
+      "distinct_successors": 6,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.055633,
+          "heuristic_value": -0.055633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.111273,
+          "heuristic_value": -0.111273,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 16,
+          "my_prize": 4,
+          "my_hand": 3,
+          "opp_deck": 28,
+          "opp_prize": 3,
+          "opp_hand": 2
+        }
+      },
+      "ms": 2.0
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 5,
+      "scores": [
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.065633,
+          "heuristic_value": -0.065633,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.065633,
+          "heuristic_value": -0.065633,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7037,
+        "counts": {
+          "my_deck": 16,
+          "my_prize": 4,
+          "my_hand": 2,
+          "opp_deck": 28,
+          "opp_prize": 3,
+          "opp_hand": 2
+        }
+      },
+      "ms": 1.59
+    },
+    {
+      "n_options": 4,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 12,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.075198,
+          "heuristic_value": -0.075198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            3
+          ],
+          "value": -0.077071,
+          "heuristic_value": -0.077071,
+          "depth": 3,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7143,
+        "counts": {
+          "my_deck": 15,
+          "my_prize": 4,
+          "my_hand": 3,
+          "opp_deck": 27,
+          "opp_prize": 3,
+          "opp_hand": 1
+        }
+      },
+      "ms": 3.2
+    },
+    {
+      "n_options": 3,
+      "candidates": 3,
+      "depth_max": 4,
+      "distinct_successors": 12,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.076462,
+          "heuristic_value": -0.076462,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.076462,
+          "heuristic_value": -0.076462,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7143,
+        "counts": {
+          "my_deck": 15,
+          "my_prize": 4,
+          "my_hand": 2,
+          "opp_deck": 27,
+          "opp_prize": 3,
+          "opp_hand": 1
+        }
+      },
+      "ms": 2.43
+    },
+    {
+      "n_options": 16,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            13
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7143,
+        "counts": {
+          "my_deck": 10,
+          "my_prize": 4,
+          "my_hand": 5,
+          "opp_deck": 27,
+          "opp_prize": 3,
+          "opp_hand": 1
+        }
+      },
+      "ms": 4.08
+    },
+    {
+      "n_options": 2,
+      "candidates": 2,
+      "depth_max": 4,
+      "distinct_successors": 4,
+      "scores": [
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7143,
+        "counts": {
+          "my_deck": 10,
+          "my_prize": 4,
+          "my_hand": 5,
+          "opp_deck": 27,
+          "opp_prize": 3,
+          "opp_hand": 1
+        }
+      },
+      "ms": 1.73
+    },
+    {
+      "n_options": 15,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 10,
+      "scores": [
+        {
+          "candidate": [
+            6
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7143,
+        "counts": {
+          "my_deck": 7,
+          "my_prize": 4,
+          "my_hand": 7,
+          "opp_deck": 27,
+          "opp_prize": 3,
+          "opp_hand": 1
+        }
+      },
+      "ms": 3.0
+    },
+    {
+      "n_options": 14,
+      "candidates": 4,
+      "depth_max": 4,
+      "distinct_successors": 8,
+      "scores": [
+        {
+          "candidate": [
+            12
+          ],
+          "value": -0.052852,
+          "heuristic_value": -0.052852,
+          "depth": 4,
+          "is_baseline": true,
+          "index": 0
+        },
+        {
+          "candidate": [
+            0
+          ],
+          "value": -0.052852,
+          "heuristic_value": -0.052852,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 1
+        },
+        {
+          "candidate": [
+            1
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 2
+        },
+        {
+          "candidate": [
+            2
+          ],
+          "value": -0.065198,
+          "heuristic_value": -0.065198,
+          "depth": 4,
+          "is_baseline": false,
+          "index": 3
+        }
+      ],
+      "determinization": {
+        "archetype": "dragapult",
+        "confidence": 0.7143,
+        "counts": {
+          "my_deck": 7,
+          "my_prize": 4,
+          "my_hand": 6,
+          "opp_deck": 27,
+          "opp_prize": 3,
+          "opp_hand": 1
+        }
+      },
+      "ms": 3.24
+    }
+  ]
+}

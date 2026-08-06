@@ -1,0 +1,14 @@
+test_a_per_path_cache_returns_a_stale_hash_on_the_fixed_path (tests.test_c013_continuation.ContentAddressedHashRefresh.test_a_per_path_cache_returns_a_stale_hash_on_the_fixed_path)
+Negative control: reproduce c012's actual failure mechanism. ... ok
+test_rewriting_a_fixed_path_yields_a_new_eval_path (tests.test_c013_continuation.ContentAddressedHashRefresh.test_rewriting_a_fixed_path_yields_a_new_eval_path) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c013_continuation.py:86: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpg7ys9xmf/eval_t_84029356610e.npz'>
+  self.assertEqual(open(d1, "rb").read(), b"first-version")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/luca/kaggle/ptcg_ai_battle/tests/test_c013_continuation.py:87: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpg7ys9xmf/eval_t_0bf4f0c2fe25.npz'>
+  self.assertEqual(open(d2, "rb").read(), b"second-version")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+OK

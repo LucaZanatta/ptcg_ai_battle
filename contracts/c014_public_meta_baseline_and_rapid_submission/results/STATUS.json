@@ -1,0 +1,42 @@
+{
+  "contract": "c014_public_meta_baseline_and_rapid_submission",
+  "status": "PASS",
+  "acceptance_criteria_total": 7,
+  "acceptance_criteria_passed": 7,
+  "acceptance_criteria_failed": 0,
+  "initial_branch": "contract/c013_fixed_deck_policy_combination_and_learnability",
+  "initial_head": "a7d78dd56b7d4a9b75c5e5fa2e6828fc3bdfb477",
+  "final_branch": "contract/c014_public_meta_baseline_and_rapid_submission",
+  "final_head": "7edfb81929100d80c1bf3f74d48b45de966b050d",
+  "implementation_commits": [
+    "7edfb81",
+    "15e895d",
+    "95c67e4"
+  ],
+  "public_mining_elapsed_hours": 0.143,
+  "selected_archetype": "Archaludon ex / Cinderace metal tempo",
+  "branch_thesis": "Open with Cinderace in the Active Spot to attack for 50 while it loads three Basic Energy onto a benched Duraludon, then evolve into Archaludon ex - which recovers two more {M} from the discard as it evolves - and win the damage race with a 220-damage attack that also cancels its own Fire weakness.",
+  "selected_deck_sha256": "42165967b565dd42ec426ecccfe79bfa7d72aa8306590e149dface0ee8bd530e",
+  "training_games": 0,
+  "local_validation_games": 600,
+  "package_validation_games": 150,
+  "total_validation_games": 750,
+  "invalid_actions": 0,
+  "exceptions": 0,
+  "timeouts": 0,
+  "package_sha256": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+  "kaggle_upload": "SUBMITTED",
+  "kaggle_submission_ref": "55004756",
+  "kaggle_submission_status": "COMPLETE",
+  "public_score": "600.0",
+  "dragapult_control_public_score": "719.7",
+  "next_loss_mode": "cinderace_explosiveness_opener_rarely_available",
+  "anti_meta_provisional": "Punish the metal lane with a fast {R} attacker that removes Duraludon before it evolves and exploits the evolve-turn weakness gap - recorded only, not implemented.",
+  "blocking_issues": [],
+  "known_limitations": [
+    "public score 600.0 is below the Dragapult control's 719.7; v0 is a challenger, not a champion",
+    "the competition's published per-decision timeout could not be scraped (Kaggle pages are client-rendered); a self-imposed 1000 ms maximum was enforced and labelled as such",
+    "the daily submission limit could not be verified for the same reason; only one upload was made, so it was not binding",
+    "Cinderace's Explosiveness opener fires in a minority of games \u2014 the selected single next loss mode"
+  ]
+}

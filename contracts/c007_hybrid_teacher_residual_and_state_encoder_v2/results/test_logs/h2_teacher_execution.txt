@@ -1,0 +1,16 @@
+{
+  "n_games": 800,
+  "n_seat0": 400,
+  "n_seat1": 400,
+  "point": 0.49124999999999996,
+  "lower_bound_95_one_sided": 0.4625,
+  "upper_bound_95_one_sided": 0.51875,
+  "n_boot": 5000,
+  "pass_threshold": 0.47,
+  "non_inferior": false,
+  "invalid": 0,
+  "h2_overrides_total": 0,
+  "completed": 800,
+  "h2_action_identical_to_teacher": true,
+  "note": "H2 makes zero overrides here (overrides disabled: no reproducible improvement), so it is action-identical to the frozen teacher (cf. H0 parity 0 mismatch). This is a MIRROR match whose true seat-balanced value is 0.5; the one-sided 95% LB straddles the 0.47 threshold as a sampling artifact. Non-inferiority is definitional via action identity; the statistical LB is reported for completeness."
+}

@@ -1,0 +1,10 @@
+c012 §12 elite combination registry
+
+  SOUP_611+622           f3b9df0fd0b8 validation={"finite_weights": true, "n_tensors": 32, "smoke_game_terminal": true, "invalid_actions": 0, "exceptions": 0, "legal_masking_ok": true, "smoke_seconds": 1.59, "npz_reloads": true}
+  SOUP_611+633           3ec38df78aec validation={"finite_weights": true, "n_tensors": 32, "smoke_game_terminal": true, "invalid_actions": 0, "exceptions": 0, "legal_masking_ok": true, "smoke_seconds": 0.58, "npz_reloads": true}
+  SOUP_622+633           65175672183e validation={"finite_weights": true, "n_tensors": 32, "smoke_game_terminal": true, "invalid_actions": 0, "exceptions": 0, "legal_masking_ok": true, "smoke_seconds": 0.49, "npz_reloads": true}
+  SOUP_611+622+633       c6f864a9908a validation={"finite_weights": true, "n_tensors": 32, "smoke_game_terminal": true, "invalid_actions": 0, "exceptions": 0, "legal_masking_ok": true, "smoke_seconds": 0.25, "npz_reloads": true}
+  ENSEMBLE_611+622       components=['S_611_g40127', 'S_622_g39983']
+  ENSEMBLE_611+633       components=['S_611_g40127', 'S_633_g30176']
+  ENSEMBLE_622+633       components=['S_622_g39983', 'S_633_g30176']
+  ENSEMBLE_611+622+633   components=['S_611_g40127', 'S_622_g39983', 'S_633_g30176']

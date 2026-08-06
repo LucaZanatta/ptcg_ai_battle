@@ -1,0 +1,305 @@
+{
+  "audited_utc": "2026-07-26T17:04:02.556277+00:00",
+  "audited_europe_rome": "2026-07-26T19:04:02.556277+02:00",
+  "method": "re-derived from raw per-game records, archive bytes, decision traces and the live Kaggle listing; SUMMARY.md and STATUS.json were not trusted on their own",
+  "c014": {
+    "branch": "c014 custom Archaludon/Cinderace",
+    "package_sha256_on_disk": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+    "package_sha256_in_manifest": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+    "package_hash_matches": true,
+    "submission_ref": "55004756",
+    "raw_games_counted": 600,
+    "raw_matchups": {
+      "dragapult": {
+        "games": 100,
+        "score_rate": 0.09
+      },
+      "mega_lucario": {
+        "games": 100,
+        "score_rate": 0.48
+      },
+      "iono": {
+        "games": 100,
+        "score_rate": 0.02
+      },
+      "mega_abomasnow": {
+        "games": 100,
+        "score_rate": 0.35
+      },
+      "__safe__": {
+        "games": 100,
+        "score_rate": 0.67
+      },
+      "__self__": {
+        "games": 100,
+        "score_rate": 0.48
+      }
+    },
+    "published_matchups": {
+      "dragapult": {
+        "games": 100,
+        "score_rate": 0.09
+      },
+      "mega_lucario": {
+        "games": 100,
+        "score_rate": 0.48
+      },
+      "iono": {
+        "games": 100,
+        "score_rate": 0.02
+      },
+      "mega_abomasnow": {
+        "games": 100,
+        "score_rate": 0.35
+      },
+      "__safe__": {
+        "games": 100,
+        "score_rate": 0.67
+      },
+      "__self__": {
+        "games": 100,
+        "score_rate": 0.48
+      }
+    },
+    "matchup_disagreements": [],
+    "public_mining_elapsed_hours": 0.143,
+    "thesis_attack_share": 0.7522,
+    "fallback_rate": 0.0,
+    "deck_sha256": "42165967b565dd42ec426ecccfe79bfa7d72aa8306590e149dface0ee8bd530e",
+    "classification": {
+      "operational_execution": "PASS \u2014 packaged, validated and accepted; 0 invalid selections, 0 exceptions, 0 timeouts over 750 games",
+      "evidence_integrity": "PASS \u2014 published matchup rates reproduce exactly from the raw per-game records",
+      "competitive_strength": "WEAK \u2014 0.020 vs official Iono, 0.090 vs Dragapult; a from-scratch priority table did not reproduce a strong public Archaludon agent",
+      "current_branch_role": "CONTROL"
+    }
+  },
+  "c015": {
+    "branch": "c015 custom Iono/Bellibolt",
+    "package_sha256_on_disk": "ea507a6cb53e1ea03d876c8309e3f50e1db343f75ceb2d4ede2ad9fef1098f4e",
+    "package_sha256_in_manifest": "ea507a6cb53e1ea03d876c8309e3f50e1db343f75ceb2d4ede2ad9fef1098f4e",
+    "package_hash_matches": true,
+    "submission_ref": "55005237",
+    "raw_games_counted": 600,
+    "raw_matchups": {
+      "__c014__": {
+        "games": 100,
+        "score_rate": 0.36
+      },
+      "dragapult": {
+        "games": 100,
+        "score_rate": 0.04
+      },
+      "mega_lucario": {
+        "games": 100,
+        "score_rate": 0.2
+      },
+      "mega_abomasnow": {
+        "games": 100,
+        "score_rate": 0.12
+      },
+      "__safe__": {
+        "games": 100,
+        "score_rate": 0.61
+      },
+      "__self__": {
+        "games": 100,
+        "score_rate": 0.45
+      }
+    },
+    "delta_check_elapsed_hours": 0.063,
+    "thesis": {
+      "registered_falsifier": "fails if the agent does not exceed a 0.60 score rate against the exact c014 package on the untouched final panel while executing Electric Streamer on at least 60% of turns where a Basic {L} Energy was in hand",
+      "threshold_vs_c014": 0.6,
+      "actual_vs_c014": 0.36,
+      "actual_from_raw": 0.36,
+      "falsified": true
+    },
+    "mechanism_a_execution_rate": 1.0,
+    "mechanism_b_raw": {
+      "opportunities": 0,
+      "executions": 0,
+      "note": "counted by the expert over decisions where an attack was the chosen phase and Voltaic Chain was legal; see expert counters in the raw traces"
+    },
+    "report_integrity_defects": [
+      {
+        "id": "c015_mechanism_b_zero_opportunity_success_claim",
+        "severity": "HIGH",
+        "raw": {
+          "opportunities": 0,
+          "executions": 0
+        },
+        "reported": {
+          "complementarity_report.mechanisms_executed.B": "1.000 when attacking and legal"
+        },
+        "explanation": "strategy_coherence.json records Mechanism B with ZERO opportunities and ZERO executions, because the recompute step initialised the counters and never populated them from the expert's own tallies. complementarity_report.json nevertheless states B executed '1.000 when attacking and legal'. A rate asserted over a zero denominator is exactly the claim \u00a722 requires a validator to reject; it must read NOT_OBSERVED."
+      },
+      {
+        "id": "c015_attachment_rate_degenerate_denominator",
+        "severity": "MEDIUM",
+        "raw": {
+          "attachment_to_engine_rate": 1.0
+        },
+        "explanation": "numerator and denominator are incremented on the same branch, so this rate is 1.000 by construction and measures nothing. It cannot distinguish correct from incorrect attachment."
+      },
+      {
+        "id": "c015_status_public_score_stale",
+        "severity": "LOW",
+        "raw": {
+          "decision_board_latest_reading": "619.4"
+        },
+        "reported": {
+          "STATUS.json.public_score": "600.0"
+        },
+        "explanation": "STATUS.json kept the poll-time reading while the board recorded a later one. The public score is a live ladder rating, so a single stored value is a snapshot and must be labelled as one."
+      }
+    ],
+    "n_report_integrity_defects": 3,
+    "classification": {
+      "operational_execution": "PASS \u2014 packaged, validated and accepted; 0 invalid selections, 0 exceptions, 0 timeouts over 750 games",
+      "evidence_integrity": "DEFECTIVE \u2014 3 defects, including a zero-opportunity success claim for Mechanism B",
+      "competitive_strength": "FALSIFIED \u2014 0.36 vs the c014 target against a pre-registered 0.60 threshold; the official Iono agent reaches 0.98 with the same deck",
+      "current_branch_role": "ARCHIVE"
+    }
+  },
+  "kaggle_now": {
+    "listing_rows": [
+      {
+        "ref": "55005237",
+        "fileName": "submission_I_anti_meta_v0.tar.gz",
+        "date": "2026-07-26 15:46:39.270000",
+        "description": "c015 anti-meta-v0 iono-bellibolt vs archaludon 15d9e69",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "412.9",
+        "privateScore": ""
+      },
+      {
+        "ref": "55004756",
+        "fileName": "submission_H_public_meta_v0.tar.gz",
+        "date": "2026-07-26 15:21:04.127000",
+        "description": "c014 public-meta-v0 archaludon-cinderace 95c67e4",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "516.8",
+        "privateScore": ""
+      },
+      {
+        "ref": "54948560",
+        "fileName": "submission_A_teacher.tar.gz",
+        "date": "2026-07-24 10:04:26.770000",
+        "description": "c005 Submission A: frozen teacher dragapult",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "719.7",
+        "privateScore": ""
+      },
+      {
+        "ref": "54948476",
+        "fileName": "submission_A_teacher.tar.gz",
+        "date": "2026-07-24 09:59:24.377000",
+        "description": "c005 Submission A: frozen teacher dragapult",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "711.0",
+        "privateScore": ""
+      }
+    ],
+    "dragapult_54948560": {
+      "ref": "54948560",
+      "fileName": "submission_A_teacher.tar.gz",
+      "date": "2026-07-24 10:04:26.770000",
+      "description": "c005 Submission A: frozen teacher dragapult",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "719.7",
+      "privateScore": ""
+    },
+    "c014_55004756": {
+      "ref": "55004756",
+      "fileName": "submission_H_public_meta_v0.tar.gz",
+      "date": "2026-07-26 15:21:04.127000",
+      "description": "c014 public-meta-v0 archaludon-cinderace 95c67e4",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "516.8",
+      "privateScore": ""
+    },
+    "c015_55005237": {
+      "ref": "55005237",
+      "fileName": "submission_I_anti_meta_v0.tar.gz",
+      "date": "2026-07-26 15:46:39.270000",
+      "description": "c015 anti-meta-v0 iono-bellibolt vs archaludon 15d9e69",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "412.9",
+      "privateScore": ""
+    },
+    "note": "the public score is a live ladder rating; these are timestamped readings"
+  },
+  "c014_public_source_snapshots": [
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/pilkwang_pok-mon-tcg-ai-battle-meta-snapshot-18-july/pok-mon-tcg-ai-battle-meta-snapshot-18-july.ipynb",
+      "sha256": "456c81af843a45332a39c5de230d86939718be6e1b70611e8873b3ee2fe09f90",
+      "bytes": 257508
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/pilkwang_pok-mon-tcg-ai-battle-meta-snapshot-18-july/kernel-metadata.json",
+      "sha256": "fe07caa4e24e861401b1fc994a8602debd40422f336b6a01c9e2370a43d700de",
+      "bytes": 676
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/ryotasueyoshi_rule-based-not-psychic-alakazam-best-5th/kernel-metadata.json",
+      "sha256": "93458d33d0c5b3880adedc0cb7c315acb102d1c8274064ba0610a2c1913204de",
+      "bytes": 675
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/ryotasueyoshi_rule-based-not-psychic-alakazam-best-5th/rule-based-not-psychic-alakazam-best-5th.ipynb",
+      "sha256": "736f98ef271fb7c21dedfba0b0635eb9eb149b05bd952a88d7c51ef4993d9431",
+      "bytes": 1042201
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/makthanithin_pok-mon-tcg-ai-battle-meta-snapshot-06-29/kernel-metadata.json",
+      "sha256": "e16e308270c43e596431741549e1e9b98e18816d4efc414395225917464c341b",
+      "bytes": 674
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/makthanithin_pok-mon-tcg-ai-battle-meta-snapshot-06-29/pok-mon-tcg-ai-battle-meta-snapshot-06-29.ipynb",
+      "sha256": "6eeb63ac2631a30f5f296ff4add002a9424205d9c38452d934be8a8edafed4ea",
+      "bytes": 170711
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/smallpond_en-replay-archetype-analysis/en-replay-archetype-analysis.ipynb",
+      "sha256": "86fb85953d92b7886d124d46824611cfa43f8cc56db6b9ab1899cc962224f3da",
+      "bytes": 113569
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/smallpond_en-replay-archetype-analysis/kernel-metadata.json",
+      "sha256": "aa6eb4246efbfc562f1c72cdc20efa2f6c064fd3ac651456136a01164b238e4f",
+      "bytes": 2003
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/masamikobayashi_a-sample-archaludon-75-wr-vs-my-1300-starmie/kernel-metadata.json",
+      "sha256": "913823216b1dab2e64e5df913d9376c55f13409e9d4f59c831cef159220c3d1b",
+      "bytes": 674
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/masamikobayashi_a-sample-archaludon-75-wr-vs-my-1300-starmie/a-sample-archaludon-75-wr-vs-my-1300-starmie.ipynb",
+      "sha256": "cc9db318aa4d60d832a5ea60bf432ef1b919d043aaa3359fa96dd0868493aad0",
+      "bytes": 46989
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/romanrozen_strong-start-baseline-agent-v10-lb-950/kernel-metadata.json",
+      "sha256": "a62bf081a02749165185f647d60e74de314ab1a8f9cb46b393a5af6668abd8cb",
+      "bytes": 714
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/romanrozen_strong-start-baseline-agent-v10-lb-950/strong-start-baseline-agent-v10-lb-950.ipynb",
+      "sha256": "f37c4d444eb9dd6111e87c500ef33f4d4b1349af14243c591817ee1721c6b90c",
+      "bytes": 32308
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/ichigoe_beginner-guide/beginner-guide-from-deck-list-to-first-valid-sub.ipynb",
+      "sha256": "03e6db4f6dc7d70ecd99e1c18f0e3dda7cfd3e5a829ec7829507c4519e0f116f",
+      "bytes": 508173
+    },
+    {
+      "path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/public_source_snapshots/ichigoe_beginner-guide/kernel-metadata.json",
+      "sha256": "f114532c11f0c93634e42362f8319c01bb349f846a5b3d8f097a9dcc3c807c24",
+      "bytes": 765
+    }
+  ],
+  "dragapult_role": "temporary internal champion \u2014 the strongest confirmed package the project owns, explicitly NOT a winning target"
+}

@@ -1,0 +1,81 @@
+{
+  "contract": "c006",
+  "ranking": [
+    {
+      "agent": "teacher",
+      "mean_seat_balanced_vs_field": 0.6041666666666667,
+      "per_opponent": {
+        "mega_lucario": 0.5,
+        "mega_abomasnow": 0.6,
+        "iono": 0.7666666666666666,
+        "mirror": 0.55
+      }
+    },
+    {
+      "agent": "S1",
+      "mean_seat_balanced_vs_field": 0.1875,
+      "per_opponent": {
+        "mega_lucario": 0.25,
+        "mega_abomasnow": 0.25,
+        "iono": 0.125,
+        "mirror": 0.125
+      }
+    },
+    {
+      "agent": "S2",
+      "mean_seat_balanced_vs_field": 0.15000000000000002,
+      "per_opponent": {
+        "mega_lucario": 0.175,
+        "mega_abomasnow": 0.15000000000000002,
+        "iono": 0.15000000000000002,
+        "mirror": 0.125
+      }
+    },
+    {
+      "agent": "control",
+      "mean_seat_balanced_vs_field": 0.10625000000000001,
+      "per_opponent": {
+        "mega_lucario": 0.225,
+        "mega_abomasnow": 0.07500000000000001,
+        "iono": 0.125,
+        "mirror": 0.0
+      }
+    }
+  ],
+  "bradley_terry": {
+    "S1": 0.689405592382394,
+    "S2": 0.4771930976754586,
+    "control": 0.41736750546999246,
+    "iono": 1.3878689309063055,
+    "mega_abomasnow": 1.6943151420258602,
+    "mega_lucario": 1.6806015118814792,
+    "teacher": 1.8429137714580592
+  },
+  "seat_effects": {
+    "teacher": {
+      "seat0_mean": 0.5533333333333333,
+      "seat1_mean": 0.6333333333333333,
+      "seat_effect": -0.07999999999999996
+    },
+    "S1": {
+      "seat0_mean": 0.16666666666666666,
+      "seat1_mean": 0.2222222222222222,
+      "seat_effect": -0.05555555555555555
+    },
+    "S2": {
+      "seat0_mean": 0.1375,
+      "seat1_mean": 0.1625,
+      "seat_effect": -0.024999999999999994
+    },
+    "control": {
+      "seat0_mean": 0.1375,
+      "seat1_mean": 0.075,
+      "seat_effect": 0.06250000000000001
+    }
+  },
+  "control_mean_vs_field": 0.10625000000000001,
+  "students_beat_control": {
+    "S1": true,
+    "S2": true
+  }
+}

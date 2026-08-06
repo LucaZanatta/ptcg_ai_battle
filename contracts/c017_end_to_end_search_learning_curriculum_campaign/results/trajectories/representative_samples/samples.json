@@ -1,0 +1,698 @@
+[
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 0,
+    "context": 41,
+    "n_options": 2,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1
+    ],
+    "visible_state_hash": "274f66b8bb3f8ba10b92f3a148bdd922761c71c59a40c6461de9afc1780130d8",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": false,
+    "pivotal": false,
+    "pivotal_reason": "routine_context_41",
+    "candidate_scores": [],
+    "leaf_value_at_decision": 0.0,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 1,
+    "context": 1,
+    "n_options": 1,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1
+    ],
+    "visible_state_hash": "2dd904021a02b2e2ffaac0dc92abce98f8716f37fb71074a452335661da8100f",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": false,
+    "pivotal": false,
+    "pivotal_reason": "forced_single_option",
+    "candidate_scores": [],
+    "leaf_value_at_decision": 0.0,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 2,
+    "context": 0,
+    "n_options": 6,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "37084d325b9480fd6b341131b2f55ddc2c229a78bde36576a26f639774d2dcbf",
+    "baseline_action": [
+      2
+    ],
+    "label_action": [
+      2
+    ],
+    "searched": false,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [],
+    "leaf_value_at_decision": -0.024,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 3,
+    "context": 0,
+    "n_options": 4,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "15b501c074353adc1f8608e728b004fe9f9ed7cda9b4215ff8a70d68b3877306",
+    "baseline_action": [
+      1
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": true,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [
+      {
+        "candidate": [
+          0
+        ],
+        "value": 0.006,
+        "is_baseline": false,
+        "index": 1
+      },
+      {
+        "candidate": [
+          1
+        ],
+        "value": -0.004,
+        "is_baseline": true,
+        "index": 0
+      },
+      {
+        "candidate": [
+          2
+        ],
+        "value": -0.004,
+        "is_baseline": false,
+        "index": 2
+      },
+      {
+        "candidate": [
+          3
+        ],
+        "value": -0.044,
+        "is_baseline": false,
+        "index": 3
+      }
+    ],
+    "leaf_value_at_decision": -0.024,
+    "label_differs_from_baseline": true,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 4,
+    "context": 0,
+    "n_options": 3,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "f0ae662a0ff032712f5ca04059d3155f313535a7270f6a748fbd26a5228a5bce",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": false,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [],
+    "leaf_value_at_decision": -0.014,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 5,
+    "context": 7,
+    "n_options": 18,
+    "min_count": 0,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "f871553f624ace710e8c6ff9bf50d5725f152b678fec60eb05a2f4d7e40ee178",
+    "baseline_action": [
+      9
+    ],
+    "label_action": [
+      9
+    ],
+    "searched": true,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_7",
+    "candidate_scores": [
+      {
+        "candidate": [
+          9
+        ],
+        "value": -0.014,
+        "is_baseline": true,
+        "index": 0
+      },
+      {
+        "candidate": [
+          0
+        ],
+        "value": -0.014,
+        "is_baseline": false,
+        "index": 1
+      },
+      {
+        "candidate": [
+          1
+        ],
+        "value": -0.014,
+        "is_baseline": false,
+        "index": 2
+      },
+      {
+        "candidate": [
+          2
+        ],
+        "value": -0.014,
+        "is_baseline": false,
+        "index": 3
+      }
+    ],
+    "leaf_value_at_decision": -0.014,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 6,
+    "context": 0,
+    "n_options": 3,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "d481abc086f21340fbf70a17e2ce0e7730c0a22c82ee4630612404785736737f",
+    "baseline_action": [
+      1
+    ],
+    "label_action": [
+      1
+    ],
+    "searched": false,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [],
+    "leaf_value_at_decision": -0.014,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 7,
+    "context": 0,
+    "n_options": 2,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1
+    ],
+    "visible_state_hash": "9321ed6b95af1591b35b3f3af72d56e7047d9b03589ed284cea0ea95e981cdc0",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": true,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [
+      {
+        "candidate": [
+          0
+        ],
+        "value": 0.03,
+        "is_baseline": true,
+        "index": 0
+      },
+      {
+        "candidate": [
+          1
+        ],
+        "value": -0.01,
+        "is_baseline": false,
+        "index": 1
+      }
+    ],
+    "leaf_value_at_decision": 0.01,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 8,
+    "context": 7,
+    "n_options": 17,
+    "min_count": 0,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "f6fb032b0e002b182fbcee86d42eff4190bd11331e01cd25b24c1abd91ca94d2",
+    "baseline_action": [
+      3
+    ],
+    "label_action": [
+      3
+    ],
+    "searched": false,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_7",
+    "candidate_scores": [],
+    "leaf_value_at_decision": 0.01,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 9,
+    "context": 0,
+    "n_options": 2,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1
+    ],
+    "visible_state_hash": "ef55ba7a0251982b5e08e7f3d66fe527e0209bcc8a2f0b3b1d1bddec4a9a5730",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": true,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [
+      {
+        "candidate": [
+          0
+        ],
+        "value": 0.03,
+        "is_baseline": true,
+        "index": 0
+      },
+      {
+        "candidate": [
+          1
+        ],
+        "value": -0.01,
+        "is_baseline": false,
+        "index": 1
+      }
+    ],
+    "leaf_value_at_decision": 0.01,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 10,
+    "context": 0,
+    "n_options": 1,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1
+    ],
+    "visible_state_hash": "6a3b855baf67988ed4ca4fa5c28b90f845eb61f3abfc2cb815c68e6e47560e3c",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": false,
+    "pivotal": false,
+    "pivotal_reason": "forced_single_option",
+    "candidate_scores": [],
+    "leaf_value_at_decision": 0.034,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 11,
+    "context": 0,
+    "n_options": 3,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "4bf00151e3c2dfe9a75d7c15131a832706b66b43b5d554acffe69c5b315625e1",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      1
+    ],
+    "searched": true,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [
+      {
+        "candidate": [
+          1
+        ],
+        "value": 0.035667,
+        "is_baseline": false,
+        "index": 1
+      },
+      {
+        "candidate": [
+          0
+        ],
+        "value": 0.025667,
+        "is_baseline": true,
+        "index": 0
+      },
+      {
+        "candidate": [
+          2
+        ],
+        "value": -0.014333,
+        "is_baseline": false,
+        "index": 2
+      }
+    ],
+    "leaf_value_at_decision": 0.005667,
+    "label_differs_from_baseline": true,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 12,
+    "context": 0,
+    "n_options": 3,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "6150df81e974cc31894bacbc1f5b1bfe179315503ecb429a5e538b5b1f4c907a",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": false,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [],
+    "leaf_value_at_decision": -0.06025,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 13,
+    "context": 0,
+    "n_options": 7,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "visible_state_hash": "0eea7f082e4a95df26f8c4726efb76fb3a83b9b018b76054e71806e040f6a9dc",
+    "baseline_action": [
+      4
+    ],
+    "label_action": [
+      4
+    ],
+    "searched": true,
+    "pivotal": true,
+    "pivotal_reason": "pivotal_context_0",
+    "candidate_scores": [
+      {
+        "candidate": [
+          4
+        ],
+        "value": -0.01025,
+        "is_baseline": true,
+        "index": 0
+      },
+      {
+        "candidate": [
+          1
+        ],
+        "value": -0.03025,
+        "is_baseline": false,
+        "index": 2
+      },
+      {
+        "candidate": [
+          2
+        ],
+        "value": -0.03025,
+        "is_baseline": false,
+        "index": 3
+      },
+      {
+        "candidate": [
+          0
+        ],
+        "value": -0.04025,
+        "is_baseline": false,
+        "index": 1
+      }
+    ],
+    "leaf_value_at_decision": -0.06025,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  },
+  {
+    "schema_version": "c017.trajectory.v1",
+    "search_version": "c017.search.v1",
+    "config_hash": "f5299ebfd22e535b",
+    "game_index": 0,
+    "opponent_id": "dragapult",
+    "seat": 0,
+    "decision_index": 14,
+    "context": 8,
+    "n_options": 1,
+    "min_count": 1,
+    "max_count": 1,
+    "legal_mask": [
+      1
+    ],
+    "visible_state_hash": "0eea7f082e4a95df26f8c4726efb76fb3a83b9b018b76054e71806e040f6a9dc",
+    "baseline_action": [
+      0
+    ],
+    "label_action": [
+      0
+    ],
+    "searched": false,
+    "pivotal": false,
+    "pivotal_reason": "forced_single_option",
+    "candidate_scores": [],
+    "leaf_value_at_decision": -0.06025,
+    "label_differs_from_baseline": false,
+    "final_outcome": 0.0,
+    "game_completed": true,
+    "split": "train"
+  }
+]

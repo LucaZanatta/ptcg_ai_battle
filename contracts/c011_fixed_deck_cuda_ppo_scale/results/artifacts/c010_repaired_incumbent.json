@@ -1,0 +1,349 @@
+{
+  "rule": "\u00a77.3 ordering \u2014 teacher head-to-head, strategic field, held-out Abomasnow, worst-matchup risk, reliability, latency, then earlier training games.",
+  "n_confirmed_candidates_considered": 41,
+  "evidence": {
+    "panel": "confirmation (500 games) for every candidate, equal footing",
+    "c011_confirmation_games": 4800,
+    "c010_confirmation_games_pooled": 25400
+  },
+  "incumbent_id": "C_522_g20220",
+  "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed522/checkpoints/ckpt_g20220.npz",
+  "checkpoint_sha256": "974051fad562ee88b4521a978f748ce7e82638d543281ca64c60d5ab52b0280d",
+  "hash_verified_on_disk": true,
+  "source_contract": "c010",
+  "training_games": 20220,
+  "protected": true,
+  "note": "Frozen before any CUDA training. Permanently protected (\u00a715): a newer checkpoint never replaces it automatically.",
+  "scores": {
+    "C_522_g20220": {
+      "teacher": 0.31,
+      "field": 0.3033333333333333,
+      "composite": 0.307,
+      "abomasnow": 0.22,
+      "games": 500
+    },
+    "C_533_g19952": {
+      "teacher": 0.3,
+      "field": 0.3133333333333333,
+      "composite": 0.306,
+      "abomasnow": 0.21000000000000002,
+      "games": 500
+    },
+    "C_522_g7624": {
+      "teacher": 0.29500000000000004,
+      "field": 0.26666666666666666,
+      "composite": 0.28225,
+      "abomasnow": 0.25,
+      "games": 500
+    },
+    "C_522_g10236": {
+      "teacher": 0.29000000000000004,
+      "field": 0.35333333333333333,
+      "composite": 0.3185,
+      "abomasnow": 0.22999999999999998,
+      "games": 500
+    },
+    "C_511_g20292": {
+      "teacher": 0.28,
+      "field": 0.33666666666666667,
+      "composite": 0.3055,
+      "abomasnow": 0.26,
+      "games": 500
+    },
+    "C_533_g15168": {
+      "teacher": 0.28,
+      "field": 0.3233333333333333,
+      "composite": 0.29950000000000004,
+      "abomasnow": 0.21,
+      "games": 500
+    },
+    "B_411_g7524": {
+      "teacher": 0.275,
+      "field": 0.30333333333333334,
+      "composite": 0.28775,
+      "abomasnow": 0.27,
+      "games": 500
+    },
+    "C_522_g2728": {
+      "teacher": 0.275,
+      "field": 0.25000000000000006,
+      "composite": 0.26375000000000004,
+      "abomasnow": 0.15000000000000002,
+      "games": 500
+    },
+    "B_433_g7524": {
+      "teacher": 0.27,
+      "field": 0.31,
+      "composite": 0.28800000000000003,
+      "abomasnow": 0.28,
+      "games": 500
+    },
+    "C_511_g5012": {
+      "teacher": 0.27,
+      "field": 0.29000000000000004,
+      "composite": 0.279,
+      "abomasnow": 0.31000000000000005,
+      "games": 500
+    },
+    "C_522_g5428": {
+      "teacher": 0.265,
+      "field": 0.3233333333333333,
+      "composite": 0.29125,
+      "abomasnow": 0.29000000000000004,
+      "games": 500
+    },
+    "B_422_g2508": {
+      "teacher": 0.265,
+      "field": 0.3,
+      "composite": 0.28075,
+      "abomasnow": 0.26,
+      "games": 500
+    },
+    "C_522_g15424": {
+      "teacher": 0.255,
+      "field": 0.2966666666666667,
+      "composite": 0.27375000000000005,
+      "abomasnow": 0.16,
+      "games": 500
+    },
+    "C_511_g15108": {
+      "teacher": 0.255,
+      "field": 0.2933333333333333,
+      "composite": 0.27225,
+      "abomasnow": 0.19,
+      "games": 500
+    },
+    "C_511_g2748": {
+      "teacher": 0.255,
+      "field": 0.2866666666666667,
+      "composite": 0.26925,
+      "abomasnow": 0.2,
+      "games": 500
+    },
+    "C_511_g7660": {
+      "teacher": 0.25,
+      "field": 0.27999999999999997,
+      "composite": 0.2635,
+      "abomasnow": 0.22999999999999998,
+      "games": 500
+    },
+    "B_411_g2508": {
+      "teacher": 0.245,
+      "field": 0.2966666666666667,
+      "composite": 0.26825,
+      "abomasnow": 0.29000000000000004,
+      "games": 500
+    },
+    "C_533_g5052": {
+      "teacher": 0.245,
+      "field": 0.29,
+      "composite": 0.26525,
+      "abomasnow": 0.19,
+      "games": 500
+    },
+    "C_511_g10316": {
+      "teacher": 0.245,
+      "field": 0.27,
+      "composite": 0.25625000000000003,
+      "abomasnow": 0.22,
+      "games": 500
+    },
+    "C_533_g2772": {
+      "teacher": 0.245,
+      "field": 0.25333333333333335,
+      "composite": 0.24875000000000003,
+      "abomasnow": 0.2,
+      "games": 500
+    },
+    "B_433_g2508": {
+      "teacher": 0.24,
+      "field": 0.30666666666666664,
+      "composite": 0.27,
+      "abomasnow": 0.22,
+      "games": 500
+    },
+    "A_311_g10108": {
+      "teacher": 0.24,
+      "field": 0.28,
+      "composite": 0.258,
+      "abomasnow": 0.28,
+      "games": 500
+    },
+    "A_333_g5068": {
+      "teacher": 0.23500000000000001,
+      "field": 0.22999999999999998,
+      "composite": 0.23275000000000004,
+      "abomasnow": 0.18,
+      "games": 500
+    },
+    "C_533_g10356": {
+      "teacher": 0.235,
+      "field": 0.325,
+      "composite": 0.2755,
+      "abomasnow": 0.21,
+      "games": 500
+    },
+    "A_333_g12117": {
+      "teacher": 0.22999999999999998,
+      "field": 0.26333333333333336,
+      "composite": 0.245,
+      "abomasnow": 0.24,
+      "games": 500
+    },
+    "A_322_g12110": {
+      "teacher": 0.225,
+      "field": 0.3,
+      "composite": 0.25875000000000004,
+      "abomasnow": 0.3,
+      "games": 500
+    },
+    "B_411_g5016": {
+      "teacher": 0.22499999999999998,
+      "field": 0.32,
+      "composite": 0.26775,
+      "abomasnow": 0.26,
+      "games": 500
+    },
+    "B_422_g7524": {
+      "teacher": 0.22,
+      "field": 0.3666666666666667,
+      "composite": 0.28600000000000003,
+      "abomasnow": 0.30000000000000004,
+      "games": 500
+    },
+    "A_333_g10122": {
+      "teacher": 0.22,
+      "field": 0.28,
+      "composite": 0.247,
+      "abomasnow": 0.19,
+      "games": 500
+    },
+    "A_311_g12103": {
+      "teacher": 0.21500000000000002,
+      "field": 0.30833333333333335,
+      "composite": 0.257,
+      "abomasnow": 0.21000000000000002,
+      "games": 500
+    },
+    "A_311_g7581": {
+      "teacher": 0.21,
+      "field": 0.26999999999999996,
+      "composite": 0.237,
+      "abomasnow": 0.22,
+      "games": 500
+    },
+    "A_311_g5054": {
+      "teacher": 0.20500000000000002,
+      "field": 0.265,
+      "composite": 0.232,
+      "abomasnow": 0.17,
+      "games": 500
+    },
+    "C_533_g7720": {
+      "teacher": 0.2,
+      "field": 0.3,
+      "composite": 0.24500000000000002,
+      "abomasnow": 0.23,
+      "games": 500
+    },
+    "A_322_g2534": {
+      "teacher": 0.19,
+      "field": 0.25,
+      "composite": 0.21700000000000003,
+      "abomasnow": 0.25,
+      "games": 500
+    },
+    "A_333_g7595": {
+      "teacher": 0.185,
+      "field": 0.31333333333333335,
+      "composite": 0.24275000000000002,
+      "abomasnow": 0.27,
+      "games": 500
+    },
+    "A_333_g2541": {
+      "teacher": 0.18,
+      "field": 0.26333333333333336,
+      "composite": 0.21750000000000003,
+      "abomasnow": 0.24000000000000002,
+      "games": 500
+    },
+    "A_311_g2527": {
+      "teacher": 0.18,
+      "field": 0.2133333333333333,
+      "composite": 0.195,
+      "abomasnow": 0.16999999999999998,
+      "games": 500
+    },
+    "A_322_g5061": {
+      "teacher": 0.175,
+      "field": 0.28,
+      "composite": 0.22225,
+      "abomasnow": 0.19,
+      "games": 500
+    },
+    "A_322_g10115": {
+      "teacher": 0.175,
+      "field": 0.25666666666666665,
+      "composite": 0.21175,
+      "abomasnow": 0.22999999999999998,
+      "games": 500
+    },
+    "I0_incumbent": {
+      "teacher": 0.165,
+      "field": 0.2833333333333334,
+      "composite": 0.21825,
+      "abomasnow": 0.26,
+      "games": 500
+    },
+    "B0_v2a": {
+      "teacher": 0.16499999999999998,
+      "field": 0.24,
+      "composite": 0.19874999999999998,
+      "abomasnow": 0.19,
+      "games": 500
+    }
+  },
+  "ranking": [
+    "C_522_g20220",
+    "C_533_g19952",
+    "C_522_g7624",
+    "C_522_g10236",
+    "C_511_g20292",
+    "C_533_g15168",
+    "B_411_g7524",
+    "C_522_g2728",
+    "B_433_g7524",
+    "C_511_g5012",
+    "C_522_g5428",
+    "B_422_g2508",
+    "C_522_g15424",
+    "C_511_g15108",
+    "C_511_g2748",
+    "C_511_g7660",
+    "B_411_g2508",
+    "C_533_g5052",
+    "C_511_g10316",
+    "C_533_g2772",
+    "B_433_g2508",
+    "A_311_g10108",
+    "A_333_g5068",
+    "C_533_g10356",
+    "A_333_g12117",
+    "A_322_g12110",
+    "B_411_g5016",
+    "B_422_g7524",
+    "A_333_g10122",
+    "A_311_g12103",
+    "A_311_g7581",
+    "A_311_g5054",
+    "C_533_g7720",
+    "A_322_g2534",
+    "A_333_g7595",
+    "A_333_g2541",
+    "A_311_g2527",
+    "A_322_g5061",
+    "A_322_g10115",
+    "I0_incumbent",
+    "B0_v2a"
+  ]
+}

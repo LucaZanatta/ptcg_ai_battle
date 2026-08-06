@@ -1,0 +1,74 @@
+{
+  "exact_r1_recipe": {
+    "gamma": 0.997,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "value_coef": 0.5,
+    "entropy_coef_start": 0.01,
+    "entropy_coef_end": 0.002,
+    "entropy_schedule": "linear over budget",
+    "max_grad_norm": 0.5,
+    "epochs": 4,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 1e-05,
+    "rollout_game_target": 128,
+    "min_trainable_decisions": 8192,
+    "minibatch": 512,
+    "advantage_normalization": "per update",
+    "value_clipping": true,
+    "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+  },
+  "arm_A_vs_exact_r1": {
+    "differences": {},
+    "identical": true
+  },
+  "arm_B_vs_exact_r1": {
+    "differences": {},
+    "identical": true
+  },
+  "arm_C_vs_exact_r1": {
+    "differences": {
+      "learning_rate": {
+        "exact_r1": 0.0001,
+        "arm": 3e-05
+      },
+      "min_trainable_decisions": {
+        "exact_r1": 8192,
+        "arm": 32768
+      },
+      "rollout_game_target": {
+        "exact_r1": 128,
+        "arm": 256
+      }
+    },
+    "changed_keys": [
+      "learning_rate",
+      "min_trainable_decisions",
+      "rollout_game_target"
+    ],
+    "expected_changed_keys": [
+      "learning_rate",
+      "min_trainable_decisions",
+      "rollout_game_target"
+    ],
+    "changes_exactly_the_three_registered_values": true
+  },
+  "initializations": {
+    "A": "B0",
+    "B": "I0",
+    "C": "I0"
+  },
+  "population_identical_across_arms": true,
+  "prohibited_in_all_arms": [
+    "teacher behavioural-cloning replay",
+    "optimized KL loss",
+    "reward shaping",
+    "deck changes",
+    "architecture-family changes",
+    "random-initialized RL",
+    "search/MCTS",
+    "unregistered tuning",
+    "training on Mega Abomasnow"
+  ]
+}

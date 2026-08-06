@@ -1,0 +1,40 @@
+{
+  "B0": {
+    "candidate_id": "B0_v2a",
+    "role": "untouched supervised initialization",
+    "checkpoint_path": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_selected.npz",
+    "checkpoint_sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+    "kind": "rl_ckpt_from_v2a",
+    "training_games": 0,
+    "protected": true,
+    "c010_teacher_score": 0.16,
+    "c010_field_score": 0.15333333333333332,
+    "source": "c007 selected V2-A"
+  },
+  "I0": {
+    "candidate_id": "R1_101",
+    "role": "protected incumbent",
+    "checkpoint_path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed101/checkpoints/ckpt_g10040.npz",
+    "checkpoint_sha256": "b172b4dc79477821105043398bf04169ead884c0e01975ae2374de915072c682",
+    "kind": "rl_ckpt",
+    "training_games": 10040,
+    "protected": true,
+    "c010_teacher_score": 0.22,
+    "c010_field_score": 0.29,
+    "source": "c008 R1 seed 101 validation-selected checkpoint, resolved through c009"
+  },
+  "T": {
+    "candidate_id": "T_teacher",
+    "role": "frozen rule teacher (reference/opponent)",
+    "checkpoint_path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/frozen_teacher/main.py",
+    "checkpoint_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+    "kind": "frozen_teacher",
+    "protected": true
+  },
+  "_metric_definitions": {
+    "teacher_score": "balanced match-point rate vs T (win 1 / draw 0.5 / loss 0)",
+    "strategic_field_score": "average balanced score vs Mega Lucario, Iono, Mega Abomasnow (c010 \u00a717; the Dragapult mirror is NOT in the field)",
+    "promotion_composite": "0.55*teacher + 0.15*lucario + 0.15*iono + 0.15*abomasnow",
+    "note": "c010 \u00a71 and inputs quote the c009 field values (0.1525 / 0.2550), which averaged FOUR opponents including the mirror. Under c010 \u00a717's registered three-opponent metric the same c009 raw games give B0 0.1533 and I0 0.2900; c010 uses the \u00a717 values for every gate so the incumbent's bar is not silently lowered."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "base": "official_dragapult",
+  "rules": {
+    "finish_mode": true
+  },
+  "thresholds": {
+    "finish": {
+      "budget_ms": 900,
+      "max_op_prizes": 3,
+      "max_root_options": 8,
+      "max_turn_steps": 60,
+      "min_turn": 2,
+      "require_prizes_known": 0,
+      "worlds": 3
+    }
+  }
+}

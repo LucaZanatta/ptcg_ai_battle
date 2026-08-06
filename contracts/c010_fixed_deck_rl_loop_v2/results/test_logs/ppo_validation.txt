@@ -1,0 +1,15 @@
+c010 AC-04 PPO / environment validation
+=======================================================
+  toy PPO positive control : learned=True (P(optimal)->1.000)
+  GAE correctness          : ok=True (max err 0.00e+00)
+  legal masking exact      : True (max illegal prob 0.0)
+  act()==evaluate()        : True (max diff 8.88e-16, n=60)
+  checkpoint restore       : ok=True (max diff 0.00e+00)
+  ORDERED forms observed   : 0 (none in this deck)
+
+  initialization fidelity (protected baselines):
+    B0 init_from_v2a matches source            : True
+    B0 RLPolicy.load would lose weights silently: True
+    I0 RLPolicy.load matches source            : True
+
+ALL_PASS = True

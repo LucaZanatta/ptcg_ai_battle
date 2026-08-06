@@ -1,0 +1,30 @@
+{
+  "probe_id": "P07",
+  "name": "trajectory_integrity",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "trajectory_rows": 47086,
+    "feature_rows": 47086,
+    "rows_align_one_to_one": true,
+    "trusted_rows_in_npz": 42857,
+    "trusted_rows_in_jsonl": 42857,
+    "trusted_index_agrees": true,
+    "legal_mask_length_matches_options": true,
+    "label_within_range": true,
+    "every_trusted_row_has_successors": true,
+    "label_index_within_kmax": true,
+    "k_max": 32,
+    "rows_with_true_option_count_above_kmax": 3,
+    "rows_mislabeled_by_kmax_clipping": 0,
+    "multiselect_rows": 848,
+    "uses_c017_labels": false,
+    "trajectory_sha256": "6aa2580aa85806dbac8fa133489844fed936bb6501a6cdf59d63da34ce9bedf9"
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_trajectories.jsonl.gz"
+  ]
+}

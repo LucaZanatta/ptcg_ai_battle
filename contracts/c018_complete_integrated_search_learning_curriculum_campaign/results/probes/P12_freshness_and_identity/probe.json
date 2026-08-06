@@ -1,0 +1,25 @@
+{
+  "probe_id": "P12",
+  "name": "freshness_and_identity",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "lagged_snapshot_paths": 80,
+    "distinct_paths": 80,
+    "distinct_snapshot_hashes": 80,
+    "snapshots_never_overwritten": true,
+    "snapshot_contents_all_differ": true,
+    "curriculum_init_from": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled.pt",
+    "distill_checkpoint_after": "0903a0755e951c1eaca22807fa6caf25bd1379de82f5506118dfb84b468c7546",
+    "zero_game_blocks": 0,
+    "zero_game_blocks_marked_ineligible": true,
+    "panel_rows_self_identify": true,
+    "panel_identical_seeds_across_candidates": true
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/curriculum_report.json"
+  ]
+}

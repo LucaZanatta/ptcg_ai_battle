@@ -1,0 +1,121 @@
+{
+  "arm": "C",
+  "seed": 511,
+  "initialization": "R1_101",
+  "initialization_sha256": "b172b4dc79477821105043398bf04169ead884c0e01975ae2374de915072c682",
+  "games_done": 20292,
+  "budget": 19923,
+  "updates": 46,
+  "trainable_decisions": 1515154,
+  "stop_reason": "budget_reached",
+  "elapsed_seconds": 9608.7,
+  "games_per_hour": 7602.6,
+  "checkpoints": {
+    "2748": {
+      "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/ckpt_g2748.npz",
+      "sha256": "bac3b5160640a0f4f13b7ae0a8a097bd808bc46c5ca05fc9206878ce0a4bff45",
+      "training_games": 2748,
+      "registered_eval_point": 2500,
+      "arm": "C",
+      "seed": 511,
+      "updates": 6,
+      "parent": "R1_101"
+    },
+    "5012": {
+      "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/ckpt_g5012.npz",
+      "sha256": "1c4199ef5b5190f21102427bbd4372e34679654e235b3e34791c2399e83aacd3",
+      "training_games": 5012,
+      "registered_eval_point": 5000,
+      "arm": "C",
+      "seed": 511,
+      "updates": 11,
+      "parent": "2748"
+    },
+    "7660": {
+      "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/ckpt_g7660.npz",
+      "sha256": "aea2c3903fe4ac07dc1718251111d63c108da6a658e5721be623f81772915b5e",
+      "training_games": 7660,
+      "registered_eval_point": 7500,
+      "arm": "C",
+      "seed": 511,
+      "updates": 17,
+      "parent": "5012"
+    },
+    "10316": {
+      "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/ckpt_g10316.npz",
+      "sha256": "51c7457f9d04f5edf413d8a597d7c51d85938a58a527072a15787e8ea8f714b9",
+      "training_games": 10316,
+      "registered_eval_point": 10000,
+      "arm": "C",
+      "seed": 511,
+      "updates": 23,
+      "parent": "7660"
+    },
+    "15108": {
+      "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/ckpt_g15108.npz",
+      "sha256": "360f0734cde7649d3815204fa7700d5367f5cfd3916b6b491aec9e69a194e7e3",
+      "training_games": 15108,
+      "registered_eval_point": 15000,
+      "arm": "C",
+      "seed": 511,
+      "updates": 34,
+      "parent": "10316"
+    },
+    "20292": {
+      "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/ckpt_g20292.npz",
+      "sha256": "fab70f0265c3e6de976b6a2b176b422f94449ae2fb9222a6de8d59526d6691ed",
+      "training_games": 20292,
+      "registered_eval_point": 20000,
+      "arm": "C",
+      "seed": 511,
+      "updates": 46,
+      "parent": "15108"
+    }
+  },
+  "lagged_snapshots": [
+    "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/lagged_g5012.npz",
+    "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/lagged_g10316.npz",
+    "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed511/checkpoints/lagged_g15536.npz"
+  ],
+  "opponent_distribution": {
+    "__control__": 2008,
+    "dragapult": 7489,
+    "mega_lucario": 4353,
+    "iono": 4156,
+    "lagged::lagged_g5012.npz": 1411,
+    "lagged::lagged_g10316.npz": 644,
+    "lagged::lagged_g15536.npz": 231
+  },
+  "seat_distribution": {
+    "1": 10243,
+    "0": 10049
+  },
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "ordered_blocks": 0,
+    "fallbacks": 0,
+    "non_terminal": 0
+  },
+  "ppo_config": {
+    "gamma": 0.997,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "value_coef": 0.5,
+    "entropy_coef_start": 0.01,
+    "entropy_coef_end": 0.002,
+    "entropy_schedule": "linear over budget",
+    "max_grad_norm": 0.5,
+    "epochs": 4,
+    "optimizer": "AdamW",
+    "learning_rate": 3e-05,
+    "weight_decay": 1e-05,
+    "rollout_game_target": 256,
+    "min_trainable_decisions": 32768,
+    "minibatch": 512,
+    "advantage_normalization": "per update",
+    "value_clipping": true,
+    "rollout_rule": "continue collecting until BOTH the game target and the trainable-decision minimum are reached (c010 \u00a79); verified present in the c008 implementation"
+  }
+}

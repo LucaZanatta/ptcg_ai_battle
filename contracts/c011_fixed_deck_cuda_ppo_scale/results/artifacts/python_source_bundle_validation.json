@@ -1,0 +1,99 @@
+{
+  "all_ok": true,
+  "n_checks": 18,
+  "n_failed": 0,
+  "bundle": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/c011_python_source_bundle.zip",
+  "sha256": "a143335e3ffd795125cf3bdd61ef0bdec209df998bd5219c04733f8503ad6d00",
+  "checks": [
+    {
+      "check": "bundle_exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "archive_sha256_matches_recorded",
+      "ok": true,
+      "detail": "a143335e3ffd795125cf3bdd61ef0bdec209df998bd5219c04733f8503ad6d00"
+    },
+    {
+      "check": "archive_not_corrupt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "manifest_non_empty",
+      "ok": true,
+      "detail": "179"
+    },
+    {
+      "check": "every_manifest_hash_verifies_after_extraction",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_tracked_python_files_present",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_executed_entrypoints_present",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_c011_tests_present",
+      "ok": true,
+      "detail": "0 tests"
+    },
+    {
+      "check": "no_forbidden_secret_filenames",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no_excluded_artifacts",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no_checkpoints_or_datasets",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "contains_environment_pip_freeze.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_environment_machine.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_git_c011.patch",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_inventory_import_graph.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_inventory_entrypoints.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_inventory_manifest.csv",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_contract_CONTRACT.md",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "probe_id": "P30",
+  "pass": "A",
+  "purpose": "execute every interface with small real outputs before scaling, so interface defects surface while they are still cheap",
+  "stages": [
+    {
+      "stage": "official search root",
+      "real_output": true,
+      "evidence": "233 real search_begin roots"
+    },
+    {
+      "stage": "multi-step successor trace",
+      "real_output": true,
+      "evidence": "3274 search_step calls, depth 4, 1858 distinct successors"
+    },
+    {
+      "stage": "real search trajectory",
+      "real_output": true,
+      "evidence": "233 trusted decisions in contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/vertical_trajectories.jsonl.gz"
+    },
+    {
+      "stage": "supervised optimizer step",
+      "real_output": true,
+      "evidence": "2 steps on cuda, checkpoint hash changed: True"
+    },
+    {
+      "stage": "actual PPO game and optimizer step",
+      "real_output": true,
+      "evidence": "200 real games, 88 optimizer steps, 3 distinct hashes"
+    },
+    {
+      "stage": "guided-search inference",
+      "real_output": true,
+      "evidence": "guided p90 8.02 ms vs unguided 3.31 ms; 258 shared roots compared"
+    },
+    {
+      "stage": "evaluator",
+      "real_output": true,
+      "evidence": "16/16 panel games scored from raw identity-carrying rows"
+    },
+    {
+      "stage": "package smoke",
+      "real_output": true,
+      "evidence": "4/4 games from a clean extraction with the repo off sys.path"
+    }
+  ],
+  "defects": [
+    "search_begin rejected under-length hidden-card predictions (2 begin + 49 step errors); the determinizer now tops short pools up with a legal card id and predicts a Pokemon for a face-down opponent Active",
+    "kaggle_environments errors out the seat when handed the official teacher callable directly, which silently scored the baseline panel candidate 0 for 0",
+    "clean-extraction validation could not import cg.teachers for its opponents, because the package's own cg correctly shadows the repo's; opponents now load by file path",
+    "NpzFile decompresses on every key access, so reading opt_dense inside a 12k-row generator made P07 spin for five minutes",
+    "the evidence validator returned PASS with every training milestone absent -- absence is now a critical failure in --final mode rather than a free pass"
+  ],
+  "all_stages_real": true,
+  "logs": [
+    {
+      "tag": "search+trajectory",
+      "cmd": "tools/c018_trajectories.py --games 6 --prefix vertical",
+      "returncode": 0,
+      "seconds": 4.4,
+      "stdout_tail": "envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.\n{\n  \"games\": 6,\n  \"decisions\": 265,\n  \"trusted_decisions\": 233,\n  \"trusted_fraction\": 0.8792,\n  \"games_completed\": 6,\n  \"invalid_actions\": 0,\n  \"split_counts\": {\n    \"train\": 153,\n    \"validation\": 41,\n    \"test\": 71\n  }\n}\n{\n  \"decisions\": 265,\n  \"searched\": 233,\n  \"begin_calls\": 233,\n  \"begin_ok\": 233,\n  \"begin_errors\": 0,\n  \"step_calls\": 3307,\n  \"step_ok\": 3274,\n  \"step_errors\": 33,\n  \"release_calls\": 3507,\n  \"release_errors\": 0,\n  \"end_calls\": 233,\n  \"end_errors\": 0,\n  \"nodes\": 3274,\n  \"max_depth_reached\": 4,\n  \"distinct_successors\": 1858,\n  \"baseline_retained\": 170,\n  \"changed_action\": 63,\n  \"fallbacks\": 32,\n  \"match_ms\": 186.91,\n  \"hidden_information_violations\": 0\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "tag": "distill",
+      "cmd": "tools/c018_distill.py --prefix vertical --epochs 2 --tag vertical_distill",
+      "returncode": 0,
+      "seconds": 2.5,
+      "stdout_tail": "[c018 distill] ep=0 steps=1 train_p=1.6903 val_top1=0.4118 f761c4ce1e\n[c018 distill] ep=1 steps=2 train_p=1.6898 val_top1=0.2941 cf12212490\n{\n  \"device\": \"cuda\",\n  \"optimizer_steps\": 2,\n  \"losses_finite\": true,\n  \"checkpoint_changed\": true,\n  \"distinct_epoch_hashes\": 3,\n  \"reload_metrics_identical\": true,\n  \"rows_trusted\": 233,\n  \"held_out_test\": {\n    \"n\": 66,\n    \"policy_loss\": 1.815134,\n    \"value_mse\": 0.000174,\n    \"top1_agreement\": 0.1818,\n    \"legal_prediction_rate\": 1.0\n  }\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "tag": "curriculum",
+      "cmd": "tools/c018_curriculum.py --init /home/luca/kaggle/ptcg_ai_battle/contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/vertical_distill.pt --blocks 2 --games-per-block 100 --nproc 8 --tag vertical_curric --self-play-schedule 0,0.3",
+      "returncode": 0,
+      "seconds": 18.3,
+      "stdout_tail": "n_spiel_oshi_zumo\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_othello\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_game\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_ultimate_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.\n[c018 curric] block 1 self_play=0.3 games=100 completed=100 dec=3306 steps=88 wr=0.16 moved=True 1a4a18faa7\n{\n  \"actual_simulator_games\": 200,\n  \"games_completed\": 200,\n  \"optimizer_steps\": 88,\n  \"losses_finite\": true,\n  \"distinct_checkpoint_hashes\": 3,\n  \"wall_clock_s\": 16.4\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "tag": "guided",
+      "cmd": "tools/c018_diagnostics.py --policy /home/luca/kaggle/ptcg_ai_battle/contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/vertical_curric.npz --games 4 --out-prefix vertical_",
+      "returncode": 0,
+      "seconds": 10.5,
+      "stdout_tail": "iel_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_ultimate_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.\n{\n  \"latency\": {\n    \"unguided\": {\n      \"n\": 213,\n      \"p50\": 2.29,\n      \"p90\": 3.31,\n      \"p99\": 4.59,\n      \"max\": 8.99,\n      \"mean\": 2.31,\n      \"searched\": 213,\n      \"decisions\": 240\n    },\n    \"guided\": {\n      \"n\": 226,\n      \"p50\": 5.63,\n      \"p90\": 8.02,\n      \"p99\": 10.0,\n      \"max\": 13.52,\n      \"mean\": 5.79,\n      \"searched\": 226,\n      \"decisions\": 253\n    }\n  },\n  \"guidance\": {\n    \"roots\": 258,\n    \"order_changed\": 203,\n    \"action_changed\": 95,\n    \"action_change_rate\": 0.3682,\n    \"leaf_rank_correlation\": null\n  }\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "tag": "panel",
+      "cmd": "tools/c018_panel.py --games-per-pair 2 --nproc 8 --candidates official_mega_lucario,m01_heuristic_search --out-prefix vertical_",
+      "returncode": 0,
+      "seconds": 2.9,
+      "stdout_tail": "l_env] INFO:    open_spiel_universal_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.\n{\n  \"probe_id\": \"P17\",\n  \"candidates\": [\n    \"official_mega_lucario\",\n    \"m01_heuristic_search\"\n  ],\n  \"opponents\": [\n    \"dragapult\",\n    \"iono\",\n    \"mega_abomasnow\",\n    \"mega_lucario\"\n  ],\n  \"games_per_pair\": 2,\n  \"planned_games\": 16,\n  \"played_games\": 16,\n  \"scored_games\": 16,\n  \"incomplete_games\": 0,\n  \"seed_base\": 1805,\n  \"identical_seeds_and_seats_across_candidates\": true,\n  \"raw_file\": \"final_panel/vertical_raw_games.jsonl.gz\",\n  \"raw_sha256\": \"972739d5b73a7f698f1d7a5ef9bc5ebe0f31b482cf865356c638e0f3cf1ffa55\",\n  \"freeze_file\": \"final_panel/vertical_panel_freeze.json\",\n  \"wall_clock_s\": 2.8,\n  \"ranking_rule\": \"overall_rate desc, then worst_matchup_rate desc (pre-registered)\"\n}\n  official_mega_lucario      n=   8 overall=0.5 ci=[0.2152, 0.7848] worst=dragapult@0.0\n  m01_heuristic_search       n=   8 overall=0.25 ci=[0.0715, 0.5907] worst=dragapult@0.0\n",
+      "stderr_tail": ""
+    },
+    {
+      "tag": "package",
+      "cmd": "tools/c018_package.py --name vertical_package_smoke --games 4",
+      "returncode": 0,
+      "seconds": 4.1,
+      "stdout_tail": "{\n  \"name\": \"vertical_package_smoke\",\n  \"sha256\": \"e2ecdc0187bfcd024278205eb15810b338e1a20fbaf536da3d0c60e4e16d75e9\",\n  \"bytes\": 505266,\n  \"n_members\": 12,\n  \"guided\": false\n}\n{\n  \"import_ok\": true,\n  \"games_played\": 4,\n  \"games_completed\": 4,\n  \"completion_rate\": 1.0,\n  \"win_rate\": 0.25,\n  \"max_game_seconds\": 0.61,\n  \"packaged_decisions\": 324,\n  \"packaged_searched\": 297,\n  \"packaged_search_rate\": 0.9167,\n  \"packaged_search_step_ok\": 4233,\n  \"packaged_changed_action\": 75,\n  \"search_actually_ran_in_package\": true,\n  \"clean_extraction_ok\": true,\n  \"errors\": []\n}\n",
+      "stderr_tail": ""
+    }
+  ],
+  "wall_clock_s": 42.7
+}

@@ -1,0 +1,20 @@
+{
+  "CLAUDE_TEACHER_STATUS": "REJECTED",
+  "requested_model": "opus",
+  "resolved_model": "claude-opus-5",
+  "schema_valid_rate": 0.92,
+  "legal_action_rate": 1.0,
+  "hidden_information_violations": 0,
+  "model_verified_rate": 1.0,
+  "repeat_top1_agreement": 1.0,
+  "repeat_top3_overlap": 0.9615384615384616,
+  "branching": "INCONCLUSIVE",
+  "n_primary_labels": 17,
+  "n_repeat_labels": 13,
+  "n_call_failures": 0,
+  "call_failure_rate": 0.0,
+  "measurement_note": "Rates are over ALL labels (primary and repeat) that RETURNED a response. Subprocess timeouts are reported separately as call failures -- an infrastructure property, not model behaviour. Applying the criteria to the primary pass alone would have excluded the pass containing the violations.",
+  "total_cost_usd": 4.54,
+  "labels_used_for_training": false,
+  "rule": "\u00a742 \u2014 QUALIFIED_* requires valid branching AND objective superiority. With branching INVALID the ceiling is PROMISING_UNVALIDATED regardless of how good the labels look; agreement and rationale quality are explicitly not evidence of teacher quality (\u00a75)."
+}

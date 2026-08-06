@@ -1,0 +1,41 @@
+{
+  "archive": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/submission_A_teacher.tar.gz",
+  "size_bytes": 500422,
+  "size_limit_bytes": 104857600,
+  "checks": {
+    "size_under_limit": true,
+    "has_main": true,
+    "has_deck": true,
+    "has_cg": true,
+    "no_secrets": true,
+    "no_training_data": true,
+    "clean_extraction": true,
+    "smoke_20_games": true,
+    "smoke_zero_invalid": true,
+    "smoke_all_terminal": true
+  },
+  "smoke": {
+    "games": 20,
+    "invalid_selections": 0,
+    "non_terminal_games": 0,
+    "p99_latency_ms": 0.33,
+    "max_latency_ms": 88.26265,
+    "opponents": [
+      "iono",
+      "mega_abomasnow",
+      "mega_lucario"
+    ]
+  },
+  "archive_paths": [
+    "cg",
+    "cg/__init__.py",
+    "cg/api.py",
+    "cg/game.py",
+    "cg/libcg.so",
+    "cg/sim.py",
+    "cg/utils.py",
+    "deck.csv",
+    "main.py"
+  ],
+  "all_checks_pass": true
+}

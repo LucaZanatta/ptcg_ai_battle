@@ -1,0 +1,65 @@
+{
+  "2772": {
+    "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/checkpoints/ckpt_g2772.npz",
+    "sha256": "a7bb8d58c30ff4e5e4c6e2ee5a1f2c73e60c7ca424bb40126667310c3b0b9221",
+    "training_games": 2772,
+    "registered_eval_point": 2500,
+    "arm": "C",
+    "seed": 533,
+    "updates": 6,
+    "parent": "R1_101"
+  },
+  "5052": {
+    "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/checkpoints/ckpt_g5052.npz",
+    "sha256": "53ace669d4d0958bee901af0ba1b5431f40676de298f9745de6c5f95eef2244a",
+    "training_games": 5052,
+    "registered_eval_point": 5000,
+    "arm": "C",
+    "seed": 533,
+    "updates": 11,
+    "parent": "2772"
+  },
+  "7720": {
+    "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/checkpoints/ckpt_g7720.npz",
+    "sha256": "a00b39eefe2a021fdef306d794623a76e880dbcd725eb1cbea9f0b6eb10a7dfe",
+    "training_games": 7720,
+    "registered_eval_point": 7500,
+    "arm": "C",
+    "seed": 533,
+    "updates": 17,
+    "parent": "5052"
+  },
+  "10356": {
+    "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/checkpoints/ckpt_g10356.npz",
+    "sha256": "bbb2cd36293fea04f6cfb2170f3f1aebf1cf358daea0070121f2e5860864adb4",
+    "training_games": 10356,
+    "registered_eval_point": 10000,
+    "arm": "C",
+    "seed": 533,
+    "updates": 23,
+    "parent": "7720"
+  },
+  "15168": {
+    "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/checkpoints/ckpt_g15168.npz",
+    "sha256": "3f6f9270611356ffa1261619eb47e0bb04ed1df24f40db1a2ee4defef232e827",
+    "training_games": 15168,
+    "registered_eval_point": 15000,
+    "arm": "C",
+    "seed": 533,
+    "updates": 34,
+    "parent": "10356"
+  },
+  "19952": {
+    "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed533/checkpoints/ckpt_g19952_terminal.npz",
+    "sha256": "cb3704625a4003b4ac3dda79c9569b4e91701177755e1a721951abd465c5c9af",
+    "training_games": 19952,
+    "registered_eval_point": null,
+    "terminal_below_registered_point": true,
+    "unreached_registered_point": 20000,
+    "nearest_registered_point_reached": 15000,
+    "arm": "C",
+    "seed": 533,
+    "updates": 45,
+    "parent": "15168"
+  }
+}

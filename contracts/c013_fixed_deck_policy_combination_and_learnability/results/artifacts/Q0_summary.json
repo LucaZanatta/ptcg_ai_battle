@@ -1,0 +1,129 @@
+{
+  "arm": "Q0",
+  "seed": 901,
+  "initialization": "C012_SOUP_622_633",
+  "initialization_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+  "resume_report": null,
+  "continuation_kind": "fresh_optimizer",
+  "completed_games": 12016,
+  "games_with_trainable_decisions": 12016,
+  "trainable_decisions": 934211,
+  "updates": 28,
+  "stop_reason": "budget_reached",
+  "value_refit": null,
+  "value_refit_games": 0,
+  "elapsed_seconds": 1130.3,
+  "completed_games_per_hour": 38271.9,
+  "checkpoints": {
+    "5184": {
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/ckpt_g5184.npz",
+      "sha256": "ebf5f311bfa698c8d862cb185df50e9890370ad32938831fbfc7f74a6f876c63",
+      "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/trainer_g5184.pt",
+      "trainer_state_sha256": "7f615d71c8c981f4adfa1c1b66c8dbab1a99057071f0aab4835b5d698a62b85a",
+      "trainer_state_id": "Q0901-u12-ebf5f311bfa6",
+      "training_games": 5184,
+      "registered_eval_point": 5000,
+      "arm": "Q0",
+      "seed": 901,
+      "updates": 12,
+      "inrun_eval": {
+        "teacher": 0.425,
+        "field": 0.3333333333333333
+      }
+    },
+    "10320": {
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/ckpt_g10320.npz",
+      "sha256": "a6eb5714fedc953facd44163e38edf798223600575486ea866d509139297759d",
+      "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/trainer_g10320.pt",
+      "trainer_state_sha256": "4abee7ae03f2e7730dbfdc3ec965aee0f56e5eefe429f2a0a05b32dc709aab43",
+      "trainer_state_id": "Q0901-u24-a6eb5714fedc",
+      "training_games": 10320,
+      "registered_eval_point": 10000,
+      "arm": "Q0",
+      "seed": 901,
+      "updates": 24,
+      "inrun_eval": {
+        "teacher": 0.42500000000000004,
+        "field": 0.43333333333333335
+      }
+    }
+  },
+  "n_inrun_evaluations": 3,
+  "inrun_evaluations": [
+    {
+      "per_opponent": {
+        "dragapult": 0.275,
+        "mega_lucario": 0.6,
+        "iono": 0.4,
+        "mega_abomasnow": 0.30000000000000004
+      },
+      "teacher": 0.275,
+      "field": 0.43333333333333335,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "aca68b939b105a5261fcd107915d5b9cc76093898e978fec012fa69b6395ef5b",
+      "arm": "Q0",
+      "seed": 901,
+      "registered_point": 0,
+      "completed_games": 0,
+      "updates": 0,
+      "trainer_state_id": "Q0901-u0-aca68b939b10"
+    },
+    {
+      "per_opponent": {
+        "dragapult": 0.425,
+        "mega_lucario": 0.4,
+        "iono": 0.4,
+        "mega_abomasnow": 0.2
+      },
+      "teacher": 0.425,
+      "field": 0.3333333333333333,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "ebf5f311bfa698c8d862cb185df50e9890370ad32938831fbfc7f74a6f876c63",
+      "arm": "Q0",
+      "seed": 901,
+      "registered_point": 5000,
+      "completed_games": 5184,
+      "updates": 12,
+      "trainer_state_id": "Q0901-u12-ebf5f311bfa6"
+    },
+    {
+      "per_opponent": {
+        "dragapult": 0.42500000000000004,
+        "mega_lucario": 0.45,
+        "iono": 0.55,
+        "mega_abomasnow": 0.3
+      },
+      "teacher": 0.42500000000000004,
+      "field": 0.43333333333333335,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "a6eb5714fedc953facd44163e38edf798223600575486ea866d509139297759d",
+      "arm": "Q0",
+      "seed": 901,
+      "registered_point": 10000,
+      "completed_games": 10320,
+      "updates": 24,
+      "trainer_state_id": "Q0901-u24-a6eb5714fedc"
+    }
+  ],
+  "opponent_distribution": {
+    "mega_lucario": 2629,
+    "dragapult": 4460,
+    "iono": 2685,
+    "__control__": 1192,
+    "lagged::lagged_g5184.npz": 920,
+    "lagged::lagged_g10320.npz": 130
+  },
+  "seat_distribution": {
+    "1": 6083,
+    "0": 5933
+  },
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "fallbacks": 0
+  }
+}

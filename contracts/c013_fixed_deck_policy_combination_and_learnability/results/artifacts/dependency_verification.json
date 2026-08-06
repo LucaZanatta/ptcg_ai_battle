@@ -1,0 +1,126 @@
+{
+  "contract": "c013",
+  "all_ok": false,
+  "n_checks": 18,
+  "n_failed": 1,
+  "frozen_deck_fingerprint": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a",
+  "teacher_source_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "machine": {
+    "os": "Ubuntu 24.04.4 LTS",
+    "python": "3.13.13",
+    "cpu": "AMD Ryzen 9 7900X 12-Core Processor",
+    "cpu_threads": 24,
+    "ram_gib": 62.0,
+    "ram_available_gib": 36.1,
+    "disk_free_gib": 199.6,
+    "torch": "2.13.0+cu132",
+    "torch_cuda": "13.2",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 5070",
+    "vram_total_mib": 11752,
+    "vram_free_mib": 7486,
+    "driver": "595.71.05"
+  },
+  "final_commits": {
+    "c005_teacher_import_submission_and_dataset": null,
+    "c006_distilled_policy_baseline": null,
+    "c007_hybrid_teacher_residual_and_state_encoder_v2": null,
+    "c008_fixed_deck_teacher_anchored_rl": null,
+    "c009_amendment_c008": null,
+    "c010_fixed_deck_rl_loop_v2": null,
+    "c011_fixed_deck_cuda_ppo_scale": null,
+    "c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification": "2c3137bc75dc1b61ced65a6271528f63bdd47cd2"
+  },
+  "checks": [
+    {
+      "check": "frozen_deck_fingerprint_matches",
+      "ok": true,
+      "detail": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a"
+    },
+    {
+      "check": "deck_is_60_cards",
+      "ok": true,
+      "detail": "60"
+    },
+    {
+      "check": "frozen_teacher_hash_matches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "every_required_candidate_resolved_and_present",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_contract_required_candidates_registered",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "historical_incumbents_registered",
+      "ok": true,
+      "detail": "['C010_INCUMBENT', 'C008_I0']"
+    },
+    {
+      "check": "c012_final_panel_reproduces_from_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "c005_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c006_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c007_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c008_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c009_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c010_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c011_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c012_status_pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "cuda_available",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "disk_free_ge_100gib",
+      "ok": true,
+      "detail": "199.6"
+    },
+    {
+      "check": "vram_free_ge_8gib",
+      "ok": false,
+      "detail": "7486"
+    }
+  ]
+}

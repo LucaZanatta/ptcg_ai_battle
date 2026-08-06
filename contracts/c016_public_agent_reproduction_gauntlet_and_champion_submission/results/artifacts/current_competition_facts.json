@@ -1,0 +1,100 @@
+{
+  "accessed_utc": "2026-07-26T17:06:36.216691+00:00",
+  "accessed_europe_rome": "2026-07-26T19:06:36.216691+02:00",
+  "competition_slug": {
+    "value": "pokemon-tcg-ai-battle",
+    "evidence": "OFFICIAL_CURRENT",
+    "source": "kaggle competitions list -s pokemon-tcg -v"
+  },
+  "category": {
+    "value": "Featured",
+    "evidence": "OFFICIAL_CURRENT"
+  },
+  "deadline": {
+    "value": {
+      "utc": "2026-08-16T23:59:00+00:00",
+      "jst": "2026-08-17T08:59:00+09:00",
+      "europe_rome": "2026-08-17T01:59:00+02:00"
+    },
+    "evidence": "OFFICIAL_CURRENT",
+    "source": "kaggle competitions list"
+  },
+  "team_submissions": {
+    "value": [
+      {
+        "ref": "55005237",
+        "fileName": "submission_I_anti_meta_v0.tar.gz",
+        "date": "2026-07-26 15:46:39.270000",
+        "description": "c015 anti-meta-v0 iono-bellibolt vs archaludon 15d9e69",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "399.5",
+        "privateScore": ""
+      },
+      {
+        "ref": "55004756",
+        "fileName": "submission_H_public_meta_v0.tar.gz",
+        "date": "2026-07-26 15:21:04.127000",
+        "description": "c014 public-meta-v0 archaludon-cinderace 95c67e4",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "502.7",
+        "privateScore": ""
+      },
+      {
+        "ref": "54948560",
+        "fileName": "submission_A_teacher.tar.gz",
+        "date": "2026-07-24 10:04:26.770000",
+        "description": "c005 Submission A: frozen teacher dragapult",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "719.7",
+        "privateScore": ""
+      },
+      {
+        "ref": "54948476",
+        "fileName": "submission_A_teacher.tar.gz",
+        "date": "2026-07-24 09:59:24.377000",
+        "description": "c005 Submission A: frozen teacher dragapult",
+        "status": "SubmissionStatus.COMPLETE",
+        "publicScore": "711.0",
+        "privateScore": ""
+      }
+    ],
+    "evidence": "OFFICIAL_CURRENT",
+    "source": "kaggle competitions submissions pokemon-tcg-ai-battle -v",
+    "note": "public score is a LIVE ladder rating; each row is a timestamped reading, not a final result"
+  },
+  "leaderboard_top_range": {
+    "value": {
+      "top": 1215.5,
+      "tenth": 1128.3,
+      "n_rows_seen": 20
+    },
+    "evidence": "OFFICIAL_CURRENT",
+    "source": "kaggle competitions leaderboard pokemon-tcg-ai-battle -s --csv"
+  },
+  "runtime_limits": {
+    "value": {
+      "episodeSteps": 10000,
+      "actTimeout": 0,
+      "runTimeout": 3000
+    },
+    "evidence": "OFFICIAL_CURRENT",
+    "source": "kaggle_environments cabt specification, read locally"
+  },
+  "submission_limit": {
+    "value": null,
+    "evidence": "UNVERIFIED",
+    "reason": "the rules page is client-rendered; an unauthenticated fetch returns only the document title. Not substituted from any earlier contract.",
+    "mitigation": "c016 makes at most one strategic upload (\u00a77)"
+  },
+  "file_size_limit": {
+    "value": null,
+    "evidence": "UNVERIFIED",
+    "reason": "same client-rendered rules page",
+    "mitigation": "the c005 package of identical shape (~0.5 MB) was accepted and scored, so the built archive is known to be within whatever limit applies"
+  },
+  "package_requirements": {
+    "value": "tar.gz with main.py and deck.csv at the archive root, unpacked at /kaggle_simulations/agent/",
+    "evidence": "PUBLIC_REPRODUCIBLE",
+    "source": "c005 submission_A_teacher.tar.gz \u2014 accepted and scored, ref 54948560"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "n_games": 10,
+  "n_decisions": 717,
+  "checkpoint": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed522/checkpoints/ckpt_g20220.npz",
+  "tolerances": {
+    "loss": 0.0001,
+    "cosine": 0.999
+  },
+  "determinism": {
+    "torch_threads": 1,
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true
+  },
+  "legacy": {
+    "n_decisions": 717,
+    "skipped": false,
+    "policy_loss": -0.011906767797686941,
+    "value_loss": 0.045135731823758414,
+    "entropy": 0.3980194302133056,
+    "approx_kl": 0.0016915967485570114,
+    "clip_frac": 0.022129065040650406,
+    "grad_norm": 1.084088631251074,
+    "explained_variance": 0.5071109495332264,
+    "return_mean": -0.4241199892428765,
+    "advantage_mean": -0.1466377228868638,
+    "replay_loss": 0.0,
+    "ref_kl": 0.0
+  },
+  "dtypes": {
+    "float64": {
+      "torch": {
+        "policy_loss": -0.011906767797686938,
+        "value_loss": 0.045135731823758435,
+        "entropy": 0.39801943021330577,
+        "approx_kl": 0.001691596748557004,
+        "clip_frac": 0.022129065040650406,
+        "grad_norm": 1.0840886312510751,
+        "explained_variance": 0.5071109495332269,
+        "n_decisions": 717
+      },
+      "abs_errors": {
+        "policy_loss": 3.469446951953614e-18,
+        "value_loss": 2.0816681711721685e-17,
+        "entropy": 1.6653345369377348e-16,
+        "approx_kl": 7.37257477290143e-18,
+        "clip_frac": 0.0
+      },
+      "min_update_cosine": 0.9999999999999996,
+      "min_cosine_tensor": "trunk::sem_b",
+      "n_tensors_compared": 32,
+      "checks": {
+        "policy_loss_within_1e-4": true,
+        "value_loss_within_1e-4": true,
+        "entropy_within_1e-4": true,
+        "approx_kl_within_1e-4": true,
+        "clip_fraction_within_1e-4": true,
+        "every_tensor_update_cosine_ge_0.999": true,
+        "no_nan_or_inf": true,
+        "same_decision_count": true
+      },
+      "all_pass": true
+    },
+    "float32": {
+      "torch": {
+        "policy_loss": -0.01190676415959994,
+        "value_loss": 0.04513574050118526,
+        "entropy": 0.3980194429556529,
+        "approx_kl": 0.0016915931339583504,
+        "clip_frac": 0.022129065040650406,
+        "grad_norm": 1.0840889314810436,
+        "explained_variance": 0.507110966686712,
+        "n_decisions": 717
+      },
+      "abs_errors": {
+        "policy_loss": 3.6380870017949096e-09,
+        "value_loss": 8.677426846515068e-09,
+        "entropy": 1.2742347288430267e-08,
+        "approx_kl": 3.614598660965293e-09,
+        "clip_frac": 0.0
+      },
+      "min_update_cosine": 0.9999998394682647,
+      "min_cosine_tensor": "trunk::score",
+      "n_tensors_compared": 32,
+      "checks": {
+        "policy_loss_within_1e-4": true,
+        "value_loss_within_1e-4": true,
+        "entropy_within_1e-4": true,
+        "approx_kl_within_1e-4": true,
+        "clip_fraction_within_1e-4": true,
+        "every_tensor_update_cosine_ge_0.999": true,
+        "no_nan_or_inf": true,
+        "same_decision_count": true
+      },
+      "all_pass": true
+    }
+  },
+  "parity_verdict": "PASS"
+}

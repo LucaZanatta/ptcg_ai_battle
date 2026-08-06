@@ -1,0 +1,27 @@
+{
+  "probe_id": "P04",
+  "name": "legality_and_fallback",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "invalid_actions_played": 0,
+    "games_completed": 900,
+    "games": 900,
+    "baseline_retained": 31105,
+    "changed_action": 11752,
+    "fallbacks": 4229,
+    "fallback_rate": 0.0898,
+    "fallback_reasons": {
+      "forced_or_match_budget": 4229
+    },
+    "label_in_option_range": true,
+    "baseline_always_a_candidate": true
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/scaled2_search_summary.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_trajectories.jsonl.gz"
+  ]
+}

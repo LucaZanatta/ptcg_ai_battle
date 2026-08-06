@@ -1,0 +1,148 @@
+{
+  "stages": [
+    {
+      "stage": "BASELINE_OFFICIAL_LUCARIO",
+      "candidate_id": "official_mega_lucario",
+      "description": "the official sample agent, byte-identical; the incumbent anchor",
+      "produced": true,
+      "checkpoint": null,
+      "checkpoint_sha256": null,
+      "panel_result": {
+        "games": 400,
+        "overall_rate": 0.58,
+        "overall_ci": [
+          0.5311,
+          0.6274
+        ],
+        "worst_matchup": "mega_abomasnow",
+        "worst_matchup_rate": 0.47
+      },
+      "package": null,
+      "package_sha256": null,
+      "clean_extraction_ok": null,
+      "submittable": false,
+      "status": "NON_SUBMITTABLE",
+      "reason": "no clean-validated inference-only package exists for this stage; it is evaluated and archived but cannot be uploaded"
+    },
+    {
+      "stage": "SEARCH_HEURISTIC_REAL",
+      "candidate_id": "m01_heuristic_search",
+      "description": "baseline under real official-API forward search with the heuristic leaf evaluator",
+      "produced": true,
+      "checkpoint": null,
+      "checkpoint_sha256": null,
+      "panel_result": {
+        "games": 400,
+        "overall_rate": 0.21,
+        "overall_ci": [
+          0.1729,
+          0.2526
+        ],
+        "worst_matchup": "dragapult",
+        "worst_matchup_rate": 0.14
+      },
+      "package": "submission_K_official_search_v0",
+      "package_sha256": "4d17ab86d8e820077b6370bab845fe031cb2fb9171f3408adf6db7a0936178a9",
+      "clean_extraction_ok": true,
+      "submittable": true,
+      "status": "SUBMITTABLE"
+    },
+    {
+      "stage": "POLICY_DISTILLED_REAL_SEARCH",
+      "candidate_id": "m02_distilled_policy",
+      "description": "the search-distilled policy playing directly; isolates what distillation alone bought",
+      "produced": true,
+      "checkpoint": "m02_distilled.npz",
+      "checkpoint_sha256": "2e309fe67ddcc1012873c734b5d0c4a2e3cb20ede10205ac75a65aea9d3857c2",
+      "panel_result": {
+        "games": 400,
+        "overall_rate": 0.175,
+        "overall_ci": [
+          0.1409,
+          0.2153
+        ],
+        "worst_matchup": "dragapult",
+        "worst_matchup_rate": 0.12
+      },
+      "package": null,
+      "package_sha256": null,
+      "clean_extraction_ok": null,
+      "submittable": false,
+      "status": "NON_SUBMITTABLE",
+      "reason": "no clean-validated inference-only package exists for this stage; it is evaluated and archived but cannot be uploaded"
+    },
+    {
+      "stage": "POLICY_CURRICULUM_BEST",
+      "candidate_id": "m03_curriculum_policy",
+      "description": "the PPO curriculum policy playing directly, via the same RLAgent the curriculum trained",
+      "produced": true,
+      "checkpoint": "m03_curriculum.npz",
+      "checkpoint_sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08",
+      "panel_result": {
+        "games": 400,
+        "overall_rate": 0.2475,
+        "overall_ci": [
+          0.2077,
+          0.2921
+        ],
+        "worst_matchup": "mega_abomasnow",
+        "worst_matchup_rate": 0.16
+      },
+      "package": "submission_M_trained_policy_v0",
+      "package_sha256": "e0ce129c94df88a9f2a66ffb254a9f0d6c91f5537274e3b4af6b79fe5aae3e41",
+      "clean_extraction_ok": true,
+      "submittable": true,
+      "status": "SUBMITTABLE"
+    },
+    {
+      "stage": "SEARCH_POLICY_ORDERED_REAL",
+      "candidate_id": "m04_guided_ordering_only",
+      "description": "real search with learned candidate ordering and the HEURISTIC leaf evaluator",
+      "produced": true,
+      "checkpoint": "m03_curriculum.npz",
+      "checkpoint_sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08",
+      "panel_result": {
+        "games": 400,
+        "overall_rate": 0.2125,
+        "overall_ci": [
+          0.1752,
+          0.2552
+        ],
+        "worst_matchup": "dragapult",
+        "worst_matchup_rate": 0.12
+      },
+      "package": null,
+      "package_sha256": null,
+      "clean_extraction_ok": null,
+      "submittable": false,
+      "status": "NON_SUBMITTABLE",
+      "reason": "no clean-validated inference-only package exists for this stage; it is evaluated and archived but cannot be uploaded"
+    },
+    {
+      "stage": "SEARCH_POLICY_VALUE_GUIDED_REAL",
+      "candidate_id": "m04_guided_search",
+      "description": "real search with learned ordering AND learned leaf values",
+      "produced": true,
+      "checkpoint": "m03_curriculum.npz",
+      "checkpoint_sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08",
+      "panel_result": {
+        "games": 400,
+        "overall_rate": 0.215,
+        "overall_ci": [
+          0.1776,
+          0.2579
+        ],
+        "worst_matchup": "mega_abomasnow",
+        "worst_matchup_rate": 0.15
+      },
+      "package": "submission_L_guided_search_v0",
+      "package_sha256": "e87320a8441986749467a8f185e298aace4f2db0e38314508a06cd4051818365",
+      "clean_extraction_ok": true,
+      "submittable": true,
+      "status": "SUBMITTABLE"
+    }
+  ],
+  "produced": 6,
+  "submittable": 3,
+  "total": 6
+}

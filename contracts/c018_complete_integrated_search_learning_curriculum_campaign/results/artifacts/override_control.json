@@ -1,0 +1,46 @@
+{
+  "question": "why did a search that never prunes the baseline lose 37 points to that baseline?",
+  "design_under_test": "m01_heuristic_search calls the official agent for a baseline action every decision, keeps it as candidate 0, and plays whichever candidate the real successors score highest. It overrode the baseline on about 26% of decisions.",
+  "hypotheses": {
+    "H1": "the search chooses worse actions than the baseline",
+    "H2": "overriding a STATEFUL scripted agent corrupts its later recommendations"
+  },
+  "control": {
+    "never_override": {
+      "games": 240,
+      "win_rate": 0.5958,
+      "decisions": 15549,
+      "overridden": 0,
+      "override_rate": 0.0
+    },
+    "random_override_26pct": {
+      "games": 240,
+      "win_rate": 0.1917,
+      "decisions": 14494,
+      "overridden": 2697,
+      "override_rate": 0.1861
+    }
+  },
+  "panel_reference": {
+    "official_mega_lucario": {
+      "overall_rate": 0.58,
+      "games": 400
+    },
+    "m01_heuristic_search": {
+      "overall_rate": 0.21,
+      "games": 400
+    }
+  },
+  "result": {
+    "never_override_matches_panel_baseline": true,
+    "never_override": 0.5958,
+    "panel_baseline": 0.58,
+    "random_override": 0.1917,
+    "panel_real_search": 0.21
+  },
+  "verdict": "H2. Overriding with RANDOM legal actions at 18.6% reproduces the collapse (0.192) essentially exactly, and the real search at ~26% override scores 0.210 -- barely distinguishable from random despite 609,875 real simulator steps behind its choices. The harness is not at fault: with overriding disabled it reproduces the baseline (0.596 vs the panel's 0.580).",
+  "mechanism": "cg/.../official_mega_lucario/main.py maintains module-level state across decisions (global plan, global pre_turn, global ability_used). Its recommendations assume its OWN previous recommendations were executed. Playing something else desynchronises that state from the real game, so every subsequent baseline action -- including the search's own candidate 0 -- is computed from a false model of the position.",
+  "consequence_for_the_design": "A forward search cannot be layered on top of a stateful scripted agent by overriding it. The scripted agent is not a pure function of the observation, so 'keep the baseline as candidate 0' does not bound the result from below the way it would with a stateless baseline. Either the baseline must be stateless, or the search must own the entire policy rather than sit on top of one.",
+  "what_this_does_NOT_show": "It does not show that real forward search is useless for this game, and it does not cleanly measure the leaf evaluator. Because state corruption dominates, the panel cannot separate a good leaf evaluator from a bad one -- both would score near random. The leaf-evaluator alignment measured separately (heuristic pearson 0.180 vs learned 0.284 against outcomes) is the better evidence on that question.",
+  "affects_packages": "submission_K and submission_L embed exactly this wrapper, so their panel numbers are faithful to what those archives would do on the ladder. The pre-registered promotion gate blocking them is therefore correct, not unlucky."
+}

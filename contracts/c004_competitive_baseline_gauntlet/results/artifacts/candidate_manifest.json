@@ -1,0 +1,275 @@
+{
+  "run_id": "gauntlet_117cb0e425666898",
+  "candidates": [
+    {
+      "candidate_id": "det_starter",
+      "candidate_version": "c004.1",
+      "policy_type": "deterministic_first",
+      "deterministic": true,
+      "deck_name": "starter",
+      "attribution": "current_safe_baseline_policy (c001) on starter deck",
+      "runnable": true,
+      "agent_source": {
+        "path": "cg/candidates.py",
+        "sha256": "95cdbb40f0a0644cec6a794454151522fe23d36d5165a098b7e7bf66beba33d0"
+      },
+      "deck_source": {
+        "kind": "starter_kit",
+        "path": "starter_kit/deck.csv",
+        "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799"
+      },
+      "deck": {
+        "deck_id": "sha256:7e7bca6783abe61e572a7224ca2210c4969fe6238257f3de9eaf35996f6d163a",
+        "card_count": 60,
+        "distinct_cards": 9,
+        "cards": [
+          {
+            "card_id": 3,
+            "count": 35
+          },
+          {
+            "card_id": 721,
+            "count": 2
+          },
+          {
+            "card_id": 722,
+            "count": 4
+          },
+          {
+            "card_id": 723,
+            "count": 4
+          },
+          {
+            "card_id": 1145,
+            "count": 4
+          },
+          {
+            "card_id": 1158,
+            "count": 1
+          },
+          {
+            "card_id": 1205,
+            "count": 2
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1235,
+            "count": 4
+          }
+        ],
+        "source": {
+          "path": "starter_kit/deck.csv",
+          "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799"
+        }
+      }
+    },
+    {
+      "candidate_id": "det_cabt",
+      "candidate_version": "c004.1",
+      "policy_type": "deterministic_first",
+      "deterministic": true,
+      "deck_name": "cabt",
+      "attribution": "official cabt 'first' policy on cabt built-in deck",
+      "runnable": true,
+      "agent_source": {
+        "path": "cg/candidates.py",
+        "sha256": "95cdbb40f0a0644cec6a794454151522fe23d36d5165a098b7e7bf66beba33d0"
+      },
+      "deck_source": {
+        "kind": "kaggle_environments_cabt_builtin",
+        "path": ".venv/lib/python3.13/site-packages/kaggle_environments/envs/cabt/cabt.py",
+        "sha256": "83966930d12da5d8f725ac70314bf1b58b842180277437dc4ea7dc6ceea0d176"
+      },
+      "deck": {
+        "deck_id": "sha256:53ada9d42d3e30a92362f59aab9236bbb378e74885917a8250e8b676109a25f0",
+        "card_count": 60,
+        "distinct_cards": 11,
+        "cards": [
+          {
+            "card_id": 3,
+            "count": 33
+          },
+          {
+            "card_id": 721,
+            "count": 2
+          },
+          {
+            "card_id": 722,
+            "count": 4
+          },
+          {
+            "card_id": 723,
+            "count": 4
+          },
+          {
+            "card_id": 1092,
+            "count": 1
+          },
+          {
+            "card_id": 1121,
+            "count": 2
+          },
+          {
+            "card_id": 1145,
+            "count": 2
+          },
+          {
+            "card_id": 1163,
+            "count": 2
+          },
+          {
+            "card_id": 1219,
+            "count": 4
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1262,
+            "count": 2
+          }
+        ],
+        "source": null
+      }
+    },
+    {
+      "candidate_id": "random_starter",
+      "candidate_version": "c004.1",
+      "policy_type": "uniform_random_legal",
+      "deterministic": false,
+      "deck_name": "starter",
+      "attribution": "c002/c003 random baseline policy on starter deck",
+      "runnable": true,
+      "agent_source": {
+        "path": "cg/candidates.py",
+        "sha256": "95cdbb40f0a0644cec6a794454151522fe23d36d5165a098b7e7bf66beba33d0"
+      },
+      "deck_source": {
+        "kind": "starter_kit",
+        "path": "starter_kit/deck.csv",
+        "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799"
+      },
+      "deck": {
+        "deck_id": "sha256:7e7bca6783abe61e572a7224ca2210c4969fe6238257f3de9eaf35996f6d163a",
+        "card_count": 60,
+        "distinct_cards": 9,
+        "cards": [
+          {
+            "card_id": 3,
+            "count": 35
+          },
+          {
+            "card_id": 721,
+            "count": 2
+          },
+          {
+            "card_id": 722,
+            "count": 4
+          },
+          {
+            "card_id": 723,
+            "count": 4
+          },
+          {
+            "card_id": 1145,
+            "count": 4
+          },
+          {
+            "card_id": 1158,
+            "count": 1
+          },
+          {
+            "card_id": 1205,
+            "count": 2
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1235,
+            "count": 4
+          }
+        ],
+        "source": {
+          "path": "starter_kit/deck.csv",
+          "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799"
+        }
+      }
+    },
+    {
+      "candidate_id": "random_cabt",
+      "candidate_version": "c004.1",
+      "policy_type": "uniform_random_legal",
+      "deterministic": false,
+      "deck_name": "cabt",
+      "attribution": "official cabt 'random' policy on cabt built-in deck",
+      "runnable": true,
+      "agent_source": {
+        "path": "cg/candidates.py",
+        "sha256": "95cdbb40f0a0644cec6a794454151522fe23d36d5165a098b7e7bf66beba33d0"
+      },
+      "deck_source": {
+        "kind": "kaggle_environments_cabt_builtin",
+        "path": ".venv/lib/python3.13/site-packages/kaggle_environments/envs/cabt/cabt.py",
+        "sha256": "83966930d12da5d8f725ac70314bf1b58b842180277437dc4ea7dc6ceea0d176"
+      },
+      "deck": {
+        "deck_id": "sha256:53ada9d42d3e30a92362f59aab9236bbb378e74885917a8250e8b676109a25f0",
+        "card_count": 60,
+        "distinct_cards": 11,
+        "cards": [
+          {
+            "card_id": 3,
+            "count": 33
+          },
+          {
+            "card_id": 721,
+            "count": 2
+          },
+          {
+            "card_id": 722,
+            "count": 4
+          },
+          {
+            "card_id": 723,
+            "count": 4
+          },
+          {
+            "card_id": 1092,
+            "count": 1
+          },
+          {
+            "card_id": 1121,
+            "count": 2
+          },
+          {
+            "card_id": 1145,
+            "count": 2
+          },
+          {
+            "card_id": 1163,
+            "count": 2
+          },
+          {
+            "card_id": 1219,
+            "count": 4
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1262,
+            "count": 2
+          }
+        ],
+        "source": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "contract": "c010",
+  "environment_source": {
+    "ppo": "16c1e9ade5bc59ec4d499e1c9989f83ae59bc665ffeb205557dbbb8cff90b85b",
+    "rl_policy": "780c26453703ab3b86c869d9de35e7e38041dc18210954356e4b401114bd8d97",
+    "rl_env": "35c9a2f6470276ebb321a64a22928c85e5177839f8df5dc2289985e809735702"
+  },
+  "toy_positive_control": {
+    "final_mean_p_target": 0.9999285856595925,
+    "learned": true
+  },
+  "gae_correctness": {
+    "max_err": 0.0,
+    "ok": true
+  },
+  "masking_and_logprobs": {
+    "illegal_option_prob_max": 0.0,
+    "masking_exact": true,
+    "act_eval_max_logprob_diff": 8.881784197001252e-16,
+    "act_eval_reproducible": true,
+    "form_distribution": {
+      "SINGLE_CHOICE": 1444,
+      "FIXED_MULTISELECT": 38,
+      "VARIABLE_MULTISELECT": 18
+    },
+    "n_checked": 60
+  },
+  "checkpoint_restore": {
+    "max_score_diff": 0.0,
+    "ok": true
+  },
+  "initialization_fidelity": {
+    "B0": {
+      "init_from_v2a_matches_source": true,
+      "RLPolicy_load_would_silently_lose_weights": true,
+      "required_loader": "RLPolicy(seed).init_from_v2a",
+      "why": "B0 is a c007 ModelV2 checkpoint: bare keys and a 14-entry meta, so RLPolicy.load matches nothing and leaves random weights. Loading it that way would make Arm A random-initialized RL, which \u00a74 prohibits."
+    },
+    "I0": {
+      "RLPolicy_load_matches_source": true,
+      "required_loader": "RLPolicy.load"
+    },
+    "ok": true
+  },
+  "ordered_forms_observed": 0,
+  "all_pass": true
+}

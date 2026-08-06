@@ -1,0 +1,40 @@
+{
+  "C011_REPAIR": "COMPLETE",
+  "defects_repaired": [
+    {
+      "id": "active_rng_not_restored",
+      "section": "\u00a77",
+      "c011_behaviour": "c011_trainer_state.py saved np.random.get_state() (the legacy GLOBAL RNG) and re-seeded with np.random.seed(); the trainer sampled from a separate np.random.default_rng(seed) object, so restore restored nothing it used.",
+      "c012_repair": "One Generator drives opponent draws, seats, per-game seeds and the PPO minibatch permutation, saved/restored via rng.bit_generator.state.",
+      "evidence": "tests/test_c012_rng_restore.py (7 tests incl. a test that the legacy global state cannot reproduce a default_rng stream)"
+    },
+    {
+      "id": "continuation_test_used_precomputed_orders",
+      "section": "\u00a77",
+      "c011_behaviour": "c011's continuation test passed precomputed minibatch permutations to both runs, which masks exactly the RNG divergence the test should detect.",
+      "c012_repair": "Permutations are drawn from the live Generator inside the update; the test compares opponent draws, seats, requested seeds, permutations, losses and parameters across a save/restore boundary, and includes a NEGATIVE CONTROL proving a broken restore would be caught.",
+      "evidence": "tests/test_c012_continuation.py (3 tests)"
+    },
+    {
+      "id": "budget_counted_trainable_not_completed_games",
+      "section": "\u00a78",
+      "c011_behaviour": "games_done counted only games with trainable decisions, excluding completed games that contained only forced decisions.",
+      "c012_repair": "completed_games is the budget quantity; completed_games, games_with_trainable_decisions and trainable_decisions are tracked separately in every summary and update record."
+    },
+    {
+      "id": "early_stopping_could_never_fire",
+      "section": "\u00a79",
+      "c011_behaviour": "all evaluation ran after training finished, so the registered stop rules had no data during the run.",
+      "c012_repair": "Registered evaluations run DURING training at every registered point and feed the stop rules.",
+      "residual_defect": "A path-keyed hash cache made those in-run evaluations return no scored games after game 0 in the executed run; see failures/DEFECT_inrun_evaluation_stale_hash.md. The mechanism is implemented and fixed, but was NOT exercised by this run's P1 arm."
+    },
+    {
+      "id": "scale_bootstrap_used_max_significance",
+      "section": "\u00a710",
+      "c011_behaviour": "c011's scale decision took the MAXIMUM bootstrap significance across any seed/metric pair as its 'one median improvement' condition.",
+      "c012_repair": "c012 computes the registered MEDIAN best-per-seed improvement for both teacher and field, and reports the medians explicitly in curriculum_decision.json.",
+      "c011_recorded_max_significance": 0.99225
+    }
+  ],
+  "c011_artifacts_modified": "none \u2014 c011 is read-only (\u00a74); this report is the repaired-decision record required by \u00a710."
+}

@@ -1,0 +1,42 @@
+{
+  "target_archetype": "Archaludon ex / Cinderace metal tempo",
+  "target_implementation": "the exact c014 public-meta-v0 package (faithful, not a proxy)",
+  "selected_archetype": "Iono's Bellibolt ex \u2014 Lightning tempo/disruption",
+  "anti_meta_deck_sha256": "bb264cca591df66a505b825c819557580606308dca2cee687c027164026bea55",
+  "c014_deck_sha256": "42165967b565dd42ec426ecccfe79bfa7d72aa8306590e149dface0ee8bd530e",
+  "distinct_from_c014": true,
+  "is_dragapult": false,
+  "deck_cards": 60,
+  "deck_distinct": 15,
+  "branch_thesis": "This deck should beat Archaludon ex metal tempo because Electric Streamer attaches unlimited Basic {L} Energy from hand every turn against a target that can attach only once per turn, and because Voltaic Chain converts that stockpile directly into damage scaling by +20 for every {L} Energy attached across all of my Iono's Pokemon, while covering c014's weakness to disruption/tempo decks that punish its slow energy assembly.",
+  "counter_mechanism_a": {
+    "name": "Electric Streamer (Iono's Bellibolt ex ability)",
+    "text": "As often as you like during your turn, you may attach a Basic {L} Energy card from your hand to 1 of your Iono's Pokemon",
+    "why_it_counters": "the target is on a one-attachment-per-turn clock; this deck has no clock"
+  },
+  "counter_mechanism_b": {
+    "name": "Voltaic Chain (Iono's Voltorb attack)",
+    "text": "20 damage, +20 more for each {L} Energy attached to all of your Iono's Pokemon",
+    "why_it_counters": "converts mechanism A's stockpile into damage that grows every turn the target spends assembling {M}{M}{M}"
+  },
+  "candidates_compared": [
+    "Iono's Bellibolt ex",
+    "c014 provisional Fire attacker",
+    "Mega Abomasnow ex",
+    "Alakazam"
+  ],
+  "rejected": {
+    "c014 provisional Fire attacker": "no exact legal 60-card Fire list exists in any captured source - the same standard that rejected Starmie in c014",
+    "Mega Abomasnow ex": "runner-up; c014 scored 0.350 against it vs 0.020 against Iono - an order of magnitude weaker as a counter",
+    "Alakazam": "Stage 2 main line, 23 distinct, no measured evidence against the target"
+  },
+  "measured_evidence_vs_target": {
+    "c014_score_rate_vs_iono": 0.02,
+    "games": 100,
+    "source": "c014 results/artifacts/matchup_matrix.csv"
+  },
+  "expected_difficult_matchup": "Fighting {F} - every Iono's Pokemon in this list is weak to {F}; Mega Lucario ex is the panel's {F} baseline",
+  "falsifier": "fails if the agent does not exceed a 0.60 score rate against the exact c014 package on the untouched final panel while executing Electric Streamer on at least 60% of turns where a Basic {L} Energy was in hand",
+  "complementarity_caveat": "c014 scored 754.5 publicly while scoring 0.020 against this deck locally, so the four-agent local panel is not representative of the ladder and beating c014 locally is not claimed to predict a higher public score",
+  "delta_check_elapsed_hours": 0.063
+}

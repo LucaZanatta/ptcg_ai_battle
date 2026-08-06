@@ -1,0 +1,1703 @@
+{
+  "status": "PASS",
+  "frozen_identities": {
+    "BASELINE_ANCHOR": {
+      "kind": "submitted_package",
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/packages/submission_J_official_mega_lucario_baseline.tar.gz",
+      "sha256": "44416b1c1056063b5f10ac5eabe003d6d88cc4e82c0d6869e7f286331d7f9e66",
+      "kaggle_ref": "55011215"
+    },
+    "DRAGAPULT_CONTROL": {
+      "kind": "official_sample",
+      "candidate_id": "dragapult",
+      "main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+    },
+    "FIELD_IONO": {
+      "kind": "official_sample",
+      "candidate_id": "iono",
+      "main_sha256": "9fa360307e0b9ccd4cd8469aad50c93872468c8dfa8ff8ebb6718cacf9faa8fa"
+    },
+    "FIELD_ABOMASNOW": {
+      "kind": "official_sample",
+      "candidate_id": "mega_abomasnow",
+      "main_sha256": "d1ef4a86413b7f548270657385c6d5c3cb114b473082cd04e2a0f1733158482b"
+    },
+    "DISTILLED_START": {
+      "kind": "checkpoint",
+      "path": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/c017_policy_value.pt",
+      "sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+    }
+  },
+  "total_games": 2000,
+  "final_stage": "S0",
+  "history": [
+    {
+      "games": 0,
+      "stage": "S0",
+      "tag": "g0",
+      "eval_checkpoint": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g0_be9d1e5da2ca.pt",
+      "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19",
+      "promotion_eligible": false,
+      "vs_baseline": {
+        "games": 20,
+        "score_rate": 0.25
+      },
+      "field": {
+        "iono": {
+          "games": 7,
+          "score_rate": 0.0
+        },
+        "mega_abomasnow": {
+          "games": 7,
+          "score_rate": 0.1429
+        },
+        "dragapult": {
+          "games": 7,
+          "score_rate": 0.0
+        }
+      },
+      "field_mean": 0.0476,
+      "invalid_actions": 0,
+      "records": [
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        }
+      ]
+    },
+    {
+      "games": 1000,
+      "stage": "S0",
+      "tag": "g1000",
+      "eval_checkpoint": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g1000_be9d1e5da2ca.pt",
+      "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19",
+      "promotion_eligible": true,
+      "vs_baseline": {
+        "games": 20,
+        "score_rate": 0.3
+      },
+      "field": {
+        "iono": {
+          "games": 7,
+          "score_rate": 0.1429
+        },
+        "mega_abomasnow": {
+          "games": 7,
+          "score_rate": 0.2857
+        },
+        "dragapult": {
+          "games": 7,
+          "score_rate": 0.2857
+        }
+      },
+      "field_mean": 0.2381,
+      "invalid_actions": 0,
+      "records": [
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        }
+      ]
+    },
+    {
+      "games": 2000,
+      "stage": "S0",
+      "tag": "g2000",
+      "eval_checkpoint": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g2000_be9d1e5da2ca.pt",
+      "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19",
+      "promotion_eligible": true,
+      "vs_baseline": {
+        "games": 20,
+        "score_rate": 0.45
+      },
+      "field": {
+        "iono": {
+          "games": 7,
+          "score_rate": 0.1429
+        },
+        "mega_abomasnow": {
+          "games": 7,
+          "score_rate": 0.0
+        },
+        "dragapult": {
+          "games": 7,
+          "score_rate": 0.0
+        }
+      },
+      "field_mean": 0.0476,
+      "invalid_actions": 0,
+      "records": [
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "BASELINE_ANCHOR",
+          "opponent_id": "mega_lucario",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_IONO",
+          "opponent_id": "iono",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 1.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_MEGA_ABOMASNOW",
+          "opponent_id": "mega_abomasnow",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        },
+        {
+          "identity": "FIELD_DRAGAPULT",
+          "opponent_id": "dragapult",
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "score": 0.0,
+          "invalid": 0,
+          "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "at_games": 1000,
+      "from": "S0",
+      "to": "S0",
+      "reason": "FALLBACK_SCHEDULE",
+      "blocked_by": [
+        "vs_baseline 0.3 < 0.5"
+      ]
+    },
+    {
+      "at_games": 2000,
+      "from": "S0",
+      "to": "S0",
+      "reason": "FALLBACK_SCHEDULE",
+      "blocked_by": [
+        "vs_baseline 0.45 < 0.5",
+        "field regression beyond 3.0pp"
+      ]
+    }
+  ],
+  "performance_promotions": 0,
+  "planned_vs_actual_mixture": [
+    {
+      "stage": "S0",
+      "block_games": 1000,
+      "planned_fractions": {
+        "self_play": 0.0,
+        "baseline_anchor": 0.45,
+        "field": 0.55
+      },
+      "actual_counts": {
+        "baseline_anchor": 443,
+        "field": 557
+      },
+      "actual_fractions": {
+        "baseline_anchor": 0.443,
+        "field": 0.557
+      },
+      "note": "actual is the realised draw, not the schedule"
+    },
+    {
+      "stage": "S0",
+      "block_games": 1000,
+      "planned_fractions": {
+        "self_play": 0.0,
+        "baseline_anchor": 0.45,
+        "field": 0.55
+      },
+      "actual_counts": {
+        "baseline_anchor": 456,
+        "field": 544
+      },
+      "actual_fractions": {
+        "baseline_anchor": 0.456,
+        "field": 0.544
+      },
+      "note": "actual is the realised draw, not the schedule"
+    }
+  ],
+  "game_zero_promotion_eligible": false,
+  "self_play_cap_applied": 0.3,
+  "trust_status": "DIAGNOSTIC_ONLY",
+  "tainted_by": [
+    "P10_forward_simulation",
+    "reduced_scale"
+  ],
+  "taint_reason": "the starting checkpoint distils a depth-0 ranker and scores below a trivial copy-the-baseline predictor; at this scale no promotion claim is evidence of curriculum success",
+  "probes": {
+    "P19_transition_fixtures": {
+      "status": "PASS",
+      "reasons_observed": [
+        "FALLBACK_SCHEDULE"
+      ],
+      "only_performance_promotion_counts": true
+    },
+    "P20_checkpoint_freshness": {
+      "status": "PASS",
+      "distinct_eval_checkpoint_hashes": 1,
+      "content_addressed": true,
+      "note": "each evaluation runs against a path that varies with the checkpoint bytes, so a per-path hash cache cannot return a stale value"
+    },
+    "P21_opponent_mixture_audit": {
+      "status": "PASS",
+      "blocks": 2,
+      "planned_and_actual_both_recorded": true
+    },
+    "P22_exact_continuation": {
+      "status": "NOT_EXERCISED",
+      "reason": "this run trains no PPO updates across a resume boundary at the reduced scale, so there is no continuation to verify. Recorded as NOT_EXERCISED rather than PASS."
+    },
+    "P23_promotion_arithmetic": {
+      "status": "PASS",
+      "game_zero_excluded": true,
+      "thresholds_exact": true,
+      "identity_safe_aggregation": "every evaluation record names its own identity and opponent; results are never zipped positionally"
+    },
+    "P24_policy_diversity": {
+      "status": "NOT_EXERCISED",
+      "reason": "no promoted checkpoint exists to cross-play against"
+    }
+  }
+}

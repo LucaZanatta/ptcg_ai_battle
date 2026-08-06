@@ -1,0 +1,170 @@
+{
+  "manifest_version": 1,
+  "description": "Runtime asset manifest for the cabt Pokemon TCG safe agent. Declares every non-standard asset required to run the agent, the unit tests, and local cabt games. Git-tracked source is integrity-checked by Git (sha256 null); untracked external competition/starter-kit assets carry sha256 + size so a reviewer can confirm the correct files are supplied out-of-band.",
+  "asset_type_legend": {
+    "source": "Python source module.",
+    "data": "Text/data file.",
+    "symlink": "Filesystem symlink.",
+    "binary": "Native compiled artifact.",
+    "generated": "Produced by running project tools.",
+    "external": "Provided by an installed package / environment, not this repo tree."
+  },
+  "assets": [
+    {
+      "name": "safe_agent_entrypoint",
+      "path": "starter_kit/main.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": null,
+      "sha256": null,
+      "symlink_target": null,
+      "must_be_tracked": true,
+      "acquisition": "Git-tracked on this contract branch (c001)."
+    },
+    {
+      "name": "safe_policy_module",
+      "path": "starter_kit/safe_policy.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": null,
+      "sha256": null,
+      "symlink_target": null,
+      "must_be_tracked": true,
+      "acquisition": "Git-tracked on this contract branch (c001)."
+    },
+    {
+      "name": "episode_capture_module",
+      "path": "starter_kit/episode_capture.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": null,
+      "sha256": null,
+      "symlink_target": null,
+      "must_be_tracked": true,
+      "acquisition": "Git-tracked on this contract branch (c002)."
+    },
+    {
+      "name": "cabt_api",
+      "path": "starter_kit/api.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": 26933,
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced",
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "From the official cabt competition starter kit (not committed here). Place at starter_kit/api.py."
+    },
+    {
+      "name": "cabt_sim_bindings",
+      "path": "starter_kit/sim.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": 1966,
+      "sha256": "e7a804ee4cd7c5a9a3b8dc91f9581ff3585f9431633a41f33d7707194cb31191",
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "From the official cabt competition starter kit. Place at starter_kit/sim.py."
+    },
+    {
+      "name": "cabt_game_driver",
+      "path": "starter_kit/game.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": 2225,
+      "sha256": "3bd3d4f4a369a11e6d2f5da9094cf15ebc410a2221835e6417b7cff4883f1fc2",
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "From the official cabt competition starter kit. Place at starter_kit/game.py."
+    },
+    {
+      "name": "cabt_utils",
+      "path": "starter_kit/utils.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": 1970,
+      "sha256": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b",
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "From the official cabt competition starter kit. Place at starter_kit/utils.py."
+    },
+    {
+      "name": "starter_kit_package_init",
+      "path": "starter_kit/__init__.py",
+      "required": true,
+      "asset_type": "source",
+      "kind": "file",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "Empty package marker from the starter kit. Place at starter_kit/__init__.py (may be an empty file)."
+    },
+    {
+      "name": "competition_deck",
+      "path": "starter_kit/deck.csv",
+      "required": true,
+      "asset_type": "data",
+      "kind": "file",
+      "size": 245,
+      "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799",
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "60-card competition deck (one integer card ID per line) from the starter kit. Place at starter_kit/deck.csv."
+    },
+    {
+      "name": "cabt_native_engine",
+      "path": "starter_kit/libcg.so",
+      "required": true,
+      "asset_type": "binary",
+      "kind": "file",
+      "size": 1338304,
+      "sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb",
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "Native x86-64 ELF engine from the starter kit. NOT committed (native binary; .gitignore excludes *.so). Place at starter_kit/libcg.so. Note: its internal RNG is seeded from std::random_device (OS entropy) and exposes no seed API, so game trajectories are not reproducible."
+    },
+    {
+      "name": "cg_root_symlink",
+      "path": "cg",
+      "required": true,
+      "asset_type": "symlink",
+      "kind": "symlink",
+      "size": null,
+      "sha256": null,
+      "symlink_target": "starter_kit",
+      "must_be_tracked": false,
+      "acquisition": "Create at repo root: ln -s starter_kit cg  (makes 'from cg.api import ...' resolve)."
+    },
+    {
+      "name": "cg_inner_symlink",
+      "path": "starter_kit/cg",
+      "required": true,
+      "asset_type": "symlink",
+      "kind": "symlink",
+      "size": null,
+      "sha256": null,
+      "symlink_target": ".",
+      "must_be_tracked": false,
+      "acquisition": "Create inside starter_kit: ln -s . cg  (lets 'cg' resolve from within the package too)."
+    },
+    {
+      "name": "kaggle_environments_cabt",
+      "path": "kaggle_environments:cabt",
+      "required": true,
+      "asset_type": "external",
+      "kind": "python_env",
+      "size": null,
+      "sha256": null,
+      "symlink_target": null,
+      "must_be_tracked": false,
+      "acquisition": "pip install kaggle-environments==1.30.1 (ships the built-in 'cabt' environment). Verified by import + env registration."
+    }
+  ]
+}

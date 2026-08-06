@@ -1,0 +1,286 @@
+{
+  "from_commands_run": {
+    "tools/c011_verify_deps.py": [
+      ".venv/bin/python tools/c011_verify_deps.py"
+    ],
+    "tools/c011_repair_c010.py": [
+      ".venv/bin/python tools/c011_repair_c010.py --stage enumerate",
+      ".venv/bin/python tools/c011_repair_c010.py --stage select"
+    ],
+    "tools/c011_eval.py": [
+      ".venv/bin/python tools/c011_eval.py --panel confirmation \\",
+      ".venv/bin/python tools/c011_eval.py --panel screen --candidates ALL_NEW --nproc 16",
+      ".venv/bin/python tools/c011_eval.py --panel confirmation --candidates \"<12 nominations>,C_522_g20220\" --nproc 16",
+      ".venv/bin/python tools/c011_eval.py --panel final \\"
+    ],
+    "tools/c011_parity.py": [
+      ".venv/bin/python tools/c011_parity.py --checkpoint <incumbent.npz>"
+    ],
+    "tools/c011_ppo_parity.py": [
+      ".venv/bin/python tools/c011_ppo_parity.py --checkpoint <incumbent.npz> --stage all"
+    ],
+    "tools/c011_benchmark.py": [
+      ".venv/bin/python tools/c011_benchmark.py --checkpoint <incumbent.npz> --stage backend --reps 3",
+      ".venv/bin/python tools/c011_benchmark.py --checkpoint <incumbent.npz> --stage workers \\"
+    ],
+    "tools/c011_train_scale.py": [
+      ".venv/bin/python tools/c011_train_scale.py --seed 999 --nproc 16 --smoke 500 --device cuda",
+      ".venv/bin/python tools/c011_train_scale.py --seed $S --nproc 16 --max-games 39914 --device cuda"
+    ],
+    "tools/c011_cuda_decision.py": [
+      ".venv/bin/python tools/c011_cuda_decision.py"
+    ],
+    "tools/c011_screen.py": [
+      ".venv/bin/python tools/c011_screen.py --stage nominate",
+      ".venv/bin/python tools/c011_screen.py --stage confirm"
+    ],
+    "tools/c011_aggregate.py": [
+      ".venv/bin/python tools/c011_aggregate.py --stage diagnostics",
+      ".venv/bin/python tools/c011_aggregate.py --stage all"
+    ],
+    "tools/c011_finalize.py": [
+      ".venv/bin/python tools/c011_finalize.py"
+    ],
+    "tools/c011_validate_evidence.py": [
+      ".venv/bin/python tools/c011_validate_evidence.py --quiet"
+    ],
+    "tools/c011_build_source_bundle.py": [
+      ".venv/bin/python tools/c011_build_source_bundle.py --stage all"
+    ],
+    "tools/c011_reports.py": [
+      ".venv/bin/python tools/c011_reports.py"
+    ]
+  },
+  "c011_python_files": [
+    "starter_kit/c011_eval_core.py",
+    "tools/c011_aggregate.py",
+    "tools/c011_benchmark.py",
+    "tools/c011_build_source_bundle.py",
+    "tools/c011_consolidate.py",
+    "tools/c011_cuda_decision.py",
+    "tools/c011_eval.py",
+    "tools/c011_finalize.py",
+    "tools/c011_parity.py",
+    "tools/c011_ppo_parity.py",
+    "tools/c011_repair_c010.py",
+    "tools/c011_reports.py",
+    "tools/c011_screen.py",
+    "tools/c011_torch_model.py",
+    "tools/c011_torch_ppo.py",
+    "tools/c011_train_scale.py",
+    "tools/c011_trainer_state.py",
+    "tools/c011_validate_evidence.py",
+    "tools/c011_verify_deps.py"
+  ],
+  "import_graph": {
+    "starter_kit/c011_eval_core.py": [
+      "__future__",
+      "cg",
+      "multiprocessing",
+      "os",
+      "typing"
+    ],
+    "tools/c011_aggregate.py": [
+      "argparse",
+      "c011_eval",
+      "collections",
+      "csv",
+      "gzip",
+      "json",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "tools/c011_benchmark.py": [
+      "argparse",
+      "c011_torch_model",
+      "c011_torch_ppo",
+      "cg",
+      "cg.teachers",
+      "json",
+      "numpy",
+      "os",
+      "pickle",
+      "subprocess",
+      "sys",
+      "time",
+      "torch"
+    ],
+    "tools/c011_build_source_bundle.py": [
+      "argparse",
+      "ast",
+      "csv",
+      "hashlib",
+      "io",
+      "json",
+      "os",
+      "shutil",
+      "subprocess",
+      "sys",
+      "tempfile",
+      "zipfile"
+    ],
+    "tools/c011_consolidate.py": [
+      "gzip",
+      "hashlib",
+      "json",
+      "os",
+      "shutil",
+      "sys"
+    ],
+    "tools/c011_cuda_decision.py": [
+      "json",
+      "os",
+      "sys"
+    ],
+    "tools/c011_eval.py": [
+      "argparse",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "numpy",
+      "os",
+      "sys",
+      "time"
+    ],
+    "tools/c011_finalize.py": [
+      "json",
+      "os",
+      "subprocess",
+      "sys"
+    ],
+    "tools/c011_parity.py": [
+      "argparse",
+      "c011_torch_model",
+      "cg",
+      "cg.teachers",
+      "json",
+      "numpy",
+      "os",
+      "pickle",
+      "sys",
+      "torch"
+    ],
+    "tools/c011_ppo_parity.py": [
+      "argparse",
+      "c011_torch_model",
+      "c011_torch_ppo",
+      "c011_trainer_state",
+      "cg",
+      "cg.teachers",
+      "json",
+      "numpy",
+      "os",
+      "pickle",
+      "random",
+      "sys",
+      "torch"
+    ],
+    "tools/c011_repair_c010.py": [
+      "argparse",
+      "c011_eval",
+      "cg",
+      "csv",
+      "gzip",
+      "json",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "tools/c011_reports.py": [
+      "json",
+      "os",
+      "subprocess",
+      "sys"
+    ],
+    "tools/c011_screen.py": [
+      "argparse",
+      "c011_eval",
+      "csv",
+      "json",
+      "os",
+      "sys"
+    ],
+    "tools/c011_torch_model.py": [
+      "__future__",
+      "cg",
+      "numpy",
+      "os",
+      "sys",
+      "torch",
+      "torch.nn",
+      "typing"
+    ],
+    "tools/c011_torch_ppo.py": [
+      "__future__",
+      "c011_torch_model",
+      "cg",
+      "numpy",
+      "os",
+      "sys",
+      "torch",
+      "typing"
+    ],
+    "tools/c011_train_scale.py": [
+      "argparse",
+      "c011_torch_model",
+      "c011_torch_ppo",
+      "c011_trainer_state",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "multiprocessing",
+      "numpy",
+      "os",
+      "subprocess",
+      "sys",
+      "time",
+      "torch"
+    ],
+    "tools/c011_trainer_state.py": [
+      "__future__",
+      "dataclasses",
+      "numpy",
+      "os",
+      "random",
+      "torch",
+      "typing"
+    ],
+    "tools/c011_validate_evidence.py": [
+      "argparse",
+      "c011_eval",
+      "cg",
+      "collections",
+      "csv",
+      "gzip",
+      "json",
+      "numpy",
+      "os",
+      "sys"
+    ],
+    "tools/c011_verify_deps.py": [
+      "argparse",
+      "cg",
+      "cg.teachers",
+      "collections",
+      "gzip",
+      "hashlib",
+      "json",
+      "os",
+      "platform",
+      "shutil",
+      "subprocess",
+      "sys",
+      "torch"
+    ]
+  },
+  "n_tracked_python": 178,
+  "n_untracked_python": 1,
+  "n_members": 179
+}

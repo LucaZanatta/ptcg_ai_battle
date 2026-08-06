@@ -1,0 +1,7 @@
+STATUS  NAME                  TYPE    REQ  TRACKED  DETAIL
+PASS    present_ok            source  yes  yes      present
+FAIL    deliberately_missing  binary  yes  ext      file missing
+
+1/2 assets passed; required failures: 1
+RESULT: FAIL
+NEGATIVE TEST EXIT CODE: 1

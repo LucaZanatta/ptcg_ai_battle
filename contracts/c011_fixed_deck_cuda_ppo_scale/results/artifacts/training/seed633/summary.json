@@ -1,0 +1,120 @@
+{
+  "seed": 633,
+  "initialization": "C_522_g20220",
+  "initialization_sha256": "974051fad562ee88b4521a978f748ce7e82638d543281ca64c60d5ab52b0280d",
+  "continuation_kind": "warm_restart",
+  "continuation_note": "The c010 incumbent stores policy weights only, so optimizer moments, schedules, RNG streams and the opponent sampler start fresh. Every c011 checkpoint from update 1 onward carries full trainer state, so the NEXT continuation can be literal.",
+  "games_done": 40064,
+  "budget": 39914,
+  "updates": 92,
+  "trainable_decisions": 3077981,
+  "stop_reason": "budget_reached",
+  "elapsed_seconds": 3608.9,
+  "games_per_hour": 39965.7,
+  "device": "cuda",
+  "precision_mode": "FP32_CUDA",
+  "workers": 16,
+  "checkpoints": {
+    "5376": {
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g5376.npz",
+      "sha256": "70fb08fcc92dd275f14315a5148e838eccffc41ae031bc0bf0b4dc9fe63b451d",
+      "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g5376.pt",
+      "trainer_state_sha256": "b3601925958105fee9083948f7a73cdf3edbf6fb4467e640c706b84f7427d089",
+      "trainer_state_id": "S633-u11-492dea75e556",
+      "training_games": 5376,
+      "registered_eval_point": 5000,
+      "seed": 633,
+      "updates": 12,
+      "parent": "C_522_g20220"
+    },
+    "10224": {
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g10224.npz",
+      "sha256": "38a5e5b9a6adc740a63efc104d611fd9e35fcc9e9c44b97737da396c5985454d",
+      "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g10224.pt",
+      "trainer_state_sha256": "8d2127ebe923ba1e232eee546c0358f55265f0bc2f538247a13323b6ff71d73b",
+      "trainer_state_id": "S633-u22-162db3a00810",
+      "training_games": 10224,
+      "registered_eval_point": 10000,
+      "seed": 633,
+      "updates": 23,
+      "parent": "5376"
+    },
+    "15040": {
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g15040.npz",
+      "sha256": "c8180f5c5a5c65f28810d249cc425c1209eceb39913d947a8f1737d620f4eb9b",
+      "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g15040.pt",
+      "trainer_state_sha256": "6cfe6099be12f0c0037014f747a8a2e39a8795f7ead4dba726a5528d94feb7a0",
+      "trainer_state_id": "S633-u33-63e1640b58ab",
+      "training_games": 15040,
+      "registered_eval_point": 15000,
+      "seed": 633,
+      "updates": 34,
+      "parent": "10224"
+    },
+    "20224": {
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g20224.npz",
+      "sha256": "44c4dc3e5b31d44a3f87e1ab8bd984d5cd8a73675cdb64ca380191cb627436d0",
+      "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g20224.pt",
+      "trainer_state_sha256": "b0dd5d74900d3cddc60b447decfb6b80471156d0093c3744681cf7452faf60c1",
+      "trainer_state_id": "S633-u45-1a3c1c576e36",
+      "training_games": 20224,
+      "registered_eval_point": 20000,
+      "seed": 633,
+      "updates": 46,
+      "parent": "15040"
+    },
+    "30176": {
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz",
+      "sha256": "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54",
+      "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g30176.pt",
+      "trainer_state_sha256": "59a29c772aaeded1d9909568379d1a0cd11487652832dc8b3ff94f1f8924c483",
+      "trainer_state_id": "S633-u68-603382749a1f",
+      "training_games": 30176,
+      "registered_eval_point": 30000,
+      "seed": 633,
+      "updates": 69,
+      "parent": "20224"
+    },
+    "40064": {
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g40064.npz",
+      "sha256": "b1f3de7e8bfeabf839bcb55fb3cdbaaf0de7e5e72800281f882ee051ce51c274",
+      "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/trainer_g40064.pt",
+      "trainer_state_sha256": "ac0d23cda025a7c4bbfbc52f1fa4b58902c9227e93d1f379e22345db91851033",
+      "trainer_state_id": "S633-u91-f7115468c030",
+      "training_games": 40064,
+      "registered_eval_point": 40000,
+      "seed": 633,
+      "updates": 92,
+      "parent": "30176"
+    }
+  },
+  "lagged_snapshots": [
+    "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/lagged_g26272.npz",
+    "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/lagged_g31472.npz",
+    "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/lagged_g36656.npz"
+  ],
+  "opponent_distribution": {
+    "dragapult": 14320,
+    "iono": 8187,
+    "mega_lucario": 8266,
+    "__control__": 4043,
+    "lagged::lagged_g5376.npz": 1435,
+    "lagged::lagged_g10672.npz": 921,
+    "lagged::lagged_g15888.npz": 826,
+    "lagged::lagged_g21088.npz": 757,
+    "lagged::lagged_g26272.npz": 701,
+    "lagged::lagged_g31472.npz": 424,
+    "lagged::lagged_g36656.npz": 184
+  },
+  "seat_distribution": {
+    "0": 20084,
+    "1": 19980
+  },
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "fallbacks": 0,
+    "ordered_blocks": 0
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "contract": "c007",
+  "final_h2_frozen": true,
+  "residual_model": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_B_selected.npz",
+  "overrides_enabled": false,
+  "config": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/hybrid_config.json",
+  "note": "One on-policy iteration completed: captured on-policy admitted-context states, reran the validated relabel protocol, retrained the residual head once (no positive labels), froze final H2. Final H2 = teacher default (no beneficial override exists)."
+}

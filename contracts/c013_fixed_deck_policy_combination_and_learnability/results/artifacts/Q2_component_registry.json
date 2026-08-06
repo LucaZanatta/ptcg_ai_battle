@@ -1,0 +1,98 @@
+{
+  "components": {
+    "Q2A": {
+      "seed": 903,
+      "final_checkpoint": {
+        "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/ckpt_g5152.npz",
+        "sha256": "5b7327cf77166997ca857ed7268e6702916c2abbcbeb1658b9b934df0426f499",
+        "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/trainer_g5152.pt",
+        "trainer_state_sha256": "d100e496dc504f5dfc0bee6e6cf49258aee62c290cac8fff166c4a27aeda7193",
+        "trainer_state_id": "Q2A903-u12-5b7327cf7716",
+        "training_games": 5152,
+        "registered_eval_point": 5000,
+        "arm": "Q2A",
+        "seed": 903,
+        "updates": 12,
+        "inrun_eval": {
+          "teacher": 0.25,
+          "field": 0.35000000000000003
+        }
+      },
+      "completed_games": 10192,
+      "continued_component": "S622"
+    },
+    "Q2B": {
+      "seed": 904,
+      "final_checkpoint": {
+        "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/ckpt_g5200.npz",
+        "sha256": "0a80c931e12e1c7ea9fa7891f8d2a1a70d6aa3f4690e93bfb6b514940602abff",
+        "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/trainer_g5200.pt",
+        "trainer_state_sha256": "1e9d078c5e16857bb7f66779e896d1ca442d330060e2043c6095275555954c37",
+        "trainer_state_id": "Q2B904-u12-0a80c931e12e",
+        "training_games": 5200,
+        "registered_eval_point": 5000,
+        "arm": "Q2B",
+        "seed": 904,
+        "updates": 12,
+        "inrun_eval": {
+          "teacher": 0.2,
+          "field": 0.3
+        }
+      },
+      "completed_games": 10336,
+      "continued_component": "S633"
+    }
+  },
+  "recombinations": {
+    "Q2_SOUP_recombined": {
+      "candidate_type": "weight_soup",
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/Q2_SOUP_recombined.npz",
+      "sha256": "ad76c8f2ba1bb57d51ab37d09cbc3b308a387a4bc31de8df2d0d94019f0edd79",
+      "component_ids": [
+        "Q2A_S622_continued",
+        "Q2B_S633_continued"
+      ],
+      "component_sha256": [
+        "5b7327cf77166997ca857ed7268e6702916c2abbcbeb1658b9b934df0426f499",
+        "0a80c931e12e1c7ea9fa7891f8d2a1a70d6aa3f4690e93bfb6b514940602abff"
+      ]
+    },
+    "Q2_LOGIT_recombined": {
+      "candidate_type": "online_ensemble",
+      "ensemble_mode": "logit",
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/Q2_LOGIT_recombined.json",
+      "sha256": "93cd87f6bb3222f4e1cc7c9747af06e3b8d40fadecf699247cad22d148cd22e3",
+      "component_ids": [
+        "Q2A_S622_continued",
+        "Q2B_S633_continued"
+      ],
+      "component_sha256": [
+        "5b7327cf77166997ca857ed7268e6702916c2abbcbeb1658b9b934df0426f499",
+        "0a80c931e12e1c7ea9fa7891f8d2a1a70d6aa3f4690e93bfb6b514940602abff"
+      ],
+      "component_paths": [
+        "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/ckpt_g5152.npz",
+        "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/ckpt_g5200.npz"
+      ]
+    },
+    "Q2_PROB_recombined": {
+      "candidate_type": "online_ensemble",
+      "ensemble_mode": "prob",
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/Q2_PROB_recombined.json",
+      "sha256": "44e90e8c27fa008e1e778a0ae0f16cfd6d87fd4563011541e49f15f1b77f2af1",
+      "component_ids": [
+        "Q2A_S622_continued",
+        "Q2B_S633_continued"
+      ],
+      "component_sha256": [
+        "5b7327cf77166997ca857ed7268e6702916c2abbcbeb1658b9b934df0426f499",
+        "0a80c931e12e1c7ea9fa7891f8d2a1a70d6aa3f4690e93bfb6b514940602abff"
+      ],
+      "component_paths": [
+        "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/ckpt_g5152.npz",
+        "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/ckpt_g5200.npz"
+      ]
+    }
+  },
+  "note": "S622 and S633 were continued SEPARATELY from the same Phase 2 start and then recombined by the registered equal-weight rules; no weights were tuned after results (\u00a715)"
+}

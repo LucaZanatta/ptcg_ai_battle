@@ -1,0 +1,11 @@
+test_no_game_seed_and_provenance_present (tests.test_provenance.TestCapturedRecordsProvenance.test_no_game_seed_and_provenance_present) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_provenance.py:61: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp1piwlb8v/e.jsonl' mode='r' encoding='utf-8'>
+  recs = [json.loads(l) for l in open(path, encoding="utf-8")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_random_baseline_source_same_in_both_seats (tests.test_provenance.TestDecisionSourceIsPolicyProperty.test_random_baseline_source_same_in_both_seats) ... ok
+test_safe_agent_source_same_in_both_seats (tests.test_provenance.TestDecisionSourceIsPolicyProperty.test_safe_agent_source_same_in_both_seats) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK

@@ -1,0 +1,26 @@
+{
+  "summary": {
+    "S1_STATELESS": {
+      "overall": 0.7323,
+      "iw": 0.6951,
+      "nonforced": 0.71,
+      "high_impact": 0.6748,
+      "p99_ms": 0.071,
+      "params": 152673
+    },
+    "S2_RECURRENT": {
+      "overall": 0.7248,
+      "iw": 0.6897,
+      "nonforced": 0.7019,
+      "high_impact": 0.6757,
+      "p99_ms": 0.106,
+      "params": 273441
+    }
+  },
+  "memory": "MEMORY_NOT_JUSTIFIED",
+  "high_impact_gain_pp": 0.091,
+  "game_iw_diff_ci95": [
+    -0.0291,
+    0.0155
+  ]
+}

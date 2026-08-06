@@ -1,0 +1,22 @@
+{
+  "passes_allowed": 1,
+  "passes_used": 1,
+  "selected_for_repair": [
+    "D1_nested_clone_segfault",
+    "D4_none_board_slots",
+    "D5_global_node_budget",
+    "D3_none_reward_comparison",
+    "D2_sorted_over_none_ids",
+    "D6_wrong_featuriser"
+  ],
+  "rationale": "all six blocked the vertical from executing; \u00a731 caps the pass, not the number of defects inside it",
+  "earliest_affected_milestone": "Block A trajectory generation",
+  "rerun_from": "Block A",
+  "reran": [
+    "Block A",
+    "Block B",
+    "Block C",
+    "Block D",
+    "panel"
+  ]
+}

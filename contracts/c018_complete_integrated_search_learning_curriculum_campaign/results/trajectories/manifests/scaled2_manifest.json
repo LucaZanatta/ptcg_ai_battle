@@ -1,0 +1,19 @@
+{
+  "prefix": "scaled2",
+  "games": 900,
+  "decisions": 47086,
+  "trusted_decisions": 42857,
+  "trajectory_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_trajectories.jsonl.gz",
+  "trajectory_sha256": "6aa2580aa85806dbac8fa133489844fed936bb6501a6cdf59d63da34ce9bedf9",
+  "feature_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_features.npz",
+  "config": {
+    "beam_width": 3,
+    "max_candidates": 4,
+    "max_depth": 4,
+    "max_nodes": 40,
+    "max_ms_per_decision": 2500,
+    "max_match_ms": 60000,
+    "version": "c018.search.v1"
+  },
+  "uses_c017_labels": false
+}

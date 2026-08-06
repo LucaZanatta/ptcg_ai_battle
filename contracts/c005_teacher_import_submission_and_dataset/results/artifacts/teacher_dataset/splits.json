@@ -1,0 +1,26 @@
+{
+  "seed": 424242,
+  "split_by": "whole_game",
+  "target_ratio": [
+    0.7,
+    0.15,
+    0.15
+  ],
+  "stratify_by": [
+    "opponent",
+    "teacher_seat",
+    "outcome"
+  ],
+  "games": {
+    "train": 170,
+    "validation": 37,
+    "test": 33
+  },
+  "decisions": {
+    "train": 13795,
+    "validation": 2991,
+    "test": 2264
+  },
+  "test_frozen": true,
+  "no_game_in_multiple_splits": true
+}

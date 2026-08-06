@@ -1,0 +1,479 @@
+{
+  "arm": "P0",
+  "seeds": [
+    711,
+    722,
+    733
+  ],
+  "completed_games_total": 90656,
+  "games_with_trainable_decisions_total": 90656,
+  "trainable_decisions_total": 7091648,
+  "updates_total": 212,
+  "raw_game_rows": 90656,
+  "completed_rows_recounted": 90656,
+  "curriculum_changes_total": 0,
+  "final_curriculum_stages": {
+    "711": 0,
+    "722": 0,
+    "733": 0
+  },
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "fallbacks": 0
+  },
+  "consistency": {
+    "completed_matches_recount": true
+  },
+  "files": {
+    "training_games_sha256": "f4bd72082cb7d0720703d283ff584711d7514c8f2449df2b254dec7ed86e097e",
+    "updates_sha256": "3df17b29399c9cb019842bc0d3ce8ab57a3fd8cd8332cf5e550b0894032d76f4"
+  },
+  "per_seed": {
+    "711": {
+      "arm": "P0",
+      "seed": 711,
+      "initialization": "SOUP_622+633",
+      "initialization_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+      "curriculum_registry_id": "c012-curriculum-v1",
+      "curriculum_registry_sha256": "8988ed8fb2ab4c9fef73770695b6f62fa607ded10dc97aefece5f87e107dd77a",
+      "completed_games": 30000,
+      "games_with_trainable_decisions": 30000,
+      "trainable_decisions": 2343017,
+      "budget_completed_games": 30000,
+      "updates": 70,
+      "stop_reason": "budget_reached",
+      "final_curriculum_stage": 0,
+      "curriculum_changes": 0,
+      "elapsed_seconds": 2718.0,
+      "completed_games_per_hour": 39735.8,
+      "device": "cuda",
+      "precision_mode": "FP32_CUDA",
+      "workers": 16,
+      "checkpoints": {
+        "5216": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g5216.npz",
+          "sha256": "3ca2930cbd497ab3ae75aa05f3026a6f2fc11e6a6ee47215f5b0388653b130ae",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g5216.pt",
+          "trainer_state_sha256": "e633a0826c0a3b38107110fdb98c6fd88029700ce21b3f8f9b5e0a6f48e5186e",
+          "trainer_state_id": "P0711-u12-3ca2930cbd49",
+          "training_games": 5216,
+          "registered_eval_point": 5000,
+          "arm": "P0",
+          "seed": 711,
+          "updates": 12,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "10304": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g10304.npz",
+          "sha256": "07d7523fd3793d5cd8adc7f90c50808f06f708d3403e823b16caabe8eb79fd99",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g10304.pt",
+          "trainer_state_sha256": "66ce9876dd96d24dad77d69a2732f9e176f3ed4c8fa068dbc58e4d6fb6c36ebe",
+          "trainer_state_id": "P0711-u24-07d7523fd379",
+          "training_games": 10304,
+          "registered_eval_point": 10000,
+          "arm": "P0",
+          "seed": 711,
+          "updates": 24,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "15040": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g15040.npz",
+          "sha256": "d9be47403e20e6dfad7432c6bb10d5609f4bba3d8050e8995727e2ab7c9e4ac8",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g15040.pt",
+          "trainer_state_sha256": "d83b00d333e3f4154e978a4d12fa60a3ba0073c5957473a51d762c7cf0c3112a",
+          "trainer_state_id": "P0711-u35-d9be47403e20",
+          "training_games": 15040,
+          "registered_eval_point": 15000,
+          "arm": "P0",
+          "seed": 711,
+          "updates": 35,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "20144": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+          "sha256": "92c1816e95d95314a652726a976085b3f3d59a62cb2ac32c46047b2eaa2078d4",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g20144.pt",
+          "trainer_state_sha256": "4af2de59298a7ce2abae3fad151555d3499352ed54867f370a44fc593284d1c2",
+          "trainer_state_id": "P0711-u47-92c1816e95d9",
+          "training_games": 20144,
+          "registered_eval_point": 20000,
+          "arm": "P0",
+          "seed": 711,
+          "updates": 47,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "25296": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g25296.npz",
+          "sha256": "d4d6eb630bcccc4b97b0ba82af147d3b1b690bd480232155c9ec057407ac0883",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/trainer_g25296.pt",
+          "trainer_state_sha256": "4d60d04f5ef4ab306a54e8cec772108f70cac59139f3e415c33a11b35a01bf8d",
+          "trainer_state_id": "P0711-u59-d4d6eb630bcc",
+          "training_games": 25296,
+          "registered_eval_point": 25000,
+          "arm": "P0",
+          "seed": 711,
+          "updates": 59,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        }
+      },
+      "branch_best": {
+        "composite": null,
+        "teacher": null,
+        "field": null,
+        "ckpt": "25296"
+      },
+      "n_inrun_evaluations": 6,
+      "lagged_snapshots": [
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/lagged_g15472.npz",
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/lagged_g20576.npz",
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/lagged_g25712.npz"
+      ],
+      "opponent_distribution": {
+        "iono": 6171,
+        "__control__": 3082,
+        "dragapult": 10885,
+        "mega_lucario": 6229,
+        "lagged::lagged_g5216.npz": 1409,
+        "lagged::lagged_g10304.npz": 881,
+        "lagged::lagged_g15472.npz": 671,
+        "lagged::lagged_g20576.npz": 459,
+        "lagged::lagged_g25712.npz": 213
+      },
+      "opponent_category_distribution": {
+        "iono": 6171,
+        "control": 3082,
+        "teacher": 10885,
+        "mega_lucario": 6229,
+        "lagged": 3633
+      },
+      "seat_distribution": {
+        "0": 14917,
+        "1": 15083
+      },
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "722": {
+      "arm": "P0",
+      "seed": 722,
+      "initialization": "SOUP_622+633",
+      "initialization_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+      "curriculum_registry_id": "c012-curriculum-v1",
+      "curriculum_registry_sha256": "8988ed8fb2ab4c9fef73770695b6f62fa607ded10dc97aefece5f87e107dd77a",
+      "completed_games": 30320,
+      "games_with_trainable_decisions": 30320,
+      "trainable_decisions": 2378441,
+      "budget_completed_games": 30000,
+      "updates": 71,
+      "stop_reason": "budget_reached",
+      "final_curriculum_stage": 0,
+      "curriculum_changes": 0,
+      "elapsed_seconds": 2768.9,
+      "completed_games_per_hour": 39421.4,
+      "device": "cuda",
+      "precision_mode": "FP32_CUDA",
+      "workers": 16,
+      "checkpoints": {
+        "5200": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/ckpt_g5200.npz",
+          "sha256": "91bb6616bdf9d6aa6c1b0315391b6d3caf5377f22a96bcc71f9ef1b71d15365d",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g5200.pt",
+          "trainer_state_sha256": "078349702beffa6e15f0771785f501439f316862c4f70007a181a80c344764d7",
+          "trainer_state_id": "P0722-u12-91bb6616bdf9",
+          "training_games": 5200,
+          "registered_eval_point": 5000,
+          "arm": "P0",
+          "seed": 722,
+          "updates": 12,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "10320": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/ckpt_g10320.npz",
+          "sha256": "5b7465ca8654a65fd5b3256b682a7ffeb9e28968dd2bc3be2f46dc5b61aeed6c",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g10320.pt",
+          "trainer_state_sha256": "d61461e66e2509a49cd23a63594fff0add2f76e17d03e1d4d9119dfcfcd0a95d",
+          "trainer_state_id": "P0722-u24-5b7465ca8654",
+          "training_games": 10320,
+          "registered_eval_point": 10000,
+          "arm": "P0",
+          "seed": 722,
+          "updates": 24,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "15408": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/ckpt_g15408.npz",
+          "sha256": "115117420b9eb10c7bc68d1106bdb2e96d0245a5bbccfc23e37ddc8d6bd8b1d6",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g15408.pt",
+          "trainer_state_sha256": "7ea71c7301e58d70ae59dc4309f2d0135456f53416604d92b3c11d310be98099",
+          "trainer_state_id": "P0722-u36-115117420b9e",
+          "training_games": 15408,
+          "registered_eval_point": 15000,
+          "arm": "P0",
+          "seed": 722,
+          "updates": 36,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "20048": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/ckpt_g20048.npz",
+          "sha256": "27835be7e0aa4126daacc84a2250fdef6b8ea8724fe5db3b56f69719161fa6bb",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g20048.pt",
+          "trainer_state_sha256": "9dca7be15170b45fdadeb85c9108c7bb7cf81105eb98a66f2eec208ffb5e673f",
+          "trainer_state_id": "P0722-u47-27835be7e0aa",
+          "training_games": 20048,
+          "registered_eval_point": 20000,
+          "arm": "P0",
+          "seed": 722,
+          "updates": 47,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "25152": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/ckpt_g25152.npz",
+          "sha256": "c6a5a772f20647d6221a6689e5ff88c95b1144a6d3688ba44c76e7da7857d7e1",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/trainer_g25152.pt",
+          "trainer_state_sha256": "abdddb8297fb61e3dd3cc03946d27084622f40546b84de44692e5884fadb116b",
+          "trainer_state_id": "P0722-u59-c6a5a772f206",
+          "training_games": 25152,
+          "registered_eval_point": 25000,
+          "arm": "P0",
+          "seed": 722,
+          "updates": 59,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        }
+      },
+      "branch_best": {
+        "composite": null,
+        "teacher": null,
+        "field": null,
+        "ckpt": "25152"
+      },
+      "n_inrun_evaluations": 6,
+      "lagged_snapshots": [
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/lagged_g15408.npz",
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/lagged_g20464.npz",
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed722/checkpoints/lagged_g25568.npz"
+      ],
+      "opponent_distribution": {
+        "mega_lucario": 6298,
+        "__control__": 3032,
+        "iono": 6284,
+        "dragapult": 11071,
+        "lagged::lagged_g5200.npz": 1295,
+        "lagged::lagged_g10320.npz": 918,
+        "lagged::lagged_g15408.npz": 745,
+        "lagged::lagged_g20464.npz": 462,
+        "lagged::lagged_g25568.npz": 215
+      },
+      "opponent_category_distribution": {
+        "mega_lucario": 6298,
+        "control": 3032,
+        "iono": 6284,
+        "teacher": 11071,
+        "lagged": 3635
+      },
+      "seat_distribution": {
+        "0": 15081,
+        "1": 15239
+      },
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "733": {
+      "arm": "P0",
+      "seed": 733,
+      "initialization": "SOUP_622+633",
+      "initialization_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+      "curriculum_registry_id": "c012-curriculum-v1",
+      "curriculum_registry_sha256": "8988ed8fb2ab4c9fef73770695b6f62fa607ded10dc97aefece5f87e107dd77a",
+      "completed_games": 30336,
+      "games_with_trainable_decisions": 30336,
+      "trainable_decisions": 2370190,
+      "budget_completed_games": 30000,
+      "updates": 71,
+      "stop_reason": "budget_reached",
+      "final_curriculum_stage": 0,
+      "curriculum_changes": 0,
+      "elapsed_seconds": 2760.0,
+      "completed_games_per_hour": 39568.9,
+      "device": "cuda",
+      "precision_mode": "FP32_CUDA",
+      "workers": 16,
+      "checkpoints": {
+        "5200": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/ckpt_g5200.npz",
+          "sha256": "3ead0649b67c24a87ea5a0fb27425f930129abd53e0e8421872860c83a1a47f3",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g5200.pt",
+          "trainer_state_sha256": "7e496fb2b4a83b67779997756e8540edf08635c49e70aca78ea544073bfe21eb",
+          "trainer_state_id": "P0733-u12-3ead0649b67c",
+          "training_games": 5200,
+          "registered_eval_point": 5000,
+          "arm": "P0",
+          "seed": 733,
+          "updates": 12,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "10368": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/ckpt_g10368.npz",
+          "sha256": "392528c02d2b078e114bbd233a6a83531357bda49bb21c5139aaa76f06b4fc74",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g10368.pt",
+          "trainer_state_sha256": "ee1bec44736d761d96744c2a71d5ab8cbc11fd54eab4ddd004789965fd6774af",
+          "trainer_state_id": "P0733-u24-392528c02d2b",
+          "training_games": 10368,
+          "registered_eval_point": 10000,
+          "arm": "P0",
+          "seed": 733,
+          "updates": 24,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "15056": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/ckpt_g15056.npz",
+          "sha256": "2eed9587ab148728cd7dd10952189e0908be4bec0c611b079a3c4e59adc9a390",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g15056.pt",
+          "trainer_state_sha256": "5375ae3570237853755a91ed737fbd1bc66050cfc3cdb8bba99beffb167ec0ce",
+          "trainer_state_id": "P0733-u35-2eed9587ab14",
+          "training_games": 15056,
+          "registered_eval_point": 15000,
+          "arm": "P0",
+          "seed": 733,
+          "updates": 35,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "20192": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/ckpt_g20192.npz",
+          "sha256": "8e46660b7517e2a85f8c92ce413327ab70c29f5f8a6b6aacf023c0a03517c66b",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g20192.pt",
+          "trainer_state_sha256": "885de260d8c413ef290d516cf28d37f34f242242580e5539bbd321c2fb29637e",
+          "trainer_state_id": "P0733-u47-8e46660b7517",
+          "training_games": 20192,
+          "registered_eval_point": 20000,
+          "arm": "P0",
+          "seed": 733,
+          "updates": 47,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        },
+        "25280": {
+          "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/ckpt_g25280.npz",
+          "sha256": "4a354f7d3b8efe3bd3f18845944b28341de3c95c6c54e49f69f98114cac73b28",
+          "trainer_state_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/trainer_g25280.pt",
+          "trainer_state_sha256": "168d751e5b2a3996c97204856cf305071988e4d526d09213103b0f02e14302b9",
+          "trainer_state_id": "P0733-u59-4a354f7d3b8e",
+          "training_games": 25280,
+          "registered_eval_point": 25000,
+          "arm": "P0",
+          "seed": 733,
+          "updates": 59,
+          "curriculum_stage": 0,
+          "inrun_eval": {
+            "teacher": null,
+            "field": null
+          }
+        }
+      },
+      "branch_best": {
+        "composite": null,
+        "teacher": null,
+        "field": null,
+        "ckpt": "25280"
+      },
+      "n_inrun_evaluations": 6,
+      "lagged_snapshots": [
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/lagged_g15472.npz",
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/lagged_g20624.npz",
+        "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed733/checkpoints/lagged_g25696.npz"
+      ],
+      "opponent_distribution": {
+        "dragapult": 10992,
+        "mega_lucario": 6294,
+        "__control__": 3072,
+        "iono": 6172,
+        "lagged::lagged_g5200.npz": 1416,
+        "lagged::lagged_g10368.npz": 939,
+        "lagged::lagged_g15472.npz": 739,
+        "lagged::lagged_g20624.npz": 461,
+        "lagged::lagged_g25696.npz": 251
+      },
+      "opponent_category_distribution": {
+        "teacher": 10992,
+        "mega_lucario": 6294,
+        "control": 3072,
+        "iono": 6172,
+        "lagged": 3806
+      },
+      "seat_distribution": {
+        "1": 15074,
+        "0": 15262
+      },
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    }
+  }
+}

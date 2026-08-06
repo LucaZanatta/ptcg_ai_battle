@@ -1,0 +1,154 @@
+{
+  "principle": "every headline claim re-derived from raw artifacts; file existence is never sufficient and an accepted upload never grants PASS",
+  "n_checks": 17,
+  "n_passed": 17,
+  "n_critical_failures": 0,
+  "n_noncritical_failures": 0,
+  "checks": [
+    {
+      "check": "no_prior_contract_identifier_in_c016_reports",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "hits": []
+      }
+    },
+    {
+      "check": "required_status_fields_present",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "null_selection_fields_are_correct_when_gate_fails",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "note": "gate FAIL, so no candidate may be recorded as selected"
+      }
+    },
+    {
+      "check": "published_rates_and_denominators_match_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "mismatches": []
+      }
+    },
+    {
+      "check": "no_zero_opportunity_success_claims",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "hits": [],
+        "rule": "zero opportunities must be reported as NOT_OBSERVED, never as a rate"
+      }
+    },
+    {
+      "check": "every_game_record_is_self_identifying",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "problems": []
+      }
+    },
+    {
+      "check": "aggregation_selects_by_field_not_position",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "note": "agg() filters records by candidate_id/opponent_id/seat/phase"
+      }
+    },
+    {
+      "check": "public_claims_labelled_not_asserted_as_fact",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "unlabelled": []
+      }
+    },
+    {
+      "check": "path_c_not_used_without_review",
+      "passed": true,
+      "critical": false,
+      "detail": {
+        "strength_path": null
+      }
+    },
+    {
+      "check": "no_selection_so_no_permission_requirement",
+      "passed": true,
+      "critical": false,
+      "detail": {
+        "note": "competitive gate did not select a candidate"
+      }
+    },
+    {
+      "check": "no_benchmark_only_source_packaged",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "archives": []
+      }
+    },
+    {
+      "check": "package_absent_is_consistent_with_gate",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "note": "no package built; only valid when the competitive gate did not pass"
+      }
+    },
+    {
+      "check": "c005_to_c015_unmodified",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "files_checked": 1938,
+        "modified": []
+      }
+    },
+    {
+      "check": "no_baseline_file_missing",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "immutability_baseline_is_substantive",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "files_checked": 1938
+      }
+    },
+    {
+      "check": "non_pass_status_is_consistent",
+      "passed": true,
+      "critical": false,
+      "detail": {
+        "status": "PARTIAL",
+        "gates": {
+          "fidelity_gate": true,
+          "competitive_gate": false,
+          "package_gate": false,
+          "accepted_reference": false
+        }
+      }
+    },
+    {
+      "check": "accepted_reference_alone_does_not_grant_pass",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "note": "\u00a72: an accepted upload is never sufficient on its own"
+      }
+    }
+  ],
+  "overall": "PASS"
+}

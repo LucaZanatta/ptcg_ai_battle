@@ -1,0 +1,29 @@
+{
+  "probe_id": "P17",
+  "candidates": [
+    "official_mega_lucario",
+    "m01_heuristic_search",
+    "m02_distilled_policy",
+    "m03_curriculum_policy",
+    "m04_guided_ordering_only",
+    "m04_guided_search"
+  ],
+  "opponents": [
+    "dragapult",
+    "iono",
+    "mega_abomasnow",
+    "mega_lucario"
+  ],
+  "games_per_pair": 1,
+  "planned_games": 24,
+  "played_games": 24,
+  "scored_games": 24,
+  "incomplete_games": 0,
+  "seed_base": 1805,
+  "identical_seeds_and_seats_across_candidates": true,
+  "raw_file": "final_panel/probe_raw_games.jsonl.gz",
+  "raw_sha256": "01c4799e28e23a5e408808ed58191a17371e48a4af85b5ea0d2077f528132ec6",
+  "freeze_file": "final_panel/probe_panel_freeze.json",
+  "wall_clock_s": 13.3,
+  "ranking_rule": "overall_rate desc, then worst_matchup_rate desc (pre-registered)"
+}

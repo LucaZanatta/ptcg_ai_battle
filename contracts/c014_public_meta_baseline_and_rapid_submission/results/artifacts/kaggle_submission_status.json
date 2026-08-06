@@ -1,0 +1,50 @@
+{
+  "kaggle_upload": "SUBMITTED",
+  "competition": "pokemon-tcg-ai-battle",
+  "description": "c014 public-meta-v0 archaludon-cinderace 95c67e4",
+  "archive": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/submission_H_public_meta_v0.tar.gz",
+  "archive_sha256": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+  "submission_ref": "55004756",
+  "submission_row": {
+    "ref": "55004756",
+    "fileName": "submission_H_public_meta_v0.tar.gz",
+    "date": "2026-07-26 15:21:04.127000",
+    "description": "c014 public-meta-v0 archaludon-cinderace 95c67e4",
+    "status": "SubmissionStatus.COMPLETE",
+    "publicScore": "600.0",
+    "privateScore": ""
+  },
+  "status": "COMPLETE",
+  "public_score": "600.0",
+  "polls": 3,
+  "poll_interval_seconds": 30,
+  "bounded_poll_max": 20,
+  "submit_returncode": 0,
+  "duplicate_guard": {
+    "description": "c014 public-meta-v0 archaludon-cinderace 95c67e4",
+    "existing_submissions": 2,
+    "duplicate_description_found": false,
+    "duplicate_filename_found": false,
+    "blocked": false
+  },
+  "gates": {
+    "archive_exists": true,
+    "archive_hash_matches_manifest": true,
+    "validated_hash_is_this_archive": true,
+    "package_validation_passed": true,
+    "content_audit_passed": true,
+    "local_zero_invalid_selections": true,
+    "local_zero_exceptions": true,
+    "local_zero_timeouts": true,
+    "local_all_games_classified": true,
+    "local_both_seats_tested": true,
+    "latency_p99_within_250ms": true,
+    "latency_max_within_self_imposed_bound": true,
+    "package_at_least_100_games": true,
+    "package_zero_invalid_selections": true,
+    "package_zero_timeouts": true,
+    "package_all_completed": true,
+    "package_both_seats": true,
+    "package_at_least_three_opponents": true
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "rule": "one-sided 95% lower bound >= 0.47 (original c008 rule, unchanged)",
+  "opponent": "dragapult",
+  "phases": [
+    "A",
+    "B",
+    "B_ext"
+  ],
+  "candidates": {
+    "B0_v2a": {
+      "point": 0.16,
+      "n": 400,
+      "n_seat0": 200,
+      "n_seat1": 200,
+      "ci95_lo": 0.125,
+      "ci95_hi": 0.1975,
+      "ci90_lo": 0.13,
+      "ci90_hi": 0.1925,
+      "one_sided_lb95": 0.13,
+      "non_inferior": false
+    },
+    "R0_101": {
+      "point": 0.01,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.03,
+      "ci90_lo": 0.0,
+      "ci90_hi": 0.03,
+      "one_sided_lb95": 0.0,
+      "non_inferior": false
+    },
+    "R0_202": {
+      "point": 0.03,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.07,
+      "ci90_lo": 0.01,
+      "ci90_hi": 0.06,
+      "one_sided_lb95": 0.01,
+      "non_inferior": false
+    },
+    "R1_101": {
+      "point": 0.22,
+      "n": 400,
+      "n_seat0": 200,
+      "n_seat1": 200,
+      "ci95_lo": 0.18,
+      "ci95_hi": 0.26,
+      "ci90_lo": 0.1875,
+      "ci90_hi": 0.2525,
+      "one_sided_lb95": 0.1875,
+      "non_inferior": false
+    },
+    "R1_202": {
+      "point": 0.17,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "ci95_lo": 0.1,
+      "ci95_hi": 0.25,
+      "ci90_lo": 0.11,
+      "ci90_hi": 0.23,
+      "one_sided_lb95": 0.11,
+      "non_inferior": false
+    },
+    "R2_101": {
+      "point": 0.16,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "ci95_lo": 0.09,
+      "ci95_hi": 0.23,
+      "ci90_lo": 0.1,
+      "ci90_hi": 0.22,
+      "one_sided_lb95": 0.1,
+      "non_inferior": false
+    },
+    "R2_202": {
+      "point": 0.12,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "ci95_lo": 0.06,
+      "ci95_hi": 0.19,
+      "ci90_lo": 0.07,
+      "ci90_hi": 0.18,
+      "one_sided_lb95": 0.07,
+      "non_inferior": false
+    },
+    "R2_303": {
+      "point": 0.1575,
+      "n": 400,
+      "n_seat0": 200,
+      "n_seat1": 200,
+      "ci95_lo": 0.1225,
+      "ci95_hi": 0.195,
+      "ci90_lo": 0.1275,
+      "ci90_hi": 0.19,
+      "one_sided_lb95": 0.1275,
+      "non_inferior": false
+    }
+  }
+}

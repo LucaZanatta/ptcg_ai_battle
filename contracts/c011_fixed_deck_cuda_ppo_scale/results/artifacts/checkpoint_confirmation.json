@@ -1,0 +1,355 @@
+{
+  "note": "Confirmation is a 500-game panel on every \u00a719 nomination; nominations that do not survive are retained as evidence.",
+  "n_nominated": 12,
+  "n_with_panel": 12,
+  "candidates": {
+    "S_611_g5440": {
+      "seed": 611,
+      "training_games": 5440,
+      "trainer_state_id": "S611-u11-cf1e97286389",
+      "screen": {
+        "teacher": 0.35,
+        "field": 0.3,
+        "composite": 0.3275
+      },
+      "confirmation": {
+        "teacher": 0.29500000000000004,
+        "teacher_lb95": 0.245,
+        "field": 0.3333333333333333,
+        "composite": 0.31225,
+        "composite_ci95": [
+          0.27149375000000003,
+          0.356
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_611_g10320": {
+      "seed": 611,
+      "training_games": 10320,
+      "trainer_state_id": "S611-u22-661ccf5a8c5e",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.43333333333333335,
+        "composite": 0.3325
+      },
+      "confirmation": {
+        "teacher": 0.31999999999999995,
+        "teacher_lb95": 0.27,
+        "field": 0.33666666666666667,
+        "composite": 0.32749999999999996,
+        "composite_ci95": [
+          0.28699375000000005,
+          0.3702500000000001
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_611_g40127": {
+      "seed": 611,
+      "training_games": 40127,
+      "trainer_state_id": "S611-u91-a6d4934e55c3",
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.2833333333333334,
+        "composite": 0.25125000000000003
+      },
+      "confirmation": {
+        "teacher": 0.32,
+        "teacher_lb95": 0.265,
+        "field": 0.3916666666666666,
+        "composite": 0.35225,
+        "composite_ci95": [
+          0.30925,
+          0.39625625000000003
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_622_g5328": {
+      "seed": 622,
+      "training_games": 5328,
+      "trainer_state_id": "S622-u11-8e453ea5f87a",
+      "screen": {
+        "teacher": 0.35,
+        "field": 0.26666666666666666,
+        "composite": 0.3125
+      },
+      "confirmation": {
+        "teacher": 0.25,
+        "teacher_lb95": 0.2,
+        "field": 0.31,
+        "composite": 0.277,
+        "composite_ci95": [
+          0.23775000000000002,
+          0.3180062500000001
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_622_g10096": {
+      "seed": 622,
+      "training_games": 10096,
+      "trainer_state_id": "S622-u22-32f949abf361",
+      "screen": {
+        "teacher": 0.3,
+        "field": 0.35000000000000003,
+        "composite": 0.3225
+      },
+      "confirmation": {
+        "teacher": 0.33499999999999996,
+        "teacher_lb95": 0.28,
+        "field": 0.32,
+        "composite": 0.32825,
+        "composite_ci95": [
+          0.2867437500000001,
+          0.37125
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_622_g15296": {
+      "seed": 622,
+      "training_games": 15296,
+      "trainer_state_id": "S622-u34-4abd8572eb01",
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.4000000000000001,
+        "composite": 0.33125000000000004
+      },
+      "confirmation": {
+        "teacher": 0.29500000000000004,
+        "teacher_lb95": 0.245,
+        "field": 0.38000000000000006,
+        "composite": 0.33325000000000005,
+        "composite_ci95": [
+          0.29124375,
+          0.37675000000000003
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_622_g30319": {
+      "seed": 622,
+      "training_games": 30319,
+      "trainer_state_id": "S622-u69-8def0de012e5",
+      "screen": {
+        "teacher": 0.375,
+        "field": 0.2833333333333334,
+        "composite": 0.33375000000000005
+      },
+      "confirmation": {
+        "teacher": 0.25,
+        "teacher_lb95": 0.2,
+        "field": 0.35333333333333333,
+        "composite": 0.2965,
+        "composite_ci95": [
+          0.25825000000000004,
+          0.33575625000000003
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_622_g39983": {
+      "seed": 622,
+      "training_games": 39983,
+      "trainer_state_id": "S622-u92-a0b92a4799f5",
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.26666666666666666,
+        "composite": 0.24375000000000002
+      },
+      "confirmation": {
+        "teacher": 0.345,
+        "teacher_lb95": 0.29000000000000004,
+        "field": 0.33666666666666667,
+        "composite": 0.34125,
+        "composite_ci95": [
+          0.29925,
+          0.3842562500000001
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_633_g5376": {
+      "seed": 633,
+      "training_games": 5376,
+      "trainer_state_id": "S633-u11-492dea75e556",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.3,
+        "composite": 0.2725
+      },
+      "confirmation": {
+        "teacher": 0.225,
+        "teacher_lb95": 0.175,
+        "field": 0.3416666666666666,
+        "composite": 0.2775,
+        "composite_ci95": [
+          0.23774375,
+          0.317
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_633_g10224": {
+      "seed": 633,
+      "training_games": 10224,
+      "trainer_state_id": "S633-u22-162db3a00810",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.3166666666666667,
+        "composite": 0.28
+      },
+      "confirmation": {
+        "teacher": 0.325,
+        "teacher_lb95": 0.27,
+        "field": 0.31499999999999995,
+        "composite": 0.3205,
+        "composite_ci95": [
+          0.27975000000000005,
+          0.3632562500000001
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_633_g30176": {
+      "seed": 633,
+      "training_games": 30176,
+      "trainer_state_id": "S633-u68-603382749a1f",
+      "screen": {
+        "teacher": 0.35,
+        "field": 0.26666666666666666,
+        "composite": 0.3125
+      },
+      "confirmation": {
+        "teacher": 0.345,
+        "teacher_lb95": 0.28500000000000003,
+        "field": 0.3666666666666667,
+        "composite": 0.35475,
+        "composite_ci95": [
+          0.31049375,
+          0.398
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "S_633_g40064": {
+      "seed": 633,
+      "training_games": 40064,
+      "trainer_state_id": "S633-u91-f7115468c030",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.3833333333333333,
+        "composite": 0.31
+      },
+      "confirmation": {
+        "teacher": 0.28,
+        "teacher_lb95": 0.22999999999999998,
+        "field": 0.31333333333333335,
+        "composite": 0.29500000000000004,
+        "composite_ci95": [
+          0.2545,
+          0.33650625000000006
+        ],
+        "games": 500
+      },
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    }
+  }
+}

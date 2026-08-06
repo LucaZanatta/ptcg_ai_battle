@@ -1,0 +1,94 @@
+{
+  "pairs": [
+    {
+      "pair": [
+        "dragapult",
+        "iono"
+      ],
+      "games_per_seat": 20,
+      "total_games": 40,
+      "seat_balanced_a_rate": 0.725,
+      "ci95": [
+        0.575,
+        0.8500000000000001
+      ],
+      "stopping_reason": "ci_above_0.55",
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    {
+      "pair": [
+        "dragapult",
+        "mega_abomasnow"
+      ],
+      "games_per_seat": 100,
+      "total_games": 200,
+      "seat_balanced_a_rate": 0.525,
+      "ci95": [
+        0.45999999999999996,
+        0.595
+      ],
+      "stopping_reason": "max_games_reached",
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    {
+      "pair": [
+        "dragapult",
+        "mega_lucario"
+      ],
+      "games_per_seat": 100,
+      "total_games": 200,
+      "seat_balanced_a_rate": 0.51,
+      "ci95": [
+        0.44,
+        0.58
+      ],
+      "stopping_reason": "max_games_reached",
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    {
+      "pair": [
+        "iono",
+        "mega_abomasnow"
+      ],
+      "games_per_seat": 20,
+      "total_games": 40,
+      "seat_balanced_a_rate": 0.7250000000000001,
+      "ci95": [
+        0.575,
+        0.8500000000000001
+      ],
+      "stopping_reason": "ci_above_0.55",
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    {
+      "pair": [
+        "iono",
+        "mega_lucario"
+      ],
+      "games_per_seat": 20,
+      "total_games": 40,
+      "seat_balanced_a_rate": 0.19999999999999998,
+      "ci95": [
+        0.1,
+        0.325
+      ],
+      "stopping_reason": "ci_below_0.45",
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    {
+      "pair": [
+        "mega_abomasnow",
+        "mega_lucario"
+      ],
+      "games_per_seat": 100,
+      "total_games": 200,
+      "seat_balanced_a_rate": 0.45,
+      "ci95": [
+        0.38,
+        0.515
+      ],
+      "stopping_reason": "max_games_reached",
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    }
+  ]
+}

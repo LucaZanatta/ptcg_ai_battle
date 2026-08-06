@@ -1,0 +1,62 @@
+{
+  "contract": "c006",
+  "arch_packaged": "S1_STATELESS",
+  "for_submission": false,
+  "package": {
+    "archive": "contracts/c006_distilled_policy_baseline/results/artifacts/submission_B_student_NOT_FOR_SUBMISSION.tar.gz",
+    "name": "submission_B_student_NOT_FOR_SUBMISSION.tar.gz",
+    "size_bytes": 1685452,
+    "sha256": "203fc011d6058a6b21814fc3535a8fff7bc2ddadf3c93282b42f0f9c3eac0030",
+    "checkpoint_sha256": "293fb39fb5da649b4322c219cf9a260705075c1b95caa38ad918665b347a4c8a",
+    "deck_sha256": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+    "runtime_module_byte_identical_to_repo": {
+      "safe_policy.py": true,
+      "episode_capture.py": true,
+      "card_vocab.py": true,
+      "micrograd.py": true,
+      "policy_features.py": true,
+      "decision_taxonomy.py": true,
+      "decoders.py": true,
+      "policy_model.py": true,
+      "student_agent.py": true
+    },
+    "for_submission": false,
+    "size_within_limit": true,
+    "all_runtime_modules_identical": true
+  },
+  "cg_file_sha256": {
+    "api.py": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced",
+    "sim.py": "e7a804ee4cd7c5a9a3b8dc91f9581ff3585f9431633a41f33d7707194cb31191",
+    "game.py": "3bd3d4f4a369a11e6d2f5da9094cf15ebc410a2221835e6417b7cff4883f1fc2",
+    "utils.py": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b",
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "libcg.so": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb",
+    "safe_policy.py": "e429af6106b8fbe9e1af32d5f83355ea3115f99a0f01c0941e58486279815d8e",
+    "episode_capture.py": "97f024e6ed7a7f11b2d4742fb7e371fd50e35ee34a691426f79bd546799b2bc3",
+    "card_vocab.py": "8fb47945c3afd0f96d256965a1cecf5c90d270f08ea1839a437fa3f82b6b04c1",
+    "micrograd.py": "3fc57a0f1abca75bd5d421809c79e4308d50e997a9bdd976fc78edd3c3e55013",
+    "policy_features.py": "dcee5c3a37a92a1442be734832a6a5982a84982340ee00274378ad36e17b430b",
+    "decision_taxonomy.py": "09e209b4ad48409c9a1f5e54bf63847503be945176fbe1dfcf543fc80eaea6ca",
+    "decoders.py": "b9529e553fcdc2ceecb3959e1412c2db2fe6ac86578f29645b147344011d5e2a",
+    "policy_model.py": "f1e2f25a6a5d5f937f99bf10feb453e872a8793c26880d15454697bd7fe62c91",
+    "student_agent.py": "2f5dd775a6c3919b25bf104d7601da47fe5275838a4ccff9d87f397e5de8a5b1"
+  },
+  "validation": {
+    "games": 40,
+    "invalid_actions": 0,
+    "agent_errors": 0,
+    "timeouts": 0,
+    "incomplete": 0,
+    "defects": 0,
+    "clean": true,
+    "student_latency_ms": {
+      "p50": 0.223226,
+      "p95": 0.349595,
+      "p99": 0.46424051999999993,
+      "max": 105.219134
+    },
+    "validated_from_extracted_archive": true,
+    "single_process": true
+  },
+  "passes_package_validation": true
+}

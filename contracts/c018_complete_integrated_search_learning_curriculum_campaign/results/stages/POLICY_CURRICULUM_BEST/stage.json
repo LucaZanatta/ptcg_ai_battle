@@ -1,0 +1,23 @@
+{
+  "stage": "POLICY_CURRICULUM_BEST",
+  "candidate_id": "m03_curriculum_policy",
+  "description": "the PPO curriculum policy playing directly, via the same RLAgent the curriculum trained",
+  "produced": true,
+  "checkpoint": "m03_curriculum.npz",
+  "checkpoint_sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08",
+  "panel_result": {
+    "games": 400,
+    "overall_rate": 0.2475,
+    "overall_ci": [
+      0.2077,
+      0.2921
+    ],
+    "worst_matchup": "mega_abomasnow",
+    "worst_matchup_rate": 0.16
+  },
+  "package": "submission_M_trained_policy_v0",
+  "package_sha256": "e0ce129c94df88a9f2a66ffb254a9f0d6c91f5537274e3b4af6b79fe5aae3e41",
+  "clean_extraction_ok": true,
+  "submittable": true,
+  "status": "SUBMITTABLE"
+}

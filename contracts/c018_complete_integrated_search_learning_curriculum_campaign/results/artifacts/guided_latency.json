@@ -1,0 +1,27 @@
+{
+  "budget_ms": 2500,
+  "policy": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+  "unguided": {
+    "n": 436,
+    "p50": 2.24,
+    "p90": 3.31,
+    "p99": 5.21,
+    "max": 95.14,
+    "mean": 2.72,
+    "searched": 436,
+    "decisions": 482
+  },
+  "guided": {
+    "n": 229,
+    "p50": 5.38,
+    "p90": 7.62,
+    "p99": 13.81,
+    "max": 108.99,
+    "mean": 6.3,
+    "searched": 229,
+    "decisions": 255
+  },
+  "leaf_rows_failed": 0,
+  "order_failed": 0,
+  "leaf_rows_ok": 832
+}

@@ -1,0 +1,29 @@
+{
+  "probe_id": "P02",
+  "name": "real_successor_branching",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "search_step_calls": 614722,
+    "search_step_ok": 609875,
+    "max_depth_reached": 4,
+    "distinct_successor_observations": 353448,
+    "traces_with_depth_ge_2": 59,
+    "traces_sampled": 60,
+    "decisions_with_branching_successors": 42648,
+    "mean_successors_per_searched_decision": 8.25,
+    "step_error_rate": 0.00788,
+    "per_decision_examined": 2952,
+    "per_decision_two_or_more_distinct_successors": 2937,
+    "per_decision_depth_gt_1": 2937,
+    "per_decision_distinct_leaf_values": 1610
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/scaled2_search_summary.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_trajectories.jsonl.gz",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/branch_proof.json"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "total_tests": 46,
+  "test_ids": [
+    "tests.test_agent_integration.TestDeckSelection.test_deck_selection_deterministic_60",
+    "tests.test_agent_integration.TestDeckSelection.test_deck_validation_summary",
+    "tests.test_agent_integration.TestDeckSelection.test_invalid_deck_length_rejected",
+    "tests.test_agent_integration.TestDeckSelection.test_malformed_card_id_rejected",
+    "tests.test_agent_integration.TestHarnessSmoke.test_agent_runs_as_both_players",
+    "tests.test_episode_capture.TestNoContractResultWrites.test_capture_does_not_touch_historical_results",
+    "tests.test_episode_capture.TestNormalizeObservation.test_json_safe_and_records_omitted",
+    "tests.test_episode_capture.TestSafeBehaviorUnchanged.test_capturing_agent_preserves_result",
+    "tests.test_episode_capture.TestSafeBehaviorUnchanged.test_deck_selection_deterministic",
+    "tests.test_episode_capture.TestSafeBehaviorUnchanged.test_selector_deterministic",
+    "tests.test_episode_capture.TestSeedDerivation.test_stable_and_distinct",
+    "tests.test_episode_capture.TestSerialization.test_decision_and_terminal_serialization",
+    "tests.test_episode_capture.TestSerialization.test_jsonl_roundtrip_valid",
+    "tests.test_episode_capture.TestValidatorDetection.test_inconsistent_ordering_detected",
+    "tests.test_episode_capture.TestValidatorDetection.test_malformed_json_detected",
+    "tests.test_episode_capture.TestValidatorDetection.test_out_of_bounds_index_detected",
+    "tests.test_runtime_assets.TestManifestLoading.test_manifest_loads_and_has_required_keys",
+    "tests.test_runtime_assets.TestSymlinkValidation.test_symlink_target_ok_and_mismatch",
+    "tests.test_runtime_assets.TestVerifierCurrentEnv.test_all_required_assets_pass",
+    "tests.test_runtime_assets.TestVerifierCurrentEnv.test_verifier_exit_zero_current_env",
+    "tests.test_runtime_assets.TestVerifierNegative.test_missing_required_asset_nonzero_exit",
+    "tests.test_safe_policy.TestDeck.test_load_real_deck_is_valid",
+    "tests.test_safe_policy.TestDeck.test_parse_deck_ignores_blank_lines",
+    "tests.test_safe_policy.TestDeck.test_parse_deck_malformed_id_raises",
+    "tests.test_safe_policy.TestDeck.test_parse_deck_success",
+    "tests.test_safe_policy.TestDeck.test_parse_deck_wrong_length_raises",
+    "tests.test_safe_policy.TestSelectContextCoverage.test_all_contexts_compatible",
+    "tests.test_safe_policy.TestSelectFor.test_select_for_duck_typed",
+    "tests.test_safe_policy.TestSelectFor.test_select_for_zero",
+    "tests.test_safe_policy.TestSelectIndices.test_deterministic_repeated",
+    "tests.test_safe_policy.TestSelectIndices.test_many_options_multi_selection",
+    "tests.test_safe_policy.TestSelectIndices.test_many_options_one_selection",
+    "tests.test_safe_policy.TestSelectIndices.test_max_gt_options_raises",
+    "tests.test_safe_policy.TestSelectIndices.test_min_gt_max_raises",
+    "tests.test_safe_policy.TestSelectIndices.test_min_zero_max_positive",
+    "tests.test_safe_policy.TestSelectIndices.test_negative_counts_raise",
+    "tests.test_safe_policy.TestSelectIndices.test_no_duplicates_and_in_range",
+    "tests.test_safe_policy.TestSelectIndices.test_non_integer_counts_raise",
+    "tests.test_safe_policy.TestSelectIndices.test_one_option_one_selection",
+    "tests.test_safe_policy.TestSelectIndices.test_zero_options_zero_counts",
+    "tests.test_safe_policy.TestValidateBoundsAndSelection.test_count_out_of_bounds_raise",
+    "tests.test_safe_policy.TestValidateBoundsAndSelection.test_duplicates_raise",
+    "tests.test_safe_policy.TestValidateBoundsAndSelection.test_non_list_raises",
+    "tests.test_safe_policy.TestValidateBoundsAndSelection.test_out_of_range_raise",
+    "tests.test_safe_policy.TestValidateBoundsAndSelection.test_valid_selection_ok",
+    "tests.test_safe_policy.TestValidateBoundsAndSelection.test_validate_bounds_ok"
+  ],
+  "required_categories_total": 13,
+  "category_to_tests": {
+    "1_runtime_manifest_loading": [
+      "tests.test_runtime_assets.TestManifestLoading.test_manifest_loads_and_has_required_keys"
+    ],
+    "2_successful_required_asset_validation": [
+      "tests.test_runtime_assets.TestVerifierCurrentEnv.test_all_required_assets_pass",
+      "tests.test_runtime_assets.TestVerifierCurrentEnv.test_verifier_exit_zero_current_env"
+    ],
+    "3_failure_for_missing_required_asset": [
+      "tests.test_runtime_assets.TestVerifierNegative.test_missing_required_asset_nonzero_exit"
+    ],
+    "4_symlink_validation": [
+      "tests.test_runtime_assets.TestSymlinkValidation.test_symlink_target_ok_and_mismatch"
+    ],
+    "5_stable_deterministic_seed_derivation": [
+      "tests.test_episode_capture.TestSeedDerivation.test_stable_and_distinct"
+    ],
+    "6_episode_decision_serialization": [
+      "tests.test_episode_capture.TestSerialization.test_decision_and_terminal_serialization"
+    ],
+    "7_terminal_record_serialization": [
+      "tests.test_episode_capture.TestSerialization.test_decision_and_terminal_serialization"
+    ],
+    "8_jsonl_round_trip_loading": [
+      "tests.test_episode_capture.TestSerialization.test_jsonl_roundtrip_valid"
+    ],
+    "9_detection_of_malformed_json": [
+      "tests.test_episode_capture.TestValidatorDetection.test_malformed_json_detected"
+    ],
+    "10_detection_of_out_of_bounds_indices": [
+      "tests.test_episode_capture.TestValidatorDetection.test_out_of_bounds_index_detected"
+    ],
+    "11_detection_of_inconsistent_ordering": [
+      "tests.test_episode_capture.TestValidatorDetection.test_inconsistent_ordering_detected"
+    ],
+    "12_no_writes_to_historical_contract_folders": [
+      "tests.test_episode_capture.TestNoContractResultWrites.test_capture_does_not_touch_historical_results"
+    ],
+    "13_deterministic_safe_behavior_unchanged": [
+      "tests.test_episode_capture.TestSafeBehaviorUnchanged.test_selector_deterministic",
+      "tests.test_episode_capture.TestSafeBehaviorUnchanged.test_deck_selection_deterministic",
+      "tests.test_episode_capture.TestSafeBehaviorUnchanged.test_capturing_agent_preserves_result"
+    ]
+  },
+  "categories_with_missing_tests": {},
+  "all_13_categories_represented": true
+}

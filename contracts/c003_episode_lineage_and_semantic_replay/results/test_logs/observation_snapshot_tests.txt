@@ -1,0 +1,9 @@
+test_snapshot_unaffected_by_nested_mutation (tests.test_observation_snapshot.TestObservationSnapshot.test_snapshot_unaffected_by_nested_mutation) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_observation_snapshot.py:65: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp1vddbsli/e.jsonl' mode='r' encoding='utf-8'>
+  dec = next(json.loads(l) for l in open(path, encoding="utf-8")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK

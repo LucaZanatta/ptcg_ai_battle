@@ -1,0 +1,39 @@
+candidates: 9
+  C008_I0                single         b172b4dc7947
+  C010_INCUMBENT         single         974051fad562
+  C012_SOUP_622_633      weight_soup    65175672183e
+  P0_711                 single         92c1816e95d9
+  P1_822                 single         12c7c7549bd7
+  P1_833                 single         381b80e2e692
+  S611                   single         a92e5dfec94e
+  S622                   single         59011f64cfed
+  S633                   single         91fb9244d998
+
+combinations: 27
+  LOGIT_S611+S622                    online_ensemble n=2 441216c70b34
+  LOGIT_S611+S622+S633               online_ensemble n=3 67753ab91b49
+  LOGIT_S611+S633                    online_ensemble n=2 9e26098b608b
+  LOGIT_S622+S633                    online_ensemble n=2 f402458b0321
+  LOGIT_SOUP+P0_711                  online_ensemble n=2 471a4cb569e5
+  LOGIT_SOUP+P0_711+P1_822           online_ensemble n=3 2a42e544fdd5
+  LOGIT_SOUP+P0_711+P1_822+P1_833    online_ensemble n=4 984cff090981
+  LOGIT_SOUP+P0_711+P1_833           online_ensemble n=3 ff588247d096
+  LOGIT_SOUP+P1_822                  online_ensemble n=2 f69b6467a866
+  LOGIT_SOUP+P1_833                  online_ensemble n=2 0e7c47749840
+  PROB_S611+S622                     online_ensemble n=2 344aeb432d01
+  PROB_S611+S622+S633                online_ensemble n=3 7898869d2388
+  PROB_S611+S633                     online_ensemble n=2 489359bbc5f4
+  PROB_S622+S633                     online_ensemble n=2 7d873cf36ca5
+  PROB_SOUP+P0_711                   online_ensemble n=2 1163f65dd5b5
+  PROB_SOUP+P0_711+P1_822            online_ensemble n=3 af94dc2f263b
+  PROB_SOUP+P0_711+P1_822+P1_833     online_ensemble n=4 9499d4ee2750
+  PROB_SOUP+P0_711+P1_833            online_ensemble n=3 30dfd1abd837
+  PROB_SOUP+P1_822                   online_ensemble n=2 371b6d27de2b
+  PROB_SOUP+P1_833                   online_ensemble n=2 1e9eaf1a7840
+  SOUP13_P0_711+P1_822               weight_soup     n=2 85eebe181746
+  SOUP13_P0_711+P1_833               weight_soup     n=2 d626b5e4ea8a
+  SOUP13_P1_822+P1_833               weight_soup     n=2 386edb799329
+  SOUP13_SOUP+P0_711                 weight_soup     n=2 3b7f227c358a
+  SOUP13_SOUP+P0_711+P1_822+P1_833   weight_soup     n=4 922f1877d8b3
+  SOUP13_SOUP+P1_822                 weight_soup     n=2 5dfe029fa2c1
+  SOUP13_SOUP+P1_833                 weight_soup     n=2 c8056cef1302

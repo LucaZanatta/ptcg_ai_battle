@@ -1,0 +1,118 @@
+{
+  "requested_model": "opus",
+  "expected_model_prefix": "claude-opus",
+  "tools_enabled": false,
+  "non_interactive": true,
+  "sequential": true,
+  "n_preflight_states": 3,
+  "all_calls_succeeded": true,
+  "all_calls_used_opus": true,
+  "all_schema_valid": true,
+  "preflight_pass": true,
+  "resolved_models_seen": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "model_verification_rule": "a call counts as Opus only when a claude-opus-* entry in modelUsage has non-zero outputTokens; Claude Code's background summarisation model may also appear and is not accepted as the labelling model",
+  "estimated_cost_per_call_usd": 0.2324,
+  "projected_cost_full_run_usd": 66.94,
+  "calls": [
+    {
+      "state_id": "S1801",
+      "ok": true,
+      "resolved_models": [
+        "claude-haiku-4-5-20251001",
+        "claude-opus-5"
+      ],
+      "opus_output_tokens": 4777,
+      "model_verified": true,
+      "cost_usd": 0.3716965,
+      "seconds": 78.06535363197327,
+      "schema_valid": true,
+      "errors": [],
+      "label": {
+        "state_id": "S1801",
+        "selected_action_id": "a0",
+        "ranked_action_ids": [
+          "a0",
+          "a1",
+          "a2",
+          "a3",
+          "a4",
+          "a5",
+          "a6"
+        ],
+        "confidence": 0.15,
+        "strategic_tags": [
+          "low-information",
+          "no-observable-features",
+          "index-default",
+          "uninformative-serialization"
+        ],
+        "short_rationale": "The serialized position exposes no card-level or action-semantic detail, so nothing distinguishes the seven options on their merits; a0 is a neutral lowest-index default and the ranking is index order, not a strategic ordering. The very low policy entropy suggests one action likely dominates here, but it does not indicate which."
+      }
+    },
+    {
+      "state_id": "S4206",
+      "ok": true,
+      "resolved_models": [
+        "claude-haiku-4-5-20251001",
+        "claude-opus-5"
+      ],
+      "opus_output_tokens": 1802,
+      "model_verified": true,
+      "cost_usd": 0.2490395,
+      "seconds": 33.39584302902222,
+      "schema_valid": true,
+      "errors": [],
+      "label": {
+        "state_id": "S4206",
+        "selected_action_id": "a0",
+        "ranked_action_ids": [
+          "a0",
+          "a1",
+          "a2"
+        ],
+        "confidence": 0.33,
+        "strategic_tags": [
+          "no-distinguishing-information",
+          "uninformative-state",
+          "uniform-prior"
+        ],
+        "short_rationale": "The serialized position exposes only three bare action indices with no card, board, hand, or prize information, so nothing distinguishes the options. Ranking is index order by default and confidence is at the uniform-random baseline."
+      }
+    },
+    {
+      "state_id": "S4154",
+      "ok": true,
+      "resolved_models": [
+        "claude-haiku-4-5-20251001",
+        "claude-opus-5"
+      ],
+      "opus_output_tokens": 1059,
+      "model_verified": true,
+      "cost_usd": 0.07660650000000001,
+      "seconds": 21.390300750732422,
+      "schema_valid": true,
+      "errors": [],
+      "label": {
+        "state_id": "S4154",
+        "selected_action_id": "a0",
+        "ranked_action_ids": [
+          "a0",
+          "a1",
+          "a2",
+          "a3"
+        ],
+        "confidence": 0.28,
+        "strategic_tags": [
+          "low-information-state",
+          "empty-hand",
+          "index-order-prior",
+          "tempo-default"
+        ],
+        "short_rationale": "The serialized position exposes no card, board, or prize semantics, so no option can be distinguished on strategic merit; with an empty hand the decision is a forced board/attack-style choice where the engine's primary (lowest-index) option is the standard default. Ranking follows index order as a neutral prior, and confidence is low to reflect that."
+      }
+    }
+  ]
+}

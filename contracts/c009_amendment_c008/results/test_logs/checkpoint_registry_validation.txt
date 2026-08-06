@@ -1,0 +1,28 @@
+c009 AC-04 candidate checkpoint registry
+============================================================
+entries: 9  (B0 + frozen teacher + 7 c008 selected)
+
+  B0_v2a       arm=B0  seed=None  games=0      metric=None     rank=None median=0 best=1 sha=7066841e3329
+  R0_101       arm=R0  seed=101   games=2556   metric=0.20500000000000002 rank=1    median=0 best=1 sha=70b09768c335
+  R0_202       arm=R0  seed=202   games=10143  metric=0.16625  rank=2    median=1 best=0 sha=7ba39771e272
+  R1_101       arm=R1  seed=101   games=10040  metric=0.405    rank=1    median=0 best=1 sha=b172b4dc7947
+  R1_202       arm=R1  seed=202   games=5130   metric=0.3375   rank=2    median=1 best=0 sha=545cbd26a28c
+  R2_101       arm=R2  seed=101   games=2534   metric=0.305    rank=3    median=0 best=0 sha=a492ce20e14b
+  R2_202       arm=R2  seed=202   games=20083  metric=0.31125  rank=2    median=1 best=0 sha=aec2ea82530a
+  R2_303       arm=R2  seed=303   games=5054   metric=0.335    rank=1    median=0 best=1 sha=19fc9fb71db7
+  T_teacher    arm=T   seed=None  games=None   metric=None     rank=None median=0 best=0 sha=ef8936859fd2
+
+  [OK ] B0_present_and_hashed  7066841e3329b71b
+  [OK ] R1_seeds_101_202_present  ['R1_101', 'R1_202']
+  [OK ] R2_seeds_101_202_303_present  ['R2_101', 'R2_202', 'R2_303']
+  [OK ] R0_controls_present  ['R0_101', 'R0_202']
+  [OK ] all_checkpoints_hashed  []
+  [OK ] all_hashes_distinct  9/9
+  [OK ] files_exist  
+  [OK ] R0_exactly_one_best_by_validation  ['R0_101']
+  [OK ] R1_exactly_one_best_by_validation  ['R1_101']
+  [OK ] R2_exactly_one_best_by_validation  ['R2_303']
+  [OK ] median_representatives_flagged  ['R0_202', 'R1_202', 'R2_202']
+
+NOTE: c008 designated the MEDIAN seed as each arm's representative, while the c008 final evaluation used the BEST-by-validation checkpoint. c009 evaluates every selected checkpoint, so the distinction cannot bias the outcome.
+ALL_OK = True

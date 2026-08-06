@@ -1,0 +1,35 @@
+test_contains_both_mechanism_cards (tests.test_c015_expert.DeckIntegrity.test_contains_both_mechanism_cards) ... ok
+test_distinct_from_c014_and_not_dragapult (tests.test_c015_expert.DeckIntegrity.test_distinct_from_c014_and_not_dragapult) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c015_expert.py:59: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/selected_deck.sha256' mode='r' encoding='UTF-8'>
+  "artifacts/selected_deck.sha256")).read().split()[0]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_exactly_60_cards (tests.test_c015_expert.DeckIntegrity.test_exactly_60_cards) ... ok
+test_determinism (tests.test_c015_expert.LegalityAndFallback.test_determinism) ... ok
+test_multiselect_respects_bounds (tests.test_c015_expert.LegalityAndFallback.test_multiselect_respects_bounds) ... ok
+test_new_game_resets_counters (tests.test_c015_expert.LegalityAndFallback.test_new_game_resets_counters) ... ok
+test_unknown_context_falls_back_legally (tests.test_c015_expert.LegalityAndFallback.test_unknown_context_falls_back_legally) ... ok
+test_ability_beats_all_other_main_actions (tests.test_c015_expert.MechanismA.test_ability_beats_all_other_main_actions) ... ok
+test_availability_requires_energy_in_hand_and_bellibolt (tests.test_c015_expert.MechanismA.test_availability_requires_energy_in_hand_and_bellibolt) ... ok
+test_damage_scales_with_total_energy_in_play (tests.test_c015_expert.MechanismB.test_damage_scales_with_total_energy_in_play) ... ok
+test_scaled_voltaic_chain_beats_a_higher_static_attack (tests.test_c015_expert.MechanismB.test_scaled_voltaic_chain_beats_a_higher_static_attack) ... ok
+test_static_damage_alone_would_choose_wrongly (tests.test_c015_expert.MechanismB.test_static_damage_alone_would_choose_wrongly)
+Negative control for the real bug: ranking by the static field picks 30 over 20. ... ok
+test_does_not_import_the_c014_expert (tests.test_c015_expert.NoForbiddenTechniques.test_does_not_import_the_c014_expert) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c015_expert.py:203: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/tools/c015_iono_expert.py' mode='r' encoding='UTF-8'>
+  src = open(os.path.join(_REPO, "tools", "c015_iono_expert.py")).read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_no_search_or_learning_in_source (tests.test_c015_expert.NoForbiddenTechniques.test_no_search_or_learning_in_source) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c015_expert.py:197: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/tools/c015_iono_expert.py' mode='r' encoding='UTF-8'>
+  src = open(os.path.join(_REPO, "tools", "c015_iono_expert.py")).read().lower()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_detects_unevolved_target_line (tests.test_c015_expert.OpponentInference.test_detects_unevolved_target_line) ... ok
+test_attack_ranks_below_development (tests.test_c015_expert.SequencingAndLiability.test_attack_ranks_below_development) ... ok
+test_bellibolt_evolution_outranks_development_plays (tests.test_c015_expert.SequencingAndLiability.test_bellibolt_evolution_outranks_development_plays) ... ok
+test_benching_outranks_items_when_bench_empty (tests.test_c015_expert.SequencingAndLiability.test_benching_outranks_items_when_bench_empty) ... ok
+test_discard_never_dumps_the_engine (tests.test_c015_expert.SequencingAndLiability.test_discard_never_dumps_the_engine) ... ok
+test_setup_leads_with_tadbulb (tests.test_c015_expert.SequencingAndLiability.test_setup_leads_with_tadbulb) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.003s
+
+OK

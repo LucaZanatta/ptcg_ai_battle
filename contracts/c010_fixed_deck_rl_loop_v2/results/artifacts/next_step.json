@@ -1,0 +1,13 @@
+{
+  "next_step": "SCALE_FIXED_DECK_RL",
+  "training_loop_status": "PROMISING",
+  "highest_leverage_blocker": "Early-game credit assignment. The value function explains 0.43 of held-out return variance in the first fifth of a game against 0.80 in the fourth fifth, so opening decisions \u2014 the ones the strategic field punishes hardest \u2014 train on the noisiest advantage estimates. Continuation is no longer the constraint: a registered arm reached EXTENDED across its seeds, and both exact-recipe arms fell short only on the field dimension.",
+  "best_agent": "C_522_g20220",
+  "decisions": {
+    "exact_reproducibility": "INCONCLUSIVE",
+    "exact_continuation": "INCONCLUSIVE",
+    "stabilized_continuation": "EXTENDED",
+    "promotion_decision": "PROMOTE_NEW_AGENT",
+    "submission_E": "DO_NOT_SUBMIT"
+  }
+}

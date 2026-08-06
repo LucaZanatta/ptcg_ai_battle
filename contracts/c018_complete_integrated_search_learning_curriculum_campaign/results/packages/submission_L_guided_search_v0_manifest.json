@@ -1,0 +1,241 @@
+{
+  "name": "submission_L_guided_search_v0",
+  "archive_rel": "packages/submission_L_guided_search_v0.tar.gz",
+  "archive": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/packages/submission_L_guided_search_v0.tar.gz",
+  "sha256": "e87320a8441986749467a8f185e298aace4f2db0e38314508a06cd4051818365",
+  "bytes": 4171838,
+  "n_members": 24,
+  "members": [
+    {
+      "name": "ATTRIBUTION.md",
+      "size": 536
+    },
+    {
+      "name": "_baseline.py",
+      "size": 19776
+    },
+    {
+      "name": "_c018_guided.py",
+      "size": 5706
+    },
+    {
+      "name": "_c018_search.py",
+      "size": 21622
+    },
+    {
+      "name": "_decks.json",
+      "size": 1216
+    },
+    {
+      "name": "cg/__init__.py",
+      "size": 0
+    },
+    {
+      "name": "cg/api.py",
+      "size": 26933
+    },
+    {
+      "name": "cg/card_vocab.py",
+      "size": 6753
+    },
+    {
+      "name": "cg/decision_taxonomy.py",
+      "size": 5882
+    },
+    {
+      "name": "cg/decoders.py",
+      "size": 3001
+    },
+    {
+      "name": "cg/episode_capture.py",
+      "size": 8965
+    },
+    {
+      "name": "cg/game.py",
+      "size": 2225
+    },
+    {
+      "name": "cg/libcg.so",
+      "size": 1338304
+    },
+    {
+      "name": "cg/micrograd.py",
+      "size": 12173
+    },
+    {
+      "name": "cg/policy_data_v2.py",
+      "size": 8483
+    },
+    {
+      "name": "cg/policy_model_v2.py",
+      "size": 10269
+    },
+    {
+      "name": "cg/rl_policy.py",
+      "size": 10342
+    },
+    {
+      "name": "cg/safe_policy.py",
+      "size": 6942
+    },
+    {
+      "name": "cg/sim.py",
+      "size": 1966
+    },
+    {
+      "name": "cg/state_encoder_v2.py",
+      "size": 18405
+    },
+    {
+      "name": "cg/utils.py",
+      "size": 1970
+    },
+    {
+      "name": "deck.csv",
+      "size": 305
+    },
+    {
+      "name": "main.py",
+      "size": 2106
+    },
+    {
+      "name": "policy.npz",
+      "size": 4511078
+    }
+  ],
+  "guided": true,
+  "policy_only": false,
+  "checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+  "checkpoint_sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08",
+  "cfg_override": {
+    "max_ms_per_decision": 1500
+  },
+  "inference_only": true,
+  "source_commit": "eb9f0da0d7ba95e090533e728c08cc4eba542475",
+  "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+  "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+  "search_module_sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+  "source_to_package_map": [
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/main.py",
+      "archive_path": "_baseline.py",
+      "sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2"
+    },
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/deck.csv",
+      "archive_path": "deck.csv",
+      "sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee"
+    },
+    {
+      "source": "tools/c018_search.py",
+      "archive_path": "_c018_search.py",
+      "sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52"
+    },
+    {
+      "source": "cg/__init__.py",
+      "archive_path": "cg/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "cg/api.py",
+      "archive_path": "cg/api.py",
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced"
+    },
+    {
+      "source": "cg/game.py",
+      "archive_path": "cg/game.py",
+      "sha256": "3bd3d4f4a369a11e6d2f5da9094cf15ebc410a2221835e6417b7cff4883f1fc2"
+    },
+    {
+      "source": "cg/libcg.so",
+      "archive_path": "cg/libcg.so",
+      "sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb"
+    },
+    {
+      "source": "cg/sim.py",
+      "archive_path": "cg/sim.py",
+      "sha256": "e7a804ee4cd7c5a9a3b8dc91f9581ff3585f9431633a41f33d7707194cb31191"
+    },
+    {
+      "source": "cg/utils.py",
+      "archive_path": "cg/utils.py",
+      "sha256": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b"
+    },
+    {
+      "source": "generated from cg.teachers",
+      "archive_path": "_decks.json",
+      "sha256": "9e2d93efa9a65ff41bccca97c03246fd12801cbf19274e82ac4739f341eee9d9"
+    },
+    {
+      "source": "tools/c018_guided.py",
+      "archive_path": "_c018_guided.py",
+      "sha256": "73662f99185e5198e0bbe0540a1b3492f5b2f7b2437b613fac03a3f124434396"
+    },
+    {
+      "source": "cg/card_vocab.py",
+      "archive_path": "cg/card_vocab.py",
+      "sha256": "8fb47945c3afd0f96d256965a1cecf5c90d270f08ea1839a437fa3f82b6b04c1"
+    },
+    {
+      "source": "cg/decision_taxonomy.py",
+      "archive_path": "cg/decision_taxonomy.py",
+      "sha256": "09e209b4ad48409c9a1f5e54bf63847503be945176fbe1dfcf543fc80eaea6ca"
+    },
+    {
+      "source": "cg/decoders.py",
+      "archive_path": "cg/decoders.py",
+      "sha256": "b9529e553fcdc2ceecb3959e1412c2db2fe6ac86578f29645b147344011d5e2a"
+    },
+    {
+      "source": "cg/episode_capture.py",
+      "archive_path": "cg/episode_capture.py",
+      "sha256": "97f024e6ed7a7f11b2d4742fb7e371fd50e35ee34a691426f79bd546799b2bc3"
+    },
+    {
+      "source": "cg/micrograd.py",
+      "archive_path": "cg/micrograd.py",
+      "sha256": "f8f81df43e3fa8f02ff1c2ebc540b7f50b6547908d58de536a61b78922c241c4"
+    },
+    {
+      "source": "cg/policy_data_v2.py",
+      "archive_path": "cg/policy_data_v2.py",
+      "sha256": "c01932fb2b7d539b6c63fbdf9ddfdfe2a640c9968e34734c8d1064e85335bcd7"
+    },
+    {
+      "source": "cg/policy_model_v2.py",
+      "archive_path": "cg/policy_model_v2.py",
+      "sha256": "fc24b038f6b9d05c25d1023cc0b0dce340fb277d17ce275b00171f2040759342"
+    },
+    {
+      "source": "cg/rl_policy.py",
+      "archive_path": "cg/rl_policy.py",
+      "sha256": "780c26453703ab3b86c869d9de35e7e38041dc18210954356e4b401114bd8d97"
+    },
+    {
+      "source": "cg/safe_policy.py",
+      "archive_path": "cg/safe_policy.py",
+      "sha256": "e429af6106b8fbe9e1af32d5f83355ea3115f99a0f01c0941e58486279815d8e"
+    },
+    {
+      "source": "cg/state_encoder_v2.py",
+      "archive_path": "cg/state_encoder_v2.py",
+      "sha256": "874c0c8c2b05774715abbc6e1b0d8f2c4900cb30fe7a6d9194b70ea370df76f6"
+    },
+    {
+      "source": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+      "archive_path": "policy.npz",
+      "sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08"
+    },
+    {
+      "source": "generated by tools/c018_package.py",
+      "archive_path": "main.py",
+      "sha256": "f4698ffa27bc40a14cbf12ffbd1d77816445828b6bb889a472acf7cfeaf21b42"
+    },
+    {
+      "source": "generated",
+      "archive_path": "ATTRIBUTION.md",
+      "sha256": "4bf1a21421eac22c4512c783ef3ea74bd72f26160bd90f7ade6c956f6bc70f5b"
+    }
+  ],
+  "build_command": "python tools/c018_package.py --name submission_L_guided_search_v0 --guided"
+}

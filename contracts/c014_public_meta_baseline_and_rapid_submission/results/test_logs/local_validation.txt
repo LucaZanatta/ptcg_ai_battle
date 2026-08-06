@@ -1,0 +1,90 @@
+{
+  "reliability": {
+    "games": 600,
+    "completed": 600,
+    "not_completed": [],
+    "invalid_selections": 0,
+    "exceptions": 0,
+    "env_exceptions": 0,
+    "timeouts": 0,
+    "agent_errors": 0,
+    "seats": {
+      "0": 300,
+      "1": 300
+    },
+    "opponents": {
+      "dragapult": 100,
+      "mega_lucario": 100,
+      "iono": 100,
+      "mega_abomasnow": 100,
+      "__safe__": 100,
+      "__self__": 100
+    },
+    "total_decisions": 28476,
+    "fallbacks": 0,
+    "hard_gates": {
+      "zero_invalid_selections": true,
+      "zero_exceptions": true,
+      "zero_timeouts": true,
+      "all_games_classified": true,
+      "both_seats_tested": true
+    }
+  },
+  "latency": {
+    "p99_gate_ms": 250.0,
+    "max_gate_ms": 1000.0,
+    "max_gate_source": "self-imposed; the competition's per-decision limit is not obtainable from client-rendered pages (see CURRENT_COMPETITION_FACTS.md). runTimeout=3000s per episode is the only verified bound and is not approached.",
+    "worst_game_p99_ms": 0.1200239930767566,
+    "worst_game_max_ms": 95.99813699605875,
+    "median_of_game_p50_ms": 0.017277248844038695,
+    "gates": {
+      "p99_within_250ms": true,
+      "max_within_self_imposed_bound": true
+    }
+  },
+  "coherence": {
+    "games_audited": 80,
+    "decisions_sampled": 3785,
+    "setup_success_rate": 1.0,
+    "intended_attacker_prepared_rate": 0.8375,
+    "attacker_reached_full_energy_rate": 0.625,
+    "empty_bench_decisions_per_game": 10.137,
+    "attacks_by_intended_attacker": {
+      "Archaludon ex": 261,
+      "Duraludon": 83,
+      "Cinderace": 3
+    },
+    "thesis_attack_share": 0.7522,
+    "rule_usage": {
+      "main_play": 947,
+      "search": 547,
+      "forced": 527,
+      "main_attach": 348,
+      "main_attack": 347,
+      "attach_to_intended_attacker": 240,
+      "promote": 190,
+      "discard_bank_energy": 162,
+      "main_evolve": 154,
+      "say_yes": 128,
+      "main_retreat": 64,
+      "setup_bench": 43,
+      "setup_active": 42,
+      "mulligan_yes": 31,
+      "draw_max": 15
+    },
+    "fallback_decisions": 0,
+    "fallback_rate": 0.0,
+    "fallback_reasons": {},
+    "top_loss_opponents": {
+      "iono": 98,
+      "dragapult": 91,
+      "mega_abomasnow": 65
+    },
+    "next_loss_mode": {
+      "id": "cinderace_explosiveness_opener_rarely_available",
+      "statement": "Cinderace reaches the Active Spot via Explosiveness in only a minority of games, so Turbo Flare - the deck's only energy accelerator, attaching 3 Basic Energy to the bench - is usually unavailable and the deck must reach {M}{M}{M} through one manual attachment per turn.",
+      "why_single": "it is upstream of every other weakness measured here: slow energy is what makes the evolve-turn weakness window long enough to be punished.",
+      "measured_by": "attacks_by_intended_attacker and attacker_reached_full_energy_rate"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "contract": "c009",
+  "teacher_submission_ref": "54948560",
+  "teacher_public_score_same_run": 709.1,
+  "rl_submission_ref": null,
+  "rl_public_score": null,
+  "best_saved_checkpoint": "R1_101_ckpt_g10040",
+  "best_saved_candidate_id": "R1_101",
+  "submission_D_amended": "DO_NOT_SUBMIT",
+  "local_evidence": {
+    "rl_improved_over_initialization": "YES",
+    "teacher_noninferiority": "FAIL",
+    "rl_feasibility_recalibrated": "INCONCLUSIVE"
+  },
+  "note": "DO_NOT_SUBMIT: no RL policy uploaded (SKIPPED_BY_GATE). The teacher score is refreshed read-only for the record. Local corrected evidence shows the best saved checkpoint improves over its own initialization but remains far below the teacher, so the frozen teacher remains the standing submission.",
+  "refresh_detail": {
+    "ok": true,
+    "publicScore_column_index": 5,
+    "teacher_public_score_same_run": 709.1,
+    "teacher_row": "54948560,submission_A_teacher.tar.gz,2026-07-24 10:04:26.770000,c005 Submission A: frozen teacher dragapult,SubmissionStatus.COMPLETE,709.1,",
+    "stderr": ""
+  }
+}

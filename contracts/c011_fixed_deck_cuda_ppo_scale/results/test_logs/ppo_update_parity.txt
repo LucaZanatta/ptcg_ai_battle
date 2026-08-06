@@ -1,0 +1,32 @@
+c011 AC-04 PPO fixed-batch parity — 10 games, 717 decisions, identical minibatch permutation
+legacy: {"policy_loss": -0.011906767797686941, "value_loss": 0.045135731823758414, "entropy": 0.3980194302133056, "approx_kl": 0.0016915967485570114, "clip_frac": 0.022129065040650406}
+
+[float64] all_pass=True min_cosine=1.000000000 (trunk::sem_b, 32 tensors)
+    |policy_loss error| = 3.469e-18
+    |value_loss error| = 2.082e-17
+    |entropy error| = 1.665e-16
+    |approx_kl error| = 7.373e-18
+    |clip_frac error| = 0.000e+00
+    PASS policy_loss_within_1e-4
+    PASS value_loss_within_1e-4
+    PASS entropy_within_1e-4
+    PASS approx_kl_within_1e-4
+    PASS clip_fraction_within_1e-4
+    PASS every_tensor_update_cosine_ge_0.999
+    PASS no_nan_or_inf
+    PASS same_decision_count
+
+[float32] all_pass=True min_cosine=0.999999839 (trunk::score, 32 tensors)
+    |policy_loss error| = 3.638e-09
+    |value_loss error| = 8.677e-09
+    |entropy error| = 1.274e-08
+    |approx_kl error| = 3.615e-09
+    |clip_frac error| = 0.000e+00
+    PASS policy_loss_within_1e-4
+    PASS value_loss_within_1e-4
+    PASS entropy_within_1e-4
+    PASS approx_kl_within_1e-4
+    PASS clip_fraction_within_1e-4
+    PASS every_tensor_update_cosine_ge_0.999
+    PASS no_nan_or_inf
+    PASS same_decision_count

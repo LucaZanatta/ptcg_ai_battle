@@ -1,0 +1,141 @@
+{
+  "contract": "c010",
+  "protocol_source": "cg/c009_eval.py (reused verbatim; c010 adds no reattachment step)",
+  "identity_fields_returned_by_every_worker": [
+    "job_id",
+    "candidate_id",
+    "checkpoint_sha256",
+    "opponent_id",
+    "seat",
+    "replicate",
+    "requested_seed",
+    "phase"
+  ],
+  "job_id_format": "phase::candidate_id::opponent_id::s{seat}::r{replicate}",
+  "worker_self_verification": [
+    "re-hashes the checkpoint file it loaded and returns verified_checkpoint_sha256",
+    "fingerprints the deck it actually played and returns deck_fingerprint",
+    "classifies any non-terminal game with an explicit defect string"
+  ],
+  "assertions": [
+    "submitted job_ids are unique",
+    "returned job_ids are unique",
+    "the submitted job_id set equals the returned job_id set (no missing, no extra)",
+    "every returned candidate_id exists in the frozen candidate registry",
+    "the checkpoint hash matches the registry AND the hash the worker recomputed after load",
+    "every identity field round-trips unchanged from the submitted job",
+    "the per candidate/opponent/seat count is exactly the frozen panel size",
+    "no unexpected candidate or opponent appears",
+    "every game is terminal or explicitly classified as a defect"
+  ],
+  "n_assertions": 9,
+  "ordering_guarantee": "Results are matched to jobs by job_id only. No positional reattachment is performed anywhere in c010, which is what made the c008 defect possible: there, unordered results were zipped back onto an ordered job list, so a reordering that crossed an arm boundary relabelled games onto the wrong candidate.",
+  "frozen_panels": {
+    "screen": {
+      "teacher": 20,
+      "mega_lucario": 10,
+      "iono": 10,
+      "mega_abomasnow": 10,
+      "per_seat": true,
+      "total_per_checkpoint": 100
+    },
+    "confirmation": {
+      "teacher": 100,
+      "mega_lucario": 50,
+      "iono": 50,
+      "mega_abomasnow": 50,
+      "per_seat": true,
+      "total_per_checkpoint": 500
+    },
+    "final": {
+      "teacher": 200,
+      "mega_lucario": 100,
+      "iono": 100,
+      "mega_abomasnow": 100,
+      "per_seat": true,
+      "total_per_finalist": 1000,
+      "teacher_extension_to": 800
+    },
+    "control": "diagnostic only; excluded from promotion metrics"
+  },
+  "expected_deck_fingerprint": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a",
+  "batches_executed": [
+    {
+      "phase": "screen",
+      "candidates": 2,
+      "results": 200,
+      "terminal": 200,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 32.8
+    },
+    {
+      "phase": "screen",
+      "candidates": 24,
+      "results": 2400,
+      "terminal": 2400,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 447.1
+    },
+    {
+      "phase": "confirmation",
+      "candidates": 20,
+      "results": 10000,
+      "terminal": 10000,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 1883.6
+    },
+    {
+      "phase": "confirmation",
+      "candidates": 2,
+      "results": 1000,
+      "terminal": 1000,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 199.2
+    },
+    {
+      "phase": "final",
+      "candidates": 4,
+      "results": 4000,
+      "terminal": 4000,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 799.7
+    },
+    {
+      "phase": "screen",
+      "candidates": 18,
+      "results": 1800,
+      "terminal": 1800,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 98.5
+    },
+    {
+      "phase": "confirmation",
+      "candidates": 10,
+      "results": 5000,
+      "terminal": 5000,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 270.5
+    },
+    {
+      "phase": "final",
+      "candidates": 1,
+      "results": 1000,
+      "terminal": 1000,
+      "defects": 0,
+      "ok": true,
+      "wall_seconds": 55.6
+    }
+  ],
+  "n_batches": 8,
+  "all_batches_identity_ok": true,
+  "total_evaluation_games": 25400,
+  "seat_balance_ok": true,
+  "total_defects": 0
+}

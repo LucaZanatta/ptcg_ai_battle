@@ -1,0 +1,1030 @@
+{
+  "rule": "\u00a77.1 \u2014 a saved c010 checkpoint must receive a c011 confirmation panel when ANY of: teacher screen >= 0.27; field screen >= 0.33; promotion composite within 0.03 of c010's best screen; late checkpoint at >= 75% of its branch's ACTUAL final game count with no reliability defect.",
+  "note": "Enumerated programmatically from c010's screening CSV and registries. The contract's approximate example IDs are not used (\u00a77.1). Branch budgets are the observed final game counts, so seed 533's terminal checkpoint (registered_eval_point = null, 19,952 games) is included rather than filtered out.",
+  "c010_best_screen_composite": 0.34375,
+  "n_checkpoints_enumerated": 42,
+  "n_promising": 29,
+  "n_already_confirmed_in_c010": 30,
+  "n_needing_c011_confirmation": 9,
+  "needs_confirmation": [
+    "A_322_g10115",
+    "C_511_g10316",
+    "C_511_g15108",
+    "C_522_g7624",
+    "C_522_g10236",
+    "C_522_g15424",
+    "C_533_g5052",
+    "C_533_g7720",
+    "C_533_g10356"
+  ],
+  "checkpoints": [
+    {
+      "candidate_id": "A_311_g2527",
+      "arm": "A",
+      "seed": 311,
+      "training_games": 2527,
+      "branch_final_games": 12103,
+      "fraction_of_branch": 0.2088,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.25,
+        "composite": 0.23625000000000002,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_311_g5054",
+      "arm": "A",
+      "seed": 311,
+      "training_games": 5054,
+      "branch_final_games": 12103,
+      "fraction_of_branch": 0.4176,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.325,
+        "field": 0.2333333333333333,
+        "composite": 0.28375,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_311_g7581",
+      "arm": "A",
+      "seed": 311,
+      "training_games": 7581,
+      "branch_final_games": 12103,
+      "fraction_of_branch": 0.6264,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.125,
+        "field": 0.3333333333333333,
+        "composite": 0.21875,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_311_g10108",
+      "arm": "A",
+      "seed": 311,
+      "training_games": 10108,
+      "branch_final_games": 12103,
+      "fraction_of_branch": 0.8352,
+      "registered_eval_point": "10000",
+      "screen": {
+        "teacher": 0.15000000000000002,
+        "field": 0.325,
+        "composite": 0.22875,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_311_g12103",
+      "arm": "A",
+      "seed": 311,
+      "training_games": 12103,
+      "branch_final_games": 12103,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "12000",
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.23333333333333336,
+        "composite": 0.21500000000000002,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_322_g2534",
+      "arm": "A",
+      "seed": 322,
+      "training_games": 2534,
+      "branch_final_games": 12110,
+      "fraction_of_branch": 0.2092,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.15000000000000002,
+        "field": 0.2833333333333333,
+        "composite": 0.21000000000000002,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_322_g5061",
+      "arm": "A",
+      "seed": 322,
+      "training_games": 5061,
+      "branch_final_games": 12110,
+      "fraction_of_branch": 0.4179,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.3,
+        "composite": 0.25875000000000004,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_322_g7588",
+      "arm": "A",
+      "seed": 322,
+      "training_games": 7588,
+      "branch_final_games": 12110,
+      "fraction_of_branch": 0.6266,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.25,
+        "composite": 0.2225,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_322_g10115",
+      "arm": "A",
+      "seed": 322,
+      "training_games": 10115,
+      "branch_final_games": 12110,
+      "fraction_of_branch": 0.8353,
+      "registered_eval_point": "10000",
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.2833333333333333,
+        "composite": 0.23750000000000002,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "A_322_g12110",
+      "arm": "A",
+      "seed": 322,
+      "training_games": 12110,
+      "branch_final_games": 12110,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "12000",
+      "screen": {
+        "teacher": 0.175,
+        "field": 0.2333333333333333,
+        "composite": 0.20125,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_333_g2541",
+      "arm": "A",
+      "seed": 333,
+      "training_games": 2541,
+      "branch_final_games": 12117,
+      "fraction_of_branch": 0.2097,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.125,
+        "field": 0.18333333333333335,
+        "composite": 0.15125,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_333_g5068",
+      "arm": "A",
+      "seed": 333,
+      "training_games": 5068,
+      "branch_final_games": 12117,
+      "fraction_of_branch": 0.4183,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.1,
+        "field": 0.21666666666666667,
+        "composite": 0.1525,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_333_g7595",
+      "arm": "A",
+      "seed": 333,
+      "training_games": 7595,
+      "branch_final_games": 12117,
+      "fraction_of_branch": 0.6268,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.30000000000000004,
+        "composite": 0.25875000000000004,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_333_g10122",
+      "arm": "A",
+      "seed": 333,
+      "training_games": 10122,
+      "branch_final_games": 12117,
+      "fraction_of_branch": 0.8354,
+      "registered_eval_point": "10000",
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.2833333333333333,
+        "composite": 0.27875,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "A_333_g12117",
+      "arm": "A",
+      "seed": 333,
+      "training_games": 12117,
+      "branch_final_games": 12117,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "12000",
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.2833333333333333,
+        "composite": 0.25125000000000003,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_411_g2508",
+      "arm": "B",
+      "seed": 411,
+      "training_games": 2508,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 0.3333,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.25,
+        "composite": 0.25,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_411_g5016",
+      "arm": "B",
+      "seed": 411,
+      "training_games": 5016,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 0.6667,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.35,
+        "field": 0.31666666666666665,
+        "composite": 0.335,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": true,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_411_g7524",
+      "arm": "B",
+      "seed": 411,
+      "training_games": 7524,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.2833333333333334,
+        "composite": 0.265,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_422_g2508",
+      "arm": "B",
+      "seed": 422,
+      "training_games": 2508,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 0.3333,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.31666666666666665,
+        "composite": 0.28,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_422_g5016",
+      "arm": "B",
+      "seed": 422,
+      "training_games": 5016,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 0.6667,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.125,
+        "field": 0.2833333333333334,
+        "composite": 0.19625,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_422_g7524",
+      "arm": "B",
+      "seed": 422,
+      "training_games": 7524,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.22499999999999998,
+        "field": 0.2833333333333333,
+        "composite": 0.25125,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_433_g2508",
+      "arm": "B",
+      "seed": 433,
+      "training_games": 2508,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 0.3333,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.3,
+        "composite": 0.245,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_433_g5016",
+      "arm": "B",
+      "seed": 433,
+      "training_games": 5016,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 0.6667,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.175,
+        "field": 0.31666666666666665,
+        "composite": 0.23875,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "B_433_g7524",
+      "arm": "B",
+      "seed": 433,
+      "training_games": 7524,
+      "branch_final_games": 7524,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.31666666666666665,
+        "composite": 0.2525,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_511_g2748",
+      "arm": "C",
+      "seed": 511,
+      "training_games": 2748,
+      "branch_final_games": 20292,
+      "fraction_of_branch": 0.1354,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.125,
+        "field": 0.35000000000000003,
+        "composite": 0.22625,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_511_g5012",
+      "arm": "C",
+      "seed": 511,
+      "training_games": 5012,
+      "branch_final_games": 20292,
+      "fraction_of_branch": 0.247,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.30000000000000004,
+        "field": 0.35000000000000003,
+        "composite": 0.3225,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": true,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_511_g7660",
+      "arm": "C",
+      "seed": 511,
+      "training_games": 7660,
+      "branch_final_games": 20292,
+      "fraction_of_branch": 0.3775,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.39999999999999997,
+        "composite": 0.3175,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": true,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_511_g10316",
+      "arm": "C",
+      "seed": 511,
+      "training_games": 10316,
+      "branch_final_games": 20292,
+      "fraction_of_branch": 0.5084,
+      "registered_eval_point": "10000",
+      "screen": {
+        "teacher": 0.3,
+        "field": 0.26666666666666666,
+        "composite": 0.28500000000000003,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_511_g15108",
+      "arm": "C",
+      "seed": 511,
+      "training_games": 15108,
+      "branch_final_games": 20292,
+      "fraction_of_branch": 0.7445,
+      "registered_eval_point": "15000",
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.3666666666666667,
+        "composite": 0.275,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_511_g20292",
+      "arm": "C",
+      "seed": 511,
+      "training_games": 20292,
+      "branch_final_games": 20292,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "20000",
+      "screen": {
+        "teacher": 0.3,
+        "field": 0.26666666666666666,
+        "composite": 0.28500000000000003,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_522_g2728",
+      "arm": "C",
+      "seed": 522,
+      "training_games": 2728,
+      "branch_final_games": 20220,
+      "fraction_of_branch": 0.1349,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.31666666666666665,
+        "composite": 0.26625,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": false,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_522_g5428",
+      "arm": "C",
+      "seed": 522,
+      "training_games": 5428,
+      "branch_final_games": 20220,
+      "fraction_of_branch": 0.2684,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.325,
+        "field": 0.35000000000000003,
+        "composite": 0.33625,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": true,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_522_g7624",
+      "arm": "C",
+      "seed": 522,
+      "training_games": 7624,
+      "branch_final_games": 20220,
+      "fraction_of_branch": 0.3771,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.3,
+        "field": 0.26666666666666666,
+        "composite": 0.28500000000000003,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_522_g10236",
+      "arm": "C",
+      "seed": 522,
+      "training_games": 10236,
+      "branch_final_games": 20220,
+      "fraction_of_branch": 0.5062,
+      "registered_eval_point": "10000",
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.3333333333333333,
+        "composite": 0.30125,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_522_g15424",
+      "arm": "C",
+      "seed": 522,
+      "training_games": 15424,
+      "branch_final_games": 20220,
+      "fraction_of_branch": 0.7628,
+      "registered_eval_point": "15000",
+      "screen": {
+        "teacher": 0.3,
+        "field": 0.3666666666666667,
+        "composite": 0.33,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": true,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_522_g20220",
+      "arm": "C",
+      "seed": 522,
+      "training_games": 20220,
+      "branch_final_games": 20220,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": "20000",
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.35000000000000003,
+        "composite": 0.30875,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_533_g2772",
+      "arm": "C",
+      "seed": 533,
+      "training_games": 2772,
+      "branch_final_games": 19952,
+      "fraction_of_branch": 0.1389,
+      "registered_eval_point": "2500",
+      "screen": {
+        "teacher": 0.32499999999999996,
+        "field": 0.3666666666666667,
+        "composite": 0.34375,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": true,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_533_g5052",
+      "arm": "C",
+      "seed": 533,
+      "training_games": 5052,
+      "branch_final_games": 19952,
+      "fraction_of_branch": 0.2532,
+      "registered_eval_point": "5000",
+      "screen": {
+        "teacher": 0.30000000000000004,
+        "field": 0.30833333333333335,
+        "composite": 0.30375,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": false,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_533_g7720",
+      "arm": "C",
+      "seed": 533,
+      "training_games": 7720,
+      "branch_final_games": 19952,
+      "fraction_of_branch": 0.3869,
+      "registered_eval_point": "7500",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.3833333333333333,
+        "composite": 0.31,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_533_g10356",
+      "arm": "C",
+      "seed": 533,
+      "training_games": 10356,
+      "branch_final_games": 19952,
+      "fraction_of_branch": 0.519,
+      "registered_eval_point": "10000",
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.3833333333333333,
+        "composite": 0.28250000000000003,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": false
+      },
+      "promising": true,
+      "already_confirmed_in_c010": false,
+      "needs_c011_confirmation": true
+    },
+    {
+      "candidate_id": "C_533_g15168",
+      "arm": "C",
+      "seed": 533,
+      "training_games": 15168,
+      "branch_final_games": 19952,
+      "fraction_of_branch": 0.7602,
+      "registered_eval_point": "15000",
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.4333333333333333,
+        "composite": 0.3325,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": false,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": true,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    },
+    {
+      "candidate_id": "C_533_g19952",
+      "arm": "C",
+      "seed": 533,
+      "training_games": 19952,
+      "branch_final_games": 19952,
+      "fraction_of_branch": 1.0,
+      "registered_eval_point": null,
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.3333333333333333,
+        "composite": 0.30125,
+        "defects": 0
+      },
+      "conditions": {
+        "teacher_screen_ge_0.27": true,
+        "field_screen_ge_0.33": true,
+        "composite_within_0.03_of_best_screen": false,
+        "late_checkpoint_no_defect": true
+      },
+      "promising": true,
+      "already_confirmed_in_c010": true,
+      "needs_c011_confirmation": false
+    }
+  ]
+}

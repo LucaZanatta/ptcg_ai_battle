@@ -1,0 +1,11 @@
+{
+  "contract": "c006",
+  "rl_readiness": "NOT_READY_FOR_RL",
+  "ready": false,
+  "best_student": "NONE",
+  "submission_b": "DO_NOT_SUBMIT",
+  "decoder_coverage_without_strategic_fallback": 1.0,
+  "memory_decision": "MEMORY_NOT_JUSTIFIED",
+  "highest_leverage_blocker": "No distilled student is non-inferior to the teacher: best one-sided 95% lower bound is 0.125 vs the 0.45 threshold, and both students show major matchup regressions across the entire strategic field. Behavioral cloning reproduces ~73% of teacher decisions offline but compounding errors collapse full-game strength. Highest-leverage next step: close the gameplay gap (interactive correction / DAgger-style on-policy relabeling, or a stronger teaching signal) BEFORE RL.",
+  "gate": "READY_FOR_RL requires a best student, submission gate pass (or non-policy miss), not materially weaker than teacher, >=99% decoder coverage w/o strategic fallback, memory decision resolved, reproducible checkpoint+eval."
+}

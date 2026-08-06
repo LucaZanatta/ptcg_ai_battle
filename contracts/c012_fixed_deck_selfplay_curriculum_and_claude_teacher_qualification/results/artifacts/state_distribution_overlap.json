@@ -1,0 +1,923 @@
+{
+  "note": "\u00a717 pairwise state/behaviour distribution distances. Wasserstein for numeric features, Jensen-Shannon for binned distributions. No single opaque embedding score is used as the only evidence.",
+  "pairs": {
+    "A_322_g7588|B_422_g5016": {
+      "wasserstein_game_length_decisions": 2.5960396039603952,
+      "js_game_length_decisions": 0.00686801501094499,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|B_433_g5016": {
+      "wasserstein_game_length_decisions": 3.7629702970297045,
+      "js_game_length_decisions": 0.010643002109659901,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|C_522_g20220": {
+      "wasserstein_game_length_decisions": 5.297821782178216,
+      "js_game_length_decisions": 0.023958564781117977,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|I0_incumbent": {
+      "wasserstein_game_length_decisions": 4.601287128712872,
+      "js_game_length_decisions": 0.01307025249753024,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|SOUP_611+622": {
+      "wasserstein_game_length_decisions": 7.141188118811881,
+      "js_game_length_decisions": 0.018642212618113115,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|SOUP_611+622+633": {
+      "wasserstein_game_length_decisions": 4.9491089108910895,
+      "js_game_length_decisions": 0.015027230932643236,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|SOUP_611+633": {
+      "wasserstein_game_length_decisions": 7.04019801980198,
+      "js_game_length_decisions": 0.01713362864361186,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 5.964158415841584,
+      "js_game_length_decisions": 0.010929801853043798,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_611_g15120": {
+      "wasserstein_game_length_decisions": 4.994752475247524,
+      "js_game_length_decisions": 0.012361171057936444,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_611_g20287": {
+      "wasserstein_game_length_decisions": 6.564059405940594,
+      "js_game_length_decisions": 0.014504344995617122,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_611_g30223": {
+      "wasserstein_game_length_decisions": 6.180297029702969,
+      "js_game_length_decisions": 0.018622889649761273,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_611_g40127": {
+      "wasserstein_game_length_decisions": 6.135247524752476,
+      "js_game_length_decisions": 0.03468534073018828,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_622_g20032": {
+      "wasserstein_game_length_decisions": 7.185247524752476,
+      "js_game_length_decisions": 0.017960126876245916,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_622_g39983": {
+      "wasserstein_game_length_decisions": 6.615940594059407,
+      "js_game_length_decisions": 0.04202244795278384,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_633_g15040": {
+      "wasserstein_game_length_decisions": 3.706732673267328,
+      "js_game_length_decisions": 0.009539563647698389,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_633_g20224": {
+      "wasserstein_game_length_decisions": 3.8370297029702956,
+      "js_game_length_decisions": 0.011541310492353692,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "A_322_g7588|S_633_g30176": {
+      "wasserstein_game_length_decisions": 4.5981188118811875,
+      "js_game_length_decisions": 0.00666904812337291,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|B_433_g5016": {
+      "wasserstein_game_length_decisions": 3.014257425742572,
+      "js_game_length_decisions": 0.009600021427871318,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|C_522_g20220": {
+      "wasserstein_game_length_decisions": 5.830891089108911,
+      "js_game_length_decisions": 0.025710042567428565,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|I0_incumbent": {
+      "wasserstein_game_length_decisions": 4.030594059405941,
+      "js_game_length_decisions": 0.01385810550936975,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|SOUP_611+622": {
+      "wasserstein_game_length_decisions": 5.872871287128714,
+      "js_game_length_decisions": 0.017399656967673385,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|SOUP_611+622+633": {
+      "wasserstein_game_length_decisions": 3.7992079207920817,
+      "js_game_length_decisions": 0.010871806954416037,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|SOUP_611+633": {
+      "wasserstein_game_length_decisions": 6.005742574257427,
+      "js_game_length_decisions": 0.012371754104721812,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 4.917821782178218,
+      "js_game_length_decisions": 0.007865157105520694,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_611_g15120": {
+      "wasserstein_game_length_decisions": 3.9709900990099003,
+      "js_game_length_decisions": 0.007620571030958376,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_611_g20287": {
+      "wasserstein_game_length_decisions": 5.551782178217823,
+      "js_game_length_decisions": 0.014417697528862817,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_611_g30223": {
+      "wasserstein_game_length_decisions": 5.117128712871287,
+      "js_game_length_decisions": 0.013431284596161098,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_611_g40127": {
+      "wasserstein_game_length_decisions": 4.873267326732676,
+      "js_game_length_decisions": 0.026493933811675786,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_622_g20032": {
+      "wasserstein_game_length_decisions": 5.816732673267328,
+      "js_game_length_decisions": 0.013637993676794562,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_622_g39983": {
+      "wasserstein_game_length_decisions": 5.285247524752476,
+      "js_game_length_decisions": 0.039658033262969544,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_633_g15040": {
+      "wasserstein_game_length_decisions": 2.2308910891089124,
+      "js_game_length_decisions": 0.008269676878881128,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_633_g20224": {
+      "wasserstein_game_length_decisions": 2.934455445544553,
+      "js_game_length_decisions": 0.00840688265499631,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_422_g5016|S_633_g30176": {
+      "wasserstein_game_length_decisions": 3.659900990099012,
+      "js_game_length_decisions": 0.004787645879113966,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|C_522_g20220": {
+      "wasserstein_game_length_decisions": 3.4356435643564356,
+      "js_game_length_decisions": 0.016442448607772806,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|I0_incumbent": {
+      "wasserstein_game_length_decisions": 1.971980198019801,
+      "js_game_length_decisions": 0.010710157778568966,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|SOUP_611+622": {
+      "wasserstein_game_length_decisions": 3.5148514851485144,
+      "js_game_length_decisions": 0.013062814354097467,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|SOUP_611+622+633": {
+      "wasserstein_game_length_decisions": 1.735445544554455,
+      "js_game_length_decisions": 0.007837476581724002,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|SOUP_611+633": {
+      "wasserstein_game_length_decisions": 3.908514851485147,
+      "js_game_length_decisions": 0.011462954987489535,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 2.5685148514851464,
+      "js_game_length_decisions": 0.0070761203396134086,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_611_g15120": {
+      "wasserstein_game_length_decisions": 1.5614851485148502,
+      "js_game_length_decisions": 0.007508726340755162,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_611_g20287": {
+      "wasserstein_game_length_decisions": 3.0595049504950493,
+      "js_game_length_decisions": 0.009139759828676463,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_611_g30223": {
+      "wasserstein_game_length_decisions": 2.6517821782178213,
+      "js_game_length_decisions": 0.0073948778486303945,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_611_g40127": {
+      "wasserstein_game_length_decisions": 2.9497029702970288,
+      "js_game_length_decisions": 0.02873121336329427,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_622_g20032": {
+      "wasserstein_game_length_decisions": 3.484257425742574,
+      "js_game_length_decisions": 0.010884899209115602,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_622_g39983": {
+      "wasserstein_game_length_decisions": 3.626435643564356,
+      "js_game_length_decisions": 0.024586101675297886,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_633_g15040": {
+      "wasserstein_game_length_decisions": 1.713663366336634,
+      "js_game_length_decisions": 0.007500729032804917,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_633_g20224": {
+      "wasserstein_game_length_decisions": 1.2566336633663355,
+      "js_game_length_decisions": 0.007016005318777159,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "B_433_g5016|S_633_g30176": {
+      "wasserstein_game_length_decisions": 1.5517821782178223,
+      "js_game_length_decisions": 0.006518130210726539,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|I0_incumbent": {
+      "wasserstein_game_length_decisions": 2.5321782178217833,
+      "js_game_length_decisions": 0.019272621854462726,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|SOUP_611+622": {
+      "wasserstein_game_length_decisions": 5.164554455445544,
+      "js_game_length_decisions": 0.041062109930904166,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|SOUP_611+622+633": {
+      "wasserstein_game_length_decisions": 3.295445544554457,
+      "js_game_length_decisions": 0.01775783122569759,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|SOUP_611+633": {
+      "wasserstein_game_length_decisions": 4.427920792079208,
+      "js_game_length_decisions": 0.026294088224143322,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 3.9029702970297024,
+      "js_game_length_decisions": 0.019779685475609193,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_611_g15120": {
+      "wasserstein_game_length_decisions": 3.123861386138613,
+      "js_game_length_decisions": 0.01992969712822503,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_611_g20287": {
+      "wasserstein_game_length_decisions": 4.194950495049504,
+      "js_game_length_decisions": 0.027544789230491903,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_611_g30223": {
+      "wasserstein_game_length_decisions": 3.943465346534652,
+      "js_game_length_decisions": 0.02070162359289451,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_611_g40127": {
+      "wasserstein_game_length_decisions": 4.476237623762376,
+      "js_game_length_decisions": 0.02857460704394793,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_622_g20032": {
+      "wasserstein_game_length_decisions": 4.986237623762376,
+      "js_game_length_decisions": 0.025690425844902852,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_622_g39983": {
+      "wasserstein_game_length_decisions": 4.75990099009901,
+      "js_game_length_decisions": 0.037225599336664944,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_633_g15040": {
+      "wasserstein_game_length_decisions": 4.078415841584158,
+      "js_game_length_decisions": 0.02187060949587937,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_633_g20224": {
+      "wasserstein_game_length_decisions": 4.024158415841582,
+      "js_game_length_decisions": 0.027058821039340764,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "C_522_g20220|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.900495049504951,
+      "js_game_length_decisions": 0.01748626988414562,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|SOUP_611+622": {
+      "wasserstein_game_length_decisions": 3.49079207920792,
+      "js_game_length_decisions": 0.015448324834778166,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|SOUP_611+622+633": {
+      "wasserstein_game_length_decisions": 2.099306930693068,
+      "js_game_length_decisions": 0.017000807390200434,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|SOUP_611+633": {
+      "wasserstein_game_length_decisions": 2.9294059405940596,
+      "js_game_length_decisions": 0.010532930627749196,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 2.441089108910891,
+      "js_game_length_decisions": 0.01596548596400152,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_611_g15120": {
+      "wasserstein_game_length_decisions": 1.888316831683169,
+      "js_game_length_decisions": 0.015094126946070607,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_611_g20287": {
+      "wasserstein_game_length_decisions": 2.885346534653464,
+      "js_game_length_decisions": 0.016969051459666075,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_611_g30223": {
+      "wasserstein_game_length_decisions": 2.7209900990099,
+      "js_game_length_decisions": 0.02092663883052178,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_611_g40127": {
+      "wasserstein_game_length_decisions": 2.9133663366336635,
+      "js_game_length_decisions": 0.03178049409368175,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_622_g20032": {
+      "wasserstein_game_length_decisions": 3.2976237623762383,
+      "js_game_length_decisions": 0.01889611898178195,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_622_g39983": {
+      "wasserstein_game_length_decisions": 3.557425742574257,
+      "js_game_length_decisions": 0.037695675944310975,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_633_g15040": {
+      "wasserstein_game_length_decisions": 2.612970297029704,
+      "js_game_length_decisions": 0.010970286166746179,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_633_g20224": {
+      "wasserstein_game_length_decisions": 2.6872277227722763,
+      "js_game_length_decisions": 0.02158395867867602,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "I0_incumbent|S_633_g30176": {
+      "wasserstein_game_length_decisions": 1.5940594059405935,
+      "js_game_length_decisions": 0.007590051628333581,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|SOUP_611+622+633": {
+      "wasserstein_game_length_decisions": 2.8108910891089103,
+      "js_game_length_decisions": 0.0146626806968048,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|SOUP_611+633": {
+      "wasserstein_game_length_decisions": 1.8734653465346527,
+      "js_game_length_decisions": 0.006622175160581815,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 1.7431683168316832,
+      "js_game_length_decisions": 0.011307354389671976,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_611_g15120": {
+      "wasserstein_game_length_decisions": 2.753366336633664,
+      "js_game_length_decisions": 0.018503443470836625,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_611_g20287": {
+      "wasserstein_game_length_decisions": 1.4072277227722778,
+      "js_game_length_decisions": 0.005514856432691732,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_611_g30223": {
+      "wasserstein_game_length_decisions": 1.635940594059405,
+      "js_game_length_decisions": 0.012785787918644927,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_611_g40127": {
+      "wasserstein_game_length_decisions": 1.9538613861386147,
+      "js_game_length_decisions": 0.030143175416828892,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_622_g20032": {
+      "wasserstein_game_length_decisions": 1.3040594059405943,
+      "js_game_length_decisions": 0.009562494991576829,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_622_g39983": {
+      "wasserstein_game_length_decisions": 3.0721782178217825,
+      "js_game_length_decisions": 0.032019344649219204,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_633_g15040": {
+      "wasserstein_game_length_decisions": 3.9067326732673253,
+      "js_game_length_decisions": 0.012161597986730437,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_633_g20224": {
+      "wasserstein_game_length_decisions": 3.644554455445546,
+      "js_game_length_decisions": 0.01584839102180944,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.834356435643564,
+      "js_game_length_decisions": 0.011004838940194044,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|SOUP_611+633": {
+      "wasserstein_game_length_decisions": 2.6704950495049498,
+      "js_game_length_decisions": 0.009261735207763895,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 1.8069306930693054,
+      "js_game_length_decisions": 0.005369161734872797,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_611_g15120": {
+      "wasserstein_game_length_decisions": 1.2650495049504944,
+      "js_game_length_decisions": 0.008665990660531527,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_611_g20287": {
+      "wasserstein_game_length_decisions": 2.4133663366336635,
+      "js_game_length_decisions": 0.007729927536833632,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_611_g30223": {
+      "wasserstein_game_length_decisions": 1.7743564356435633,
+      "js_game_length_decisions": 0.0033710565142049823,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_611_g40127": {
+      "wasserstein_game_length_decisions": 2.564356435643564,
+      "js_game_length_decisions": 0.023960062701993044,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_622_g20032": {
+      "wasserstein_game_length_decisions": 2.5440594059405934,
+      "js_game_length_decisions": 0.0066050219456294705,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_622_g39983": {
+      "wasserstein_game_length_decisions": 2.735148514851487,
+      "js_game_length_decisions": 0.024990497299579244,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_633_g15040": {
+      "wasserstein_game_length_decisions": 1.766534653465345,
+      "js_game_length_decisions": 0.006730331041024883,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_633_g20224": {
+      "wasserstein_game_length_decisions": 2.137227722772277,
+      "js_game_length_decisions": 0.008275817152562624,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+622+633|S_633_g30176": {
+      "wasserstein_game_length_decisions": 1.0509900990099015,
+      "js_game_length_decisions": 0.005712518001455646,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|SOUP_622+633": {
+      "wasserstein_game_length_decisions": 1.9146534653465341,
+      "js_game_length_decisions": 0.007908200115089817,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_611_g15120": {
+      "wasserstein_game_length_decisions": 2.744653465346535,
+      "js_game_length_decisions": 0.011282150208489695,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_611_g20287": {
+      "wasserstein_game_length_decisions": 1.8169306930693074,
+      "js_game_length_decisions": 0.008467619474555476,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_611_g30223": {
+      "wasserstein_game_length_decisions": 1.90227722772277,
+      "js_game_length_decisions": 0.008386846337103378,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_611_g40127": {
+      "wasserstein_game_length_decisions": 2.285742574257424,
+      "js_game_length_decisions": 0.018907272544886684,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_622_g20032": {
+      "wasserstein_game_length_decisions": 1.739900990099008,
+      "js_game_length_decisions": 0.007137667492991015,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_622_g39983": {
+      "wasserstein_game_length_decisions": 2.370594059405941,
+      "js_game_length_decisions": 0.02603661106295984,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_633_g15040": {
+      "wasserstein_game_length_decisions": 4.003168316831682,
+      "js_game_length_decisions": 0.007822997859554875,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_633_g20224": {
+      "wasserstein_game_length_decisions": 4.148316831683167,
+      "js_game_length_decisions": 0.01405135690287496,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_611+633|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.7018811881188123,
+      "js_game_length_decisions": 0.005745294755029322,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_611_g15120": {
+      "wasserstein_game_length_decisions": 1.4911881188118805,
+      "js_game_length_decisions": 0.005431692354876522,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_611_g20287": {
+      "wasserstein_game_length_decisions": 1.306039603960396,
+      "js_game_length_decisions": 0.005731352223104841,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_611_g30223": {
+      "wasserstein_game_length_decisions": 1.1393069306930657,
+      "js_game_length_decisions": 0.0042706127964522635,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_611_g40127": {
+      "wasserstein_game_length_decisions": 1.9257425742574263,
+      "js_game_length_decisions": 0.025232212365226166,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_622_g20032": {
+      "wasserstein_game_length_decisions": 1.873762376237621,
+      "js_game_length_decisions": 0.007321531980458141,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_622_g39983": {
+      "wasserstein_game_length_decisions": 3.034158415841583,
+      "js_game_length_decisions": 0.026931949155849802,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_633_g15040": {
+      "wasserstein_game_length_decisions": 2.929306930693068,
+      "js_game_length_decisions": 0.008179690912021597,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_633_g20224": {
+      "wasserstein_game_length_decisions": 2.7219801980198004,
+      "js_game_length_decisions": 0.005098049174732533,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "SOUP_622+633|S_633_g30176": {
+      "wasserstein_game_length_decisions": 1.8153465346534656,
+      "js_game_length_decisions": 0.004225286920921156,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_611_g20287": {
+      "wasserstein_game_length_decisions": 2.0790099009901,
+      "js_game_length_decisions": 0.013631650141325297,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_611_g30223": {
+      "wasserstein_game_length_decisions": 1.7100990099009896,
+      "js_game_length_decisions": 0.0093563978600709,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_611_g40127": {
+      "wasserstein_game_length_decisions": 2.5254455445544566,
+      "js_game_length_decisions": 0.025878869344556903,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_622_g20032": {
+      "wasserstein_game_length_decisions": 2.640792079207921,
+      "js_game_length_decisions": 0.009963105243382942,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_622_g39983": {
+      "wasserstein_game_length_decisions": 3.3459405940594067,
+      "js_game_length_decisions": 0.032042501884220476,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_633_g15040": {
+      "wasserstein_game_length_decisions": 2.127623762376236,
+      "js_game_length_decisions": 0.008566544248518635,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_633_g20224": {
+      "wasserstein_game_length_decisions": 1.80069306930693,
+      "js_game_length_decisions": 0.004096347437652894,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g15120|S_633_g30176": {
+      "wasserstein_game_length_decisions": 1.1295049504950494,
+      "js_game_length_decisions": 0.005738894594068983,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g20287|S_611_g30223": {
+      "wasserstein_game_length_decisions": 1.5651485148514863,
+      "js_game_length_decisions": 0.007909504247926726,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g20287|S_611_g40127": {
+      "wasserstein_game_length_decisions": 1.9676237623762378,
+      "js_game_length_decisions": 0.027487110844635308,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g20287|S_622_g20032": {
+      "wasserstein_game_length_decisions": 1.8186138613861385,
+      "js_game_length_decisions": 0.005989752953929311,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g20287|S_622_g39983": {
+      "wasserstein_game_length_decisions": 3.2144554455445546,
+      "js_game_length_decisions": 0.021654866214633424,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g20287|S_633_g15040": {
+      "wasserstein_game_length_decisions": 3.5632673267326727,
+      "js_game_length_decisions": 0.009444047757750743,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g20287|S_633_g20224": {
+      "wasserstein_game_length_decisions": 3.183267326732675,
+      "js_game_length_decisions": 0.01003379427505642,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g20287|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.2611881188118828,
+      "js_game_length_decisions": 0.0070133167408723334,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g30223|S_611_g40127": {
+      "wasserstein_game_length_decisions": 1.9032673267326734,
+      "js_game_length_decisions": 0.020733660973329668,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g30223|S_622_g20032": {
+      "wasserstein_game_length_decisions": 1.6574257425742578,
+      "js_game_length_decisions": 0.008108219242671987,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g30223|S_622_g39983": {
+      "wasserstein_game_length_decisions": 2.769306930693067,
+      "js_game_length_decisions": 0.026144348348890574,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g30223|S_633_g15040": {
+      "wasserstein_game_length_decisions": 3.147227722772276,
+      "js_game_length_decisions": 0.008417794140460372,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g30223|S_633_g20224": {
+      "wasserstein_game_length_decisions": 2.7951485148514847,
+      "js_game_length_decisions": 0.008384938710720545,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g30223|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.0174257425742574,
+      "js_game_length_decisions": 0.00870640410336587,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g40127|S_622_g20032": {
+      "wasserstein_game_length_decisions": 1.966237623762376,
+      "js_game_length_decisions": 0.021158256546179855,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g40127|S_622_g39983": {
+      "wasserstein_game_length_decisions": 3.227227722772277,
+      "js_game_length_decisions": 0.0585180991913576,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g40127|S_633_g15040": {
+      "wasserstein_game_length_decisions": 3.1079207920792085,
+      "js_game_length_decisions": 0.01814971614726344,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g40127|S_633_g20224": {
+      "wasserstein_game_length_decisions": 3.2603960396039615,
+      "js_game_length_decisions": 0.03566773604050009,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_611_g40127|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.4262376237623773,
+      "js_game_length_decisions": 0.0243233362620323,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_622_g20032|S_622_g39983": {
+      "wasserstein_game_length_decisions": 2.5039603960396044,
+      "js_game_length_decisions": 0.022731022337919744,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_622_g20032|S_633_g15040": {
+      "wasserstein_game_length_decisions": 3.829207920792079,
+      "js_game_length_decisions": 0.011162348799074958,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_622_g20032|S_633_g20224": {
+      "wasserstein_game_length_decisions": 3.4856435643564376,
+      "js_game_length_decisions": 0.008666874446838387,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_622_g20032|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.760198019801981,
+      "js_game_length_decisions": 0.008361345308878379,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_622_g39983|S_633_g15040": {
+      "wasserstein_game_length_decisions": 3.7529702970297025,
+      "js_game_length_decisions": 0.0343185698440239,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_622_g39983|S_633_g20224": {
+      "wasserstein_game_length_decisions": 3.6135643564356434,
+      "js_game_length_decisions": 0.024623736762522327,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_622_g39983|S_633_g30176": {
+      "wasserstein_game_length_decisions": 2.9118811881188127,
+      "js_game_length_decisions": 0.02641246832576366,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_633_g15040|S_633_g20224": {
+      "wasserstein_game_length_decisions": 1.5758415841584144,
+      "js_game_length_decisions": 0.012110144340357645,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_633_g15040|S_633_g30176": {
+      "wasserstein_game_length_decisions": 1.8989108910891086,
+      "js_game_length_decisions": 0.005639611701228385,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    },
+    "S_633_g20224|S_633_g30176": {
+      "wasserstein_game_length_decisions": 1.8951485148514855,
+      "js_game_length_decisions": 0.007080139664345231,
+      "wasserstein_forced_fraction": 0.0,
+      "js_forced_fraction": 0.0
+    }
+  }
+}

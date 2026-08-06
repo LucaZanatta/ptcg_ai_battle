@@ -1,0 +1,13 @@
+{
+  "high_impact_test_agreement_S1": 0.6748410535876476,
+  "high_impact_test_agreement_S2": 0.6757493188010899,
+  "high_impact_gain_pp": 0.09082652134423386,
+  "game_level_iw_agreement_diff_mean": -0.005932285567316788,
+  "game_level_iw_diff_ci95": [
+    -0.029052024328405642,
+    0.015547702611435421
+  ],
+  "s2_minus_s1_overall_exact": -0.007508833922261426,
+  "memory_decision_offline": "MEMORY_NOT_JUSTIFIED",
+  "rule": "MEMORY_MATTERS if high-impact test gain >=2pp OR game-level iw-diff 95% CI lower bound >0 (gameplay may still promote to MEMORY_MATTERS on material game improvement)"
+}

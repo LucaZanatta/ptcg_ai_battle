@@ -1,0 +1,78 @@
+{
+  "milestone": "M02_distilled",
+  "title": "best trusted search-distilled model",
+  "git_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "git_tree": "b8d7d4e12e2239b85bc00ba63cc2369ce64826b9",
+  "branch": "contract/c018_complete_integrated_search_learning_curriculum_campaign",
+  "sources": [
+    {
+      "path": "tools/c018_distill.py",
+      "present": true,
+      "sha256": "1f2a3bcb4de501ad3e29150f5efc6191fe138b15d469e35ddd693e1e8b1d0301",
+      "bytes": 11634,
+      "note": null
+    },
+    {
+      "path": "tools/c011_torch_model.py",
+      "present": true,
+      "sha256": "dc7f4f2e2f5d2d44f1d5abb8976eb70980b13bd9a1f99a4261bd9c3bce657248",
+      "bytes": 12533,
+      "note": null
+    }
+  ],
+  "configs": {
+    "epochs": 60,
+    "batch_size": 256,
+    "lr": 0.0003
+  },
+  "config_hash": "42d0509aee421cf83fc0b92b3b6b98d7",
+  "deck": {
+    "path": "cg/deck.csv",
+    "present": true,
+    "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799",
+    "bytes": 245,
+    "note": null
+  },
+  "checkpoints": [
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled.pt",
+      "present": true,
+      "sha256": "199fe48e979d748ca36a2e3cfeb1332e69c130259d6ba209201c7c7269df380d",
+      "bytes": 2526570,
+      "note": null
+    }
+  ],
+  "result_artifacts": [
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/distillation_report.json",
+      "present": true,
+      "sha256": "113238374c68df5897e77b8c7f295f1ccd591e3cccecd2a02767a86f4c98ccbc",
+      "bytes": 30214,
+      "note": null
+    }
+  ],
+  "command": "python tools/c018_distill.py --prefix scaled --epochs 60 --tag m02_distilled",
+  "optimizer_steps": 7080,
+  "checkpoint_sha256_before": "f476b862eeb0ce2e4b8a64272bc5310426fe1c851b1a3557b65d36ec3e185023",
+  "checkpoint_sha256_after": "0903a0755e951c1eaca22807fa6caf25bd1379de82f5506118dfb84b468c7546",
+  "held_out_test": {
+    "n": 6738,
+    "policy_loss": 1.047054,
+    "value_mse": 0.202133,
+    "top1_agreement": 0.6167,
+    "legal_prediction_rate": 1.0
+  },
+  "export_round_trip": {
+    "exported_keys": 32,
+    "policy_keys": 32,
+    "keys_missing_from_export": [],
+    "keys_export_would_drop": [],
+    "key_sets_equal": true,
+    "cfg_round_trip": true,
+    "reload_tensors_bitwise_equal": true,
+    "max_abs_score_diff": 1.4210854715202004e-14,
+    "max_abs_value_diff": 4.996003610813204e-16,
+    "numerically_equivalent": true,
+    "passed": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "probe_id": "P30_end_to_end_smoke",
+  "status": "PASS",
+  "vertical_executed": [
+    "baseline action",
+    "search attempt",
+    "trajectory write/read",
+    "policy/value train step",
+    "curriculum scheduler/evaluation",
+    "learned-policy inference",
+    "final evaluator",
+    "clean package smoke"
+  ],
+  "defects_exposed": 6,
+  "see": "integration/FIRST_PASS_DEFECT_RANKING.md",
+  "objective": "interface execution, not strength"
+}

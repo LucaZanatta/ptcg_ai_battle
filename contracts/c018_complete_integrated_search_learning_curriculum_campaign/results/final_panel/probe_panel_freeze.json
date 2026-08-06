@@ -1,0 +1,129 @@
+{
+  "frozen_at_commit": "ec8ffda88e779af6ba89e8d2d4be498d728835f5",
+  "candidates": [
+    "official_mega_lucario",
+    "m01_heuristic_search",
+    "m02_distilled_policy",
+    "m03_curriculum_policy",
+    "m04_guided_ordering_only",
+    "m04_guided_search"
+  ],
+  "candidate_hashes": {
+    "official_mega_lucario": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee"
+    },
+    "m01_heuristic_search": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "search_module_sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "search_config": {
+        "beam_width": 3,
+        "max_candidates": 4,
+        "max_depth": 4,
+        "max_nodes": 40,
+        "max_ms_per_decision": 2500,
+        "max_match_ms": 60000,
+        "version": "c018.search.v1"
+      },
+      "config_hash": "1de8550665ef7226236796a49e97edb7"
+    },
+    "m02_distilled_policy": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "search_module_sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "search_config": {
+        "beam_width": 3,
+        "max_candidates": 4,
+        "max_depth": 4,
+        "max_nodes": 40,
+        "max_ms_per_decision": 2500,
+        "max_match_ms": 60000,
+        "version": "c018.search.v1"
+      },
+      "config_hash": "1de8550665ef7226236796a49e97edb7",
+      "checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled.npz",
+      "checkpoint_sha256": "f1f040357f1d447ac57979c3c5a07d229ac459ab27c1a74c442f7878f06b8ccc",
+      "guide_module_sha256": "73662f99185e5198e0bbe0540a1b3492f5b2f7b2437b613fac03a3f124434396",
+      "uses_learned_leaf_values": true
+    },
+    "m03_curriculum_policy": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "search_module_sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "search_config": {
+        "beam_width": 3,
+        "max_candidates": 4,
+        "max_depth": 4,
+        "max_nodes": 40,
+        "max_ms_per_decision": 2500,
+        "max_match_ms": 60000,
+        "version": "c018.search.v1"
+      },
+      "config_hash": "1de8550665ef7226236796a49e97edb7",
+      "checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+      "checkpoint_sha256": "c4d4fbb1d72e3c5c9182fd757fe3972701ba801760c02f2894b604c71e68b41b",
+      "guide_module_sha256": "73662f99185e5198e0bbe0540a1b3492f5b2f7b2437b613fac03a3f124434396",
+      "uses_learned_leaf_values": true
+    },
+    "m04_guided_ordering_only": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "search_module_sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "search_config": {
+        "beam_width": 3,
+        "max_candidates": 4,
+        "max_depth": 4,
+        "max_nodes": 40,
+        "max_ms_per_decision": 2500,
+        "max_match_ms": 60000,
+        "version": "c018.search.v1"
+      },
+      "config_hash": "1de8550665ef7226236796a49e97edb7",
+      "checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+      "checkpoint_sha256": "c4d4fbb1d72e3c5c9182fd757fe3972701ba801760c02f2894b604c71e68b41b",
+      "guide_module_sha256": "73662f99185e5198e0bbe0540a1b3492f5b2f7b2437b613fac03a3f124434396",
+      "uses_learned_leaf_values": false
+    },
+    "m04_guided_search": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "search_module_sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "search_config": {
+        "beam_width": 3,
+        "max_candidates": 4,
+        "max_depth": 4,
+        "max_nodes": 40,
+        "max_ms_per_decision": 2500,
+        "max_match_ms": 60000,
+        "version": "c018.search.v1"
+      },
+      "config_hash": "1de8550665ef7226236796a49e97edb7",
+      "checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+      "checkpoint_sha256": "c4d4fbb1d72e3c5c9182fd757fe3972701ba801760c02f2894b604c71e68b41b",
+      "guide_module_sha256": "73662f99185e5198e0bbe0540a1b3492f5b2f7b2437b613fac03a3f124434396",
+      "uses_learned_leaf_values": true
+    }
+  },
+  "opponents": [
+    "dragapult",
+    "iono",
+    "mega_abomasnow",
+    "mega_lucario"
+  ],
+  "games_per_pair": 1,
+  "total_games": 24,
+  "seed_base": 1805,
+  "seed_list": [
+    1805,
+    11812,
+    21819,
+    31826
+  ],
+  "seat_assignment": "alternating by pair index; identical across candidates",
+  "identical_schedule_across_candidates": true,
+  "scoring": "win 1.0, draw 0.5, loss 0.0; unscored when either seat is not DONE",
+  "tie_break": "overall_rate desc, then worst_matchup_rate desc (DECISION_RULES \u00a73)",
+  "latency_protocol": "per-decision search budget 2500 ms with baseline fallback on overrun; full-match agent time recorded per game",
+  "deck": "mega_lucario (shared by every candidate)"
+}

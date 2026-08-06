@@ -1,0 +1,6 @@
+featurizing c007 test (opened once) + c006 test...
+c007 test 8846 decisions; c006 test 2264 decisions
+[V2_A] test exact 0.7227 iw 0.7078 | c006 back exact 0.7248 | ECE 0.023742368273687923 | optset change_rate 0.003 | P99 0.465ms
+[V2_B] test exact 0.7186 iw 0.7040 | c006 back exact 0.7222 | ECE 0.05373558076209382 | optset change_rate 0.000 | P99 0.409ms
+ablation: V2B-V2A iw -0.0038, high-impact -0.0027, aux_helps=False
+DONE 10.8s; best=V2_A

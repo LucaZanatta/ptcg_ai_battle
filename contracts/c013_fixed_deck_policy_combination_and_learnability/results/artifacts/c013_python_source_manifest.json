@@ -1,0 +1,672 @@
+{
+  "bundle": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/c013_python_source_bundle.zip",
+  "n_files": 93,
+  "files": [
+    {
+      "original_path": "tools/c013_build_source_bundle.py",
+      "archive_path": "source/tools/c013_build_source_bundle.py",
+      "category": "c013_source",
+      "sha256": "1d9e43a66559aa4ad4d6248cce0b53fbeda48032bc9c540e9a9c434b4c2d6515",
+      "bytes": 12297
+    },
+    {
+      "original_path": "tools/c013_claude_preflight.py",
+      "archive_path": "source/tools/c013_claude_preflight.py",
+      "category": "c013_source",
+      "sha256": "84e4fc39dd485ffceae5f3b5849cbbadab1538bf4bcbe1c274813bacbfae55e3",
+      "bytes": 19531
+    },
+    {
+      "original_path": "tools/c013_combination_report.py",
+      "archive_path": "source/tools/c013_combination_report.py",
+      "category": "c013_source",
+      "sha256": "7a7ed5287905840454b82d8deae5fb8820d7eb9f7d1c9d84e04532d3c866861c",
+      "bytes": 15829
+    },
+    {
+      "original_path": "tools/c013_common.py",
+      "archive_path": "source/tools/c013_common.py",
+      "category": "c013_source",
+      "sha256": "a63f83fbdc929964013a14d7809c48fa4969742512a8b4db9967b836a6adaa54",
+      "bytes": 10740
+    },
+    {
+      "original_path": "tools/c013_curriculum_smoke.py",
+      "archive_path": "source/tools/c013_curriculum_smoke.py",
+      "category": "c013_source",
+      "sha256": "6c79e831a91471aeb0774bfdfb0cfc77ae014daa9a5eb4b7d1cf824741e59420",
+      "bytes": 17975
+    },
+    {
+      "original_path": "tools/c013_decide.py",
+      "archive_path": "source/tools/c013_decide.py",
+      "category": "c013_source",
+      "sha256": "4f8452f70a1e8890e08469f0e2f06ad2a70bd5f0d74f0848955d58d39b8dd7ff",
+      "bytes": 27497
+    },
+    {
+      "original_path": "tools/c013_ensemble_policy.py",
+      "archive_path": "source/tools/c013_ensemble_policy.py",
+      "category": "c013_source",
+      "sha256": "9d659f807eac37ae0fa9c4521860e3323d1dcf3bd81c86d49e0eaa64e9144570",
+      "bytes": 8475
+    },
+    {
+      "original_path": "tools/c013_eval.py",
+      "archive_path": "source/tools/c013_eval.py",
+      "category": "c013_source",
+      "sha256": "b026aae0de1e604f260d4b29b3a973433dc2b8a4a62d65cb5d0b3f255a640b88",
+      "bytes": 15509
+    },
+    {
+      "original_path": "tools/c013_learnability.py",
+      "archive_path": "source/tools/c013_learnability.py",
+      "category": "c013_source",
+      "sha256": "6547b54fae5bd5b539e200f440e0896a3fb43a297c4eb4e286a7be1c6432430e",
+      "bytes": 18878
+    },
+    {
+      "original_path": "tools/c013_learnability_report.py",
+      "archive_path": "source/tools/c013_learnability_report.py",
+      "category": "c013_source",
+      "sha256": "1ccf0c1a96ded51c411fd796befa9b7dba1e99c9a4418804498c2b89b7fdadd7",
+      "bytes": 15478
+    },
+    {
+      "original_path": "tools/c013_overlap_analysis.py",
+      "archive_path": "source/tools/c013_overlap_analysis.py",
+      "category": "c013_source",
+      "sha256": "d2dd7f57308b88c96afcd4d94fdbbc8ee3910abc49b1d11d1cf5aff6c317bc71",
+      "bytes": 41331
+    },
+    {
+      "original_path": "tools/c013_phase_evidence.py",
+      "archive_path": "source/tools/c013_phase_evidence.py",
+      "category": "c013_source",
+      "sha256": "ce060571945835df94eee5356a3b35132960cd3af6f5c657b3295948ebce2efb",
+      "bytes": 12775
+    },
+    {
+      "original_path": "tools/c013_recombine.py",
+      "archive_path": "source/tools/c013_recombine.py",
+      "category": "c013_source",
+      "sha256": "a28dd870c64d94078f53aafe702b875608e11ae1849fbc8f8c629de7dd3ad039",
+      "bytes": 3581
+    },
+    {
+      "original_path": "tools/c013_registry.py",
+      "archive_path": "source/tools/c013_registry.py",
+      "category": "c013_source",
+      "sha256": "1a5b9627c7d0220e14bb86607d628bff3e9208be4f1c8fe7dd20e88158977e64",
+      "bytes": 13674
+    },
+    {
+      "original_path": "tools/c013_reports.py",
+      "archive_path": "source/tools/c013_reports.py",
+      "category": "c013_source",
+      "sha256": "75d8b5f6984c9de8c48f3183121dafde4a0530de97effff91e5aafd5e62aae1f",
+      "bytes": 18083
+    },
+    {
+      "original_path": "tools/c013_semantic_serializer.py",
+      "archive_path": "source/tools/c013_semantic_serializer.py",
+      "category": "c013_source",
+      "sha256": "ad94f42512d24e2c4d5c2bab805edc689f8ef146dd6a70788a08ae1a3269b7df",
+      "bytes": 10202
+    },
+    {
+      "original_path": "tools/c013_smoke_finalize.py",
+      "archive_path": "source/tools/c013_smoke_finalize.py",
+      "category": "c013_source",
+      "sha256": "f38d36b4c7b901aeb0238f22285b05a95ba6534fae866246759feda1659e3296",
+      "bytes": 4418
+    },
+    {
+      "original_path": "tools/c013_smoke_report.py",
+      "archive_path": "source/tools/c013_smoke_report.py",
+      "category": "c013_source",
+      "sha256": "0c18a69de816e24e432a9137bf9b17ce4a4926dd682aae789dc49a6a21c69592",
+      "bytes": 11110
+    },
+    {
+      "original_path": "tools/c013_validate_evidence.py",
+      "archive_path": "source/tools/c013_validate_evidence.py",
+      "category": "c013_source",
+      "sha256": "052fe795faa084082baf60c81e261ab415fba286561dc46d4f32eac32b5447a9",
+      "bytes": 25994
+    },
+    {
+      "original_path": "tests/test_c013_continuation.py",
+      "archive_path": "source/tests/test_c013_continuation.py",
+      "category": "test",
+      "sha256": "0bbdf4ddb0ecd40ccae2ea040c4015d5f8f322f88b31d1651507b6d2cd69db47",
+      "bytes": 8532
+    },
+    {
+      "original_path": "tests/test_c013_ensemble_math.py",
+      "archive_path": "source/tests/test_c013_ensemble_math.py",
+      "category": "test",
+      "sha256": "7ce9666999ba7aa94656365c1d57dfd05456dcfb031851d270dc9789f1285140",
+      "bytes": 5571
+    },
+    {
+      "original_path": "cg/c013_eval_core.py",
+      "archive_path": "source/cg/c013_eval_core.py",
+      "category": "supporting_source",
+      "sha256": "8edcf6431435b6bd464f663a53b95047867dc7db71ba64e006eb8ada7ba66eed",
+      "bytes": 4724
+    },
+    {
+      "original_path": "cg/c009_eval.py",
+      "archive_path": "source/cg/c009_eval.py",
+      "category": "supporting_source",
+      "sha256": "d0f6619af20e3539721c5494d06e9e0d4a9b3d57f24d2447d3856053d0b4d60b",
+      "bytes": 13092
+    },
+    {
+      "original_path": "cg/c011_eval_core.py",
+      "archive_path": "source/cg/c011_eval_core.py",
+      "category": "supporting_source",
+      "sha256": "7d958820a0c218cd6dbc780a2ef17b2a8a7140ea2945430297caafde169faae9",
+      "bytes": 2291
+    },
+    {
+      "original_path": "cg/rl_policy.py",
+      "archive_path": "source/cg/rl_policy.py",
+      "category": "supporting_source",
+      "sha256": "780c26453703ab3b86c869d9de35e7e38041dc18210954356e4b401114bd8d97",
+      "bytes": 10342
+    },
+    {
+      "original_path": "cg/rl_env.py",
+      "archive_path": "source/cg/rl_env.py",
+      "category": "supporting_source",
+      "sha256": "35c9a2f6470276ebb321a64a22928c85e5177839f8df5dc2289985e809735702",
+      "bytes": 7534
+    },
+    {
+      "original_path": "cg/policy_features.py",
+      "archive_path": "source/cg/policy_features.py",
+      "category": "supporting_source",
+      "sha256": "dcee5c3a37a92a1442be734832a6a5982a84982340ee00274378ad36e17b430b",
+      "bytes": 8751
+    },
+    {
+      "original_path": "cg/policy_data_v2.py",
+      "archive_path": "source/cg/policy_data_v2.py",
+      "category": "supporting_source",
+      "sha256": "c01932fb2b7d539b6c63fbdf9ddfdfe2a640c9968e34734c8d1064e85335bcd7",
+      "bytes": 8483
+    },
+    {
+      "original_path": "cg/teachers.py",
+      "archive_path": "source/cg/teachers.py",
+      "category": "supporting_source",
+      "sha256": "241953f15cdaba4d13355dc8a7a98a6cbdf3d8884fd89ab9f5b491adc3658fb6",
+      "bytes": 6189
+    },
+    {
+      "original_path": "cg/student_agent.py",
+      "archive_path": "source/cg/student_agent.py",
+      "category": "supporting_source",
+      "sha256": "2f5dd775a6c3919b25bf104d7601da47fe5275838a4ccff9d87f397e5de8a5b1",
+      "bytes": 4575
+    },
+    {
+      "original_path": "cg/gameplay.py",
+      "archive_path": "source/cg/gameplay.py",
+      "category": "supporting_source",
+      "sha256": "0546a63a79fec38b9df0680cbcc6e674e1e32e3414f9ea85aef52a5b16c75dcb",
+      "bytes": 5192
+    },
+    {
+      "original_path": "cg/safe_policy.py",
+      "archive_path": "source/cg/safe_policy.py",
+      "category": "supporting_source",
+      "sha256": "e429af6106b8fbe9e1af32d5f83355ea3115f99a0f01c0941e58486279815d8e",
+      "bytes": 6942
+    },
+    {
+      "original_path": "cg/noninf_stats.py",
+      "archive_path": "source/cg/noninf_stats.py",
+      "category": "supporting_source",
+      "sha256": "40f83e1af2f47aeeca86a9c361018f8a592062b96dfc500d0f614d7079cf3a40",
+      "bytes": 1455
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/CONTRACT.md",
+      "archive_path": "contract/CONTRACT.md",
+      "category": "contract",
+      "sha256": "9929b4f94eae04155b34b35d6d63bd074423a313fb744bbd7a49c6d5e34cdc20",
+      "bytes": 36505
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/CLAUDE_COMMAND.txt",
+      "archive_path": "contract/CLAUDE_COMMAND.txt",
+      "category": "command",
+      "sha256": "dc3f2d326252d03be1a62a69e663e34bb43daeb68607d377ed1df90cb11831f7",
+      "bytes": 3313
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/inputs/c013_context.json",
+      "archive_path": "contract/inputs/c013_context.json",
+      "category": "inputs",
+      "sha256": "a737388708714b96cf1becf6c879619a546edbe035327d2089377e13a5ba45cd",
+      "bytes": 1420
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/inputs/machine_profile.json",
+      "archive_path": "contract/inputs/machine_profile.json",
+      "category": "inputs",
+      "sha256": "6b01e1454da70f0ffb83718fa64b24079e7a1b43845485741ea6e23d780bce02",
+      "bytes": 493
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/references/claude_semantic_preflight_protocol.md",
+      "archive_path": "contract/references/claude_semantic_preflight_protocol.md",
+      "category": "references",
+      "sha256": "618c0de13bccde903a036298933126db653bdb20d9d3c6d8981050d1fdff598e",
+      "bytes": 595
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/references/experimental_rationale.md",
+      "archive_path": "contract/references/experimental_rationale.md",
+      "category": "references",
+      "sha256": "4fdbacaa6cb7a6cc3d8af1a21e8e370745ae3bd2981cb08780a5f0b1436afebb",
+      "bytes": 1347
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/references/results_protocol.md",
+      "archive_path": "contract/references/results_protocol.md",
+      "category": "references",
+      "sha256": "a557d2a2ccf730be2bf99ce7ea041b5e2639664ef3127c4879a31f6fbf0ccfaf",
+      "bytes": 715
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/claude_prompt.md",
+      "archive_path": "claude/claude_prompt.md",
+      "category": "claude_prompt",
+      "sha256": "bdc47facd29beb0ded0ca5a8758a5d2fd6e00f209a0c6728c3db6735d291d7e1",
+      "bytes": 1150
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/claude_output_schema.json",
+      "archive_path": "claude/claude_output_schema.json",
+      "category": "claude_schema",
+      "sha256": "343c510925687774f705880118f001e486089a5950497bd6dbfb101cd3606276",
+      "bytes": 713
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/semantic_state_schema.json",
+      "archive_path": "claude/semantic_state_schema.json",
+      "category": "claude_schema",
+      "sha256": "afa834524b7218337619e26c451eda38d8771bc596c09f35de1fd57d7ee9af69",
+      "bytes": 9642
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/claude_preflight_inputs.jsonl.gz",
+      "archive_path": "claude/claude_preflight_inputs.jsonl.gz",
+      "category": "claude_io",
+      "sha256": "c1f2cb255427797fd4ad8bce72e22d037d94c93421dd8fcbfa38699c5a9611aa",
+      "bytes": 19630
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/claude_preflight_outputs.jsonl.gz",
+      "archive_path": "claude/claude_preflight_outputs.jsonl.gz",
+      "category": "claude_io",
+      "sha256": "3086f1937994ba258c6b9c9c16203f3545adc3cbc855a4235dbadff504b8d319",
+      "bytes": 15622
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/claude_semantic_validation.json",
+      "archive_path": "claude/claude_semantic_validation.json",
+      "category": "claude_io",
+      "sha256": "aa3f257e663d5d4cd2f283e134472c57c3c0b84405d3583f9bb8f53b59363cab",
+      "bytes": 3282
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/semantic_state_benchmark.jsonl.gz",
+      "archive_path": "claude/semantic_state_benchmark.jsonl.gz",
+      "category": "claude_io",
+      "sha256": "af9b796eecdc3963ba7ef50a981bdcfff81640004f95423ba1f5c62b8a0709f6",
+      "bytes": 11186
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/CLAUDE_SEMANTIC_PREFLIGHT.md",
+      "archive_path": "decisions/CLAUDE_SEMANTIC_PREFLIGHT.md",
+      "category": "decision",
+      "sha256": "b5e82dc63779106c16dabe4be2c171fc240b1099528e3a715d6784aad9824405",
+      "bytes": 2788
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/CLEAN_CHECKOUT.md",
+      "archive_path": "decisions/CLEAN_CHECKOUT.md",
+      "category": "decision",
+      "sha256": "b27a2ac07e4315d7593d0593484c8ef34e77b5123dd33221c7ba217ae6a5a65a",
+      "bytes": 517
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/COMBINATION_RESULT.md",
+      "archive_path": "decisions/COMBINATION_RESULT.md",
+      "category": "decision",
+      "sha256": "022d9aae000181f54dd1276c4c6a9f5f60a6b764713894ee9f94350cdb55a9c2",
+      "bytes": 3187
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/CURRICULUM_SMOKE.md",
+      "archive_path": "decisions/CURRICULUM_SMOKE.md",
+      "category": "decision",
+      "sha256": "d2416ca6ef7f33ce22cb7ed8d69e07c196d4ea1ce1a64cf23ea01a6741faf65a",
+      "bytes": 4100
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/NEXT_STEP.md",
+      "archive_path": "decisions/NEXT_STEP.md",
+      "category": "decision",
+      "sha256": "a4d22002af101609b13541e712b9b5fccc9891c76891e15232c460ec0082345e",
+      "bytes": 1133
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/OPPONENT_OVERLAP.md",
+      "archive_path": "decisions/OPPONENT_OVERLAP.md",
+      "category": "decision",
+      "sha256": "f3acacc03104ad7b1cc7594ad70e644a12e04aa13b3b07db23930729282e0b1e",
+      "bytes": 7210
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/OVERLAP_DECISION_RULE.md",
+      "archive_path": "decisions/OVERLAP_DECISION_RULE.md",
+      "category": "decision",
+      "sha256": "7873349e5cb9b1524400ac9a8417969ef96b62f7597a33cd73ebd87914ebae25",
+      "bytes": 6571
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q0_summary.json",
+      "archive_path": "decisions/Q0_summary.json",
+      "category": "decision",
+      "sha256": "10ec773e4b7f87bdceae19c1dd42865de8088cd3db8ab1869af4edfa13b7c3d8",
+      "bytes": 4166
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q1_summary.json",
+      "archive_path": "decisions/Q1_summary.json",
+      "category": "decision",
+      "sha256": "f672100ef749825049f5048dfef4a193b5d29bb15b5d5470a85339f9158daf4d",
+      "bytes": 6442
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q2_component_registry.json",
+      "archive_path": "decisions/Q2_component_registry.json",
+      "category": "decision",
+      "sha256": "21ec14d1ac759cac548b21e0259aac70d82ebc02796dec8f6f42f6f00ab012a0",
+      "bytes": 4539
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q2_recombination_results.json",
+      "archive_path": "decisions/Q2_recombination_results.json",
+      "category": "decision",
+      "sha256": "42eaa1e3d2d53814ad0a4879eadcb94da380037674ad797a595a5d673f7ba54d",
+      "bytes": 3225
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q3_gate.json",
+      "archive_path": "decisions/Q3_gate.json",
+      "category": "decision",
+      "sha256": "5d935980946dde288829ffc751f1523a233ced703dfd23a0935fdde894d2efeb",
+      "bytes": 6231
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/Q3_summary.json",
+      "archive_path": "decisions/Q3_summary.json",
+      "category": "decision",
+      "sha256": "c0c0ba4113f1ec7856f208d8e410c95c2988f2de60d855151e139bb05e49a7e5",
+      "bytes": 6835
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/SOUP_LEARNABILITY.md",
+      "archive_path": "decisions/SOUP_LEARNABILITY.md",
+      "category": "decision",
+      "sha256": "fc391ce6b87b827c64aaa5fd44956a2c88287a67c1f5fbdaa6d05be71a50f851",
+      "bytes": 3883
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/SUBMISSION_G_DECISION.md",
+      "archive_path": "decisions/SUBMISSION_G_DECISION.md",
+      "category": "decision",
+      "sha256": "b9be12f9e704a003acb6b82f54aac72d470d0673b78126a92e145b1112a69745",
+      "bytes": 2126
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/TRAINING_BUDGET_LEDGER.md",
+      "archive_path": "decisions/TRAINING_BUDGET_LEDGER.md",
+      "category": "decision",
+      "sha256": "c11de8f0b12194daae811ef17a84dc24e57eb4617323768944751de06e827c16",
+      "bytes": 2784
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/behavioral_fingerprints.json",
+      "archive_path": "decisions/behavioral_fingerprints.json",
+      "category": "decision",
+      "sha256": "00127e6a64416e7c1f99f3d371cbe97dde8d3dfbab4ec779dbb298a80e1858ae",
+      "bytes": 13951
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/best_agent_selection.json",
+      "archive_path": "decisions/best_agent_selection.json",
+      "category": "decision",
+      "sha256": "caaaac083adb9629906ddbc75dfa0f68c60811672c2527b84a8eccf8a6ed1be5",
+      "bytes": 5068
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/candidate_registry.json",
+      "archive_path": "decisions/candidate_registry.json",
+      "category": "decision",
+      "sha256": "463cd65fbc58a93b619a62e153f1e0d2206c0945cd67f13822150a28487384c2",
+      "bytes": 6367
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/combination_final_intervals.json",
+      "archive_path": "decisions/combination_final_intervals.json",
+      "category": "decision",
+      "sha256": "297c88658ef44672ddc4989327196937e884a1efa673bdded7d36d0fe6ad9ef8",
+      "bytes": 3244
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/combination_registry.json",
+      "archive_path": "decisions/combination_registry.json",
+      "category": "decision",
+      "sha256": "7d12b090629d1d4de966975285718d67e8f58e3b09ad09e86fb0753c4cf05d47",
+      "bytes": 33772
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/combination_results.json",
+      "archive_path": "decisions/combination_results.json",
+      "category": "decision",
+      "sha256": "fb9d98baf9e1ada95504ed8812be0deae455cc36197987b018295608cfd4f218",
+      "bytes": 101925
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/continuation_repair_report.json",
+      "archive_path": "decisions/continuation_repair_report.json",
+      "category": "decision",
+      "sha256": "05e0446f20ab7e09a023dcb336bdcf41620340945783a2d2ee40651e33ba7806",
+      "bytes": 5510
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/curriculum_smoke_registry.json",
+      "archive_path": "decisions/curriculum_smoke_registry.json",
+      "category": "decision",
+      "sha256": "d405fd3d790e3f10c52bf2ae90dc7319efb03acda17602723dcb805ad9dc84b0",
+      "bytes": 7275
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/dependency_verification.json",
+      "archive_path": "decisions/dependency_verification.json",
+      "category": "decision",
+      "sha256": "a0c6fbc36cbf03dde6a10e83585eb90eccd65df668f04e107eaaf78305959f21",
+      "bytes": 2962
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensemble_semantics_validation.json",
+      "archive_path": "decisions/ensemble_semantics_validation.json",
+      "category": "decision",
+      "sha256": "31dff5d955f70826204d6ade5c77325e72d1f44db805701e76d603e2626fbf98",
+      "bytes": 1425
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/evaluation_candidate_registry.json",
+      "archive_path": "decisions/evaluation_candidate_registry.json",
+      "category": "decision",
+      "sha256": "9203d39a21730686820530f24ec68f1fa1e1f73871c27e05da894983cdb16522",
+      "bytes": 33040
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/evaluation_game_manifest.json",
+      "archive_path": "decisions/evaluation_game_manifest.json",
+      "category": "decision",
+      "sha256": "08cdda6ddd0280dbc63e88fa1a10efb4b5d0e073262e207f94a51645cf8f006e",
+      "bytes": 8959
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/evidence_validation.json",
+      "archive_path": "decisions/evidence_validation.json",
+      "category": "decision",
+      "sha256": "f75c9ac5f1fa9ec1808f9f0df5866f2d9ced7f529cd23292aea0d500931396eb",
+      "bytes": 11800
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/final_regression_report.json",
+      "archive_path": "decisions/final_regression_report.json",
+      "category": "decision",
+      "sha256": "e4b2258d4edefbd4a140cb992cf058db5f1858b08e8a6f0b16e9eac1a87846c6",
+      "bytes": 1627
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/immutability_verification.json",
+      "archive_path": "decisions/immutability_verification.json",
+      "category": "decision",
+      "sha256": "43c3651cf4f7c445137ecabe9e1159d14099c947629bcce285862eb7f7d35827",
+      "bytes": 276336
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/machine_snapshot.json",
+      "archive_path": "decisions/machine_snapshot.json",
+      "category": "decision",
+      "sha256": "82fb9c98f5fdf0807b38b35bb42a0b06f7f3baf579f264bd0d0b4bd28eaf1520",
+      "bytes": 8540
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/next_step.json",
+      "archive_path": "decisions/next_step.json",
+      "category": "decision",
+      "sha256": "e8fcfb39f7f1dd1bce25b0e438484f4b84def80d5d39041e76c0969380e79d42",
+      "bytes": 1790
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/panel_confirmation_summaries.json",
+      "archive_path": "decisions/panel_confirmation_summaries.json",
+      "category": "decision",
+      "sha256": "0822adea5d2fe17690e1b77317d52b952a4af90095ae291958f458a9a530d450",
+      "bytes": 93030
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/panel_final_summaries.json",
+      "archive_path": "decisions/panel_final_summaries.json",
+      "category": "decision",
+      "sha256": "f26f87fb708afa7567679be35fa552cefbaf082e744bf7077d33108ad8d44dc4",
+      "bytes": 10665
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/panel_selection_summaries.json",
+      "archive_path": "decisions/panel_selection_summaries.json",
+      "category": "decision",
+      "sha256": "619d2e28657442caf70063c9d94b268b19a390d7a883b5aa6d47c9cdb0c35bc3",
+      "bytes": 65377
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/semantic_action_agreement.json",
+      "archive_path": "decisions/semantic_action_agreement.json",
+      "category": "decision",
+      "sha256": "d921b9bbc533bffe4a32f84a9a30962f83bb855efb4f21972a41ca128382a687",
+      "bytes": 13096
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/semantic_state_schema.json",
+      "archive_path": "decisions/semantic_state_schema.json",
+      "category": "decision",
+      "sha256": "afa834524b7218337619e26c451eda38d8771bc596c09f35de1fd57d7ee9af69",
+      "bytes": 9642
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soup_learnability.json",
+      "archive_path": "decisions/soup_learnability.json",
+      "category": "decision",
+      "sha256": "d9c689154e117360d891ba08a50987dc1ae0cd285aabe4f719054303da85cb55",
+      "bytes": 10107
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/state_distribution_overlap.json",
+      "archive_path": "decisions/state_distribution_overlap.json",
+      "category": "decision",
+      "sha256": "41963018d72338f81567d4c0636a7e228feaee99c149d5e666b5d46111ab0f97",
+      "bytes": 1759
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/submission_G_validation.json",
+      "archive_path": "decisions/submission_G_validation.json",
+      "category": "decision",
+      "sha256": "7bdcc01dc614decf7a8cd6363e82e99b2ad68fa8117c6647c06c55c4f4176dca",
+      "bytes": 622
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/trainer_state_schema.json",
+      "archive_path": "decisions/trainer_state_schema.json",
+      "category": "decision",
+      "sha256": "fac5bac6d73f41b0f7cfdf01a82e0c052fcd6c9b9938fe5e94fcfd1ae017e509",
+      "bytes": 963
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/value_refit_diagnostics.json",
+      "archive_path": "decisions/value_refit_diagnostics.json",
+      "category": "decision",
+      "sha256": "8cdae4b760b1c9c0f689a7b71add39240e73d991f66984bf0b6bb7129212113e",
+      "bytes": 2185
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/dependency_verification.json",
+      "archive_path": "env/dependency_verification.json",
+      "category": "environment",
+      "sha256": "a0c6fbc36cbf03dde6a10e83585eb90eccd65df668f04e107eaaf78305959f21",
+      "bytes": 2962
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/machine_snapshot.json",
+      "archive_path": "env/machine_snapshot.json",
+      "category": "environment",
+      "sha256": "82fb9c98f5fdf0807b38b35bb42a0b06f7f3baf579f264bd0d0b4bd28eaf1520",
+      "bytes": 8540
+    },
+    {
+      "original_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/c013.patch",
+      "archive_path": "git/c013.patch",
+      "category": "git_patch",
+      "sha256": "e364a3e34243f415245afd21c0f887d7af3c511af82b1ddce3294e4f04c08cd7",
+      "bytes": 2395007
+    }
+  ],
+  "categories": [
+    "c013_source",
+    "claude_io",
+    "claude_prompt",
+    "claude_schema",
+    "command",
+    "contract",
+    "decision",
+    "environment",
+    "git_patch",
+    "inputs",
+    "references",
+    "supporting_source",
+    "test"
+  ]
+}

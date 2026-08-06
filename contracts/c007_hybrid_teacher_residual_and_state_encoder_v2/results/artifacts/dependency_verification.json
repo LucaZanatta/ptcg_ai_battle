@@ -1,0 +1,234 @@
+{
+  "contract": "c007_hybrid_teacher_residual_and_state_encoder_v2",
+  "c005_final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+  "c006_final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+  "c007_initial_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+  "teacher_id": "dragapult",
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "frozen_teacher_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "frozen_teacher_deck_sha256": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+  "submission_A_archive": {
+    "size_bytes": 500422,
+    "sha256": "f8db6ac87458b364429e2103729918232642e0e858d9bba3d3d3541885b3c990"
+  },
+  "c005_dataset_file_sha256": {
+    "train": "dd32906c48bc073984a6a3ce0731339e0191aae17ff012d57f6f850b8dcfa02a",
+    "validation": "0b6f87bb1fea0d22ba79195c1cc48395f09710e7d57280da0d92fd7d65aab39f",
+    "test": "6c72d99ccbb873520f09837fe20968360e6d0b941974217f7635f4652f1b4eaf"
+  },
+  "c005_dataset_counts": {
+    "train": {
+      "games": 170,
+      "decisions": 13795
+    },
+    "validation": {
+      "games": 37,
+      "decisions": 2991
+    },
+    "test": {
+      "games": 33,
+      "decisions": 2264
+    }
+  },
+  "c006_sequence_dataset_file_sha256": {
+    "train": "e5d5b3c880bf8c709b0e7add5f60785bfdb8ae7afc6bf078ede2bb14245c19b6",
+    "validation": "760ca505a44c1a58fa703f1c6cbde5e0098715db3443d9b03ef3d43f3d725d58",
+    "test": "123f3dfdf34d167d05a0b01741c676c6d3fb254e3672d9bfbbf66e0a0db8c4e6"
+  },
+  "c006_checkpoint_sha256": {
+    "S1_STATELESS_seed101.npz": "9d2083fde59cef9dfe18e2b632fa013e91992a0ecc9626133dd94c8632eaa228",
+    "S1_STATELESS_seed202.npz": "c98f52ca07449190571def3554176c804b9ddcb1f3e8d95ebda4a14206f3736a",
+    "S1_STATELESS_seed303.npz": "293fb39fb5da649b4322c219cf9a260705075c1b95caa38ad918665b347a4c8a",
+    "S1_STATELESS_selected.npz": "293fb39fb5da649b4322c219cf9a260705075c1b95caa38ad918665b347a4c8a",
+    "S2_RECURRENT_seed111.npz": "3ed06baf58baca8bf1ed21a922ef98b79d9cb9407d17352529b96a333d23482b",
+    "S2_RECURRENT_seed222.npz": "fbdfb0ef2dd4563be14c0857e6894b8af75483a83a0a6687164fb8a3eb7f33be",
+    "S2_RECURRENT_seed333.npz": "625cb23fda576b3e3f1d08d276f9d9423be5c77ee246e3510b9d6d6a6fdca65c",
+    "S2_RECURRENT_selected.npz": "fbdfb0ef2dd4563be14c0857e6894b8af75483a83a0a6687164fb8a3eb7f33be"
+  },
+  "teacher_submission_ref": "54948560",
+  "teacher_recorded_public_score": 617.8,
+  "runtime_deps": {
+    "numpy": "ok",
+    "scipy": "ok",
+    "kaggle_environments": "ok",
+    "cg": "ok"
+  },
+  "checks": [
+    {
+      "check": "c005_status_pass_and_head",
+      "ok": true,
+      "detail": {
+        "status": "PASS",
+        "final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+        "expected": "4137d983c6a05c0eea8332718d3e7f3acc7b7830"
+      }
+    },
+    {
+      "check": "c006_status_pass_and_head",
+      "ok": true,
+      "detail": {
+        "status": "PASS",
+        "final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+        "expected": "08ebac88385444a69d0615b7976dea9dbddeb79a"
+      }
+    },
+    {
+      "check": "commit_chain_c005_to_c006",
+      "ok": true,
+      "detail": {
+        "c006_initial_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+        "c005_final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830"
+      }
+    },
+    {
+      "check": "c007_branches_from_c006_final",
+      "ok": true,
+      "detail": {
+        "c007_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+        "c006_final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a"
+      }
+    },
+    {
+      "check": "c005_c006_head_objects_exist",
+      "ok": true,
+      "detail": {
+        "c005": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+        "c006": "08ebac88385444a69d0615b7976dea9dbddeb79a"
+      }
+    },
+    {
+      "check": "frozen_teacher_main_sha256",
+      "ok": true,
+      "detail": {
+        "expected": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+        "actual": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+      }
+    },
+    {
+      "check": "frozen_teacher_deck_sha256",
+      "ok": true,
+      "detail": {
+        "expected": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+        "actual": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724"
+      }
+    },
+    {
+      "check": "frozen_deck_id",
+      "ok": true,
+      "detail": {
+        "expected": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+        "actual": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab"
+      }
+    },
+    {
+      "check": "teacher_sources_dragapult_matches_frozen",
+      "ok": true,
+      "detail": {
+        "expected": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+        "actual": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+      }
+    },
+    {
+      "check": "submission_A_archive_size",
+      "ok": true,
+      "detail": {
+        "expected": 500422,
+        "actual": 500422,
+        "sha256": "f8db6ac87458b364429e2103729918232642e0e858d9bba3d3d3541885b3c990"
+      }
+    },
+    {
+      "check": "c005_dataset_split_counts",
+      "ok": true,
+      "detail": {
+        "actual": {
+          "train": {
+            "games": 170,
+            "decisions": 13795
+          },
+          "validation": {
+            "games": 37,
+            "decisions": 2991
+          },
+          "test": {
+            "games": 33,
+            "decisions": 2264
+          }
+        }
+      }
+    },
+    {
+      "check": "c005_dataset_no_leakage",
+      "ok": true,
+      "detail": {
+        "leaking_games": {}
+      }
+    },
+    {
+      "check": "c006_checkpoints_present",
+      "ok": true,
+      "detail": {
+        "count": 8,
+        "files": [
+          "S1_STATELESS_seed101.npz",
+          "S1_STATELESS_seed202.npz",
+          "S1_STATELESS_seed303.npz",
+          "S1_STATELESS_selected.npz",
+          "S2_RECURRENT_seed111.npz",
+          "S2_RECURRENT_seed222.npz",
+          "S2_RECURRENT_seed333.npz",
+          "S2_RECURRENT_selected.npz"
+        ]
+      }
+    },
+    {
+      "check": "c006_sequence_manifest_present",
+      "ok": true,
+      "detail": {
+        "manifest_keys": [
+          "contract",
+          "counts",
+          "file_sha256",
+          "hidden_state_reset",
+          "no_sequence_crosses_game_boundary",
+          "ordering_method",
+          "regenerated_games",
+          "source",
+          "split_membership_preserved",
+          "step_monotonic_violations",
+          "total_decisions",
+          "total_games"
+        ]
+      }
+    },
+    {
+      "check": "kaggle_teacher_ref",
+      "ok": true,
+      "detail": {
+        "ref": "54948560",
+        "recorded_score": 617.8
+      }
+    },
+    {
+      "check": "teacher_sources_present",
+      "ok": true,
+      "detail": {
+        "dragapult": true,
+        "mega_lucario": true,
+        "mega_abomasnow": true,
+        "iono": true
+      }
+    },
+    {
+      "check": "runtime_deps_importable",
+      "ok": true,
+      "detail": {
+        "numpy": "ok",
+        "scipy": "ok",
+        "kaggle_environments": "ok",
+        "cg": "ok"
+      }
+    }
+  ],
+  "all_ok": true
+}

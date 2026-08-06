@@ -1,0 +1,408 @@
+{
+  "note": "Scored against ACTUAL terminal outcomes (win 1 / draw 0.5 / loss 0), not GAE lambda-returns. Predictions are those made at collection time, before the update that consumed them.",
+  "phases": [
+    "0-20",
+    "20-40",
+    "40-60",
+    "60-80",
+    "80-100"
+  ],
+  "by_seed": {
+    "611": {
+      "by_phase_last_quarter": {
+        "0-20": {
+          "brier_score": 0.2281443429245453,
+          "calibration_error": -0.04290408066001796,
+          "outcome_accuracy": 0.6247720721299792,
+          "auc": 0.6738133866008272,
+          "monte_carlo_outcome_error": 0.4558860135661313,
+          "explained_variance_vs_terminal_outcome": 0.09482671486229796,
+          "advantage_mean": 0.02621860332718226,
+          "advantage_std": 0.257422350285038,
+          "advantage_snr": 0.10320883240779788,
+          "transitions": 147751
+        },
+        "20-40": {
+          "brier_score": 0.20096384972202713,
+          "calibration_error": -0.021549183807080048,
+          "outcome_accuracy": 0.6901790367492416,
+          "auc": 0.7577931222552763,
+          "monte_carlo_outcome_error": 0.40426361870549127,
+          "explained_variance_vs_terminal_outcome": 0.19817511204732272,
+          "advantage_mean": 0.018408169195280804,
+          "advantage_std": 0.269605186175168,
+          "advantage_snr": 0.07327815658609822,
+          "transitions": 153728
+        },
+        "40-60": {
+          "brier_score": 0.16591261306531058,
+          "calibration_error": -0.001262001976091848,
+          "outcome_accuracy": 0.7578453272719594,
+          "auc": 0.8365712043780057,
+          "monte_carlo_outcome_error": 0.3436336125505513,
+          "explained_variance_vs_terminal_outcome": 0.33654130534183585,
+          "advantage_mean": 0.005305503508843196,
+          "advantage_std": 0.2814092451162679,
+          "advantage_snr": 0.048291203662576845,
+          "transitions": 153639
+        },
+        "60-80": {
+          "brier_score": 0.12562017181255788,
+          "calibration_error": 0.012864210063929066,
+          "outcome_accuracy": 0.8258284711891001,
+          "auc": 0.9065947598475315,
+          "monte_carlo_outcome_error": 0.27517530399405243,
+          "explained_variance_vs_terminal_outcome": 0.4983378879354942,
+          "advantage_mean": -0.0046837840687351615,
+          "advantage_std": 0.29975436527160065,
+          "advantage_snr": 0.049008883113650044,
+          "transitions": 153728
+        },
+        "80-100": {
+          "brier_score": 0.0848189055206205,
+          "calibration_error": 0.0301768286430939,
+          "outcome_accuracy": 0.8849244241440251,
+          "auc": 0.9596211967862832,
+          "monte_carlo_outcome_error": 0.19993613275313396,
+          "explained_variance_vs_terminal_outcome": 0.6645099647935865,
+          "advantage_mean": -0.04378095761086438,
+          "advantage_std": 0.3995105330234266,
+          "advantage_snr": 0.11279301867885617,
+          "transitions": 159565
+        }
+      },
+      "first_update": {
+        "0-20": {
+          "n": 6329,
+          "brier_score": 0.2179586746304717,
+          "calibration_error": 0.013411618415261395,
+          "mean_abs_calibration_error": 0.4455177704263217,
+          "outcome_accuracy": 0.6662979933638805,
+          "auc": 0.6730410033921133,
+          "monte_carlo_outcome_error": 0.4455177704263217,
+          "explained_variance_vs_terminal_outcome": 0.09789763613648328,
+          "advantage_mean": 0.01925646615859754,
+          "advantage_std": 0.24069929481599106,
+          "advantage_snr": 0.08000217106260595
+        },
+        "20-40": {
+          "n": 6586,
+          "brier_score": 0.19731097165435363,
+          "calibration_error": 0.03151727346502553,
+          "mean_abs_calibration_error": 0.40310180949987395,
+          "outcome_accuracy": 0.6919222593379897,
+          "auc": 0.7456529690976301,
+          "monte_carlo_outcome_error": 0.40310180949987395,
+          "explained_variance_vs_terminal_outcome": 0.18567623792409838,
+          "advantage_mean": 0.008443913653073133,
+          "advantage_std": 0.24683813031179766,
+          "advantage_snr": 0.034208303402609865
+        },
+        "40-60": {
+          "n": 6610,
+          "brier_score": 0.18035075811494367,
+          "calibration_error": 0.04906349600102228,
+          "mean_abs_calibration_error": 0.36431539674567653,
+          "outcome_accuracy": 0.7187594553706506,
+          "auc": 0.7984326229210789,
+          "monte_carlo_outcome_error": 0.36431539674567653,
+          "explained_variance_vs_terminal_outcome": 0.2619151661913861,
+          "advantage_mean": -0.01707043788913567,
+          "advantage_std": 0.27058483931579674,
+          "advantage_snr": 0.06308719266104135
+        },
+        "60-80": {
+          "n": 6586,
+          "brier_score": 0.14676411465656622,
+          "calibration_error": 0.04995358727232463,
+          "mean_abs_calibration_error": 0.30855259548902253,
+          "outcome_accuracy": 0.7877315517764956,
+          "auc": 0.8692920938341097,
+          "monte_carlo_outcome_error": 0.30855259548902253,
+          "explained_variance_vs_terminal_outcome": 0.40157451751770523,
+          "advantage_mean": -0.02612878410052441,
+          "advantage_std": 0.29620140252830457,
+          "advantage_snr": 0.08821289797214708
+        },
+        "80-100": {
+          "n": 6869,
+          "brier_score": 0.11468701502290904,
+          "calibration_error": 0.056333387190183215,
+          "mean_abs_calibration_error": 0.2492465502393261,
+          "outcome_accuracy": 0.8356383753093609,
+          "auc": 0.9220509561774759,
+          "monte_carlo_outcome_error": 0.2492465502393261,
+          "explained_variance_vs_terminal_outcome": 0.5362717743894397,
+          "advantage_mean": -0.07395195436206792,
+          "advantage_std": 0.4640781811686025,
+          "advantage_snr": 0.15935236208625236
+        }
+      },
+      "updates": 92
+    },
+    "622": {
+      "by_phase_last_quarter": {
+        "0-20": {
+          "brier_score": 0.22920534990843952,
+          "calibration_error": -0.042216939982238716,
+          "outcome_accuracy": 0.6209785334705683,
+          "auc": 0.6667340750542511,
+          "monte_carlo_outcome_error": 0.45678240493715655,
+          "explained_variance_vs_terminal_outcome": 0.08988189647605556,
+          "advantage_mean": 0.025784698558845492,
+          "advantage_std": 0.24684829619519233,
+          "advantage_snr": 0.1044490765621288,
+          "transitions": 154308
+        },
+        "20-40": {
+          "brier_score": 0.20255009630746126,
+          "calibration_error": -0.022742693122009393,
+          "outcome_accuracy": 0.6875000857389012,
+          "auc": 0.7512197030444746,
+          "monte_carlo_outcome_error": 0.4070198054134426,
+          "explained_variance_vs_terminal_outcome": 0.19142481734612074,
+          "advantage_mean": 0.019220235448139108,
+          "advantage_std": 0.26019261738355887,
+          "advantage_snr": 0.07925947173991907,
+          "transitions": 160398
+        },
+        "40-60": {
+          "brier_score": 0.16937810101311324,
+          "calibration_error": -0.004181037582654171,
+          "outcome_accuracy": 0.7512687254693091,
+          "auc": 0.8287347203602922,
+          "monte_carlo_outcome_error": 0.35076144530130743,
+          "explained_variance_vs_terminal_outcome": 0.3219246951730293,
+          "advantage_mean": 0.007545057092545567,
+          "advantage_std": 0.2743546980671716,
+          "advantage_snr": 0.04102473782426341,
+          "transitions": 160417
+        },
+        "60-80": {
+          "brier_score": 0.12983059642748088,
+          "calibration_error": 0.009427287086014579,
+          "outcome_accuracy": 0.8164051056302072,
+          "auc": 0.9002586864104812,
+          "monte_carlo_outcome_error": 0.2847692115476408,
+          "explained_variance_vs_terminal_outcome": 0.4805214416156118,
+          "advantage_mean": -0.0007472348418477703,
+          "advantage_std": 0.2980495896747674,
+          "advantage_snr": 0.037509238131914195,
+          "transitions": 160398
+        },
+        "80-100": {
+          "brier_score": 0.08741517354202927,
+          "calibration_error": 0.028009696138413153,
+          "outcome_accuracy": 0.883868298655071,
+          "auc": 0.9571854192122805,
+          "monte_carlo_outcome_error": 0.20781713321549034,
+          "explained_variance_vs_terminal_outcome": 0.6531258054332999,
+          "advantage_mean": -0.038699047594525526,
+          "advantage_std": 0.40440094642349056,
+          "advantage_snr": 0.09638579047059097,
+          "transitions": 166383
+        }
+      },
+      "first_update": {
+        "0-20": {
+          "n": 6409,
+          "brier_score": 0.22623065060262182,
+          "calibration_error": -0.03212002722619128,
+          "mean_abs_calibration_error": 0.4527517366537221,
+          "outcome_accuracy": 0.6340432195427498,
+          "auc": 0.6629796051185786,
+          "monte_carlo_outcome_error": 0.4527517366537221,
+          "explained_variance_vs_terminal_outcome": 0.08145228158442008,
+          "advantage_mean": 0.006315073135011485,
+          "advantage_std": 0.2469974443241546,
+          "advantage_snr": 0.025567362254558954
+        },
+        "20-40": {
+          "n": 6679,
+          "brier_score": 0.197099392548396,
+          "calibration_error": -0.024480777037428125,
+          "mean_abs_calibration_error": 0.4023076765303327,
+          "outcome_accuracy": 0.6965144230769231,
+          "auc": 0.7613473861007337,
+          "monte_carlo_outcome_error": 0.4023076765303327,
+          "explained_variance_vs_terminal_outcome": 0.19742989585613369,
+          "advantage_mean": 0.01688682915819185,
+          "advantage_std": 0.26297441467465266,
+          "advantage_snr": 0.06421472286199296
+        },
+        "40-60": {
+          "n": 6702,
+          "brier_score": 0.1648212371013736,
+          "calibration_error": -0.005885876337225537,
+          "mean_abs_calibration_error": 0.3485911231368095,
+          "outcome_accuracy": 0.7424764186255427,
+          "auc": 0.8351342324543443,
+          "monte_carlo_outcome_error": 0.3485911231368095,
+          "explained_variance_vs_terminal_outcome": 0.32728705656879964,
+          "advantage_mean": 0.003658823827909589,
+          "advantage_std": 0.2737529601243746,
+          "advantage_snr": 0.013365421971086283
+        },
+        "60-80": {
+          "n": 6679,
+          "brier_score": 0.12660688219717187,
+          "calibration_error": 0.0055294210770758245,
+          "mean_abs_calibration_error": 0.2854901793464736,
+          "outcome_accuracy": 0.8228665865384616,
+          "auc": 0.9062340702736376,
+          "monte_carlo_outcome_error": 0.2854901793464736,
+          "explained_variance_vs_terminal_outcome": 0.48302128767065866,
+          "advantage_mean": -0.0009818360285685542,
+          "advantage_std": 0.2987338524302346,
+          "advantage_snr": 0.003286658075668082
+        },
+        "80-100": {
+          "n": 6954,
+          "brier_score": 0.09555331752080044,
+          "calibration_error": 0.023352040666467067,
+          "mean_abs_calibration_error": 0.22566615188898959,
+          "outcome_accuracy": 0.8718614718614719,
+          "auc": 0.9484716710436397,
+          "monte_carlo_outcome_error": 0.22566615188898959,
+          "explained_variance_vs_terminal_outcome": 0.6112484036481345,
+          "advantage_mean": -0.03803364856127433,
+          "advantage_std": 0.4297615723808351,
+          "advantage_snr": 0.08849941689873134
+        }
+      },
+      "updates": 93
+    },
+    "633": {
+      "by_phase_last_quarter": {
+        "0-20": {
+          "brier_score": 0.22812065935942596,
+          "calibration_error": -0.04574940515102623,
+          "outcome_accuracy": 0.6265590451080744,
+          "auc": 0.6743266768355709,
+          "monte_carlo_outcome_error": 0.45518318088227244,
+          "explained_variance_vs_terminal_outcome": 0.09636830261068338,
+          "advantage_mean": 0.025595127419486538,
+          "advantage_std": 0.2497602983363952,
+          "advantage_snr": 0.10313165870460525,
+          "transitions": 147821
+        },
+        "20-40": {
+          "brier_score": 0.19959331919914652,
+          "calibration_error": -0.0264703952678435,
+          "outcome_accuracy": 0.692391286963235,
+          "auc": 0.7608384296935321,
+          "monte_carlo_outcome_error": 0.4027554000671826,
+          "explained_variance_vs_terminal_outcome": 0.20448376117948386,
+          "advantage_mean": 0.020233206819303347,
+          "advantage_std": 0.26445967616837307,
+          "advantage_snr": 0.07921857800344435,
+          "transitions": 153744
+        },
+        "40-60": {
+          "brier_score": 0.1652923153261481,
+          "calibration_error": -0.00725982254771042,
+          "outcome_accuracy": 0.758804308024936,
+          "auc": 0.8373519289870593,
+          "monte_carlo_outcome_error": 0.3436443820913793,
+          "explained_variance_vs_terminal_outcome": 0.3390220505372917,
+          "advantage_mean": 0.008298208021032698,
+          "advantage_std": 0.27828906514891616,
+          "advantage_snr": 0.04499446467368765,
+          "transitions": 153769
+        },
+        "60-80": {
+          "brier_score": 0.12807559148828657,
+          "calibration_error": 0.0072076972714694345,
+          "outcome_accuracy": 0.8194383631479536,
+          "auc": 0.9023651136771234,
+          "monte_carlo_outcome_error": 0.27901775298835374,
+          "explained_variance_vs_terminal_outcome": 0.48786651390193947,
+          "advantage_mean": 0.0025609864945561945,
+          "advantage_std": 0.3035161650151105,
+          "advantage_snr": 0.038197102964801,
+          "transitions": 153744
+        },
+        "80-100": {
+          "brier_score": 0.08591429778663563,
+          "calibration_error": 0.028454221036901612,
+          "outcome_accuracy": 0.8845255527655188,
+          "auc": 0.9578654998394057,
+          "monte_carlo_outcome_error": 0.20188418087476082,
+          "explained_variance_vs_terminal_outcome": 0.6594484625307637,
+          "advantage_mean": -0.04101614468470798,
+          "advantage_std": 0.40471525945380693,
+          "advantage_snr": 0.10179158281538635,
+          "transitions": 159782
+        }
+      },
+      "first_update": {
+        "0-20": {
+          "n": 6306,
+          "brier_score": 0.2185793011361594,
+          "calibration_error": 0.021422320416209784,
+          "mean_abs_calibration_error": 0.4463941543768674,
+          "outcome_accuracy": 0.6730098319061212,
+          "auc": 0.6646644588810012,
+          "monte_carlo_outcome_error": 0.4463941543768674,
+          "explained_variance_vs_terminal_outcome": 0.08651639257374366,
+          "advantage_mean": -0.0038415092819385835,
+          "advantage_std": 0.23390914569309584,
+          "advantage_snr": 0.016423082862106097
+        },
+        "20-40": {
+          "n": 6579,
+          "brier_score": 0.1935733656383262,
+          "calibration_error": 0.024969821925884317,
+          "mean_abs_calibration_error": 0.39900387427997713,
+          "outcome_accuracy": 0.7169782641738867,
+          "auc": 0.7563109732454439,
+          "monte_carlo_outcome_error": 0.39900387427997713,
+          "explained_variance_vs_terminal_outcome": 0.1904327373687682,
+          "advantage_mean": -0.003831395016065436,
+          "advantage_std": 0.2543401542959888,
+          "advantage_snr": 0.015064058707739792
+        },
+        "40-60": {
+          "n": 6567,
+          "brier_score": 0.15886273847959115,
+          "calibration_error": 0.0331129215828016,
+          "mean_abs_calibration_error": 0.3406098966388975,
+          "outcome_accuracy": 0.7836150449215776,
+          "auc": 0.8389227422677442,
+          "monte_carlo_outcome_error": 0.3406098966388975,
+          "explained_variance_vs_terminal_outcome": 0.33775202013705174,
+          "advantage_mean": -0.006448573419246713,
+          "advantage_std": 0.27439932436868175,
+          "advantage_snr": 0.02350068985796385
+        },
+        "60-80": {
+          "n": 6579,
+          "brier_score": 0.1236258142957968,
+          "calibration_error": 0.037983090500132766,
+          "mean_abs_calibration_error": 0.28172039932561677,
+          "outcome_accuracy": 0.8457212342301261,
+          "auc": 0.9038622528111672,
+          "monte_carlo_outcome_error": 0.28172039932561677,
+          "explained_variance_vs_terminal_outcome": 0.4873516357259602,
+          "advantage_mean": -0.009917122481290154,
+          "advantage_std": 0.2943643814749042,
+          "advantage_snr": 0.033689954034408005
+        },
+        "80-100": {
+          "n": 6846,
+          "brier_score": 0.09372746137489399,
+          "calibration_error": 0.056760230009524626,
+          "mean_abs_calibration_error": 0.2233841768820099,
+          "outcome_accuracy": 0.8770084721004966,
+          "auc": 0.9507775054936721,
+          "monte_carlo_outcome_error": 0.2233841768820099,
+          "explained_variance_vs_terminal_outcome": 0.6193090776316925,
+          "advantage_mean": -0.0777969199162221,
+          "advantage_std": 0.41654832143724335,
+          "advantage_snr": 0.18676565457665908
+        }
+      },
+      "updates": 92
+    }
+  }
+}

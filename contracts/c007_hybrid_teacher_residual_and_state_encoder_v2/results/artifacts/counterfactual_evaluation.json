@@ -1,0 +1,227 @@
+{
+  "contract": "c007",
+  "method": "controlled deterministic policy variants (\u00a712 fallback)",
+  "admitted_context": "DAMAGE_COUNTER_ANY",
+  "evidence_level": "POLICY-LEVEL global strength (not per-state counterfactual labels)",
+  "variant_builds": [
+    {
+      "variant": "V_plan_a",
+      "rule": "spread allocation uses plan_a.counter when the planned main target is a benched Pokemon (plan_a.attack != 0), matching the ACTUAL attack plan instead of the active-target plan_b.counter (main.py L705).",
+      "dir": "/home/luca/kaggle/ptcg_ai_battle/contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/teacher_variants/V_plan_a",
+      "added_lines": 1,
+      "removed_lines": 1,
+      "compiles": true
+    },
+    {
+      "variant": "V_reset",
+      "rule": "reset plan_a.counter/plan_b.counter at the start of MAIN planning so a stale spread allocation from a prior turn can never leak into a later DAMAGE_COUNTER_ANY (AttackPlan.counter is a class attr never reset; main.py L55/L213-216).",
+      "dir": "/home/luca/kaggle/ptcg_ai_battle/contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/teacher_variants/V_reset",
+      "added_lines": 2,
+      "removed_lines": 0,
+      "compiles": true
+    },
+    {
+      "variant": "V_thresh",
+      "rule": "correct the DAMAGE_COUNTER_ANY HP-band threshold so targets just above the 200 main-damage line are still prioritised when few counters remain (main.py L709: 210<=hp<=200+remain becomes 200<hp<=200+max(remain,60)).",
+      "dir": "/home/luca/kaggle/ptcg_ai_battle/contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/teacher_variants/V_thresh",
+      "added_lines": 1,
+      "removed_lines": 1,
+      "compiles": true
+    },
+    {
+      "variant": "V_greedy",
+      "rule": "replace the plan_b/HP-band spread heuristic with a knockout-maximizing rule computed from the CURRENT board: prioritise targets KO-able by the remaining counters (weighted by prize value), then near-KO targets, with plan_b as a small tiebreak (main.py L703-714).",
+      "dir": "/home/luca/kaggle/ptcg_ai_battle/contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/teacher_variants/V_greedy",
+      "added_lines": 6,
+      "removed_lines": 9,
+      "compiles": true
+    }
+  ],
+  "ab_batch1": {
+    "teacher_point": 0.56875,
+    "teacher_n": 400,
+    "reliability": {
+      "('teacher',)": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_plan_a')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_reset')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_thresh')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_greedy')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      }
+    },
+    "variants": {
+      "V_plan_a": {
+        "point": 0.5025,
+        "n": 400,
+        "teacher_point": 0.56875,
+        "diff_point": -0.06625000000000003,
+        "diff_ci90": [
+          -0.12374999999999992,
+          -0.010000000000000009
+        ],
+        "diff_lcb_90": -0.12374999999999992,
+        "prob_improvement": 0.028,
+        "batch2_diff_point": 0.0,
+        "batch2_diff_lcb_90": -0.05625000000000002,
+        "reproduces_lcb_positive_both_batches": false
+      },
+      "V_reset": {
+        "point": 0.5275000000000001,
+        "n": 400,
+        "teacher_point": 0.56875,
+        "diff_point": -0.0412499999999999,
+        "diff_ci90": [
+          -0.09749999999999992,
+          0.017499999999999967
+        ],
+        "diff_lcb_90": -0.09749999999999992,
+        "prob_improvement": 0.1245,
+        "batch2_diff_point": 0.02375000000000005,
+        "batch2_diff_lcb_90": -0.032500000000000084,
+        "reproduces_lcb_positive_both_batches": false
+      },
+      "V_thresh": {
+        "point": 0.535,
+        "n": 400,
+        "teacher_point": 0.56875,
+        "diff_point": -0.03374999999999995,
+        "diff_ci90": [
+          -0.09124999999999983,
+          0.02375000000000005
+        ],
+        "diff_lcb_90": -0.09124999999999983,
+        "prob_improvement": 0.15975,
+        "batch2_diff_point": 0.018749999999999933,
+        "batch2_diff_lcb_90": -0.03875000000000006,
+        "reproduces_lcb_positive_both_batches": false
+      },
+      "V_greedy": {
+        "point": 0.545,
+        "n": 400,
+        "teacher_point": 0.56875,
+        "diff_point": -0.023749999999999938,
+        "diff_ci90": [
+          -0.07999999999999996,
+          0.03249999999999997
+        ],
+        "diff_lcb_90": -0.07999999999999996,
+        "prob_improvement": 0.23875,
+        "batch2_diff_point": 0.006249999999999978,
+        "batch2_diff_lcb_90": -0.05249999999999999,
+        "reproduces_lcb_positive_both_batches": false
+      }
+    }
+  },
+  "ab_batch2": {
+    "teacher_point": 0.53625,
+    "teacher_n": 400,
+    "reliability": {
+      "('teacher',)": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_plan_a')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_reset')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_thresh')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      },
+      "('variant', 'V_greedy')": {
+        "invalid": 0,
+        "incomplete": 0,
+        "exc": 0,
+        "n": 400
+      }
+    },
+    "variants": {
+      "V_plan_a": {
+        "point": 0.53625,
+        "n": 400,
+        "teacher_point": 0.53625,
+        "diff_point": 0.0,
+        "diff_ci90": [
+          -0.05625000000000002,
+          0.05875000000000008
+        ],
+        "diff_lcb_90": -0.05625000000000002,
+        "prob_improvement": 0.49525
+      },
+      "V_reset": {
+        "point": 0.56,
+        "n": 400,
+        "teacher_point": 0.53625,
+        "diff_point": 0.02375000000000005,
+        "diff_ci90": [
+          -0.032500000000000084,
+          0.08000000000000007
+        ],
+        "diff_lcb_90": -0.032500000000000084,
+        "prob_improvement": 0.742
+      },
+      "V_thresh": {
+        "point": 0.5549999999999999,
+        "n": 400,
+        "teacher_point": 0.53625,
+        "diff_point": 0.018749999999999933,
+        "diff_ci90": [
+          -0.03875000000000006,
+          0.07874999999999993
+        ],
+        "diff_lcb_90": -0.03875000000000006,
+        "prob_improvement": 0.70325
+      },
+      "V_greedy": {
+        "point": 0.5425,
+        "n": 400,
+        "teacher_point": 0.53625,
+        "diff_point": 0.006249999999999978,
+        "diff_ci90": [
+          -0.05249999999999999,
+          0.06374999999999997
+        ],
+        "diff_lcb_90": -0.05249999999999999,
+        "prob_improvement": 0.574
+      }
+    }
+  },
+  "positive_label_gate": "diff 90% bootstrap LCB > 0 in BOTH independent batches AND zero reliability defects",
+  "reproducibility_note": "games are engine random_device-seeded and non-reproducible; two independent full A/B batches guard against a single-batch false positive.",
+  "admitted_variant": null
+}

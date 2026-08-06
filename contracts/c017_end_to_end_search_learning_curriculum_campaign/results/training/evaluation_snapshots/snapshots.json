@@ -1,0 +1,86 @@
+[
+  {
+    "games": 0,
+    "stage": "S0",
+    "tag": "g0",
+    "eval_checkpoint": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g0_be9d1e5da2ca.pt",
+    "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19",
+    "promotion_eligible": false,
+    "vs_baseline": {
+      "games": 20,
+      "score_rate": 0.25
+    },
+    "field": {
+      "iono": {
+        "games": 7,
+        "score_rate": 0.0
+      },
+      "mega_abomasnow": {
+        "games": 7,
+        "score_rate": 0.1429
+      },
+      "dragapult": {
+        "games": 7,
+        "score_rate": 0.0
+      }
+    },
+    "field_mean": 0.0476,
+    "invalid_actions": 0
+  },
+  {
+    "games": 1000,
+    "stage": "S0",
+    "tag": "g1000",
+    "eval_checkpoint": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g1000_be9d1e5da2ca.pt",
+    "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19",
+    "promotion_eligible": true,
+    "vs_baseline": {
+      "games": 20,
+      "score_rate": 0.3
+    },
+    "field": {
+      "iono": {
+        "games": 7,
+        "score_rate": 0.1429
+      },
+      "mega_abomasnow": {
+        "games": 7,
+        "score_rate": 0.2857
+      },
+      "dragapult": {
+        "games": 7,
+        "score_rate": 0.2857
+      }
+    },
+    "field_mean": 0.2381,
+    "invalid_actions": 0
+  },
+  {
+    "games": 2000,
+    "stage": "S0",
+    "tag": "g2000",
+    "eval_checkpoint": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/eval_g2000_be9d1e5da2ca.pt",
+    "eval_checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19",
+    "promotion_eligible": true,
+    "vs_baseline": {
+      "games": 20,
+      "score_rate": 0.45
+    },
+    "field": {
+      "iono": {
+        "games": 7,
+        "score_rate": 0.1429
+      },
+      "mega_abomasnow": {
+        "games": 7,
+        "score_rate": 0.0
+      },
+      "dragapult": {
+        "games": 7,
+        "score_rate": 0.0
+      }
+    },
+    "field_mean": 0.0476,
+    "invalid_actions": 0
+  }
+]

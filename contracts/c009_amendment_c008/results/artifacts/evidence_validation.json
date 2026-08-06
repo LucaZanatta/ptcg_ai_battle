@@ -1,0 +1,208 @@
+{
+  "contract": "c009",
+  "checks": [
+    {
+      "check": "raw_games_present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "registry_has_all_required_candidates",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "registry_checkpoint_hashes_match_disk",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "every_evaluated_candidate_in_registry",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "every_game_used_the_registered_weights",
+      "ok": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "check": "manifest_count_matches_raw",
+      "ok": true,
+      "detail": "manifest 4100 vs raw 4100"
+    },
+    {
+      "check": "manifest_raw_sha_matches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "job_ids_unique",
+      "ok": true,
+      "detail": "4100 vs 4100 unique"
+    },
+    {
+      "check": "all_raw_identities_complete",
+      "ok": true,
+      "detail": "0 incomplete"
+    },
+    {
+      "check": "all_games_terminal_or_defect_classified",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "every_game_used_the_exact_frozen_deck",
+      "ok": true,
+      "detail": "['676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a']"
+    },
+    {
+      "check": "both_seats_present_equally",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "phase_c_cells_exactly_50_per_seat",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "phase_a_cells_exactly_50_per_seat",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "matchup_scores_reproduce_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "matchup_counts_reproduce_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "global_ranking_reproduces_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "holdout_report_uses_only_abomasnow",
+      "ok": true,
+      "detail": "mega_abomasnow"
+    },
+    {
+      "check": "holdout_values_reproduce_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "teacher_h2h_uses_only_frozen_teacher",
+      "ok": true,
+      "detail": "dragapult"
+    },
+    {
+      "check": "teacher_h2h_rule_unchanged",
+      "ok": true,
+      "detail": "one-sided 95% lower bound >= 0.47 (original c008 rule, unchanged)"
+    },
+    {
+      "check": "teacher_h2h_values_reproduce_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "confidence_intervals_reproduce_independently",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "improvement_diffs_reproduce_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "regression_flags_follow_stated_rule",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "rl_vs_initialization_reproduces_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no_c005_to_c008_file_changed",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no_policy_weights_changed",
+      "ok": true,
+      "detail": "checkpoint hashes unchanged on disk"
+    },
+    {
+      "check": "no_new_training_checkpoint_created",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "teacher_noninferiority_decision_follows_evidence",
+      "ok": true,
+      "detail": "FAIL vs FAIL"
+    },
+    {
+      "check": "rl_improvement_decision_follows_rule",
+      "ok": true,
+      "detail": "YES vs YES"
+    },
+    {
+      "check": "best_saved_checkpoint_follows_rule",
+      "ok": true,
+      "detail": "R1_101_ckpt_g10040 vs R1_101_ckpt_g10040"
+    },
+    {
+      "check": "submission_decision_follows_amended_gate",
+      "ok": true,
+      "detail": "DO_NOT_SUBMIT (ni=False, repro=False)"
+    },
+    {
+      "check": "conditional_archive_absent_when_do_not_submit",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "kaggle_status_skipped_by_gate",
+      "ok": true,
+      "detail": "SKIPPED_BY_GATE"
+    },
+    {
+      "check": "promotion_is_no_rl_submission",
+      "ok": true,
+      "detail": "NO_RL_SUBMISSION"
+    },
+    {
+      "check": "exactly_one_next_step",
+      "ok": true,
+      "detail": "FIXED_DECK_SELECTIVE_SEARCH"
+    },
+    {
+      "check": "exactly_one_highest_leverage_blocker",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "validation_is_content_aware_not_existence_based",
+      "ok": true,
+      "detail": "37 content assertions executed"
+    }
+  ],
+  "n_checks": 39,
+  "n_failed": 0,
+  "all_ok": true,
+  "raw_games": 4100,
+  "bootstrap_seed_independent_of_aggregator": true,
+  "ci_tolerance": 0.03,
+  "point_tolerance": 1e-09,
+  "note": "Every aggregate was recomputed from corrected raw games with an independent bootstrap seed; file existence alone cannot pass this validator."
+}

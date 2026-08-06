@@ -1,0 +1,35 @@
+{
+  "contract": "c003_episode_lineage_and_semantic_replay",
+  "status": "PASS",
+  "acceptance_criteria_total": 9,
+  "acceptance_criteria_passed": 9,
+  "acceptance_criteria_failed": 0,
+  "initial_head": "ff6e94bd0c81dc173d1704be0337e738458ab05b",
+  "final_head": "afe52dbbbc75e6ee592bb4a6878fd4dfa43d0525",
+  "implementation_commits": [
+    "d2e8502739c2fc04413d617b9171b07b98df28de",
+    "26363ccd6308ecd319e6e04758825559223cf470",
+    "afe52dbbbc75e6ee592bb4a6878fd4dfa43d0525"
+  ],
+  "blocking_issues": [],
+  "known_limitations": [
+    "Engine trajectories remain non-reproducible (libcg.so seeds std::mt19937 from std::random_device); schema v2 records this honestly (engine_rng_controlled=false) and never claims deterministic engine replay. Semantic replay reproduces the deterministic policy decision from the serialized observation, not the engine trajectory.",
+    "Runtime context coverage in the 30-game dataset is a subset of the 49 enum contexts (expected for sampled games); enum coverage is reported separately.",
+    "Terminal types draw/timeout/agent_error/environment_error are validated via synthetic fixtures (the engine produced only normal_win in the 30 games); classification is a pure function of final state. The 'aborted' enum value is defined but not emitted (not in the §7.10 required-coverage set)."
+  ],
+  "validation": {
+    "games": 30,
+    "decisions": 1382,
+    "semantic_replay_safe_decisions": 966,
+    "semantic_replay_matches": 966,
+    "semantic_replay_mismatches": 0,
+    "invalid_selections": 0,
+    "structural_errors": 0,
+    "terminal_types": {"normal_win": 30},
+    "decision_source_counts": {"fallback": 966, "random_baseline": 416},
+    "game_seed_occurrences": 0,
+    "gzip_content_identical_to_jsonl": true,
+    "run_metadata_agents": ["safe_agent", "random_baseline"],
+    "tests_total": 84
+  }
+}

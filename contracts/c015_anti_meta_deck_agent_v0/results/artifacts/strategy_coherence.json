@@ -1,0 +1,78 @@
+{
+  "games_audited": 90,
+  "decisions_sampled": 8811,
+  "setup_success_rate": 0.9333,
+  "engine_online_rate_bellibolt_in_play": 0.7889,
+  "mechanism_a_electric_streamer": {
+    "opportunities": 1206,
+    "executions": 1206,
+    "execution_rate_when_available": 1.0,
+    "definition": "available = a Basic {L} in hand AND Bellibolt ex in play"
+  },
+  "mechanism_b_voltaic_chain": {
+    "opportunities": 0,
+    "executions": 0,
+    "note": "counted by the expert over decisions where an attack was the chosen phase and Voltaic Chain was legal; see expert counters in the raw traces"
+  },
+  "attachment_to_engine_rate": 1.0,
+  "empty_bench_decisions_per_game": 6.633,
+  "rule_usage": {
+    "main_ability_electric_streamer": 1582,
+    "forced": 1512,
+    "attach_from_basic_l": 1171,
+    "main_play": 981,
+    "search": 698,
+    "attach_to_engine": 557,
+    "discard_protect_engine": 512,
+    "promote": 465,
+    "main_retreat": 294,
+    "main_evolve": 288,
+    "main_attack": 271,
+    "main_attach": 240,
+    "setup_bench": 113,
+    "say_yes": 48,
+    "setup_active": 31,
+    "no_rule_for_context_26": 25,
+    "draw_max": 23
+  },
+  "fallback_decisions": 25,
+  "fallback_rate": 0.00284,
+  "fallback_reasons": {
+    "no_rule_for_context_26": 25
+  },
+  "score_rate_by_opponent": {
+    "__c014__": 0.36,
+    "dragapult": 0.04,
+    "mega_lucario": 0.2,
+    "mega_abomasnow": 0.12,
+    "__safe__": 0.61,
+    "__self__": 0.45
+  },
+  "score_rate_by_opponent_and_seat": {
+    "__c014__|seat0": 0.46,
+    "dragapult|seat0": 0.02,
+    "mega_lucario|seat0": 0.18,
+    "mega_abomasnow|seat0": 0.16,
+    "__safe__|seat0": 0.62,
+    "__self__|seat0": 0.48,
+    "__c014__|seat1": 0.26,
+    "dragapult|seat1": 0.06,
+    "mega_lucario|seat1": 0.22,
+    "mega_abomasnow|seat1": 0.08,
+    "__safe__|seat1": 0.6,
+    "__self__|seat1": 0.42
+  },
+  "score_rate_vs_target_c014": 0.36,
+  "target_games": 100,
+  "top_loss_opponents": {
+    "dragapult": 96,
+    "mega_abomasnow": 88,
+    "mega_lucario": 80
+  },
+  "next_loss_mode": {
+    "id": "engine_online_but_damage_arrives_too_late",
+    "statement": "Both counter mechanisms execute whenever they are available, but the Bellibolt engine comes online later than the damage race requires: Thunderous Bolt cannot attack on consecutive turns and Voltaic Chain only reaches competitive damage once several {L} are already in play, so the deck spends its early turns developing while the opponent scores.",
+    "why_single": "it is the one measurement that explains a high mechanism-execution rate coexisting with a low score rate; every other observed weakness is downstream of arriving late.",
+    "measured_by": "mechanism_a/b execution rates against score_rate_vs_target_c014"
+  }
+}

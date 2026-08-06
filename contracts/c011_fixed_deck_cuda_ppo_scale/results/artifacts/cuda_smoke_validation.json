@@ -1,0 +1,17 @@
+{
+  "mode": "FP32_CUDA",
+  "games": 912,
+  "updates": 2,
+  "games_per_hour": 39703.9,
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "fallbacks": 0,
+    "ordered_blocks": 0
+  },
+  "zero_reliability_defects": true,
+  "stop_reason": "smoke_complete",
+  "note": "Smoke exercises the full CUDA loop end to end: rollout workers -> NumPy trajectory records -> tensor transfer -> CUDA PPO update -> NPZ export. Value diagnostics against actual terminal outcomes are produced per update.",
+  "smoke_summary_path": "results/artifacts/smoke/seed999/summary.json"
+}

@@ -1,0 +1,81 @@
+c011 AC-14 content-aware evidence validation
+
+  [OK  ] dependency_verification_all_ok  0 failed of 17
+  [OK  ] all_c010_checkpoint_hashes_verified  42
+  [OK  ] preflight_all_pass  {'cuda_available': True, 'vram_free_ge_8gib': True, 'ram_available_ge_12gib': True, 'disk_free_ge_100gib': True}
+  [OK  ] cuda_actually_available  
+  [OK  ] hardware_drift_recorded_not_hidden  ['pytorch', 'pytorch_cuda', 'vram_mib', 'ram_gib', 'cpu']
+  [OK  ] fp32_forward_logit_within_tolerance  5.434174550345006e-06
+  [OK  ] fp32_forward_value_within_tolerance  3.1475391981672374e-07
+  [OK  ] fp32_multiselect_logprob_within_tolerance  1.3813288035624538e-06
+  [OK  ] illegal_action_probability_exactly_zero  
+  [OK  ] legal_mask_and_argmax_identical  
+  [OK  ] float64_port_is_semantically_exact  1.0658141036401503e-14
+  [OK  ] ppo_losses_within_1e-4  {'policy_loss': 3.6380870017949096e-09, 'value_loss': 8.677426846515068e-09, 'entropy': 1.2742347288430267e-08, 'approx_kl': 3.614598660965293e-09, 'clip_frac': 0.0}
+  [OK  ] ppo_update_cosine_ge_0.999  0.9999998394682647
+  [OK  ] npz_roundtrip_within_tolerance  0.0
+  [OK  ] trainer_state_roundtrip_exact  w=0.0 adam=0.0
+  [OK  ] trainer_state_saves_every_required_field  
+  [OK  ] resumed_update_matches_control  
+  [OK  ] worker_calibration_covered_12_16_20  
+  [OK  ] worker_choice_stable_across_repeated_windows  0.042
+  [OK  ] selected_worker_config_has_no_failures  
+  [OK  ] backend_benchmark_compared_all_registered_backends  
+  [OK  ] cuda_speedup_claim_backed_by_end_to_end_measurement  2.869
+  [OK  ] bf16_declined_on_measurement_not_assertion  0.9581
+  [OK  ] fp16_not_used  
+  [OK  ] torch_compile_not_used_without_benchmark  
+  [OK  ] cuda_smoke_zero_reliability_defects  {'invalid_actions': 0, 'exceptions': 0, 'timeouts': 0, 'fallbacks': 0, 'ordered_blocks': 0}
+  [OK  ] seed611_summary_matches_raw_trainable_games  40127 vs 40127 (raw terminal 40128; difference = games with only forced decisions)
+  [OK  ] seed611_never_trained_on_abomasnow  
+  [OK  ] seed611_seat_balance_within_5pct  
+  [OK  ] seed611_every_game_has_trainer_state_id  
+  [OK  ] seed611_declared_warm_restart  
+  [OK  ] seed611_every_checkpoint_has_full_trainer_state  []
+  [OK  ] seed611_checkpoint_hashes_verify_on_disk  []
+  [OK  ] seed622_summary_matches_raw_trainable_games  39983 vs 39983 (raw terminal 39984; difference = games with only forced decisions)
+  [OK  ] seed622_never_trained_on_abomasnow  
+  [OK  ] seed622_seat_balance_within_5pct  
+  [OK  ] seed622_every_game_has_trainer_state_id  
+  [OK  ] seed622_declared_warm_restart  
+  [OK  ] seed622_every_checkpoint_has_full_trainer_state  []
+  [OK  ] seed622_checkpoint_hashes_verify_on_disk  []
+  [OK  ] seed633_summary_matches_raw_trainable_games  40064 vs 40064 (raw terminal 40064; difference = games with only forced decisions)
+  [OK  ] seed633_never_trained_on_abomasnow  
+  [OK  ] seed633_seat_balance_within_5pct  
+  [OK  ] seed633_every_game_has_trainer_state_id  
+  [OK  ] seed633_declared_warm_restart  
+  [OK  ] seed633_every_checkpoint_has_full_trainer_state  []
+  [OK  ] seed633_checkpoint_hashes_verify_on_disk  []
+  [OK  ] all_three_registered_seeds_executed  [611, 622, 633]
+  [OK  ] no_invalid_actions_in_training  0
+  [OK  ] no_exceptions_in_training  0
+  [OK  ] total_games_within_hard_maximum  123068 vs 124000
+  [OK  ] budget_derived_before_training  123999
+  [OK  ] evaluation_identity_all_batches_ok  5
+  [OK  ] evaluation_seat_balance_exact  
+  [OK  ] evaluation_zero_defects  0
+  [OK  ] evaluation_manifest_count_matches_raw  22160 vs 22160
+  [OK  ] frozen_teacher_evaluated_as_candidate  960
+  [OK  ] teacher_never_played_mirror  
+  [OK  ] teacher_checkpoint_hash_verified_by_worker  worker re-hashed the teacher module it executed
+  [OK  ] final_aggregates_reproduce_from_raw_games  []
+  [OK  ] panel_sizes_exact  []
+  [OK  ] scale_result_valid  EXTENDED
+  [OK  ] scale_conditions_consistent_with_decision  
+  [OK  ] scale_thresholds_not_relaxed  
+  [OK  ] best_agent_defaults_to_incumbent_when_nothing_qualifies  S_633_g30176 / ['S_611_g40127', 'S_622_g39983', 'S_633_g30176']
+  [OK  ] promotion_decision_consistent  
+  [OK  ] incumbent_protected_flag  
+  [OK  ] teacher_field_baseline_measured_on_same_panel  field=0.545 n=600
+  [OK  ] submission_comparison_uses_same_panel_teacher  ['C_522_g20220', 'S_611_g40127', 'S_622_g39983']
+  [OK  ] submission_decision_valid  DO_NOT_SUBMIT
+  [OK  ] submission_requires_teacher_non_inferiority  
+  [OK  ] no_archive_when_gated_off  
+  [OK  ] exactly_one_next_step  CONTINUE_FIXED_DECK_RL
+  [OK  ] exactly_one_highest_leverage_blocker  
+  [OK  ] deck_pipeline_only_under_section_2_gate  
+  [OK  ] python_source_bundle_validates  0 failed of 18
+  [OK  ] validation_is_content_aware_not_existence_based  every check above reads content: hashes, recomputed aggregates, recounted games, re-checked tolerances
+
+ALL_OK = True  (77 checks, 0 failed)

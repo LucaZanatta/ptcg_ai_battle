@@ -1,0 +1,28 @@
+{
+  "probe_id": "P03",
+  "name": "hidden_information_audit",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "runtime_hidden_information_violations": 0,
+    "visible_view_is_only_accessor": true,
+    "forbidden_accessors_raise": 3,
+    "opponent_hand_read_guarded": true,
+    "opponent_deck_read_guarded": true,
+    "prize_read_guarded": true,
+    "determinization_archetypes_used": {
+      "unknown": 1171,
+      "dragapult": 10707,
+      "iono": 9926,
+      "mega_abomasnow": 10513,
+      "mega_lucario": 10540
+    },
+    "determinized_not_observed": true
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/scaled2_search_summary.json"
+  ]
+}

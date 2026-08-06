@@ -1,0 +1,211 @@
+{
+  "CURRICULUM_SMOKE": "PASS",
+  "scope": "\u00a718 \u2014 validates execution machinery only; this is NOT a curriculum effectiveness experiment and no effectiveness claim is made",
+  "arms": {
+    "R0": {
+      "seed": 1001,
+      "description": "unchanged population (control)",
+      "completed_games": 5104,
+      "over_per_arm_cap": 104,
+      "updates": 12,
+      "final_stage": 0,
+      "stage_changes": 0,
+      "stop_reason": "budget_reached",
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0
+      },
+      "evaluations": [
+        {
+          "point": 0,
+          "completed_games": 0,
+          "teacher": 0.25,
+          "field": 0.35000000000000003,
+          "scored": 100,
+          "n": 100,
+          "stage": 0,
+          "backfilled": false
+        },
+        {
+          "point": 2500,
+          "completed_games": 2592,
+          "teacher": 0.3,
+          "field": 0.39999999999999997,
+          "scored": 100,
+          "n": 100,
+          "stage": 0,
+          "backfilled": false
+        },
+        {
+          "point": 5000,
+          "completed_games": 5104,
+          "teacher": 0.425,
+          "field": 0.39999999999999997,
+          "scored": 100,
+          "n": 100,
+          "stage": 0,
+          "backfilled": true
+        }
+      ],
+      "requirements": [
+        {
+          "requirement": "non-zero scored games at every registered evaluation",
+          "passed": true,
+          "evidence": "3/3 evaluations scored; points [0, 2500, 5000]",
+          "c012_failure": "every c012 in-run evaluation after game 0 scored nothing"
+        },
+        {
+          "requirement": "all three registered evaluation points covered",
+          "passed": true,
+          "evidence": "points covered [0, 2500, 5000], required [0, 2500, 5000]; backfilled [5000]"
+        },
+        {
+          "requirement": "checkpoint hashes refreshed correctly",
+          "passed": true,
+          "evidence": "12 distinct checkpoint hashes observed",
+          "c012_failure": "a per-path hash cache returned the first hash forever"
+        },
+        {
+          "requirement": "all progression gates computed",
+          "passed": true,
+          "evidence": "2 gate evaluations; every evaluation record carries a gates dict"
+        },
+        {
+          "requirement": "curriculum stage changes at least once (adaptive arm)",
+          "passed": true,
+          "evidence": "stage_changes=0, final_stage=0 (control arm: no change expected)"
+        },
+        {
+          "requirement": "curriculum history preserved",
+          "passed": true,
+          "evidence": "0 history entries"
+        },
+        {
+          "requirement": "early-stop code path exercised",
+          "passed": true,
+          "evidence": "a deterministic fixture drives the stop condition without ending the run",
+          "c012_failure": "early stopping was wired but never received a score"
+        },
+        {
+          "requirement": "trainer state saved and restored mid-run",
+          "passed": true,
+          "evidence": "1 save/restore cycle(s); continuation_kind=literal"
+        },
+        {
+          "requirement": "next opponent/seat/seed sequence reproduced after restore",
+          "passed": true,
+          "evidence": "expected [['iono', 0, 639292282], ['mega_lucario', 1, 374230924], ['lagged::lagged_g2592.npz', 0, 294381893]] == restored [['iono', 0, 639292282], ['mega_lucario', 1, 374230924], ['lagged::lagged_g2592.npz', 0, 294381893]]",
+          "c011_failure": "c011 persisted the legacy global RNG, so nothing was reproduced"
+        }
+      ],
+      "all_requirements_passed": true
+    },
+    "R1": {
+      "seed": 1002,
+      "description": "adaptive elite curriculum",
+      "completed_games": 5008,
+      "over_per_arm_cap": 8,
+      "updates": 12,
+      "final_stage": 2,
+      "stage_changes": 2,
+      "stop_reason": "budget_reached",
+      "reliability": {
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "timeouts": 0
+      },
+      "evaluations": [
+        {
+          "point": 0,
+          "completed_games": 0,
+          "teacher": 0.25,
+          "field": 0.3499999999999999,
+          "scored": 100,
+          "n": 100,
+          "stage": 0,
+          "backfilled": false
+        },
+        {
+          "point": 2500,
+          "completed_games": 2528,
+          "teacher": 0.3,
+          "field": 0.35000000000000003,
+          "scored": 100,
+          "n": 100,
+          "stage": 1,
+          "backfilled": false
+        },
+        {
+          "point": 5000,
+          "completed_games": 5008,
+          "teacher": 0.22499999999999998,
+          "field": 0.35000000000000003,
+          "scored": 100,
+          "n": 100,
+          "stage": 2,
+          "backfilled": true
+        }
+      ],
+      "requirements": [
+        {
+          "requirement": "non-zero scored games at every registered evaluation",
+          "passed": true,
+          "evidence": "3/3 evaluations scored; points [0, 2500, 5000]",
+          "c012_failure": "every c012 in-run evaluation after game 0 scored nothing"
+        },
+        {
+          "requirement": "all three registered evaluation points covered",
+          "passed": true,
+          "evidence": "points covered [0, 2500, 5000], required [0, 2500, 5000]; backfilled [5000]"
+        },
+        {
+          "requirement": "checkpoint hashes refreshed correctly",
+          "passed": true,
+          "evidence": "12 distinct checkpoint hashes observed",
+          "c012_failure": "a per-path hash cache returned the first hash forever"
+        },
+        {
+          "requirement": "all progression gates computed",
+          "passed": true,
+          "evidence": "2 gate evaluations; every evaluation record carries a gates dict"
+        },
+        {
+          "requirement": "curriculum stage changes at least once (adaptive arm)",
+          "passed": true,
+          "evidence": "stage_changes=2, final_stage=2"
+        },
+        {
+          "requirement": "curriculum history preserved",
+          "passed": true,
+          "evidence": "2 history entries"
+        },
+        {
+          "requirement": "early-stop code path exercised",
+          "passed": true,
+          "evidence": "a deterministic fixture drives the stop condition without ending the run",
+          "c012_failure": "early stopping was wired but never received a score"
+        },
+        {
+          "requirement": "trainer state saved and restored mid-run",
+          "passed": true,
+          "evidence": "1 save/restore cycle(s); continuation_kind=literal"
+        },
+        {
+          "requirement": "next opponent/seat/seed sequence reproduced after restore",
+          "passed": true,
+          "evidence": "expected [['dragapult', 0, 301960232], ['SOUP13_SOUP+P1_833', 1, 46363138], ['mega_lucario', 1, 663620729]] == restored [['dragapult', 0, 301960232], ['SOUP13_SOUP+P1_833', 1, 46363138], ['mega_lucario', 1, 663620729]]",
+          "c011_failure": "c011 persisted the legacy global RNG, so nothing was reproduced"
+        }
+      ],
+      "all_requirements_passed": true
+    }
+  },
+  "budget": {
+    "total_completed_games": 10112,
+    "registered_cap": 10000,
+    "per_arm_cap": 5000,
+    "over_cap": 112,
+    "within_cap": false
+  }
+}

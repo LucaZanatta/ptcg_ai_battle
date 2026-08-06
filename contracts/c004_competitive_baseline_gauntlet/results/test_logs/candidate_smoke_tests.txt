@@ -1,0 +1,25 @@
+test_classify_decision_by_policy (tests.test_candidates.TestAdapters.test_classify_decision_by_policy) ... /home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:36: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  reasoning: Optional[str] = Field(
+/home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:39: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  perceived_threat_level: Optional[PerceivedThreatLevel] = Field(
+/home/luca/kaggle/ptcg_ai_battle/.venv/lib/python3.13/site-packages/kaggle_environments/envs/werewolf/game/records.py:42: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'access'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+  action: Optional[BaseAction] = Field(default=None, access=DataAccessLevel.PERSONAL)
+ok
+test_deterministic_returns_first_maxcount (tests.test_candidates.TestAdapters.test_deterministic_returns_first_maxcount) ... ok
+test_random_is_legal_and_seeded (tests.test_candidates.TestAdapters.test_random_is_legal_and_seeded) ... ok
+test_decks_are_60_cards (tests.test_candidates.TestCandidateRegistry.test_decks_are_60_cards) ... ok
+test_deterministic_pair_shares_source_differs_deck (tests.test_candidates.TestCandidateRegistry.test_deterministic_pair_shares_source_differs_deck) ... ok
+test_four_candidates_runnable (tests.test_candidates.TestCandidateRegistry.test_four_candidates_runnable) ... ok
+test_freeze_stable (tests.test_candidates.TestFreeze.test_freeze_stable) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.272s
+
+OK
+
+=== Runtime smoke gate (candidate_smoke_report.json) ===
+  det_starter completed 10 / 10 defects 0 passed True
+  det_cabt completed 10 / 10 defects 0 passed True
+  random_starter completed 10 / 10 defects 0 passed True
+  random_cabt completed 10 / 10 defects 0 passed True
+admitted: ['det_starter', 'det_cabt', 'random_starter', 'random_cabt']

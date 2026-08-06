@@ -1,0 +1,103 @@
+{
+  "archive": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/packages/submission_J_official_mega_lucario_baseline.tar.gz",
+  "sha256": "44416b1c1056063b5f10ac5eabe003d6d88cc4e82c0d6869e7f286331d7f9e66",
+  "bytes": 498392,
+  "members": [
+    {
+      "name": "main.py",
+      "size": 19776
+    },
+    {
+      "name": "deck.csv",
+      "size": 305
+    },
+    {
+      "name": "ATTRIBUTION.md",
+      "size": 471
+    },
+    {
+      "name": "cg",
+      "size": 0
+    },
+    {
+      "name": "cg/__init__.py",
+      "size": 0
+    },
+    {
+      "name": "cg/api.py",
+      "size": 26933
+    },
+    {
+      "name": "cg/game.py",
+      "size": 2225
+    },
+    {
+      "name": "cg/libcg.so",
+      "size": 1338304
+    },
+    {
+      "name": "cg/sim.py",
+      "size": 1966
+    },
+    {
+      "name": "cg/utils.py",
+      "size": 1970
+    }
+  ],
+  "n_members": 10,
+  "candidate_id": "official_mega_lucario",
+  "fidelity": "EXACT",
+  "source_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+  "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+  "permission_class": "SUBMISSION_REUSE_ALLOWED",
+  "attribution": "Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck (Kiyota)",
+  "source_to_package_map": [
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/main.py",
+      "archive_path": "main.py",
+      "sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2"
+    },
+    {
+      "source": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/deck.csv",
+      "archive_path": "deck.csv",
+      "sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee"
+    },
+    {
+      "source": "cg/__init__.py",
+      "archive_path": "cg/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "cg/api.py",
+      "archive_path": "cg/api.py",
+      "sha256": "593f1298e52a635f90f8f505a52113e9af114f444c293404e37906f18ee06ced"
+    },
+    {
+      "source": "cg/game.py",
+      "archive_path": "cg/game.py",
+      "sha256": "3bd3d4f4a369a11e6d2f5da9094cf15ebc410a2221835e6417b7cff4883f1fc2"
+    },
+    {
+      "source": "cg/libcg.so",
+      "archive_path": "cg/libcg.so",
+      "sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb"
+    },
+    {
+      "source": "cg/sim.py",
+      "archive_path": "cg/sim.py",
+      "sha256": "e7a804ee4cd7c5a9a3b8dc91f9581ff3585f9431633a41f33d7707194cb31191"
+    },
+    {
+      "source": "cg/utils.py",
+      "archive_path": "cg/utils.py",
+      "sha256": "60f29665cee0a88525d6f0383bc45959a6262d16fe35ef380aece1e0ea13c49b"
+    },
+    {
+      "source": "generated",
+      "archive_path": "ATTRIBUTION.md",
+      "sha256": "d881740c6075b89e273fb2d57c2662982fbdf73e50fb13663f8a31da82c803e6"
+    }
+  ],
+  "source_commit": "eefc06aa9d7583e45a58836ce836ac9da0d8c252",
+  "strategically_modified_before_submission": false
+}

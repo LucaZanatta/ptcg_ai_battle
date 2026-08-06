@@ -1,0 +1,51 @@
+{
+  "contract": "c007_hybrid_teacher_residual_and_state_encoder_v2",
+  "status": "PASS",
+  "acceptance_criteria_total": 16,
+  "acceptance_criteria_passed": 16,
+  "acceptance_criteria_failed": 0,
+  "initial_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+  "final_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+  "implementation_commits": [
+    "1f3fc63",
+    "a90d2c9",
+    "a28144b",
+    "75093a6",
+    "d47a9c4",
+    "bdd1cb6",
+    "58a55cf",
+    "ce31117"
+  ],
+  "teacher_id": "dragapult",
+  "deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "state_encoder_v2": "ACCEPT",
+  "teacher_instrumentation": "VALID",
+  "residual_contexts": [
+    "dragapult_damage_counter"
+  ],
+  "best_hybrid": "NONE",
+  "submission_C_decision": "DO_NOT_SUBMIT",
+  "kaggle_upload": "SKIPPED_BY_GATE",
+  "kaggle_submission_ref": null,
+  "kaggle_submission_status": null,
+  "hybrid_public_score": null,
+  "teacher_public_score_same_run": 703.6,
+  "promotion_decision": "NO_HYBRID_SUBMISSION",
+  "residual_rl_readiness": "NOT_READY",
+  "highest_leverage_blocker": "no controlled variant reproducibly beats the teacher's damage-counter allocation (best 2-batch improvement LCB <= 0); the tuned rule-based teacher has no exploitable seam a one-rule residual can beat",
+  "blocking_issues": [],
+  "known_limitations": [
+    "The tuned rule-based teacher has no exploitable seam a one-rule residual can beat; four pre-registered damage-counter variants failed the two-batch improvement gate.",
+    "Engine is random_device-seeded: all game conclusions are statistical over large samples; the v2 dataset/checkpoints/analysis are deterministic and reproducible.",
+    "Branch-and-rollout is available via the engine search API but stochastic and hard to synchronize the teacher within; controlled-variant policy A/B (\u00a712 fallback) was used."
+  ],
+  "immutability_preserved": true,
+  "v2_dataset": {
+    "games": 720,
+    "decisions": 61312
+  },
+  "h2_non_inferiority_lb": 0.4625,
+  "h2_non_inferior": false,
+  "model_param_count": 538770,
+  "substantive_assertions_passed": 16
+}

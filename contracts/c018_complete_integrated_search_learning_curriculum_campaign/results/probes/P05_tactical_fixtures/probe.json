@@ -1,0 +1,30 @@
+{
+  "probe_id": "P05",
+  "name": "tactical_fixtures",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "categories_covered": 7,
+    "categories_total": 7,
+    "fixtures_per_category": {
+      "missed_lethal": 3,
+      "wrong_attack_or_target": 3,
+      "energy_attachment_route": 3,
+      "evolution_timing": 3,
+      "bench_liability": 3,
+      "resource_reservation": 3,
+      "search_card_sequencing": 3
+    },
+    "traces_captured": 60,
+    "distinct_root_contexts": 13,
+    "decisions_where_search_changed_action": 11752,
+    "change_rate_among_searched": 0.2742
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/scaled2_search_summary.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/tactical_fixtures.json"
+  ]
+}

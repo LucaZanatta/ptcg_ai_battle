@@ -1,0 +1,47 @@
+{
+  "contract": "c005_teacher_import_submission_and_dataset",
+  "status": "PASS",
+  "acceptance_criteria_total": 13,
+  "acceptance_criteria_passed": 13,
+  "acceptance_criteria_failed": 0,
+  "initial_head": "9cc842681fedde99f8aec131a8ef46d052bce7c5",
+  "final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+  "implementation_commits": [
+    "5e47d15e55e7f6e621091377c1f9b82de6730e09",
+    "53b6fcab08d46b89e9a2dc3df144389cff0291c9",
+    "d052c2843d1a64737563e168e5d21f924285cc6b",
+    "4137d983c6a05c0eea8332718d3e7f3acc7b7830"
+  ],
+  "primary_teacher": "dragapult",
+  "backup_teacher": "mega_lucario",
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "submission_A_decision": "SUBMIT",
+  "kaggle_submission_performed": false,
+  "dataset_games": 240,
+  "dataset_teacher_decisions": 19050,
+  "blocking_issues": [],
+  "known_limitations": [
+    "Full competition rules text was not machine-retrievable (JS-rendered page); reuse basis for the official samples is their official-sample provenance. Submission decision is SUBMIT (packaging + reliability + eligibility gates pass); actual upload stays gated behind PTCG_ALLOW_KAGGLE_SUBMIT=1 (absent -> not uploaded).",
+    "Strategic field is the 4 official reusable sample teachers; the public wmh/ptcg-abc repo (no license) was acquired and classified LOCAL_BENCHMARK_ONLY but not admitted to the gauntlet or copied into training data.",
+    "Author-reported Bellibolt Elo 836 is not independently verified and did not influence selection.",
+    "Engine trajectories are non-reproducible (std::random_device); the gauntlet analysis and dataset split are reproducible from fixed captures (seeded).",
+    "Kaggle CLI reads public kernels anonymously; no credentials were present or used."
+  ],
+  "results": {
+    "official_candidates_acquired": ["dragapult", "mega_lucario", "mega_abomasnow", "iono"],
+    "public_candidates_acquired": ["bellibolt (wmh/ptcg-abc, LOCAL_BENCHMARK_ONLY, not admitted)"],
+    "admitted_strategic": ["dragapult", "mega_lucario", "mega_abomasnow", "iono"],
+    "bt_ranking": ["mega_lucario", "dragapult", "mega_abomasnow", "iono"],
+    "teacher_score_ranking": ["dragapult", "mega_lucario", "mega_abomasnow", "iono"],
+    "rejections": {"mega_abomasnow": "not selected (lower teacher_score)", "iono": "not selected (lowest)"},
+    "reliability_gate": "all 4 eligible; 0 invalid actions / attributable exceptions / timeouts over 720 gauntlet games",
+    "smoke_games": 80,
+    "gauntlet_games": 720,
+    "submission_A_archive_bytes": 500422,
+    "submission_A_smoke": "20 extracted-archive games, 0 invalid, 0 non-terminal, P99 0.33ms",
+    "dataset_splits_decisions": {"train": 13795, "validation": 2991, "test": 2264},
+    "dataset_splits_games": {"train": 170, "validation": 37, "test": 33},
+    "dataset_high_impact_contexts": ["MAIN", "TO_HAND", "SWITCH", "EVOLVE", "TO_ACTIVE", "TO_BENCH", "DISCARD", "ACTIVATE"],
+    "tests_total": 119
+  }
+}

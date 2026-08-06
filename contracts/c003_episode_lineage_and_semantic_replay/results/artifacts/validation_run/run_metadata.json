@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "record_type": "run_metadata",
+  "run_id": "run_0fe83a2475cacd0c",
+  "created_at_utc": "2026-07-24T06:44:29.103378+00:00",
+  "git": {
+    "commit": "afe52dbbbc75e6ee592bb4a6878fd4dfa43d0525",
+    "branch": "contract/c003_episode_lineage_and_semantic_replay",
+    "dirty": false
+  },
+  "capture": {
+    "implementation_sha256": "84cf87e6a6aa3a75dfa2daee435d3deaf55b84a3b3c2758e48ad01ec8dcf2cb6",
+    "implementation_source_files": [
+      {
+        "path": "starter_kit/main.py",
+        "sha256": "f97b6cbd6ec3c56c48bc510abfc61b2ac62feb9fc47633938bf33a7b1de31261"
+      },
+      {
+        "path": "starter_kit/safe_policy.py",
+        "sha256": "e429af6106b8fbe9e1af32d5f83355ea3115f99a0f01c0941e58486279815d8e"
+      },
+      {
+        "path": "starter_kit/agents.py",
+        "sha256": "42ae62f55631d77b3667671049e976b2375c92dc86fea600ad3b461a7bde7b11"
+      },
+      {
+        "path": "starter_kit/episode_schema.py",
+        "sha256": "27f82b5ec0c7bb5cbedb5f9d7e09687865367d57fe86927730aae26ce912d155"
+      },
+      {
+        "path": "starter_kit/episode_capture.py",
+        "sha256": "97f024e6ed7a7f11b2d4742fb7e371fd50e35ee34a691426f79bd546799b2bc3"
+      },
+      {
+        "path": "starter_kit/episode_capture_v2.py",
+        "sha256": "780dd5d2f612baa64673b3b478514d4b593fb8f2aa910a41342517714ed7415e"
+      },
+      {
+        "path": "tools/capture_episodes_v2.py",
+        "sha256": "c9535cf8dcd4028f2f956e27b29ca16797b54e9bfd2c83d817da1bdfd3971a60"
+      }
+    ],
+    "command": ".venv/bin/python tools/capture_episodes_v2.py --games-per-cohort 10 --base-seed 4242 --output-dir contracts/c003_episode_lineage_and_semantic_replay/results/artifacts/validation_run",
+    "compression": "none+gzip"
+  },
+  "environment": {
+    "python_version": "3.13.13",
+    "python_implementation": "CPython",
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "kaggle_environments_version": "1.30.1"
+  },
+  "engine": {
+    "path": "starter_kit/libcg.so",
+    "sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb",
+    "size_bytes": 1338304
+  },
+  "agents": {
+    "safe_agent": {
+      "agent_id": "safe_agent",
+      "agent_version": "c001.1",
+      "policy_type": "deterministic_safe_fallback",
+      "source_files": [
+        {
+          "path": "starter_kit/main.py",
+          "sha256": "f97b6cbd6ec3c56c48bc510abfc61b2ac62feb9fc47633938bf33a7b1de31261"
+        },
+        {
+          "path": "starter_kit/safe_policy.py",
+          "sha256": "e429af6106b8fbe9e1af32d5f83355ea3115f99a0f01c0941e58486279815d8e"
+        }
+      ],
+      "configuration": {}
+    },
+    "random_baseline": {
+      "agent_id": "random_baseline",
+      "agent_version": "c002.1",
+      "policy_type": "uniform_random_legal",
+      "source_files": [
+        {
+          "path": "starter_kit/agents.py",
+          "sha256": "42ae62f55631d77b3667671049e976b2375c92dc86fea600ad3b461a7bde7b11"
+        }
+      ],
+      "configuration": {
+        "opponent_policy_seed": "per_game: see game_start.seed.opponent_policy_seed"
+      }
+    }
+  },
+  "base_seed": 4242,
+  "decks": {
+    "sha256:7e7bca6783abe61e572a7224ca2210c4969fe6238257f3de9eaf35996f6d163a": {
+      "deck_id": "sha256:7e7bca6783abe61e572a7224ca2210c4969fe6238257f3de9eaf35996f6d163a",
+      "card_count": 60,
+      "distinct_cards": 9,
+      "cards": [
+        {
+          "card_id": 3,
+          "count": 35
+        },
+        {
+          "card_id": 721,
+          "count": 2
+        },
+        {
+          "card_id": 722,
+          "count": 4
+        },
+        {
+          "card_id": 723,
+          "count": 4
+        },
+        {
+          "card_id": 1145,
+          "count": 4
+        },
+        {
+          "card_id": 1158,
+          "count": 1
+        },
+        {
+          "card_id": 1205,
+          "count": 2
+        },
+        {
+          "card_id": 1227,
+          "count": 4
+        },
+        {
+          "card_id": 1235,
+          "count": 4
+        }
+      ],
+      "source": {
+        "path": "starter_kit/deck.csv",
+        "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799"
+      }
+    }
+  },
+  "seed_policy_note": "requested_engine_seed is passed to make('cabt', configuration={'seed':...}) but does NOT control the engine trajectory (engine_rng_controlled=false)."
+}

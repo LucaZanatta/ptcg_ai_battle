@@ -1,0 +1,35 @@
+{
+  "defect": "per-decision node budget was cumulative and depended on the CALLER incrementing stats[\"decisions\"]",
+  "impact": "offline harnesses incremented it, so the budget was never binding there; the packaged main.py did not, so a submitted match shared one 40-node budget and the agent searched 3 of 84 decisions before degrading to pure baseline",
+  "severity": "S8.2.6 - the uploaded agent was not the evaluated agent",
+  "fix": "local per-decision node counter in c018_search.plan",
+  "packaged_agent_before": {
+    "decisions": 84,
+    "searched": 3,
+    "step_ok": 40,
+    "changed_action": 0
+  },
+  "packaged_agent_after": {
+    "decisions": 75,
+    "searched": 67,
+    "step_ok": 957,
+    "changed_action": 21
+  },
+  "harness_equivalence": {
+    "scaled_pre_fix_nodes_per_searched_decision": 14.25,
+    "post_fix_nodes_per_searched_decision": 14.57,
+    "scaled_pre_fix": {
+      "begin_ok": 11151,
+      "step_ok": 158881,
+      "nodes": 158881,
+      "max_depth_reached": 4
+    },
+    "post_fix": {
+      "begin_ok": 183,
+      "step_ok": 2667,
+      "nodes": 2667,
+      "max_depth_reached": 4
+    },
+    "conclusion": "search intensity per decision is unchanged, so M01/M02/M03 evidence generated before the fix remains valid and was not regenerated"
+  }
+}

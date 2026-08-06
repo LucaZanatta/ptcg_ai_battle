@@ -1,0 +1,6 @@
+# SKIPPED_BY_GATE (SUBMISSION_E=DO_NOT_SUBMIT). Command that WOULD run on SUBMIT:
+kaggle competitions submit pokemon-tcg-ai-battle \
+  -f contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/submission_E_fixed_deck_rl_v2.tar.gz \
+  -m "c010 Submission E: C_522_g20220 fixed deck 53cd771"
+# Teacher refresh (read-only, executed this run):
+kaggle competitions submissions pokemon-tcg-ai-battle -v

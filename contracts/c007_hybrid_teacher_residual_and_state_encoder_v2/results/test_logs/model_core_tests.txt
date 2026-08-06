@@ -1,0 +1,13 @@
+test_shapes_and_determinism (tests.test_c007_models.TestEncoder.test_shapes_and_determinism) ... ok
+test_broadcast_to_grad (tests.test_c007_models.TestMicrogradOps.test_broadcast_to_grad) ... ok
+test_reduce_max_grad (tests.test_c007_models.TestMicrogradOps.test_reduce_max_grad) ... ok
+test_reduce_sum_grad (tests.test_c007_models.TestMicrogradOps.test_reduce_sum_grad) ... ok
+test_checkpoint_roundtrip (tests.test_c007_models.TestModelV2.test_checkpoint_roundtrip) ... ok
+test_forward_shapes (tests.test_c007_models.TestModelV2.test_forward_shapes) ... ok
+test_gradient_numerical (tests.test_c007_models.TestModelV2.test_gradient_numerical) ... ok
+test_param_count_in_band (tests.test_c007_models.TestModelV2.test_param_count_in_band) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.249s
+
+OK

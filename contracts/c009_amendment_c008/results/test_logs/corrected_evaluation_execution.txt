@@ -1,0 +1,24 @@
+frozen deck fingerprint 676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a (60 cards) verified against deck.csv
+registry: 9 entries; evaluating 8 candidates vs teacher
+[A] 800 games in 31s | identity OK (terminal 800, defects 0)
+  A B0_v2a     point=0.150 ci95=[0.080,0.220] ub95=0.210 n=100 -> advance=True (mandatory)
+  A R0_101     point=0.010 ci95=[0.000,0.030] ub95=0.030 n=100 -> advance=False
+  A R0_202     point=0.030 ci95=[0.000,0.070] ub95=0.060 n=100 -> advance=False
+  A R1_101     point=0.200 ci95=[0.130,0.280] ub95=0.270 n=100 -> advance=True (mandatory)
+  A R1_202     point=0.170 ci95=[0.100,0.250] ub95=0.230 n=100 -> advance=False
+  A R2_101     point=0.160 ci95=[0.090,0.240] ub95=0.220 n=100 -> advance=False
+  A R2_202     point=0.120 ci95=[0.060,0.190] ub95=0.180 n=100 -> advance=False
+  A R2_303     point=0.190 ci95=[0.120,0.270] ub95=0.260 n=100 -> advance=True (mandatory)
+advancing to Phase B: ['B0_v2a', 'R1_101', 'R2_303']
+[B] 900 games in 36s | identity OK (terminal 900, defects 0)
+  B B0_v2a     point=0.160 lb95=0.130 ub95=0.190 n=400 non_inferior=False
+  B R1_101     point=0.220 lb95=0.188 ub95=0.255 n=400 non_inferior=False
+  B R2_303     point=0.158 lb95=0.128 ub95=0.188 n=400 non_inferior=False
+no candidate's upper region overlaps 0.40 -> no 800-game extension (budget preserved)
+best corrected per arm (by teacher score): {'R0': 'R0_202', 'R1': 'R1_101', 'R2': 'R2_101'}
+Phase C arms: ['T_teacher', 'B0_v2a', 'R1_101', 'R2_101', 'R0_202']
+[C] 2000 games in 78s | identity OK (terminal 2000, defects 0)
+Phase D skipped: no candidate passed teacher non-inferiority (clearly inferior candidates are not extended to consume budget)
+TOTAL evaluation games: 3700 in 145.5s (terminal 3700, defects 0)
+[SUPPLEMENT C] 400 games for ['R2_303'] in 18s | identity OK (terminal 400, defects 0)
+  reason: R2_101 (n=100, teacher point 0.160) and R2_303 (n=400, 0.158) are statistically tied on the teacher score; the naive argmax favoured the smaller-sample estimate. Evaluate both in Phase C so the registered 11.1 tie-break (strategic field, then held-out) decides on real evidence.

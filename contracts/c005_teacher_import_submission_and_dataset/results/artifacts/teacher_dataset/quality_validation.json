@@ -1,0 +1,39 @@
+{
+  "directory": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_dataset",
+  "total_records": 19050,
+  "unique_example_ids": 19050,
+  "corrupt_records": 0,
+  "records_by_split": {
+    "train": 13795,
+    "validation": 2991,
+    "test": 2264
+  },
+  "games_by_split": {
+    "train": 170,
+    "validation": 37,
+    "test": 33
+  },
+  "leakage_detected": false,
+  "context_distribution": {
+    "MAIN": 9318,
+    "TO_HAND": 3343,
+    "DAMAGE_COUNTER_ANY": 3108,
+    "TO_ACTIVE": 490,
+    "SWITCH": 443,
+    "DISCARD_ENERGY": 405,
+    "DISCARD": 391,
+    "ATTACH_TO": 271,
+    "ATTACH_FROM": 271,
+    "TO_BENCH": 257,
+    "SETUP_ACTIVE_POKEMON": 240,
+    "EVOLVE": 143,
+    "IS_FIRST": 120,
+    "SETUP_BENCH_POKEMON": 113,
+    "DRAW_COUNT": 70,
+    "ACTIVATE": 67
+  },
+  "selected_index_entropy": 2.9319,
+  "error_count": 0,
+  "errors": [],
+  "valid": true
+}

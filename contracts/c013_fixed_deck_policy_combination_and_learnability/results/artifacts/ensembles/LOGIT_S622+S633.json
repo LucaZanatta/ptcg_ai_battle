@@ -1,0 +1,17 @@
+{
+  "components": [
+    {
+      "id": "S622",
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+      "sha256": "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf"
+    },
+    {
+      "id": "S633",
+      "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz",
+      "sha256": "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54"
+    }
+  ],
+  "kind": "online_ensemble",
+  "mode": "logit",
+  "note": "Equal-weight combination. This manifest IS the ensemble's checkpoint for identity purposes; the worker re-hashes it and every component it loads."
+}

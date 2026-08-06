@@ -1,0 +1,21 @@
+[PASS] 1_status_json_exists
+[PASS] 1_status_identifies_final_branch_and_head
+    {"branch": "contract/c014_public_meta_baseline_and_rapid_submission", "head": "7edfb81929100d80c1bf3f74d48b45de966b050d"}
+[PASS] 1_c014_head_reachable_in_git
+    {"recorded_final_head": "7edfb81929100d80c1bf3f74d48b45de966b050d", "head_now": "7edfb81929100d80c1bf3f74d48b45de966b050d"}
+[PASS] 2_package_exists
+    {"path": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/submission_H_public_meta_v0.tar.gz"}
+[PASS] 3_package_sha256_matches_c014_records
+    {"on_disk": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5", "manifest": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5", "status_json": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5"}
+[PASS] 4_extracted_package_hard_gates_passed
+    {"overall_pass": true, "hard_gates": {"at_least_100_games": true, "zero_invalid_selections": true, "zero_timeouts": true, "all_completed": true, "both_seats": true, "at_least_three_opponents": true}, "games": 150}
+[PASS] 5_c014_deck_and_hash_available
+    {"deck_sha256": "42165967b565dd42ec426ecccfe79bfa7d72aa8306590e149dface0ee8bd530e"}
+[PASS] 6_accepted_submission_reference_non_null
+    {"submission_ref": "55004756", "upload": "SUBMITTED", "status": "COMPLETE"}
+[PASS](non-blocking) 7_pending_score_is_not_a_block
+    {"public_score": "600.0", "note": "recorded for information; \u00a77.7 makes a pending score acceptable"}
+[PASS](non-blocking) 8_c014_evidence_readable
+    {"missing": []}
+
+gate: PASS

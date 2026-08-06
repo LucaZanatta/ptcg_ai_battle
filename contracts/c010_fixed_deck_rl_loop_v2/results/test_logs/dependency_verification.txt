@@ -1,0 +1,33 @@
+c010 AC-01 dependency + immutability
+============================================================
+chain: c005 4137d983c6 -> c006 08ebac8838 -> c007 1f3fc63aaa -> c008 fb6e592c8c -> c009 e868dfbbee -> c010 init c245fc0608
+deck sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab  fingerprint 676849e9a1f8ce0c
+B0 7066841e3329b71b  I0 R1_101 b172b4dc79477821 @ 10040 games
+c009 raw re-derived (4-opp c009 metric): B0 0.1525 / I0 0.2550  -> matches c009
+c010 §17 registered baselines (3-opp field): B0 teacher=0.1600 field=0.1533 | I0 teacher=0.2200 field=0.2900
+
+  [OK ] c005_status_and_head
+  [OK ] c006_status_and_head
+  [OK ] c007_status_and_head
+  [OK ] c008_status_and_head
+  [OK ] c009_status_and_head
+  [OK ] commit_chain
+  [OK ] c010_branches_from_c009_final
+  [OK ] frozen_teacher_main_sha
+  [OK ] frozen_teacher_deck_sha
+  [OK ] frozen_deck_id
+  [OK ] frozen_deck_60_cards
+  [OK ] c009_best_saved_is_R1_101
+  [OK ] i0_is_c008_R1_seed101_near_10040
+  [OK ] B0_checkpoint_hash_verified
+  [OK ] I0_checkpoint_hash_verified
+  [OK ] c009_raw_reproduces_B0_v2a_teacher
+  [OK ] c009_raw_reproduces_B0_v2a_field_c009_definition
+  [OK ] c009_raw_reproduces_R1_101_teacher
+  [OK ] c009_raw_reproduces_R1_101_field_c009_definition
+  [OK ] opponents_present
+  [OK ] teacher_submission_ref
+  [OK ] runtime_deps
+
+immutability baseline: c005 250f, c006 114f, c007 153f, c008 193f, c009 79f
+ALL_OK = True

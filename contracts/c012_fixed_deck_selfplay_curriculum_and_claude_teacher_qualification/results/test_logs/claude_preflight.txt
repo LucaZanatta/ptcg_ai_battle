@@ -1,0 +1,19 @@
+{
+  "requested_model": "opus",
+  "expected_model_prefix": "claude-opus",
+  "tools_enabled": false,
+  "non_interactive": true,
+  "sequential": true,
+  "n_preflight_states": 3,
+  "all_calls_succeeded": true,
+  "all_calls_used_opus": true,
+  "all_schema_valid": true,
+  "preflight_pass": true,
+  "resolved_models_seen": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "model_verification_rule": "a call counts as Opus only when a claude-opus-* entry in modelUsage has non-zero outputTokens; Claude Code's background summarisation model may also appear and is not accepted as the labelling model",
+  "estimated_cost_per_call_usd": 0.2324,
+  "projected_cost_full_run_usd": 66.94
+}

@@ -1,0 +1,62 @@
+{
+  "held_out_opponent": "mega_abomasnow",
+  "note": "Mega Abomasnow was held out of ALL c008 RL training and out of c008/c009 checkpoint selection; it is used here only as a generalization test",
+  "results": {
+    "B0_v2a": {
+      "point": 0.12,
+      "n": 100,
+      "ci95": [
+        0.06,
+        0.19
+      ]
+    },
+    "R0_202": {
+      "point": 0.07,
+      "n": 100,
+      "ci95": [
+        0.02,
+        0.12000000000000001
+      ]
+    },
+    "R1_101": {
+      "point": 0.27,
+      "n": 100,
+      "ci95": [
+        0.19,
+        0.36
+      ]
+    },
+    "R2_101": {
+      "point": 0.16,
+      "n": 100,
+      "ci95": [
+        0.09,
+        0.23
+      ]
+    },
+    "R2_303": {
+      "point": 0.15000000000000002,
+      "n": 100,
+      "ci95": [
+        0.08,
+        0.2202499999999964
+      ]
+    },
+    "T_teacher": {
+      "point": 0.56,
+      "n": 100,
+      "ci95": [
+        0.45999999999999996,
+        0.6599999999999999
+      ]
+    }
+  },
+  "ranking_desc": [
+    "T_teacher",
+    "R1_101",
+    "R2_101",
+    "R2_303",
+    "B0_v2a",
+    "R0_202"
+  ]
+}

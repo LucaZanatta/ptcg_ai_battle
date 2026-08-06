@@ -1,0 +1,118 @@
+{
+  "note": "every repair is re-implemented in c013-controlled code rather than imported from c011/c012 (\u00a75/\u00a76), and every one is paired with a negative control that reintroduces the old behaviour and asserts the test catches it.",
+  "ppo_config": {
+    "clip": 0.2,
+    "entropy_coef_end": 0.002,
+    "entropy_coef_start": 0.006,
+    "epochs": 4,
+    "gamma": 0.997,
+    "lam": 0.95,
+    "learning_rate": 3e-05,
+    "max_grad_norm": 0.5,
+    "min_trainable_decisions": 32768,
+    "minibatch": 256,
+    "rollout_game_target": 256,
+    "vf_coef": 0.5,
+    "weight_decay": 1e-05
+  },
+  "repairs": [
+    {
+      "c013_owner": "tools/c013_common.py:TrainerState.save/load",
+      "carried_from": "c011",
+      "demonstrated_by": "tests/test_c013_continuation.py:ActiveGeneratorState",
+      "negative_control": "test_legacy_global_state_would_not_have_caught_this",
+      "original_defect": "c011 stored np.random.get_state(), the legacy GLOBAL state, while the trainer sampled from an np.random.Generator. Restore restored nothing the trainer used, yet the run was described as a literal continuation.",
+      "repair": "active numpy Generator persisted via rng.bit_generator.state"
+    },
+    {
+      "c013_owner": "tools/c013_common.py:content_addressed_copy",
+      "carried_from": "c012",
+      "demonstrated_by": "tests/test_c013_continuation.py:ContentAddressedHashRefresh",
+      "negative_control": "test_a_per_path_cache_returns_a_stale_hash_on_the_fixed_path",
+      "original_defect": "cg.c009_eval.sha256_file memoises by PATH and pool workers persist. The trainer rewrote a single cur.npz, so from the second in-run evaluation onward every worker reported a stale hash, the identity check refused to score, and the P1 curriculum never left stage 0.",
+      "repair": "content-addressed evaluation checkpoints"
+    },
+    {
+      "c013_owner": "tools/c013_common.py:require_scored_games / ZeroScoredGamesError",
+      "carried_from": "c012",
+      "demonstrated_by": "tests/test_c013_continuation.py:ZeroScoredGamesIsFatal",
+      "negative_control": "test_silently_returning_none_would_not_have_been_caught",
+      "original_defect": "the condition returned None silently, which disabled the curriculum gates and early stopping for an entire 90,000-game arm without any error surfacing.",
+      "repair": "a registered evaluation returning zero scored games is fatal"
+    },
+    {
+      "c013_owner": "tools/c013_common.py:median_best_per_seed",
+      "carried_from": "c011",
+      "demonstrated_by": "tests/test_c013_continuation.py:MedianBestPerSeed",
+      "negative_control": "test_median_not_maximum",
+      "original_defect": "c011's scale decision used the MAXIMUM bootstrap significance over any seed/metric pair, a materially weaker claim than the median.",
+      "repair": "median best-per-seed is the registered statistic"
+    },
+    {
+      "c013_owner": "tools/c013_common.py:TrainerState counters",
+      "carried_from": "c010",
+      "demonstrated_by": "tests/test_c013_continuation.py:CompletedGameAccounting",
+      "negative_control": "test_forced_only_games_count_toward_the_budget",
+      "original_defect": "rollout-granularity accounting let each seed overshoot its registered budget because rollouts are atomic.",
+      "repair": "completed games are the budget quantity"
+    },
+    {
+      "c013_owner": "cg/c011_eval_core.py teacher-as-candidate identity + c013_eval panels",
+      "carried_from": "c010",
+      "demonstrated_by": "results/artifacts/panel_final_summaries.json (T_teacher present)",
+      "negative_control": "n/a - evidenced by the panel containing the teacher",
+      "original_defect": "c010 could not compare candidates to the teacher on the strategic field because the teacher was never run as a candidate on that panel.",
+      "repair": "the frozen teacher is evaluated on the SAME panel as every candidate"
+    }
+  ],
+  "required_state_fields": [
+    "policy_weights",
+    "value_weights",
+    "full_module_state",
+    "adam_moments",
+    "optimizer_step",
+    "completed_games",
+    "games_with_trainable_decisions",
+    "trainable_decisions",
+    "entropy_schedule_definition",
+    "entropy_schedule_progress",
+    "numpy_generator_type",
+    "numpy_generator_state",
+    "torch_cpu_rng",
+    "torch_cuda_rng",
+    "python_random_state",
+    "lagged_registry",
+    "curriculum_state",
+    "branch_checkpoint_registry",
+    "seed"
+  ],
+  "schema": {
+    "budget_quantity": "completed_games (includes games with only forced decisions)",
+    "hash_refresh": "evaluation checkpoints are content-addressed so a per-path hash cache cannot return a stale value",
+    "median_rule": "median best-per-seed, not maximum significance",
+    "numpy_generator": "persisted via rng.bit_generator.state; the legacy global np.random state is deliberately not used",
+    "required_fields": [
+      "policy_weights",
+      "value_weights",
+      "full_module_state",
+      "adam_moments",
+      "optimizer_step",
+      "completed_games",
+      "games_with_trainable_decisions",
+      "trainable_decisions",
+      "entropy_schedule_definition",
+      "entropy_schedule_progress",
+      "numpy_generator_type",
+      "numpy_generator_state",
+      "torch_cpu_rng",
+      "torch_cuda_rng",
+      "python_random_state",
+      "lagged_registry",
+      "curriculum_state",
+      "branch_checkpoint_registry",
+      "seed"
+    ],
+    "schema": "c013.v1",
+    "zero_score_policy": "a registered evaluation returning no scored games raises ZeroScoredGamesError"
+  }
+}

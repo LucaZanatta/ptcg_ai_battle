@@ -1,0 +1,39 @@
+{
+  "primary": {
+    "n": 17,
+    "n_returned": 12,
+    "n_call_failures": 5,
+    "schema_valid_rate": 1.0,
+    "legal_action_rate": 1.0,
+    "hidden_information_violations": 0,
+    "model_verified_rate": 1.0,
+    "total_cost_usd": 2.39,
+    "stopped_early": true,
+    "stop_reason": "Primary labelling was stopped at the achieved sample. Branching is INCONCLUSIVE, so \u00a742 caps the status at PROMISING_UNVALIDATED regardless of sample size, and schema/legality were already unanimous; further labels could not change any registered decision."
+  },
+  "repeat": {
+    "phase": "repeat",
+    "n": 12,
+    "schema_valid_rate": 0.75,
+    "legal_action_rate": 1.0,
+    "hidden_information_violations": 0,
+    "model_verified_rate": 0.9166666666666666,
+    "call_failures": 1,
+    "total_cost_usd": 2.01,
+    "error_counts": {
+      "rationale_too_long": 2,
+      "unparseable": 1
+    },
+    "per_state_errors": {
+      "S4154": [
+        "rationale_too_long"
+      ],
+      "S0049": [
+        "rationale_too_long"
+      ],
+      "S2128": [
+        "unparseable"
+      ]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "P19_transition_fixtures": {
+    "status": "PASS",
+    "reasons_observed": [
+      "FALLBACK_SCHEDULE"
+    ],
+    "only_performance_promotion_counts": true
+  },
+  "P20_checkpoint_freshness": {
+    "status": "PASS",
+    "distinct_eval_checkpoint_hashes": 1,
+    "content_addressed": true,
+    "note": "each evaluation runs against a path that varies with the checkpoint bytes, so a per-path hash cache cannot return a stale value"
+  },
+  "P21_opponent_mixture_audit": {
+    "status": "PASS",
+    "blocks": 2,
+    "planned_and_actual_both_recorded": true
+  },
+  "P22_exact_continuation": {
+    "status": "NOT_EXERCISED",
+    "reason": "this run trains no PPO updates across a resume boundary at the reduced scale, so there is no continuation to verify. Recorded as NOT_EXERCISED rather than PASS."
+  },
+  "P23_promotion_arithmetic": {
+    "status": "PASS",
+    "game_zero_excluded": true,
+    "thresholds_exact": true,
+    "identity_safe_aggregation": "every evaluation record names its own identity and opponent; results are never zipped positionally"
+  },
+  "P24_policy_diversity": {
+    "status": "NOT_EXERCISED",
+    "reason": "no promoted checkpoint exists to cross-play against"
+  }
+}

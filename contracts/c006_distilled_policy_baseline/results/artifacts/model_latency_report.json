@@ -1,0 +1,18 @@
+{
+  "contract": "c006",
+  "students": {
+    "S1_STATELESS": {
+      "p99_ms": 28.857396759999855,
+      "max_ms": 128.801182,
+      "p50_ms": 0.24146455000000003,
+      "p95_ms": 0.36722140625
+    },
+    "S2_RECURRENT": {
+      "p99_ms": 35.754812920000134,
+      "max_ms": 122.372821,
+      "p50_ms": 0.3026769375,
+      "p95_ms": 0.48719409874999997
+    }
+  },
+  "envelope_note": "match clock budget ~ engine per-move; teacher P99 ~0.33ms; students must stay well inside"
+}

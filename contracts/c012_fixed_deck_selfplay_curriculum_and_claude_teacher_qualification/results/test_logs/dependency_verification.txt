@@ -1,0 +1,23 @@
+c012 AC-01 dependency / immutability verification
+
+  [OK ] frozen_deck_fingerprint_matches_c010_c011  676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a
+  [OK ] deck_is_60_cards  60
+  [OK ] frozen_teacher_hash_matches  
+  [OK ] all_c011_candidate_checkpoint_hashes_verified  62 checkpoints, 0 bad
+  [OK ] c011_final_matrix_reproduces_from_raw_games  []
+  [OK ] c005_status_pass  PASS
+  [OK ] c006_status_pass  PASS
+  [OK ] c007_status_pass  PASS
+  [OK ] c008_status_pass  PASS
+  [OK ] c009_status_pass  PASS
+  [OK ] c010_status_pass  PASS
+  [OK ] c011_status_pass  PASS
+  [OK ] cuda_available  
+  [OK ] vram_free_ge_8gib  9972
+  [OK ] disk_free_ge_100gib  201.7
+  [OK ] ram_available_ge_12gib  42.1
+
+immutability baseline: {'c005_files': 250, 'c006_files': 114, 'c007_files': 153, 'c008_files': 193, 'c009_files': 79, 'c010_files': 241, 'c011_files': 212}
+machine: {"os": "Ubuntu 24.04.4 LTS", "python": "3.13.13", "cpu": "AMD Ryzen 9 7900X 12-Core Processor", "cpu_threads": 24, "ram_gib": 62.0, "ram_available_gib": 42.1, "disk_free_gib": 201.7, "torch": "2.13.0+cu132", "torch_cuda": "13.2", "cuda_available": true, "gpu": "NVIDIA GeForce RTX 5070", "vram_total_mib": 11752, "vram_free_mib": 9972, "driver": "595.71.05"}
+
+ALL_OK = True

@@ -1,0 +1,248 @@
+{
+  "acceptance_criterion": "AC-01",
+  "baseline_candidate": "official_mega_lucario",
+  "baseline_source_dir": "contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario",
+  "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+  "baseline_deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+  "baseline_fidelity": {
+    "fidelity": "EXACT",
+    "checks": {
+      "source_decoded_without_truncation": true,
+      "deck_hash_matches_documented_source": true,
+      "deck_is_60_cards": true,
+      "source_byte_identical_to_official": true,
+      "implementation_is_rich_not_a_priority_table": true,
+      "no_static_priority_replacement": true,
+      "only_compatibility_adapters": true,
+      "smoke_games_legal": true,
+      "no_network_dependency": true
+    }
+  },
+  "baseline_manifest": {
+    "candidate_id": "official_mega_lucario",
+    "fidelity": "EXACT",
+    "reproduction_method": "EXACT byte-for-byte copy of the official sample source; no reimplementation and no strategic modification",
+    "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck",
+    "source_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+    "copied_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+    "hashes_identical": true,
+    "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+    "deck_cards": 60,
+    "archetype": "Mega Lucario ex",
+    "permission_class": "SUBMISSION_REUSE_ALLOWED",
+    "attribution": "Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck (Kiyota)",
+    "semantic_feature_inventory": {
+      "features": {
+        "planning_or_sequencing": {
+          "references": 27,
+          "present": true
+        },
+        "prize_resource_tracking": {
+          "references": 11,
+          "present": true
+        },
+        "damage_calculation": {
+          "references": 13,
+          "present": true
+        },
+        "matchup_rules": {
+          "references": 5,
+          "present": true
+        },
+        "energy_management": {
+          "references": 58,
+          "present": true
+        },
+        "evolution_logic": {
+          "references": 5,
+          "present": true
+        },
+        "bench_management": {
+          "references": 7,
+          "present": true
+        },
+        "retreat_switch_logic": {
+          "references": 15,
+          "present": true
+        },
+        "search_targeting": {
+          "references": 30,
+          "present": true
+        }
+      },
+      "n_functions": 5,
+      "functions": [
+        "get_card",
+        "prize_count",
+        "pokemon_score",
+        "agent",
+        "energy_score"
+      ],
+      "n_classes": 1,
+      "classes": [
+        "AttackPlan"
+      ],
+      "source_lines": 509,
+      "all_material_features_present": true
+    },
+    "static_dependency_audit": {
+      "imports": [
+        "cg",
+        "collections",
+        "os",
+        "sys"
+      ],
+      "network_modules": [],
+      "network_dependency_at_inference": false,
+      "heavy_ml_dependencies": [],
+      "stdlib_only_plus_cg": true
+    },
+    "fidelity_checks": {
+      "source_decoded_without_truncation": true,
+      "deck_hash_matches_documented_source": true,
+      "deck_is_60_cards": true,
+      "source_byte_identical_to_official": true,
+      "implementation_is_rich_not_a_priority_table": true,
+      "no_static_priority_replacement": true,
+      "only_compatibility_adapters": true,
+      "smoke_games_legal": true,
+      "no_network_dependency": true
+    },
+    "compatibility_adapters": [
+      {
+        "adapter": "cg.teachers.make_fresh",
+        "what": "imports main.py as a uniquely-named fresh module instance per game and per seat, with cwd temporarily set to the agent's own directory",
+        "why": "these agents keep module-level state (turn counters, attack plans) and read a relative deck.csv at import; a fresh instance is required for state isolation between games",
+        "modifies_agent_source": false
+      }
+    ],
+    "known_deviations_from_source": [],
+    "smoke": {
+      "games": [
+        {
+          "game": 0,
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "completed": true,
+          "invalid": 0,
+          "score": 1.0,
+          "seconds": 0.38
+        },
+        {
+          "game": 1,
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "completed": true,
+          "invalid": 0,
+          "score": 0.0,
+          "seconds": 0.43
+        },
+        {
+          "game": 2,
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "completed": true,
+          "invalid": 0,
+          "score": 1.0,
+          "seconds": 0.35
+        },
+        {
+          "game": 3,
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "completed": true,
+          "invalid": 0,
+          "score": 1.0,
+          "seconds": 0.47
+        },
+        {
+          "game": 4,
+          "seat": 0,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "completed": true,
+          "invalid": 0,
+          "score": 0.0,
+          "seconds": 0.35
+        },
+        {
+          "game": 5,
+          "seat": 1,
+          "statuses": [
+            "DONE",
+            "DONE"
+          ],
+          "completed": true,
+          "invalid": 0,
+          "score": 0.0,
+          "seconds": 0.19
+        }
+      ],
+      "n": 6,
+      "all_completed": true,
+      "invalid_total": 0,
+      "score_rate_vs_dragapult": 0.5
+    }
+  },
+  "accepted_reference": "55011215",
+  "accepted_reference_found_in": [
+    {
+      "file": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/submissions/baseline_submission.json",
+      "submission_ref": "55011215",
+      "status": "COMPLETE",
+      "public_score": "600.0",
+      "description": "c017 baseline official_mega_lucario EXACT eefc06a",
+      "archive_sha256": "44416b1c1056063b5f10ac5eabe003d6d88cc4e82c0d6869e7f286331d7f9e66"
+    }
+  ],
+  "accepted_reference_verified": true,
+  "c018_packages_embed_this_baseline": [
+    {
+      "name": "submission_K_official_search_v0",
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "matches": true,
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "deck_matches": true
+    },
+    {
+      "name": "submission_L_guided_search_v0",
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "matches": true,
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "deck_matches": true
+    },
+    {
+      "name": "submission_M_trained_policy_v0",
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "matches": true,
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "deck_matches": true
+    },
+    {
+      "name": "vertical_package_smoke",
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "matches": true,
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "deck_matches": true
+    }
+  ],
+  "prior_contracts_unmodified": true,
+  "files_checked": 2169,
+  "changed_files": [],
+  "git_head": "eb9f0da0d7ba95e090533e728c08cc4eba542475",
+  "passed": true
+}

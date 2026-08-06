@@ -1,0 +1,377 @@
+{
+  "run_id": "strat_d5a85cdef1d422a0",
+  "candidates": [
+    {
+      "candidate_id": "dragapult",
+      "display_name": "Dragapult ex",
+      "archetype": "spread_setup",
+      "source_type": "official_kaggle_sample",
+      "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-dragapult-ex-deck",
+      "reuse_classification": "OFFICIAL_REUSABLE",
+      "submission_eligible": true,
+      "agent": {
+        "agent_id": "dragapult",
+        "agent_version": "kaggle:kiyotah/a-sample-rule-based-agent-dragapult-ex-deck",
+        "policy_type": "rule_based_strategic",
+        "source_files": [
+          {
+            "path": "main.py",
+            "sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+          }
+        ]
+      },
+      "deck": {
+        "deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+        "card_count": 60,
+        "cards": [
+          {
+            "card_id": 2,
+            "count": 4
+          },
+          {
+            "card_id": 5,
+            "count": 4
+          },
+          {
+            "card_id": 119,
+            "count": 4
+          },
+          {
+            "card_id": 120,
+            "count": 4
+          },
+          {
+            "card_id": 121,
+            "count": 3
+          },
+          {
+            "card_id": 140,
+            "count": 1
+          },
+          {
+            "card_id": 184,
+            "count": 1
+          },
+          {
+            "card_id": 235,
+            "count": 2
+          },
+          {
+            "card_id": 1071,
+            "count": 1
+          },
+          {
+            "card_id": 1079,
+            "count": 2
+          },
+          {
+            "card_id": 1080,
+            "count": 1
+          },
+          {
+            "card_id": 1086,
+            "count": 4
+          },
+          {
+            "card_id": 1097,
+            "count": 2
+          },
+          {
+            "card_id": 1120,
+            "count": 4
+          },
+          {
+            "card_id": 1121,
+            "count": 4
+          },
+          {
+            "card_id": 1152,
+            "count": 3
+          },
+          {
+            "card_id": 1156,
+            "count": 1
+          },
+          {
+            "card_id": 1182,
+            "count": 3
+          },
+          {
+            "card_id": 1198,
+            "count": 4
+          },
+          {
+            "card_id": 1210,
+            "count": 2
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1256,
+            "count": 2
+          }
+        ]
+      },
+      "adapter_files": [
+        "starter_kit/teachers.py (behavior-preserving loader)"
+      ],
+      "admitted": true
+    },
+    {
+      "candidate_id": "mega_lucario",
+      "display_name": "Mega Lucario ex",
+      "archetype": "switch_midrange",
+      "source_type": "official_kaggle_sample",
+      "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck",
+      "reuse_classification": "OFFICIAL_REUSABLE",
+      "submission_eligible": true,
+      "agent": {
+        "agent_id": "mega_lucario",
+        "agent_version": "kaggle:kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck",
+        "policy_type": "rule_based_strategic",
+        "source_files": [
+          {
+            "path": "main.py",
+            "sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2"
+          }
+        ]
+      },
+      "deck": {
+        "deck_id": "sha256:d05bff224d40b9c69c358a16f02f2c0c8e0c97dcd4fb49e21c2b0a565f7b8b76",
+        "card_count": 60,
+        "cards": [
+          {
+            "card_id": 6,
+            "count": 13
+          },
+          {
+            "card_id": 673,
+            "count": 2
+          },
+          {
+            "card_id": 674,
+            "count": 2
+          },
+          {
+            "card_id": 675,
+            "count": 2
+          },
+          {
+            "card_id": 676,
+            "count": 3
+          },
+          {
+            "card_id": 677,
+            "count": 3
+          },
+          {
+            "card_id": 678,
+            "count": 4
+          },
+          {
+            "card_id": 1102,
+            "count": 4
+          },
+          {
+            "card_id": 1123,
+            "count": 2
+          },
+          {
+            "card_id": 1141,
+            "count": 4
+          },
+          {
+            "card_id": 1142,
+            "count": 4
+          },
+          {
+            "card_id": 1152,
+            "count": 4
+          },
+          {
+            "card_id": 1159,
+            "count": 1
+          },
+          {
+            "card_id": 1182,
+            "count": 2
+          },
+          {
+            "card_id": 1192,
+            "count": 4
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1252,
+            "count": 2
+          }
+        ]
+      },
+      "adapter_files": [
+        "starter_kit/teachers.py (behavior-preserving loader)"
+      ],
+      "admitted": true
+    },
+    {
+      "candidate_id": "mega_abomasnow",
+      "display_name": "Mega Abomasnow ex",
+      "archetype": "linear_aggro",
+      "source_type": "official_kaggle_sample",
+      "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-mega-abomasnow-ex-deck",
+      "reuse_classification": "OFFICIAL_REUSABLE",
+      "submission_eligible": true,
+      "agent": {
+        "agent_id": "mega_abomasnow",
+        "agent_version": "kaggle:kiyotah/a-sample-rule-based-agent-mega-abomasnow-ex-deck",
+        "policy_type": "rule_based_strategic",
+        "source_files": [
+          {
+            "path": "main.py",
+            "sha256": "d1ef4a86413b7f548270657385c6d5c3cb114b473082cd04e2a0f1733158482b"
+          }
+        ]
+      },
+      "deck": {
+        "deck_id": "sha256:3c8145c7e5d99c1d3b6a2b41a1fd240c95e8cfaf1a0d137861ede6ac6f419acd",
+        "card_count": 60,
+        "cards": [
+          {
+            "card_id": 3,
+            "count": 34
+          },
+          {
+            "card_id": 721,
+            "count": 2
+          },
+          {
+            "card_id": 722,
+            "count": 4
+          },
+          {
+            "card_id": 723,
+            "count": 4
+          },
+          {
+            "card_id": 1121,
+            "count": 4
+          },
+          {
+            "card_id": 1126,
+            "count": 1
+          },
+          {
+            "card_id": 1192,
+            "count": 4
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1262,
+            "count": 3
+          }
+        ]
+      },
+      "adapter_files": [
+        "starter_kit/teachers.py (behavior-preserving loader)"
+      ],
+      "admitted": true
+    },
+    {
+      "candidate_id": "iono",
+      "display_name": "Iono's deck",
+      "archetype": "disruption_control",
+      "source_type": "official_kaggle_sample",
+      "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-iono-s-deck",
+      "reuse_classification": "OFFICIAL_REUSABLE",
+      "submission_eligible": true,
+      "agent": {
+        "agent_id": "iono",
+        "agent_version": "kaggle:kiyotah/a-sample-rule-based-agent-iono-s-deck",
+        "policy_type": "rule_based_strategic",
+        "source_files": [
+          {
+            "path": "main.py",
+            "sha256": "9fa360307e0b9ccd4cd8469aad50c93872468c8dfa8ff8ebb6718cacf9faa8fa"
+          }
+        ]
+      },
+      "deck": {
+        "deck_id": "sha256:282504e445a4d4fc256ae410d3604b018de95e02ab2fe220f7527dcf7f212539",
+        "card_count": 60,
+        "cards": [
+          {
+            "card_id": 4,
+            "count": 22
+          },
+          {
+            "card_id": 265,
+            "count": 3
+          },
+          {
+            "card_id": 268,
+            "count": 3
+          },
+          {
+            "card_id": 269,
+            "count": 3
+          },
+          {
+            "card_id": 270,
+            "count": 3
+          },
+          {
+            "card_id": 271,
+            "count": 3
+          },
+          {
+            "card_id": 1086,
+            "count": 3
+          },
+          {
+            "card_id": 1097,
+            "count": 2
+          },
+          {
+            "card_id": 1110,
+            "count": 1
+          },
+          {
+            "card_id": 1118,
+            "count": 1
+          },
+          {
+            "card_id": 1121,
+            "count": 3
+          },
+          {
+            "card_id": 1152,
+            "count": 2
+          },
+          {
+            "card_id": 1227,
+            "count": 4
+          },
+          {
+            "card_id": 1233,
+            "count": 4
+          },
+          {
+            "card_id": 1254,
+            "count": 3
+          }
+        ]
+      },
+      "adapter_files": [
+        "starter_kit/teachers.py (behavior-preserving loader)"
+      ],
+      "admitted": true
+    }
+  ]
+}

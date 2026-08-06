@@ -1,0 +1,17 @@
+{
+  "components": [
+    {
+      "id": "Q2A_S622_continued",
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/ckpt_g5152.npz",
+      "sha256": "5b7327cf77166997ca857ed7268e6702916c2abbcbeb1658b9b934df0426f499"
+    },
+    {
+      "id": "Q2B_S633_continued",
+      "path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/ckpt_g5200.npz",
+      "sha256": "0a80c931e12e1c7ea9fa7891f8d2a1a70d6aa3f4690e93bfb6b514940602abff"
+    }
+  ],
+  "kind": "online_ensemble",
+  "mode": "logit",
+  "note": "Equal-weight combination. This manifest IS the ensemble's checkpoint for identity purposes; the worker re-hashes it and every component it loads."
+}

@@ -1,0 +1,45 @@
+c009 AC-12 content-aware evidence validation
+============================================================
+raw games: 4100 | checks: 39 | failed: 0
+
+  [OK  ] raw_games_present
+  [OK  ] registry_has_all_required_candidates
+  [OK  ] registry_checkpoint_hashes_match_disk
+  [OK  ] every_evaluated_candidate_in_registry
+  [OK  ] every_game_used_the_registered_weights
+  [OK  ] manifest_count_matches_raw
+  [OK  ] manifest_raw_sha_matches
+  [OK  ] job_ids_unique
+  [OK  ] all_raw_identities_complete
+  [OK  ] all_games_terminal_or_defect_classified
+  [OK  ] every_game_used_the_exact_frozen_deck
+  [OK  ] both_seats_present_equally
+  [OK  ] phase_c_cells_exactly_50_per_seat
+  [OK  ] phase_a_cells_exactly_50_per_seat
+  [OK  ] matchup_scores_reproduce_raw_games
+  [OK  ] matchup_counts_reproduce_raw_games
+  [OK  ] global_ranking_reproduces_raw_games
+  [OK  ] holdout_report_uses_only_abomasnow
+  [OK  ] holdout_values_reproduce_raw_games
+  [OK  ] teacher_h2h_uses_only_frozen_teacher
+  [OK  ] teacher_h2h_rule_unchanged
+  [OK  ] teacher_h2h_values_reproduce_raw_games
+  [OK  ] confidence_intervals_reproduce_independently
+  [OK  ] improvement_diffs_reproduce_raw_games
+  [OK  ] regression_flags_follow_stated_rule
+  [OK  ] rl_vs_initialization_reproduces_raw_games
+  [OK  ] no_c005_to_c008_file_changed
+  [OK  ] no_policy_weights_changed
+  [OK  ] no_new_training_checkpoint_created
+  [OK  ] teacher_noninferiority_decision_follows_evidence
+  [OK  ] rl_improvement_decision_follows_rule
+  [OK  ] best_saved_checkpoint_follows_rule
+  [OK  ] submission_decision_follows_amended_gate
+  [OK  ] conditional_archive_absent_when_do_not_submit
+  [OK  ] kaggle_status_skipped_by_gate
+  [OK  ] promotion_is_no_rl_submission
+  [OK  ] exactly_one_next_step
+  [OK  ] exactly_one_highest_leverage_blocker
+  [OK  ] validation_is_content_aware_not_existence_based
+
+ALL_OK = True

@@ -1,0 +1,68 @@
+{
+  "overall": {
+    "brier": 0.1441714614075447,
+    "calibration_error": -0.03293312851477764,
+    "outcome_accuracy": 0.7868139408763406,
+    "auc": 0.8757472511593689,
+    "monte_carlo_return_error": 0.29763227873509074,
+    "explained_variance_vs_outcome": 0.4224210680862308,
+    "n": 90353
+  },
+  "by_phase": {
+    "0-20": {
+      "brier": 0.21688216998008306,
+      "calibration_error": -0.06923072611168929,
+      "outcome_accuracy": 0.6631894415307475,
+      "auc": 0.7122652720093982,
+      "monte_carlo_return_error": 0.4198906689799457,
+      "explained_variance_vs_outcome": 0.14457653764151024,
+      "n": 17351
+    },
+    "20-40": {
+      "brier": 0.1868089470021144,
+      "calibration_error": -0.0470755448535804,
+      "outcome_accuracy": 0.7205027407120315,
+      "auc": 0.7893547954884997,
+      "monte_carlo_return_error": 0.36623699073285526,
+      "explained_variance_vs_outcome": 0.25491043635469435,
+      "n": 18061
+    },
+    "40-60": {
+      "brier": 0.1458682106823562,
+      "calibration_error": -0.025038931434602674,
+      "outcome_accuracy": 0.7901664730933023,
+      "auc": 0.8706887309516798,
+      "monte_carlo_return_error": 0.301875959924535,
+      "explained_variance_vs_outcome": 0.4136609446173737,
+      "n": 18081
+    },
+    "60-80": {
+      "brier": 0.10701435724144497,
+      "calibration_error": -0.014931324015703407,
+      "outcome_accuracy": 0.8441946736061127,
+      "auc": 0.9332151195803373,
+      "monte_carlo_return_error": 0.2375904551976792,
+      "explained_variance_vs_outcome": 0.5689477060234689,
+      "n": 18061
+    },
+    "80-100": {
+      "brier": 0.07016414202568533,
+      "calibration_error": -0.010731935422873262,
+      "outcome_accuracy": 0.9062716101920315,
+      "auc": 0.9731502066016747,
+      "monte_carlo_return_error": 0.1724825549621637,
+      "explained_variance_vs_outcome": 0.7170310519981113,
+      "n": 18799
+    }
+  },
+  "mse_by_epoch": [
+    0.6597042728946513,
+    0.6238312120456252,
+    0.6082073127627194,
+    0.5916368624155318
+  ],
+  "n_transitions": 90353,
+  "n_games": 1200,
+  "refit_seed": 902,
+  "target": "actual terminal outcome (Monte-Carlo return to game end), not GAE lambda-return"
+}

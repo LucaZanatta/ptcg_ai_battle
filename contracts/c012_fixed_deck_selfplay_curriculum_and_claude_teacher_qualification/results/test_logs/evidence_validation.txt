@@ -1,0 +1,95 @@
+c012 AC-15 content-aware evidence validation
+
+  [OK  ] dependency_verification_all_ok  0 failed
+  [OK  ] all_c011_checkpoints_hash_verified  62
+  [OK  ] trainer_state_schema_covers_active_generator  
+  [OK  ] trainer_state_tracks_all_three_game_counters  
+  [OK  ] c011_repair_report_present_and_complete  COMPLETE
+  [OK  ] c011_candidate_registry_non_trivial  62
+  [OK  ] every_promising_candidate_confirmed  
+  [OK  ] soups_validated_finite_and_legal  4
+  [OK  ] combination_weights_registered_equal_only  
+  [OK  ] incumbent_hash_verifies_on_disk  
+  [OK  ] elite_pool_members_hash_verify  4
+  [OK  ] elite_pool_is_lineage_diverse  
+  [OK  ] curriculum_registry_hash_matches_lock  8988ed8fb2ab4c9f
+  [OK  ] overlap_verdict_valid  SUPPORTED
+  [OK  ] overlap_backed_by_multiple_measures  
+  [OK  ] P0_711_completed_games_match_raw  30000 vs 30000
+  [OK  ] P0_711_within_registered_maximum  30000
+  [OK  ] P0_711_never_trained_on_abomasnow  
+  [OK  ] P0_711_every_game_has_curriculum_metadata  
+  [OK  ] P0_711_curriculum_registry_hash_recorded  
+  [OK  ] P0_711_every_checkpoint_has_trainer_state  
+  [OK  ] P0_711_checkpoint_hashes_verify  
+  [OK  ] P0_722_completed_games_match_raw  30320 vs 30320
+  [OK  ] P0_722_within_registered_maximum  30320
+  [OK  ] P0_722_never_trained_on_abomasnow  
+  [OK  ] P0_722_every_game_has_curriculum_metadata  
+  [OK  ] P0_722_curriculum_registry_hash_recorded  
+  [OK  ] P0_722_every_checkpoint_has_trainer_state  
+  [OK  ] P0_722_checkpoint_hashes_verify  
+  [OK  ] P0_733_completed_games_match_raw  30336 vs 30336
+  [OK  ] P0_733_within_registered_maximum  30336
+  [OK  ] P0_733_never_trained_on_abomasnow  
+  [OK  ] P0_733_every_game_has_curriculum_metadata  
+  [OK  ] P0_733_curriculum_registry_hash_recorded  
+  [OK  ] P0_733_every_checkpoint_has_trainer_state  
+  [OK  ] P0_733_checkpoint_hashes_verify  
+  [OK  ] P1_811_completed_games_match_raw  30224 vs 30224
+  [OK  ] P1_811_within_registered_maximum  30224
+  [OK  ] P1_811_never_trained_on_abomasnow  
+  [OK  ] P1_811_every_game_has_curriculum_metadata  
+  [OK  ] P1_811_curriculum_registry_hash_recorded  
+  [OK  ] P1_811_every_checkpoint_has_trainer_state  
+  [OK  ] P1_811_checkpoint_hashes_verify  
+  [OK  ] P1_822_completed_games_match_raw  30048 vs 30048
+  [OK  ] P1_822_within_registered_maximum  30048
+  [OK  ] P1_822_never_trained_on_abomasnow  
+  [OK  ] P1_822_every_game_has_curriculum_metadata  
+  [OK  ] P1_822_curriculum_registry_hash_recorded  
+  [OK  ] P1_822_every_checkpoint_has_trainer_state  
+  [OK  ] P1_822_checkpoint_hashes_verify  
+  [OK  ] P1_833_completed_games_match_raw  30256 vs 30256
+  [OK  ] P1_833_within_registered_maximum  30256
+  [OK  ] P1_833_never_trained_on_abomasnow  
+  [OK  ] P1_833_every_game_has_curriculum_metadata  
+  [OK  ] P1_833_curriculum_registry_hash_recorded  
+  [OK  ] P1_833_every_checkpoint_has_trainer_state  
+  [OK  ] P1_833_checkpoint_hashes_verify  
+  [OK  ] all_six_registered_seeds_executed  {'P0': [711, 722, 733], 'P1': [811, 822, 833]}
+  [OK  ] total_completed_games_within_hard_maximum  181184 vs 184000
+  [OK  ] no_invalid_actions_in_training  0
+  [OK  ] no_exceptions_in_training  0
+  [OK  ] evaluation_identity_all_batches_ok  5
+  [OK  ] evaluation_zero_defects  0
+  [OK  ] evaluation_seat_balance_exact  
+  [OK  ] evaluation_manifest_matches_raw  
+  [OK  ] final_aggregates_reproduce_from_raw_games  []
+  [OK  ] frozen_teacher_evaluated_on_same_panel  
+  [OK  ] benchmark_size_in_registered_range  240
+  [OK  ] benchmark_repeat_subset_in_range  48
+  [OK  ] no_benchmark_category_exceeds_25pct  0.25
+  [OK  ] every_benchmark_state_hidden_information_clean  240/240
+  [OK  ] benchmark_hash_locked  
+  [OK  ] claude_preflight_recorded  True
+  [OK  ] claude_model_explicitly_opus_and_verified  ['claude-haiku-4-5-20251001', 'claude-opus-5']
+  [OK  ] claude_tools_disabled  
+  [OK  ] claude_labels_recorded  17
+  [OK  ] claude_labels_not_used_for_training  
+  [OK  ] branching_verdict_valid  INCONCLUSIVE
+  [OK  ] no_superiority_claim_without_valid_branching  REJECTED
+  [OK  ] curriculum_result_valid  TIED
+  [OK  ] curriculum_caveat_recorded  
+  [OK  ] self_play_loop_valid  NOT_EXTENDED
+  [OK  ] best_agent_defaults_to_incumbent_when_nothing_qualifies  
+  [OK  ] promotion_decision_consistent  
+  [OK  ] submission_requires_teacher_non_inferiority  
+  [OK  ] no_archive_when_gated_off  
+  [OK  ] submission_uses_same_panel_teacher_field  0.5449999999999999
+  [OK  ] exactly_one_next_step  REDESIGN_FIXED_DECK_AGENT
+  [OK  ] exactly_one_highest_leverage_blocker  
+  [OK  ] python_source_bundle_validates  0 failed
+  [OK  ] validation_is_content_aware_not_existence_based  hashes recomputed, aggregates rebuilt from raw games, budgets recounted, curriculum lock re-hashed
+
+ALL_OK = True (91 checks, 0 failed)

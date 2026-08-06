@@ -1,0 +1,119 @@
+{
+  "probe_id": "P17",
+  "name": "final_gameplay",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "candidates": 6,
+    "raw_rows": 2400,
+    "scored_rows": 2400,
+    "incomplete_rows": 0,
+    "aggregate_mismatches": [],
+    "aggregates_recompute_exactly": true,
+    "all_candidates_same_schedule": true,
+    "games_per_candidate": {
+      "official_mega_lucario": 400,
+      "m03_curriculum_policy": 400,
+      "m04_guided_search": 400,
+      "m04_guided_ordering_only": 400,
+      "m01_heuristic_search": 400,
+      "m02_distilled_policy": 400
+    },
+    "ranking": [
+      {
+        "candidate_id": "official_mega_lucario",
+        "overall_rate": 0.58,
+        "overall_ci": [
+          0.5311,
+          0.6274
+        ],
+        "worst_matchup": "mega_abomasnow",
+        "worst_matchup_rate": 0.47
+      },
+      {
+        "candidate_id": "m03_curriculum_policy",
+        "overall_rate": 0.2475,
+        "overall_ci": [
+          0.2077,
+          0.2921
+        ],
+        "worst_matchup": "mega_abomasnow",
+        "worst_matchup_rate": 0.16
+      },
+      {
+        "candidate_id": "m04_guided_search",
+        "overall_rate": 0.215,
+        "overall_ci": [
+          0.1776,
+          0.2579
+        ],
+        "worst_matchup": "mega_abomasnow",
+        "worst_matchup_rate": 0.15
+      },
+      {
+        "candidate_id": "m04_guided_ordering_only",
+        "overall_rate": 0.2125,
+        "overall_ci": [
+          0.1752,
+          0.2552
+        ],
+        "worst_matchup": "dragapult",
+        "worst_matchup_rate": 0.12
+      },
+      {
+        "candidate_id": "m01_heuristic_search",
+        "overall_rate": 0.21,
+        "overall_ci": [
+          0.1729,
+          0.2526
+        ],
+        "worst_matchup": "dragapult",
+        "worst_matchup_rate": 0.14
+      },
+      {
+        "candidate_id": "m02_distilled_policy",
+        "overall_rate": 0.175,
+        "overall_ci": [
+          0.1409,
+          0.2153
+        ],
+        "worst_matchup": "dragapult",
+        "worst_matchup_rate": 0.12
+      }
+    ],
+    "ranking_rule": "overall_rate desc, then worst_matchup_rate desc (pre-registered)",
+    "baseline_override_analysis": {
+      "m01_heuristic_search": {
+        "games": 400,
+        "low_override_mean_change_rate": 0.2052,
+        "low_override_win_rate": 0.195,
+        "high_override_mean_change_rate": 0.3319,
+        "high_override_win_rate": 0.225,
+        "overriding_more_helps": true
+      },
+      "m04_guided_ordering_only": {
+        "games": 400,
+        "low_override_mean_change_rate": 0.2186,
+        "low_override_win_rate": 0.175,
+        "high_override_mean_change_rate": 0.3511,
+        "high_override_win_rate": 0.25,
+        "overriding_more_helps": true
+      },
+      "m04_guided_search": {
+        "games": 400,
+        "low_override_mean_change_rate": 0.163,
+        "low_override_win_rate": 0.165,
+        "high_override_mean_change_rate": 0.3791,
+        "high_override_win_rate": 0.265,
+        "overriding_more_helps": true
+      }
+    }
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/final_panel/raw_games.jsonl.gz",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/final_panel/final_panel_results.json"
+  ]
+}

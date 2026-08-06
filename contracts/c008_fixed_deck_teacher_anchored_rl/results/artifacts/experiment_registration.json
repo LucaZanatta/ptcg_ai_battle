@@ -1,0 +1,170 @@
+{
+  "contract": "c008_fixed_deck_teacher_anchored_rl",
+  "frozen_before_training": true,
+  "dependencies": {
+    "c005_final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+    "c006_final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+    "c007_final_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+    "c008_initial_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+    "teacher_id": "dragapult",
+    "deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+    "frozen_teacher_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+    "v2a_checkpoint_sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+    "teacher_submission_ref": "54948560"
+  },
+  "fixed_deck": "exact c005 Dragapult deck for every arm/checkpoint/eval/package (immutable)",
+  "architecture": {
+    "policy": "cg.rl_policy (c007 V2-A trunk + value head + STOP logit)",
+    "param_count": 562819,
+    "torch_free_numpy": true,
+    "value_head_initialized_separately": true
+  },
+  "action_decoder_semantics": {
+    "step": "one non-forced selection (\u00a79.1); forced (n<=1 / maxCount==0 / min==max==n) bypass, no transition",
+    "single_choice": "masked categorical (illegal prob exactly 0)",
+    "fixed_multiselect": "sequential masked sampling without replacement (k=min=max picks)",
+    "variable_multiselect": "sequential masked sampling + learned STOP logit; up to maxCount picks",
+    "log_prob": "sum of sub-step masked log-probs (act()==evaluate() verified)",
+    "ordered": "not observed in-deck; if ever observed -> BLOCK (\u00a79.5), never routed silently to teacher",
+    "reward_timing": "consecutive trainable steps treated as adjacent for gamma-discounting (forced steps carry no decision value)",
+    "eval_mode": "greedy (argmax) \u2014 matches deployed inference; rollouts sample stochastically"
+  },
+  "reward": {
+    "win": 1,
+    "draw": 0,
+    "loss": -1,
+    "intermediate": 0,
+    "shaping": "none (\u00a79.6)"
+  },
+  "ppo": {
+    "gamma": 0.997,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "value_coef": 0.5,
+    "entropy_coef": {
+      "start": 0.01,
+      "end": 0.002,
+      "schedule": "linear over budget"
+    },
+    "max_grad_norm": 0.5,
+    "epochs_per_rollout": 4,
+    "target_rollout_games": 128,
+    "min_trainable_decisions_per_update": 8192,
+    "rollout_rule": "collect until >=128 games AND >=8192 trainable decisions",
+    "minibatch": 512,
+    "optimizer": "AdamW",
+    "weight_decay": 1e-05,
+    "lr": {
+      "R0": 0.0003,
+      "R1": 0.0001,
+      "R2": 0.0001
+    },
+    "advantage_normalization": "per update",
+    "value_clipping": true,
+    "mixed_precision": "disabled (numpy float64)"
+  },
+  "r2_anchors": {
+    "teacher_replay": {
+      "loss": "masked NLL of teacher action on c007 TRAIN split only (never validation/test)",
+      "minibatch": 256,
+      "coef_schedule": "0-20%:0.50; 20-50%:0.50->0.15; 50-80%:0.15->0.05; 80-100%:0.05"
+    },
+    "frozen_reference_kl": {
+      "anchor": "frozen initial V2-A policy, first-step masked distribution",
+      "coef_schedule": "0-20%:0.05; 20-60%:0.05->0.01; 60-100%:0.01"
+    },
+    "on_policy_teacher_action": "DISABLED \u2014 synchronized instrumented-teacher shadow after divergent RL actions is not proven; R2 uses offline replay + reference KL only (\u00a710.3)"
+  },
+  "opponent_population": {
+    "with_lagged": {
+      "teacher_dragapult": 0.35,
+      "mega_lucario": 0.2,
+      "iono": 0.2,
+      "lagged_selfplay": 0.15,
+      "control": 0.1
+    },
+    "before_lagged": "15% redistributed proportionally across teacher/lucario/iono (-> 0.42/0.24/0.24, control 0.10)",
+    "seat_balance": "50% seat0 / 50% seat1",
+    "lagged_selfplay": "after 5,000 games freeze every 5,000; keep 3 most recent; sample uniformly; never the current mutable params"
+  },
+  "held_out_opponent": "Mega Abomasnow \u2014 excluded from training, used only in final test eval after checkpoint selection; never influences selection",
+  "seeds": {
+    "R0": [
+      101,
+      202
+    ],
+    "R1": [
+      101,
+      202
+    ],
+    "R2": [
+      101,
+      202,
+      303
+    ]
+  },
+  "budgets": {
+    "R0": 10000,
+    "R1": 30000,
+    "R2": 50000,
+    "max_total": 230000,
+    "note": "maxima; early-stop gates bound actual compute; screening games are EVALUATION and do NOT consume the training-game budget"
+  },
+  "screening": {
+    "cadence_games": "1000, 2500, 5000, then every 5000",
+    "per_checkpoint": "20 games/seat/strategic-opponent (teacher,lucario,iono) + 10 games/seat vs control = 140 games",
+    "evaluate_frozen_checkpoints": true
+  },
+  "checkpoint_selection": {
+    "validation_blend": "0.40*teacher + 0.25*lucario + 0.25*iono + 0.10*control",
+    "seed_winner_tiebreak": [
+      "highest blend",
+      "lower worst-strategic",
+      "lower fallback",
+      "lower P99",
+      "earlier ckpt"
+    ],
+    "arm_statistic": "median across seeds; representative checkpoint by same rule; all seeds reported",
+    "abomasnow_excluded_from_selection": true
+  },
+  "early_stop": {
+    "R0": [
+      "control<0.60 at 2500",
+      "teacher<0.15 AND lucario<0.25 AND iono<0.25 at 5000",
+      "no blend improvement >2pp over two consecutive evals"
+    ],
+    "R1_R2": [
+      "teacher<0.20 AND strategic<0.30 at 10000",
+      "teacher<0.35 AND strategic<0.40 at 20000",
+      "after 20000: no blend improvement >1.5pp over three consecutive evals"
+    ],
+    "catastrophic": [
+      "invalid>0 after one reproducible defect",
+      "attributable crash/timeout >0.1%",
+      "non-finite params/losses",
+      "entropy collapse with no recovery",
+      "checkpoint corruption"
+    ]
+  },
+  "final_evaluation": {
+    "reliability": "40 games/seat vs >=3 strategic opponents; zero invalid/exception/timeout; latency P50/95/99/max",
+    "teacher_head_to_head": "200/seat (400) extend by 100 to 800; win=1/draw=.5/loss=0; one-sided 95% LB >= 0.47 to pass",
+    "strategic_field": "Lucario, Iono, held-out Abomasnow, Dragapult mirror; control separate; both seats",
+    "major_regression": "candidate point <= teacher point - 0.07 AND bootstrap P(regression) >= 90% (blocks submission)",
+    "reproducible_improvement": "global field > teacher with 90% interval > 0, OR one matchup >=+5pp @ >=90% with non-inferiority pass and no major regression"
+  },
+  "submission_gate": "SUBMISSION_D=SUBMIT iff BEST_RL_ARM!=NONE AND non-inferiority passes AND reproducible improvement exists AND no major regression AND reliability passes AND package/size/runtime pass. Never submit for rising training reward / beating another RL arm / offline agreement / a lucky seed.",
+  "kaggle_protocol": {
+    "description": "c008 Submission D: <BEST_RL_ARM> fixed deck <sha>",
+    "dup_guard": "unique description + archive sha256",
+    "poll": "30s x 20; pending allowed",
+    "teacher_refresh_ref": "54948560"
+  },
+  "measured_timing": {
+    "ppo_update_8192x4_omp8_s": 15.8,
+    "toy_positive_control_learned": true,
+    "smoke_rollout_s": 2.6,
+    "note": "RL is inherently non-reproducible (engine random_device + sampling); multi-threaded BLAS used for updates. Honest-negative early-stop path estimated ~4-6h across all arms/seeds."
+  },
+  "restart_policy": "one complete restart only for a documented implementation defect affecting all comparable runs"
+}

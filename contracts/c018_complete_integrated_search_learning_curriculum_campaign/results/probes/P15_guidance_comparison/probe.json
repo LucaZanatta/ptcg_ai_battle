@@ -1,0 +1,620 @@
+{
+  "probe_id": "P15",
+  "name": "guidance_comparison",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "roots": 301,
+    "same_roots": true,
+    "order_changed": 215,
+    "action_changed": 133,
+    "action_change_rate": 0.4419,
+    "leaf_rank_correlation": -0.0087,
+    "method": "both valuations computed on identical successors inside one search tree; no separate guided/unguided playthroughs",
+    "sample": [
+      {
+        "n_candidates": 2,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.0,
+          0.0
+        ],
+        "learned_values": [
+          -0.971375,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          1
+        ],
+        "order_differs_from_natural": false
+      },
+      {
+        "n_candidates": 3,
+        "heuristic_pick": 0,
+        "learned_pick": 1,
+        "changed": true,
+        "heuristic_values": [
+          0.024,
+          0.024,
+          0.024
+        ],
+        "learned_values": [
+          -0.230028,
+          -0.259988,
+          -0.378057
+        ],
+        "order_head": [
+          1,
+          0,
+          2
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 3,
+        "heuristic_pick": 0,
+        "learned_pick": 1,
+        "changed": true,
+        "heuristic_values": [
+          0.01,
+          0.034,
+          0.01
+        ],
+        "learned_values": [
+          -0.919833,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          1
+        ],
+        "order_differs_from_natural": false
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.034,
+          0.01,
+          0.034,
+          0.034
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 1,
+        "learned_pick": 0,
+        "changed": true,
+        "heuristic_values": [
+          0.024,
+          0.034,
+          0.034,
+          0.034
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          5,
+          2,
+          1,
+          3
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.048,
+          0.048,
+          0.024,
+          0.024
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 1,
+        "learned_pick": 0,
+        "changed": true,
+        "heuristic_values": [
+          0.048,
+          0.072,
+          0.048,
+          0.048
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.048,
+          0.048,
+          0.048,
+          0.048
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          7,
+          13,
+          2
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 3,
+        "learned_pick": 0,
+        "changed": true,
+        "heuristic_values": [
+          0.058,
+          0.058,
+          0.058,
+          0.072
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          4,
+          3,
+          6,
+          2
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 1,
+        "learned_pick": 0,
+        "changed": true,
+        "heuristic_values": [
+          0.048,
+          0.082,
+          0.082,
+          0.082
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 1,
+        "learned_pick": 0,
+        "changed": true,
+        "heuristic_values": [
+          -0.014,
+          0.02,
+          -0.014,
+          -0.004
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 3,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.01,
+          0.01,
+          0.01
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          2,
+          1
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 1,
+        "learned_pick": 0,
+        "changed": true,
+        "heuristic_values": [
+          0.01,
+          0.02,
+          -0.014,
+          0.01
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 1,
+        "learned_pick": 0,
+        "changed": true,
+        "heuristic_values": [
+          0.02,
+          0.034,
+          0.01,
+          0.02
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          19,
+          0,
+          5,
+          10
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 3,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          1,
+          2
+        ],
+        "order_differs_from_natural": false
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          14,
+          5,
+          16,
+          6
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          1,
+          0,
+          3,
+          4
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          13,
+          15,
+          12,
+          6
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 3,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          1,
+          2
+        ],
+        "order_differs_from_natural": false
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          12,
+          15,
+          13,
+          14
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.044,
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          13,
+          1,
+          0,
+          6
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.160667,
+          0.160667,
+          0.160667,
+          0.160667
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          1,
+          0,
+          7,
+          6
+        ],
+        "order_differs_from_natural": true
+      },
+      {
+        "n_candidates": 2,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.160667,
+          0.034
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          1
+        ],
+        "order_differs_from_natural": false
+      },
+      {
+        "n_candidates": 4,
+        "heuristic_pick": 0,
+        "learned_pick": 0,
+        "changed": false,
+        "heuristic_values": [
+          0.054,
+          0.044,
+          0.044,
+          0.044
+        ],
+        "learned_values": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "order_head": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "order_differs_from_natural": true
+      }
+    ]
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/guidance_comparison.json"
+  ]
+}

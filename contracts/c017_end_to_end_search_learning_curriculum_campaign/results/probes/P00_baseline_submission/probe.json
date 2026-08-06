@@ -1,0 +1,50 @@
+{
+  "probe_id": "P00_baseline_submission",
+  "status": "PASS",
+  "reverification": {
+    "checks": {
+      "main_hash_matches_contract_expected": true,
+      "deck_hash_matches_contract_expected": true,
+      "main_hash_matches_c016_manifest": true,
+      "deck_hash_matches_c016_manifest": true,
+      "fidelity_is_exact": true,
+      "permission_allows_submission": true,
+      "deck_is_60_cards": true
+    },
+    "all_pass": true,
+    "main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+    "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+    "attribution": "Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck (Kiyota)",
+    "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-mega-lucario-ex-deck",
+    "c016_measured": {
+      "vs_dragapult_confirm": 0.52,
+      "field_mean_confirm": 0.614,
+      "note": "c016 independent-seed confirmation, 400/600 games"
+    }
+  },
+  "package": {
+    "sha256": "44416b1c1056063b5f10ac5eabe003d6d88cc4e82c0d6869e7f286331d7f9e66",
+    "bytes": 498392,
+    "n_members": 10
+  },
+  "clean_extraction_validation": {
+    "games": 55,
+    "score_rates": {
+      "dragapult": 0.8,
+      "__safe__": 0.76
+    },
+    "worst_p99_ms": 1.1619510187301785,
+    "hard_gates": {
+      "at_least_50_games": true,
+      "zero_invalid_actions": true,
+      "zero_exceptions": true,
+      "zero_timeouts": true,
+      "all_completed": true,
+      "both_seats": true,
+      "entrypoint_and_deck_verified": true
+    },
+    "all_gates_pass": true
+  },
+  "trust_status": "TRUSTED",
+  "tainted_by": []
+}

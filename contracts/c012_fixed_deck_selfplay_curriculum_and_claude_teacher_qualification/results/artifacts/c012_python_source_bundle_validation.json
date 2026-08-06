@@ -1,0 +1,99 @@
+{
+  "all_ok": true,
+  "n_checks": 18,
+  "n_failed": 0,
+  "bundle": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/c012_python_source_bundle.zip",
+  "sha256": "60c61b5290978ef3353ac1c1571da8782ebadc9be96e0d8fd58fbbe3fb26dcf3",
+  "checks": [
+    {
+      "check": "bundle_exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "archive_sha256_matches_recorded",
+      "ok": true,
+      "detail": "60c61b5290978ef3353ac1c1571da8782ebadc9be96e0d8fd58fbbe3fb26dcf3"
+    },
+    {
+      "check": "archive_not_corrupt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "manifest_non_empty",
+      "ok": true,
+      "detail": "197"
+    },
+    {
+      "check": "every_manifest_hash_verifies_after_extraction",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_tracked_python_files_present",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_executed_entrypoints_present",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_c011_tests_present",
+      "ok": true,
+      "detail": "0 tests"
+    },
+    {
+      "check": "no_forbidden_secret_filenames",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no_excluded_artifacts",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no_checkpoints_or_datasets",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "contains_environment_pip_freeze.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_environment_machine.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_git_c012.patch",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_inventory_import_graph.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_inventory_entrypoints.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_inventory_manifest.csv",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "contains_contract_CONTRACT.md",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

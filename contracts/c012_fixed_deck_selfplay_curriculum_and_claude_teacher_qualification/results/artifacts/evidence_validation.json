@@ -1,0 +1,465 @@
+{
+  "contract": "c012",
+  "all_ok": true,
+  "n_checks": 91,
+  "n_failed": 0,
+  "total_completed_training_games": 181184,
+  "evaluation_games": 30260,
+  "checks": [
+    {
+      "check": "dependency_verification_all_ok",
+      "ok": true,
+      "detail": "0 failed"
+    },
+    {
+      "check": "all_c011_checkpoints_hash_verified",
+      "ok": true,
+      "detail": "62"
+    },
+    {
+      "check": "trainer_state_schema_covers_active_generator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "trainer_state_tracks_all_three_game_counters",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "c011_repair_report_present_and_complete",
+      "ok": true,
+      "detail": "COMPLETE"
+    },
+    {
+      "check": "c011_candidate_registry_non_trivial",
+      "ok": true,
+      "detail": "62"
+    },
+    {
+      "check": "every_promising_candidate_confirmed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "soups_validated_finite_and_legal",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "check": "combination_weights_registered_equal_only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "incumbent_hash_verifies_on_disk",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "elite_pool_members_hash_verify",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "check": "elite_pool_is_lineage_diverse",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "curriculum_registry_hash_matches_lock",
+      "ok": true,
+      "detail": "8988ed8fb2ab4c9f"
+    },
+    {
+      "check": "overlap_verdict_valid",
+      "ok": true,
+      "detail": "SUPPORTED"
+    },
+    {
+      "check": "overlap_backed_by_multiple_measures",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_711_completed_games_match_raw",
+      "ok": true,
+      "detail": "30000 vs 30000"
+    },
+    {
+      "check": "P0_711_within_registered_maximum",
+      "ok": true,
+      "detail": "30000"
+    },
+    {
+      "check": "P0_711_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_711_every_game_has_curriculum_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_711_curriculum_registry_hash_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_711_every_checkpoint_has_trainer_state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_711_checkpoint_hashes_verify",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_722_completed_games_match_raw",
+      "ok": true,
+      "detail": "30320 vs 30320"
+    },
+    {
+      "check": "P0_722_within_registered_maximum",
+      "ok": true,
+      "detail": "30320"
+    },
+    {
+      "check": "P0_722_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_722_every_game_has_curriculum_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_722_curriculum_registry_hash_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_722_every_checkpoint_has_trainer_state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_722_checkpoint_hashes_verify",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_733_completed_games_match_raw",
+      "ok": true,
+      "detail": "30336 vs 30336"
+    },
+    {
+      "check": "P0_733_within_registered_maximum",
+      "ok": true,
+      "detail": "30336"
+    },
+    {
+      "check": "P0_733_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_733_every_game_has_curriculum_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_733_curriculum_registry_hash_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_733_every_checkpoint_has_trainer_state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P0_733_checkpoint_hashes_verify",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_811_completed_games_match_raw",
+      "ok": true,
+      "detail": "30224 vs 30224"
+    },
+    {
+      "check": "P1_811_within_registered_maximum",
+      "ok": true,
+      "detail": "30224"
+    },
+    {
+      "check": "P1_811_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_811_every_game_has_curriculum_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_811_curriculum_registry_hash_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_811_every_checkpoint_has_trainer_state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_811_checkpoint_hashes_verify",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_822_completed_games_match_raw",
+      "ok": true,
+      "detail": "30048 vs 30048"
+    },
+    {
+      "check": "P1_822_within_registered_maximum",
+      "ok": true,
+      "detail": "30048"
+    },
+    {
+      "check": "P1_822_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_822_every_game_has_curriculum_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_822_curriculum_registry_hash_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_822_every_checkpoint_has_trainer_state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_822_checkpoint_hashes_verify",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_833_completed_games_match_raw",
+      "ok": true,
+      "detail": "30256 vs 30256"
+    },
+    {
+      "check": "P1_833_within_registered_maximum",
+      "ok": true,
+      "detail": "30256"
+    },
+    {
+      "check": "P1_833_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_833_every_game_has_curriculum_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_833_curriculum_registry_hash_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_833_every_checkpoint_has_trainer_state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "P1_833_checkpoint_hashes_verify",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "all_six_registered_seeds_executed",
+      "ok": true,
+      "detail": "{'P0': [711, 722, 733], 'P1': [811, 822, 833]}"
+    },
+    {
+      "check": "total_completed_games_within_hard_maximum",
+      "ok": true,
+      "detail": "181184 vs 184000"
+    },
+    {
+      "check": "no_invalid_actions_in_training",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "no_exceptions_in_training",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "evaluation_identity_all_batches_ok",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "check": "evaluation_zero_defects",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "evaluation_seat_balance_exact",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "evaluation_manifest_matches_raw",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "final_aggregates_reproduce_from_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "frozen_teacher_evaluated_on_same_panel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "benchmark_size_in_registered_range",
+      "ok": true,
+      "detail": "240"
+    },
+    {
+      "check": "benchmark_repeat_subset_in_range",
+      "ok": true,
+      "detail": "48"
+    },
+    {
+      "check": "no_benchmark_category_exceeds_25pct",
+      "ok": true,
+      "detail": "0.25"
+    },
+    {
+      "check": "every_benchmark_state_hidden_information_clean",
+      "ok": true,
+      "detail": "240/240"
+    },
+    {
+      "check": "benchmark_hash_locked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "claude_preflight_recorded",
+      "ok": true,
+      "detail": "True"
+    },
+    {
+      "check": "claude_model_explicitly_opus_and_verified",
+      "ok": true,
+      "detail": "['claude-haiku-4-5-20251001', 'claude-opus-5']"
+    },
+    {
+      "check": "claude_tools_disabled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "claude_labels_recorded",
+      "ok": true,
+      "detail": "17"
+    },
+    {
+      "check": "claude_labels_not_used_for_training",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "branching_verdict_valid",
+      "ok": true,
+      "detail": "INCONCLUSIVE"
+    },
+    {
+      "check": "no_superiority_claim_without_valid_branching",
+      "ok": true,
+      "detail": "REJECTED"
+    },
+    {
+      "check": "curriculum_result_valid",
+      "ok": true,
+      "detail": "TIED"
+    },
+    {
+      "check": "curriculum_caveat_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "self_play_loop_valid",
+      "ok": true,
+      "detail": "NOT_EXTENDED"
+    },
+    {
+      "check": "best_agent_defaults_to_incumbent_when_nothing_qualifies",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "promotion_decision_consistent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "submission_requires_teacher_non_inferiority",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no_archive_when_gated_off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "submission_uses_same_panel_teacher_field",
+      "ok": true,
+      "detail": "0.5449999999999999"
+    },
+    {
+      "check": "exactly_one_next_step",
+      "ok": true,
+      "detail": "REDESIGN_FIXED_DECK_AGENT"
+    },
+    {
+      "check": "exactly_one_highest_leverage_blocker",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "python_source_bundle_validates",
+      "ok": true,
+      "detail": "0 failed"
+    },
+    {
+      "check": "validation_is_content_aware_not_existence_based",
+      "ok": true,
+      "detail": "hashes recomputed, aggregates rebuilt from raw games, budgets recounted, curriculum lock re-hashed"
+    }
+  ]
+}

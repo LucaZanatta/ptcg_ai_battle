@@ -1,0 +1,15 @@
+c007 AC-04 teacher instrumentation parity
+============================================================
+instrumented main.py sha256: c68c0cd88ca3305626418c7a5a7c8fa7f619ea7feeb08abc49574ee6b496949d
+diff vs frozen: +12 lines, -0 lines; only_additions=True
+
+REPLAY parity: 19050 decisions over 240 games
+  frozen==instrumented: 19050/19050 (mismatch 0, exceptions 0)
+  frozen==recorded action (sanity): 19050/19050
+  parity_exact=True  meets_15000=True
+
+LIVE dual-call parity: 100 games, 8796 teacher decisions
+  mismatches=0 invalid=0 exceptions=0 completed=100
+  parity_exact=True
+
+OVERALL VALID = True  (22.0s)

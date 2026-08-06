@@ -1,0 +1,3589 @@
+=== panel selection ===
+{
+  "candidates": {
+    "C008_I0": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.19,
+          "ci95": [
+            0.12,
+            0.27
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.3,
+          "ci95": [
+            0.18,
+            0.44
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.24,
+          "ci95": [
+            0.12,
+            0.36
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.26,
+          "ci95": [
+            0.14,
+            0.38
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.19,
+      "strategic_field": 0.26666666666666666,
+      "composite": 0.23700000000000002,
+      "candidate_type": null
+    },
+    "C010_INCUMBENT": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.28,
+          "ci95": [
+            0.2,
+            0.37
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.16,
+          "ci95": [
+            0.06,
+            0.26
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.28,
+      "strategic_field": 0.3266666666666667,
+      "composite": 0.32100000000000006,
+      "candidate_type": null
+    },
+    "C012_SOUP_622_633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.41,
+          "ci95": [
+            0.32,
+            0.51
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.3,
+          "ci95": [
+            0.18,
+            0.44
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.36,
+          "ci95": [
+            0.22,
+            0.5
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.41,
+      "strategic_field": 0.37333333333333335,
+      "composite": 0.391,
+      "candidate_type": null
+    },
+    "LOGIT_S611+S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.29,
+          "ci95": [
+            0.2,
+            0.38
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.12,
+          "ci95": [
+            0.04,
+            0.22
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.34,
+          "ci95": [
+            0.22,
+            0.48
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.29,
+      "strategic_field": 0.3066666666666667,
+      "composite": 0.311,
+      "candidate_type": null
+    },
+    "LOGIT_S611+S622": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.36,
+          "ci95": [
+            0.27,
+            0.46
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.26,
+          "ci95": [
+            0.14,
+            0.38
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.5,
+          "ci95": [
+            0.36,
+            0.64
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.36,
+      "strategic_field": 0.4066666666666667,
+      "composite": 0.4,
+      "candidate_type": null
+    },
+    "LOGIT_S611+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.28,
+          "ci95": [
+            0.2,
+            0.37
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.32,
+          "ci95": [
+            0.2,
+            0.46
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.32,
+          "ci95": [
+            0.2,
+            0.46
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.28,
+      "strategic_field": 0.35333333333333333,
+      "composite": 0.329,
+      "candidate_type": null
+    },
+    "LOGIT_S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31,
+          "ci95": [
+            0.22,
+            0.4
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.5,
+          "ci95": [
+            0.36,
+            0.64
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.16,
+          "ci95": [
+            0.06,
+            0.26
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.31,
+      "strategic_field": 0.35333333333333333,
+      "composite": 0.348,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711+P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.35,
+          "ci95": [
+            0.26,
+            0.44
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.16,
+          "ci95": [
+            0.06,
+            0.26
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.35,
+      "strategic_field": 0.3266666666666667,
+      "composite": 0.349,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.27,
+          "ci95": [
+            0.18,
+            0.36
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.18,
+          "ci95": [
+            0.08,
+            0.3
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.44,
+          "ci95": [
+            0.3,
+            0.58
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.27,
+      "strategic_field": 0.36000000000000004,
+      "composite": 0.337,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3,
+          "ci95": [
+            0.21,
+            0.39
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.32,
+          "ci95": [
+            0.2,
+            0.46
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.3,
+          "ci95": [
+            0.18,
+            0.44
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.3,
+      "strategic_field": 0.34,
+      "composite": 0.323,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.35,
+          "ci95": [
+            0.26,
+            0.44
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.3,
+          "ci95": [
+            0.18,
+            0.44
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.1,
+            0.32
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.35,
+      "strategic_field": 0.30666666666666664,
+      "composite": 0.33499999999999996,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.25,
+          "ci95": [
+            0.17,
+            0.34
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.1,
+            0.32
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.34,
+          "ci95": [
+            0.22,
+            0.48
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.25,
+      "strategic_field": 0.32,
+      "composite": 0.29900000000000004,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.27,
+          "ci95": [
+            0.19,
+            0.36
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.28,
+          "ci95": [
+            0.16,
+            0.4
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.28,
+          "ci95": [
+            0.16,
+            0.42
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.27,
+      "strategic_field": 0.32666666666666666,
+      "composite": 0.30400000000000005,
+      "candidate_type": null
+    },
+    "P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.39,
+          "ci95": [
+            0.3,
+            0.49
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.28,
+          "ci95": [
+            0.16,
+            0.4
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.39,
+      "strategic_field": 0.4000000000000001,
+      "composite": 0.405,
+      "candidate_type": null
+    },
+    "P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.36,
+          "ci95": [
+            0.27,
+            0.45
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.28,
+          "ci95": [
+            0.16,
+            0.4
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.28,
+          "ci95": [
+            0.16,
+            0.42
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.34,
+          "ci95": [
+            0.22,
+            0.48
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.36,
+      "strategic_field": 0.30000000000000004,
+      "composite": 0.327,
+      "candidate_type": null
+    },
+    "P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.33,
+          "ci95": [
+            0.24,
+            0.42
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.52,
+          "ci95": [
+            0.38,
+            0.66
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.26,
+          "ci95": [
+            0.14,
+            0.38
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.33,
+      "strategic_field": 0.39333333333333337,
+      "composite": 0.375,
+      "candidate_type": null
+    },
+    "PROB_S611+S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.37,
+          "ci95": [
+            0.28,
+            0.47
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.32,
+          "ci95": [
+            0.2,
+            0.46
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.24,
+          "ci95": [
+            0.12,
+            0.36
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.37,
+      "strategic_field": 0.32,
+      "composite": 0.348,
+      "candidate_type": null
+    },
+    "PROB_S611+S622": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.29,
+          "ci95": [
+            0.2,
+            0.38
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.52,
+          "ci95": [
+            0.38,
+            0.66
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.1,
+            0.32
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.44,
+          "ci95": [
+            0.3,
+            0.58
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.29,
+      "strategic_field": 0.38666666666666666,
+      "composite": 0.36,
+      "candidate_type": null
+    },
+    "PROB_S611+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.27,
+          "ci95": [
+            0.19,
+            0.36
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.38,
+          "ci95": [
+            0.24,
+            0.52
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.1,
+            0.32
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.48,
+          "ci95": [
+            0.34,
+            0.62
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.27,
+      "strategic_field": 0.35333333333333333,
+      "composite": 0.334,
+      "candidate_type": null
+    },
+    "PROB_S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.28,
+          "ci95": [
+            0.19,
+            0.37
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.44,
+          "ci95": [
+            0.3,
+            0.58
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.3,
+          "ci95": [
+            0.18,
+            0.42
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.38,
+          "ci95": [
+            0.24,
+            0.52
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.28,
+      "strategic_field": 0.37333333333333335,
+      "composite": 0.34,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711+P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31,
+          "ci95": [
+            0.22,
+            0.4
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.48,
+          "ci95": [
+            0.34,
+            0.62
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.34,
+          "ci95": [
+            0.22,
+            0.48
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.36,
+          "ci95": [
+            0.22,
+            0.5
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.31,
+      "strategic_field": 0.3933333333333333,
+      "composite": 0.361,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.23,
+          "ci95": [
+            0.15,
+            0.31
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.16,
+          "ci95": [
+            0.06,
+            0.26
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.36,
+          "ci95": [
+            0.22,
+            0.5
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.23,
+      "strategic_field": 0.31333333333333335,
+      "composite": 0.29000000000000004,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.34,
+          "ci95": [
+            0.25,
+            0.44
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.22,
+          "ci95": [
+            0.12,
+            0.34
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.32,
+          "ci95": [
+            0.2,
+            0.46
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.34,
+      "strategic_field": 0.32,
+      "composite": 0.333,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.28,
+          "ci95": [
+            0.2,
+            0.37
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.44,
+          "ci95": [
+            0.3,
+            0.58
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.24,
+          "ci95": [
+            0.12,
+            0.36
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.28,
+      "strategic_field": 0.36000000000000004,
+      "composite": 0.336,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.33,
+          "ci95": [
+            0.24,
+            0.42
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.12,
+          "ci95": [
+            0.04,
+            0.22
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.43,
+          "ci95": [
+            0.3,
+            0.57
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.33,
+      "strategic_field": 0.3233333333333333,
+      "composite": 0.3415,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3,
+          "ci95": [
+            0.21,
+            0.39
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.14,
+          "ci95": [
+            0.06,
+            0.24
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.3,
+      "strategic_field": 0.32,
+      "composite": 0.326,
+      "candidate_type": null
+    },
+    "S611": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.32,
+          "ci95": [
+            0.23,
+            0.41
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.48,
+          "ci95": [
+            0.34,
+            0.62
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.18,
+          "ci95": [
+            0.08,
+            0.3
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.3,
+          "ci95": [
+            0.18,
+            0.44
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.32,
+      "strategic_field": 0.32,
+      "composite": 0.326,
+      "candidate_type": null
+    },
+    "S622": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.33,
+          "ci95": [
+            0.24,
+            0.42
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.52,
+          "ci95": [
+            0.38,
+            0.66
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.24,
+          "ci95": [
+            0.12,
+            0.36
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.33,
+      "strategic_field": 0.3866666666666667,
+      "composite": 0.372,
+      "candidate_type": null
+    },
+    "S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.25,
+          "ci95": [
+            0.17,
+            0.34
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.38,
+          "ci95": [
+            0.24,
+            0.52
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.36,
+          "ci95": [
+            0.24,
+            0.5
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.38,
+          "ci95": [
+            0.24,
+            0.52
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.25,
+      "strategic_field": 0.37333333333333335,
+      "composite": 0.325,
+      "candidate_type": null
+    },
+    "SOUP13_P0_711+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31,
+          "ci95": [
+            0.22,
+            0.4
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.38,
+          "ci95": [
+            0.24,
+            0.52
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.34,
+          "ci95": [
+            0.22,
+            0.48
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.31,
+      "strategic_field": 0.37333333333333335,
+      "composite": 0.35100000000000003,
+      "candidate_type": null
+    },
+    "SOUP13_P0_711+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.32,
+          "ci95": [
+            0.23,
+            0.41
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.1,
+            0.32
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.34,
+          "ci95": [
+            0.22,
+            0.48
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.32,
+      "strategic_field": 0.32,
+      "composite": 0.327,
+      "candidate_type": null
+    },
+    "SOUP13_P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.34,
+          "ci95": [
+            0.25,
+            0.43
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.56,
+          "ci95": [
+            0.42,
+            0.7
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.36,
+          "ci95": [
+            0.24,
+            0.5
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.34,
+      "strategic_field": 0.45999999999999996,
+      "composite": 0.41700000000000004,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P0_711+P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.29,
+          "ci95": [
+            0.2,
+            0.38
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.28,
+            0.56
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.44,
+          "ci95": [
+            0.3,
+            0.58
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.29,
+      "strategic_field": 0.42,
+      "composite": 0.366,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3,
+          "ci95": [
+            0.21,
+            0.39
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.26,
+          "ci95": [
+            0.14,
+            0.38
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.5,
+          "ci95": [
+            0.36,
+            0.64
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.3,
+      "strategic_field": 0.4066666666666667,
+      "composite": 0.376,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.38,
+          "ci95": [
+            0.29,
+            0.48
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.1,
+            0.32
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.26,
+            0.54
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.38,
+      "strategic_field": 0.3333333333333333,
+      "composite": 0.36200000000000004,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.32,
+          "ci95": [
+            0.23,
+            0.42
+          ],
+          "n": 100
+        },
+        "iono": {
+          "point": 0.26,
+          "ci95": [
+            0.14,
+            0.38
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.3,
+          "ci95": [
+            0.18,
+            0.4204999999999927
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 250,
+      "teacher_score": 0.32,
+      "strategic_field": 0.34,
+      "composite": 0.34,
+      "candidate_type": null
+    },
+    "T_teacher": {
+      "per_opponent": {
+        "iono": {
+          "point": 0.72,
+          "ci95": [
+            0.6,
+            0.84
+          ],
+          "n": 50
+        },
+        "mega_abomasnow": {
+          "point": 0.46,
+          "ci95": [
+            0.32,
+            0.6
+          ],
+          "n": 50
+        },
+        "mega_lucario": {
+          "point": 0.6,
+          "ci95": [
+            0.46,
+            0.74
+          ],
+          "n": 50
+        }
+      },
+      "n_games": 150,
+      "teacher_score": null,
+      "strategic_field": 0.5933333333333333,
+      "composite": null,
+      "candidate_type": null
+    }
+  },
+  "unscored_by_defect": {}
+}
+=== panel confirmation ===
+{
+  "candidates": {
+    "C008_I0": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.21,
+          "ci95": [
+            0.16666666666666666,
+            0.25666666666666665
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.34,
+          "ci95": [
+            0.26,
+            0.42
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2866666666666667,
+          "ci95": [
+            0.21333333333333335,
+            0.36
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.32666666666666666,
+          "ci95": [
+            0.25333333333333335,
+            0.4
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.21,
+      "strategic_field": 0.31777777777777777,
+      "composite": 0.27666666666666667,
+      "candidate_type": null
+    },
+    "C010_INCUMBENT": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.30333333333333334,
+          "ci95": [
+            0.25,
+            0.35333333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.3466666666666667,
+          "ci95": [
+            0.2733333333333333,
+            0.4266666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.14,
+            0.26666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.44,
+          "ci95": [
+            0.36,
+            0.52
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.30333333333333334,
+      "strategic_field": 0.32888888888888884,
+      "composite": 0.33066666666666666,
+      "candidate_type": null
+    },
+    "C012_SOUP_622_633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.35333333333333333,
+          "ci95": [
+            0.3,
+            0.4066666666666667
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4266666666666667,
+          "ci95": [
+            0.3466666666666667,
+            0.5066666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2,
+          "ci95": [
+            0.14,
+            0.26666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.37333333333333335,
+          "ci95": [
+            0.29333333333333333,
+            0.4533333333333333
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.35333333333333333,
+      "strategic_field": 0.3333333333333333,
+      "composite": 0.35,
+      "candidate_type": null
+    },
+    "LOGIT_S611+S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3466666666666667,
+          "ci95": [
+            0.29333333333333333,
+            0.4
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.34,
+            0.5
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.23333333333333334,
+          "ci95": [
+            0.16666666666666666,
+            0.3
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.38,
+          "ci95": [
+            0.3,
+            0.46
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3466666666666667,
+      "strategic_field": 0.3444444444444445,
+      "composite": 0.3526666666666667,
+      "candidate_type": null
+    },
+    "LOGIT_S611+S622": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.36333333333333334,
+          "ci95": [
+            0.31,
+            0.42
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.43333333333333335,
+          "ci95": [
+            0.35333333333333333,
+            0.5133333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.3,
+          "ci95": [
+            0.22666666666666666,
+            0.37333333333333335
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.34,
+          "ci95": [
+            0.26666666666666666,
+            0.42
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.36333333333333334,
+      "strategic_field": 0.3577777777777778,
+      "composite": 0.362,
+      "candidate_type": null
+    },
+    "LOGIT_S611+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31,
+          "ci95": [
+            0.25666666666666665,
+            0.36333333333333334
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.5066666666666667,
+          "ci95": [
+            0.4266666666666667,
+            0.5866666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.25333333333333335,
+          "ci95": [
+            0.18666666666666668,
+            0.32666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.43333333333333335,
+          "ci95": [
+            0.35333333333333333,
+            0.5133333333333333
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31,
+      "strategic_field": 0.3977777777777778,
+      "composite": 0.3716666666666667,
+      "candidate_type": null
+    },
+    "LOGIT_S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3466666666666667,
+          "ci95": [
+            0.29333333333333333,
+            0.4
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.34,
+            0.5
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.19333333333333333,
+          "ci95": [
+            0.13333333333333333,
+            0.26
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4266666666666667,
+          "ci95": [
+            0.3466666666666667,
+            0.5066666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3466666666666667,
+      "strategic_field": 0.3466666666666667,
+      "composite": 0.3583333333333334,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711+P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3466666666666667,
+          "ci95": [
+            0.29333333333333333,
+            0.4
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.48,
+          "ci95": [
+            0.4,
+            0.56
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2733333333333333,
+          "ci95": [
+            0.2,
+            0.3466666666666667
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.42,
+          "ci95": [
+            0.34,
+            0.5
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3466666666666667,
+      "strategic_field": 0.39111111111111113,
+      "composite": 0.3806666666666667,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31,
+          "ci95": [
+            0.26,
+            0.36333333333333334
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.31333333333333335,
+          "ci95": [
+            0.24,
+            0.38666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.32,
+            0.48
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31,
+      "strategic_field": 0.3866666666666667,
+      "composite": 0.36033333333333334,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3233333333333333,
+          "ci95": [
+            0.27,
+            0.37666666666666665
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.5,
+          "ci95": [
+            0.42,
+            0.58
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.23333333333333334,
+          "ci95": [
+            0.16666666666666666,
+            0.3
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.41,
+          "ci95": [
+            0.3333333333333333,
+            0.49
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3233333333333333,
+      "strategic_field": 0.3811111111111111,
+      "composite": 0.36683333333333334,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31333333333333335,
+          "ci95": [
+            0.2633333333333333,
+            0.36666666666666664
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4666666666666667,
+          "ci95": [
+            0.38666666666666666,
+            0.5466666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.25333333333333335,
+          "ci95": [
+            0.18666666666666668,
+            0.32666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.36666666666666664,
+          "ci95": [
+            0.2931666666666668,
+            0.44666666666666666
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31333333333333335,
+      "strategic_field": 0.3622222222222222,
+      "composite": 0.3483333333333334,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.2916666666666667,
+          "ci95": [
+            0.24166666666666667,
+            0.3433333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4866666666666667,
+          "ci95": [
+            0.4066666666666667,
+            0.5666666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.23333333333333334,
+          "ci95": [
+            0.16666666666666666,
+            0.3
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.3,
+          "ci95": [
+            0.22666666666666666,
+            0.37333333333333335
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.2916666666666667,
+      "strategic_field": 0.34,
+      "composite": 0.324,
+      "candidate_type": null
+    },
+    "LOGIT_SOUP+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31333333333333335,
+          "ci95": [
+            0.2633333333333333,
+            0.36666666666666664
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44,
+          "ci95": [
+            0.36,
+            0.52
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.30666666666666664,
+          "ci95": [
+            0.23333333333333334,
+            0.38
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.39,
+          "ci95": [
+            0.31333333333333335,
+            0.4666666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31333333333333335,
+      "strategic_field": 0.3788888888888889,
+      "composite": 0.35683333333333334,
+      "candidate_type": null
+    },
+    "P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3466666666666667,
+          "ci95": [
+            0.29333333333333333,
+            0.4
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.48,
+          "ci95": [
+            0.4,
+            0.56
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.32666666666666666,
+          "ci95": [
+            0.25333333333333335,
+            0.4
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.38666666666666666,
+          "ci95": [
+            0.30666666666666664,
+            0.4666666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3466666666666667,
+      "strategic_field": 0.3977777777777778,
+      "composite": 0.38033333333333336,
+      "candidate_type": null
+    },
+    "P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3333333333333333,
+          "ci95": [
+            0.28,
+            0.38666666666666666
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.25333333333333335,
+          "ci95": [
+            0.18666666666666668,
+            0.32666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.44,
+          "ci95": [
+            0.36,
+            0.52
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3333333333333333,
+      "strategic_field": 0.38000000000000006,
+      "composite": 0.3706666666666667,
+      "candidate_type": null
+    },
+    "P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.36333333333333334,
+          "ci95": [
+            0.31,
+            0.42
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.35333333333333333,
+          "ci95": [
+            0.28,
+            0.4266666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.3333333333333333,
+          "ci95": [
+            0.26,
+            0.41333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.42,
+          "ci95": [
+            0.34,
+            0.5
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.36333333333333334,
+      "strategic_field": 0.3688888888888889,
+      "composite": 0.371,
+      "candidate_type": null
+    },
+    "PROB_S611+S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.29,
+          "ci95": [
+            0.24,
+            0.3433333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.47333333333333333,
+          "ci95": [
+            0.3933333333333333,
+            0.5533333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.18666666666666668,
+          "ci95": [
+            0.12666666666666668,
+            0.25333333333333335
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.38666666666666666,
+          "ci95": [
+            0.30666666666666664,
+            0.4666666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.29,
+      "strategic_field": 0.34888888888888886,
+      "composite": 0.33533333333333337,
+      "candidate_type": null
+    },
+    "PROB_S611+S622": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.30666666666666664,
+          "ci95": [
+            0.25333333333333335,
+            0.36
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.23333333333333334,
+          "ci95": [
+            0.16666666666666666,
+            0.3
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.42333333333333334,
+          "ci95": [
+            0.3466666666666667,
+            0.5
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.30666666666666664,
+      "strategic_field": 0.36777777777777776,
+      "composite": 0.35283333333333333,
+      "candidate_type": null
+    },
+    "PROB_S611+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.30666666666666664,
+          "ci95": [
+            0.25666666666666665,
+            0.36
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.3933333333333333,
+          "ci95": [
+            0.31983333333333347,
+            0.47333333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.21333333333333335,
+          "ci95": [
+            0.15333333333333332,
+            0.28
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.35333333333333333,
+          "ci95": [
+            0.28,
+            0.4266666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.30666666666666664,
+      "strategic_field": 0.32,
+      "composite": 0.32166666666666666,
+      "candidate_type": null
+    },
+    "PROB_S622+S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3233333333333333,
+          "ci95": [
+            0.27,
+            0.37666666666666665
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.41333333333333333,
+          "ci95": [
+            0.3333333333333333,
+            0.49333333333333335
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.29333333333333333,
+          "ci95": [
+            0.22,
+            0.36666666666666664
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.35333333333333333,
+          "ci95": [
+            0.28,
+            0.43333333333333335
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3233333333333333,
+      "strategic_field": 0.35333333333333333,
+      "composite": 0.3443333333333333,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711+P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.29,
+          "ci95": [
+            0.24,
+            0.3433333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.5066666666666667,
+          "ci95": [
+            0.4266666666666667,
+            0.5866666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.26666666666666666,
+          "ci95": [
+            0.2,
+            0.34
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.32,
+            0.48
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.29,
+      "strategic_field": 0.39111111111111113,
+      "composite": 0.35733333333333334,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.2733333333333333,
+          "ci95": [
+            0.22333333333333333,
+            0.3233333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.43333333333333335,
+          "ci95": [
+            0.35333333333333333,
+            0.5133333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2866666666666667,
+          "ci95": [
+            0.21333333333333335,
+            0.36
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.3466666666666667,
+          "ci95": [
+            0.26666666666666666,
+            0.4266666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.2733333333333333,
+      "strategic_field": 0.35555555555555557,
+      "composite": 0.32566666666666666,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.33,
+          "ci95": [
+            0.27666666666666667,
+            0.38333333333333336
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.20666666666666667,
+          "ci95": [
+            0.14666666666666667,
+            0.2733333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.35333333333333333,
+          "ci95": [
+            0.28,
+            0.43333333333333335
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.33,
+      "strategic_field": 0.3355555555555556,
+      "composite": 0.3406666666666667,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3433333333333333,
+          "ci95": [
+            0.29,
+            0.39666666666666667
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4533333333333333,
+          "ci95": [
+            0.37333333333333335,
+            0.5333333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.3333333333333333,
+          "ci95": [
+            0.26,
+            0.4066666666666667
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.32,
+            0.48
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3433333333333333,
+      "strategic_field": 0.3955555555555555,
+      "composite": 0.378,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31666666666666665,
+          "ci95": [
+            0.2633333333333333,
+            0.37
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4533333333333333,
+          "ci95": [
+            0.37333333333333335,
+            0.5333333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.24,
+          "ci95": [
+            0.17333333333333334,
+            0.30666666666666664
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.41,
+          "ci95": [
+            0.3333333333333333,
+            0.4866666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31666666666666665,
+      "strategic_field": 0.36777777777777776,
+      "composite": 0.35583333333333333,
+      "candidate_type": null
+    },
+    "PROB_SOUP+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31333333333333335,
+          "ci95": [
+            0.2633333333333333,
+            0.36666666666666664
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44,
+          "ci95": [
+            0.36,
+            0.52
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.21333333333333335,
+          "ci95": [
+            0.14666666666666667,
+            0.28
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.41,
+          "ci95": [
+            0.3333333333333333,
+            0.49
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31333333333333335,
+      "strategic_field": 0.3544444444444444,
+      "composite": 0.3478333333333333,
+      "candidate_type": null
+    },
+    "Q0_901_g10320": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3233333333333333,
+          "ci95": [
+            0.2733333333333333,
+            0.37666666666666665
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.38666666666666666,
+          "ci95": [
+            0.31333333333333335,
+            0.4666666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.28,
+          "ci95": [
+            0.21333333333333335,
+            0.35333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4,
+          "ci95": [
+            0.32,
+            0.48
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3233333333333333,
+      "strategic_field": 0.35555555555555557,
+      "composite": 0.3486666666666667,
+      "candidate_type": null
+    },
+    "Q0_901_g5184": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31666666666666665,
+          "ci95": [
+            0.26666666666666666,
+            0.37
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4066666666666667,
+          "ci95": [
+            0.32666666666666666,
+            0.4866666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.22666666666666666,
+          "ci95": [
+            0.16,
+            0.29333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.36666666666666664,
+          "ci95": [
+            0.29333333333333333,
+            0.44
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31666666666666665,
+      "strategic_field": 0.3333333333333333,
+      "composite": 0.33366666666666667,
+      "candidate_type": null
+    },
+    "Q1_902_g10256": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.2833333333333333,
+          "ci95": [
+            0.23333333333333334,
+            0.33666666666666667
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.25333333333333335,
+          "ci95": [
+            0.18666666666666668,
+            0.32666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.41333333333333333,
+          "ci95": [
+            0.3333333333333333,
+            0.49333333333333335
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.2833333333333333,
+      "strategic_field": 0.3711111111111111,
+      "composite": 0.344,
+      "candidate_type": null
+    },
+    "Q1_902_g5184": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3,
+          "ci95": [
+            0.25,
+            0.35333333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2733333333333333,
+          "ci95": [
+            0.20666666666666667,
+            0.3466666666666667
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4266666666666667,
+          "ci95": [
+            0.3466666666666667,
+            0.5066666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3,
+      "strategic_field": 0.3822222222222222,
+      "composite": 0.357,
+      "candidate_type": null
+    },
+    "Q2A_903_g5152": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.2966666666666667,
+          "ci95": [
+            0.24666666666666667,
+            0.35
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4266666666666667,
+          "ci95": [
+            0.3466666666666667,
+            0.5066666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.26,
+          "ci95": [
+            0.19333333333333333,
+            0.3333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.38666666666666666,
+          "ci95": [
+            0.30666666666666664,
+            0.4666666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.2966666666666667,
+      "strategic_field": 0.35777777777777775,
+      "composite": 0.3396666666666667,
+      "candidate_type": null
+    },
+    "Q2B_904_g5200": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.24666666666666667,
+          "ci95": [
+            0.2,
+            0.2966666666666667
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.36666666666666664,
+          "ci95": [
+            0.29333333333333333,
+            0.44
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.28,
+          "ci95": [
+            0.20666666666666667,
+            0.35333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.24666666666666667,
+      "strategic_field": 0.3644444444444444,
+      "composite": 0.32566666666666666,
+      "candidate_type": null
+    },
+    "Q2_LOGIT_recombined": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.30666666666666664,
+          "ci95": [
+            0.25666666666666665,
+            0.36
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4666666666666667,
+          "ci95": [
+            0.38666666666666666,
+            0.5466666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.22666666666666666,
+          "ci95": [
+            0.16,
+            0.29333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.34,
+          "ci95": [
+            0.26666666666666666,
+            0.41333333333333333
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.30666666666666664,
+      "strategic_field": 0.3444444444444444,
+      "composite": 0.335,
+      "candidate_type": null
+    },
+    "Q2_PROB_recombined": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.30666666666666664,
+          "ci95": [
+            0.25333333333333335,
+            0.36
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.3933333333333333,
+          "ci95": [
+            0.32,
+            0.47333333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.31333333333333335,
+          "ci95": [
+            0.24,
+            0.38666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.35333333333333333,
+          "ci95": [
+            0.28,
+            0.43333333333333335
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.30666666666666664,
+      "strategic_field": 0.35333333333333333,
+      "composite": 0.33666666666666667,
+      "candidate_type": null
+    },
+    "Q2_SOUP_recombined": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.2966666666666667,
+          "ci95": [
+            0.24666666666666667,
+            0.3466666666666667
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.46,
+          "ci95": [
+            0.38,
+            0.54
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.25333333333333335,
+          "ci95": [
+            0.18666666666666668,
+            0.32666666666666666
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4066666666666667,
+          "ci95": [
+            0.32666666666666666,
+            0.4866666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.2966666666666667,
+      "strategic_field": 0.37333333333333335,
+      "composite": 0.3503333333333334,
+      "candidate_type": null
+    },
+    "S611": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.24666666666666667,
+          "ci95": [
+            0.2,
+            0.2966666666666667
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.3933333333333333,
+          "ci95": [
+            0.31333333333333335,
+            0.47333333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2733333333333333,
+          "ci95": [
+            0.20666666666666667,
+            0.3466666666666667
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4033333333333333,
+          "ci95": [
+            0.32666666666666666,
+            0.48
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.24666666666666667,
+      "strategic_field": 0.35666666666666663,
+      "composite": 0.31916666666666665,
+      "candidate_type": null
+    },
+    "S622": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.2833333333333333,
+          "ci95": [
+            0.23333333333333334,
+            0.3333333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4666666666666667,
+          "ci95": [
+            0.38666666666666666,
+            0.5466666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.23333333333333334,
+          "ci95": [
+            0.16666666666666666,
+            0.30666666666666664
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.37333333333333335,
+          "ci95": [
+            0.29333333333333333,
+            0.4533333333333333
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.2833333333333333,
+      "strategic_field": 0.3577777777777778,
+      "composite": 0.335,
+      "candidate_type": null
+    },
+    "S633": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3333333333333333,
+          "ci95": [
+            0.28,
+            0.38666666666666666
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44,
+          "ci95": [
+            0.36,
+            0.52
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.2733333333333333,
+          "ci95": [
+            0.2,
+            0.3466666666666667
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.33,
+          "ci95": [
+            0.25666666666666665,
+            0.4066666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3333333333333333,
+      "strategic_field": 0.3477777777777778,
+      "composite": 0.3448333333333333,
+      "candidate_type": null
+    },
+    "SOUP13_P0_711+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.33,
+          "ci95": [
+            0.27666666666666667,
+            0.38333333333333336
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4666666666666667,
+          "ci95": [
+            0.38666666666666666,
+            0.5466666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.22,
+          "ci95": [
+            0.15333333333333332,
+            0.2866666666666667
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.3933333333333333,
+          "ci95": [
+            0.31333333333333335,
+            0.4666666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.33,
+      "strategic_field": 0.36000000000000004,
+      "composite": 0.3566666666666667,
+      "candidate_type": null
+    },
+    "SOUP13_P0_711+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3233333333333333,
+          "ci95": [
+            0.27,
+            0.37666666666666665
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.42,
+          "ci95": [
+            0.34,
+            0.5
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.26,
+          "ci95": [
+            0.19333333333333333,
+            0.3333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.4666666666666667,
+          "ci95": [
+            0.38666666666666666,
+            0.5466666666666666
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3233333333333333,
+      "strategic_field": 0.38222222222222224,
+      "composite": 0.369,
+      "candidate_type": null
+    },
+    "SOUP13_P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.2833333333333333,
+          "ci95": [
+            0.23333333333333334,
+            0.3333333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.4266666666666667,
+          "ci95": [
+            0.3466666666666667,
+            0.5066666666666667
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.24,
+          "ci95": [
+            0.17333333333333334,
+            0.31333333333333335
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.35333333333333333,
+          "ci95": [
+            0.28,
+            0.4266666666666667
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.2833333333333333,
+      "strategic_field": 0.34,
+      "composite": 0.323,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P0_711+P1_822+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.29,
+          "ci95": [
+            0.24,
+            0.3433333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.5133333333333333,
+          "ci95": [
+            0.43333333333333335,
+            0.5933333333333334
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.28,
+          "ci95": [
+            0.20666666666666667,
+            0.35333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.36666666666666664,
+          "ci95": [
+            0.29333333333333333,
+            0.44
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.29,
+      "strategic_field": 0.38666666666666666,
+      "composite": 0.35233333333333333,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P0_711": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.31666666666666665,
+          "ci95": [
+            0.2633333333333333,
+            0.37
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.5,
+          "ci95": [
+            0.42,
+            0.58
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.24666666666666667,
+          "ci95": [
+            0.18,
+            0.31333333333333335
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.36,
+          "ci95": [
+            0.2866666666666667,
+            0.44
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.31666666666666665,
+      "strategic_field": 0.3688888888888889,
+      "composite": 0.3536666666666667,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P1_822": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.3,
+          "ci95": [
+            0.24666666666666667,
+            0.35333333333333333
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.44666666666666666,
+          "ci95": [
+            0.36666666666666664,
+            0.5266666666666666
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.22666666666666666,
+          "ci95": [
+            0.16,
+            0.29333333333333333
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.38,
+          "ci95": [
+            0.30666666666666664,
+            0.46
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.3,
+      "strategic_field": 0.3511111111111111,
+      "composite": 0.3383333333333333,
+      "candidate_type": null
+    },
+    "SOUP13_SOUP+P1_833": {
+      "per_opponent": {
+        "dragapult": {
+          "point": 0.32,
+          "ci95": [
+            0.26666666666666666,
+            0.37333333333333335
+          ],
+          "n": 300
+        },
+        "iono": {
+          "point": 0.52,
+          "ci95": [
+            0.44,
+            0.6
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.24666666666666667,
+          "ci95": [
+            0.18,
+            0.31333333333333335
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.37333333333333335,
+          "ci95": [
+            0.3,
+            0.4533333333333333
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 750,
+      "teacher_score": 0.32,
+      "strategic_field": 0.37999999999999995,
+      "composite": 0.36233333333333334,
+      "candidate_type": null
+    },
+    "T_teacher": {
+      "per_opponent": {
+        "iono": {
+          "point": 0.5933333333333334,
+          "ci95": [
+            0.5133333333333333,
+            0.6733333333333333
+          ],
+          "n": 150
+        },
+        "mega_abomasnow": {
+          "point": 0.6,
+          "ci95": [
+            0.52,
+            0.68
+          ],
+          "n": 150
+        },
+        "mega_lucario": {
+          "point": 0.48,
+          "ci95": [
+            0.4,
+            0.56
+          ],
+          "n": 150
+        }
+      },
+      "n_games": 450,
+      "teacher_score": null,
+      "strategic_field": 0.5577777777777778,
+      "composite": null,
+      "candidate_type": null
+    }
+  },
+  "unscored_by_defect": {}
+}
+=== Q3 gate ===
+{
+  "panel": "confirmation",
+  "rule": "online ensemble must beat EVERY trainable single/soup candidate by >=0.03 teacher gain or >=0.03 strategic-field gain (\u00a716)",
+  "best_trainable_teacher": 0.36333333333333334,
+  "best_trainable_field": 0.3977777777777778,
+  "n_ensembles_evaluated": 22,
+  "n_trainable_compared": 23,
+  "per_ensemble": [
+    {
+      "ensemble": "LOGIT_S611+S622+S633",
+      "teacher": 0.3466666666666667,
+      "field": 0.3444444444444445,
+      "teacher_gain_vs_best_trainable": -0.016666666666666663,
+      "field_gain_vs_best_trainable": -0.05333333333333329,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_S622+S633",
+      "teacher": 0.3466666666666667,
+      "field": 0.3466666666666667,
+      "teacher_gain_vs_best_trainable": -0.016666666666666663,
+      "field_gain_vs_best_trainable": -0.05111111111111111,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_SOUP+P0_711+P1_822+P1_833",
+      "teacher": 0.3466666666666667,
+      "field": 0.39111111111111113,
+      "teacher_gain_vs_best_trainable": -0.016666666666666663,
+      "field_gain_vs_best_trainable": -0.006666666666666654,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_SOUP+P0_711",
+      "teacher": 0.3433333333333333,
+      "field": 0.3955555555555555,
+      "teacher_gain_vs_best_trainable": -0.020000000000000018,
+      "field_gain_vs_best_trainable": -0.002222222222222292,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_SOUP+P0_711+P1_833",
+      "teacher": 0.33,
+      "field": 0.3355555555555556,
+      "teacher_gain_vs_best_trainable": -0.033333333333333326,
+      "field_gain_vs_best_trainable": -0.06222222222222218,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_SOUP+P0_711+P1_833",
+      "teacher": 0.3233333333333333,
+      "field": 0.3811111111111111,
+      "teacher_gain_vs_best_trainable": -0.040000000000000036,
+      "field_gain_vs_best_trainable": -0.016666666666666663,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_S622+S633",
+      "teacher": 0.3233333333333333,
+      "field": 0.35333333333333333,
+      "teacher_gain_vs_best_trainable": -0.040000000000000036,
+      "field_gain_vs_best_trainable": -0.04444444444444445,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_SOUP+P1_822",
+      "teacher": 0.31666666666666665,
+      "field": 0.36777777777777776,
+      "teacher_gain_vs_best_trainable": -0.04666666666666669,
+      "field_gain_vs_best_trainable": -0.030000000000000027,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_SOUP+P0_711",
+      "teacher": 0.31333333333333335,
+      "field": 0.3622222222222222,
+      "teacher_gain_vs_best_trainable": -0.04999999999999999,
+      "field_gain_vs_best_trainable": -0.03555555555555556,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_SOUP+P1_833",
+      "teacher": 0.31333333333333335,
+      "field": 0.3788888888888889,
+      "teacher_gain_vs_best_trainable": -0.04999999999999999,
+      "field_gain_vs_best_trainable": -0.0188888888888889,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_SOUP+P1_833",
+      "teacher": 0.31333333333333335,
+      "field": 0.3544444444444444,
+      "teacher_gain_vs_best_trainable": -0.04999999999999999,
+      "field_gain_vs_best_trainable": -0.04333333333333339,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_S611+S633",
+      "teacher": 0.31,
+      "field": 0.3977777777777778,
+      "teacher_gain_vs_best_trainable": -0.053333333333333344,
+      "field_gain_vs_best_trainable": 0.0,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_SOUP+P0_711+P1_822",
+      "teacher": 0.31,
+      "field": 0.3866666666666667,
+      "teacher_gain_vs_best_trainable": -0.053333333333333344,
+      "field_gain_vs_best_trainable": -0.011111111111111072,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_S611+S622",
+      "teacher": 0.30666666666666664,
+      "field": 0.36777777777777776,
+      "teacher_gain_vs_best_trainable": -0.0566666666666667,
+      "field_gain_vs_best_trainable": -0.030000000000000027,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_S611+S633",
+      "teacher": 0.30666666666666664,
+      "field": 0.32,
+      "teacher_gain_vs_best_trainable": -0.0566666666666667,
+      "field_gain_vs_best_trainable": -0.07777777777777778,
+      "passes": false
+    },
+    {
+      "ensemble": "Q2_LOGIT_recombined",
+      "teacher": 0.30666666666666664,
+      "field": 0.3444444444444444,
+      "teacher_gain_vs_best_trainable": -0.0566666666666667,
+      "field_gain_vs_best_trainable": -0.0533333333333334,
+      "passes": false
+    },
+    {
+      "ensemble": "Q2_PROB_recombined",
+      "teacher": 0.30666666666666664,
+      "field": 0.35333333333333333,
+      "teacher_gain_vs_best_trainable": -0.0566666666666667,
+      "field_gain_vs_best_trainable": -0.04444444444444445,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_SOUP+P1_822",
+      "teacher": 0.2916666666666667,
+      "field": 0.34,
+      "teacher_gain_vs_best_trainable": -0.07166666666666666,
+      "field_gain_vs_best_trainable": -0.05777777777777776,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_S611+S622+S633",
+      "teacher": 0.29,
+      "field": 0.34888888888888886,
+      "teacher_gain_vs_best_trainable": -0.07333333333333336,
+      "field_gain_vs_best_trainable": -0.048888888888888926,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_SOUP+P0_711+P1_822+P1_833",
+      "teacher": 0.29,
+      "field": 0.39111111111111113,
+      "teacher_gain_vs_best_trainable": -0.07333333333333336,
+      "field_gain_vs_best_trainable": -0.006666666666666654,
+      "passes": false
+    },
+    {
+      "ensemble": "PROB_SOUP+P0_711+P1_822",
+      "teacher": 0.2733333333333333,
+      "field": 0.35555555555555557,
+      "teacher_gain_vs_best_trainable": -0.09000000000000002,
+      "field_gain_vs_best_trainable": -0.04222222222222222,
+      "passes": false
+    },
+    {
+      "ensemble": "LOGIT_S611+S622",
+      "teacher": 0.36333333333333334,
+      "field": 0.3577777777777778,
+      "teacher_gain_vs_best_trainable": 0.0,
+      "field_gain_vs_best_trainable": -0.03999999999999998,
+      "passes": false
+    }
+  ],
+  "GATE": "FAIL",
+  "Q3": "SKIPPED_BY_GATE"
+}
+summary/recount disagreements: 0

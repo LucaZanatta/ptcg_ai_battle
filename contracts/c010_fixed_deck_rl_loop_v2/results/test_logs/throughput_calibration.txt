@@ -1,0 +1,16 @@
+c010 AC-06 throughput calibration + compute budget
+==============================================================
+cpu_count=24 peak_child_rss=4289.5 MB free_disk=224.0 GB
+
+  Arm A: 15721 games/h solo (nproc 7, omp 4), 63.0 dec/game, update 14s, rollout 16s
+          max 36,000 games -> ~1.27 h at 28298 games/h aggregate
+  Arm B: 13377 games/h solo (nproc 7, omp 4), 72.3 dec/game, update 19s, rollout 16s
+          max 22,500 games -> ~0.93 h at 24078 games/h aggregate
+  Arm C: 14238 games/h solo (nproc 7, omp 4), 74.5 dec/game, update 62s, rollout 50s
+          max 60,000 games -> ~2.34 h at 25628 games/h aggregate
+
+projected training  : 4.55 h
+projected evaluation: 0.17 h (16,900 games)
+projected TOTAL     : 4.72 h
+registered training budget 118,500 (hard max 120,000) -> within cap: True
+FEASIBILITY = FEASIBLE

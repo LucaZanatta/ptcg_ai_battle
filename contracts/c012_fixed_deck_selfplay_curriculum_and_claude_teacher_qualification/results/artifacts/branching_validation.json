@@ -1,0 +1,26 @@
+{
+  "CLAUDE_BRANCHING": "INCONCLUSIVE",
+  "checks": {
+    "restored_visible_state_matches": false,
+    "legal_actions_match": false,
+    "original_action_reproduces_transition_distribution": false,
+    "no_hidden_information_leakage": true,
+    "candidate_actions_applicable_symmetrically": false,
+    "paired_rollout_protocol_documented": true
+  },
+  "probe": {
+    "forward_search_api_present": true,
+    "api_symbols": [
+      "search_begin",
+      "search_step",
+      "search_end",
+      "search_release"
+    ],
+    "observations_with_search_begin_input": 0,
+    "probes_run": 2,
+    "probe_result": "search_begin_input never populated on agent observations"
+  },
+  "reason": "The simulator exposes a forward-search API, but no observation captured through the standard agent interface carried the `search_begin_input` payload that `search_begin` requires, so a saved position could not be restored and branched under matched stochastic conditions.",
+  "consequence": "Per \u00a740/\u00a742 Claude may not be called objectively superior; the reachable ceiling on this evidence is PROMISING_UNVALIDATED.",
+  "not_attempted": "No adjudication was fabricated from unmatched rollouts: an unpaired comparison would measure simulator variance rather than action quality, and reporting it as evidence of Claude superiority would be exactly the failure \u00a75 warns against."
+}

@@ -1,0 +1,175 @@
+{
+  "candidate_id": "official_mega_abomasnow",
+  "fidelity": "EXACT",
+  "reproduction_method": "EXACT byte-for-byte copy of the official sample source; no reimplementation and no strategic modification",
+  "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-mega-abomasnow-ex-deck",
+  "source_main_sha256": "d1ef4a86413b7f548270657385c6d5c3cb114b473082cd04e2a0f1733158482b",
+  "copied_main_sha256": "d1ef4a86413b7f548270657385c6d5c3cb114b473082cd04e2a0f1733158482b",
+  "hashes_identical": true,
+  "deck_sha256": "7af2d7e111c084da535b89758730b3fd6cbb7c0543a9444499c5b61efdc8aecd",
+  "deck_cards": 60,
+  "archetype": "Mega Abomasnow ex",
+  "permission_class": "SUBMISSION_REUSE_ALLOWED",
+  "attribution": "Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-mega-abomasnow-ex-deck (Kiyota)",
+  "semantic_feature_inventory": {
+    "features": {
+      "planning_or_sequencing": {
+        "references": 1,
+        "present": true
+      },
+      "prize_resource_tracking": {
+        "references": 6,
+        "present": true
+      },
+      "damage_calculation": {
+        "references": 3,
+        "present": true
+      },
+      "matchup_rules": {
+        "references": 2,
+        "present": true
+      },
+      "energy_management": {
+        "references": 29,
+        "present": true
+      },
+      "evolution_logic": {
+        "references": 1,
+        "present": true
+      },
+      "bench_management": {
+        "references": 22,
+        "present": true
+      },
+      "retreat_switch_logic": {
+        "references": 13,
+        "present": true
+      },
+      "search_targeting": {
+        "references": 24,
+        "present": true
+      }
+    },
+    "n_functions": 2,
+    "functions": [
+      "get_card",
+      "agent"
+    ],
+    "n_classes": 0,
+    "classes": [],
+    "source_lines": 268,
+    "all_material_features_present": true
+  },
+  "static_dependency_audit": {
+    "imports": [
+      "cg",
+      "collections",
+      "os",
+      "sys"
+    ],
+    "network_modules": [],
+    "network_dependency_at_inference": false,
+    "heavy_ml_dependencies": [],
+    "stdlib_only_plus_cg": true
+  },
+  "fidelity_checks": {
+    "source_decoded_without_truncation": true,
+    "deck_hash_matches_documented_source": true,
+    "deck_is_60_cards": true,
+    "source_byte_identical_to_official": true,
+    "implementation_is_rich_not_a_priority_table": true,
+    "no_static_priority_replacement": true,
+    "only_compatibility_adapters": true,
+    "smoke_games_legal": true,
+    "no_network_dependency": true
+  },
+  "compatibility_adapters": [
+    {
+      "adapter": "cg.teachers.make_fresh",
+      "what": "imports main.py as a uniquely-named fresh module instance per game and per seat, with cwd temporarily set to the agent's own directory",
+      "why": "these agents keep module-level state (turn counters, attack plans) and read a relative deck.csv at import; a fresh instance is required for state isolation between games",
+      "modifies_agent_source": false
+    }
+  ],
+  "known_deviations_from_source": [],
+  "smoke": {
+    "games": [
+      {
+        "game": 0,
+        "seat": 0,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 1.0,
+        "seconds": 0.2
+      },
+      {
+        "game": 1,
+        "seat": 1,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 0.0,
+        "seconds": 0.17
+      },
+      {
+        "game": 2,
+        "seat": 0,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 1.0,
+        "seconds": 0.09
+      },
+      {
+        "game": 3,
+        "seat": 1,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 1.0,
+        "seconds": 0.27
+      },
+      {
+        "game": 4,
+        "seat": 0,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 1.0,
+        "seconds": 0.22
+      },
+      {
+        "game": 5,
+        "seat": 1,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 0.0,
+        "seconds": 0.33
+      }
+    ],
+    "n": 6,
+    "all_completed": true,
+    "invalid_total": 0,
+    "score_rate_vs_dragapult": 0.6667
+  }
+}

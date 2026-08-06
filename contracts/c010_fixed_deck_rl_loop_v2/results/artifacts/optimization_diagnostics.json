@@ -1,0 +1,101 @@
+{
+  "note": "PPO optimization diagnostics at the final update of each seed.",
+  "by_arm": {
+    "A": {
+      "seed311": {
+        "final_in_sample_ev": 0.7630611376460068,
+        "final_held_out_ev": 0.724344618053867,
+        "final_entropy": 0.4331048206233433,
+        "final_approx_kl": 0.005665320107107555,
+        "final_clip_fraction": 0.053894144977367685,
+        "final_grad_norm": 0.7569232831015726,
+        "final_return_mean": -0.15804507769542164,
+        "updates": 91
+      },
+      "seed322": {
+        "final_in_sample_ev": 0.7650609526660465,
+        "final_held_out_ev": 0.7245333413105368,
+        "final_entropy": 0.43018794576624036,
+        "final_approx_kl": 0.005724083509889025,
+        "final_clip_fraction": 0.05084151940152214,
+        "final_grad_norm": 0.8359190712988493,
+        "final_return_mean": -0.16193789309206763,
+        "updates": 91
+      },
+      "seed333": {
+        "final_in_sample_ev": 0.7590271407050322,
+        "final_held_out_ev": 0.725559154870812,
+        "final_entropy": 0.42455639809540546,
+        "final_approx_kl": 0.006865605223230627,
+        "final_clip_fraction": 0.05603786027763944,
+        "final_grad_norm": 0.7879772239145069,
+        "final_return_mean": -0.1280123741302572,
+        "updates": 91
+      }
+    },
+    "B": {
+      "seed411": {
+        "final_in_sample_ev": 0.7584642916328088,
+        "final_held_out_ev": 0.7281842069904221,
+        "final_entropy": 0.40448218545269976,
+        "final_approx_kl": 0.008038893828562882,
+        "final_clip_fraction": 0.059997461968172815,
+        "final_grad_norm": 0.8621900235407656,
+        "final_return_mean": -0.07031730721727944,
+        "updates": 57
+      },
+      "seed422": {
+        "final_in_sample_ev": 0.7641953848789638,
+        "final_held_out_ev": 0.7296297308702977,
+        "final_entropy": 0.38248429512292553,
+        "final_approx_kl": 0.00996079561027546,
+        "final_clip_fraction": 0.06132367471518178,
+        "final_grad_norm": 0.9156044862692703,
+        "final_return_mean": -0.022929083547449977,
+        "updates": 57
+      },
+      "seed433": {
+        "final_in_sample_ev": 0.7914231550832131,
+        "final_held_out_ev": 0.7529536405135279,
+        "final_entropy": 0.4011009690013826,
+        "final_approx_kl": 0.008721474310490829,
+        "final_clip_fraction": 0.06447058310055866,
+        "final_grad_norm": 0.8366037067249714,
+        "final_return_mean": -0.029428982286452857,
+        "updates": 57
+      }
+    },
+    "C": {
+      "seed511": {
+        "final_in_sample_ev": 0.758016229457535,
+        "final_held_out_ev": 0.7467604319614296,
+        "final_entropy": 0.3850023898510311,
+        "final_approx_kl": 0.0018375521486961627,
+        "final_clip_fraction": 0.020909801836785008,
+        "final_grad_norm": 0.9846567133008751,
+        "final_return_mean": -0.10912895810822926,
+        "updates": 46
+      },
+      "seed522": {
+        "final_in_sample_ev": 0.7402256128967,
+        "final_held_out_ev": 0.7303221939038115,
+        "final_entropy": 0.4004203450749929,
+        "final_approx_kl": 0.00201771954116959,
+        "final_clip_fraction": 0.02334807609984194,
+        "final_grad_norm": 0.9801882655540607,
+        "final_return_mean": -0.10394021187941552,
+        "updates": 46
+      },
+      "seed533": {
+        "final_in_sample_ev": 0.75719935108218,
+        "final_held_out_ev": 0.7477136857829256,
+        "final_entropy": 0.4013451631248385,
+        "final_approx_kl": 0.0020596038461713592,
+        "final_clip_fraction": 0.021893436438364475,
+        "final_grad_norm": 0.9992543518940202,
+        "final_return_mean": -0.04817630073693046,
+        "updates": 45
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+test_reads_final_step_not_first (tests.test_c003_amendments.TestFinalStateTerminal.test_reads_final_step_not_first) ... ok
+test_step0_error_not_surfaced_on_clean_win (tests.test_c003_amendments.TestFinalStateTerminal.test_step0_error_not_surfaced_on_clean_win) ... ok
+test_step0_error_surfaced_only_when_final_state_errored (tests.test_c003_amendments.TestFinalStateTerminal.test_step0_error_surfaced_only_when_final_state_errored) ... ok
+test_mismatch_detected (tests.test_c003_amendments.TestLegalOptionMetadataEquality.test_mismatch_detected) ... ok
+test_resolve_hash_mismatch (tests.test_c003_amendments.TestReplayRegistry.test_resolve_hash_mismatch) ... ok
+test_resolve_ok_on_matching_lineage (tests.test_c003_amendments.TestReplayRegistry.test_resolve_ok_on_matching_lineage) ... ok
+test_resolve_stochastic (tests.test_c003_amendments.TestReplayRegistry.test_resolve_stochastic) ... ok
+test_resolve_unregistered (tests.test_c003_amendments.TestReplayRegistry.test_resolve_unregistered) ... ok
+test_resolve_version_mismatch (tests.test_c003_amendments.TestReplayRegistry.test_resolve_version_mismatch) ... ok
+test_validator_marks_unavailable_on_mismatch (tests.test_c003_amendments.TestReplayRegistry.test_validator_marks_unavailable_on_mismatch) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK

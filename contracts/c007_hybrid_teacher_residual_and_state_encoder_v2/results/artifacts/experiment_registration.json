@@ -1,0 +1,199 @@
+{
+  "contract": "c007_hybrid_teacher_residual_and_state_encoder_v2",
+  "frozen_before_dependent_experiments": true,
+  "dependencies": {
+    "c005_final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+    "c006_final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+    "c007_initial_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+    "frozen_teacher_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+    "frozen_teacher_deck_sha256": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+    "teacher_id": "dragapult",
+    "deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+    "teacher_submission_ref": "54948560"
+  },
+  "instrumented_teacher": {
+    "instrumented_main_sha256": "c68c0cd88ca3305626418c7a5a7c8fa7f619ea7feeb08abc49574ee6b496949d",
+    "parity_definition": {
+      "replay": ">=15,000 ordered c005/c006 decisions; frozen==instrumented action identity, 0 exceptions",
+      "live": "100 fresh cabt games, dual-call harness (compute both, assert equal, drive with instrumented)",
+      "outcomes": "engine is random_device-seeded, so H0 vs T is (a) per-decision action identity (dual-call) PLUS (b) statistical outcome equivalence over >=200 games, NOT cross-run identity"
+    },
+    "labels_are_training_targets_only": true
+  },
+  "state_encoder_v2": {
+    "schema_sha256": "b1328b6bfdb9344456ec9ed2fd7f972025e3763314ee23106a946f67b1288ad8",
+    "dims": {
+      "CARD_FEAT": 52,
+      "N_BOARD": 12,
+      "SLOT_DYN": 36,
+      "N_HAND": 12,
+      "HAND_DYN": 2,
+      "N_DISCARD": 16,
+      "OPT_DENSE": 51,
+      "OPT_ROWS": 2,
+      "GLOBAL": 211,
+      "N_CTX": 49,
+      "N_OPTTYPE": 17,
+      "N_AREA": 13,
+      "vocab_size": 1270
+    }
+  },
+  "card_semantics": {
+    "vocab_size": 1270,
+    "feat_dim": 52,
+    "source_hash": "53aa2eeb7dc4872ed2a559eb73b8799ccd08d078c06fc4a7fa87dcc2ad578aa1",
+    "unseen_card_policy": "deterministic features + zero-init id residual"
+  },
+  "model": {
+    "family": "ModelV2 (pure-numpy, cg.policy_model_v2)",
+    "config": {
+      "D": 72,
+      "Hs": 80,
+      "BV": 176,
+      "Hh": 72,
+      "HV": 72,
+      "Hd": 56,
+      "DV": 56,
+      "GH": 144,
+      "CTX": 200,
+      "OH": 112,
+      "OH2": 112,
+      "SH": 112,
+      "recurrent": 0
+    },
+    "param_count": 538770,
+    "param_band": [
+      500000,
+      2000000
+    ],
+    "hard_max": 3000000,
+    "in_band": true,
+    "variants": {
+      "V2_A": "teacher-action head only (aux=False)",
+      "V2_B": "action head + privileged planning aux heads (aux=True)"
+    },
+    "aux_heads": [
+      "plan_main_target(softmax)",
+      "use_support(bce)",
+      "value/outcome(bce)"
+    ],
+    "aux_coef": {
+      "plan": 0.3,
+      "support": 0.3,
+      "value": 0.3
+    },
+    "selection": "validation importance-weighted teacher agreement ONLY; test opened once"
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "optimizer": {
+    "name": "Adam",
+    "lr": 0.0015,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "max_epochs": 22,
+    "patience": 5,
+    "batch_size": 256,
+    "early_stopping_metric": "validation importance_weighted_teacher_agreement",
+    "reproducibility": "OMP_NUM_THREADS=1 + fixed seeds"
+  },
+  "dataset": {
+    "generator": "instrumented teacher plays both seats vs the strategic field; raw obs + privileged plan labels + outcome + latency + lineage captured; v2 state derived offline",
+    "targets": {
+      "min_games": 600,
+      "min_decisions": 50000
+    },
+    "opponents": [
+      "mega_lucario",
+      "mega_abomasnow",
+      "iono",
+      "dragapult (mirror)"
+    ],
+    "engineering_control": "__control__ (DetControl) \u2014 included in data-gen and gauntlet, REPORTED SEPARATELY",
+    "split": {
+      "scheme": "whole-game 70/15/15",
+      "seed": 70157,
+      "stratify_by": [
+        "opponent",
+        "teacher_seat"
+      ],
+      "test_frozen": true,
+      "no_leakage": true
+    },
+    "c006_test_preserved_as_historical_benchmark": true
+  },
+  "residual_contexts": {
+    "candidate_pool": [
+      "search_card_target",
+      "dragapult_damage_counter",
+      "promotion_to_active",
+      "energy_attachment_target",
+      "retreat_switch",
+      "evolution_target"
+    ],
+    "primary": "dragapult_damage_counter",
+    "admission_rule_all_required": [
+      ">=300 c007 examples",
+      ">=200 examples with two meaningful legal choices",
+      "decoder semantics fully supported",
+      "teacher/oracle state synchronization valid",
+      "counterfactual evaluation stable",
+      "H1 calibration acceptable (ECE <= 0.15 in-context)",
+      "not primarily forced (forced fraction < 0.5)",
+      "residual action does not corrupt future teacher state"
+    ],
+    "max_admitted": 3
+  },
+  "counterfactual_protocol": {
+    "state_cloning_capability": "engine search API (search_begin/step/end) verified to fork+rollout, but determinized + random_device-stochastic; search_begin_input is stripped from stored captures.",
+    "primary_method": "controlled deterministic policy variants (\u00a712 fallback): a variant alters ONE semantic rule in an admitted context; A/B vs teacher in balanced full games; the improvement claim is POLICY-LEVEL (global strength), never fabricated per-state labels.",
+    "branch_and_rollout": "time-boxed 30-min capability probe recorded under results/artifacts; used at most as a per-state stability check, not as the primary improvement evidence.",
+    "positive_label_gate": [
+      "estimated advantage > registered minimum",
+      "one-sided 90% LCB > 0",
+      "instability acceptable",
+      "no reliability defect"
+    ],
+    "target_labels": 2000,
+    "ambiguous_states_keep_teacher": true,
+    "candidate_variants_damage_counter": [
+      "V_plan_a: use plan_a.counter when plan_a.attack != 0 (main.py L278-284/L705 plan_a/plan_b mismatch)",
+      "V_reset: reset AttackPlan.counter on the early-return path (stale class-attr, L55/L215-216)",
+      "V_thresh: corrected HP-band threshold in DAMAGE_COUNTER_ANY (L709 reachability)",
+      "V_greedy: greedy knockout-maximizing spread allocation"
+    ]
+  },
+  "gates": {
+    "override_confidence_min": 0.6,
+    "ood_rule": "per-context: global-feature vector within [1st,99th] percentile envelope of that context's training decisions AND legal-option count within training range; else abstain",
+    "advantage_lcb_min": 0.0,
+    "override_budget_per_game": 5,
+    "override_budget_per_context_per_game": 3,
+    "safety_veto": "illegal / decoder-unsupported / OOD / forced -> teacher default",
+    "non_inferiority": {
+      "metric": "seat-balanced win=1/draw=.5/loss=0 vs teacher",
+      "rule": "one-sided 95% lower bound (5th pct seat-balanced bootstrap) >= 0.47",
+      "orientation_games": 400,
+      "extend_to": 800
+    },
+    "reproducible_improvement_any_of": [
+      "one matchup >= +5pp with bootstrap P(improvement) >= 0.90",
+      "global strength improvement, 90% bootstrap interval above zero (PRIMARY target)",
+      "validated residual-context action-value improvement reproduced in a 2nd held-out batch, no full-game regression"
+    ],
+    "major_regression_blocks": "any matchup >= 7pp below teacher with >= 90% bootstrap probability"
+  },
+  "submission_rule": "SUBMISSION_C=SUBMIT iff BEST_HYBRID=H2_RESIDUAL (instrumentation valid + encoder accepted + >=1 residual context admitted + perfect reliability + non-inferiority LB>=0.47 + >=1 reproducible improvement + no major regression + telemetry complete + package validation)",
+  "kaggle_protocol": {
+    "description": "c007 Submission C: hybrid residual <final_commit_short_sha>",
+    "dup_guard": "unique description + recorded archive sha256",
+    "poll": "every 30s, max 20 attempts; pending-after-window allowed; retain ref + refresh cmd",
+    "teacher_refresh_ref": "54948560"
+  },
+  "emergency_correction_policy": "one documented code-defect correction may fairly restart affected runs; otherwise no changes after freeze"
+}

@@ -1,0 +1,137 @@
+{
+  "selection_rule": "\u00a713 priority: teacher, strategic field, Abomasnow, worst-matchup risk, latency, earlier training games. Confirmation evidence only, so every candidate is judged on an equal 500-game footing.",
+  "n_candidates_considered": 66,
+  "TRAINING_INCUMBENT": {
+    "candidate_id": "SOUP_622+633",
+    "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+    "checkpoint_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+    "kind": "rl_ckpt",
+    "arm": "SOUP",
+    "seed": null,
+    "training_games": null,
+    "components": [
+      "S_622_g39983",
+      "S_633_g30176"
+    ],
+    "teacher_score": 0.38,
+    "strategic_field_score": 0.39000000000000007,
+    "promotion_composite": 0.3845,
+    "abomasnow": 0.33,
+    "confirmation_games": 500,
+    "protected": true
+  },
+  "EVALUATION_ELITE": {
+    "candidate_id": "SOUP_622+633",
+    "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+    "checkpoint_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+    "kind": "rl_ckpt",
+    "arm": "SOUP",
+    "seed": null,
+    "training_games": null,
+    "components": [
+      "S_622_g39983",
+      "S_633_g30176"
+    ],
+    "teacher_score": 0.38,
+    "strategic_field_score": 0.39000000000000007,
+    "promotion_composite": 0.3845,
+    "abomasnow": 0.33,
+    "confirmation_games": 500,
+    "protected": true
+  },
+  "evaluation_elite_note": "An online logit ensemble may be EVALUATION_ELITE but may never be the trainable initialisation unless represented by a validated soup (\u00a713).",
+  "ranking": [
+    "SOUP_622+633",
+    "S_622_g39983",
+    "S_622_g20032",
+    "SOUP_611+633",
+    "SOUP_611+622",
+    "S_622_g10096",
+    "S_633_g10224",
+    "S_611_g40127",
+    "S_611_g10320",
+    "S_611_g15120",
+    "S_611_g30223",
+    "SOUP_611+622+633",
+    "C_533_g19952",
+    "S_611_g20287",
+    "S_622_g15296"
+  ],
+  "scores": {
+    "SOUP_622+633": {
+      "teacher": 0.38,
+      "field": 0.39000000000000007,
+      "composite": 0.3845
+    },
+    "S_622_g39983": {
+      "teacher": 0.345,
+      "field": 0.33666666666666667,
+      "composite": 0.34125
+    },
+    "S_622_g20032": {
+      "teacher": 0.345,
+      "field": 0.33,
+      "composite": 0.33825
+    },
+    "SOUP_611+633": {
+      "teacher": 0.335,
+      "field": 0.3466666666666667,
+      "composite": 0.34025
+    },
+    "SOUP_611+622": {
+      "teacher": 0.33499999999999996,
+      "field": 0.33666666666666667,
+      "composite": 0.33575
+    },
+    "S_622_g10096": {
+      "teacher": 0.33499999999999996,
+      "field": 0.32,
+      "composite": 0.32825
+    },
+    "S_633_g10224": {
+      "teacher": 0.325,
+      "field": 0.31499999999999995,
+      "composite": 0.3205
+    },
+    "S_611_g40127": {
+      "teacher": 0.32,
+      "field": 0.3916666666666666,
+      "composite": 0.35225
+    },
+    "S_611_g10320": {
+      "teacher": 0.31999999999999995,
+      "field": 0.33666666666666667,
+      "composite": 0.32749999999999996
+    },
+    "S_611_g15120": {
+      "teacher": 0.315,
+      "field": 0.35333333333333333,
+      "composite": 0.33225000000000005
+    },
+    "S_611_g30223": {
+      "teacher": 0.31,
+      "field": 0.30666666666666664,
+      "composite": 0.3085
+    },
+    "SOUP_611+622+633": {
+      "teacher": 0.305,
+      "field": 0.36333333333333334,
+      "composite": 0.33125000000000004
+    },
+    "C_533_g19952": {
+      "teacher": 0.3,
+      "field": 0.3133333333333333,
+      "composite": 0.306
+    },
+    "S_611_g20287": {
+      "teacher": 0.3,
+      "field": 0.3033333333333333,
+      "composite": 0.3015
+    },
+    "S_622_g15296": {
+      "teacher": 0.29500000000000004,
+      "field": 0.38000000000000006,
+      "composite": 0.33325000000000005
+    }
+  }
+}

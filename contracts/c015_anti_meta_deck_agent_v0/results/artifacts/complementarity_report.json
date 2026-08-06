@@ -1,0 +1,29 @@
+{
+  "c015_vs_target_score_rate": 0.36,
+  "c015_target_games": 100,
+  "official_iono_agent_vs_target": 0.98,
+  "implementation_gap": 0.62,
+  "interpretation": "the deck-level counter is real - the official Iono agent beats the c014 Archaludon deck 0.98 - but this v0 expert realises only 0.36 of it. The gap is implementation quality, not a wrong thesis about the matchup.",
+  "c015_score_rate_by_opponent": {
+    "__c014__": 0.36,
+    "dragapult": 0.04,
+    "mega_lucario": 0.2,
+    "mega_abomasnow": 0.12,
+    "__safe__": 0.61,
+    "__self__": 0.45
+  },
+  "c014_score_rate_by_opponent": {
+    "iono": 0.02,
+    "dragapult": 0.09,
+    "mega_lucario": 0.48,
+    "mega_abomasnow": 0.35
+  },
+  "portfolio_note": "c014 is weakest to the Iono archetype (0.020) and c015 IS that archetype, so the portfolio gains coverage of the lane that beat c014 rather than a second entry in c014's own lane",
+  "caveat": "c014 scored 600.0 publicly while scoring 0.020 against this deck locally, so the four-agent local panel is not representative of the ladder and no local result is claimed to predict a public score",
+  "falsifier_registered": "fails if the agent does not exceed a 0.60 score rate against the exact c014 package on the untouched final panel while executing Electric Streamer on at least 60% of turns where a Basic {L} Energy was in hand",
+  "falsifier_result": "FALSIFIED - score vs target 0.36 < 0.60 threshold",
+  "mechanisms_executed": {
+    "A": 1.0,
+    "B": "1.000 when attacking and legal"
+  }
+}

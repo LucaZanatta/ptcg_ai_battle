@@ -1,0 +1,66 @@
+{
+  "contract": "c008",
+  "arms_evaluated": [
+    "R0",
+    "R1",
+    "R2"
+  ],
+  "per_arm": {
+    "R0": {
+      "reliability_ok": true,
+      "non_inferior": false,
+      "non_inf_lb": 0.042499999999999996,
+      "major_regression": true,
+      "reproducible_improvement": false,
+      "mean_vs_field": 0.10954391891891892,
+      "teacher_mean_vs_field": 0.5275436046511628,
+      "eligible": false,
+      "stop_reasons": {
+        "101": "R0_weak_vs_all_at_5000",
+        "202": "budget_reached"
+      },
+      "median_validation_blend": 0.16625,
+      "learning_curve_stable_2plus_seeds": false
+    },
+    "R1": {
+      "reliability_ok": true,
+      "non_inferior": false,
+      "non_inf_lb": 0.155,
+      "major_regression": true,
+      "reproducible_improvement": false,
+      "mean_vs_field": 0.2889880952380952,
+      "teacher_mean_vs_field": 0.5275436046511628,
+      "eligible": false,
+      "stop_reasons": {
+        "101": "R1_reject_at_20000",
+        "202": "R1_reject_at_10000"
+      },
+      "median_validation_blend": 0.3375,
+      "learning_curve_stable_2plus_seeds": true
+    },
+    "R2": {
+      "reliability_ok": true,
+      "non_inferior": false,
+      "non_inf_lb": 0.10250000000000001,
+      "major_regression": true,
+      "reproducible_improvement": false,
+      "mean_vs_field": 0.18898026315789473,
+      "teacher_mean_vs_field": 0.5275436046511628,
+      "eligible": false,
+      "stop_reasons": {
+        "101": "R2_reject_at_10000",
+        "202": "R2_reject_at_20000",
+        "303": "R2_reject_at_20000"
+      },
+      "median_validation_blend": 0.31125,
+      "learning_curve_stable_2plus_seeds": false
+    }
+  },
+  "eligible_arms": [],
+  "best_rl_arm": "NONE",
+  "rl_feasibility": "INCONCLUSIVE",
+  "submission_D": "DO_NOT_SUBMIT",
+  "promotion_decision": "NO_RL_SUBMISSION",
+  "next_step": "REVISE_RL",
+  "highest_leverage_blocker": "RL learns but no candidate reaches teacher non-inferiority (best one-sided LB 0.155 < 0.47) or a reproducible strategic improvement; the teacher remains stronger on the fixed deck"
+}

@@ -1,0 +1,21 @@
+{
+  "submission_F": "DO_NOT_SUBMIT",
+  "criteria": {
+    "best_agent_is_not_the_incumbent": true,
+    "reliability_passes": true,
+    "teacher_non_inferiority_lb95_ge_0.47": false,
+    "beats_frozen_teacher_same_panel_field": false,
+    "no_major_regression_vs_teacher": false,
+    "uses_exact_frozen_deck": true,
+    "package_validation": "NOT_APPLICABLE"
+  },
+  "best_agent": "S_633_g30176",
+  "best_agent_teacher_score": 0.33499999999999996,
+  "best_agent_teacher_lb95": 0.29500000000000004,
+  "best_agent_field_score": 0.3666666666666667,
+  "frozen_teacher_same_panel_field": 0.545,
+  "field_gap_vs_teacher": 0.17833333333333334,
+  "archive_built": false,
+  "package_validation": "NOT_APPLICABLE",
+  "note": "No package is built for a non-qualifying agent. \u00a724 requires beating the frozen teacher on the SAME strategic panel; c010 compared against a teacher figure from a different panel, which is the governance defect this contract repaired."
+}

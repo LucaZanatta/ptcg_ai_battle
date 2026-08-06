@@ -1,0 +1,38 @@
+{
+  "probe_id": "P06",
+  "name": "search_latency",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": "1de8550665ef7226",
+  "checks": {
+    "decisions_timed": 42857,
+    "p50_ms": 2.4,
+    "p90_ms": 3.6,
+    "p99_ms": 5.7,
+    "max_ms": 341.3,
+    "mean_ms": 3.2,
+    "budget_ms_per_decision": 2500,
+    "over_budget_decisions": 0,
+    "fallback_rate": 0.0898,
+    "nodes_expanded": 609875,
+    "nodes_per_searched_decision": 14.2,
+    "search_handles_released": 652732,
+    "release_errors": 0,
+    "search_end_calls": 42857,
+    "roots_per_second": 94.33,
+    "steps_per_second": 1329.34,
+    "rss_mb": 299.3,
+    "mean_full_match_agent_ms": 2.3,
+    "determinizations": 2952,
+    "search_begin_input_preserved": true,
+    "repeated_search_stable": true
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/search/scaled2_search_summary.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/scaled2_trajectories.jsonl.gz",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/throughput.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/lifecycle_extended.json"
+  ]
+}

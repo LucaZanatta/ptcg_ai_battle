@@ -1,0 +1,22 @@
+c009 AC-02 — c008 identity-defect reproduction
+============================================================
+1) SYNTHETIC (deterministic permutation):
+   jobs=160 c008-pattern mislabeled=12 (7.5%)  c009-protocol mislabeled=0
+   reproduced=True
+
+2) REAL MULTIPROCESSING (spawn + imap_unordered, deterministic delays):
+   jobs=80 completion order differs=True
+   submitted[:10]=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+   completed[:10]=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+   c008-pattern mislabeled=24 (30.0%)  c009-protocol mislabeled=0
+   reproduced=True
+
+3) FORENSIC (shipped c008 artifacts):
+   raw rows=1600 expected per (arm,opponent) cell=80
+   cells with wrong count=8 -> {'R0|__control__': 83, 'R0|mega_lucario': 77, 'R1|__control__': 78, 'R1|mega_lucario': 82, 'R2|__control__': 82, 'R2|mega_lucario': 78, 'teacher|__control__': 77, 'teacher|mega_lucario': 83}
+   seat-imbalanced cells=8 -> {'R0|__control__': [40, 43], 'R0|mega_lucario': [37, 40], 'R1|__control__': [40, 38], 'R1|mega_lucario': [42, 40], 'R2|__control__': [40, 42], 'R2|mega_lucario': [38, 40], 'teacher|__control__': [40, 37], 'teacher|mega_lucario': [43, 40]}
+   minimum provably mislabeled games=10
+   affected opponents=['__control__', 'mega_lucario']
+   corruption confirmed=True
+
+DEFECT REPRODUCED = True

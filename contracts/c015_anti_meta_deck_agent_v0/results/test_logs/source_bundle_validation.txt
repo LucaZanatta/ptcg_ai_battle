@@ -1,0 +1,36 @@
+[PASS] manifest_inside
+[PASS] archive_bytes_match_manifest
+    {"bad": []}
+[PASS] category_nonempty:c014_source
+    {"n": 8}
+[PASS] category_nonempty:test
+    {"n": 1}
+[PASS] category_nonempty:supporting_source
+    {"n": 5}
+[PASS] category_nonempty:contract
+    {"n": 1}
+[PASS] category_nonempty:command
+    {"n": 1}
+[PASS] category_nonempty:deck
+    {"n": 2}
+[PASS] category_nonempty:report
+    {"n": 40}
+[PASS] category_nonempty:log
+    {"n": 11}
+[PASS] category_nonempty:public_evidence
+    {"n": 5}
+[PASS] category_nonempty:environment
+    {"n": 1}
+[PASS] category_nonempty:git_patch
+    {"n": 1}
+[PASS] python_members_compile
+    {"bad": []}
+[PASS] no_credential_material
+    {"hits": []}
+[PASS] expert_bundled
+[PASS] package_builder_bundled
+[PASS] submit_wrapper_bundled
+[PASS] deck_bundled
+[PASS] no_submission_archive_inside
+
+overall: PASS (20/20)

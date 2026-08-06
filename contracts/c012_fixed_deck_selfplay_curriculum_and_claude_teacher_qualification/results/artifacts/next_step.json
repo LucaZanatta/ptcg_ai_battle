@@ -1,0 +1,8 @@
+{
+  "next_step": "REDESIGN_FIXED_DECK_AGENT",
+  "highest_leverage_blocker": "PPO continuation has stopped adding value from this initialisation. Neither arm beat the frozen incumbent on teacher score at 500 games (incumbent 0.380; best P0 0.325, best P1 0.345), while a zero-cost weight average of two c011 seeds gained +0.11 teacher over c011's best single policy. The binding constraint is the optimiser's inability to exceed a point that parameter averaging reaches for free -- not opponent curriculum, not compute.",
+  "curriculum_result": "TIED",
+  "self_play_loop": "NOT_EXTENDED",
+  "claude_teacher_status": "REJECTED",
+  "best_agent": "TRUE_INCUMBENT"
+}

@@ -1,0 +1,39 @@
+[PASS] bundle_exists
+    {"path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/c013_python_source_bundle.zip"}
+[PASS] manifest_inside_archive
+[PASS] every_manifest_entry_present
+    {"missing": []}
+[PASS] archive_bytes_match_manifest_hashes
+    {"mismatched": []}
+[PASS] category_nonempty:c013_source
+    {"n": 19}
+[PASS] category_nonempty:test
+    {"n": 2}
+[PASS] category_nonempty:supporting_source
+    {"n": 12}
+[PASS] category_nonempty:contract
+    {"n": 1}
+[PASS] category_nonempty:command
+    {"n": 1}
+[PASS] category_nonempty:claude_prompt
+    {"n": 1}
+[PASS] category_nonempty:claude_schema
+    {"n": 2}
+[PASS] category_nonempty:claude_io
+    {"n": 4}
+[PASS] category_nonempty:decision
+    {"n": 43}
+[PASS] category_nonempty:environment
+    {"n": 2}
+[PASS] category_nonempty:git_patch
+    {"n": 1}
+[PASS] every_python_member_compiles
+    {"bad": []}
+[PASS] no_credential_shaped_content
+    {"hits": []}
+[PASS] executed_entrypoints_bundled
+    {"n": 19}
+[PASS] ensemble_and_soup_implementation_bundled
+[PASS] semantic_serializer_bundled
+
+overall: PASS (20/20)

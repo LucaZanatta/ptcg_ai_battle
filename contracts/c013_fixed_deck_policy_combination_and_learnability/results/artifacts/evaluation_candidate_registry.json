@@ -1,0 +1,795 @@
+{
+  "C012_SOUP_622_633": {
+    "candidate_id": "C012_SOUP_622_633",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+    "checkpoint_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+    "candidate_type": "weight_soup",
+    "component_ids": [
+      "S622",
+      "S633"
+    ],
+    "training_games": null,
+    "protected": true
+  },
+  "S611": {
+    "candidate_id": "S611",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+    "checkpoint_sha256": "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "S622": {
+    "candidate_id": "S622",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+    "checkpoint_sha256": "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "S633": {
+    "candidate_id": "S633",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz",
+    "checkpoint_sha256": "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "P0_711": {
+    "candidate_id": "P0_711",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+    "checkpoint_sha256": "92c1816e95d95314a652726a976085b3f3d59a62cb2ac32c46047b2eaa2078d4",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "P1_822": {
+    "candidate_id": "P1_822",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz",
+    "checkpoint_sha256": "12c7c7549bd76569ddeb759997feda6a78cc327efab3c1da469ddb58a39d00ce",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "P1_833": {
+    "candidate_id": "P1_833",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/ckpt_g15232.npz",
+    "checkpoint_sha256": "381b80e2e6923583aea2937a481d50b1097b040630595d9913c60c53625d2eab",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "C010_INCUMBENT": {
+    "candidate_id": "C010_INCUMBENT",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c010_fixed_deck_rl_loop_v2/results/artifacts/training/arm_C/seed522/checkpoints/ckpt_g20220.npz",
+    "checkpoint_sha256": "974051fad562ee88b4521a978f748ce7e82638d543281ca64c60d5ab52b0280d",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "C008_I0": {
+    "candidate_id": "C008_I0",
+    "kind": "rl_ckpt",
+    "arm": "single",
+    "seed": null,
+    "checkpoint_path": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed101/checkpoints/ckpt_g10040.npz",
+    "checkpoint_sha256": "b172b4dc79477821105043398bf04169ead884c0e01975ae2374de915072c682",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "LOGIT_S611+S622": {
+    "candidate_id": "LOGIT_S611+S622",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_S611+S622.json",
+    "checkpoint_sha256": "441216c70b34d9103fd62ee98bdd24539ae0b66269f960072cc186ce7ef15bae",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "S611",
+      "S622"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_S611+S633": {
+    "candidate_id": "LOGIT_S611+S633",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_S611+S633.json",
+    "checkpoint_sha256": "9e26098b608bd3fd49bbb44070412ad7b614c64a4866028adb5f49d16729d367",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "S611",
+      "S633"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_S622+S633": {
+    "candidate_id": "LOGIT_S622+S633",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_S622+S633.json",
+    "checkpoint_sha256": "f402458b03210dcdcbbc806573b01232271fc20278126b333562c013551b5ddc",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "S622",
+      "S633"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_S611+S622+S633": {
+    "candidate_id": "LOGIT_S611+S622+S633",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_S611+S622+S633.json",
+    "checkpoint_sha256": "67753ab91b4917cdc4a8e9ef7076da9dec4bc543646f2b9ff122ef2cc09d2250",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "S611",
+      "S622",
+      "S633"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_SOUP+P0_711": {
+    "candidate_id": "LOGIT_SOUP+P0_711",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_SOUP+P0_711.json",
+    "checkpoint_sha256": "471a4cb569e5d792f278ca1ad9363a094dddac29d82d29ca5e6fcf1dfec4c188",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_SOUP+P1_822": {
+    "candidate_id": "LOGIT_SOUP+P1_822",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_SOUP+P1_822.json",
+    "checkpoint_sha256": "f69b6467a866d670d483b229e98bc1f703e8aed70fd0f13bd1a1b48ac4b9a4f5",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P1_822"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_SOUP+P1_833": {
+    "candidate_id": "LOGIT_SOUP+P1_833",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_SOUP+P1_833.json",
+    "checkpoint_sha256": "0e7c477498409d229f1e56c113c58205e92a1b239dd42e8fd8ccdd462ff1d57d",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P1_833"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/ckpt_g15232.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_SOUP+P0_711+P1_822": {
+    "candidate_id": "LOGIT_SOUP+P0_711+P1_822",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_SOUP+P0_711+P1_822.json",
+    "checkpoint_sha256": "2a42e544fdd5d272ea02876cec08166657808803101bcffa423e3070217ad165",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711",
+      "P1_822"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_SOUP+P0_711+P1_833": {
+    "candidate_id": "LOGIT_SOUP+P0_711+P1_833",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_SOUP+P0_711+P1_833.json",
+    "checkpoint_sha256": "ff588247d096fb9f6ca2092d42544ee00c4a305f424e67224606320f84c03aad",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711",
+      "P1_833"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/ckpt_g15232.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "LOGIT_SOUP+P0_711+P1_822+P1_833": {
+    "candidate_id": "LOGIT_SOUP+P0_711+P1_822+P1_833",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/LOGIT_SOUP+P0_711+P1_822+P1_833.json",
+    "checkpoint_sha256": "984cff09098136986330068e5bacbaba6fece7efa166843bf90665b814d1f82e",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711",
+      "P1_822",
+      "P1_833"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/ckpt_g15232.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_S611+S622": {
+    "candidate_id": "PROB_S611+S622",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_S611+S622.json",
+    "checkpoint_sha256": "344aeb432d01a0a70e71933971b4a8fdd5171a182ced9f1524afb6a4a8c9a01d",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "S611",
+      "S622"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_S611+S633": {
+    "candidate_id": "PROB_S611+S633",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_S611+S633.json",
+    "checkpoint_sha256": "489359bbc5f46426a9139a2b1f1747a9f36a3a16601502600b2f9aeb97a2e627",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "S611",
+      "S633"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_S622+S633": {
+    "candidate_id": "PROB_S622+S633",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_S622+S633.json",
+    "checkpoint_sha256": "7d873cf36ca5b785d56f2e1b79f58732b0be181dad6e582dbe00f5c150d918d5",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "S622",
+      "S633"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_S611+S622+S633": {
+    "candidate_id": "PROB_S611+S622+S633",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_S611+S622+S633.json",
+    "checkpoint_sha256": "7898869d2388fdfb9c9e28f98af70d64044676211bb6337f0460a088af6ef160",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "S611",
+      "S622",
+      "S633"
+    ],
+    "component_paths": [
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+      "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_SOUP+P0_711": {
+    "candidate_id": "PROB_SOUP+P0_711",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_SOUP+P0_711.json",
+    "checkpoint_sha256": "1163f65dd5b5444144ec074b0d81d030830a08537f762f9a2ea5daee42ab89e5",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_SOUP+P1_822": {
+    "candidate_id": "PROB_SOUP+P1_822",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_SOUP+P1_822.json",
+    "checkpoint_sha256": "371b6d27de2b49c271e9217eff73533e13bdea54fce65ee8b08f7d1af665fe4f",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P1_822"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_SOUP+P1_833": {
+    "candidate_id": "PROB_SOUP+P1_833",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_SOUP+P1_833.json",
+    "checkpoint_sha256": "1e9eaf1a78401d2864a815beaf087269219169860f1162b65fc83cfcf566186d",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P1_833"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/ckpt_g15232.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_SOUP+P0_711+P1_822": {
+    "candidate_id": "PROB_SOUP+P0_711+P1_822",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_SOUP+P0_711+P1_822.json",
+    "checkpoint_sha256": "af94dc2f263b6e0bf1724861e6dcb063aa592d1795dd40d5702b72d29c4ac21f",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711",
+      "P1_822"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_SOUP+P0_711+P1_833": {
+    "candidate_id": "PROB_SOUP+P0_711+P1_833",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_SOUP+P0_711+P1_833.json",
+    "checkpoint_sha256": "30dfd1abd8374a9f077138bb793133b9b6c8b84c67c96439016d0d984fb1ffce",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711",
+      "P1_833"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/ckpt_g15232.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "PROB_SOUP+P0_711+P1_822+P1_833": {
+    "candidate_id": "PROB_SOUP+P0_711+P1_822+P1_833",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/PROB_SOUP+P0_711+P1_822+P1_833.json",
+    "checkpoint_sha256": "9499d4ee2750b7d1eccd9cc58e9cce1b094c07128e45c43f134c3d0befc929ed",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711",
+      "P1_822",
+      "P1_833"
+    ],
+    "component_paths": [
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz",
+      "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed833/checkpoints/ckpt_g15232.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "SOUP13_SOUP+P0_711": {
+    "candidate_id": "SOUP13_SOUP+P0_711",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/SOUP13_SOUP+P0_711.npz",
+    "checkpoint_sha256": "d98e16eb30c2d5cef11fdc4dc4b0e2e03acbc1979ad810bf249a58f2edb5c95f",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "SOUP13_SOUP+P1_822": {
+    "candidate_id": "SOUP13_SOUP+P1_822",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/SOUP13_SOUP+P1_822.npz",
+    "checkpoint_sha256": "7c1181bd0630c2f3feca1cd2899b7a5b2887dbd13f2daf0aacc8d9d4b1ac9c7f",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P1_822"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "SOUP13_SOUP+P1_833": {
+    "candidate_id": "SOUP13_SOUP+P1_833",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/SOUP13_SOUP+P1_833.npz",
+    "checkpoint_sha256": "918570765ff4e475843bc156f887c8570cc1bc1de7da294aae3d3797a63dda79",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P1_833"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "SOUP13_P0_711+P1_822": {
+    "candidate_id": "SOUP13_P0_711+P1_822",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/SOUP13_P0_711+P1_822.npz",
+    "checkpoint_sha256": "4883a529087c74e17ddfce4ce493b017cbf116273ebd61c0e9a6e1ea61b29fe2",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "P0_711",
+      "P1_822"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "SOUP13_P0_711+P1_833": {
+    "candidate_id": "SOUP13_P0_711+P1_833",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/SOUP13_P0_711+P1_833.npz",
+    "checkpoint_sha256": "b37e6dc75e2a9148a9bc994a8ed3424f09499e3ed87efc30beb56376f8a9f211",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "P0_711",
+      "P1_833"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "SOUP13_P1_822+P1_833": {
+    "candidate_id": "SOUP13_P1_822+P1_833",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/SOUP13_P1_822+P1_833.npz",
+    "checkpoint_sha256": "2a350babd6c66f1e7624139fb4d78163ef586e9f5b78d4348bc04b7718e9960e",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "P1_822",
+      "P1_833"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "SOUP13_SOUP+P0_711+P1_822+P1_833": {
+    "candidate_id": "SOUP13_SOUP+P0_711+P1_822+P1_833",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/SOUP13_SOUP+P0_711+P1_822+P1_833.npz",
+    "checkpoint_sha256": "8a83e9ecdf38830a70f6766f20abff5d162110034049ddba42d7997923324d6b",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "C012_SOUP_622_633",
+      "P0_711",
+      "P1_822",
+      "P1_833"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "Q2_SOUP_recombined": {
+    "candidate_id": "Q2_SOUP_recombined",
+    "kind": "rl_ckpt",
+    "arm": "weight_soup",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/soups/Q2_SOUP_recombined.npz",
+    "checkpoint_sha256": "ad76c8f2ba1bb57d51ab37d09cbc3b308a387a4bc31de8df2d0d94019f0edd79",
+    "candidate_type": "weight_soup",
+    "ensemble_mode": null,
+    "component_ids": [
+      "Q2A_S622_continued",
+      "Q2B_S633_continued"
+    ],
+    "component_paths": null,
+    "training_games": null,
+    "protected": false
+  },
+  "Q2_LOGIT_recombined": {
+    "candidate_id": "Q2_LOGIT_recombined",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/Q2_LOGIT_recombined.json",
+    "checkpoint_sha256": "93cd87f6bb3222f4e1cc7c9747af06e3b8d40fadecf699247cad22d148cd22e3",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "logit",
+    "component_ids": [
+      "Q2A_S622_continued",
+      "Q2B_S633_continued"
+    ],
+    "component_paths": [
+      "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/ckpt_g5152.npz",
+      "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/ckpt_g5200.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "Q2_PROB_recombined": {
+    "candidate_id": "Q2_PROB_recombined",
+    "kind": "online_ensemble",
+    "arm": "online_ensemble",
+    "seed": null,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/ensembles/Q2_PROB_recombined.json",
+    "checkpoint_sha256": "44e90e8c27fa008e1e778a0ae0f16cfd6d87fd4563011541e49f15f1b77f2af1",
+    "candidate_type": "online_ensemble",
+    "ensemble_mode": "prob",
+    "component_ids": [
+      "Q2A_S622_continued",
+      "Q2B_S633_continued"
+    ],
+    "component_paths": [
+      "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/ckpt_g5152.npz",
+      "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/ckpt_g5200.npz"
+    ],
+    "training_games": null,
+    "protected": false
+  },
+  "T_teacher": {
+    "candidate_id": "T_teacher",
+    "kind": "frozen_teacher",
+    "arm": "T",
+    "seed": null,
+    "checkpoint_path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/teacher_sources/dragapult/main.py",
+    "checkpoint_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+    "candidate_type": "frozen_teacher",
+    "component_ids": [],
+    "training_games": null,
+    "protected": true
+  },
+  "Q0_901_g5184": {
+    "candidate_id": "Q0_901_g5184",
+    "kind": "rl_ckpt",
+    "arm": "Q0",
+    "seed": 901,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/ckpt_g5184.npz",
+    "checkpoint_sha256": "ebf5f311bfa698c8d862cb185df50e9890370ad32938831fbfc7f74a6f876c63",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": 5184,
+    "protected": false
+  },
+  "Q0_901_g10320": {
+    "candidate_id": "Q0_901_g10320",
+    "kind": "rl_ckpt",
+    "arm": "Q0",
+    "seed": 901,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q0/seed901/checkpoints/ckpt_g10320.npz",
+    "checkpoint_sha256": "a6eb5714fedc953facd44163e38edf798223600575486ea866d509139297759d",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": 10320,
+    "protected": false
+  },
+  "Q1_902_g5184": {
+    "candidate_id": "Q1_902_g5184",
+    "kind": "rl_ckpt",
+    "arm": "Q1",
+    "seed": 902,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/ckpt_g5184.npz",
+    "checkpoint_sha256": "8f99bbea5594b5c106e9683331bb97ae70d73c4f3465a53b9a2dc7f39a57c533",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": 5184,
+    "protected": false
+  },
+  "Q1_902_g10256": {
+    "candidate_id": "Q1_902_g10256",
+    "kind": "rl_ckpt",
+    "arm": "Q1",
+    "seed": 902,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/ckpt_g10256.npz",
+    "checkpoint_sha256": "e4cb44bdccbda67f40e7ab45000fcc14b0241ad673c6e32bf8d59af19ec26c37",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": 10256,
+    "protected": false
+  },
+  "Q2A_903_g5152": {
+    "candidate_id": "Q2A_903_g5152",
+    "kind": "rl_ckpt",
+    "arm": "Q2A",
+    "seed": 903,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2A/seed903/checkpoints/ckpt_g5152.npz",
+    "checkpoint_sha256": "5b7327cf77166997ca857ed7268e6702916c2abbcbeb1658b9b934df0426f499",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": 5152,
+    "protected": false
+  },
+  "Q2B_904_g5200": {
+    "candidate_id": "Q2B_904_g5200",
+    "kind": "rl_ckpt",
+    "arm": "Q2B",
+    "seed": 904,
+    "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q2B/seed904/checkpoints/ckpt_g5200.npz",
+    "checkpoint_sha256": "0a80c931e12e1c7ea9fa7891f8d2a1a70d6aa3f4690e93bfb6b514940602abff",
+    "candidate_type": "single",
+    "component_ids": [],
+    "training_games": 5200,
+    "protected": false
+  }
+}

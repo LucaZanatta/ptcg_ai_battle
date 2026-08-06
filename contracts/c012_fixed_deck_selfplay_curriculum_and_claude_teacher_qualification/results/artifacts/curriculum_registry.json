@@ -1,0 +1,115 @@
+{
+  "registry_id": "c012-curriculum-v1",
+  "locked_at": "2026-07-26T02:57:47+0200",
+  "note": "Locked before the first Phase 2 training game (\u00a720). No parameter here may change afterwards; the trainer verifies this file's SHA-256 at startup.",
+  "screen_panel": {
+    "dragapult": 20,
+    "mega_lucario": 10,
+    "iono": 10,
+    "mega_abomasnow": 10
+  },
+  "arms": {
+    "P0": {
+      "purpose": "unchanged c011 population control (\u00a722)",
+      "stages": [
+        {
+          "stage": 0,
+          "mixture": {
+            "teacher": 0.35,
+            "mega_lucario": 0.2,
+            "iono": 0.2,
+            "lagged": 0.15,
+            "control": 0.1
+          }
+        }
+      ]
+    },
+    "P1": {
+      "purpose": "adaptive elite population self-play (\u00a723)",
+      "advance_gates": {
+        "min_iono": 0.2,
+        "min_abomasnow": 0.2,
+        "rule": "\u00a724 \u2014 advance only when a registered evaluation shows teacher preserved vs branch best AND no Iono/Abomasnow regression; never merely because game count increased."
+      },
+      "stages": [
+        {
+          "stage": 0,
+          "elite_fraction": 0.15,
+          "mixture": {
+            "teacher": 0.3,
+            "mega_lucario": 0.175,
+            "iono": 0.175,
+            "elite": 0.15,
+            "lagged": 0.1,
+            "control": 0.1
+          }
+        },
+        {
+          "stage": 1,
+          "elite_fraction": 0.25,
+          "mixture": {
+            "teacher": 0.275,
+            "mega_lucario": 0.15,
+            "iono": 0.15,
+            "elite": 0.25,
+            "lagged": 0.075,
+            "control": 0.1
+          }
+        },
+        {
+          "stage": 2,
+          "elite_fraction": 0.35,
+          "mixture": {
+            "teacher": 0.25,
+            "mega_lucario": 0.125,
+            "iono": 0.125,
+            "elite": 0.35,
+            "lagged": 0.05,
+            "control": 0.1
+          }
+        },
+        {
+          "stage": 3,
+          "elite_fraction": 0.45,
+          "mixture": {
+            "teacher": 0.225,
+            "mega_lucario": 0.1,
+            "iono": 0.1,
+            "elite": 0.45,
+            "lagged": 0.025,
+            "control": 0.1
+          }
+        }
+      ]
+    }
+  },
+  "elite_pool": [
+    "SOUP_622+633",
+    "S_622_g39983",
+    "S_633_g10224",
+    "S_611_g40127"
+  ],
+  "informative_band": {
+    "min": 0.25,
+    "max": 0.75,
+    "note": "\u00a725 \u2014 elite opponents whose estimated learner score falls in this band are preferred; minimum exposure to teacher, Lucario and Iono is guaranteed by their own registered shares, so no opponent disappears."
+  },
+  "minimum_exposure": {
+    "teacher": 0.225,
+    "mega_lucario": 0.1,
+    "iono": 0.1,
+    "control": 0.1
+  },
+  "budget": {
+    "max_completed_games_per_seed": 30000,
+    "registered_eval_points": [
+      0,
+      5000,
+      10000,
+      15000,
+      20000,
+      25000,
+      30000
+    ]
+  }
+}

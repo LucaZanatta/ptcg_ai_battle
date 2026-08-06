@@ -1,0 +1,151 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "computed_on_splits": [
+    "train",
+    "validation"
+  ],
+  "decision_forms": {
+    "SINGLE_CHOICE": 16079,
+    "FIXED_MULTISELECT": 497,
+    "VARIABLE_MULTISELECT": 210
+  },
+  "form_definitions": {
+    "SINGLE_CHOICE": "maxCount==1 -> masked softmax argmax",
+    "FIXED_MULTISELECT": "minCount==maxCount>1 -> masked top-k (unordered)",
+    "VARIABLE_MULTISELECT": "minCount<maxCount, maxCount>1 -> per-option keep + [lo,hi] clamp",
+    "EMPTY": "maxCount==0 -> []",
+    "ORDERED": "order-dependent multi-select -> deterministic safe fallback (none present in c005)"
+  },
+  "coverage_by_context": {
+    "IS_FIRST": {
+      "SINGLE_CHOICE": {
+        "count": 104,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "SETUP_ACTIVE_POKEMON": {
+      "SINGLE_CHOICE": {
+        "count": 207,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "SETUP_BENCH_POKEMON": {
+      "SINGLE_CHOICE": {
+        "count": 78,
+        "supported": true,
+        "handler": "single_choice"
+      },
+      "VARIABLE_MULTISELECT": {
+        "count": 23,
+        "supported": true,
+        "handler": "variable_multiselect"
+      }
+    },
+    "MAIN": {
+      "SINGLE_CHOICE": {
+        "count": 8217,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "TO_HAND": {
+      "SINGLE_CHOICE": {
+        "count": 2806,
+        "supported": true,
+        "handler": "single_choice"
+      },
+      "FIXED_MULTISELECT": {
+        "count": 148,
+        "supported": true,
+        "handler": "fixed_multiselect"
+      }
+    },
+    "ATTACH_TO": {
+      "SINGLE_CHOICE": {
+        "count": 232,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "ATTACH_FROM": {
+      "SINGLE_CHOICE": {
+        "count": 232,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "DISCARD_ENERGY": {
+      "SINGLE_CHOICE": {
+        "count": 356,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "SWITCH": {
+      "SINGLE_CHOICE": {
+        "count": 389,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "TO_ACTIVE": {
+      "SINGLE_CHOICE": {
+        "count": 437,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "DRAW_COUNT": {
+      "SINGLE_CHOICE": {
+        "count": 61,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "DISCARD": {
+      "FIXED_MULTISELECT": {
+        "count": 349,
+        "supported": true,
+        "handler": "fixed_multiselect"
+      }
+    },
+    "EVOLVE": {
+      "SINGLE_CHOICE": {
+        "count": 120,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "DAMAGE_COUNTER_ANY": {
+      "SINGLE_CHOICE": {
+        "count": 2754,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "ACTIVATE": {
+      "SINGLE_CHOICE": {
+        "count": 53,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    },
+    "TO_BENCH": {
+      "VARIABLE_MULTISELECT": {
+        "count": 187,
+        "supported": true,
+        "handler": "variable_multiselect"
+      },
+      "SINGLE_CHOICE": {
+        "count": 33,
+        "supported": true,
+        "handler": "single_choice"
+      }
+    }
+  },
+  "unsupported_records_routed_to_fallback": 0,
+  "ordered_forms_present": 0,
+  "all_forms_supported_or_safe": true
+}

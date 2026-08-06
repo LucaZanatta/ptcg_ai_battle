@@ -1,0 +1,44 @@
+{
+  "A": {
+    "arm": "A",
+    "seed": 311,
+    "updates": 2,
+    "games": 266,
+    "elapsed_seconds": 60.9,
+    "games_per_hour": 15721.1,
+    "decisions_per_game": 63.04,
+    "mean_update_seconds": 14.4,
+    "mean_rollout_seconds": 15.7,
+    "nproc": 7,
+    "wall_seconds_including_startup": 61.2,
+    "omp_threads": 4
+  },
+  "B": {
+    "arm": "B",
+    "seed": 411,
+    "updates": 2,
+    "games": 266,
+    "elapsed_seconds": 71.6,
+    "games_per_hour": 13376.6,
+    "decisions_per_game": 72.31,
+    "mean_update_seconds": 19.4,
+    "mean_rollout_seconds": 16.1,
+    "nproc": 7,
+    "wall_seconds_including_startup": 71.9,
+    "omp_threads": 4
+  },
+  "C": {
+    "arm": "C",
+    "seed": 511,
+    "updates": 2,
+    "games": 889,
+    "elapsed_seconds": 224.8,
+    "games_per_hour": 14237.8,
+    "decisions_per_game": 74.45,
+    "mean_update_seconds": 61.9,
+    "mean_rollout_seconds": 50.2,
+    "nproc": 7,
+    "wall_seconds_including_startup": 225.2,
+    "omp_threads": 4
+  }
+}

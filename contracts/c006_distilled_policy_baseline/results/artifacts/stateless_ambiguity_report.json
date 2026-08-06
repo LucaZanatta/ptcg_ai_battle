@@ -1,0 +1,26 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "computed_on_splits": [
+    "train",
+    "validation"
+  ],
+  "test_split_touched": false,
+  "total_decisions": 16786,
+  "distinct_exact_states": 16683,
+  "exact_ambiguity": {
+    "conflicting_buckets": 0,
+    "conflicting_records": 0,
+    "conflicting_record_fraction": 0.0,
+    "empirical_upper_bound_stateless_exact_agreement": 1.0,
+    "note": "Exact = byte-identical canonical (strategic state, legal options); serial/step/clock removed. This bound IS treated as exact because the equivalence is exact under the documented normalization."
+  },
+  "near_ambiguity": {
+    "documented_hash": "cg.obs_norm.near_hash (context + option-type multiset + active/bench/hand id multisets + prize counts + turn + remainDamageCounter)",
+    "distinct_near_buckets": 16670,
+    "conflicting_buckets": 7,
+    "conflicting_records": 14,
+    "conflicting_record_fraction": 0.000834,
+    "empirical_upper_bound_under_near_hash": 0.999583
+  },
+  "contexts_most_affected_exact": []
+}

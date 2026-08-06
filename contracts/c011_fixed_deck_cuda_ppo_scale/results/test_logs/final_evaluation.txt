@@ -1,0 +1,17 @@
+c011 AC-13 final panel
+SCALE_RESULT=EXTENDED  BEST_AGENT=S_633_g30176  PROMOTION=PROMOTE_NEW_AGENT
+
+  S_633_g30176       teacher=0.33499999999999996 field=0.3666666666666667 composite=0.34925 abom=0.27
+  S_622_g39983       teacher=0.2925 field=0.37666666666666665 composite=0.330375 abom=0.23
+  S_611_g40127       teacher=0.3075 field=0.3466666666666667 composite=0.325125 abom=0.275
+  C_522_g20220       teacher=0.235 field=0.33499999999999996 composite=0.28 abom=0.245
+  T_teacher          teacher=None field=0.545 composite=None abom=0.515
+
+frozen teacher same-panel field baseline: 0.545
+  MET  two_seeds_beat_incumbent_teacher
+  MET  two_seeds_beat_incumbent_field
+  MET  median_teacher_gain_ge_0.03
+  MET  median_field_gain_ge_0.03
+  MET  one_median_improvement_90pct
+  MET  no_majority_abomasnow_regression
+  MET  reliability_passes

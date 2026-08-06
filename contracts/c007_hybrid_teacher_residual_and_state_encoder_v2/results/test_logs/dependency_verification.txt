@@ -1,0 +1,28 @@
+c007 AC-01 dependency + immutability verification
+============================================================
+c005 final head: 4137d983c6a05c0eea8332718d3e7f3acc7b7830
+c006 final head: 08ebac88385444a69d0615b7976dea9dbddeb79a
+c007 initial head: 08ebac88385444a69d0615b7976dea9dbddeb79a
+teacher: dragapult  deck: sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab
+teacher submission ref: 54948560 (recorded 617.8)
+
+  [OK ] c005_status_pass_and_head
+  [OK ] c006_status_pass_and_head
+  [OK ] commit_chain_c005_to_c006
+  [OK ] c007_branches_from_c006_final
+  [OK ] c005_c006_head_objects_exist
+  [OK ] frozen_teacher_main_sha256
+  [OK ] frozen_teacher_deck_sha256
+  [OK ] frozen_deck_id
+  [OK ] teacher_sources_dragapult_matches_frozen
+  [OK ] submission_A_archive_size
+  [OK ] c005_dataset_split_counts
+  [OK ] c005_dataset_no_leakage
+  [OK ] c006_checkpoints_present
+  [OK ] c006_sequence_manifest_present
+  [OK ] kaggle_teacher_ref
+  [OK ] teacher_sources_present
+  [OK ] runtime_deps_importable
+
+immutability baseline: c005 250 files (tree 598853730331aead), c006 114 files (tree c5b7d14fb9ce2c45)
+ALL_OK = True

@@ -1,0 +1,396 @@
+{
+  "contract": "c011",
+  "all_ok": true,
+  "n_checks": 77,
+  "n_failed": 0,
+  "training_games_recounted": 120176,
+  "grand_total_games": 123068,
+  "checkpoints_with_trainer_state": 18,
+  "checks": [
+    {
+      "check": "dependency_verification_all_ok",
+      "ok": true,
+      "detail": "0 failed of 17"
+    },
+    {
+      "check": "all_c010_checkpoint_hashes_verified",
+      "ok": true,
+      "detail": "42"
+    },
+    {
+      "check": "preflight_all_pass",
+      "ok": true,
+      "detail": "{'cuda_available': True, 'vram_free_ge_8gib': True, 'ram_available_ge_12gib': True, 'disk_free_ge_100gib': True}"
+    },
+    {
+      "check": "cuda_actually_available",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "hardware_drift_recorded_not_hidden",
+      "ok": true,
+      "detail": "['pytorch', 'pytorch_cuda', 'vram_mib', 'ram_gib', 'cpu']"
+    },
+    {
+      "check": "fp32_forward_logit_within_tolerance",
+      "ok": true,
+      "detail": "5.434174550345006e-06"
+    },
+    {
+      "check": "fp32_forward_value_within_tolerance",
+      "ok": true,
+      "detail": "3.1475391981672374e-07"
+    },
+    {
+      "check": "fp32_multiselect_logprob_within_tolerance",
+      "ok": true,
+      "detail": "1.3813288035624538e-06"
+    },
+    {
+      "check": "illegal_action_probability_exactly_zero",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "legal_mask_and_argmax_identical",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "float64_port_is_semantically_exact",
+      "ok": true,
+      "detail": "1.0658141036401503e-14"
+    },
+    {
+      "check": "ppo_losses_within_1e-4",
+      "ok": true,
+      "detail": "{'policy_loss': 3.6380870017949096e-09, 'value_loss': 8.677426846515068e-09, 'entropy': 1.2742347288430267e-08, 'approx_kl': 3.614598660965293e-09, 'clip_frac': 0.0}"
+    },
+    {
+      "check": "ppo_update_cosine_ge_0.999",
+      "ok": true,
+      "detail": "0.9999998394682647"
+    },
+    {
+      "check": "npz_roundtrip_within_tolerance",
+      "ok": true,
+      "detail": "0.0"
+    },
+    {
+      "check": "trainer_state_roundtrip_exact",
+      "ok": true,
+      "detail": "w=0.0 adam=0.0"
+    },
+    {
+      "check": "trainer_state_saves_every_required_field",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "resumed_update_matches_control",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "worker_calibration_covered_12_16_20",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "worker_choice_stable_across_repeated_windows",
+      "ok": true,
+      "detail": "0.042"
+    },
+    {
+      "check": "selected_worker_config_has_no_failures",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "backend_benchmark_compared_all_registered_backends",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "cuda_speedup_claim_backed_by_end_to_end_measurement",
+      "ok": true,
+      "detail": "2.869"
+    },
+    {
+      "check": "bf16_declined_on_measurement_not_assertion",
+      "ok": true,
+      "detail": "0.9581"
+    },
+    {
+      "check": "fp16_not_used",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "torch_compile_not_used_without_benchmark",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "cuda_smoke_zero_reliability_defects",
+      "ok": true,
+      "detail": "{'invalid_actions': 0, 'exceptions': 0, 'timeouts': 0, 'fallbacks': 0, 'ordered_blocks': 0}"
+    },
+    {
+      "check": "seed611_summary_matches_raw_trainable_games",
+      "ok": true,
+      "detail": "40127 vs 40127 (raw terminal 40128; difference = games with only forced decisions)"
+    },
+    {
+      "check": "seed611_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed611_seat_balance_within_5pct",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed611_every_game_has_trainer_state_id",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed611_declared_warm_restart",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed611_every_checkpoint_has_full_trainer_state",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "seed611_checkpoint_hashes_verify_on_disk",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "seed622_summary_matches_raw_trainable_games",
+      "ok": true,
+      "detail": "39983 vs 39983 (raw terminal 39984; difference = games with only forced decisions)"
+    },
+    {
+      "check": "seed622_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed622_seat_balance_within_5pct",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed622_every_game_has_trainer_state_id",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed622_declared_warm_restart",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed622_every_checkpoint_has_full_trainer_state",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "seed622_checkpoint_hashes_verify_on_disk",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "seed633_summary_matches_raw_trainable_games",
+      "ok": true,
+      "detail": "40064 vs 40064 (raw terminal 40064; difference = games with only forced decisions)"
+    },
+    {
+      "check": "seed633_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed633_seat_balance_within_5pct",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed633_every_game_has_trainer_state_id",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed633_declared_warm_restart",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "seed633_every_checkpoint_has_full_trainer_state",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "seed633_checkpoint_hashes_verify_on_disk",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_three_registered_seeds_executed",
+      "ok": true,
+      "detail": "[611, 622, 633]"
+    },
+    {
+      "check": "no_invalid_actions_in_training",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "no_exceptions_in_training",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "total_games_within_hard_maximum",
+      "ok": true,
+      "detail": "123068 vs 124000"
+    },
+    {
+      "check": "budget_derived_before_training",
+      "ok": true,
+      "detail": "123999"
+    },
+    {
+      "check": "evaluation_identity_all_batches_ok",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "check": "evaluation_seat_balance_exact",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "evaluation_zero_defects",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "evaluation_manifest_count_matches_raw",
+      "ok": true,
+      "detail": "22160 vs 22160"
+    },
+    {
+      "check": "frozen_teacher_evaluated_as_candidate",
+      "ok": true,
+      "detail": "960"
+    },
+    {
+      "check": "teacher_never_played_mirror",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "teacher_checkpoint_hash_verified_by_worker",
+      "ok": true,
+      "detail": "worker re-hashed the teacher module it executed"
+    },
+    {
+      "check": "final_aggregates_reproduce_from_raw_games",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "panel_sizes_exact",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "scale_result_valid",
+      "ok": true,
+      "detail": "EXTENDED"
+    },
+    {
+      "check": "scale_conditions_consistent_with_decision",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "scale_thresholds_not_relaxed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "best_agent_defaults_to_incumbent_when_nothing_qualifies",
+      "ok": true,
+      "detail": "S_633_g30176 / ['S_611_g40127', 'S_622_g39983', 'S_633_g30176']"
+    },
+    {
+      "check": "promotion_decision_consistent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "incumbent_protected_flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "teacher_field_baseline_measured_on_same_panel",
+      "ok": true,
+      "detail": "field=0.545 n=600"
+    },
+    {
+      "check": "submission_comparison_uses_same_panel_teacher",
+      "ok": true,
+      "detail": "['C_522_g20220', 'S_611_g40127', 'S_622_g39983']"
+    },
+    {
+      "check": "submission_decision_valid",
+      "ok": true,
+      "detail": "DO_NOT_SUBMIT"
+    },
+    {
+      "check": "submission_requires_teacher_non_inferiority",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no_archive_when_gated_off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exactly_one_next_step",
+      "ok": true,
+      "detail": "CONTINUE_FIXED_DECK_RL"
+    },
+    {
+      "check": "exactly_one_highest_leverage_blocker",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "deck_pipeline_only_under_section_2_gate",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "python_source_bundle_validates",
+      "ok": true,
+      "detail": "0 failed of 18"
+    },
+    {
+      "check": "validation_is_content_aware_not_existence_based",
+      "ok": true,
+      "detail": "every check above reads content: hashes, recomputed aggregates, recounted games, re-checked tolerances"
+    }
+  ]
+}

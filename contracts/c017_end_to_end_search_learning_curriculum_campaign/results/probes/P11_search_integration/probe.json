@@ -1,0 +1,32 @@
+{
+  "probe_id": "P11_search_integration",
+  "status": "PASS",
+  "note": "clean after the five defects below were fixed during the thin smoke",
+  "final_smoke": {"games": 12, "games_completed": 12, "decisions": 750,
+                  "decisions_searched": 221, "search_changed_action": 39,
+                  "invalid_actions": 0, "fallbacks": {}, "budget_stops": {},
+                  "redaction_clean": true},
+  "defects_found_by_the_thin_smoke": [
+    {"id": "D1_nested_clone_segfault", "severity": "CRITICAL",
+     "symptom": "process core-dumped; parent episodes truncated after 1-2 decisions",
+     "cause": "env.clone() copies the Python wrapper but both wrappers address the same native libcg.so state",
+     "fix": "abandoned forward simulation; search runs at depth 0 (probe P10)"},
+    {"id": "D2_sorted_over_none_ids", "severity": "HIGH",
+     "symptom": "TypeError on every game; 0 of 8 completed",
+     "cause": "sorted() over card ids where some are None",
+     "fix": "filter None before sorting"},
+    {"id": "D3_none_reward_comparison", "severity": "HIGH",
+     "symptom": "TypeError AFTER the episode ran, and the except-block then overwrote the real statuses with ERROR - masking the true outcome of every game it touched",
+     "cause": "rewards are None when an episode ends abnormally",
+     "fix": "compute outcome only when both rewards exist; never overwrite observed statuses"},
+    {"id": "D4_none_board_slots", "severity": "HIGH",
+     "symptom": "AttributeError on the first decision of every game, visible only as engine status ERROR",
+     "cause": "empty bench/active slots arrive as None entries, not as absent entries",
+     "fix": "filter None slots in every zone reader"},
+    {"id": "D5_global_node_budget", "severity": "HIGH",
+     "symptom": "249 of 266 searches aborted before scoring anything",
+     "cause": "the per-decision node cap was tested against a GLOBAL counter, so the budget was exhausted once for the whole run",
+     "fix": "per-decision node counter"}
+  ],
+  "lesson": "three of the five defects were invisible as errors: the engine reported them only as an agent status of ERROR, or my own error handling overwrote the evidence. Capturing tracebacks inside the agent callback is what made them diagnosable."
+}

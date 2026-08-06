@@ -1,0 +1,61 @@
+{
+  "contract": "c007",
+  "teacher_id": "dragapult",
+  "instrumentation_method": "byte-identical decision logic + one side-effect-free capture statement; persistent planning globals snapshotted read-only AFTER each agent() call by cg.instrumented_teacher (zero runtime inputs).",
+  "frozen_source": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/frozen_teacher/main.py",
+  "instrumented_source": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/instrumented_teacher/main.py",
+  "frozen_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "instrumented_main_sha256": "c68c0cd88ca3305626418c7a5a7c8fa7f619ea7feeb08abc49574ee6b496949d",
+  "captured_globals": [
+    "plan_a.attack",
+    "plan_a.counter",
+    "plan_b.attack",
+    "plan_b.counter",
+    "use_support",
+    "bench_attacker",
+    "can_switch",
+    "can_attack",
+    "can_main_attack",
+    "prize"
+  ],
+  "captured_locals_via_capture_line": [
+    "scores",
+    "prize_diff",
+    "do_switch",
+    "no_draw",
+    "damage",
+    "no_more_dex"
+  ],
+  "hazards_respected": [
+    "plan_*.counter deep-copied (aliased at main.py L284; never reset on early return L215-216)",
+    "card_counts NOT snapshotted by probing keys (defaultdict mutation hazard); only globals read",
+    "select==None deck-extraction call not snapshotted",
+    "teacher loads sequential per process (os.chdir at import)"
+  ],
+  "labels_are_training_targets_only": true,
+  "plan_label_fields": [
+    "plan_a_attack",
+    "plan_a_counter",
+    "plan_b_attack",
+    "plan_b_counter",
+    "use_support",
+    "bench_attacker",
+    "can_switch",
+    "can_attack",
+    "can_main_attack",
+    "prize_inference_count",
+    "prize_inference",
+    "scores",
+    "argmax_option",
+    "top1_score",
+    "top2_score",
+    "score_margin",
+    "prize_diff",
+    "do_switch",
+    "no_draw",
+    "damage",
+    "no_more_dex",
+    "plan_recomputed_this_decision",
+    "select_context"
+  ]
+}

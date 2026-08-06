@@ -1,0 +1,89 @@
+{
+  "candidate_id": "B0_v2a",
+  "checkpoint": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/checkpoints/V2_A_selected.npz",
+  "checkpoint_sha256": "7066841e3329b71bf842ac07de953bddd7c200475358293578e950b8183813a6",
+  "description": "exact c007 selected V2-A checkpoint before any RL update; the policy R1/R2 were initialized from at game zero (value head + STOP logit at their untrained init, which do not affect greedy action selection)",
+  "vs_teacher": {
+    "point": 0.158,
+    "n": 500,
+    "n_seat0": 250,
+    "n_seat1": 250,
+    "seat0_mean": 0.152,
+    "seat1_mean": 0.164,
+    "seat_effect": -0.01200000000000001,
+    "ci95_lo": 0.126,
+    "ci95_hi": 0.19,
+    "one_sided_lb95": 0.13,
+    "one_sided_ub95": 0.186
+  },
+  "defects": {
+    "games": 500,
+    "terminal": 500,
+    "defects": 0,
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "fallbacks": 0,
+    "decisions": 33462
+  },
+  "latency": {
+    "per_game_p50_median_ms": 1.02485325,
+    "per_game_p95_max_ms": 6.569234549999996,
+    "per_game_p99_max_ms": 102.72407844000017,
+    "note": "aggregated from per-game percentiles under parallel evaluation (contention-inflated; not a single-process latency claim)"
+  },
+  "strategic": {
+    "mega_lucario": {
+      "point": 0.16999999999999998,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "seat0_mean": 0.22,
+      "seat1_mean": 0.12,
+      "seat_effect": 0.1,
+      "ci95_lo": 0.1,
+      "ci95_hi": 0.25,
+      "one_sided_lb95": 0.11,
+      "one_sided_ub95": 0.23
+    },
+    "iono": {
+      "point": 0.16999999999999998,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "seat0_mean": 0.22,
+      "seat1_mean": 0.12,
+      "seat_effect": 0.1,
+      "ci95_lo": 0.1,
+      "ci95_hi": 0.24024999999999638,
+      "one_sided_lb95": 0.11,
+      "one_sided_ub95": 0.23
+    },
+    "mega_abomasnow": {
+      "point": 0.12,
+      "n": 100,
+      "n_seat0": 50,
+      "n_seat1": 50,
+      "seat0_mean": 0.16,
+      "seat1_mean": 0.08,
+      "seat_effect": 0.08,
+      "ci95_lo": 0.06,
+      "ci95_hi": 0.19,
+      "one_sided_lb95": 0.07,
+      "one_sided_ub95": 0.18
+    },
+    "dragapult": {
+      "point": 0.158,
+      "n": 500,
+      "n_seat0": 250,
+      "n_seat1": 250,
+      "seat0_mean": 0.152,
+      "seat1_mean": 0.164,
+      "seat_effect": -0.01200000000000001,
+      "ci95_lo": 0.128,
+      "ci95_hi": 0.192,
+      "one_sided_lb95": 0.132,
+      "one_sided_ub95": 0.186
+    }
+  }
+}

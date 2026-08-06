@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "state_id",
+    "selected_action_id",
+    "ranked_action_ids",
+    "confidence",
+    "strategic_tags",
+    "short_rationale"
+  ],
+  "properties": {
+    "state_id": {
+      "type": "string"
+    },
+    "selected_action_id": {
+      "type": "string"
+    },
+    "ranked_action_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "strategic_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "short_rationale": {
+      "type": "string",
+      "maxLength": 600
+    }
+  }
+}

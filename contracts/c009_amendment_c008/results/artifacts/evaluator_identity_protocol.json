@@ -1,0 +1,111 @@
+{
+  "protocol": "c009 identity-safe evaluation",
+  "identity_fields": [
+    "job_id",
+    "candidate_id",
+    "checkpoint_sha256",
+    "opponent_id",
+    "seat",
+    "replicate",
+    "requested_seed",
+    "phase"
+  ],
+  "rule": "every worker result returns the submitted identity verbatim; the worker additionally re-hashes the checkpoint file it loaded and fingerprints the deck it played. No positional reattachment exists anywhere in the pipeline.",
+  "assertions": [
+    "submitted job_ids unique",
+    "returned job_ids unique",
+    "submitted set == returned set",
+    "candidate_id in frozen registry",
+    "checkpoint hash matches registry and worker-verified hash",
+    "opponent/seat/phase/replicate/requested_seed round-trip",
+    "exact expected count per candidate/opponent/seat",
+    "no unexpected candidate/opponent/seat cells",
+    "every game terminal or explicitly defect-classified",
+    "deck fingerprint equals the frozen deck"
+  ],
+  "batches": [
+    {
+      "n_jobs": 800,
+      "n_results": 800,
+      "unique_submitted": 800,
+      "unique_returned": 800,
+      "missing": 0,
+      "unexpected": 0,
+      "cells": 16,
+      "terminal": 800,
+      "defects": 0,
+      "problems": [],
+      "ok": true,
+      "phase": "A",
+      "candidates": [
+        "B0_v2a",
+        "R0_101",
+        "R0_202",
+        "R1_101",
+        "R1_202",
+        "R2_101",
+        "R2_202",
+        "R2_303"
+      ],
+      "opponents": [
+        "dragapult"
+      ],
+      "per_seat": 50,
+      "wall_seconds": 31.3
+    },
+    {
+      "n_jobs": 900,
+      "n_results": 900,
+      "unique_submitted": 900,
+      "unique_returned": 900,
+      "missing": 0,
+      "unexpected": 0,
+      "cells": 6,
+      "terminal": 900,
+      "defects": 0,
+      "problems": [],
+      "ok": true,
+      "phase": "B",
+      "candidates": [
+        "B0_v2a",
+        "R1_101",
+        "R2_303"
+      ],
+      "opponents": [
+        "dragapult"
+      ],
+      "per_seat": 150,
+      "wall_seconds": 35.8
+    },
+    {
+      "n_jobs": 2000,
+      "n_results": 2000,
+      "unique_submitted": 2000,
+      "unique_returned": 2000,
+      "missing": 0,
+      "unexpected": 0,
+      "cells": 40,
+      "terminal": 2000,
+      "defects": 0,
+      "problems": [],
+      "ok": true,
+      "phase": "C",
+      "candidates": [
+        "T_teacher",
+        "B0_v2a",
+        "R1_101",
+        "R2_101",
+        "R0_202"
+      ],
+      "opponents": [
+        "mega_lucario",
+        "iono",
+        "mega_abomasnow",
+        "dragapult"
+      ],
+      "per_seat": 50,
+      "wall_seconds": 77.5
+    }
+  ],
+  "all_batches_ok": true
+}

@@ -1,0 +1,19 @@
+{
+  "contract": "c008",
+  "step_definition": "one non-forced agent selection (\u00a79.1)",
+  "forced_rule": "n_options<=1 OR maxCount==0 OR (minCount==maxCount==n_options): bypass, no transition",
+  "reward": {
+    "win": 1,
+    "draw": 0,
+    "loss": -1,
+    "intermediate": 0
+  },
+  "action_forms": [
+    "SINGLE_CHOICE",
+    "FIXED_MULTISELECT",
+    "VARIABLE_MULTISELECT"
+  ],
+  "distribution": "single-choice masked categorical; fixed/variable sequential masked sampling w/o replacement (variable adds a learned STOP logit); log-prob = sum of sub-step masked log-probs; ORDERED -> BLOCK.",
+  "observation": "cg.state_encoder_v2 (c007) with per-game threaded history; value head added",
+  "policy_params": 562819
+}

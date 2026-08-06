@@ -1,0 +1,168 @@
+{
+  "probe_id": "P10",
+  "name": "reload_and_heldout_metrics",
+  "status": "WARN",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "reload_hash_matches": true,
+    "reload_metrics_identical": true,
+    "held_out_n": 6738,
+    "top1": 0.6144,
+    "top3": 0.9,
+    "mean_kl_nats": 1.0471,
+    "legal_top1_rate": 1.0,
+    "value_mse": 0.202133,
+    "constant_baseline_mse": 0.149119,
+    "beats_constant_baseline": false,
+    "value_correlation": 0.284,
+    "calibration_deciles": [
+      {
+        "bin": 0,
+        "n": 3983,
+        "mean_predicted": 0.0317,
+        "mean_actual": 0.1032
+      },
+      {
+        "bin": 1,
+        "n": 461,
+        "mean_predicted": 0.1399,
+        "mean_actual": 0.1757
+      },
+      {
+        "bin": 2,
+        "n": 363,
+        "mean_predicted": 0.2414,
+        "mean_actual": 0.2066
+      },
+      {
+        "bin": 3,
+        "n": 238,
+        "mean_predicted": 0.3462,
+        "mean_actual": 0.2353
+      },
+      {
+        "bin": 4,
+        "n": 176,
+        "mean_predicted": 0.4465,
+        "mean_actual": 0.2557
+      },
+      {
+        "bin": 5,
+        "n": 174,
+        "mean_predicted": 0.5491,
+        "mean_actual": 0.2816
+      },
+      {
+        "bin": 6,
+        "n": 159,
+        "mean_predicted": 0.6517,
+        "mean_actual": 0.2642
+      },
+      {
+        "bin": 7,
+        "n": 149,
+        "mean_predicted": 0.7503,
+        "mean_actual": 0.2685
+      },
+      {
+        "bin": 8,
+        "n": 178,
+        "mean_predicted": 0.8546,
+        "mean_actual": 0.3258
+      },
+      {
+        "bin": 9,
+        "n": 857,
+        "mean_predicted": 1.004,
+        "mean_actual": 0.4166
+      }
+    ],
+    "by_decision_category": {
+      "0": {
+        "n": 4471,
+        "top1": 0.5319,
+        "top3": 0.8674,
+        "mean_kl_nats": 1.2239
+      },
+      "1": {
+        "n": 62,
+        "top1": 0.7903,
+        "top3": 1.0,
+        "mean_kl_nats": 0.498
+      },
+      "3": {
+        "n": 228,
+        "top1": 0.7325,
+        "top3": 0.9649,
+        "mean_kl_nats": 0.8867
+      },
+      "4": {
+        "n": 273,
+        "top1": 0.7363,
+        "top3": 0.9524,
+        "mean_kl_nats": 0.9192
+      },
+      "7": {
+        "n": 844,
+        "top1": 0.7322,
+        "top3": 0.9408,
+        "mean_kl_nats": 0.8681
+      },
+      "8": {
+        "n": 159,
+        "top1": 0.9874,
+        "top3": 1.0,
+        "mean_kl_nats": 0.0869
+      },
+      "21": {
+        "n": 341,
+        "top1": 0.7009,
+        "top3": 0.9707,
+        "mean_kl_nats": 0.8548
+      },
+      "22": {
+        "n": 148,
+        "top1": 1.0,
+        "top3": 1.0,
+        "mean_kl_nats": 0.0082
+      },
+      "38": {
+        "n": 35,
+        "top1": 0.9714,
+        "top3": 1.0,
+        "mean_kl_nats": 0.2483
+      },
+      "41": {
+        "n": 67,
+        "top1": 0.9851,
+        "top3": 1.0,
+        "mean_kl_nats": 0.0914
+      },
+      "43": {
+        "n": 77,
+        "top1": 0.8831,
+        "top3": 1.0,
+        "mean_kl_nats": 0.3652
+      }
+    },
+    "no_train_test_leakage": true,
+    "sample_size_control_11k": {
+      "n": 1578,
+      "top1": 0.5349,
+      "top3": 0.8587,
+      "value_mse": 0.267489,
+      "constant_baseline_mse": 0.215862,
+      "value_correlation": 0.1459,
+      "beats_constant_baseline": false
+    },
+    "metric_is_first_pick_only": true,
+    "multiselect_rows": 848
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/distillation_report.json",
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/heldout_metrics.json"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "required_fields": [
+    "policy_weights",
+    "value_weights",
+    "adam_moments",
+    "optimizer_step",
+    "completed_games",
+    "games_with_trainable_decisions",
+    "trainable_decisions",
+    "entropy_schedule_definition",
+    "entropy_schedule_progress",
+    "numpy_generator_type",
+    "numpy_generator_state",
+    "torch_cpu_rng",
+    "torch_cuda_rng",
+    "python_random_state",
+    "lagged_registry",
+    "curriculum_state",
+    "branch_checkpoint_registry"
+  ],
+  "numpy_generator": "saved via rng.bit_generator.state (\u00a77); the legacy global np.random state is deliberately NOT used",
+  "note": "One Generator drives opponent draws, seats, per-game seeds and the PPO minibatch permutation, so a restored run reproduces all of them."
+}

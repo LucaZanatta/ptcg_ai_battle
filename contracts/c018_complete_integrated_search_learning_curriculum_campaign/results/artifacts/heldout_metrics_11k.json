@@ -1,0 +1,246 @@
+{
+  "probe_id": "P10",
+  "device": "cuda",
+  "checkpoint": "m02_distilled.pt",
+  "checkpoint_sha256": "3fb8aeb8eb4f2d7c06e3e0e40af9cb340d2848ec6a936b8815151467f562c7da",
+  "validation": {
+    "n": 1777,
+    "top1": 0.5543,
+    "top3": 0.8762,
+    "mean_kl_nats": 1.1582,
+    "legal_top1_rate": 1.0,
+    "value_mse": 0.122503,
+    "constant_baseline_mse": 0.14374,
+    "constant_baseline_value": 0.1645,
+    "beats_constant_baseline": true,
+    "value_correlation": 0.4866,
+    "calibration_deciles": [
+      {
+        "bin": 0,
+        "n": 1349,
+        "mean_predicted": -0.0071,
+        "mean_actual": 0.0756
+      },
+      {
+        "bin": 1,
+        "n": 64,
+        "mean_predicted": 0.1452,
+        "mean_actual": 0.3125
+      },
+      {
+        "bin": 2,
+        "n": 56,
+        "mean_predicted": 0.2533,
+        "mean_actual": 0.375
+      },
+      {
+        "bin": 3,
+        "n": 61,
+        "mean_predicted": 0.3581,
+        "mean_actual": 0.5082
+      },
+      {
+        "bin": 4,
+        "n": 48,
+        "mean_predicted": 0.451,
+        "mean_actual": 0.4167
+      },
+      {
+        "bin": 5,
+        "n": 43,
+        "mean_predicted": 0.5483,
+        "mean_actual": 0.3721
+      },
+      {
+        "bin": 6,
+        "n": 29,
+        "mean_predicted": 0.6429,
+        "mean_actual": 0.5517
+      },
+      {
+        "bin": 7,
+        "n": 32,
+        "mean_predicted": 0.7634,
+        "mean_actual": 0.5
+      },
+      {
+        "bin": 8,
+        "n": 28,
+        "mean_predicted": 0.8489,
+        "mean_actual": 0.6786
+      },
+      {
+        "bin": 9,
+        "n": 67,
+        "mean_predicted": 1.1284,
+        "mean_actual": 0.7164
+      }
+    ]
+  },
+  "held_out_test": {
+    "n": 1578,
+    "top1": 0.5349,
+    "top3": 0.8587,
+    "mean_kl_nats": 1.1846,
+    "legal_top1_rate": 1.0,
+    "value_mse": 0.267489,
+    "constant_baseline_mse": 0.215862,
+    "constant_baseline_value": 0.1645,
+    "beats_constant_baseline": false,
+    "value_correlation": 0.1459,
+    "calibration_deciles": [
+      {
+        "bin": 0,
+        "n": 1294,
+        "mean_predicted": -0.0069,
+        "mean_actual": 0.2635
+      },
+      {
+        "bin": 1,
+        "n": 55,
+        "mean_predicted": 0.1491,
+        "mean_actual": 0.1636
+      },
+      {
+        "bin": 2,
+        "n": 48,
+        "mean_predicted": 0.2432,
+        "mean_actual": 0.2083
+      },
+      {
+        "bin": 3,
+        "n": 34,
+        "mean_predicted": 0.3511,
+        "mean_actual": 0.3529
+      },
+      {
+        "bin": 4,
+        "n": 35,
+        "mean_predicted": 0.4438,
+        "mean_actual": 0.4571
+      },
+      {
+        "bin": 8,
+        "n": 26,
+        "mean_predicted": 0.8525,
+        "mean_actual": 0.4231
+      },
+      {
+        "bin": 9,
+        "n": 34,
+        "mean_predicted": 1.141,
+        "mean_actual": 0.4118
+      }
+    ],
+    "by_decision_category": {
+      "0": {
+        "n": 1044,
+        "top1": 0.432,
+        "top3": 0.8084,
+        "mean_kl_nats": 1.4067
+      },
+      "3": {
+        "n": 45,
+        "top1": 0.6667,
+        "top3": 0.9111,
+        "mean_kl_nats": 0.8788
+      },
+      "4": {
+        "n": 69,
+        "top1": 0.6377,
+        "top3": 0.9855,
+        "mean_kl_nats": 0.9265
+      },
+      "7": {
+        "n": 205,
+        "top1": 0.6585,
+        "top3": 0.9171,
+        "mean_kl_nats": 0.9929
+      },
+      "8": {
+        "n": 40,
+        "top1": 1.0,
+        "top3": 1.0,
+        "mean_kl_nats": 0.1164
+      },
+      "21": {
+        "n": 78,
+        "top1": 0.7179,
+        "top3": 1.0,
+        "mean_kl_nats": 0.8295
+      },
+      "22": {
+        "n": 33,
+        "top1": 1.0,
+        "top3": 1.0,
+        "mean_kl_nats": 0.061
+      },
+      "43": {
+        "n": 21,
+        "top1": 0.9524,
+        "top3": 1.0,
+        "mean_kl_nats": 0.202
+      }
+    }
+  },
+  "train": {
+    "n": 4000,
+    "top1": 0.6035,
+    "top3": 0.9085,
+    "mean_kl_nats": 0.9808,
+    "legal_top1_rate": 1.0,
+    "value_mse": 0.008866,
+    "constant_baseline_mse": 0.110431,
+    "constant_baseline_value": 0.1645,
+    "beats_constant_baseline": true,
+    "value_correlation": 0.9613,
+    "calibration_deciles": [
+      {
+        "bin": 0,
+        "n": 3405,
+        "mean_predicted": -0.008,
+        "mean_actual": 0.0023
+      },
+      {
+        "bin": 1,
+        "n": 63,
+        "mean_predicted": 0.1394,
+        "mean_actual": 0.0635
+      },
+      {
+        "bin": 2,
+        "n": 26,
+        "mean_predicted": 0.2539,
+        "mean_actual": 0.1538
+      },
+      {
+        "bin": 6,
+        "n": 25,
+        "mean_predicted": 0.6679,
+        "mean_actual": 0.96
+      },
+      {
+        "bin": 7,
+        "n": 57,
+        "mean_predicted": 0.7577,
+        "mean_actual": 1.0
+      },
+      {
+        "bin": 8,
+        "n": 112,
+        "mean_predicted": 0.8575,
+        "mean_actual": 1.0
+      },
+      {
+        "bin": 9,
+        "n": 267,
+        "mean_predicted": 0.9924,
+        "mean_actual": 1.0
+      }
+    ]
+  },
+  "games_crossing_splits": 0,
+  "no_train_test_leakage": true,
+  "metric_note": "top-1 is FIRST-PICK agreement: the stored label is label_action[0]. KL is against the search's point-mass target, so it equals the negative log-probability of the searched action.",
+  "promotion_note": "imitation metrics do not promote a candidate; only the frozen gameplay panel (P17) does"
+}

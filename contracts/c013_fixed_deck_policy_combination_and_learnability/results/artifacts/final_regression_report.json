@@ -1,0 +1,68 @@
+{
+  "major_regression_rule": {
+    "delta": 0.07,
+    "bootstrap_probability": 0.9
+  },
+  "true_best": {
+    "candidate_id": "SOUP13_SOUP+P1_822",
+    "teacher_score": 0.36,
+    "strategic_field": 0.36000000000000004,
+    "incumbent_teacher": 0.32,
+    "incumbent_field": 0.35400000000000004,
+    "teacher_not_lower": true,
+    "field_not_lower": true,
+    "per_opponent_regression": {
+      "mega_lucario": {
+        "candidate": 0.4,
+        "incumbent": 0.358,
+        "major_regression": false
+      },
+      "iono": {
+        "candidate": 0.448,
+        "incumbent": 0.436,
+        "major_regression": false
+      },
+      "mega_abomasnow": {
+        "candidate": 0.232,
+        "incumbent": 0.268,
+        "major_regression": false
+      }
+    },
+    "no_major_regression": true,
+    "worst_matchup": [
+      "mega_abomasnow",
+      0.232
+    ]
+  },
+  "package_best": {
+    "candidate_id": "SOUP13_SOUP+P1_822",
+    "teacher_score": 0.36,
+    "strategic_field": 0.36000000000000004,
+    "incumbent_teacher": 0.32,
+    "incumbent_field": 0.35400000000000004,
+    "teacher_not_lower": true,
+    "field_not_lower": true,
+    "per_opponent_regression": {
+      "mega_lucario": {
+        "candidate": 0.4,
+        "incumbent": 0.358,
+        "major_regression": false
+      },
+      "iono": {
+        "candidate": 0.448,
+        "incumbent": 0.436,
+        "major_regression": false
+      },
+      "mega_abomasnow": {
+        "candidate": 0.232,
+        "incumbent": 0.268,
+        "major_regression": false
+      }
+    },
+    "no_major_regression": true,
+    "worst_matchup": [
+      "mega_abomasnow",
+      0.232
+    ]
+  }
+}

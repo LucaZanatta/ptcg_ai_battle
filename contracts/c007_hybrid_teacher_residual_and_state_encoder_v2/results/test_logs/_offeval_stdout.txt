@@ -1,0 +1,25 @@
+{
+  "best": "V2_A",
+  "V2_A": {
+    "n": 8846,
+    "exact_agreement": 0.722699525209134,
+    "importance_weighted_agreement": 0.7077729392269452,
+    "nonforced_agreement": 0.7087044294026837
+  },
+  "V2_B": {
+    "n": 8846,
+    "exact_agreement": 0.7186298892154647,
+    "importance_weighted_agreement": 0.7039577633049443,
+    "nonforced_agreement": 0.7044294026837667
+  },
+  "ablation": {
+    "V2A_test_iw": 0.7077729392269452,
+    "V2B_test_iw": 0.7039577633049443,
+    "iw_diff_B_minus_A": -0.0038151759220008685,
+    "V2A_high_impact_acc": 0.7044169981159724,
+    "V2B_high_impact_acc": 0.7016956248691647,
+    "high_impact_diff_B_minus_A": -0.002721373246807657,
+    "privileged_aux_helps": false,
+    "interpretation": "does adding privileged planning auxiliary heads improve teacher agreement / high-impact agreement?"
+  }
+}

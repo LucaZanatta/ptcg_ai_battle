@@ -1,0 +1,32 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "source": "c005 teacher_dataset (model-ready records, ordering restored)",
+  "regenerated_games": false,
+  "ordering_method": "decision_index recovered from c005 example_id hash; cross-checked against observation.step; turn_index=current.turn, step_index=observation.step (real engine fields, no derivation needed)",
+  "counts": {
+    "train": {
+      "games": 170,
+      "decisions": 13795
+    },
+    "validation": {
+      "games": 37,
+      "decisions": 2991
+    },
+    "test": {
+      "games": 33,
+      "decisions": 2264
+    }
+  },
+  "total_games": 240,
+  "total_decisions": 19050,
+  "split_membership_preserved": true,
+  "step_monotonic_violations": 0,
+  "turn_nondecreasing_violations": 0,
+  "no_sequence_crosses_game_boundary": true,
+  "hidden_state_reset": "per game (sequence_index groups by game_id)",
+  "file_sha256": {
+    "train": "e5d5b3c880bf8c709b0e7add5f60785bfdb8ae7afc6bf078ede2bb14245c19b6",
+    "validation": "760ca505a44c1a58fa703f1c6cbde5e0098715db3443d9b03ef3d43f3d725d58",
+    "test": "123f3dfdf34d167d05a0b01741c676c6d3fb254e3672d9bfbbf66e0a0db8c4e6"
+  }
+}

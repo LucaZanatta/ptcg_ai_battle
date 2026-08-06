@@ -1,0 +1,84 @@
+test_point_and_bracket (tests.test_gauntlet_stats.TestBootstrapCI.test_point_and_bracket) ... ok
+test_total_domination_ci_high (tests.test_gauntlet_stats.TestBootstrapCI.test_total_domination_ci_high) ... ok
+test_frequencies_and_leader (tests.test_gauntlet_stats.TestBootstrapRanking.test_frequencies_and_leader) ... ok
+test_finite_under_total_domination (tests.test_gauntlet_stats.TestBradleyTerry.test_finite_under_total_domination) ... ok
+test_ordering_three (tests.test_gauntlet_stats.TestBradleyTerry.test_ordering_three) ... ok
+test_draws_half (tests.test_gauntlet_stats.TestSeatBalanced.test_draws_half) ... ok
+test_equal_weight (tests.test_gauntlet_stats.TestSeatBalanced.test_equal_weight) ... ok
+test_center_and_bounds (tests.test_gauntlet_stats.TestWilson.test_center_and_bounds) ... ok
+test_zero_n (tests.test_gauntlet_stats.TestWilson.test_zero_n) ... ok
+test_ranking_selection_and_reproducible (tests.test_gauntlet_analysis.TestAnalyze.test_ranking_selection_and_reproducible) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_gauntlet_analysis.py:55: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmplhgg8ph_/bradley_terry_ranking.json' mode='r' encoding='UTF-8'>
+  bt1 = json.load(open(os.path.join(d, "bradley_terry_ranking.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/luca/kaggle/ptcg_ai_battle/tests/test_gauntlet_analysis.py:58: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmplhgg8ph_/bradley_terry_ranking.json' mode='r' encoding='UTF-8'>
+  bt2 = json.load(open(os.path.join(d, "bradley_terry_ranking.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_reliability_gate_blocks_primary (tests.test_gauntlet_analysis.TestAnalyze.test_reliability_gate_blocks_primary) ... ok
+test_finds_declined_attack (tests.test_gauntlet_analysis.TestMineTactical.test_finds_declined_attack) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_gauntlet_analysis.py:92: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpulg0ppd_/t.jsonl' mode='r' encoding='UTF-8'>
+  lines = [json.loads(x) for x in open(out)]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.259s
+
+OK
+{
+  "candidates": [
+    "A",
+    "B"
+  ],
+  "gauntlet_games": 40,
+  "bt_ranking": [
+    "A",
+    "B"
+  ],
+  "primary": "A",
+  "backup": "B",
+  "eligible": [
+    "A",
+    "B"
+  ]
+}
+{
+  "candidates": [
+    "A",
+    "B"
+  ],
+  "gauntlet_games": 40,
+  "bt_ranking": [
+    "A",
+    "B"
+  ],
+  "primary": "A",
+  "backup": "B",
+  "eligible": [
+    "A",
+    "B"
+  ]
+}
+{
+  "candidates": [
+    "A",
+    "B"
+  ],
+  "gauntlet_games": 40,
+  "bt_ranking": [
+    "A",
+    "B"
+  ],
+  "primary": "B",
+  "backup": null,
+  "eligible": [
+    "B"
+  ]
+}
+{
+  "candidate": "det_starter",
+  "main_decisions": 1,
+  "attack_available_not_taken": 1,
+  "end_turn_with_attack_available": 0,
+  "examples_written": 1,
+  "out": "../../../../tmp/tmpulg0ppd_/t.jsonl"
+}

@@ -1,0 +1,61 @@
+{
+  "n_games": 10,
+  "n_decisions": 717,
+  "reps": 3,
+  "backends": {
+    "numpy_micrograd": {
+      "update_seconds": 2.1689205169677734,
+      "all": [
+        3.190901041030884,
+        2.1689205169677734,
+        2.082235336303711
+      ],
+      "device": "cpu",
+      "speedup_vs_numpy": 1.0
+    },
+    "torch_cpu_fp32": {
+      "update_seconds": 0.6165745258331299,
+      "all": [
+        0.8681879043579102,
+        0.6165745258331299,
+        0.6114218235015869
+      ],
+      "device": "cpu",
+      "dtype": "torch.float32",
+      "autocast": null,
+      "speedup_vs_numpy": 3.518
+    },
+    "torch_cuda_fp32": {
+      "update_seconds": 0.16457819938659668,
+      "all": [
+        0.36402440071105957,
+        0.16457819938659668,
+        0.16072463989257812
+      ],
+      "device": "cuda",
+      "dtype": "torch.float32",
+      "autocast": null,
+      "gpu_util_pct": 0.0,
+      "vram_used_mib": 1958.0,
+      "vram_free_mib": 9795.0,
+      "gpu_temp_c": 59.0,
+      "speedup_vs_numpy": 13.179
+    },
+    "torch_cuda_bf16": {
+      "update_seconds": 0.1717677116394043,
+      "all": [
+        0.23445439338684082,
+        0.1717677116394043,
+        0.16816186904907227
+      ],
+      "device": "cuda",
+      "dtype": "torch.float32",
+      "autocast": "torch.bfloat16",
+      "gpu_util_pct": 0.0,
+      "vram_used_mib": 1962.0,
+      "vram_free_mib": 9791.0,
+      "gpu_temp_c": 61.0,
+      "speedup_vs_numpy": 12.627
+    }
+  }
+}

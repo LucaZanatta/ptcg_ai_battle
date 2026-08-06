@@ -1,0 +1,162 @@
+{
+  "R0": {
+    "major_regression_matchups": [
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "per_matchup": {
+      "mega_lucario": {
+        "cand_point": 0.30067567567567566,
+        "teacher_point": 0.42267441860465116,
+        "diff_pp": -12.199874292897551,
+        "prob_better": 0.0544,
+        "prob_regress_7pp": 0.7578,
+        "ci90": [
+          -0.24567881835323696,
+          0.0033206316781899886
+        ]
+      },
+      "iono": {
+        "cand_point": 0.0,
+        "teacher_point": 0.6375,
+        "diff_pp": -63.74999999999999,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.725,
+          -0.55
+        ]
+      },
+      "mega_abomasnow": {
+        "cand_point": 0.0875,
+        "teacher_point": 0.5,
+        "diff_pp": -41.25,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5249999999999999,
+          -0.3125
+        ]
+      },
+      "dragapult": {
+        "cand_point": 0.05,
+        "teacher_point": 0.55,
+        "diff_pp": -50.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5875000000000001,
+          -0.4
+        ]
+      }
+    }
+  },
+  "R1": {
+    "major_regression_matchups": [
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "per_matchup": {
+      "mega_lucario": {
+        "cand_point": 0.31845238095238093,
+        "teacher_point": 0.42267441860465116,
+        "diff_pp": -10.422203765227023,
+        "prob_better": 0.0858,
+        "prob_regress_7pp": 0.6632,
+        "ci90": [
+          -0.22573574197120702,
+          0.018715393133997782
+        ]
+      },
+      "iono": {
+        "cand_point": 0.38749999999999996,
+        "teacher_point": 0.6375,
+        "diff_pp": -25.0,
+        "prob_better": 0.0006,
+        "prob_regress_7pp": 0.9928,
+        "ci90": [
+          -0.375,
+          -0.125
+        ]
+      },
+      "mega_abomasnow": {
+        "cand_point": 0.2625,
+        "teacher_point": 0.5,
+        "diff_pp": -23.75,
+        "prob_better": 0.0006,
+        "prob_regress_7pp": 0.9874,
+        "ci90": [
+          -0.3625,
+          -0.11249999999999999
+        ]
+      },
+      "dragapult": {
+        "cand_point": 0.1875,
+        "teacher_point": 0.55,
+        "diff_pp": -36.25000000000001,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.475,
+          -0.24999999999999997
+        ]
+      }
+    }
+  },
+  "R2": {
+    "major_regression_matchups": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "per_matchup": {
+      "mega_lucario": {
+        "cand_point": 0.24342105263157893,
+        "teacher_point": 0.42267441860465116,
+        "diff_pp": -17.925336597307222,
+        "prob_better": 0.007,
+        "prob_regress_7pp": 0.9304,
+        "ci90": [
+          -0.30186276009791924,
+          -0.059086597307221586
+        ]
+      },
+      "iono": {
+        "cand_point": 0.225,
+        "teacher_point": 0.6375,
+        "diff_pp": -41.25,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.525,
+          -0.29999999999999993
+        ]
+      },
+      "mega_abomasnow": {
+        "cand_point": 0.11249999999999999,
+        "teacher_point": 0.5,
+        "diff_pp": -38.75,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5,
+          -0.275
+        ]
+      },
+      "dragapult": {
+        "cand_point": 0.175,
+        "teacher_point": 0.55,
+        "diff_pp": -37.50000000000001,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.4875,
+          -0.26249999999999996
+        ]
+      }
+    }
+  }
+}

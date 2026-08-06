@@ -1,0 +1,72 @@
+{
+  "n_fixtures": 63,
+  "forms": {
+    "SINGLE_CHOICE": 550,
+    "FIXED_MULTISELECT": 17,
+    "VARIABLE_MULTISELECT": 6
+  },
+  "checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed101/checkpoints/ckpt_g10040.npz",
+  "tolerances": {
+    "forward": 1e-05,
+    "legal_prob_sum": 1e-06,
+    "multiselect_logp": 1e-05
+  },
+  "dtypes": {
+    "float64": {
+      "max_abs_logit_error": 1.0658141036401503e-14,
+      "max_abs_value_error": 7.771561172376096e-16,
+      "max_legal_prob_error": 1.609823385706477e-15,
+      "max_legal_prob_sum_error": 2.220446049250313e-16,
+      "max_illegal_probability": 0.0,
+      "identical_legal_mask": true,
+      "argmax_identical": true,
+      "max_multiselect_logprob_error": 2.4424906541753444e-15,
+      "max_entropy_error": 1.3322676295501878e-15,
+      "checks": {
+        "forward_logit_within_1e-5": true,
+        "forward_value_within_1e-5": true,
+        "identical_legal_mask": true,
+        "illegal_probability_exactly_zero": true,
+        "argmax_identical": true,
+        "legal_probability_sums_to_one_within_1e-6": true,
+        "legal_probability_error_within_1e-5": true,
+        "multiselect_summed_logprob_within_1e-5": true,
+        "entropy_within_1e-5": true
+      },
+      "all_pass": true
+    },
+    "float32": {
+      "max_abs_logit_error": 5.434174550345006e-06,
+      "max_abs_value_error": 3.1475391981672374e-07,
+      "max_legal_prob_error": 7.362268780730652e-07,
+      "max_legal_prob_sum_error": 1.3283143818210164e-07,
+      "max_illegal_probability": 0.0,
+      "identical_legal_mask": true,
+      "argmax_identical": true,
+      "max_multiselect_logprob_error": 1.3813288035624538e-06,
+      "max_entropy_error": 4.5510003721105363e-07,
+      "checks": {
+        "forward_logit_within_1e-5": true,
+        "forward_value_within_1e-5": true,
+        "identical_legal_mask": true,
+        "illegal_probability_exactly_zero": true,
+        "argmax_identical": true,
+        "legal_probability_sums_to_one_within_1e-6": true,
+        "legal_probability_error_within_1e-5": true,
+        "multiselect_summed_logprob_within_1e-5": true,
+        "entropy_within_1e-5": true
+      },
+      "all_pass": true
+    }
+  },
+  "npz_roundtrip": {
+    "max_abs_logit_error": 0.0,
+    "max_abs_value_error": 0.0,
+    "within_forward_tolerance": true,
+    "n_tensors": 32,
+    "all_keys_match_legacy": true
+  },
+  "fp32_meets_registered_tolerance": true,
+  "float64_semantic_parity": true,
+  "parity_verdict": "PASS"
+}

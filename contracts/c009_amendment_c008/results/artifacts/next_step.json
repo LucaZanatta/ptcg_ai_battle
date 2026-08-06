@@ -1,0 +1,13 @@
+{
+  "next_step": "FIXED_DECK_SELECTIVE_SEARCH",
+  "conditions": {
+    "a_rl_improves_over_b0": true,
+    "b_two_seeds_or_batches_show_signal": true,
+    "c_best_not_catastrophically_below_teacher": false,
+    "d_one_clear_addressable_blocker": true
+  },
+  "criteria_note": "'catastrophically below teacher' is pre-stated here as teacher score < 0.25 OR major regression on more than 50% of field matchups; the best checkpoint scores 0.22 with 3/4 major regressions. Even under a laxer reading of that condition, \u00a715's expected-value clause selects FIXED_DECK_SELECTIVE_SEARCH: the measured improvement rate leaves the 0.47 bound out of reach for a comparable PPO budget.",
+  "highest_leverage_blocker": "Sparse terminal-reward credit assignment cannot close the teacher gap at the measured learning rate: c008 spent 95,666 training games to move the teacher score from 0.160 (untouched V2-A) to 0.220, leaving 0.250 to the 0.47 non-inferiority bound \u2014 roughly 4x the total improvement achieved so far. Teacher-anchored PPO on the fixed deck improves its own initialization but is the wrong instrument for closing a >2x strength gap.",
+  "rl_feasibility_recalibrated": "INCONCLUSIVE",
+  "best_saved_checkpoint": "R1_101_ckpt_g10040"
+}

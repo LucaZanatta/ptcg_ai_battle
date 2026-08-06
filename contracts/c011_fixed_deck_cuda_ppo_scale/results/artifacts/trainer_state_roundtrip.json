@@ -1,0 +1,46 @@
+{
+  "required_fields": [
+    "policy_weights",
+    "value_weights",
+    "adamw_state",
+    "optimizer_step",
+    "learning_rate",
+    "entropy_coef",
+    "games_done",
+    "updates",
+    "python_rng",
+    "numpy_rng",
+    "torch_cpu_rng",
+    "torch_cuda_rng",
+    "opponent_sampler_state",
+    "lagged_registry",
+    "seed"
+  ],
+  "abs_errors_vs_uninterrupted_control": {
+    "policy_loss": 0.0,
+    "value_loss": 0.0,
+    "entropy": 0.0,
+    "approx_kl": 0.0,
+    "clip_frac": 0.0
+  },
+  "determinism": {
+    "torch_threads": 1,
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true
+  },
+  "max_roundtrip_weight_difference": 0.0,
+  "max_roundtrip_adamw_moment_difference": 0.0,
+  "max_weight_difference_control_vs_resumed": 0.0,
+  "checks": {
+    "all_required_fields_saved": true,
+    "weights_survive_save_restore_exactly": true,
+    "adamw_moments_survive_save_restore_exactly": true,
+    "optimizer_step_restored": true,
+    "games_done_restored": true,
+    "lagged_registry_restored": true,
+    "opponent_sampler_restored": true,
+    "resumed_update_matches_control": true
+  },
+  "all_pass": true,
+  "note": "The resumed update is compared against an UNINTERRUPTED control that ran the same two updates in one process; matching within the PPO tolerances is what makes future continuation literal rather than a warm restart (\u00a714)."
+}

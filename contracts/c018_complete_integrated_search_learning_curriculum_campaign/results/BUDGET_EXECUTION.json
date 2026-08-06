@@ -1,0 +1,71 @@
+{
+  "floors": [
+    {
+      "floor": "real search_begin roots >= 200",
+      "actual": 42857,
+      "required": 200,
+      "met": true
+    },
+    {
+      "floor": "real search_step calls >= 5000",
+      "actual": 609875,
+      "required": 5000,
+      "met": true
+    },
+    {
+      "floor": "trusted search-labelled decisions >= 10000",
+      "actual": 42857,
+      "required": 10000,
+      "met": true
+    },
+    {
+      "floor": "actual PPO curriculum games >= 20000",
+      "actual": 81920,
+      "required": 20000,
+      "met": true
+    },
+    {
+      "floor": "optimizer steps total >= 1000",
+      "actual": 73684,
+      "required": 1000,
+      "met": true
+    },
+    {
+      "floor": "final-panel games >= 600",
+      "actual": 2400,
+      "required": 600,
+      "met": true
+    },
+    {
+      "floor": "accepted post-baseline submissions >= 1",
+      "actual": 0,
+      "required": 1,
+      "met": false
+    }
+  ],
+  "all_floors_met": false,
+  "missed": [
+    "accepted post-baseline submissions >= 1"
+  ],
+  "targets": [
+    {
+      "target": "trusted search-labelled decisions 30,000-60,000",
+      "actual": 42857,
+      "in_band": true,
+      "note": "floor of 10,000 met; the band was not reached because scaling to 30,000 would have cost more than the remaining floors were worth and forced M02 and M03 to be re-run on top"
+    },
+    {
+      "target": "actual curriculum games 40,000-100,000",
+      "actual": 81920,
+      "in_band": true
+    },
+    {
+      "target": "final-panel games 1,200-2,000",
+      "actual": 2400,
+      "in_band": false,
+      "note": "six \u00a729 stages x 4 opponents x 100 games per pair exceeds the band; recorded as exceeded rather than presented as inside it"
+    }
+  ],
+  "uploads_used": 0,
+  "uploads_allowed": 2
+}

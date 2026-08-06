@@ -1,0 +1,50 @@
+{
+  "arm": "R1",
+  "seed": 202,
+  "games_done": 10125,
+  "updates": 75,
+  "decisions_total": 719298,
+  "budget": 30000,
+  "stop_reason": "R1_reject_at_10000",
+  "lr": 0.0001,
+  "wall_seconds": 2748.1,
+  "screening_points_evaluated": [
+    1080,
+    2565,
+    5130,
+    10125
+  ],
+  "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed202/checkpoints/ckpt_g5130.npz",
+  "selected_games": 5130,
+  "selected_validation_blend": 0.3375,
+  "selected_scores": {
+    "teacher": 0.225,
+    "lucario": 0.325,
+    "iono": 0.32499999999999996,
+    "control": 0.8500000000000001
+  },
+  "final_validation_blend": 0.28125,
+  "learning_curve_blend": [
+    [
+      1080,
+      0.2313
+    ],
+    [
+      2565,
+      0.2712
+    ],
+    [
+      5130,
+      0.3375
+    ],
+    [
+      10125,
+      0.2812
+    ]
+  ],
+  "throughput_games_per_s": 3.68,
+  "lagged_snapshots": 1,
+  "reliability_during_training": {
+    "exceptions": 0
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "c017.trajectory.v1",
+  "fields": [
+    "schema_version",
+    "search_version",
+    "config_hash",
+    "game_index",
+    "opponent_id",
+    "seat",
+    "decision_index",
+    "context",
+    "n_options",
+    "min_count",
+    "max_count",
+    "legal_mask",
+    "visible_state_hash",
+    "baseline_action",
+    "label_action",
+    "searched",
+    "pivotal",
+    "candidate_scores",
+    "leaf_value_at_decision",
+    "label_differs_from_baseline",
+    "final_outcome",
+    "game_completed",
+    "split"
+  ],
+  "split_by": "game_index",
+  "hidden_information": "visible_state_hash is computed over a redacted state; opponent hand, both decks and both prize contents are dropped before hashing or writing"
+}

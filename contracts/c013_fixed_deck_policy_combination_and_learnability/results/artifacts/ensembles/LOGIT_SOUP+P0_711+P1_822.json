@@ -1,0 +1,22 @@
+{
+  "components": [
+    {
+      "id": "C012_SOUP_622_633",
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897"
+    },
+    {
+      "id": "P0_711",
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P0/seed711/checkpoints/ckpt_g20144.npz",
+      "sha256": "92c1816e95d95314a652726a976085b3f3d59a62cb2ac32c46047b2eaa2078d4"
+    },
+    {
+      "id": "P1_822",
+      "path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/training/P1/seed822/checkpoints/ckpt_g5120.npz",
+      "sha256": "12c7c7549bd76569ddeb759997feda6a78cc327efab3c1da469ddb58a39d00ce"
+    }
+  ],
+  "kind": "online_ensemble",
+  "mode": "logit",
+  "note": "Equal-weight combination. This manifest IS the ensemble's checkpoint for identity purposes; the worker re-hashes it and every component it loads."
+}

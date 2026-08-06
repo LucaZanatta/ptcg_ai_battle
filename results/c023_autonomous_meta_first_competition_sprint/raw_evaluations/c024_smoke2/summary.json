@@ -1,0 +1,62 @@
+{
+  "tag": "c024_smoke2",
+  "meta": {
+    "utc": "2026-08-06T23:06:26Z",
+    "elapsed_seconds": 2.0,
+    "procs": 6,
+    "phase": "dev",
+    "games_per_pair": 6,
+    "candidates": [
+      "pub_prvsiyan_lopunny_1208"
+    ],
+    "opponents": [
+      "official_dragapult"
+    ],
+    "nproc_machine": 24,
+    "loadavg": [
+      1.8017578125,
+      0.8369140625,
+      0.3212890625
+    ]
+  },
+  "requested_games": 6,
+  "completed_games": 6,
+  "errors": 0,
+  "summary": {
+    "pub_prvsiyan_lopunny_1208": {
+      "candidate_id": "pub_prvsiyan_lopunny_1208",
+      "requested_games": 6,
+      "completed_games": 6,
+      "errors": 0,
+      "field_score": 0.5,
+      "field_score_off_mirror": 0.5,
+      "pooled_score_rate": 0.5,
+      "pooled_wilson95": [
+        0.1876,
+        0.8124
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 6,
+          "score_rate": 0.5,
+          "wilson95": [
+            0.1876,
+            0.8124
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.3333,
+        "seat1": 0.6667,
+        "seat0_games": 3,
+        "seat1_games": 3
+      },
+      "latency_p99_ms": 1.6296,
+      "latency_max_ms": 1.6296,
+      "mean_game_seconds": 0.5778,
+      "decisions": 494,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.377
+    }
+  }
+}

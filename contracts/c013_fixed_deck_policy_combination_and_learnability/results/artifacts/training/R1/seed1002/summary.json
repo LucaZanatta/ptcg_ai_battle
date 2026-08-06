@@ -1,0 +1,289 @@
+{
+  "arm": "R1",
+  "seed": 1002,
+  "initialization": "C012_SOUP_622_633",
+  "completed_games": 5008,
+  "games_with_trainable_decisions": 5008,
+  "trainable_decisions": 401745,
+  "updates": 12,
+  "final_stage": 2,
+  "stage_changes": 2,
+  "n_evaluations": 3,
+  "evaluations": [
+    {
+      "per_opponent": {
+        "dragapult": 0.25,
+        "mega_lucario": 0.35,
+        "iono": 0.44999999999999996,
+        "mega_abomasnow": 0.25
+      },
+      "teacher": 0.25,
+      "field": 0.3499999999999999,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "6089ab1bbaec3d2ce3accbd312a3dd94679322516791ed949022dc256a62a2fc",
+      "arm": "R1",
+      "seed": 1002,
+      "registered_point": 0,
+      "completed_games": 0,
+      "stage": 0,
+      "trainer_state_id": "R11002-u0-6089ab1bbaec",
+      "gates": {
+        "evaluation_returned_scores": true,
+        "teacher_preserved_vs_branch_best": true,
+        "no_iono_regression": true,
+        "no_abomasnow_regression": true,
+        "field_present": true,
+        "forced_by_fixture": false
+      },
+      "advance": true
+    },
+    {
+      "per_opponent": {
+        "dragapult": 0.3,
+        "mega_lucario": 0.5,
+        "iono": 0.45,
+        "mega_abomasnow": 0.1
+      },
+      "teacher": 0.3,
+      "field": 0.35000000000000003,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "d438c392f6357729765e39ccfb12524a8dc9dd52ae4a4c4f2f581353e88205ad",
+      "arm": "R1",
+      "seed": 1002,
+      "registered_point": 2500,
+      "completed_games": 2528,
+      "stage": 1,
+      "trainer_state_id": "R11002-u6-d438c392f635",
+      "gates": {
+        "evaluation_returned_scores": true,
+        "teacher_preserved_vs_branch_best": true,
+        "no_iono_regression": true,
+        "no_abomasnow_regression": false,
+        "field_present": true,
+        "forced_by_fixture": true
+      },
+      "advance": true
+    },
+    {
+      "per_opponent": {
+        "dragapult": 0.22499999999999998,
+        "mega_lucario": 0.35,
+        "iono": 0.6,
+        "mega_abomasnow": 0.1
+      },
+      "teacher": 0.22499999999999998,
+      "field": 0.35000000000000003,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "d438c392f6357729765e39ccfb12524a8dc9dd52ae4a4c4f2f581353e88205ad",
+      "arm": "R1",
+      "seed": 1002,
+      "registered_point": 5000,
+      "completed_games": 5008,
+      "stage": 2,
+      "gates": {
+        "evaluation_returned_scores": true,
+        "teacher_preserved_vs_branch_best": false,
+        "no_iono_regression": true,
+        "no_abomasnow_regression": false,
+        "field_present": true,
+        "forced_by_fixture": false
+      },
+      "advance": false,
+      "backfilled": true,
+      "backfill_reason": "the budget loop exited before evaluating this registered point; evaluated here on the final checkpoint, no training games spent",
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/R1/seed1002/checkpoints/ckpt_g2528.npz"
+    }
+  ],
+  "curriculum_history": [
+    {
+      "completed_games": 0,
+      "from_stage": 0,
+      "to_stage": 1,
+      "forced_by_fixture": false,
+      "gates": {
+        "evaluation_returned_scores": true,
+        "teacher_preserved_vs_branch_best": true,
+        "no_iono_regression": true,
+        "no_abomasnow_regression": true,
+        "field_present": true,
+        "forced_by_fixture": false
+      },
+      "eval": {
+        "per_opponent": {
+          "dragapult": 0.25,
+          "mega_lucario": 0.35,
+          "iono": 0.44999999999999996,
+          "mega_abomasnow": 0.25
+        },
+        "teacher": 0.25,
+        "field": 0.3499999999999999,
+        "n_games": 100,
+        "scored": 100,
+        "checkpoint_sha256": "6089ab1bbaec3d2ce3accbd312a3dd94679322516791ed949022dc256a62a2fc",
+        "arm": "R1",
+        "seed": 1002,
+        "registered_point": 0,
+        "completed_games": 0,
+        "stage": 0,
+        "trainer_state_id": "R11002-u0-6089ab1bbaec",
+        "gates": {
+          "evaluation_returned_scores": true,
+          "teacher_preserved_vs_branch_best": true,
+          "no_iono_regression": true,
+          "no_abomasnow_regression": true,
+          "field_present": true,
+          "forced_by_fixture": false
+        },
+        "advance": true
+      },
+      "new_mixture": {
+        "teacher": 0.31086956521739134,
+        "mega_lucario": 0.16956521739130434,
+        "iono": 0.16956521739130434,
+        "elite": 0.25,
+        "control": 0.1
+      }
+    },
+    {
+      "completed_games": 2528,
+      "from_stage": 1,
+      "to_stage": 2,
+      "forced_by_fixture": true,
+      "gates": {
+        "evaluation_returned_scores": true,
+        "teacher_preserved_vs_branch_best": true,
+        "no_iono_regression": true,
+        "no_abomasnow_regression": false,
+        "field_present": true,
+        "forced_by_fixture": true
+      },
+      "eval": {
+        "per_opponent": {
+          "dragapult": 0.3,
+          "mega_lucario": 0.5,
+          "iono": 0.45,
+          "mega_abomasnow": 0.1
+        },
+        "teacher": 0.3,
+        "field": 0.35000000000000003,
+        "n_games": 100,
+        "scored": 100,
+        "checkpoint_sha256": "d438c392f6357729765e39ccfb12524a8dc9dd52ae4a4c4f2f581353e88205ad",
+        "arm": "R1",
+        "seed": 1002,
+        "registered_point": 2500,
+        "completed_games": 2528,
+        "stage": 1,
+        "trainer_state_id": "R11002-u6-d438c392f635",
+        "gates": {
+          "evaluation_returned_scores": true,
+          "teacher_preserved_vs_branch_best": true,
+          "no_iono_regression": true,
+          "no_abomasnow_regression": false,
+          "field_present": true,
+          "forced_by_fixture": true
+        },
+        "advance": true
+      },
+      "new_mixture": {
+        "teacher": 0.25,
+        "mega_lucario": 0.125,
+        "iono": 0.125,
+        "elite": 0.35,
+        "lagged": 0.05,
+        "control": 0.1
+      }
+    }
+  ],
+  "machinery": {
+    "nonzero_evaluations": [
+      true,
+      true,
+      true
+    ],
+    "hash_refresh_distinct": 12,
+    "gate_evaluations": 2,
+    "stage_changes": 2,
+    "early_stop_path_exercised": true,
+    "trainer_state_saved": 1,
+    "restore_verified": {
+      "sequences_match": true,
+      "expected": [
+        [
+          "dragapult",
+          0,
+          301960232
+        ],
+        [
+          "SOUP13_SOUP+P1_833",
+          1,
+          46363138
+        ],
+        [
+          "mega_lucario",
+          1,
+          663620729
+        ]
+      ],
+      "restored": [
+        [
+          "dragapult",
+          0,
+          301960232
+        ],
+        [
+          "SOUP13_SOUP+P1_833",
+          1,
+          46363138
+        ],
+        [
+          "mega_lucario",
+          1,
+          663620729
+        ]
+      ],
+      "report": {
+        "schema": "c013.v1",
+        "restored": [
+          "full_module_state",
+          "adam_moments",
+          "numpy_generator_state",
+          "torch_cpu_rng",
+          "torch_cuda_rng",
+          "python_random_state"
+        ],
+        "absent": [],
+        "literal_continuation": true,
+        "continuation_kind": "literal"
+      }
+    },
+    "backfilled_evaluations": [
+      5000
+    ]
+  },
+  "stop_reason": "budget_reached",
+  "elapsed_seconds": 518.3,
+  "opponent_distribution": {
+    "lagged::SOUP13_SOUP+P0_711.npz": 435,
+    "iono": 790,
+    "__control__": 496,
+    "lagged::SOUP13_SOUP+P1_822.npz": 493,
+    "mega_lucario": 766,
+    "dragapult": 1427,
+    "lagged::SOUP13_SOUP+P1_833.npz": 437,
+    "lagged::lagged_g2528.npz": 164
+  },
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0
+  },
+  "registered_evaluation_points_covered": [
+    0,
+    2500,
+    5000
+  ]
+}

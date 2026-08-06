@@ -1,0 +1,14 @@
+{
+  "next_loss_mode": {
+    "id": "engine_online_but_damage_arrives_too_late",
+    "statement": "Both counter mechanisms execute whenever they are available, but the Bellibolt engine comes online later than the damage race requires: Thunderous Bolt cannot attack on consecutive turns and Voltaic Chain only reaches competitive damage once several {L} are already in play, so the deck spends its early turns developing while the opponent scores.",
+    "why_single": "it is the one measurement that explains a high mechanism-execution rate coexisting with a low score rate; every other observed weakness is downstream of arriving late.",
+    "measured_by": "mechanism_a/b execution rates against score_rate_vs_target_c014"
+  },
+  "selected_from": {
+    "dragapult": 96,
+    "mega_abomasnow": 88,
+    "mega_lucario": 80
+  },
+  "exactly_one": true
+}

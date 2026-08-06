@@ -1,0 +1,519 @@
+{
+  "validator_bootstrap_seed": 777001,
+  "principle": "every headline claim is re-derived from primary evidence with an independent seed; file existence is never sufficient (\u00a738)",
+  "n_checks": 54,
+  "n_passed": 52,
+  "n_critical_failures": 1,
+  "n_noncritical_failures": 1,
+  "checks": [
+    {
+      "check": "panel_selection_has_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n": 9150
+      }
+    },
+    {
+      "check": "panel_selection_has_scored_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n_scored": 9150,
+        "n_total": 9150
+      }
+    },
+    {
+      "check": "panel_selection_aggregates_match_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": []
+    },
+    {
+      "check": "panel_selection_identity_verified",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n_mismatched": 0
+      }
+    },
+    {
+      "check": "panel_selection_seat_balanced",
+      "passed": true,
+      "critical": false,
+      "detail": {}
+    },
+    {
+      "check": "panel_confirmation_has_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n": 34200
+      }
+    },
+    {
+      "check": "panel_confirmation_has_scored_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n_scored": 34200,
+        "n_total": 34200
+      }
+    },
+    {
+      "check": "panel_confirmation_aggregates_match_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": []
+    },
+    {
+      "check": "panel_confirmation_identity_verified",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n_mismatched": 0
+      }
+    },
+    {
+      "check": "panel_confirmation_seat_balanced",
+      "passed": true,
+      "critical": false,
+      "detail": {}
+    },
+    {
+      "check": "panel_final_has_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n": 7000
+      }
+    },
+    {
+      "check": "panel_final_has_scored_games",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n_scored": 7000,
+        "n_total": 7000
+      }
+    },
+    {
+      "check": "panel_final_aggregates_match_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": []
+    },
+    {
+      "check": "panel_final_identity_verified",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n_mismatched": 0
+      }
+    },
+    {
+      "check": "panel_final_seat_balanced",
+      "passed": true,
+      "critical": false,
+      "detail": {}
+    },
+    {
+      "check": "final_composites_recompute",
+      "passed": true,
+      "critical": true,
+      "detail": []
+    },
+    {
+      "check": "published_winner_is_the_argmax_of_recomputed_composite",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": "SOUP13_SOUP+P1_822",
+        "recomputed": "SOUP13_SOUP+P1_822"
+      }
+    },
+    {
+      "check": "q3_gate_recomputes",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": "FAIL",
+        "recomputed": "FAIL",
+        "n_trainable_recomputed": 23,
+        "n_trainable_published": 23
+      }
+    },
+    {
+      "check": "q3_comparison_set_not_silently_shrunk",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": 23,
+        "recomputed": 23
+      }
+    },
+    {
+      "check": "soup_learnability_exists",
+      "passed": true,
+      "critical": true,
+      "detail": null
+    },
+    {
+      "check": "phase2_start_present_in_panel",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "start": "C012_SOUP_622_633"
+      }
+    },
+    {
+      "check": "phase2_start_teacher_recomputes",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": 0.35333333333333333,
+        "recomputed": 0.35333333333333333
+      }
+    },
+    {
+      "check": "soup_learnability_verdict_follows_from_data",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": "NOT_IMPROVED",
+        "validator_confirmed_candidates": [],
+        "note": "recomputed with the validator's own bootstrap seed"
+      }
+    },
+    {
+      "check": "learnability_did_not_use_training_reward_to_decide",
+      "passed": true,
+      "critical": false,
+      "detail": null
+    },
+    {
+      "check": "learnability_counts_match_raw_games",
+      "passed": true,
+      "critical": true,
+      "detail": [
+        {
+          "arm": "Q0",
+          "raw_count": 12016,
+          "summary": 12016,
+          "match": true
+        },
+        {
+          "arm": "Q1",
+          "raw_count": 12368,
+          "summary": 12368,
+          "match": true
+        },
+        {
+          "arm": "Q2A",
+          "raw_count": 10192,
+          "summary": 10192,
+          "match": true
+        },
+        {
+          "arm": "Q2B",
+          "raw_count": 10336,
+          "summary": 10336,
+          "match": true
+        }
+      ]
+    },
+    {
+      "check": "learnability_within_cap",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "total": 44912,
+        "cap": 50000
+      }
+    },
+    {
+      "check": "smoke_arms_present",
+      "passed": true,
+      "critical": true,
+      "detail": [
+        {
+          "arm": "R0",
+          "raw_count": 5104
+        },
+        {
+          "arm": "R1",
+          "raw_count": 5008
+        }
+      ]
+    },
+    {
+      "check": "smoke_within_cap",
+      "passed": false,
+      "critical": true,
+      "detail": {
+        "total": 10112,
+        "cap": 10000,
+        "arms": [
+          {
+            "arm": "R0",
+            "raw_count": 5104
+          },
+          {
+            "arm": "R1",
+            "raw_count": 5008
+          }
+        ]
+      },
+      "acknowledged_deviation": "results/failures/DEVIATION_curriculum_smoke_exceeded_its_registered_cap.md"
+    },
+    {
+      "check": "total_training_within_hard_maximum",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "learnability": 44912,
+        "smoke": 10112,
+        "total": 55024,
+        "hard_max": 62000
+      }
+    },
+    {
+      "check": "registered_checkpoint_hashes_match_disk",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "verified": 36,
+        "bad": []
+      }
+    },
+    {
+      "check": "overlap_analysis_exists",
+      "passed": true,
+      "critical": true,
+      "detail": null
+    },
+    {
+      "check": "overlap_raw_states_exist",
+      "passed": true,
+      "critical": true,
+      "detail": null
+    },
+    {
+      "check": "overlap_raw_sha256_matches",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": "6c54f9832521c970097af8bc454fcc65593da7f59dd980640a608482807e68cd",
+        "recomputed": "6c54f9832521c970097af8bc454fcc65593da7f59dd980640a608482807e68cd"
+      }
+    },
+    {
+      "check": "overlap_state_count_matches",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": 4110,
+        "recomputed": 4110
+      }
+    },
+    {
+      "check": "overlap_primary_subset_recomputes",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": 611,
+        "recomputed": 611
+      }
+    },
+    {
+      "check": "overlap_queried_every_required_policy",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "present": [
+          "C012_SOUP_622_633",
+          "P0_711",
+          "S611",
+          "S622",
+          "S633",
+          "dragapult",
+          "iono",
+          "mega_abomasnow",
+          "mega_lucario"
+        ]
+      }
+    },
+    {
+      "check": "overlap_includes_neural_policies",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "neural": [
+          "C012_SOUP_622_633",
+          "P0_711",
+          "S611",
+          "S622",
+          "S633"
+        ]
+      }
+    },
+    {
+      "check": "overlap_verdict_is_a_registered_value",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "check": "overlap_excludes_deck_overlap_from_verdict",
+      "passed": true,
+      "critical": false,
+      "detail": null
+    },
+    {
+      "check": "claude_validation_exists",
+      "passed": true,
+      "critical": true,
+      "detail": null
+    },
+    {
+      "check": "claude_outputs_exist",
+      "passed": true,
+      "critical": true,
+      "detail": null
+    },
+    {
+      "check": "claude_primary_count_matches",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "published": 28,
+        "recomputed": 28
+      }
+    },
+    {
+      "check": "claude_primary_within_registered_range",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n": 28,
+        "range": "20-30 (\u00a725)"
+      }
+    },
+    {
+      "check": "claude_model_was_opus",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "n": 28
+      }
+    },
+    {
+      "check": "claude_no_hidden_information_violations",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "check": "claude_labels_did_not_train_anything",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "note": "no Claude-derived data appears under any training arm"
+      }
+    },
+    {
+      "check": "claude_categories_multiple",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "categories": [
+          "attach_energy",
+          "evolve",
+          "multi_select",
+          "other",
+          "promote",
+          "search",
+          "target"
+        ]
+      }
+    },
+    {
+      "check": "claude_repeat_pass_ran",
+      "passed": true,
+      "critical": false,
+      "detail": {
+        "n_repeat": 10
+      }
+    },
+    {
+      "check": "independent_pre_c013_immutability_baseline_available",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "baseline": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/immutability_verification.json"
+      }
+    },
+    {
+      "check": "earlier_contract_files_unmodified",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "baseline": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/immutability_verification.json",
+        "baseline_predates_c013": true,
+        "files_checked": 1241,
+        "modified": []
+      }
+    },
+    {
+      "check": "no_tracked_earlier_contract_file_missing",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "missing_tracked": []
+      }
+    },
+    {
+      "check": "untracked_baseline_files_absent",
+      "passed": false,
+      "critical": false,
+      "detail": {
+        "missing_untracked": [
+          {
+            "path": "contracts/c011_fixed_deck_cuda_ppo_scale/results.zip",
+            "git_tracked": false
+          }
+        ],
+        "note": "user-managed archives that were never under version control; c013 did not create or remove them and no c013 evidence depends on them"
+      }
+    },
+    {
+      "check": "immutability_baseline_is_not_self_written",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "files_checked": 1241,
+        "note": "a baseline that hashes zero files would pass vacuously"
+      }
+    },
+    {
+      "check": "required_artifacts_present",
+      "passed": true,
+      "critical": true,
+      "detail": {
+        "missing": []
+      }
+    }
+  ],
+  "unacknowledged_critical_failures": [],
+  "acknowledged_deviations": [
+    {
+      "check": "smoke_within_cap",
+      "document": "results/failures/DEVIATION_curriculum_smoke_exceeded_its_registered_cap.md"
+    }
+  ],
+  "overall": "FAIL"
+}

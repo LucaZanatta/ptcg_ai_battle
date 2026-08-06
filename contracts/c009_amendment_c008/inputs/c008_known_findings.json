@@ -1,0 +1,17 @@
+{
+  "amendment_target": "c008_fixed_deck_teacher_anchored_rl",
+  "known_defects": [
+    "unordered multiprocessing results were relabeled by positional zip",
+    "strategic and held-out aggregate artifacts are invalid",
+    "median representative was described as best checkpoint",
+    "untouched c007 V2-A was not evaluated under the final protocol",
+    "acceptance status relied on file existence rather than content validation"
+  ],
+  "constraints": {
+    "training_allowed": false,
+    "deck_changes_allowed": false,
+    "checkpoint_changes_allowed": false,
+    "c005_c008_mutable": false
+  },
+  "teacher_submission_ref": "54948560"
+}

@@ -1,0 +1,30 @@
+{
+  "rows": [
+    {
+      "row": "c014 public-meta-v0",
+      "archetype": "Archaludon ex / Cinderace metal tempo",
+      "deck_sha256": "42165967b565dd42ec426ecccfe79bfa7d72aa8306590e149dface0ee8bd530e",
+      "package_sha256": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+      "kaggle_ref": "55004756",
+      "status": "COMPLETE",
+      "public_score": "600.0",
+      "role": "challenger",
+      "local_score_rate_direct": null,
+      "note": "submitted this contract"
+    },
+    {
+      "row": "Dragapult control (c005)",
+      "archetype": "Dragapult ex spread setup",
+      "deck_sha256": null,
+      "package_sha256": null,
+      "kaggle_ref": "54948560",
+      "status": "COMPLETE",
+      "public_score": "719.7",
+      "role": "champion (only agent with prior external evidence)",
+      "note": "preserved control and evaluation opponent; never resubmitted in c014"
+    }
+  ],
+  "champion_rule": "champion is decided on EXTERNAL evidence only; local score rate never promotes an agent",
+  "champion_currently": "Dragapult control (719.7) \u2014 c014 v0 scored 600.0 and does not displace it",
+  "premature_champion_declared": false
+}

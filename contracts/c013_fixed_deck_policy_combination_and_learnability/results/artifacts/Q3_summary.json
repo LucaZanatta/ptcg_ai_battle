@@ -1,0 +1,193 @@
+{
+  "Q3": "SKIPPED_BY_GATE",
+  "reason": "no online ensemble beat every trainable single/soup candidate on the confirmation panel by >=3pp teacher or >=3pp strategic field (Sec.16)",
+  "gate": {
+    "GATE": "FAIL",
+    "Q3": "SKIPPED_BY_GATE",
+    "best_trainable_field": 0.3977777777777778,
+    "best_trainable_teacher": 0.36333333333333334,
+    "n_ensembles_evaluated": 22,
+    "n_trainable_compared": 23,
+    "panel": "confirmation",
+    "per_ensemble": [
+      {
+        "ensemble": "LOGIT_S611+S622+S633",
+        "field": 0.3444444444444445,
+        "field_gain_vs_best_trainable": -0.05333333333333329,
+        "passes": false,
+        "teacher": 0.3466666666666667,
+        "teacher_gain_vs_best_trainable": -0.016666666666666663
+      },
+      {
+        "ensemble": "LOGIT_S622+S633",
+        "field": 0.3466666666666667,
+        "field_gain_vs_best_trainable": -0.05111111111111111,
+        "passes": false,
+        "teacher": 0.3466666666666667,
+        "teacher_gain_vs_best_trainable": -0.016666666666666663
+      },
+      {
+        "ensemble": "LOGIT_SOUP+P0_711+P1_822+P1_833",
+        "field": 0.39111111111111113,
+        "field_gain_vs_best_trainable": -0.006666666666666654,
+        "passes": false,
+        "teacher": 0.3466666666666667,
+        "teacher_gain_vs_best_trainable": -0.016666666666666663
+      },
+      {
+        "ensemble": "PROB_SOUP+P0_711",
+        "field": 0.3955555555555555,
+        "field_gain_vs_best_trainable": -0.002222222222222292,
+        "passes": false,
+        "teacher": 0.3433333333333333,
+        "teacher_gain_vs_best_trainable": -0.020000000000000018
+      },
+      {
+        "ensemble": "PROB_SOUP+P0_711+P1_833",
+        "field": 0.3355555555555556,
+        "field_gain_vs_best_trainable": -0.06222222222222218,
+        "passes": false,
+        "teacher": 0.33,
+        "teacher_gain_vs_best_trainable": -0.033333333333333326
+      },
+      {
+        "ensemble": "LOGIT_SOUP+P0_711+P1_833",
+        "field": 0.3811111111111111,
+        "field_gain_vs_best_trainable": -0.016666666666666663,
+        "passes": false,
+        "teacher": 0.3233333333333333,
+        "teacher_gain_vs_best_trainable": -0.040000000000000036
+      },
+      {
+        "ensemble": "PROB_S622+S633",
+        "field": 0.35333333333333333,
+        "field_gain_vs_best_trainable": -0.04444444444444445,
+        "passes": false,
+        "teacher": 0.3233333333333333,
+        "teacher_gain_vs_best_trainable": -0.040000000000000036
+      },
+      {
+        "ensemble": "PROB_SOUP+P1_822",
+        "field": 0.36777777777777776,
+        "field_gain_vs_best_trainable": -0.030000000000000027,
+        "passes": false,
+        "teacher": 0.31666666666666665,
+        "teacher_gain_vs_best_trainable": -0.04666666666666669
+      },
+      {
+        "ensemble": "LOGIT_SOUP+P0_711",
+        "field": 0.3622222222222222,
+        "field_gain_vs_best_trainable": -0.03555555555555556,
+        "passes": false,
+        "teacher": 0.31333333333333335,
+        "teacher_gain_vs_best_trainable": -0.04999999999999999
+      },
+      {
+        "ensemble": "LOGIT_SOUP+P1_833",
+        "field": 0.3788888888888889,
+        "field_gain_vs_best_trainable": -0.0188888888888889,
+        "passes": false,
+        "teacher": 0.31333333333333335,
+        "teacher_gain_vs_best_trainable": -0.04999999999999999
+      },
+      {
+        "ensemble": "PROB_SOUP+P1_833",
+        "field": 0.3544444444444444,
+        "field_gain_vs_best_trainable": -0.04333333333333339,
+        "passes": false,
+        "teacher": 0.31333333333333335,
+        "teacher_gain_vs_best_trainable": -0.04999999999999999
+      },
+      {
+        "ensemble": "LOGIT_S611+S633",
+        "field": 0.3977777777777778,
+        "field_gain_vs_best_trainable": 0.0,
+        "passes": false,
+        "teacher": 0.31,
+        "teacher_gain_vs_best_trainable": -0.053333333333333344
+      },
+      {
+        "ensemble": "LOGIT_SOUP+P0_711+P1_822",
+        "field": 0.3866666666666667,
+        "field_gain_vs_best_trainable": -0.011111111111111072,
+        "passes": false,
+        "teacher": 0.31,
+        "teacher_gain_vs_best_trainable": -0.053333333333333344
+      },
+      {
+        "ensemble": "PROB_S611+S622",
+        "field": 0.36777777777777776,
+        "field_gain_vs_best_trainable": -0.030000000000000027,
+        "passes": false,
+        "teacher": 0.30666666666666664,
+        "teacher_gain_vs_best_trainable": -0.0566666666666667
+      },
+      {
+        "ensemble": "PROB_S611+S633",
+        "field": 0.32,
+        "field_gain_vs_best_trainable": -0.07777777777777778,
+        "passes": false,
+        "teacher": 0.30666666666666664,
+        "teacher_gain_vs_best_trainable": -0.0566666666666667
+      },
+      {
+        "ensemble": "Q2_LOGIT_recombined",
+        "field": 0.3444444444444444,
+        "field_gain_vs_best_trainable": -0.0533333333333334,
+        "passes": false,
+        "teacher": 0.30666666666666664,
+        "teacher_gain_vs_best_trainable": -0.0566666666666667
+      },
+      {
+        "ensemble": "Q2_PROB_recombined",
+        "field": 0.35333333333333333,
+        "field_gain_vs_best_trainable": -0.04444444444444445,
+        "passes": false,
+        "teacher": 0.30666666666666664,
+        "teacher_gain_vs_best_trainable": -0.0566666666666667
+      },
+      {
+        "ensemble": "LOGIT_SOUP+P1_822",
+        "field": 0.34,
+        "field_gain_vs_best_trainable": -0.05777777777777776,
+        "passes": false,
+        "teacher": 0.2916666666666667,
+        "teacher_gain_vs_best_trainable": -0.07166666666666666
+      },
+      {
+        "ensemble": "PROB_S611+S622+S633",
+        "field": 0.34888888888888886,
+        "field_gain_vs_best_trainable": -0.048888888888888926,
+        "passes": false,
+        "teacher": 0.29,
+        "teacher_gain_vs_best_trainable": -0.07333333333333336
+      },
+      {
+        "ensemble": "PROB_SOUP+P0_711+P1_822+P1_833",
+        "field": 0.39111111111111113,
+        "field_gain_vs_best_trainable": -0.006666666666666654,
+        "passes": false,
+        "teacher": 0.29,
+        "teacher_gain_vs_best_trainable": -0.07333333333333336
+      },
+      {
+        "ensemble": "PROB_SOUP+P0_711+P1_822",
+        "field": 0.35555555555555557,
+        "field_gain_vs_best_trainable": -0.04222222222222222,
+        "passes": false,
+        "teacher": 0.2733333333333333,
+        "teacher_gain_vs_best_trainable": -0.09000000000000002
+      },
+      {
+        "ensemble": "LOGIT_S611+S622",
+        "field": 0.3577777777777778,
+        "field_gain_vs_best_trainable": -0.03999999999999998,
+        "passes": false,
+        "teacher": 0.36333333333333334,
+        "teacher_gain_vs_best_trainable": 0.0
+      }
+    ],
+    "rule": "online ensemble must beat EVERY trainable single/soup candidate by >=0.03 teacher gain or >=0.03 strategic-field gain (\u00a716)"
+  },
+  "training_games_spent_on_Q3": 0
+}

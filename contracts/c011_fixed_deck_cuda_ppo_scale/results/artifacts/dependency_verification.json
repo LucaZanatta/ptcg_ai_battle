@@ -1,0 +1,118 @@
+{
+  "contract": "c011",
+  "all_ok": true,
+  "n_checks": 17,
+  "n_failed": 0,
+  "frozen_deck_fingerprint": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a",
+  "teacher_source_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "c010_checkpoints_verified": 42,
+  "hardware_drift": {
+    "pytorch": {
+      "registered": "2.12.1+cu130",
+      "observed": "2.13.0+cu132"
+    },
+    "pytorch_cuda": {
+      "registered": "13.0",
+      "observed": "13.2"
+    },
+    "vram_mib": {
+      "registered": 12227,
+      "observed": 11752
+    },
+    "ram_gib": {
+      "registered": 61,
+      "observed": 62.0
+    },
+    "cpu": {
+      "registered": "AMD Ryzen 9 7900X",
+      "observed": "AMD Ryzen 9 7900X 12-Core Processor"
+    }
+  },
+  "checks": [
+    {
+      "check": "frozen_deck_fingerprint_matches_c010",
+      "ok": true,
+      "detail": "676849e9a1f8ce0cc594a7242aba1fcc226c102363d8cc1c02cc7f97fdf2459a"
+    },
+    {
+      "check": "deck_is_60_cards",
+      "ok": true,
+      "detail": "60"
+    },
+    {
+      "check": "frozen_teacher_hash_matches_c010",
+      "ok": true,
+      "detail": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+    },
+    {
+      "check": "B0_hash_unchanged",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "I0_hash_unchanged",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "all_c010_checkpoint_hashes_verified",
+      "ok": true,
+      "detail": "42 checkpoints, 0 bad"
+    },
+    {
+      "check": "c005_status_pass",
+      "ok": true,
+      "detail": "PASS"
+    },
+    {
+      "check": "c006_status_pass",
+      "ok": true,
+      "detail": "PASS"
+    },
+    {
+      "check": "c007_status_pass",
+      "ok": true,
+      "detail": "PASS"
+    },
+    {
+      "check": "c008_status_pass",
+      "ok": true,
+      "detail": "PASS"
+    },
+    {
+      "check": "c009_status_pass",
+      "ok": true,
+      "detail": "PASS"
+    },
+    {
+      "check": "c010_status_pass",
+      "ok": true,
+      "detail": "PASS"
+    },
+    {
+      "check": "c010_final_aggregates_reproduce_from_raw_games",
+      "ok": true,
+      "detail": "5 candidates"
+    },
+    {
+      "check": "preflight_cuda_available",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "preflight_vram_free_ge_8gib",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "preflight_ram_available_ge_12gib",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "preflight_disk_free_ge_100gib",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

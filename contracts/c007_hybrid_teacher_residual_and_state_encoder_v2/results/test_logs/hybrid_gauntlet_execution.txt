@@ -1,0 +1,111 @@
+{
+  "matchup": {
+    "teacher": {
+      "mega_lucario": {
+        "point": 0.55,
+        "n": 80
+      },
+      "mega_abomasnow": {
+        "point": 0.4375,
+        "n": 80
+      },
+      "iono": {
+        "point": 0.6875,
+        "n": 80
+      },
+      "dragapult": {
+        "point": 0.5625,
+        "n": 80
+      },
+      "control": {
+        "point": 0.975,
+        "n": 80
+      }
+    },
+    "H2": {
+      "mega_lucario": {
+        "point": 0.5,
+        "n": 80
+      },
+      "mega_abomasnow": {
+        "point": 0.5125,
+        "n": 80
+      },
+      "iono": {
+        "point": 0.6875,
+        "n": 80
+      },
+      "dragapult": {
+        "point": 0.575,
+        "n": 80
+      },
+      "control": {
+        "point": 0.975,
+        "n": 80
+      }
+    }
+  },
+  "mean_vs_field": {
+    "teacher": 0.559375,
+    "H2": 0.56875
+  },
+  "per_matchup": {
+    "mega_lucario": {
+      "teacher_point": 0.55,
+      "h2_point": 0.5,
+      "diff_pp": -5.000000000000004,
+      "prob_h2_better": 0.2424,
+      "prob_h2_worse_by_7pp": 0.399,
+      "ci90": [
+        -0.17500000000000004,
+        0.07500000000000007
+      ]
+    },
+    "mega_abomasnow": {
+      "teacher_point": 0.4375,
+      "h2_point": 0.5125,
+      "diff_pp": 7.499999999999996,
+      "prob_h2_better": 0.819,
+      "prob_h2_worse_by_7pp": 0.0286,
+      "ci90": [
+        -0.04999999999999999,
+        0.20000000000000007
+      ]
+    },
+    "iono": {
+      "teacher_point": 0.6875,
+      "h2_point": 0.6875,
+      "diff_pp": 0.0,
+      "prob_h2_better": 0.4628,
+      "prob_h2_worse_by_7pp": 0.159,
+      "ci90": [
+        -0.11250000000000004,
+        0.11250000000000004
+      ]
+    },
+    "dragapult": {
+      "teacher_point": 0.5625,
+      "h2_point": 0.575,
+      "diff_pp": 1.2499999999999956,
+      "prob_h2_better": 0.5336,
+      "prob_h2_worse_by_7pp": 0.1484,
+      "ci90": [
+        -0.11250000000000004,
+        0.13750000000000007
+      ]
+    }
+  },
+  "mean_vs_field_note": "control excluded from mean-vs-field (reported separately, \u00a79/\u00a715)",
+  "improvement_matchups_5pp_90": [],
+  "major_regression_matchups": [],
+  "control_reported_separately": {
+    "teacher": {
+      "point": 0.975,
+      "n": 80
+    },
+    "H2": {
+      "point": 0.975,
+      "n": 80
+    }
+  }
+}

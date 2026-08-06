@@ -1,0 +1,196 @@
+{
+  "arm": "Q1",
+  "seed": 902,
+  "initialization": "C012_SOUP_622_633",
+  "initialization_sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+  "resume_report": null,
+  "continuation_kind": "fresh_optimizer",
+  "completed_games": 12368,
+  "games_with_trainable_decisions": 12368,
+  "trainable_decisions": 968654,
+  "updates": 29,
+  "stop_reason": "budget_reached",
+  "value_refit": {
+    "overall": {
+      "brier": 0.1441714614075447,
+      "calibration_error": -0.03293312851477764,
+      "outcome_accuracy": 0.7868139408763406,
+      "auc": 0.8757472511593689,
+      "monte_carlo_return_error": 0.29763227873509074,
+      "explained_variance_vs_outcome": 0.4224210680862308,
+      "n": 90353
+    },
+    "by_phase": {
+      "0-20": {
+        "brier": 0.21688216998008306,
+        "calibration_error": -0.06923072611168929,
+        "outcome_accuracy": 0.6631894415307475,
+        "auc": 0.7122652720093982,
+        "monte_carlo_return_error": 0.4198906689799457,
+        "explained_variance_vs_outcome": 0.14457653764151024,
+        "n": 17351
+      },
+      "20-40": {
+        "brier": 0.1868089470021144,
+        "calibration_error": -0.0470755448535804,
+        "outcome_accuracy": 0.7205027407120315,
+        "auc": 0.7893547954884997,
+        "monte_carlo_return_error": 0.36623699073285526,
+        "explained_variance_vs_outcome": 0.25491043635469435,
+        "n": 18061
+      },
+      "40-60": {
+        "brier": 0.1458682106823562,
+        "calibration_error": -0.025038931434602674,
+        "outcome_accuracy": 0.7901664730933023,
+        "auc": 0.8706887309516798,
+        "monte_carlo_return_error": 0.301875959924535,
+        "explained_variance_vs_outcome": 0.4136609446173737,
+        "n": 18081
+      },
+      "60-80": {
+        "brier": 0.10701435724144497,
+        "calibration_error": -0.014931324015703407,
+        "outcome_accuracy": 0.8441946736061127,
+        "auc": 0.9332151195803373,
+        "monte_carlo_return_error": 0.2375904551976792,
+        "explained_variance_vs_outcome": 0.5689477060234689,
+        "n": 18061
+      },
+      "80-100": {
+        "brier": 0.07016414202568533,
+        "calibration_error": -0.010731935422873262,
+        "outcome_accuracy": 0.9062716101920315,
+        "auc": 0.9731502066016747,
+        "monte_carlo_return_error": 0.1724825549621637,
+        "explained_variance_vs_outcome": 0.7170310519981113,
+        "n": 18799
+      }
+    },
+    "mse_by_epoch": [
+      0.6597042728946513,
+      0.6238312120456252,
+      0.6082073127627194,
+      0.5916368624155318
+    ],
+    "n_transitions": 90353,
+    "n_games": 1200,
+    "refit_seed": 902,
+    "target": "actual terminal outcome (Monte-Carlo return to game end), not GAE lambda-return"
+  },
+  "value_refit_games": 1200,
+  "elapsed_seconds": 1253.8,
+  "completed_games_per_hour": 35513.3,
+  "checkpoints": {
+    "5184": {
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/ckpt_g5184.npz",
+      "sha256": "8f99bbea5594b5c106e9683331bb97ae70d73c4f3465a53b9a2dc7f39a57c533",
+      "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/trainer_g5184.pt",
+      "trainer_state_sha256": "a6dfb38232561dce4607c24303ff79254a6ca25c7e63d56d5782bed7028f9ccf",
+      "trainer_state_id": "Q1902-u12-8f99bbea5594",
+      "training_games": 5184,
+      "registered_eval_point": 5000,
+      "arm": "Q1",
+      "seed": 902,
+      "updates": 12,
+      "inrun_eval": {
+        "teacher": 0.275,
+        "field": 0.3333333333333333
+      }
+    },
+    "10256": {
+      "checkpoint_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/ckpt_g10256.npz",
+      "sha256": "e4cb44bdccbda67f40e7ab45000fcc14b0241ad673c6e32bf8d59af19ec26c37",
+      "trainer_state_path": "contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/training/Q1/seed902/checkpoints/trainer_g10256.pt",
+      "trainer_state_sha256": "df8afad514ec4075ac5e816f5fe0a038a3998af1672731ec872fd67773748ed4",
+      "trainer_state_id": "Q1902-u24-e4cb44bdccbd",
+      "training_games": 10256,
+      "registered_eval_point": 10000,
+      "arm": "Q1",
+      "seed": 902,
+      "updates": 24,
+      "inrun_eval": {
+        "teacher": 0.25,
+        "field": 0.31666666666666665
+      }
+    }
+  },
+  "n_inrun_evaluations": 3,
+  "inrun_evaluations": [
+    {
+      "per_opponent": {
+        "dragapult": 0.275,
+        "mega_lucario": 0.35,
+        "iono": 0.45,
+        "mega_abomasnow": 0.3
+      },
+      "teacher": 0.275,
+      "field": 0.3666666666666667,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "9783d82d90b1c9f9c451c199f78e288c30ce7d7705abe2a177093dc57bbecc6b",
+      "arm": "Q1",
+      "seed": 902,
+      "registered_point": 0,
+      "completed_games": 0,
+      "updates": 0,
+      "trainer_state_id": "Q1902-u0-9783d82d90b1"
+    },
+    {
+      "per_opponent": {
+        "dragapult": 0.275,
+        "mega_lucario": 0.35,
+        "iono": 0.44999999999999996,
+        "mega_abomasnow": 0.2
+      },
+      "teacher": 0.275,
+      "field": 0.3333333333333333,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "8f99bbea5594b5c106e9683331bb97ae70d73c4f3465a53b9a2dc7f39a57c533",
+      "arm": "Q1",
+      "seed": 902,
+      "registered_point": 5000,
+      "completed_games": 5184,
+      "updates": 12,
+      "trainer_state_id": "Q1902-u12-8f99bbea5594"
+    },
+    {
+      "per_opponent": {
+        "dragapult": 0.25,
+        "mega_lucario": 0.25,
+        "iono": 0.45,
+        "mega_abomasnow": 0.25
+      },
+      "teacher": 0.25,
+      "field": 0.31666666666666665,
+      "n_games": 100,
+      "scored": 100,
+      "checkpoint_sha256": "e4cb44bdccbda67f40e7ab45000fcc14b0241ad673c6e32bf8d59af19ec26c37",
+      "arm": "Q1",
+      "seed": 902,
+      "registered_point": 10000,
+      "completed_games": 10256,
+      "updates": 24,
+      "trainer_state_id": "Q1902-u24-e4cb44bdccbd"
+    }
+  ],
+  "opponent_distribution": {
+    "__control__": 1282,
+    "mega_lucario": 2705,
+    "dragapult": 4539,
+    "iono": 2715,
+    "lagged::lagged_g5184.npz": 961,
+    "lagged::lagged_g10256.npz": 166
+  },
+  "seat_distribution": {
+    "1": 6202,
+    "0": 6166
+  },
+  "reliability": {
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0,
+    "fallbacks": 0
+  }
+}

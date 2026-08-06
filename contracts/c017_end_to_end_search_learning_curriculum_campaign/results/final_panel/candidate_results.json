@@ -1,0 +1,73 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "baseline_package",
+      "dragapult_games": 40,
+      "dragapult_rate": 0.575,
+      "iono_games": 40,
+      "iono_rate": 0.8,
+      "mega_abomasnow_games": 40,
+      "mega_abomasnow_rate": 0.4,
+      "safe_control_games": 40,
+      "safe_control_rate": 0.7,
+      "field_mean": 0.5917,
+      "invalid": 0,
+      "errors": 0,
+      "p99_ms": 1.219
+    },
+    {
+      "candidate_id": "distilled_policy",
+      "dragapult_games": 40,
+      "dragapult_rate": 0.1,
+      "iono_games": 40,
+      "iono_rate": 0.2,
+      "mega_abomasnow_games": 40,
+      "mega_abomasnow_rate": 0.1,
+      "safe_control_games": 40,
+      "safe_control_rate": 0.45,
+      "field_mean": 0.1333,
+      "invalid": 0,
+      "errors": 0,
+      "p99_ms": 4.635
+    }
+  ],
+  "selection": {
+    "ranking_rule": "\u00a735 \u2014 rank only TRUSTED, package-safe candidates by broad field, Dragapult, frozen baseline, cross-play, tactical errors, latency",
+    "trust": {
+      "baseline_package": {
+        "trust_status": "TRUSTED",
+        "tainted_by": [],
+        "package_safe": true
+      },
+      "distilled_policy": {
+        "trust_status": "TAINTED",
+        "tainted_by": [
+          "P10_forward_simulation"
+        ],
+        "package_safe": false,
+        "why_not_package_safe": "requires torch at inference; not validated as a package and far weaker than the baseline"
+      }
+    },
+    "eligible_for_submission": [
+      "baseline_package"
+    ],
+    "baseline_field_mean": 0.5917,
+    "distilled_field_mean": 0.1333,
+    "distilled_minus_baseline_field": -0.4584,
+    "meaningful_improvement_required": 0.03,
+    "second_submission_authorised": false,
+    "selected_for_submission": null,
+    "decision": "no post-baseline candidate is both TRUSTED and package-safe, and the distilled policy does not meaningfully improve the baseline, so \u00a736 does not authorise a second upload and \u00a745 forbids forcing a weak or tainted stage to win",
+    "uploads_used": 1,
+    "uploads_allowed": 3
+  },
+  "stages_produced": [
+    "baseline",
+    "heuristic_search(offline only)",
+    "distilled_policy",
+    "curriculum_policy"
+  ],
+  "stages_submittable": [
+    "baseline"
+  ]
+}

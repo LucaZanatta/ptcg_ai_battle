@@ -1,0 +1,26 @@
+{
+  "training_loop_status": "PROMISING",
+  "inputs": {
+    "exact_reproducibility": "INCONCLUSIVE",
+    "exact_continuation": "INCONCLUSIVE",
+    "stabilized_continuation": "EXTENDED",
+    "promoted": true,
+    "survives_final_panel": true,
+    "any_major_regression": false
+  },
+  "submission_E": "DO_NOT_SUBMIT",
+  "criteria": {
+    "best_agent_is_new": true,
+    "reliability_passes": true,
+    "teacher_non_inferiority_lb95_ge_0.47": false,
+    "reproducible_strategic_improvement_over_teacher": true,
+    "no_major_regression": true,
+    "package_validation": true
+  },
+  "best_agent": "C_522_g20220",
+  "best_agent_teacher_score": 0.2825,
+  "best_agent_field_score": 0.33166666666666667,
+  "best_agent_teacher_lb95": 0.245,
+  "archive_built": false,
+  "note": "No package is built for a non-qualifying agent (\u00a724). Training-loop validation alone is explicitly not sufficient for submission (\u00a723)."
+}

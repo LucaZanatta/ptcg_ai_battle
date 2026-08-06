@@ -1,0 +1,29 @@
+{
+  "probe_id": "P09",
+  "name": "distillation_update_proof",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "device": "cuda",
+    "optimizer_steps": 7080,
+    "history_batch_sum": 7080,
+    "steps_match_history": true,
+    "losses_finite": true,
+    "checkpoint_changed": true,
+    "distinct_epoch_hashes": 60,
+    "epochs": 60,
+    "trusted_rows_only": true,
+    "rows_trusted": 42857,
+    "rows_excluded_label_beyond_kmax": 0,
+    "continues_c017_checkpoint": false,
+    "uses_c017_labels": false,
+    "first_epoch_train_loss": 1.508158,
+    "last_epoch_train_loss": 0.310757
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/training/distillation_report.json"
+  ]
+}

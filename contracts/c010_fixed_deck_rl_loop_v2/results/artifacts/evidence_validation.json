@@ -1,0 +1,606 @@
+{
+  "contract": "c010",
+  "n_checks": 118,
+  "n_failed": 0,
+  "all_ok": true,
+  "evaluation_games": 25400,
+  "training_games_from_raw": 119366,
+  "per_arm_training_games": {
+    "A": 36330,
+    "B": 22572,
+    "C": 60464
+  },
+  "bootstrap_seed_independent_of_aggregator": true,
+  "checks": [
+    {
+      "check": "dependency_verification_all_ok",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B0_hash_unchanged_on_disk",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B0_marked_protected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "I0_hash_unchanged_on_disk",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "I0_marked_protected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "no_c005_to_c009_file_changed",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "exact_r1_matches_c008_source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "arm_A_config_equals_exact_r1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "arm_B_config_equals_exact_r1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "arm_C_changes_exactly_three_registered_values",
+      "ok": true,
+      "detail": "{'learning_rate': 3e-05, 'rollout_game_target': 256, 'min_trainable_decisions': 32768}"
+    },
+    {
+      "check": "arm_config_diff_artifact_agrees",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ppo_validation_passed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "b0_initialisation_fidelity_guarded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "A/seed311_summary_matches_raw_games",
+      "ok": true,
+      "detail": "12103 vs 12103"
+    },
+    {
+      "check": "A/seed311_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=12103 cap=12000 overshoot=103 max_rollout=133"
+    },
+    {
+      "check": "A/seed311_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "A/seed311_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "A/seed311_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "6079/12103"
+    },
+    {
+      "check": "A/seed322_summary_matches_raw_games",
+      "ok": true,
+      "detail": "12110 vs 12110"
+    },
+    {
+      "check": "A/seed322_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=12110 cap=12000 overshoot=110 max_rollout=140"
+    },
+    {
+      "check": "A/seed322_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "A/seed322_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "A/seed322_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "6168/12110"
+    },
+    {
+      "check": "A/seed333_summary_matches_raw_games",
+      "ok": true,
+      "detail": "12117 vs 12117"
+    },
+    {
+      "check": "A/seed333_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=12117 cap=12000 overshoot=117 max_rollout=140"
+    },
+    {
+      "check": "A/seed333_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "A/seed333_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "A/seed333_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "6125/12117"
+    },
+    {
+      "check": "B/seed411_summary_matches_raw_games",
+      "ok": true,
+      "detail": "7524 vs 7524"
+    },
+    {
+      "check": "B/seed411_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=7524 cap=7500 overshoot=24 max_rollout=132"
+    },
+    {
+      "check": "B/seed411_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B/seed411_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B/seed411_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "3820/7524"
+    },
+    {
+      "check": "B/seed422_summary_matches_raw_games",
+      "ok": true,
+      "detail": "7524 vs 7524"
+    },
+    {
+      "check": "B/seed422_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=7524 cap=7500 overshoot=24 max_rollout=132"
+    },
+    {
+      "check": "B/seed422_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B/seed422_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B/seed422_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "3846/7524"
+    },
+    {
+      "check": "B/seed433_summary_matches_raw_games",
+      "ok": true,
+      "detail": "7524 vs 7524"
+    },
+    {
+      "check": "B/seed433_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=7524 cap=7500 overshoot=24 max_rollout=132"
+    },
+    {
+      "check": "B/seed433_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B/seed433_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "B/seed433_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "3801/7524"
+    },
+    {
+      "check": "C/seed511_summary_matches_raw_games",
+      "ok": true,
+      "detail": "20292 vs 20292"
+    },
+    {
+      "check": "C/seed511_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=20292 cap=20000 overshoot=292 max_rollout=464"
+    },
+    {
+      "check": "C/seed511_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "C/seed511_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "C/seed511_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "10049/20292"
+    },
+    {
+      "check": "C/seed522_summary_matches_raw_games",
+      "ok": true,
+      "detail": "20220 vs 20220"
+    },
+    {
+      "check": "C/seed522_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=20220 cap=20000 overshoot=220 max_rollout=464"
+    },
+    {
+      "check": "C/seed522_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "C/seed522_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "C/seed522_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "10025/20220"
+    },
+    {
+      "check": "C/seed533_summary_matches_raw_games",
+      "ok": true,
+      "detail": "19952 vs 19952"
+    },
+    {
+      "check": "C/seed533_overshoot_at_most_one_atomic_rollout",
+      "ok": true,
+      "detail": "games_done=19952 cap=20000 overshoot=-48 max_rollout=472"
+    },
+    {
+      "check": "C/seed533_every_game_has_full_metadata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "C/seed533_never_trained_on_abomasnow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "C/seed533_seat_balance_within_5pct",
+      "ok": true,
+      "detail": "9919/19952"
+    },
+    {
+      "check": "arm_A_registered_seeds_present",
+      "ok": true,
+      "detail": "[311, 322, 333] vs [311, 322, 333]"
+    },
+    {
+      "check": "arm_A_overshoot_reported_and_bounded",
+      "ok": true,
+      "detail": "actual=36330 registered_maximum=36000 overshoot=330 (+0.92%) [rollout granularity; hard maximum enforced separately]"
+    },
+    {
+      "check": "arm_B_registered_seeds_present",
+      "ok": true,
+      "detail": "[411, 422, 433] vs [411, 422, 433]"
+    },
+    {
+      "check": "arm_B_overshoot_reported_and_bounded",
+      "ok": true,
+      "detail": "actual=22572 registered_maximum=22500 overshoot=72 (+0.32%) [rollout granularity; hard maximum enforced separately]"
+    },
+    {
+      "check": "arm_C_registered_seeds_present",
+      "ok": true,
+      "detail": "[511, 522, 533] vs [511, 522, 533]"
+    },
+    {
+      "check": "arm_C_overshoot_reported_and_bounded",
+      "ok": true,
+      "detail": "actual=60464 registered_maximum=60000 overshoot=464 (+0.77%) [rollout granularity; hard maximum enforced separately]"
+    },
+    {
+      "check": "total_training_within_hard_maximum",
+      "ok": true,
+      "detail": "119366 vs 120000"
+    },
+    {
+      "check": "no_invalid_actions_in_training",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "no_ordered_form_defects",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "compute_budget_recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "evaluation_games_present",
+      "ok": true,
+      "detail": "25400"
+    },
+    {
+      "check": "evaluation_job_ids_unique",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "evaluation_identities_complete",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "evaluation_manifest_count_matches_raw",
+      "ok": true,
+      "detail": "25400 vs 25400"
+    },
+    {
+      "check": "evaluation_manifest_sha_matches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "all_identity_batches_ok",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "every_evaluation_game_used_frozen_deck",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "every_evaluation_game_used_registered_weights",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "panel_sizes_exact",
+      "ok": true,
+      "detail": "{}"
+    },
+    {
+      "check": "evaluation_seats_balanced",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_evaluation_games_terminal_or_defect",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "abomasnow_only_used_in_evaluation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "final_panel_aggregates_reproduce_raw",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "confirmation_aggregates_reproduce_raw",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "confidence_intervals_reproduce_independently",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "field_metric_correct_B0_v2a",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "composite_metric_correct_B0_v2a",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "field_metric_correct_I0_incumbent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "composite_metric_correct_I0_incumbent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "field_metric_correct_A_322_g12110",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "composite_metric_correct_A_322_g12110",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "field_metric_correct_B_433_g7524",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "composite_metric_correct_B_433_g7524",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "field_metric_correct_C_522_g20220",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "composite_metric_correct_C_522_g20220",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exact_reproducibility_decision_valid",
+      "ok": true,
+      "detail": "INCONCLUSIVE"
+    },
+    {
+      "check": "exact_reproducibility_conditions_consistent_with_decision",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exact_reproducibility_markdown_matches_json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exact_reproducibility_threshold_ties_counted_as_met",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "exact_continuation_decision_valid",
+      "ok": true,
+      "detail": "INCONCLUSIVE"
+    },
+    {
+      "check": "exact_continuation_conditions_consistent_with_decision",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exact_continuation_markdown_matches_json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exact_continuation_threshold_ties_counted_as_met",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "stabilized_continuation_decision_valid",
+      "ok": true,
+      "detail": "EXTENDED"
+    },
+    {
+      "check": "stabilized_continuation_conditions_consistent_with_decision",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "stabilized_continuation_markdown_matches_json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "stabilized_continuation_threshold_ties_counted_as_met",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "best_agent_defaults_to_incumbent_when_nothing_qualifies",
+      "ok": true,
+      "detail": "C_522_g20220 / ['B_433_g7524', 'C_522_g20220']"
+    },
+    {
+      "check": "promotion_decision_consistent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "incumbent_protected_flag",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "qualified_B_433_g7524_meets_every_promotion_criterion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "qualified_C_522_g20220_meets_every_promotion_criterion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exactly_one_next_step",
+      "ok": true,
+      "detail": "SCALE_FIXED_DECK_RL"
+    },
+    {
+      "check": "exactly_one_highest_leverage_blocker",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "deck_pipeline_only_under_gate",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "submission_decision_valid",
+      "ok": true,
+      "detail": "DO_NOT_SUBMIT"
+    },
+    {
+      "check": "no_archive_when_gated_off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "kaggle_skipped_by_gate",
+      "ok": true,
+      "detail": "SKIPPED_BY_GATE"
+    },
+    {
+      "check": "submission_requires_non_inferiority",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "validation_is_content_aware_not_existence_based",
+      "ok": true,
+      "detail": "116 content assertions"
+    }
+  ]
+}

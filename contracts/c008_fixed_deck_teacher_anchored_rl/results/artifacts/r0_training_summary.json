@@ -1,0 +1,84 @@
+{
+  "arm": "R0",
+  "seeds": [
+    101,
+    202
+  ],
+  "per_seed": {
+    "101": {
+      "games_done": 5067,
+      "updates": 26,
+      "decisions_total": 218889,
+      "stop_reason": "R0_weak_vs_all_at_5000",
+      "selected_validation_blend": 0.20500000000000002,
+      "selected_games": 2556,
+      "wall_seconds": 831.7,
+      "throughput_games_per_s": 6.09,
+      "learning_curve_blend": [
+        [
+          1197,
+          0.1738
+        ],
+        [
+          2556,
+          0.205
+        ],
+        [
+          5067,
+          0.17
+        ]
+      ]
+    },
+    "202": {
+      "games_done": 10143,
+      "updates": 59,
+      "decisions_total": 496100,
+      "stop_reason": "budget_reached",
+      "selected_validation_blend": 0.16625,
+      "selected_games": 10143,
+      "wall_seconds": 1683.4,
+      "throughput_games_per_s": 6.03,
+      "learning_curve_blend": [
+        [
+          1170,
+          0.1212
+        ],
+        [
+          2646,
+          0.1288
+        ],
+        [
+          5121,
+          0.165
+        ],
+        [
+          10143,
+          0.1663
+        ]
+      ]
+    }
+  },
+  "total_games": 15210,
+  "total_decisions": 714989,
+  "representative": {
+    "representative_seed": 202,
+    "representative_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/checkpoints/R0_representative.npz",
+    "source_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed202/checkpoints/ckpt_g10143.npz",
+    "median_validation_blend": 0.16625,
+    "all_seed_blends": {
+      "101": 0.20500000000000002,
+      "202": 0.16625
+    },
+    "all_seed_games": {
+      "101": 5067,
+      "202": 10143
+    },
+    "all_seed_stop_reasons": {
+      "101": "R0_weak_vs_all_at_5000",
+      "202": "budget_reached"
+    },
+    "learning_curve_stable_2plus_seeds": false
+  },
+  "all_seeds_completed_budget_or_early_stop": true,
+  "learning_curve_conclusion": "learning in one seed only"
+}

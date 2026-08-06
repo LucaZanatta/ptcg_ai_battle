@@ -1,0 +1,45 @@
+c011 forward/action/multiselect parity — 63 fixtures, forms={'SINGLE_CHOICE': 550, 'FIXED_MULTISELECT': 17, 'VARIABLE_MULTISELECT': 6}
+
+[float64] all_pass=True
+    max_abs_logit_error: 1.0658141036401503e-14
+    max_abs_value_error: 7.771561172376096e-16
+    max_legal_prob_error: 1.609823385706477e-15
+    max_legal_prob_sum_error: 2.220446049250313e-16
+    max_illegal_probability: 0.0
+    identical_legal_mask: True
+    argmax_identical: True
+    max_multiselect_logprob_error: 2.4424906541753444e-15
+    max_entropy_error: 1.3322676295501878e-15
+    all_pass: True
+    PASS forward_logit_within_1e-5
+    PASS forward_value_within_1e-5
+    PASS identical_legal_mask
+    PASS illegal_probability_exactly_zero
+    PASS argmax_identical
+    PASS legal_probability_sums_to_one_within_1e-6
+    PASS legal_probability_error_within_1e-5
+    PASS multiselect_summed_logprob_within_1e-5
+    PASS entropy_within_1e-5
+
+[float32] all_pass=True
+    max_abs_logit_error: 5.434174550345006e-06
+    max_abs_value_error: 3.1475391981672374e-07
+    max_legal_prob_error: 7.362268780730652e-07
+    max_legal_prob_sum_error: 1.3283143818210164e-07
+    max_illegal_probability: 0.0
+    identical_legal_mask: True
+    argmax_identical: True
+    max_multiselect_logprob_error: 1.3813288035624538e-06
+    max_entropy_error: 4.5510003721105363e-07
+    all_pass: True
+    PASS forward_logit_within_1e-5
+    PASS forward_value_within_1e-5
+    PASS identical_legal_mask
+    PASS illegal_probability_exactly_zero
+    PASS argmax_identical
+    PASS legal_probability_sums_to_one_within_1e-6
+    PASS legal_probability_error_within_1e-5
+    PASS multiselect_summed_logprob_within_1e-5
+    PASS entropy_within_1e-5
+
+NPZ round trip: {'max_abs_logit_error': 0.0, 'max_abs_value_error': 0.0, 'within_forward_tolerance': True, 'n_tensors': 32, 'all_keys_match_legacy': True}

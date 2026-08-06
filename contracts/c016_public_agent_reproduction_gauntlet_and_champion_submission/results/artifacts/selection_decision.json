@@ -1,0 +1,280 @@
+{
+  "rows": [
+    {
+      "candidate_id": "official_mega_lucario",
+      "fidelity": "EXACT",
+      "permission_class": "SUBMISSION_REUSE_ALLOWED",
+      "safe_games_total": 90,
+      "safe_rate_total": 0.8333,
+      "stage_b": {
+        "dragapult_games": 200,
+        "dragapult_rate": 0.485,
+        "iono_games": 100,
+        "iono_rate": 0.79,
+        "mega_lucario_games": 100,
+        "mega_lucario_rate": 0.54,
+        "mega_abomasnow_games": 100,
+        "mega_abomasnow_rate": 0.47,
+        "__c014___games": 100,
+        "__c014___rate": 0.625,
+        "__c015___games": 100,
+        "__c015___rate": 0.91,
+        "__safe___games": 50,
+        "__safe___rate": 0.82,
+        "field_mean": 0.6,
+        "violations": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0
+      },
+      "confirmation": {
+        "candidate_id": "official_mega_lucario",
+        "confirm_dragapult_games": 400,
+        "confirm_dragapult_rate": 0.52,
+        "confirm_dragapult_wilson_lo": 0.4711,
+        "confirm_field_games": 600,
+        "confirm_field_mean": 0.6142,
+        "confirm_iono": 0.805,
+        "confirm_mega_lucario": 0.5075,
+        "confirm_mega_abomasnow": 0.53
+      },
+      "base_conditions": {
+        "fidelity_ok": true,
+        "safe_control_ge_0.90": false,
+        "vs_c014_ge_0.65": false,
+        "vs_c015_ge_0.65": true,
+        "zero_reliability_violations": true
+      },
+      "base_conditions_pass": false,
+      "path_A": {
+        "vs_dragapult": 0.52,
+        "games": 400,
+        "wilson_lo": 0.4711,
+        "needs": ">= 0.55 over >= 400 games, Wilson LB > 0.5",
+        "passes": false
+      },
+      "path_B": {
+        "vs_dragapult": 0.52,
+        "games": 400,
+        "field_mean": 0.6142,
+        "field_games": 600,
+        "deficits": [
+          {
+            "opponent": "iono",
+            "candidate": 0.805,
+            "dragapult": 0.655,
+            "deficit": -0.15
+          },
+          {
+            "opponent": "mega_lucario",
+            "candidate": 0.5075,
+            "dragapult": 0.495,
+            "deficit": -0.0125
+          },
+          {
+            "opponent": "mega_abomasnow",
+            "candidate": 0.53,
+            "dragapult": 0.525,
+            "deficit": -0.005
+          }
+        ],
+        "needs": ">= 0.48 vs Dragapult over >= 400, field mean >= 0.55 over >= 600, not worse than 0.1 on two official opponents",
+        "passes": true
+      },
+      "path_C": {
+        "passes": false,
+        "reason": "no >=900-equivalent published score or matchup benchmark exists for the official sample agents; the LB-950 public claim belongs to a different, LOCAL_BENCHMARK_ONLY notebook and cannot be transferred to this candidate. Path C is not available rather than stretched to fit."
+      },
+      "strength_path_passed": "B",
+      "p99_latency_ms": 1.397
+    },
+    {
+      "candidate_id": "official_mega_abomasnow",
+      "fidelity": "EXACT",
+      "permission_class": "SUBMISSION_REUSE_ALLOWED",
+      "safe_games_total": 90,
+      "safe_rate_total": 0.9111,
+      "stage_b": {
+        "dragapult_games": 200,
+        "dragapult_rate": 0.5,
+        "iono_games": 100,
+        "iono_rate": 0.27,
+        "mega_lucario_games": 100,
+        "mega_lucario_rate": 0.51,
+        "mega_abomasnow_games": 100,
+        "mega_abomasnow_rate": 0.45,
+        "__c014___games": 100,
+        "__c014___rate": 0.69,
+        "__c015___games": 100,
+        "__c015___rate": 0.93,
+        "__safe___games": 50,
+        "__safe___rate": 0.94,
+        "field_mean": 0.41,
+        "violations": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0
+      },
+      "confirmation": {
+        "candidate_id": "official_mega_abomasnow",
+        "confirm_dragapult_games": 400,
+        "confirm_dragapult_rate": 0.5025,
+        "confirm_dragapult_wilson_lo": 0.4537,
+        "confirm_field_games": 600,
+        "confirm_field_mean": 0.4067,
+        "confirm_iono": 0.295,
+        "confirm_mega_lucario": 0.445,
+        "confirm_mega_abomasnow": 0.48
+      },
+      "base_conditions": {
+        "fidelity_ok": true,
+        "safe_control_ge_0.90": true,
+        "vs_c014_ge_0.65": true,
+        "vs_c015_ge_0.65": true,
+        "zero_reliability_violations": true
+      },
+      "base_conditions_pass": true,
+      "path_A": {
+        "vs_dragapult": 0.5025,
+        "games": 400,
+        "wilson_lo": 0.4537,
+        "needs": ">= 0.55 over >= 400 games, Wilson LB > 0.5",
+        "passes": false
+      },
+      "path_B": {
+        "vs_dragapult": 0.5025,
+        "games": 400,
+        "field_mean": 0.4067,
+        "field_games": 600,
+        "deficits": [
+          {
+            "opponent": "iono",
+            "candidate": 0.295,
+            "dragapult": 0.655,
+            "deficit": 0.36
+          },
+          {
+            "opponent": "mega_lucario",
+            "candidate": 0.445,
+            "dragapult": 0.495,
+            "deficit": 0.05
+          },
+          {
+            "opponent": "mega_abomasnow",
+            "candidate": 0.48,
+            "dragapult": 0.525,
+            "deficit": 0.045
+          }
+        ],
+        "needs": ">= 0.48 vs Dragapult over >= 400, field mean >= 0.55 over >= 600, not worse than 0.1 on two official opponents",
+        "passes": false
+      },
+      "path_C": {
+        "passes": false,
+        "reason": "no >=900-equivalent published score or matchup benchmark exists for the official sample agents; the LB-950 public claim belongs to a different, LOCAL_BENCHMARK_ONLY notebook and cannot be transferred to this candidate. Path C is not available rather than stretched to fit."
+      },
+      "strength_path_passed": null,
+      "p99_latency_ms": 1.142
+    },
+    {
+      "candidate_id": "official_iono",
+      "fidelity": "EXACT",
+      "permission_class": "SUBMISSION_REUSE_ALLOWED",
+      "safe_games_total": 90,
+      "safe_rate_total": 0.9778,
+      "stage_b": {
+        "dragapult_games": 200,
+        "dragapult_rate": 0.29,
+        "iono_games": 100,
+        "iono_rate": 0.54,
+        "mega_lucario_games": 100,
+        "mega_lucario_rate": 0.22,
+        "mega_abomasnow_games": 100,
+        "mega_abomasnow_rate": 0.71,
+        "__c014___games": 100,
+        "__c014___rate": 0.9,
+        "__c015___games": 100,
+        "__c015___rate": 0.92,
+        "__safe___games": 50,
+        "__safe___rate": 0.98,
+        "field_mean": 0.49,
+        "violations": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0
+      },
+      "confirmation": {},
+      "base_conditions": {
+        "fidelity_ok": true,
+        "safe_control_ge_0.90": true,
+        "vs_c014_ge_0.65": true,
+        "vs_c015_ge_0.65": true,
+        "zero_reliability_violations": true
+      },
+      "base_conditions_pass": true,
+      "path_A": {
+        "vs_dragapult": 0.29,
+        "games": 200,
+        "wilson_lo": null,
+        "needs": ">= 0.55 over >= 400 games, Wilson LB > 0.5",
+        "passes": false
+      },
+      "path_B": {
+        "vs_dragapult": 0.29,
+        "games": 200,
+        "field_mean": 0.49,
+        "field_games": 300,
+        "deficits": [],
+        "needs": ">= 0.48 vs Dragapult over >= 400, field mean >= 0.55 over >= 600, not worse than 0.1 on two official opponents",
+        "passes": false
+      },
+      "path_C": {
+        "passes": false,
+        "reason": "no >=900-equivalent published score or matchup benchmark exists for the official sample agents; the LB-950 public claim belongs to a different, LOCAL_BENCHMARK_ONLY notebook and cannot be transferred to this candidate. Path C is not available rather than stretched to fit."
+      },
+      "strength_path_passed": null,
+      "p99_latency_ms": 1.148
+    }
+  ],
+  "gate": {
+    "competitive_gate": "FAIL",
+    "selected_candidate_id": null,
+    "strength_path": null,
+    "best_candidate_id": "official_mega_lucario",
+    "exact_failed_gates": [
+      "base condition safe_control_ge_0.90",
+      "base condition vs_c014_ge_0.65"
+    ],
+    "ranking_applied": [
+      "1 passes reproduction fidelity (EXACT or FAITHFUL_CLEAN_ROOM)",
+      "2 passes all reliability and package-feasibility hard gates",
+      "3 score rate vs Dragapult on independent confirmation",
+      "4 mean score rate across official Iono, Mega Lucario, Mega Abomasnow on independent confirmation",
+      "5 direct cross-play vs the other finalist",
+      "6 lower p99 latency",
+      "7 stronger current public evidence quality"
+    ],
+    "ranked_order": [
+      "official_mega_lucario",
+      "official_mega_abomasnow",
+      "official_iono"
+    ],
+    "upload_authorised": false,
+    "note": "\u00a72/\u00a77 forbid uploading a weak package merely to complete the contract; a failing competitive gate produces PARTIAL with the best candidate preserved"
+  },
+  "crossplay": {
+    "games": 300,
+    "score": 159.0,
+    "score_rate": 0.53,
+    "wilson95": [
+      0.4735,
+      0.5857
+    ],
+    "seat0": 150,
+    "seat1": 150
+  },
+  "top2": [
+    "official_mega_abomasnow",
+    "official_mega_lucario"
+  ]
+}

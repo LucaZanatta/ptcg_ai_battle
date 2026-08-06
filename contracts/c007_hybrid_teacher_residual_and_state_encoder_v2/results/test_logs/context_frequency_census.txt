@@ -1,0 +1,19 @@
+c007 residual-context frequency census (proxy = c006 19,050 decisions)
+==============================================================================
+total decisions 19050 over 240 games; scale->600 games x2.5
+admission needs: >=300 examples, >=200 with two meaningful choices
+
+context                         total nonforced  >=2opt  >=2mean  proj600m
+--------------------------------------------------------------------------
+attack_choice_in_MAIN            6199      6199    6199     6199   15497.5
+search_card_target               3177      3115    2959     2959    7397.5
+dragapult_damage_counter         3108      2664    2664     2664    6660.0
+promotion_to_active               730       551     551      551    1377.5
+energy_attachment_target          542       531     466      466    1165.0
+retreat_switch                    443       413     413      413    1032.5
+evolution_target                  143        85      85       85     212.5
+attack_target                       0         0       0        0       0.0
+
+Interpretation: contexts whose projected-600-game meaningful count clears 200
+with margin are viable AC-07 candidates; the top few by (frequency x depth)
+are registered as residual-context candidates.

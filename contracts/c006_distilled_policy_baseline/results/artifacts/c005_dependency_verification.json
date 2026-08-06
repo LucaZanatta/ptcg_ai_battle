@@ -1,0 +1,147 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "c005_final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+  "frozen_teacher_id": "dragapult",
+  "frozen_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "frozen_teacher_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+  "frozen_teacher_deck_sha256": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+  "submission_A_archive": {
+    "path": "contracts/c005_teacher_import_submission_and_dataset/results/artifacts/submission_A_teacher.tar.gz",
+    "size_bytes": 500422,
+    "sha256": "f8db6ac87458b364429e2103729918232642e0e858d9bba3d3d3541885b3c990"
+  },
+  "dataset_file_sha256": {
+    "train": "dd32906c48bc073984a6a3ce0731339e0191aae17ff012d57f6f850b8dcfa02a",
+    "validation": "0b6f87bb1fea0d22ba79195c1cc48395f09710e7d57280da0d92fd7d65aab39f",
+    "test": "6c72d99ccbb873520f09837fe20968360e6d0b941974217f7635f4652f1b4eaf"
+  },
+  "dataset_counts": {
+    "train": {
+      "games": 170,
+      "decisions": 13795
+    },
+    "validation": {
+      "games": 37,
+      "decisions": 2991
+    },
+    "test": {
+      "games": 33,
+      "decisions": 2264
+    }
+  },
+  "checks": [
+    {
+      "check": "c005_status_pass",
+      "ok": true,
+      "detail": {
+        "status": "PASS",
+        "final_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830"
+      }
+    },
+    {
+      "check": "frozen_teacher_main_sha256",
+      "ok": true,
+      "detail": {
+        "expected": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+        "actual": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9"
+      }
+    },
+    {
+      "check": "frozen_teacher_deck_sha256",
+      "ok": true,
+      "detail": {
+        "expected": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724",
+        "actual": "30c8c7365c75f38fd6e7e1d8543c42ce7055ed6fd1c6e9eb244e44484b78e724"
+      }
+    },
+    {
+      "check": "submission_A_archive_size",
+      "ok": true,
+      "detail": {
+        "expected": 500422,
+        "actual": 500422,
+        "sha256": "f8db6ac87458b364429e2103729918232642e0e858d9bba3d3d3541885b3c990"
+      }
+    },
+    {
+      "check": "dataset_split_games",
+      "ok": true,
+      "detail": {
+        "actual": {
+          "train": {
+            "games": 170,
+            "decisions": 13795
+          },
+          "validation": {
+            "games": 37,
+            "decisions": 2991
+          },
+          "test": {
+            "games": 33,
+            "decisions": 2264
+          }
+        },
+        "manifest_games": {
+          "train": 170,
+          "validation": 37,
+          "test": 33
+        },
+        "manifest_decisions": {
+          "train": 13795,
+          "validation": 2991,
+          "test": 2264
+        }
+      }
+    },
+    {
+      "check": "dataset_manifest_totals",
+      "ok": true,
+      "detail": {
+        "manifest_decisions": 19050,
+        "manifest_games": 240
+      }
+    },
+    {
+      "check": "no_game_in_multiple_splits",
+      "ok": true,
+      "detail": {
+        "leaking_games": {}
+      }
+    },
+    {
+      "check": "all_decision_indices_recoverable",
+      "ok": true,
+      "detail": {
+        "recovered": 19050,
+        "total": 19050
+      }
+    },
+    {
+      "check": "deck_id_consistent",
+      "ok": true,
+      "detail": {
+        "frozen": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+        "dataset": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab"
+      }
+    },
+    {
+      "check": "kaggle_baseline_ref",
+      "ok": true,
+      "detail": {
+        "ref": "54948560",
+        "public_score": "617.8"
+      }
+    },
+    {
+      "check": "teacher_sources_present",
+      "ok": true,
+      "detail": {
+        "dragapult": true,
+        "mega_lucario": true,
+        "mega_abomasnow": true,
+        "iono": true
+      }
+    }
+  ],
+  "all_ok": true
+}

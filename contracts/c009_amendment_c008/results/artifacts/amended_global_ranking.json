@@ -1,0 +1,139 @@
+{
+  "field_opponents": [
+    "mega_lucario",
+    "iono",
+    "mega_abomasnow",
+    "dragapult"
+  ],
+  "note": "mean over the four Phase C opponents; the engineering control was not run in Phase C and cannot influence strategic rank",
+  "ranking_desc": [
+    "T_teacher",
+    "R1_101",
+    "R2_303",
+    "R2_101",
+    "B0_v2a",
+    "R0_202"
+  ],
+  "candidates": {
+    "B0_v2a": {
+      "arm": "B0",
+      "seed": null,
+      "mean_vs_field": 0.1525,
+      "per_opponent": {
+        "mega_lucario": 0.16999999999999998,
+        "iono": 0.16999999999999998,
+        "mega_abomasnow": 0.12,
+        "dragapult": 0.15
+      },
+      "field_ci95": [
+        0.11750000000000001,
+        0.1875
+      ],
+      "worst_matchup": {
+        "opponent": "mega_abomasnow",
+        "score": 0.12
+      },
+      "held_out_abomasnow": 0.12
+    },
+    "R0_202": {
+      "arm": "R0",
+      "seed": 202,
+      "mean_vs_field": 0.10000000000000002,
+      "per_opponent": {
+        "mega_lucario": 0.30000000000000004,
+        "iono": 0.01,
+        "mega_abomasnow": 0.07,
+        "dragapult": 0.02
+      },
+      "field_ci95": [
+        0.07250000000000001,
+        0.1275
+      ],
+      "worst_matchup": {
+        "opponent": "iono",
+        "score": 0.01
+      },
+      "held_out_abomasnow": 0.07
+    },
+    "R1_101": {
+      "arm": "R1",
+      "seed": 101,
+      "mean_vs_field": 0.255,
+      "per_opponent": {
+        "mega_lucario": 0.36,
+        "iono": 0.24,
+        "mega_abomasnow": 0.27,
+        "dragapult": 0.15
+      },
+      "field_ci95": [
+        0.215,
+        0.2975
+      ],
+      "worst_matchup": {
+        "opponent": "dragapult",
+        "score": 0.15
+      },
+      "held_out_abomasnow": 0.27
+    },
+    "R2_101": {
+      "arm": "R2",
+      "seed": 101,
+      "mean_vs_field": 0.185,
+      "per_opponent": {
+        "mega_lucario": 0.26,
+        "iono": 0.19,
+        "mega_abomasnow": 0.16,
+        "dragapult": 0.13
+      },
+      "field_ci95": [
+        0.14750000000000002,
+        0.2225
+      ],
+      "worst_matchup": {
+        "opponent": "dragapult",
+        "score": 0.13
+      },
+      "held_out_abomasnow": 0.16
+    },
+    "R2_303": {
+      "arm": "R2",
+      "seed": 303,
+      "mean_vs_field": 0.2275,
+      "per_opponent": {
+        "mega_lucario": 0.32,
+        "iono": 0.2,
+        "mega_abomasnow": 0.15000000000000002,
+        "dragapult": 0.24
+      },
+      "field_ci95": [
+        0.1875,
+        0.2675
+      ],
+      "worst_matchup": {
+        "opponent": "mega_abomasnow",
+        "score": 0.15000000000000002
+      },
+      "held_out_abomasnow": 0.15000000000000002
+    },
+    "T_teacher": {
+      "arm": "T",
+      "seed": null,
+      "mean_vs_field": 0.5700000000000001,
+      "per_opponent": {
+        "mega_lucario": 0.49,
+        "iono": 0.6799999999999999,
+        "mega_abomasnow": 0.56,
+        "dragapult": 0.55
+      },
+      "field_ci95": [
+        0.5225,
+        0.6174999999999999
+      ],
+      "worst_matchup": {
+        "opponent": "mega_lucario",
+        "score": 0.49
+      },
+      "held_out_abomasnow": 0.56
+    }
+  }
+}

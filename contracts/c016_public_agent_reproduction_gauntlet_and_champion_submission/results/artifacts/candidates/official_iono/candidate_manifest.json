@@ -1,0 +1,175 @@
+{
+  "candidate_id": "official_iono",
+  "fidelity": "EXACT",
+  "reproduction_method": "EXACT byte-for-byte copy of the official sample source; no reimplementation and no strategic modification",
+  "source_reference": "kaggle:kiyotah/a-sample-rule-based-agent-iono-s-deck",
+  "source_main_sha256": "9fa360307e0b9ccd4cd8469aad50c93872468c8dfa8ff8ebb6718cacf9faa8fa",
+  "copied_main_sha256": "9fa360307e0b9ccd4cd8469aad50c93872468c8dfa8ff8ebb6718cacf9faa8fa",
+  "hashes_identical": true,
+  "deck_sha256": "e36d46c5bcafdef8a5d0e6caeb34dd8db09119c62d8fb67c99e89e7eed39f974",
+  "deck_cards": 60,
+  "archetype": "Iono's deck",
+  "permission_class": "SUBMISSION_REUSE_ALLOWED",
+  "attribution": "Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-iono-s-deck (Kiyota)",
+  "semantic_feature_inventory": {
+    "features": {
+      "planning_or_sequencing": {
+        "references": 3,
+        "present": true
+      },
+      "prize_resource_tracking": {
+        "references": 10,
+        "present": true
+      },
+      "damage_calculation": {
+        "references": 2,
+        "present": true
+      },
+      "matchup_rules": {
+        "references": 5,
+        "present": true
+      },
+      "energy_management": {
+        "references": 38,
+        "present": true
+      },
+      "evolution_logic": {
+        "references": 1,
+        "present": true
+      },
+      "bench_management": {
+        "references": 14,
+        "present": true
+      },
+      "retreat_switch_logic": {
+        "references": 2,
+        "present": true
+      },
+      "search_targeting": {
+        "references": 31,
+        "present": true
+      }
+    },
+    "n_functions": 2,
+    "functions": [
+      "get_card",
+      "agent"
+    ],
+    "n_classes": 0,
+    "classes": [],
+    "source_lines": 416,
+    "all_material_features_present": true
+  },
+  "static_dependency_audit": {
+    "imports": [
+      "cg",
+      "collections",
+      "os",
+      "sys"
+    ],
+    "network_modules": [],
+    "network_dependency_at_inference": false,
+    "heavy_ml_dependencies": [],
+    "stdlib_only_plus_cg": true
+  },
+  "fidelity_checks": {
+    "source_decoded_without_truncation": true,
+    "deck_hash_matches_documented_source": true,
+    "deck_is_60_cards": true,
+    "source_byte_identical_to_official": true,
+    "implementation_is_rich_not_a_priority_table": true,
+    "no_static_priority_replacement": true,
+    "only_compatibility_adapters": true,
+    "smoke_games_legal": true,
+    "no_network_dependency": true
+  },
+  "compatibility_adapters": [
+    {
+      "adapter": "cg.teachers.make_fresh",
+      "what": "imports main.py as a uniquely-named fresh module instance per game and per seat, with cwd temporarily set to the agent's own directory",
+      "why": "these agents keep module-level state (turn counters, attack plans) and read a relative deck.csv at import; a fresh instance is required for state isolation between games",
+      "modifies_agent_source": false
+    }
+  ],
+  "known_deviations_from_source": [],
+  "smoke": {
+    "games": [
+      {
+        "game": 0,
+        "seat": 0,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 0.0,
+        "seconds": 0.65
+      },
+      {
+        "game": 1,
+        "seat": 1,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 1.0,
+        "seconds": 0.45
+      },
+      {
+        "game": 2,
+        "seat": 0,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 0.0,
+        "seconds": 0.47
+      },
+      {
+        "game": 3,
+        "seat": 1,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 0.0,
+        "seconds": 0.68
+      },
+      {
+        "game": 4,
+        "seat": 0,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 0.0,
+        "seconds": 0.25
+      },
+      {
+        "game": 5,
+        "seat": 1,
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "completed": true,
+        "invalid": 0,
+        "score": 1.0,
+        "seconds": 0.58
+      }
+    ],
+    "n": 6,
+    "all_completed": true,
+    "invalid_total": 0,
+    "score_rate_vs_dragapult": 0.3333
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "arm": "R2",
+  "replay_coef_observed_range": [
+    0.2678333333333333,
+    0.5
+  ],
+  "kl_coef_observed_range": [
+    0.030100000000000005,
+    0.05
+  ],
+  "replay_loss_range": [
+    0.2529510721089001,
+    0.5631006969525225
+  ],
+  "ref_kl_range": [
+    0.00370383137337811,
+    0.2514846370656932
+  ],
+  "schedule_decayed": true,
+  "note": "replay coef 0.50->0.05 and KL coef 0.05->0.01 over consumed budget (\u00a710.1/10.2); on-policy teacher-action term disabled (unproven synchronization, \u00a710.3)"
+}

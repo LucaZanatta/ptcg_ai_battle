@@ -1,0 +1,103 @@
+[PASS] panel_selection_has_raw_games
+    {"n": 9150}
+[PASS] panel_selection_has_scored_games
+    {"n_scored": 9150, "n_total": 9150}
+[PASS] panel_selection_aggregates_match_raw_games
+    []
+[PASS] panel_selection_identity_verified
+    {"n_mismatched": 0}
+[PASS](non-critical) panel_selection_seat_balanced
+    {}
+[PASS] panel_confirmation_has_raw_games
+    {"n": 34200}
+[PASS] panel_confirmation_has_scored_games
+    {"n_scored": 34200, "n_total": 34200}
+[PASS] panel_confirmation_aggregates_match_raw_games
+    []
+[PASS] panel_confirmation_identity_verified
+    {"n_mismatched": 0}
+[PASS](non-critical) panel_confirmation_seat_balanced
+    {}
+[PASS] panel_final_has_raw_games
+    {"n": 7000}
+[PASS] panel_final_has_scored_games
+    {"n_scored": 7000, "n_total": 7000}
+[PASS] panel_final_aggregates_match_raw_games
+    []
+[PASS] panel_final_identity_verified
+    {"n_mismatched": 0}
+[PASS](non-critical) panel_final_seat_balanced
+    {}
+[PASS] final_composites_recompute
+    []
+[PASS] published_winner_is_the_argmax_of_recomputed_composite
+    {"published": "SOUP13_SOUP+P1_822", "recomputed": "SOUP13_SOUP+P1_822"}
+[PASS] q3_gate_recomputes
+    {"published": "FAIL", "recomputed": "FAIL", "n_trainable_recomputed": 23, "n_trainable_published": 23}
+[PASS] q3_comparison_set_not_silently_shrunk
+    {"published": 23, "recomputed": 23}
+[PASS] soup_learnability_exists
+[PASS] phase2_start_present_in_panel
+    {"start": "C012_SOUP_622_633"}
+[PASS] phase2_start_teacher_recomputes
+    {"published": 0.35333333333333333, "recomputed": 0.35333333333333333}
+[PASS] soup_learnability_verdict_follows_from_data
+    {"published": "NOT_IMPROVED", "validator_confirmed_candidates": [], "note": "recomputed with the validator's own bootstrap seed"}
+[PASS](non-critical) learnability_did_not_use_training_reward_to_decide
+[PASS] learnability_counts_match_raw_games
+    [{"arm": "Q0", "raw_count": 12016, "summary": 12016, "match": true}, {"arm": "Q1", "raw_count": 12368, "summary": 12368, "match": true}, {"arm": "Q2A", "raw_count": 10192, "summary": 10192, "match": true}, {"arm": "Q2B", "raw_count": 10336, "summary": 10336, "match": true}]
+[PASS] learnability_within_cap
+    {"total": 44912, "cap": 50000}
+[PASS] smoke_arms_present
+    [{"arm": "R0", "raw_count": 5104}, {"arm": "R1", "raw_count": 5008}]
+[FAIL] smoke_within_cap
+    {"total": 10112, "cap": 10000, "arms": [{"arm": "R0", "raw_count": 5104}, {"arm": "R1", "raw_count": 5008}]}
+[PASS] total_training_within_hard_maximum
+    {"learnability": 44912, "smoke": 10112, "total": 55024, "hard_max": 62000}
+[PASS] registered_checkpoint_hashes_match_disk
+    {"verified": 36, "bad": []}
+[PASS] overlap_analysis_exists
+[PASS] overlap_raw_states_exist
+[PASS] overlap_raw_sha256_matches
+    {"published": "6c54f9832521c970097af8bc454fcc65593da7f59dd980640a608482807e68cd", "recomputed": "6c54f9832521c970097af8bc454fcc65593da7f59dd980640a608482807e68cd"}
+[PASS] overlap_state_count_matches
+    {"published": 4110, "recomputed": 4110}
+[PASS] overlap_primary_subset_recomputes
+    {"published": 611, "recomputed": 611}
+[PASS] overlap_queried_every_required_policy
+    {"present": ["C012_SOUP_622_633", "P0_711", "S611", "S622", "S633", "dragapult", "iono", "mega_abomasnow", "mega_lucario"]}
+[PASS] overlap_includes_neural_policies
+    {"neural": ["C012_SOUP_622_633", "P0_711", "S611", "S622", "S633"]}
+[PASS] overlap_verdict_is_a_registered_value
+    {"verdict": "INCONCLUSIVE"}
+[PASS](non-critical) overlap_excludes_deck_overlap_from_verdict
+[PASS] claude_validation_exists
+[PASS] claude_outputs_exist
+[PASS] claude_primary_count_matches
+    {"published": 28, "recomputed": 28}
+[PASS] claude_primary_within_registered_range
+    {"n": 28, "range": "20-30 (\u00a725)"}
+[PASS] claude_model_was_opus
+    {"n": 28}
+[PASS] claude_no_hidden_information_violations
+    {"violations": 0}
+[PASS] claude_labels_did_not_train_anything
+    {"note": "no Claude-derived data appears under any training arm"}
+[PASS] claude_categories_multiple
+    {"categories": ["attach_energy", "evolve", "multi_select", "other", "promote", "search", "target"]}
+[PASS](non-critical) claude_repeat_pass_ran
+    {"n_repeat": 10}
+[PASS] independent_pre_c013_immutability_baseline_available
+    {"baseline": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/immutability_verification.json"}
+[PASS] earlier_contract_files_unmodified
+    {"baseline": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/immutability_verification.json", "baseline_predates_c013": true, "files_checked": 1241, "modified": []}
+[PASS] no_tracked_earlier_contract_file_missing
+    {"missing_tracked": []}
+[FAIL](non-critical) untracked_baseline_files_absent
+    {"missing_untracked": [{"path": "contracts/c011_fixed_deck_cuda_ppo_scale/results.zip", "git_tracked": false}], "note": "user-managed archives that were never under version control; c013 did not create or remove them and no c013 evidence depends on them"}
+[PASS] immutability_baseline_is_not_self_written
+    {"files_checked": 1241, "note": "a baseline that hashes zero files would pass vacuously"}
+[PASS] required_artifacts_present
+    {"missing": []}
+
+overall: FAIL  (52/54 passed)

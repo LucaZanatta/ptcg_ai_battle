@@ -1,0 +1,50 @@
+{
+  "kaggle_upload": "SUBMITTED",
+  "competition": "pokemon-tcg-ai-battle",
+  "description": "c015 anti-meta-v0 iono-bellibolt vs archaludon 15d9e69",
+  "archive": "contracts/c015_anti_meta_deck_agent_v0/results/artifacts/submission_I_anti_meta_v0.tar.gz",
+  "archive_sha256": "ea507a6cb53e1ea03d876c8309e3f50e1db343f75ceb2d4ede2ad9fef1098f4e",
+  "submission_ref": "55005237",
+  "submission_row": {
+    "ref": "55005237",
+    "fileName": "submission_I_anti_meta_v0.tar.gz",
+    "date": "2026-07-26 15:46:39.270000",
+    "description": "c015 anti-meta-v0 iono-bellibolt vs archaludon 15d9e69",
+    "status": "SubmissionStatus.COMPLETE",
+    "publicScore": "600.0",
+    "privateScore": ""
+  },
+  "status": "COMPLETE",
+  "public_score": "600.0",
+  "polls": 3,
+  "poll_interval_seconds": 30,
+  "bounded_poll_max": 20,
+  "submit_returncode": 0,
+  "duplicate_guard": {
+    "description": "c015 anti-meta-v0 iono-bellibolt vs archaludon 15d9e69",
+    "existing_submissions": 3,
+    "duplicate_description_found": false,
+    "duplicate_filename_found": false,
+    "blocked": false
+  },
+  "gates": {
+    "archive_exists": true,
+    "archive_hash_matches_manifest": true,
+    "validated_hash_is_this_archive": true,
+    "package_validation_passed": true,
+    "content_audit_passed": true,
+    "local_zero_invalid_selections": true,
+    "local_zero_exceptions": true,
+    "local_zero_timeouts": true,
+    "local_all_games_classified": true,
+    "local_both_seats_tested": true,
+    "latency_p99_within_250ms": true,
+    "latency_max_within_self_imposed_bound": true,
+    "package_at_least_100_games": true,
+    "package_zero_invalid_selections": true,
+    "package_zero_timeouts": true,
+    "package_all_completed": true,
+    "package_both_seats": true,
+    "package_at_least_three_opponents": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "probe_id": "P20_distillation",
+  "status": "PASS",
+  "trust_status": "TAINTED",
+  "tainted_by": [
+    "P10_forward_simulation"
+  ],
+  "summary": {
+    "device": "cuda",
+    "epochs": 4,
+    "n_train": 2459,
+    "n_test": 557,
+    "test": {
+      "n": 557,
+      "top1_agreement": 0.526,
+      "value_mae": 0.5373
+    },
+    "teacher_equals_baseline_rate": 0.9087
+  }
+}

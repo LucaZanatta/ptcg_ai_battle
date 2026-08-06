@@ -1,0 +1,19 @@
+{
+  "prefix": "ratecheck",
+  "games": 20,
+  "decisions": 1106,
+  "trusted_decisions": 1006,
+  "trajectory_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/ratecheck_trajectories.jsonl.gz",
+  "trajectory_sha256": "ea184e1dd0a1215829613eaa2319e12c1b6cc12b2e8422dbe048bd6fc4c687ab",
+  "feature_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/ratecheck_features.npz",
+  "config": {
+    "beam_width": 3,
+    "max_candidates": 4,
+    "max_depth": 4,
+    "max_nodes": 40,
+    "max_ms_per_decision": 2500,
+    "max_match_ms": 60000,
+    "version": "c018.search.v1"
+  },
+  "uses_c017_labels": false
+}

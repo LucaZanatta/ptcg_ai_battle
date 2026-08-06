@@ -1,0 +1,16 @@
+{
+  "decision": "FP32_CUDA",
+  "rule": "\u00a79.2 \u2014 BF16 is permitted only if FP32 CUDA parity passes AND measured end-to-end throughput improves by at least 10% over FP32 CUDA (plus a 2,000-game zero-defect smoke and no evaluation regression).",
+  "bf16_gate": {
+    "fp32_cuda_parity_passes": true,
+    "bf16_improves_end_to_end_by_10pct": false,
+    "measured_bf16_update_seconds": 0.1717677116394043,
+    "measured_fp32_update_seconds": 0.16457819938659668,
+    "bf16_vs_fp32_update_ratio": 0.9581
+  },
+  "why_not_bf16": "BF16 autocast measured SLOWER than FP32 on the registered batch (0.1718s vs 0.1646s per update), so the >=10% end-to-end requirement cannot be met. The 2,000-game BF16 smoke was therefore not run: it could not change the verdict, and those games would have counted against the 124,000 hard maximum.",
+  "fp16_used": false,
+  "fp16_note": "\u00a79.2 prohibits FP16; it was never used.",
+  "torch_compile_used": false,
+  "torch_compile_note": "\u00a79.3 default is eager PyTorch; no compile benchmark was run, so compile is not used in the main experiment."
+}

@@ -1,0 +1,36 @@
+strategic candidates: ['B0_v2a', 'R0_202', 'R1_101', 'R2_101', 'R2_303', 'T_teacher']
+opponents: ['mega_lucario', 'iono', 'mega_abomasnow', 'dragapult']
+
+MATCHUP MATRIX (Phase C, seat-balanced)
+candidate       mega_lucario            iono  mega_abomasnow       dragapult     field
+--------------------------------------------------------------------------------------
+T_teacher              0.490           0.680           0.560           0.550     0.570
+R1_101                 0.360           0.240           0.270           0.150     0.255
+R2_303                 0.320           0.200           0.150           0.240     0.228
+R2_101                 0.260           0.190           0.160           0.130     0.185
+B0_v2a                 0.170           0.170           0.120           0.150     0.152
+R0_202                 0.300           0.010           0.070           0.020     0.100
+
+TEACHER HEAD-TO-HEAD (Phase A+B)
+  R1_101       point=0.2200 lb95=0.1875 n=400 non_inferior=False
+  R1_202       point=0.1700 lb95=0.1100 n=100 non_inferior=False
+  B0_v2a       point=0.1600 lb95=0.1300 n=400 non_inferior=False
+  R2_101       point=0.1600 lb95=0.1000 n=100 non_inferior=False
+  R2_303       point=0.1575 lb95=0.1275 n=400 non_inferior=False
+  R2_202       point=0.1200 lb95=0.0700 n=100 non_inferior=False
+  R0_202       point=0.0300 lb95=0.0100 n=100 non_inferior=False
+  R0_101       point=0.0100 lb95=0.0000 n=100 non_inferior=False
+
+HELD-OUT (Mega Abomasnow)
+  T_teacher    point=0.5600 n=100
+  R1_101       point=0.2700 n=100
+  R2_101       point=0.1600 n=100
+  R2_303       point=0.1500 n=100
+  B0_v2a       point=0.1200 n=100
+  R0_202       point=0.0700 n=100
+
+IMPROVEMENT OVER INITIALIZATION (vs B0)
+  R0_202       teacher 0.160->0.030 (P=0.00) field 0.152->0.100 (P=0.01) beats_b0=False
+  R1_101       teacher 0.160->0.220 (P=0.98) field 0.152->0.255 (P=1.00) beats_b0=True
+  R2_101       teacher 0.160->0.160 (P=0.49) field 0.152->0.185 (P=0.89) beats_b0=False
+  R2_303       teacher 0.160->0.158 (P=0.44) field 0.152->0.228 (P=1.00) beats_b0=False

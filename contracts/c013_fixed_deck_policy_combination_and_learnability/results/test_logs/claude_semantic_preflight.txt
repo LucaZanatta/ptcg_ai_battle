@@ -1,0 +1,212 @@
+{
+  "primary": {
+    "n": 14,
+    "schema_valid_rate_strict": 0.7142857142857143,
+    "schema_valid_rate_after_delimiter_repair": 1.0,
+    "delimiter_repair_rate": 0.2857142857142857,
+    "repair_note": "the only repair applied is appending missing closing delimiters; no field content is synthesised and the raw evidence is unmodified",
+    "legal_action_rate": 1.0,
+    "hidden_information_violations": 0,
+    "semantically_grounded_rate": 1.0,
+    "model_verified_rate": 1.0,
+    "categories_covered": [
+      "attach_energy",
+      "evolve",
+      "other",
+      "search",
+      "target"
+    ],
+    "error_counts": {},
+    "total_cost_usd": 6.1
+  }
+}
+{
+  "phase": "primary",
+  "n": 28,
+  "n_returned": 28,
+  "n_call_failures": 0,
+  "schema_valid_rate": 0.8214285714285714,
+  "legal_action_rate": 1.0,
+  "hidden_information_violations": 0,
+  "semantically_grounded_rate": 0.8214285714285714,
+  "model_verified_rate": 1.0,
+  "categories_covered": [
+    "attach_energy",
+    "evolve",
+    "multi_select",
+    "other",
+    "promote",
+    "search",
+    "target"
+  ],
+  "error_counts": {
+    "unparseable": 5
+  },
+  "total_cost_usd": 12.81
+}
+{
+  "primary": {
+    "n": 28,
+    "schema_valid_rate_strict": 0.8214285714285714,
+    "schema_valid_rate_after_delimiter_repair": 1.0,
+    "delimiter_repair_rate": 0.17857142857142858,
+    "repair_note": "the only repair applied is appending missing closing delimiters; no field content is synthesised and the raw evidence is unmodified",
+    "legal_action_rate": 1.0,
+    "hidden_information_violations": 0,
+    "semantically_grounded_rate": 1.0,
+    "model_verified_rate": 1.0,
+    "categories_covered": [
+      "attach_energy",
+      "evolve",
+      "multi_select",
+      "other",
+      "promote",
+      "search",
+      "target"
+    ],
+    "error_counts": {},
+    "total_cost_usd": 12.81
+  }
+}
+{
+  "phase": "repeat",
+  "n": 10,
+  "n_returned": 10,
+  "n_call_failures": 0,
+  "schema_valid_rate": 0.9,
+  "legal_action_rate": 1.0,
+  "hidden_information_violations": 0,
+  "semantically_grounded_rate": 0.9,
+  "model_verified_rate": 1.0,
+  "categories_covered": [
+    "attach_energy",
+    "other",
+    "search",
+    "target"
+  ],
+  "error_counts": {
+    "unparseable": 1
+  },
+  "total_cost_usd": 4.08
+}
+{
+  "primary": {
+    "n": 28,
+    "schema_valid_rate_strict": 0.8214285714285714,
+    "schema_valid_rate_after_delimiter_repair": 1.0,
+    "delimiter_repair_rate": 0.17857142857142858,
+    "repair_note": "the only repair applied is appending missing closing delimiters; no field content is synthesised and the raw evidence is unmodified",
+    "legal_action_rate": 1.0,
+    "hidden_information_violations": 0,
+    "semantically_grounded_rate": 1.0,
+    "model_verified_rate": 1.0,
+    "categories_covered": [
+      "attach_energy",
+      "evolve",
+      "multi_select",
+      "other",
+      "promote",
+      "search",
+      "target"
+    ],
+    "error_counts": {},
+    "total_cost_usd": 12.81
+  },
+  "repeat": {
+    "n": 10,
+    "schema_valid_rate_strict": 0.9,
+    "schema_valid_rate_after_delimiter_repair": 1.0,
+    "delimiter_repair_rate": 0.1,
+    "repair_note": "the only repair applied is appending missing closing delimiters; no field content is synthesised and the raw evidence is unmodified",
+    "legal_action_rate": 1.0,
+    "hidden_information_violations": 0,
+    "semantically_grounded_rate": 1.0,
+    "model_verified_rate": 1.0,
+    "categories_covered": [
+      "attach_energy",
+      "other",
+      "search",
+      "target"
+    ],
+    "error_counts": {},
+    "total_cost_usd": 4.08
+  },
+  "consistency": {
+    "n_repeated": 10,
+    "top1_agreement": 0.9,
+    "mean_top3_overlap": 0.9666666666666666,
+    "pairs": [
+      {
+        "state_id": "SS0414",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a9",
+        "repeat_action": "a9"
+      },
+      {
+        "state_id": "SS0421",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a6",
+        "repeat_action": "a6"
+      },
+      {
+        "state_id": "SS1291",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a4",
+        "repeat_action": "a4"
+      },
+      {
+        "state_id": "SS0415",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a7",
+        "repeat_action": "a7"
+      },
+      {
+        "state_id": "SS0418",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a6",
+        "repeat_action": "a6"
+      },
+      {
+        "state_id": "SS0423",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a5",
+        "repeat_action": "a5"
+      },
+      {
+        "state_id": "SS0416",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a7",
+        "repeat_action": "a7"
+      },
+      {
+        "state_id": "SS0417",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a7",
+        "repeat_action": "a7"
+      },
+      {
+        "state_id": "SS1609",
+        "same_top1": false,
+        "top3_overlap": 0.6666666666666666,
+        "primary_action": "a8",
+        "repeat_action": "a2"
+      },
+      {
+        "state_id": "SS2017",
+        "same_top1": true,
+        "top3_overlap": 1.0,
+        "primary_action": "a5",
+        "repeat_action": "a5"
+      }
+    ],
+    "note": "the repeat pass runs as a separate `claude -p` process with tools disabled and no session persistence, so this measures the model rather than a retained context"
+  }
+}

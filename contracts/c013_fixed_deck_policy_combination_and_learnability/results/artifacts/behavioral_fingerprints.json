@@ -1,0 +1,645 @@
+{
+  "action_type_frequencies": {
+    "C012_SOUP_622_633": {
+      "ABILITY": 275,
+      "ATTACH": 241,
+      "ATTACK": 139,
+      "CARD": 1820,
+      "END": 4,
+      "ENERGY": 16,
+      "EVOLVE": 218,
+      "NO": 48,
+      "NUMBER": 11,
+      "PLAY": 716,
+      "RETREAT": 65,
+      "YES": 15
+    },
+    "P0_711": {
+      "ABILITY": 274,
+      "ATTACH": 275,
+      "ATTACK": 141,
+      "CARD": 1782,
+      "END": 4,
+      "ENERGY": 18,
+      "EVOLVE": 217,
+      "NO": 48,
+      "NUMBER": 11,
+      "PLAY": 675,
+      "RETREAT": 71,
+      "YES": 14
+    },
+    "S611": {
+      "ABILITY": 261,
+      "ATTACH": 280,
+      "ATTACK": 144,
+      "CARD": 1784,
+      "END": 7,
+      "ENERGY": 15,
+      "EVOLVE": 225,
+      "NO": 48,
+      "NUMBER": 11,
+      "PLAY": 677,
+      "RETREAT": 62,
+      "YES": 11
+    },
+    "S622": {
+      "ABILITY": 273,
+      "ATTACH": 241,
+      "ATTACK": 134,
+      "CARD": 1724,
+      "END": 4,
+      "ENERGY": 18,
+      "EVOLVE": 184,
+      "NO": 48,
+      "NUMBER": 11,
+      "PLAY": 741,
+      "RETREAT": 74,
+      "YES": 14
+    },
+    "S633": {
+      "ABILITY": 280,
+      "ATTACH": 274,
+      "ATTACK": 136,
+      "CARD": 1846,
+      "END": 5,
+      "ENERGY": 20,
+      "EVOLVE": 241,
+      "NO": 48,
+      "NUMBER": 11,
+      "PLAY": 659,
+      "RETREAT": 47,
+      "YES": 15
+    },
+    "dragapult": {
+      "ABILITY": 275,
+      "ATTACH": 138,
+      "ATTACK": 242,
+      "CARD": 1425,
+      "END": 28,
+      "ENERGY": 13,
+      "EVOLVE": 125,
+      "NO": 48,
+      "NUMBER": 11,
+      "PLAY": 731,
+      "RETREAT": 91,
+      "YES": 15
+    },
+    "iono": {
+      "ATTACH": 13,
+      "ATTACK": 180,
+      "CARD": 396,
+      "END": 50,
+      "EVOLVE": 207,
+      "NUMBER": 11,
+      "PLAY": 868,
+      "YES": 63
+    },
+    "mega_abomasnow": {
+      "ATTACH": 6,
+      "ATTACK": 64,
+      "CARD": 220,
+      "END": 28,
+      "ENERGY": 4,
+      "EVOLVE": 169,
+      "NUMBER": 11,
+      "PLAY": 447,
+      "YES": 63
+    },
+    "mega_lucario": {
+      "ABILITY": 390,
+      "ATTACH": 20,
+      "ATTACK": 51,
+      "CARD": 350,
+      "END": 23,
+      "ENERGY": 1,
+      "EVOLVE": 32,
+      "NUMBER": 11,
+      "PLAY": 718,
+      "YES": 63
+    }
+  },
+  "action_type_js_distance": {
+    "C012_SOUP_622_633|P0_711": 0.000287632167659017,
+    "C012_SOUP_622_633|S611": 0.0004389348506274916,
+    "C012_SOUP_622_633|S622": 0.00037425824412166454,
+    "C012_SOUP_622_633|S633": 0.0006523978939511728,
+    "C012_SOUP_622_633|dragapult": 0.009550243913186495,
+    "C012_SOUP_622_633|iono": 0.13925979775365172,
+    "C012_SOUP_622_633|mega_abomasnow": 0.14450918914130112,
+    "C012_SOUP_622_633|mega_lucario": 0.11443878793758872,
+    "P0_711|S611": 0.00018497224824682605,
+    "P0_711|S622": 0.0006185678801222659,
+    "P0_711|S633": 0.0005287228567488761,
+    "P0_711|dragapult": 0.010597542260257161,
+    "P0_711|iono": 0.14502090739834675,
+    "P0_711|mega_abomasnow": 0.15000549119658632,
+    "P0_711|mega_lucario": 0.11956152346611086,
+    "S611|S622": 0.0009734588277143533,
+    "S611|S633": 0.00042879045418609923,
+    "S611|dragapult": 0.010802440141401111,
+    "S611|iono": 0.1421409265634423,
+    "S611|mega_abomasnow": 0.14749743532861043,
+    "S611|mega_lucario": 0.12079233257424324,
+    "S622|S633": 0.0016514344411764125,
+    "S622|dragapult": 0.00804978273867435,
+    "S622|iono": 0.13826800334596706,
+    "S622|mega_abomasnow": 0.14473356456529102,
+    "S622|mega_lucario": 0.10923272528777911,
+    "S633|dragapult": 0.013100734652582081,
+    "S633|iono": 0.1454437810685476,
+    "S633|mega_abomasnow": 0.1489866172580604,
+    "S633|mega_lucario": 0.12101863258809666,
+    "dragapult|iono": 0.11727262407486876,
+    "dragapult|mega_abomasnow": 0.13106457934284216,
+    "dragapult|mega_lucario": 0.09114719275574233,
+    "iono|mega_abomasnow": 0.008646808355627035,
+    "iono|mega_lucario": 0.11296191730313174,
+    "mega_abomasnow|mega_lucario": 0.12208618645383867
+  },
+  "phase_action_types": {
+    "C012_SOUP_622_633": {
+      "early": {
+        "ABILITY": 99,
+        "ATTACH": 49,
+        "ATTACK": 31,
+        "CARD": 403,
+        "ENERGY": 5,
+        "EVOLVE": 88,
+        "NO": 48,
+        "NUMBER": 11,
+        "PLAY": 405,
+        "RETREAT": 27,
+        "YES": 8
+      },
+      "late": {
+        "ABILITY": 55,
+        "ATTACH": 120,
+        "ATTACK": 57,
+        "CARD": 737,
+        "END": 4,
+        "ENERGY": 5,
+        "EVOLVE": 57,
+        "PLAY": 155,
+        "RETREAT": 26,
+        "YES": 5
+      },
+      "mid": {
+        "ABILITY": 121,
+        "ATTACH": 72,
+        "ATTACK": 51,
+        "CARD": 680,
+        "ENERGY": 6,
+        "EVOLVE": 73,
+        "PLAY": 156,
+        "RETREAT": 12,
+        "YES": 2
+      }
+    },
+    "P0_711": {
+      "early": {
+        "ABILITY": 99,
+        "ATTACH": 52,
+        "ATTACK": 30,
+        "CARD": 397,
+        "ENERGY": 3,
+        "EVOLVE": 91,
+        "NO": 48,
+        "NUMBER": 11,
+        "PLAY": 382,
+        "RETREAT": 30,
+        "YES": 8
+      },
+      "late": {
+        "ABILITY": 51,
+        "ATTACH": 139,
+        "ATTACK": 59,
+        "CARD": 721,
+        "END": 4,
+        "ENERGY": 6,
+        "EVOLVE": 55,
+        "PLAY": 146,
+        "RETREAT": 29,
+        "YES": 5
+      },
+      "mid": {
+        "ABILITY": 124,
+        "ATTACH": 84,
+        "ATTACK": 52,
+        "CARD": 664,
+        "ENERGY": 9,
+        "EVOLVE": 71,
+        "PLAY": 147,
+        "RETREAT": 12,
+        "YES": 1
+      }
+    },
+    "S611": {
+      "early": {
+        "ABILITY": 98,
+        "ATTACH": 54,
+        "ATTACK": 33,
+        "CARD": 396,
+        "ENERGY": 2,
+        "EVOLVE": 97,
+        "NO": 48,
+        "NUMBER": 11,
+        "PLAY": 365,
+        "RETREAT": 23,
+        "YES": 5
+      },
+      "late": {
+        "ABILITY": 46,
+        "ATTACH": 138,
+        "ATTACK": 60,
+        "CARD": 723,
+        "END": 7,
+        "ENERGY": 7,
+        "EVOLVE": 53,
+        "PLAY": 156,
+        "RETREAT": 24,
+        "YES": 5
+      },
+      "mid": {
+        "ABILITY": 117,
+        "ATTACH": 88,
+        "ATTACK": 51,
+        "CARD": 665,
+        "ENERGY": 6,
+        "EVOLVE": 75,
+        "PLAY": 156,
+        "RETREAT": 15,
+        "YES": 1
+      }
+    },
+    "S622": {
+      "early": {
+        "ABILITY": 98,
+        "ATTACH": 50,
+        "ATTACK": 31,
+        "CARD": 382,
+        "ENERGY": 6,
+        "EVOLVE": 74,
+        "NO": 48,
+        "NUMBER": 11,
+        "PLAY": 400,
+        "RETREAT": 35,
+        "YES": 7
+      },
+      "late": {
+        "ABILITY": 54,
+        "ATTACH": 117,
+        "ATTACK": 53,
+        "CARD": 696,
+        "END": 4,
+        "ENERGY": 6,
+        "EVOLVE": 45,
+        "PLAY": 172,
+        "RETREAT": 27,
+        "YES": 5
+      },
+      "mid": {
+        "ABILITY": 121,
+        "ATTACH": 74,
+        "ATTACK": 50,
+        "CARD": 646,
+        "ENERGY": 6,
+        "EVOLVE": 65,
+        "PLAY": 169,
+        "RETREAT": 12,
+        "YES": 2
+      }
+    },
+    "S633": {
+      "early": {
+        "ABILITY": 99,
+        "ATTACH": 51,
+        "ATTACK": 30,
+        "CARD": 417,
+        "ENERGY": 6,
+        "EVOLVE": 96,
+        "NO": 48,
+        "NUMBER": 11,
+        "PLAY": 375,
+        "RETREAT": 18,
+        "YES": 8
+      },
+      "late": {
+        "ABILITY": 58,
+        "ATTACH": 133,
+        "ATTACK": 61,
+        "CARD": 756,
+        "END": 5,
+        "ENERGY": 6,
+        "EVOLVE": 65,
+        "PLAY": 139,
+        "RETREAT": 18,
+        "YES": 5
+      },
+      "mid": {
+        "ABILITY": 123,
+        "ATTACH": 90,
+        "ATTACK": 45,
+        "CARD": 673,
+        "ENERGY": 8,
+        "EVOLVE": 80,
+        "PLAY": 145,
+        "RETREAT": 11,
+        "YES": 2
+      }
+    },
+    "dragapult": {
+      "early": {
+        "ABILITY": 87,
+        "ATTACH": 42,
+        "ATTACK": 67,
+        "CARD": 265,
+        "END": 14,
+        "ENERGY": 2,
+        "EVOLVE": 41,
+        "NO": 48,
+        "NUMBER": 11,
+        "PLAY": 339,
+        "RETREAT": 42,
+        "YES": 8
+      },
+      "late": {
+        "ABILITY": 87,
+        "ATTACH": 54,
+        "ATTACK": 92,
+        "CARD": 604,
+        "END": 7,
+        "ENERGY": 5,
+        "EVOLVE": 41,
+        "PLAY": 211,
+        "RETREAT": 20,
+        "YES": 5
+      },
+      "mid": {
+        "ABILITY": 101,
+        "ATTACH": 42,
+        "ATTACK": 83,
+        "CARD": 556,
+        "END": 7,
+        "ENERGY": 6,
+        "EVOLVE": 43,
+        "PLAY": 181,
+        "RETREAT": 29,
+        "YES": 2
+      }
+    },
+    "iono": {
+      "early": {
+        "ATTACH": 7,
+        "ATTACK": 55,
+        "CARD": 114,
+        "END": 30,
+        "EVOLVE": 67,
+        "NUMBER": 11,
+        "PLAY": 341,
+        "YES": 56
+      },
+      "late": {
+        "ATTACH": 2,
+        "ATTACK": 71,
+        "CARD": 137,
+        "END": 6,
+        "EVOLVE": 84,
+        "PLAY": 249,
+        "YES": 5
+      },
+      "mid": {
+        "ATTACH": 4,
+        "ATTACK": 54,
+        "CARD": 145,
+        "END": 14,
+        "EVOLVE": 56,
+        "PLAY": 278,
+        "YES": 2
+      }
+    },
+    "mega_abomasnow": {
+      "early": {
+        "ATTACH": 2,
+        "ATTACK": 33,
+        "CARD": 65,
+        "END": 16,
+        "ENERGY": 1,
+        "EVOLVE": 70,
+        "NUMBER": 11,
+        "PLAY": 198,
+        "YES": 56
+      },
+      "late": {
+        "ATTACH": 1,
+        "ATTACK": 13,
+        "CARD": 82,
+        "END": 4,
+        "ENERGY": 3,
+        "EVOLVE": 43,
+        "PLAY": 113,
+        "YES": 5
+      },
+      "mid": {
+        "ATTACH": 3,
+        "ATTACK": 18,
+        "CARD": 73,
+        "END": 8,
+        "EVOLVE": 56,
+        "PLAY": 136,
+        "YES": 2
+      }
+    },
+    "mega_lucario": {
+      "early": {
+        "ABILITY": 105,
+        "ATTACH": 7,
+        "ATTACK": 25,
+        "CARD": 108,
+        "END": 14,
+        "EVOLVE": 16,
+        "NUMBER": 11,
+        "PLAY": 334,
+        "YES": 56
+      },
+      "late": {
+        "ABILITY": 134,
+        "ATTACH": 7,
+        "ATTACK": 12,
+        "CARD": 108,
+        "END": 3,
+        "EVOLVE": 6,
+        "PLAY": 191,
+        "YES": 5
+      },
+      "mid": {
+        "ABILITY": 151,
+        "ATTACH": 6,
+        "ATTACK": 14,
+        "CARD": 134,
+        "END": 6,
+        "ENERGY": 1,
+        "EVOLVE": 10,
+        "PLAY": 193,
+        "YES": 2
+      }
+    }
+  },
+  "selection_size": {
+    "C012_SOUP_622_633": {
+      "mean": 1.038416763678696,
+      "n": 3436,
+      "p50": 1.0
+    },
+    "P0_711": {
+      "mean": 1.0382352941176471,
+      "n": 3400,
+      "p50": 1.0
+    },
+    "S611": {
+      "mean": 1.0379858657243817,
+      "n": 3396,
+      "p50": 1.0
+    },
+    "S622": {
+      "mean": 1.0383463151587777,
+      "n": 3338,
+      "p50": 1.0
+    },
+    "S633": {
+      "mean": 1.038863109048724,
+      "n": 3448,
+      "p50": 1.0
+    },
+    "dragapult": {
+      "mean": 1.0128949065119277,
+      "n": 3102,
+      "p50": 1.0
+    },
+    "iono": {
+      "mean": 1.0287686996547756,
+      "n": 1738,
+      "p50": 1.0
+    },
+    "mega_abomasnow": {
+      "mean": 1.026369168356998,
+      "n": 986,
+      "p50": 1.0
+    },
+    "mega_lucario": {
+      "mean": 1.0159216166564604,
+      "n": 1633,
+      "p50": 1.0
+    }
+  },
+  "target_distribution": {
+    "C012_SOUP_622_633": {
+      "1071": 3,
+      "119": 156,
+      "120": 115,
+      "121": 183,
+      "235": 2,
+      "None": 3109
+    },
+    "P0_711": {
+      "1071": 2,
+      "119": 162,
+      "120": 123,
+      "121": 203,
+      "235": 2,
+      "None": 3038
+    },
+    "S611": {
+      "1071": 3,
+      "119": 174,
+      "120": 122,
+      "121": 203,
+      "140": 1,
+      "235": 2,
+      "None": 3020
+    },
+    "S622": {
+      "1071": 2,
+      "119": 139,
+      "120": 109,
+      "121": 171,
+      "140": 1,
+      "235": 3,
+      "None": 3041
+    },
+    "S633": {
+      "1071": 3,
+      "119": 167,
+      "120": 127,
+      "121": 216,
+      "235": 2,
+      "None": 3067
+    },
+    "dragapult": {
+      "1071": 2,
+      "119": 119,
+      "120": 69,
+      "121": 64,
+      "140": 1,
+      "235": 8,
+      "None": 2879
+    },
+    "iono": {
+      "119": 155,
+      "120": 62,
+      "121": 3,
+      "None": 1568
+    },
+    "mega_abomasnow": {
+      "119": 123,
+      "120": 48,
+      "121": 1,
+      "184": 3,
+      "None": 837
+    },
+    "mega_lucario": {
+      "119": 32,
+      "120": 3,
+      "121": 11,
+      "235": 6,
+      "None": 1607
+    }
+  },
+  "target_js_distance": {
+    "C012_SOUP_622_633|P0_711": 0.0001575716509936917,
+    "C012_SOUP_622_633|S611": 0.00032708012453838003,
+    "C012_SOUP_622_633|S622": 0.00018488843358461832,
+    "C012_SOUP_622_633|S633": 0.00027697899568170396,
+    "C012_SOUP_622_633|dragapult": 0.004785250675017718,
+    "C012_SOUP_622_633|iono": 0.018754005135100043,
+    "C012_SOUP_622_633|mega_abomasnow": 0.02773277016204241,
+    "C012_SOUP_622_633|mega_lucario": 0.02266817173775629,
+    "P0_711|S611": 0.000146696337553222,
+    "P0_711|S622": 0.0004534772509056442,
+    "P0_711|S633": 3.532302076790636e-05,
+    "P0_711|dragapult": 0.006429807671987954,
+    "P0_711|iono": 0.0203168974135021,
+    "P0_711|mega_abomasnow": 0.028699198255373863,
+    "P0_711|mega_lucario": 0.025875933766289296,
+    "S611|S622": 0.0005274482670227084,
+    "S611|S633": 0.00013611182461535567,
+    "S611|dragapult": 0.0065696840730944655,
+    "S611|iono": 0.019965218434865845,
+    "S611|mega_abomasnow": 0.027910897313303623,
+    "S611|mega_lucario": 0.02675384465186369,
+    "S622|S633": 0.0006505222786878494,
+    "S622|dragapult": 0.003970675869395578,
+    "S622|iono": 0.019010865433509067,
+    "S622|mega_abomasnow": 0.02856612360538381,
+    "S622|mega_lucario": 0.020973775440640656,
+    "S633|dragapult": 0.007164307862594773,
+    "S633|iono": 0.02123056763156117,
+    "S633|mega_abomasnow": 0.029428556240226868,
+    "S633|mega_lucario": 0.027253585170588072,
+    "dragapult|iono": 0.011735991031517626,
+    "dragapult|mega_abomasnow": 0.022723950133911833,
+    "dragapult|mega_lucario": 0.009151709750338615,
+    "iono|mega_abomasnow": 0.003400248488777461,
+    "iono|mega_lucario": 0.02381881147954987,
+    "mega_abomasnow|mega_lucario": 0.040118355106510226
+  }
+}

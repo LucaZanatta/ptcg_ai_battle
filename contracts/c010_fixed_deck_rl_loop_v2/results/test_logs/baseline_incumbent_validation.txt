@@ -1,0 +1,28 @@
+c010 AC-02/AC-03 baseline + arm registration
+============================================================
+B0 7066841e3329b71b teacher=0.16 field=0.1533 (PROTECTED)
+I0 R1_101 b172b4dc79477821 teacher=0.22 field=0.2900 @ 10040 games (PROTECTED)
+deck fingerprint 676849e9a1f8ce0c
+
+exact R1 recipe resolved from contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/experiment_registration.json + tools/train_rl.py
+  lr=0.0001 rollout=128 min_dec=8192 epochs=4 clip=0.2
+Arm C changes: ['learning_rate', 'min_trainable_decisions', 'rollout_game_target']
+
+  [OK ] B0_hash_matches_disk
+  [OK ] I0_hash_matches_disk
+  [OK ] B0_and_I0_protected
+  [OK ] I0_is_c008_R1_seed101
+  [OK ] arm_A_equals_exact_r1
+  [OK ] arm_B_equals_exact_r1
+  [OK ] arm_C_changes_exactly_three
+  [OK ] arm_C_lr_3e-5
+  [OK ] arm_C_rollout_256
+  [OK ] arm_C_min_decisions_32768
+  [OK ] exact_r1_lr_1e-4
+  [OK ] both_threshold_rollout_rule_verified
+  [OK ] budget_total_118500
+  [OK ] hard_max_120000
+  [OK ] seeds_registered
+  [OK ] abomasnow_evaluation_only
+
+ALL_OK = True

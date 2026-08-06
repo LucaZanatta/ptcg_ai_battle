@@ -1,0 +1,19 @@
+test_weights_are_equal_and_not_tuned (tests.test_c013_ensemble_math.EqualWeightsOnly.test_weights_are_equal_and_not_tuned) ... ok
+test_probability_rule_is_not_renormalisation_of_one_averaged_vector (tests.test_c013_ensemble_math.LogitVersusProbability.test_probability_rule_is_not_renormalisation_of_one_averaged_vector)
+§9's per-step recomputation: after removing an option, the probability ensemble ... ok
+test_rules_can_select_different_actions (tests.test_c013_ensemble_math.LogitVersusProbability.test_rules_can_select_different_actions) ... ok
+test_rules_coincide_when_components_are_identical (tests.test_c013_ensemble_math.LogitVersusProbability.test_rules_coincide_when_components_are_identical) ... ok
+test_rules_disagree_when_components_disagree (tests.test_c013_ensemble_math.LogitVersusProbability.test_rules_disagree_when_components_disagree) ... ok
+test_combination_is_restricted_to_legal_actions (tests.test_c013_ensemble_math.MaskedSoftmax.test_combination_is_restricted_to_legal_actions) ... ok
+test_illegal_options_get_exactly_zero (tests.test_c013_ensemble_math.MaskedSoftmax.test_illegal_options_get_exactly_zero) ... ok
+test_ensemble_of_two_linear_maps_differs_from_their_weight_average (tests.test_c013_ensemble_math.NotAWeightSoup.test_ensemble_of_two_linear_maps_differs_from_their_weight_average)
+A ReLU network at averaged weights is not the average of the networks. Shown on the ... ok
+test_registry_marks_the_two_families_distinctly (tests.test_c013_ensemble_math.NotAWeightSoup.test_registry_marks_the_two_families_distinctly) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c013_ensemble_math.py:105: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c013_fixed_deck_policy_combination_and_learnability/results/artifacts/combination_registry.json' mode='r' encoding='UTF-8'>
+  reg = json.load(open(p))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+OK

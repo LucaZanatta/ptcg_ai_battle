@@ -1,0 +1,89 @@
+{
+  "contract": "c008",
+  "toy_positive_control": {
+    "final_mean_p_target": 0.9999288618834248,
+    "learned": true,
+    "history": [
+      {
+        "iter": 0,
+        "mean_p_target": 0.2693332299283677
+      },
+      {
+        "iter": 50,
+        "mean_p_target": 0.9987268686002664
+      },
+      {
+        "iter": 100,
+        "mean_p_target": 0.9994865321166561
+      },
+      {
+        "iter": 150,
+        "mean_p_target": 0.9998625411634591
+      },
+      {
+        "iter": 200,
+        "mean_p_target": 0.9998860573062563
+      },
+      {
+        "iter": 250,
+        "mean_p_target": 0.999901691603914
+      },
+      {
+        "iter": 300,
+        "mean_p_target": 0.9999285998614919
+      },
+      {
+        "iter": 350,
+        "mean_p_target": 0.9999285815697087
+      },
+      {
+        "iter": 399,
+        "mean_p_target": 0.9999288618834248
+      }
+    ]
+  },
+  "gae_correctness": {
+    "expected_adv": [
+      0.12928000000000006,
+      0.374,
+      0.7
+    ],
+    "got_adv": [
+      0.12928000000000006,
+      0.374,
+      0.7
+    ],
+    "max_err": 0.0,
+    "ok": true
+  },
+  "checkpoint_restore": {
+    "score_max_diff": 0.0,
+    "value_head_restored": true,
+    "ok": true
+  },
+  "smoke_training": {
+    "games": 12,
+    "decisions": 806,
+    "rollout_s": 2.6,
+    "update_s": 0.9,
+    "losses_finite": true,
+    "diagnostics": {
+      "n_decisions": 806,
+      "skipped": false,
+      "policy_loss": 0.01406,
+      "value_loss": 0.08712,
+      "entropy": 0.67008,
+      "approx_kl": 0.00256,
+      "clip_frac": 0.03002,
+      "grad_norm": 1.13443,
+      "explained_variance": -0.07943,
+      "return_mean": -0.00323,
+      "advantage_mean": -0.01592,
+      "replay_loss": 0.0,
+      "ref_kl": 0.0
+    },
+    "completed_all": true,
+    "invalid_or_ordered": 0
+  },
+  "all_pass": true
+}

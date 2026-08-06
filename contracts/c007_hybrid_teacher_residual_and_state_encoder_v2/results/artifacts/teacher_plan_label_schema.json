@@ -1,0 +1,20 @@
+{
+  "contract": "c007",
+  "description": "Privileged teacher-plan labels captured per decision by the instrumented teacher. Auxiliary training targets ONLY (V2-B).",
+  "fields": {
+    "plan_a_attack": "int; opponent Pokemon index [active]+bench the teacher plans as the 200-dmg main target (-1 none, 0 active, k bench k-1)",
+    "plan_a_counter": "list[int]; spread damage-counter allocation for plan_a (indices into opponent [active]+bench)",
+    "plan_b_attack": "int; plan assuming main target = current opponent active (i==0)",
+    "plan_b_counter": "list[int]; spread allocation for plan_b (consumed at DAMAGE_COUNTER_ANY, main.py L705)",
+    "use_support": "int card id; the Supporter the teacher plans to play this turn (0 none)",
+    "bench_attacker": "bool; a benched Dragapult ex is charged (>=2 energy)",
+    "can_switch/can_attack/can_main_attack": "bool capability flags refreshed at MAIN",
+    "prize_inference": "list[int] card ids the teacher infers are in its own prizes",
+    "scores": "list[float]; teacher per-legal-option score vector (argmax/top-k -> action)",
+    "argmax_option/top1_score/top2_score/score_margin": "teacher's chosen option and confidence margin",
+    "prize_diff": "int; own prizes - opponent prizes",
+    "do_switch/no_draw/no_more_dex/damage": "teacher planning flags/values",
+    "plan_recomputed_this_decision": "bool; True iff SelectContext.MAIN (planner ran this decision)",
+    "select_context": "int SelectContext of the decision"
+  }
+}

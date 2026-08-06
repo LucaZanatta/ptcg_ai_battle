@@ -41,6 +41,11 @@ OUT_ROOT = os.path.join(_REPO, "results", "c023_autonomous_meta_first_competitio
 AGENTS = os.path.join(OUT_ROOT, "agents")
 WRAPPER = os.path.join(_REPO, "starter_kit", "c023_wrapper_main.py")
 PLANNER = os.path.join(_REPO, "starter_kit", "c023_planner.py")
+# c024 finish mode ships two more flat modules. They are copied unconditionally: a candidate
+# with `finish_mode` off never imports them, and shipping them always keeps every candidate's
+# file list identical, so a package diff cannot be confused with a behaviour difference.
+FINISH = os.path.join(_REPO, "starter_kit", "c024_finish.py")
+PRIZES = os.path.join(_REPO, "starter_kit", "c024_prizes.py")
 
 ATTRIBUTION = {
     "official_dragapult": "Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-dragapult-ex-deck (Kiyota)",
@@ -92,6 +97,8 @@ def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
                     os.path.join(d, "base_agent.py"))
     shutil.copyfile(WRAPPER, os.path.join(d, "main.py"))
     shutil.copyfile(PLANNER, os.path.join(d, "planner.py"))
+    shutil.copyfile(FINISH, os.path.join(d, "finish.py"))
+    shutil.copyfile(PRIZES, os.path.join(d, "prizes.py"))
     with open(os.path.join(d, "deck.csv"), "w") as fh:
         fh.write("\n".join(str(c) for c in deck) + "\n")
     with open(os.path.join(d, "params.json"), "w") as fh:
@@ -115,6 +122,8 @@ def build(candidate_id: str, base: str, deck: Optional[List[int]] = None,
         "base_agent_sha256": sha256_file(os.path.join(d, "base_agent.py")),
         "wrapper_sha256": sha256_file(os.path.join(d, "main.py")),
         "planner_sha256": sha256_file(os.path.join(d, "planner.py")),
+        "finish_sha256": sha256_file(os.path.join(d, "finish.py")),
+        "prizes_sha256": sha256_file(os.path.join(d, "prizes.py")),
         "params_sha256": sha256_file(os.path.join(d, "params.json")),
         "params": params,
         "paramized": bool(param_source),

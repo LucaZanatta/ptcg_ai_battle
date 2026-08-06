@@ -1,0 +1,2241 @@
+{
+  "milestone": "M03",
+  "probe_ids": [
+    "P11",
+    "P12",
+    "P14"
+  ],
+  "device": "cuda",
+  "cuda_available": true,
+  "init_checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled.pt",
+  "ppo_cfg": {
+    "gamma": 0.997,
+    "lam": 0.95,
+    "clip": 0.2,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "epochs": 4,
+    "minibatch": 256,
+    "learning_rate": 3e-05,
+    "weight_decay": 1e-05,
+    "entropy_coef_start": 0.006,
+    "entropy_coef_end": 0.002
+  },
+  "blocks": 40,
+  "self_play_schedule": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.3,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7,
+    0.7
+  ],
+  "actual_simulator_games": 40960,
+  "games_completed": 40960,
+  "games_are_real_simulator_matches": true,
+  "optimizer_steps": 31640,
+  "losses_finite": true,
+  "checkpoint_sha256_before": "6193d4b84f23efae681a07ce4a0d3d99bd4c794f47fa67cdb413506744d9cf31",
+  "checkpoint_sha256_after": "35f7b23d55a7c5ab9a991e7f845e13dd0488cdd365aaec226cba18d5bf6cfef8",
+  "checkpoint_hashes": [
+    "6193d4b84f23efae681a07ce4a0d3d99bd4c794f47fa67cdb413506744d9cf31",
+    "5708cf33313f2834ebefd203ba6e52e9b07358d8417c449d60b11b385e4af4b1",
+    "6044e074615b479b52b366db0e51a3a72c216eb49af333d2d3a18dcca31b03e7",
+    "17c73cf2df62afebeeffe705a08b8b18b6b07da0969d158060288bc392193770",
+    "9c2258ddf023b7544efe639acd0105c24231ee71b3c96e9d9e4d3ba92eae6072",
+    "14df805255c45d0c230e22ce443c6d26ca741ef6d64d114e9dca73fba3d270cf",
+    "01c83d37bd090028934888d626eec64b4d20ff5856bda1f39817f640fe2e68bb",
+    "125df7fe5f0d3b1cd9e481ed21ba015ca699df7916413f7221dcfaec2d10c79b",
+    "f123df1fcf91a801f34851f1ade701253a57e120654eb771f045da412bfd3867",
+    "2703789b082181550cfa1d5f41f443efa8dd0ef978160b13ad6a80a4df845929",
+    "b57c97677a0b07457931506a447332c125e0bce4d943dfbf023b00afe9151672",
+    "8a3ab33b79b4d2b140b6ef0da2609bc7291324abf953b71684c7bfa0680af985",
+    "f8b6c6100686d860f2217d1754d3c6fe388a51542a3f11a0dd772c288144a01c",
+    "2c5b8d901abe040593c4a59d25d6c4b52a593fd522635d2a861af1c30c0d8dcf",
+    "67571082d26a9dee75480370fce9eeb848e8fa577dfe7769f6022df6eebf039d",
+    "f3d3c63739f4c9993b01d6cc130078992a6853634729455048c135776cb1a570",
+    "f95593d9e7ae3fa29d1aa5eb075fc54c0442af266f633017d9f70c291749398f",
+    "aa6023a78b9793ffdf48bd47a1c72fe153717d8cb2f3efa6f1563290af2af148",
+    "fdc2fd02573241239c1c521d6226d349a02f25b80e79295accca5daa3ab2f5dd",
+    "65176b2a12b017f8e14e591d3c01b1f2f97a028ed9dba5e10daf66bfbe8a7d5a",
+    "801c6dfa24305ac3096adae6369c33a7066ba0d2fdc75fb2c7169d38e6cedd4a",
+    "e8a228edc7dc499b85f478880a8884592b21441116c5e42b27c9674a987eb812",
+    "a1316b3727c8c6c2b362b784113a253c2e127aaed8f4d33b7c2c1f46bb687103",
+    "2b2593bca3a0824b3a733d30224b5873d7c37efe6b34367127a9ad0986cf88f1",
+    "a4dfbe7d369148c47d80de0cfd96023450e35d16d688fe3100d9df6fc86a3b00",
+    "450238aea4e5f1881c3bcaef469b22c4ec30f1f7ec6676768b9c785c2391baa3",
+    "9a96ac88865cc4d527f7d4fcaaf7a75e9c3c5dd8935fa666ab6f6906d26faa93",
+    "4aea2313a91adaff5fa4dc2be00ad07044b7d74e59ce27d15a337aa082159df9",
+    "1fe148584787fd3ae6cff2e42ed66829aca557654dc89772d8d3983d8a9ef597",
+    "e2700a6b9adfe78df173b6524b8bc96d658ddb8d8deb4ff495cca879a419c62b",
+    "e1ddce1b013e5c37f5a702c008d6f31430d13c7d7fea9510335bd90668bc0522",
+    "3b0e72ad366899aabf6807e47e64abcb2bdae3b1a359759682c8d44cb94872d4",
+    "0c865a64fe5ef3f302d2b17cd7b35a321f8c10f20250b7fbb652a14c8352a1d7",
+    "bc896470b0f254110693a036caffbfc110ab771d70a388e6c806d5f039199272",
+    "dba165fb1984d8afeeb49a394bb88e3df42fdee375d120ac3ce42a418bf57944",
+    "5fdcdee912480b09fbf9b1395e79022a07440dfe7e380341613c5b4ec045d750",
+    "16f7c1160cb7fca7dfa3f8ae6c31848aae3245ac0366bb0e6eea160f8139c60b",
+    "63eaddb1f9d8a97a55f07dd2afe52bb364a5bbb602736e3fa24610517a3e1182",
+    "217876f8bc08f62195532f1d7f3eeb4c71fd28190264975669705a63ed44444c",
+    "b90c7e5944685cdb08210cc15fcff1c8522109cf10f922048a5b36cc574ee6a0",
+    "35f7b23d55a7c5ab9a991e7f845e13dd0488cdd365aaec226cba18d5bf6cfef8"
+  ],
+  "distinct_checkpoint_hashes": 41,
+  "raw_rollout_file": "rollouts/m03_curriculum_games.jsonl.gz",
+  "raw_rollout_sha256": "8f6fce7fbc823cd0df743acde7976fd872a5c4b1ba4f4b8f2ffbf076fde1df5a",
+  "raw_updates_file": "rollouts/m03_curriculum_updates.jsonl.gz",
+  "raw_updates_sha256": "e9ac7fdcce9cf43731a075b65a75e8daf0b738a09db0507e652d7669868e8b1b",
+  "planned_vs_actual": [
+    {
+      "block": 0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "iono": 0.25,
+        "dragapult": 0.2598,
+        "mega_abomasnow": 0.2549,
+        "mega_lucario": 0.2354
+      }
+    },
+    {
+      "block": 1,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.2529,
+        "iono": 0.2812,
+        "mega_lucario": 0.2344,
+        "dragapult": 0.2314
+      }
+    },
+    {
+      "block": 2,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.2666,
+        "iono": 0.2246,
+        "mega_lucario": 0.2715,
+        "dragapult": 0.2373
+      }
+    },
+    {
+      "block": 3,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "dragapult": 0.2871,
+        "mega_lucario": 0.2344,
+        "iono": 0.2461,
+        "mega_abomasnow": 0.2324
+      }
+    },
+    {
+      "block": 4,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.2295,
+        "dragapult": 0.2344,
+        "mega_lucario": 0.2139,
+        "iono": 0.2168,
+        "lagged": 0.1055
+      }
+    },
+    {
+      "block": 5,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "iono": 0.209,
+        "mega_abomasnow": 0.2324,
+        "dragapult": 0.2432,
+        "mega_lucario": 0.21,
+        "lagged": 0.1055
+      }
+    },
+    {
+      "block": 6,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "iono": 0.2188,
+        "dragapult": 0.2031,
+        "mega_abomasnow": 0.2002,
+        "mega_lucario": 0.2559,
+        "lagged": 0.1221
+      }
+    },
+    {
+      "block": 7,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.2275,
+        "dragapult": 0.2197,
+        "iono": 0.2129,
+        "lagged": 0.1104,
+        "mega_abomasnow": 0.2295
+      }
+    },
+    {
+      "block": 8,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "dragapult": 0.2422,
+        "mega_abomasnow": 0.2266,
+        "mega_lucario": 0.2168,
+        "lagged": 0.0996,
+        "iono": 0.2148
+      }
+    },
+    {
+      "block": 9,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.2217,
+        "iono": 0.2598,
+        "mega_abomasnow": 0.2236,
+        "dragapult": 0.2041,
+        "lagged": 0.0908
+      }
+    },
+    {
+      "block": 10,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "iono": 0.1758,
+        "mega_lucario": 0.1807,
+        "mega_abomasnow": 0.1729,
+        "lagged": 0.3037,
+        "dragapult": 0.167
+      }
+    },
+    {
+      "block": 11,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "lagged": 0.2666,
+        "iono": 0.1582,
+        "mega_lucario": 0.1914,
+        "mega_abomasnow": 0.1914,
+        "dragapult": 0.1924
+      }
+    },
+    {
+      "block": 12,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.1611,
+        "dragapult": 0.1758,
+        "iono": 0.1641,
+        "lagged": 0.3242,
+        "mega_lucario": 0.1748
+      }
+    },
+    {
+      "block": 13,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "lagged": 0.2832,
+        "iono": 0.1904,
+        "dragapult": 0.1885,
+        "mega_abomasnow": 0.1641,
+        "mega_lucario": 0.1738
+      }
+    },
+    {
+      "block": 14,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "iono": 0.1855,
+        "lagged": 0.2686,
+        "mega_abomasnow": 0.1855,
+        "dragapult": 0.1738,
+        "mega_lucario": 0.1865
+      }
+    },
+    {
+      "block": 15,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.1816,
+        "iono": 0.1602,
+        "lagged": 0.2969,
+        "mega_lucario": 0.1729,
+        "dragapult": 0.1885
+      }
+    },
+    {
+      "block": 16,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "lagged": 0.2891,
+        "dragapult": 0.1699,
+        "iono": 0.1943,
+        "mega_abomasnow": 0.1836,
+        "mega_lucario": 0.1631
+      }
+    },
+    {
+      "block": 17,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.1855,
+        "iono": 0.1777,
+        "dragapult": 0.166,
+        "lagged": 0.2949,
+        "mega_lucario": 0.1758
+      }
+    },
+    {
+      "block": 18,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5127,
+        "dragapult": 0.126,
+        "iono": 0.1211,
+        "mega_lucario": 0.126,
+        "mega_abomasnow": 0.1143
+      }
+    },
+    {
+      "block": 19,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "dragapult": 0.1094,
+        "iono": 0.1338,
+        "mega_lucario": 0.127,
+        "lagged": 0.502,
+        "mega_abomasnow": 0.1279
+      }
+    },
+    {
+      "block": 20,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.123,
+        "dragapult": 0.1318,
+        "iono": 0.1396,
+        "lagged": 0.4883,
+        "mega_abomasnow": 0.1172
+      }
+    },
+    {
+      "block": 21,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5381,
+        "mega_lucario": 0.1123,
+        "mega_abomasnow": 0.123,
+        "dragapult": 0.1152,
+        "iono": 0.1113
+      }
+    },
+    {
+      "block": 22,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5,
+        "iono": 0.1182,
+        "mega_lucario": 0.1348,
+        "dragapult": 0.1348,
+        "mega_abomasnow": 0.1123
+      }
+    },
+    {
+      "block": 23,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.1318,
+        "iono": 0.1211,
+        "mega_abomasnow": 0.1211,
+        "lagged": 0.4961,
+        "dragapult": 0.1299
+      }
+    },
+    {
+      "block": 24,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "iono": 0.1211,
+        "lagged": 0.4756,
+        "dragapult": 0.1494,
+        "mega_lucario": 0.1279,
+        "mega_abomasnow": 0.126
+      }
+    },
+    {
+      "block": 25,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "iono": 0.1309,
+        "mega_lucario": 0.1396,
+        "lagged": 0.4883,
+        "dragapult": 0.1064,
+        "mega_abomasnow": 0.1348
+      }
+    },
+    {
+      "block": 26,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5166,
+        "dragapult": 0.1318,
+        "mega_abomasnow": 0.1191,
+        "iono": 0.1143,
+        "mega_lucario": 0.1182
+      }
+    },
+    {
+      "block": 27,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.4854,
+        "iono": 0.126,
+        "dragapult": 0.1387,
+        "mega_lucario": 0.126,
+        "mega_abomasnow": 0.124
+      }
+    },
+    {
+      "block": 28,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6992,
+        "mega_abomasnow": 0.0791,
+        "iono": 0.085,
+        "dragapult": 0.0693,
+        "mega_lucario": 0.0674
+      }
+    },
+    {
+      "block": 29,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6934,
+        "dragapult": 0.0781,
+        "iono": 0.0811,
+        "mega_lucario": 0.0693,
+        "mega_abomasnow": 0.0781
+      }
+    },
+    {
+      "block": 30,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6816,
+        "mega_lucario": 0.0801,
+        "iono": 0.0752,
+        "dragapult": 0.0801,
+        "mega_abomasnow": 0.083
+      }
+    },
+    {
+      "block": 31,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.707,
+        "iono": 0.0762,
+        "mega_abomasnow": 0.0693,
+        "mega_lucario": 0.0811,
+        "dragapult": 0.0664
+      }
+    },
+    {
+      "block": 32,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.709,
+        "dragapult": 0.0713,
+        "mega_lucario": 0.0713,
+        "iono": 0.0713,
+        "mega_abomasnow": 0.0771
+      }
+    },
+    {
+      "block": 33,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.7197,
+        "dragapult": 0.0645,
+        "iono": 0.0566,
+        "mega_abomasnow": 0.0879,
+        "mega_lucario": 0.0713
+      }
+    },
+    {
+      "block": 34,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "dragapult": 0.0645,
+        "lagged": 0.7168,
+        "mega_lucario": 0.0723,
+        "iono": 0.0732,
+        "mega_abomasnow": 0.0732
+      }
+    },
+    {
+      "block": 35,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6816,
+        "mega_lucario": 0.0801,
+        "dragapult": 0.085,
+        "iono": 0.0723,
+        "mega_abomasnow": 0.0811
+      }
+    },
+    {
+      "block": 36,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6943,
+        "mega_lucario": 0.0762,
+        "iono": 0.084,
+        "dragapult": 0.0664,
+        "mega_abomasnow": 0.0791
+      }
+    },
+    {
+      "block": 37,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.7197,
+        "mega_lucario": 0.0713,
+        "mega_abomasnow": 0.0723,
+        "dragapult": 0.0615,
+        "iono": 0.0752
+      }
+    },
+    {
+      "block": 38,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6816,
+        "mega_abomasnow": 0.0801,
+        "iono": 0.0879,
+        "dragapult": 0.0811,
+        "mega_lucario": 0.0693
+      }
+    },
+    {
+      "block": 39,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.7012,
+        "mega_lucario": 0.0693,
+        "mega_abomasnow": 0.0771,
+        "dragapult": 0.085,
+        "iono": 0.0674
+      }
+    }
+  ],
+  "final_checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.pt",
+  "final_checkpoint_sha256": "f4a87e09c7906bbc9c34fa63e42e6443faef344c33c10fbd5139af7581fd5145",
+  "history": [
+    {
+      "block": 0,
+      "planned_self_play": 0.0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "iono": 0.25,
+        "dragapult": 0.2598,
+        "mega_abomasnow": 0.2549,
+        "mega_lucario": 0.2354
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 46705,
+      "optimizer_steps_cumulative": 732,
+      "entropy_coef": 0.006,
+      "win_rate_vs_block_field": 0.1719,
+      "policy_loss": -0.002387906271614407,
+      "value_loss": 0.09395496470762946,
+      "entropy": 0.9386566595835175,
+      "approx_kl": 0.0039045537272363036,
+      "explained_variance": 0.2766021096728657,
+      "checkpoint_sha256": "5708cf33313f2834ebefd203ba6e52e9b07358d8417c449d60b11b385e4af4b1",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b00.npz",
+      "lagged_snapshot_sha256": "5cc60bed6bf085c4999e4148f17e71682d76a7abc1bca9d84673c2a9f92b02fe",
+      "elapsed_s": 87.1
+    },
+    {
+      "block": 1,
+      "planned_self_play": 0.0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.2529,
+        "iono": 0.2812,
+        "mega_lucario": 0.2344,
+        "dragapult": 0.2314
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 45629,
+      "optimizer_steps_cumulative": 1448,
+      "entropy_coef": 0.005897,
+      "win_rate_vs_block_field": 0.1641,
+      "policy_loss": -0.003389703473026711,
+      "value_loss": 0.06957842338098945,
+      "entropy": 0.9453075945196127,
+      "approx_kl": 0.003927282527613023,
+      "explained_variance": 0.36383876293569295,
+      "checkpoint_sha256": "6044e074615b479b52b366db0e51a3a72c216eb49af333d2d3a18dcca31b03e7",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b01.npz",
+      "lagged_snapshot_sha256": "8802cfe6df1578ade076aeff623bd2a4368c3d7000d53bb298481bbb3c76295d",
+      "elapsed_s": 173.1
+    },
+    {
+      "block": 2,
+      "planned_self_play": 0.0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.2666,
+        "iono": 0.2246,
+        "mega_lucario": 0.2715,
+        "dragapult": 0.2373
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 48363,
+      "optimizer_steps_cumulative": 2204,
+      "entropy_coef": 0.005795,
+      "win_rate_vs_block_field": 0.1748,
+      "policy_loss": -0.002021206689950502,
+      "value_loss": 0.056714346344830635,
+      "entropy": 0.954121427085594,
+      "approx_kl": 0.003664113927085416,
+      "explained_variance": 0.4020450918747899,
+      "checkpoint_sha256": "17c73cf2df62afebeeffe705a08b8b18b6b07da0969d158060288bc392193770",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b02.npz",
+      "lagged_snapshot_sha256": "81689697cff58e412b9844b76d7c1629aee416e07fb1b2ea835befec17f288d5",
+      "elapsed_s": 253.7
+    },
+    {
+      "block": 3,
+      "planned_self_play": 0.0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "dragapult": 0.2871,
+        "mega_lucario": 0.2344,
+        "iono": 0.2461,
+        "mega_abomasnow": 0.2324
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 46851,
+      "optimizer_steps_cumulative": 2940,
+      "entropy_coef": 0.005692,
+      "win_rate_vs_block_field": 0.1758,
+      "policy_loss": -0.0063964626901594265,
+      "value_loss": 0.04842795523974639,
+      "entropy": 0.9409051593425588,
+      "approx_kl": 0.004447288134702473,
+      "explained_variance": 0.5049878388612496,
+      "checkpoint_sha256": "9c2258ddf023b7544efe639acd0105c24231ee71b3c96e9d9e4d3ba92eae6072",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b03.npz",
+      "lagged_snapshot_sha256": "4d22db9ce87545140529cc09d21c289a5d859aa113020bcfc08775c606c90087",
+      "elapsed_s": 342.5
+    },
+    {
+      "block": 4,
+      "planned_self_play": 0.1,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.2295,
+        "dragapult": 0.2344,
+        "mega_lucario": 0.2139,
+        "iono": 0.2168,
+        "lagged": 0.1055
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 48211,
+      "optimizer_steps_cumulative": 3696,
+      "entropy_coef": 0.00559,
+      "win_rate_vs_block_field": 0.2305,
+      "policy_loss": -0.002233624096733055,
+      "value_loss": 0.05758132112257927,
+      "entropy": 0.9408365835268698,
+      "approx_kl": 0.003711116262987609,
+      "explained_variance": 0.5460930217318789,
+      "checkpoint_sha256": "14df805255c45d0c230e22ce443c6d26ca741ef6d64d114e9dca73fba3d270cf",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b04.npz",
+      "lagged_snapshot_sha256": "cb4b55bec1c8091ae5a6611717aa06a3e8d3d163ec37c2d9ea3e18505b17c467",
+      "elapsed_s": 433.6
+    },
+    {
+      "block": 5,
+      "planned_self_play": 0.1,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "iono": 0.209,
+        "mega_abomasnow": 0.2324,
+        "dragapult": 0.2432,
+        "mega_lucario": 0.21,
+        "lagged": 0.1055
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 48556,
+      "optimizer_steps_cumulative": 4456,
+      "entropy_coef": 0.005487,
+      "win_rate_vs_block_field": 0.2217,
+      "policy_loss": -0.0028762393408325528,
+      "value_loss": 0.0563546284970786,
+      "entropy": 0.9300176545638725,
+      "approx_kl": 0.0037806305070120965,
+      "explained_variance": 0.5582527811966389,
+      "checkpoint_sha256": "01c83d37bd090028934888d626eec64b4d20ff5856bda1f39817f640fe2e68bb",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b05.npz",
+      "lagged_snapshot_sha256": "fbed0530bee0ad740fda0cb7be61173ba7686da4cca894c8321b0e86dcfd9664",
+      "elapsed_s": 525.4
+    },
+    {
+      "block": 6,
+      "planned_self_play": 0.1,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "iono": 0.2188,
+        "dragapult": 0.2031,
+        "mega_abomasnow": 0.2002,
+        "mega_lucario": 0.2559,
+        "lagged": 0.1221
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 49356,
+      "optimizer_steps_cumulative": 5228,
+      "entropy_coef": 0.005385,
+      "win_rate_vs_block_field": 0.2451,
+      "policy_loss": -0.0026286434812162005,
+      "value_loss": 0.057757610644991776,
+      "entropy": 0.9334263720636014,
+      "approx_kl": 0.003493465268676324,
+      "explained_variance": 0.5876451784287136,
+      "checkpoint_sha256": "125df7fe5f0d3b1cd9e481ed21ba015ca699df7916413f7221dcfaec2d10c79b",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b06.npz",
+      "lagged_snapshot_sha256": "94aad2f12e2956d900e59b3b78efe02a660ff1ddacc8626dde87457138ee380c",
+      "elapsed_s": 619.1
+    },
+    {
+      "block": 7,
+      "planned_self_play": 0.1,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.2275,
+        "dragapult": 0.2197,
+        "iono": 0.2129,
+        "lagged": 0.1104,
+        "mega_abomasnow": 0.2295
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 48561,
+      "optimizer_steps_cumulative": 5988,
+      "entropy_coef": 0.005282,
+      "win_rate_vs_block_field": 0.2393,
+      "policy_loss": -0.003083203844266459,
+      "value_loss": 0.057589870837499,
+      "entropy": 0.9346309372319899,
+      "approx_kl": 0.0036168710188829198,
+      "explained_variance": 0.6033329097098696,
+      "checkpoint_sha256": "f123df1fcf91a801f34851f1ade701253a57e120654eb771f045da412bfd3867",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b07.npz",
+      "lagged_snapshot_sha256": "e13b377cff4ea9e7ee273c125b8774fcc942934f7e29512412134811fefc1ea5",
+      "elapsed_s": 710.8
+    },
+    {
+      "block": 8,
+      "planned_self_play": 0.1,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "dragapult": 0.2422,
+        "mega_abomasnow": 0.2266,
+        "mega_lucario": 0.2168,
+        "lagged": 0.0996,
+        "iono": 0.2148
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 49005,
+      "optimizer_steps_cumulative": 6756,
+      "entropy_coef": 0.005179,
+      "win_rate_vs_block_field": 0.208,
+      "policy_loss": -0.002892254389377303,
+      "value_loss": 0.05217656779728236,
+      "entropy": 0.9155016455293699,
+      "approx_kl": 0.0035442886266783317,
+      "explained_variance": 0.608977892615657,
+      "checkpoint_sha256": "2703789b082181550cfa1d5f41f443efa8dd0ef978160b13ad6a80a4df845929",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b08.npz",
+      "lagged_snapshot_sha256": "817190eb973be01ab812d3aeb5c372142cb80d8dfc3388f974a026d1f667a2d1",
+      "elapsed_s": 803.2
+    },
+    {
+      "block": 9,
+      "planned_self_play": 0.1,
+      "planned_fractions": {
+        "lagged": 0.1,
+        "dragapult": 0.225,
+        "iono": 0.225,
+        "mega_abomasnow": 0.225,
+        "mega_lucario": 0.225
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.2217,
+        "iono": 0.2598,
+        "mega_abomasnow": 0.2236,
+        "dragapult": 0.2041,
+        "lagged": 0.0908
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 48010,
+      "optimizer_steps_cumulative": 7508,
+      "entropy_coef": 0.005077,
+      "win_rate_vs_block_field": 0.2583,
+      "policy_loss": -0.0028278681134855208,
+      "value_loss": 0.05578530277422567,
+      "entropy": 0.9050366349735274,
+      "approx_kl": 0.0036412487192755386,
+      "explained_variance": 0.6331086463612788,
+      "checkpoint_sha256": "b57c97677a0b07457931506a447332c125e0bce4d943dfbf023b00afe9151672",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b09.npz",
+      "lagged_snapshot_sha256": "f80e00861222f90e82a9aa1564bfa69280917473529f9a622ec14979851fd428",
+      "elapsed_s": 892.3
+    },
+    {
+      "block": 10,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "iono": 0.1758,
+        "mega_lucario": 0.1807,
+        "mega_abomasnow": 0.1729,
+        "lagged": 0.3037,
+        "dragapult": 0.167
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51910,
+      "optimizer_steps_cumulative": 8320,
+      "entropy_coef": 0.004974,
+      "win_rate_vs_block_field": 0.311,
+      "policy_loss": -0.003016393890849214,
+      "value_loss": 0.06162028501605317,
+      "entropy": 0.8932203454203587,
+      "approx_kl": 0.003555702605365106,
+      "explained_variance": 0.6548188359353346,
+      "checkpoint_sha256": "8a3ab33b79b4d2b140b6ef0da2609bc7291324abf953b71684c7bfa0680af985",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b10.npz",
+      "lagged_snapshot_sha256": "c9eba83f5e63a14b60030a75f7e12099707a44869f7c68dfed3bbd3e71222f2d",
+      "elapsed_s": 989.3
+    },
+    {
+      "block": 11,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "lagged": 0.2666,
+        "iono": 0.1582,
+        "mega_lucario": 0.1914,
+        "mega_abomasnow": 0.1914,
+        "dragapult": 0.1924
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 49578,
+      "optimizer_steps_cumulative": 9096,
+      "entropy_coef": 0.004872,
+      "win_rate_vs_block_field": 0.2969,
+      "policy_loss": -0.002885453209705339,
+      "value_loss": 0.06263195287751964,
+      "entropy": 0.8883563700452497,
+      "approx_kl": 0.0035682075285955878,
+      "explained_variance": 0.6534737652567952,
+      "checkpoint_sha256": "f8b6c6100686d860f2217d1754d3c6fe388a51542a3f11a0dd772c288144a01c",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b11.npz",
+      "lagged_snapshot_sha256": "d7cf68b9d65e12cd9446ae74d3f0777f4c16ac5d5316e6b730924e22c0668046",
+      "elapsed_s": 1081.2
+    },
+    {
+      "block": 12,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.1611,
+        "dragapult": 0.1758,
+        "iono": 0.1641,
+        "lagged": 0.3242,
+        "mega_lucario": 0.1748
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 52083,
+      "optimizer_steps_cumulative": 9912,
+      "entropy_coef": 0.004769,
+      "win_rate_vs_block_field": 0.3164,
+      "policy_loss": -0.0033454160534627433,
+      "value_loss": 0.058872969994719734,
+      "entropy": 0.8870832419305427,
+      "approx_kl": 0.0038712883074303395,
+      "explained_variance": 0.6723843624688859,
+      "checkpoint_sha256": "2c5b8d901abe040593c4a59d25d6c4b52a593fd522635d2a861af1c30c0d8dcf",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b12.npz",
+      "lagged_snapshot_sha256": "21b9fc4c98046539a0d2448720f7ffa5e828dce5a5892e3583ac1e2bf28065b5",
+      "elapsed_s": 1179.5
+    },
+    {
+      "block": 13,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "lagged": 0.2832,
+        "iono": 0.1904,
+        "dragapult": 0.1885,
+        "mega_abomasnow": 0.1641,
+        "mega_lucario": 0.1738
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50499,
+      "optimizer_steps_cumulative": 10704,
+      "entropy_coef": 0.004667,
+      "win_rate_vs_block_field": 0.2969,
+      "policy_loss": -0.0021936803762733575,
+      "value_loss": 0.05802177613326378,
+      "entropy": 0.8886691114298889,
+      "approx_kl": 0.0037793954738530367,
+      "explained_variance": 0.6851506630194106,
+      "checkpoint_sha256": "67571082d26a9dee75480370fce9eeb848e8fa577dfe7769f6022df6eebf039d",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b13.npz",
+      "lagged_snapshot_sha256": "eca5f75aacfd2a0cf64544c73d93a71ad745d335ca914f3c961ca19a14555380",
+      "elapsed_s": 1275.0
+    },
+    {
+      "block": 14,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "iono": 0.1855,
+        "lagged": 0.2686,
+        "mega_abomasnow": 0.1855,
+        "dragapult": 0.1738,
+        "mega_lucario": 0.1865
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 49547,
+      "optimizer_steps_cumulative": 11480,
+      "entropy_coef": 0.004564,
+      "win_rate_vs_block_field": 0.3154,
+      "policy_loss": -0.003032210558367892,
+      "value_loss": 0.0634797517106497,
+      "entropy": 0.8738006553220726,
+      "approx_kl": 0.0036103397891995787,
+      "explained_variance": 0.667915343120366,
+      "checkpoint_sha256": "f3d3c63739f4c9993b01d6cc130078992a6853634729455048c135776cb1a570",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b14.npz",
+      "lagged_snapshot_sha256": "dc7251160794f891fc66bbaeff47ff15ae6dfdd43409cd5283b1c63930aacee3",
+      "elapsed_s": 1369.4
+    },
+    {
+      "block": 15,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.1816,
+        "iono": 0.1602,
+        "lagged": 0.2969,
+        "mega_lucario": 0.1729,
+        "dragapult": 0.1885
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50574,
+      "optimizer_steps_cumulative": 12272,
+      "entropy_coef": 0.004462,
+      "win_rate_vs_block_field": 0.3066,
+      "policy_loss": -0.0034990141365029374,
+      "value_loss": 0.0615561520183291,
+      "entropy": 0.8624586380696952,
+      "approx_kl": 0.0036809792518576784,
+      "explained_variance": 0.674572570293333,
+      "checkpoint_sha256": "f95593d9e7ae3fa29d1aa5eb075fc54c0442af266f633017d9f70c291749398f",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b15.npz",
+      "lagged_snapshot_sha256": "f0d4fa54764bfe90f4458c3a1648555f87a29c0fd5ccc2f5a72bd6c81f0c4749",
+      "elapsed_s": 1466.3
+    },
+    {
+      "block": 16,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "lagged": 0.2891,
+        "dragapult": 0.1699,
+        "iono": 0.1943,
+        "mega_abomasnow": 0.1836,
+        "mega_lucario": 0.1631
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50565,
+      "optimizer_steps_cumulative": 13064,
+      "entropy_coef": 0.004359,
+      "win_rate_vs_block_field": 0.3438,
+      "policy_loss": -0.002710997497423368,
+      "value_loss": 0.06124862100205402,
+      "entropy": 0.8559806837186572,
+      "approx_kl": 0.0037130544101434955,
+      "explained_variance": 0.691500140684381,
+      "checkpoint_sha256": "aa6023a78b9793ffdf48bd47a1c72fe153717d8cb2f3efa6f1563290af2af148",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b16.npz",
+      "lagged_snapshot_sha256": "dc00c898b948319add1ee74de71c530ff5bccf0f0bbc96a8a8a9c05224ca3a3b",
+      "elapsed_s": 1567.0
+    },
+    {
+      "block": 17,
+      "planned_self_play": 0.3,
+      "planned_fractions": {
+        "lagged": 0.3,
+        "dragapult": 0.175,
+        "iono": 0.175,
+        "mega_abomasnow": 0.175,
+        "mega_lucario": 0.175
+      },
+      "actual_fractions": {
+        "mega_abomasnow": 0.1855,
+        "iono": 0.1777,
+        "dragapult": 0.166,
+        "lagged": 0.2949,
+        "mega_lucario": 0.1758
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 49594,
+      "optimizer_steps_cumulative": 13840,
+      "entropy_coef": 0.004256,
+      "win_rate_vs_block_field": 0.3066,
+      "policy_loss": -0.0028095515787706095,
+      "value_loss": 0.06499237524782851,
+      "entropy": 0.835344245880298,
+      "approx_kl": 0.0034486437489149985,
+      "explained_variance": 0.6674952507955281,
+      "checkpoint_sha256": "fdc2fd02573241239c1c521d6226d349a02f25b80e79295accca5daa3ab2f5dd",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b17.npz",
+      "lagged_snapshot_sha256": "6540ac0cb5b85ba4a6907391953d175c33f47df0de5c296aed7dbfa427a29963",
+      "elapsed_s": 1661.9
+    },
+    {
+      "block": 18,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5127,
+        "dragapult": 0.126,
+        "iono": 0.1211,
+        "mega_lucario": 0.126,
+        "mega_abomasnow": 0.1143
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51274,
+      "optimizer_steps_cumulative": 14644,
+      "entropy_coef": 0.004154,
+      "win_rate_vs_block_field": 0.3877,
+      "policy_loss": -0.0024711061159792356,
+      "value_loss": 0.0655931073718374,
+      "entropy": 0.8324904785222341,
+      "approx_kl": 0.0034417265633553983,
+      "explained_variance": 0.6792975245593895,
+      "checkpoint_sha256": "65176b2a12b017f8e14e591d3c01b1f2f97a028ed9dba5e10daf66bfbe8a7d5a",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b18.npz",
+      "lagged_snapshot_sha256": "dc664f8ce37c292b8f990ee993ec71a4861a79bdedd03054cffcd1ca9d485f23",
+      "elapsed_s": 1759.2
+    },
+    {
+      "block": 19,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "dragapult": 0.1094,
+        "iono": 0.1338,
+        "mega_lucario": 0.127,
+        "lagged": 0.502,
+        "mega_abomasnow": 0.1279
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51234,
+      "optimizer_steps_cumulative": 15448,
+      "entropy_coef": 0.004051,
+      "win_rate_vs_block_field": 0.3936,
+      "policy_loss": -0.003167652497056139,
+      "value_loss": 0.06854342441579676,
+      "entropy": 0.8349019570814757,
+      "approx_kl": 0.0038029294788250183,
+      "explained_variance": 0.6713642207063323,
+      "checkpoint_sha256": "801c6dfa24305ac3096adae6369c33a7066ba0d2fdc75fb2c7169d38e6cedd4a",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b19.npz",
+      "lagged_snapshot_sha256": "d4c1db08f74d3f098ce256c77d84d448e8a95d1170e97a91715a67ae2299b893",
+      "elapsed_s": 1856.8
+    },
+    {
+      "block": 20,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.123,
+        "dragapult": 0.1318,
+        "iono": 0.1396,
+        "lagged": 0.4883,
+        "mega_abomasnow": 0.1172
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 52218,
+      "optimizer_steps_cumulative": 16264,
+      "entropy_coef": 0.003949,
+      "win_rate_vs_block_field": 0.3867,
+      "policy_loss": -0.0023875149584748263,
+      "value_loss": 0.06641177467314192,
+      "entropy": 0.8202814238865507,
+      "approx_kl": 0.0034270032937462258,
+      "explained_variance": 0.6820637260636995,
+      "checkpoint_sha256": "e8a228edc7dc499b85f478880a8884592b21441116c5e42b27c9674a987eb812",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b20.npz",
+      "lagged_snapshot_sha256": "78fbed6c8e87f940783d5bfdf1955a5779c47087b75c4ab45b7c67d0cf10af92",
+      "elapsed_s": 1955.2
+    },
+    {
+      "block": 21,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5381,
+        "mega_lucario": 0.1123,
+        "mega_abomasnow": 0.123,
+        "dragapult": 0.1152,
+        "iono": 0.1113
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 52675,
+      "optimizer_steps_cumulative": 17088,
+      "entropy_coef": 0.003846,
+      "win_rate_vs_block_field": 0.3613,
+      "policy_loss": -0.002627522137015644,
+      "value_loss": 0.06893084211257629,
+      "entropy": 0.8233172541626266,
+      "approx_kl": 0.0038302245960908626,
+      "explained_variance": 0.6545631748176549,
+      "checkpoint_sha256": "a1316b3727c8c6c2b362b784113a253c2e127aaed8f4d33b7c2c1f46bb687103",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b21.npz",
+      "lagged_snapshot_sha256": "a4b57748950f56f241f28984a0b03765d24c9945b7a66ea2a64c8650b773f297",
+      "elapsed_s": 2056.3
+    },
+    {
+      "block": 22,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5,
+        "iono": 0.1182,
+        "mega_lucario": 0.1348,
+        "dragapult": 0.1348,
+        "mega_abomasnow": 0.1123
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50841,
+      "optimizer_steps_cumulative": 17884,
+      "entropy_coef": 0.003744,
+      "win_rate_vs_block_field": 0.3906,
+      "policy_loss": -0.002777417451653197,
+      "value_loss": 0.07060376452958081,
+      "entropy": 0.7996052124764709,
+      "approx_kl": 0.0034490042337924783,
+      "explained_variance": 0.657455216073224,
+      "checkpoint_sha256": "2b2593bca3a0824b3a733d30224b5873d7c37efe6b34367127a9ad0986cf88f1",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b22.npz",
+      "lagged_snapshot_sha256": "67f79c55514d1b4ae649eb574d80d9ca891c73648a485be0e215d96eddc47548",
+      "elapsed_s": 2154.8
+    },
+    {
+      "block": 23,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.1318,
+        "iono": 0.1211,
+        "mega_abomasnow": 0.1211,
+        "lagged": 0.4961,
+        "dragapult": 0.1299
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51101,
+      "optimizer_steps_cumulative": 18684,
+      "entropy_coef": 0.003641,
+      "win_rate_vs_block_field": 0.3809,
+      "policy_loss": -0.0027839915261290743,
+      "value_loss": 0.0676399378945438,
+      "entropy": 0.8067122970705358,
+      "approx_kl": 0.0038192075462768794,
+      "explained_variance": 0.6700286890617395,
+      "checkpoint_sha256": "a4dfbe7d369148c47d80de0cfd96023450e35d16d688fe3100d9df6fc86a3b00",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b23.npz",
+      "lagged_snapshot_sha256": "452feb7b81ab2d2e23c556c5962dc37ebf34c4380077a66e384b32360e1d538f",
+      "elapsed_s": 2251.7
+    },
+    {
+      "block": 24,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "iono": 0.1211,
+        "lagged": 0.4756,
+        "dragapult": 0.1494,
+        "mega_lucario": 0.1279,
+        "mega_abomasnow": 0.126
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51370,
+      "optimizer_steps_cumulative": 19488,
+      "entropy_coef": 0.003538,
+      "win_rate_vs_block_field": 0.3892,
+      "policy_loss": -0.00258667104861264,
+      "value_loss": 0.06866629208547287,
+      "entropy": 0.7979068929642964,
+      "approx_kl": 0.003763362331051601,
+      "explained_variance": 0.6668151601007641,
+      "checkpoint_sha256": "450238aea4e5f1881c3bcaef469b22c4ec30f1f7ec6676768b9c785c2391baa3",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b24.npz",
+      "lagged_snapshot_sha256": "da2c1ef31ebb007d3083e4bf7c231368dd22626cfe92a02fa5c3ec034aa818e8",
+      "elapsed_s": 2352.7
+    },
+    {
+      "block": 25,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "iono": 0.1309,
+        "mega_lucario": 0.1396,
+        "lagged": 0.4883,
+        "dragapult": 0.1064,
+        "mega_abomasnow": 0.1348
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50658,
+      "optimizer_steps_cumulative": 20280,
+      "entropy_coef": 0.003436,
+      "win_rate_vs_block_field": 0.3779,
+      "policy_loss": -0.0024043231209149234,
+      "value_loss": 0.06846830981774175,
+      "entropy": 0.8020458351446609,
+      "approx_kl": 0.0033110242533951765,
+      "explained_variance": 0.6617419711770267,
+      "checkpoint_sha256": "9a96ac88865cc4d527f7d4fcaaf7a75e9c3c5dd8935fa666ab6f6906d26faa93",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b25.npz",
+      "lagged_snapshot_sha256": "6d8e824454a67d05d22dbf6ff2926a6c190d932ef50cc91ee236f179219ff625",
+      "elapsed_s": 2448.3
+    },
+    {
+      "block": 26,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.5166,
+        "dragapult": 0.1318,
+        "mega_abomasnow": 0.1191,
+        "iono": 0.1143,
+        "mega_lucario": 0.1182
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51927,
+      "optimizer_steps_cumulative": 21092,
+      "entropy_coef": 0.003333,
+      "win_rate_vs_block_field": 0.3945,
+      "policy_loss": -0.0025373701497640884,
+      "value_loss": 0.0679873095621311,
+      "entropy": 0.8038790679518153,
+      "approx_kl": 0.0034914631124883235,
+      "explained_variance": 0.6686254324977008,
+      "checkpoint_sha256": "4aea2313a91adaff5fa4dc2be00ad07044b7d74e59ce27d15a337aa082159df9",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b26.npz",
+      "lagged_snapshot_sha256": "1fee67fedd019da29afeaa7df6930087edb74c653db53bf16e4d48cb12ee5b7d",
+      "elapsed_s": 2544.5
+    },
+    {
+      "block": 27,
+      "planned_self_play": 0.5,
+      "planned_fractions": {
+        "lagged": 0.5,
+        "dragapult": 0.125,
+        "iono": 0.125,
+        "mega_abomasnow": 0.125,
+        "mega_lucario": 0.125
+      },
+      "actual_fractions": {
+        "lagged": 0.4854,
+        "iono": 0.126,
+        "dragapult": 0.1387,
+        "mega_lucario": 0.126,
+        "mega_abomasnow": 0.124
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50617,
+      "optimizer_steps_cumulative": 21884,
+      "entropy_coef": 0.003231,
+      "win_rate_vs_block_field": 0.3994,
+      "policy_loss": -0.002179653323734357,
+      "value_loss": 0.06710755462459946,
+      "entropy": 0.7894096341058485,
+      "approx_kl": 0.0036453146998526565,
+      "explained_variance": 0.6786235909175711,
+      "checkpoint_sha256": "1fe148584787fd3ae6cff2e42ed66829aca557654dc89772d8d3983d8a9ef597",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b27.npz",
+      "lagged_snapshot_sha256": "318e281e4ee808ebcf5875ec3daa60b9eb78cecf215d220593293d655f90b2f7",
+      "elapsed_s": 2643.4
+    },
+    {
+      "block": 28,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6992,
+        "mega_abomasnow": 0.0791,
+        "iono": 0.085,
+        "dragapult": 0.0693,
+        "mega_lucario": 0.0674
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 52349,
+      "optimizer_steps_cumulative": 22704,
+      "entropy_coef": 0.003128,
+      "win_rate_vs_block_field": 0.4575,
+      "policy_loss": -0.002180777428419103,
+      "value_loss": 0.0724575623317759,
+      "entropy": 0.7812997909647398,
+      "approx_kl": 0.003678643182304059,
+      "explained_variance": 0.6571477112201228,
+      "checkpoint_sha256": "e2700a6b9adfe78df173b6524b8bc96d658ddb8d8deb4ff495cca879a419c62b",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b28.npz",
+      "lagged_snapshot_sha256": "59090d2c164a2735af97aa529e395c0407b1e7a5c12cc1c6fd190a2e52261b3b",
+      "elapsed_s": 2746.6
+    },
+    {
+      "block": 29,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6934,
+        "dragapult": 0.0781,
+        "iono": 0.0811,
+        "mega_lucario": 0.0693,
+        "mega_abomasnow": 0.0781
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 53325,
+      "optimizer_steps_cumulative": 23540,
+      "entropy_coef": 0.003026,
+      "win_rate_vs_block_field": 0.4487,
+      "policy_loss": -0.0017368058039011777,
+      "value_loss": 0.06978009068489609,
+      "entropy": 0.7722226482308564,
+      "approx_kl": 0.0037814260723104893,
+      "explained_variance": 0.6631401065273781,
+      "checkpoint_sha256": "e1ddce1b013e5c37f5a702c008d6f31430d13c7d7fea9510335bd90668bc0522",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b29.npz",
+      "lagged_snapshot_sha256": "daacb385441f07aa72146e1ac3c26ec0bcb142e9a10f6f5aa60073ee24c6830a",
+      "elapsed_s": 2845.4
+    },
+    {
+      "block": 30,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6816,
+        "mega_lucario": 0.0801,
+        "iono": 0.0752,
+        "dragapult": 0.0801,
+        "mega_abomasnow": 0.083
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 52205,
+      "optimizer_steps_cumulative": 24356,
+      "entropy_coef": 0.002923,
+      "win_rate_vs_block_field": 0.4473,
+      "policy_loss": -0.0022786275381184843,
+      "value_loss": 0.07006411714406559,
+      "entropy": 0.765200594021172,
+      "approx_kl": 0.003463999125436567,
+      "explained_variance": 0.6714859283965418,
+      "checkpoint_sha256": "3b0e72ad366899aabf6807e47e64abcb2bdae3b1a359759682c8d44cb94872d4",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b30.npz",
+      "lagged_snapshot_sha256": "4b445dd5b03d87ae98de396ee08a4e0231a5e561be3b23e958eccb590bc478f9",
+      "elapsed_s": 2942.2
+    },
+    {
+      "block": 31,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.707,
+        "iono": 0.0762,
+        "mega_abomasnow": 0.0693,
+        "mega_lucario": 0.0811,
+        "dragapult": 0.0664
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 52804,
+      "optimizer_steps_cumulative": 25184,
+      "entropy_coef": 0.002821,
+      "win_rate_vs_block_field": 0.4502,
+      "policy_loss": -0.002160748054943527,
+      "value_loss": 0.07140483988282388,
+      "entropy": 0.7713462575809955,
+      "approx_kl": 0.0035912017234440564,
+      "explained_variance": 0.6592137951864502,
+      "checkpoint_sha256": "0c865a64fe5ef3f302d2b17cd7b35a321f8c10f20250b7fbb652a14c8352a1d7",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b31.npz",
+      "lagged_snapshot_sha256": "34e36259d3adcdae61102e2bad5446a77d19a41c31604c6d3b8dcb725d0d8b87",
+      "elapsed_s": 3040.8
+    },
+    {
+      "block": 32,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.709,
+        "dragapult": 0.0713,
+        "mega_lucario": 0.0713,
+        "iono": 0.0713,
+        "mega_abomasnow": 0.0771
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51728,
+      "optimizer_steps_cumulative": 25996,
+      "entropy_coef": 0.002718,
+      "win_rate_vs_block_field": 0.4526,
+      "policy_loss": -0.0013297606752918753,
+      "value_loss": 0.07234745774425716,
+      "entropy": 0.7597755999821492,
+      "approx_kl": 0.003520444050660857,
+      "explained_variance": 0.663730109111781,
+      "checkpoint_sha256": "bc896470b0f254110693a036caffbfc110ab771d70a388e6c806d5f039199272",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b32.npz",
+      "lagged_snapshot_sha256": "fb72413e32a60f2416d24ec26e3e04273839711506063337146b635fd73ab72f",
+      "elapsed_s": 3138.4
+    },
+    {
+      "block": 33,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.7197,
+        "dragapult": 0.0645,
+        "iono": 0.0566,
+        "mega_abomasnow": 0.0879,
+        "mega_lucario": 0.0713
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51997,
+      "optimizer_steps_cumulative": 26812,
+      "entropy_coef": 0.002615,
+      "win_rate_vs_block_field": 0.4326,
+      "policy_loss": -0.001981865723682522,
+      "value_loss": 0.07124719672352015,
+      "entropy": 0.7472625750829397,
+      "approx_kl": 0.003632212744838871,
+      "explained_variance": 0.6694615360625065,
+      "checkpoint_sha256": "dba165fb1984d8afeeb49a394bb88e3df42fdee375d120ac3ce42a418bf57944",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b33.npz",
+      "lagged_snapshot_sha256": "eaa258639764807adffa602bfc9335cde199969555261fa2ee999fe080a43a2a",
+      "elapsed_s": 3235.0
+    },
+    {
+      "block": 34,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "dragapult": 0.0645,
+        "lagged": 0.7168,
+        "mega_lucario": 0.0723,
+        "iono": 0.0732,
+        "mega_abomasnow": 0.0732
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 52707,
+      "optimizer_steps_cumulative": 27636,
+      "entropy_coef": 0.002513,
+      "win_rate_vs_block_field": 0.4541,
+      "policy_loss": -0.002011766688832841,
+      "value_loss": 0.0697729943558754,
+      "entropy": 0.7463815800050787,
+      "approx_kl": 0.003541336414687221,
+      "explained_variance": 0.6733286725249521,
+      "checkpoint_sha256": "5fdcdee912480b09fbf9b1395e79022a07440dfe7e380341613c5b4ec045d750",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b34.npz",
+      "lagged_snapshot_sha256": "c14371707ec125fb2f69d935e63d459b5b2adc8e8b14c39fe3c8747d15a4185b",
+      "elapsed_s": 3333.6
+    },
+    {
+      "block": 35,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6816,
+        "mega_lucario": 0.0801,
+        "dragapult": 0.085,
+        "iono": 0.0723,
+        "mega_abomasnow": 0.0811
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51827,
+      "optimizer_steps_cumulative": 28448,
+      "entropy_coef": 0.00241,
+      "win_rate_vs_block_field": 0.4365,
+      "policy_loss": -0.0020015027173034073,
+      "value_loss": 0.0742946826110345,
+      "entropy": 0.7426075831422742,
+      "approx_kl": 0.003161282168752559,
+      "explained_variance": 0.6518423153167887,
+      "checkpoint_sha256": "16f7c1160cb7fca7dfa3f8ae6c31848aae3245ac0366bb0e6eea160f8139c60b",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b35.npz",
+      "lagged_snapshot_sha256": "e5a690b412d9a774577ad4cc1b829f31789bcb7a42e1db08622ace091d5a62a6",
+      "elapsed_s": 3426.3
+    },
+    {
+      "block": 36,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6943,
+        "mega_lucario": 0.0762,
+        "iono": 0.084,
+        "dragapult": 0.0664,
+        "mega_abomasnow": 0.0791
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51637,
+      "optimizer_steps_cumulative": 29256,
+      "entropy_coef": 0.002308,
+      "win_rate_vs_block_field": 0.4434,
+      "policy_loss": -0.002565091059469666,
+      "value_loss": 0.06830525087802528,
+      "entropy": 0.7395037347103464,
+      "approx_kl": 0.0033175648585796282,
+      "explained_variance": 0.6861067597323189,
+      "checkpoint_sha256": "63eaddb1f9d8a97a55f07dd2afe52bb364a5bbb602736e3fa24610517a3e1182",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b36.npz",
+      "lagged_snapshot_sha256": "441976d4fe0f7ec6e2ebfb2b33c0b4d857ba3a18a4d3f628a0341f3d547d39c0",
+      "elapsed_s": 3517.5
+    },
+    {
+      "block": 37,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.7197,
+        "mega_lucario": 0.0713,
+        "mega_abomasnow": 0.0723,
+        "dragapult": 0.0615,
+        "iono": 0.0752
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50848,
+      "optimizer_steps_cumulative": 30052,
+      "entropy_coef": 0.002205,
+      "win_rate_vs_block_field": 0.4658,
+      "policy_loss": -0.002053700857184073,
+      "value_loss": 0.0745287625792817,
+      "entropy": 0.7316542937830555,
+      "approx_kl": 0.003664882039523303,
+      "explained_variance": 0.6574146410509185,
+      "checkpoint_sha256": "217876f8bc08f62195532f1d7f3eeb4c71fd28190264975669705a63ed44444c",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b37.npz",
+      "lagged_snapshot_sha256": "222ff6fc5194b15ea2a45eabd602e1186e2faecc8e67c890b4eda104d1588b5c",
+      "elapsed_s": 3606.6
+    },
+    {
+      "block": 38,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.6816,
+        "mega_abomasnow": 0.0801,
+        "iono": 0.0879,
+        "dragapult": 0.0811,
+        "mega_lucario": 0.0693
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 51083,
+      "optimizer_steps_cumulative": 30852,
+      "entropy_coef": 0.002103,
+      "win_rate_vs_block_field": 0.4268,
+      "policy_loss": -0.0023078453455365722,
+      "value_loss": 0.07204252117435234,
+      "entropy": 0.728500616576423,
+      "approx_kl": 0.003663428792703335,
+      "explained_variance": 0.6653060781008501,
+      "checkpoint_sha256": "b90c7e5944685cdb08210cc15fcff1c8522109cf10f922048a5b36cc574ee6a0",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b38.npz",
+      "lagged_snapshot_sha256": "9908fbd7b7dd1ed6db946aa00be28d7c9793dfd0305f7b9fdc84e6e99748dee6",
+      "elapsed_s": 3695.3
+    },
+    {
+      "block": 39,
+      "planned_self_play": 0.7,
+      "planned_fractions": {
+        "lagged": 0.7,
+        "dragapult": 0.07500000000000001,
+        "iono": 0.07500000000000001,
+        "mega_abomasnow": 0.07500000000000001,
+        "mega_lucario": 0.07500000000000001
+      },
+      "actual_fractions": {
+        "lagged": 0.7012,
+        "mega_lucario": 0.0693,
+        "mega_abomasnow": 0.0771,
+        "dragapult": 0.085,
+        "iono": 0.0674
+      },
+      "games": 1024,
+      "games_completed": 1024,
+      "games_used_for_update": 1024,
+      "trainable_decisions": 50287,
+      "optimizer_steps_cumulative": 31640,
+      "entropy_coef": 0.002,
+      "win_rate_vs_block_field": 0.4429,
+      "policy_loss": -0.0022692495757421324,
+      "value_loss": 0.07714104350332202,
+      "entropy": 0.7259708113796257,
+      "approx_kl": 0.0036039812656331414,
+      "explained_variance": 0.6509281475156292,
+      "checkpoint_sha256": "35f7b23d55a7c5ab9a991e7f845e13dd0488cdd365aaec226cba18d5bf6cfef8",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum_lagged_b39.npz",
+      "lagged_snapshot_sha256": "8e57595ab83967bc8773e91f31b74b665c87b84e8e7916a637e46288c856ccab",
+      "elapsed_s": 3784.9
+    }
+  ],
+  "wall_clock_s": 3784.9
+}

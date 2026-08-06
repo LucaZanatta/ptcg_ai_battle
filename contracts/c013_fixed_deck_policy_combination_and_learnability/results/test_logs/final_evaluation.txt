@@ -1,0 +1,183 @@
+{
+  "TRUE_BEST_AGENT": "SOUP13_SOUP+P1_822",
+  "TRUE_BEST_AGENT_family": "weight_soup",
+  "PACKAGE_FEASIBLE_BEST_AGENT": "SOUP13_SOUP+P1_822",
+  "PACKAGE_FEASIBLE_BEST_AGENT_family": "weight_soup",
+  "package_feasibility_rule": "an online ensemble evaluates N networks per decision; only single policies and weight soups are packaged",
+  "true_best_vs_incumbent": {
+    "candidate_id": "SOUP13_SOUP+P1_822",
+    "teacher_score": 0.36,
+    "strategic_field": 0.36000000000000004,
+    "incumbent_teacher": 0.32,
+    "incumbent_field": 0.35400000000000004,
+    "teacher_not_lower": true,
+    "field_not_lower": true,
+    "per_opponent_regression": {
+      "mega_lucario": {
+        "candidate": 0.4,
+        "incumbent": 0.358,
+        "major_regression": false
+      },
+      "iono": {
+        "candidate": 0.448,
+        "incumbent": 0.436,
+        "major_regression": false
+      },
+      "mega_abomasnow": {
+        "candidate": 0.232,
+        "incumbent": 0.268,
+        "major_regression": false
+      }
+    },
+    "no_major_regression": true,
+    "worst_matchup": [
+      "mega_abomasnow",
+      0.232
+    ]
+  },
+  "package_best_vs_incumbent": {
+    "candidate_id": "SOUP13_SOUP+P1_822",
+    "teacher_score": 0.36,
+    "strategic_field": 0.36000000000000004,
+    "incumbent_teacher": 0.32,
+    "incumbent_field": 0.35400000000000004,
+    "teacher_not_lower": true,
+    "field_not_lower": true,
+    "per_opponent_regression": {
+      "mega_lucario": {
+        "candidate": 0.4,
+        "incumbent": 0.358,
+        "major_regression": false
+      },
+      "iono": {
+        "candidate": 0.448,
+        "incumbent": 0.436,
+        "major_regression": false
+      },
+      "mega_abomasnow": {
+        "candidate": 0.232,
+        "incumbent": 0.268,
+        "major_regression": false
+      }
+    },
+    "no_major_regression": true,
+    "worst_matchup": [
+      "mega_abomasnow",
+      0.232
+    ]
+  },
+  "replaces_c012_incumbent": true,
+  "replacement_conditions_sec30": {
+    "reliability_passes": true,
+    "teacher_score_not_lower": true,
+    "strategic_field_not_lower": true,
+    "at_least_one_primary_gain_p_gt_0_ge_90pct": true,
+    "no_iono_or_abomasnow_major_regression": true,
+    "no_major_worst_matchup_regression": true,
+    "runtime_package_feasibility_passes": true
+  },
+  "primary_gain_probabilities": {
+    "teacher": {
+      "gain": 0.03999999999999998,
+      "p_gain_gt_0": 0.9044,
+      "ci95": [
+        -0.019999999999999962,
+        0.10000000000000003
+      ]
+    },
+    "strategic_field": {
+      "gain": 0.006000000000000005,
+      "p_gain_gt_0": 0.6012,
+      "ci95": [
+        -0.04066666666666663,
+        0.05333333333333329
+      ]
+    }
+  },
+  "reliability": {
+    "passes": true,
+    "games": 1250,
+    "invalid_actions": 0,
+    "exceptions": 0,
+    "timeouts": 0
+  },
+  "q_arm_candidates_note": "the Q0/Q1/Q2 continuation candidates were evaluated on the CONFIRMATION panel only, never on the untouched final panel, so they are structurally excluded from this ranking. Their confirmation teacher scores (0.247-0.323) all sit below the c012 incumbent's 0.353, so the exclusion does not change the winner -- but nine evaluated candidates do not appear above.",
+  "frozen_teacher_final_panel": {
+    "strategic_field": 0.5493333333333333,
+    "per_opponent": {
+      "iono": {
+        "ci95": [
+          0.608,
+          0.7240999999999985
+        ],
+        "n": 250,
+        "point": 0.668
+      },
+      "mega_abomasnow": {
+        "ci95": [
+          0.432,
+          0.56
+        ],
+        "n": 250,
+        "point": 0.496
+      },
+      "mega_lucario": {
+        "ci95": [
+          0.424,
+          0.544
+        ],
+        "n": 250,
+        "point": 0.484
+      }
+    }
+  },
+  "submission_gate": {
+    "candidate": "SOUP13_SOUP+P1_822",
+    "teacher_noninferiority_lb95": 0.318,
+    "teacher_noninferiority_required": 0.47,
+    "passes_teacher_noninferiority": false,
+    "teacher_strategic_field": 0.5493333333333333,
+    "candidate_strategic_field": 0.36000000000000004,
+    "beats_frozen_teacher_on_same_panel": false,
+    "no_major_regression": true,
+    "uses_exact_frozen_deck": true,
+    "SUBMISSION_G": "DO_NOT_SUBMIT"
+  },
+  "ranking": [
+    {
+      "candidate_id": "SOUP13_SOUP+P1_822",
+      "composite": 0.3684,
+      "family": "weight_soup",
+      "field": 0.36000000000000004,
+      "teacher": 0.36
+    },
+    {
+      "candidate_id": "P0_711",
+      "composite": 0.3661,
+      "family": "single",
+      "field": 0.3726666666666667,
+      "teacher": 0.352
+    },
+    {
+      "candidate_id": "LOGIT_S611+S622",
+      "composite": 0.35740000000000005,
+      "family": "online_ensemble",
+      "field": 0.36000000000000004,
+      "teacher": 0.336
+    },
+    {
+      "candidate_id": "PROB_SOUP+P0_711+P1_822+P1_833",
+      "composite": 0.3518,
+      "family": "online_ensemble",
+      "field": 0.3626666666666667,
+      "teacher": 0.32
+    },
+    {
+      "candidate_id": "C012_SOUP_622_633",
+      "composite": 0.3449,
+      "family": "weight_soup",
+      "field": 0.35400000000000004,
+      "teacher": 0.32
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "amendments": [
+    {
+      "id": 1,
+      "title": "final-state terminal error extraction",
+      "where": "starter_kit/episode_schema.py:final_state_terminal + tools/capture_episodes_v2.py",
+      "test": "tests.test_c003_amendments.TestFinalStateTerminal (3 tests)"
+    },
+    {
+      "id": 2,
+      "title": "legal_option_metadata == observation.select.option equality",
+      "where": "tools/validate_episodes_v2.py cross-field validation",
+      "test": "tests.test_c003_amendments.TestLegalOptionMetadataEquality"
+    },
+    {
+      "id": 3,
+      "title": "replay registry: verify agent id/version/source-hash before invoking",
+      "where": "starter_kit/replay_registry.py + tools/validate_episodes_v2.py semantic replay",
+      "test": "tests.test_c003_amendments.TestReplayRegistry (6 tests)"
+    }
+  ],
+  "c003_dataset_revalidation": {
+    "path": "contracts/c003_episode_lineage_and_semantic_replay/results/artifacts/validation_run/episodes_v2.jsonl",
+    "structural_errors": 0,
+    "safe_decisions_checked": 966,
+    "matches": 966,
+    "mismatches": 0,
+    "replay_unavailable": 0,
+    "all_reproduced": true,
+    "note": "Amended validator + default registry re-validates the frozen c003 dataset; safe_agent source unchanged since afe52db so registry hash-verification passes and real semantic replay still reproduces 100%."
+  },
+  "existing_c003_tests_pass": true
+}

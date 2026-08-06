@@ -1,8 +1,16 @@
 # EXECUTIVE_DECISION — c023
 
-*The score-constant search and the final holdout panel are still running; the sections marked
-**PENDING** are written at the close, from raw games, by `tools/c023_finalize.sh`. Everything else
-below is final.*
+## Deadline
+
+**The contract's hard stop was 2026-08-05 20:00 Europe/Rome. This report was completed at
+2026-08-06 00:2x — 4h22m late.** A power failure killed the machine during the closing window and
+the session resumed afterwards.
+
+What was done after the deadline was **only** the close the contract mandates *at* the deadline —
+regenerate reports from raw data, run final validation, capture source and Git evidence, build the
+archive. **No experiment was run, no candidate was built and no measurement was taken after
+2026-08-05 20:00.** The last game played in this campaign predates the deadline. The overrun is
+recorded here and in `STATUS.json` rather than absorbed.
 
 ## The short version
 
@@ -10,17 +18,18 @@ below is final.*
 
 `official_dragapult` — not `official_mega_lucario`, which two prior contracts had labelled our
 best candidate — is the strongest submission-eligible agent this repository has. Twenty-eight
-challengers across four branches, roughly 60,000 games, and not one cleared a noise floor that was
+challengers across five branches, **392,792 games**, and not one cleared a noise floor that was
 itself measured rather than assumed.
 
 That is a negative competitive result, and this report does not dress it as anything else. What
 the campaign did produce is three measurements that change what the *next* one should do, and they
 are the reason it reads as a research success rather than a wasted forty-eight hours:
 
-1. **The first local↔ladder calibration this project has had.** 1 point of local field score ≈ 11
-   Kaggle rating points, from 380 of our own public games. The ~535 points to the top of the
-   leaderboard is **≈ +48 local points** — five times the entire spread between the best and worst
-   official sample.
+1. **The first local↔ladder calibration this project has had, and it is good.** Four submitted
+   agents, all re-measured on one 13-player panel at 2,400 games, against the rating the ladder
+   gave them: **rating = 347.5 + 646.7 × local field, R² = 0.987**, worst residual 22 rating
+   points. **6.47 rating points per local point.** The 534.6 points to the top of the leaderboard
+   is **≈ +83 local points** — more than the champion's entire field score.
 2. **The headroom is in the agent, not the deck**, measured three ways: 17 deck mutations worth
    nothing over 1,200 games each; a controlled deck-vs-agent decomposition on identical cards
    (**deck +1.9, agent +5.7**); and a ladder record where the same 60 cards reach ~1084 with a
@@ -28,6 +37,10 @@ are the reason it reads as a research success rather than a wasted forty-eight h
 3. **A first-action search is the wrong instrument for these agents.** Eleven arms, ~26,000 games,
    all at or below control — with the mechanism measured, not guessed: the expert's turn is nearly
    order-invariant, so an exact-gain override fires on **0.07–0.4%** of decisions.
+4. **And why none of it could have worked.** `FAILURE_TAXONOMY` F8, from 83 real ladder games read
+   turn by turn: we lose the two-hit race. Dragapult ex attacks for **200** into 320–340 HP
+   attackers that hit back for 180–270, and a knocked-out Mega pays them three prizes to our two.
+   That is arithmetic in the card text, and no override, constant or search changes it.
 
 ## 1. What is the frozen champion?
 
@@ -62,9 +75,31 @@ The Kaggle ladder had agreed with this the whole time: 719.7 against 593.3.
 inferring permission from visibility. They are opponents, never bases. `champion.json` records both
 numbers so the distinction cannot be lost.
 
-## 2. What is the strongest challenger? **PENDING**
+## 2. What is the strongest challenger?
 
-## 3. How much better or worse is it? **PENDING**
+**There isn't one.** Twenty-eight candidates across five branches, **392,792 games**, and not one
+cleared a noise floor this campaign measured on itself three separate ways.
+
+The closest things to a challenger, all inside the floor:
+
+| candidate | what it changed | dev field | control, same run | Δ |
+|---|---|---:|---:|---:|
+| `ab_f5` | three score constants (F5-motivated) | 0.5116 | 0.5099 | +0.17 |
+| `dpdeck_d08` | −1 Latias ex, +1 Dragapult ex | 0.5217 | 0.5104 | +1.13 |
+| `chal_dp_bench_prizef` | bench discipline + exact-gain planner | 0.5285 | 0.5230 | +0.55 |
+
+**The measured run-to-run range on an unchanged policy is 2.4 points at 1,200 games per arm.**
+Every number in that Δ column is smaller than the campaign's own measurement error, and the two
+arms that were re-measured at higher power (`ab_f5` at 5,000 games, `d08` at 1,200) both shrank.
+
+## 3. How much better or worse is it?
+
+**Zero, to within ±1 point.** The best-powered comparison in the campaign — `ab_dev`, 5,000 games
+per arm, four arms, no selection step — puts the whole F5 direction at **+0.17 points** on the dev
+panel and **+0.11** on a validation panel it had never seen.
+
+For scale, this contract's registered promotion target was ~+4 points, and the calibration values
+that at ≈+26 Kaggle rating.
 
 ## 4. Which matchups drive the result?
 
@@ -100,12 +135,35 @@ games: the champion scores **0.7325**. The ladder number was two wins in nine ga
 was killed before a line of it was written, which is the campaign's cleanest example of a
 measurement paying for itself in eighty seconds.
 
-## 5. Which candidate should be submitted first? **PENDING** (the champion, unless §2 changes it)
+## 5. Which candidate should be submitted first?
 
-No upload is made either way: `LEADERBOARD_SUBMISSION_PLAN.md` records that no explicit
-autonomous-submission authorization exists in this repository. The competition's own deadline is
-2026-08-16, eleven days after this contract closes, so not uploading forfeits nothing. The exact
-one-line command is recorded.
+**The champion — and it was, because the wrong agent was on the ladder.**
+
+The user granted submission authorization directly in session on 2026-08-05
+(`SUBMISSION_AUTHORIZATION.md`, recorded in the repository before it was used). Checking the
+ladder then showed something this campaign had not looked at: **our most recent submission was
+`official_mega_lucario` at 581.1 and still drifting, while `official_dragapult` sat frozen at
+719.7.** The most recent submission is the one that plays, so our active agent had been the weaker
+of the two for ten days.
+
+| ref | agent | submitted | reading |
+|---|---|---|---:|
+| **55254872** | **c023 champion, `official_dragapult`** | 2026-08-05 03:38 | **788.1** |
+| 55011215 | `official_mega_lucario` | 2026-07-26 | 578.4 |
+
+**+209.7 rating over the agent that was live.** That is the campaign's only competitive gain, and
+it is important to say exactly what produced it: **not a better agent — the same agent, correctly
+deployed.** Nothing this campaign built is in that package; it is the official Kaggle sample,
+byte-for-byte.
+
+Two things it is *not* evidence of:
+
+- **Not an improvement over the baseline.** 788.1 against the 719.7 the *same agent* scored in
+  July is two readings of a live rating taken twelve days apart against different ladder
+  populations. c015 recorded this agent's own readings moving 150+ points inside an hour. The
+  comparison that means something is 788.1 against the 578.4 that was actually playing.
+- **Not a validation of the calibration.** The model predicted 716.6 and the observed reading is
+  788.1. One point, in a quantity that drifts, is not a test.
 
 ## 6. Is there a complementary second candidate?
 

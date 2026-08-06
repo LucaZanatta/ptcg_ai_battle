@@ -1,0 +1,155 @@
+{
+  "milestone": "M03",
+  "probe_ids": [
+    "P11",
+    "P12",
+    "P14"
+  ],
+  "device": "cuda",
+  "cuda_available": true,
+  "init_checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled.pt",
+  "ppo_cfg": {
+    "gamma": 0.997,
+    "lam": 0.95,
+    "clip": 0.2,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "epochs": 4,
+    "minibatch": 256,
+    "learning_rate": 3e-05,
+    "weight_decay": 1e-05,
+    "entropy_coef_start": 0.006,
+    "entropy_coef_end": 0.002
+  },
+  "blocks": 2,
+  "self_play_schedule": [
+    0.0,
+    0.0
+  ],
+  "actual_simulator_games": 128,
+  "games_completed": 128,
+  "games_are_real_simulator_matches": true,
+  "optimizer_steps": 104,
+  "losses_finite": true,
+  "checkpoint_sha256_before": "0903a0755e951c1eaca22807fa6caf25bd1379de82f5506118dfb84b468c7546",
+  "checkpoint_sha256_after": "d1622b568d7e07b53417e8df2c8e9760e9b5dc70a6b309940c4de577988d1007",
+  "checkpoint_hashes": [
+    "0903a0755e951c1eaca22807fa6caf25bd1379de82f5506118dfb84b468c7546",
+    "83e85c1c52e41145952721259741baa9b0da38bda50e14b827d243311bc348f9",
+    "d1622b568d7e07b53417e8df2c8e9760e9b5dc70a6b309940c4de577988d1007"
+  ],
+  "distinct_checkpoint_hashes": 3,
+  "raw_rollout_file": "rollouts/p13_uninterrupted_games.jsonl.gz",
+  "raw_rollout_sha256": "28627e76b17da84251f88fcfebf1e28c74a0424be077afd61ae0875d87c5c918",
+  "raw_updates_file": "rollouts/p13_uninterrupted_updates.jsonl.gz",
+  "raw_updates_sha256": "a433f08cc618994fbb6c7855e89ff83786bb5e6e0905a963d429de43373dadd8",
+  "planned_vs_actual": [
+    {
+      "block": 0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.2656,
+        "dragapult": 0.2656,
+        "iono": 0.2188,
+        "mega_abomasnow": 0.25
+      }
+    },
+    {
+      "block": 1,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "iono": 0.3281,
+        "mega_lucario": 0.2656,
+        "mega_abomasnow": 0.1875,
+        "dragapult": 0.2188
+      }
+    }
+  ],
+  "final_checkpoint": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/p13_uninterrupted.pt",
+  "final_checkpoint_sha256": "14e68b1cf45d1ae7e6c612b2dea79d7a24ddb2bb1a76972c6bd8036412f38f4e",
+  "history": [
+    {
+      "block": 0,
+      "planned_self_play": 0.0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "mega_lucario": 0.2656,
+        "dragapult": 0.2656,
+        "iono": 0.2188,
+        "mega_abomasnow": 0.25
+      },
+      "games": 64,
+      "games_completed": 64,
+      "games_used_for_update": 64,
+      "trainable_decisions": 3144,
+      "optimizer_steps_cumulative": 52,
+      "entropy_coef": 0.006,
+      "win_rate_vs_block_field": 0.1719,
+      "policy_loss": -0.008990307293733698,
+      "value_loss": 0.14775867412637414,
+      "entropy": 0.7662203896082868,
+      "approx_kl": 0.003958124235151887,
+      "explained_variance": 0.13242133731199013,
+      "checkpoint_sha256": "83e85c1c52e41145952721259741baa9b0da38bda50e14b827d243311bc348f9",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/p13_uninterrupted_lagged_b00.npz",
+      "lagged_snapshot_sha256": "d64aef92801aa6f6a57f888d5602e63c27960847d0a8913e56b93c76568d2867",
+      "elapsed_s": 9.1
+    },
+    {
+      "block": 1,
+      "planned_self_play": 0.0,
+      "planned_fractions": {
+        "lagged": 0.0,
+        "dragapult": 0.25,
+        "iono": 0.25,
+        "mega_abomasnow": 0.25,
+        "mega_lucario": 0.25
+      },
+      "actual_fractions": {
+        "iono": 0.3281,
+        "mega_lucario": 0.2656,
+        "mega_abomasnow": 0.1875,
+        "dragapult": 0.2188
+      },
+      "games": 64,
+      "games_completed": 64,
+      "games_used_for_update": 64,
+      "trainable_decisions": 3100,
+      "optimizer_steps_cumulative": 104,
+      "entropy_coef": 0.002,
+      "win_rate_vs_block_field": 0.2656,
+      "policy_loss": -0.015152651934762161,
+      "value_loss": 0.1133092303223276,
+      "entropy": 0.7688503797510206,
+      "approx_kl": 0.00470495458013666,
+      "explained_variance": 0.25344733142864073,
+      "checkpoint_sha256": "d1622b568d7e07b53417e8df2c8e9760e9b5dc70a6b309940c4de577988d1007",
+      "weights_moved": true,
+      "promotion_eligible": true,
+      "lagged_snapshot": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/p13_uninterrupted_lagged_b01.npz",
+      "lagged_snapshot_sha256": "704da4421bcad035488618057f88326754372c325a91d8ae4854100e75337a2d",
+      "elapsed_s": 17.7
+    }
+  ],
+  "wall_clock_s": 17.7
+}

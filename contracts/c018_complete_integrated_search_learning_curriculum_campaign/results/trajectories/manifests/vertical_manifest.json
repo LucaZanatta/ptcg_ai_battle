@@ -1,0 +1,19 @@
+{
+  "prefix": "vertical",
+  "games": 6,
+  "decisions": 265,
+  "trusted_decisions": 233,
+  "trajectory_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/vertical_trajectories.jsonl.gz",
+  "trajectory_sha256": "94d1413ba82a25b80b39a4614407aa4642ec5899f94c7bf9e310dc31fc7ea6c9",
+  "feature_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/vertical_features.npz",
+  "config": {
+    "beam_width": 3,
+    "max_candidates": 4,
+    "max_depth": 4,
+    "max_nodes": 40,
+    "max_ms_per_decision": 2500,
+    "max_match_ms": 60000,
+    "version": "c018.search.v1"
+  },
+  "uses_c017_labels": false
+}

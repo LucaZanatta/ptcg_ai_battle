@@ -1,0 +1,3 @@
+# Clean Checkout & Run (c008)
+
+Reproduce from branch `contract/c008_fixed_deck_teacher_anchored_rl` (final HEAD `fb6e592c8c333f758014e2d2e94a39261bb63fe6`), repo root, `.venv/bin/python`. RL training/eval are engine `random_device`-seeded and NOT bit-reproducible; the toy PPO positive control, GAE, masking, and dependency checks are deterministic. Statistical conclusions are stable over the registered samples. Provide externally (gitignored): cabt SDK + `libcg.so`, `cg` symlinks, kaggle-environments, numpy/scipy/matplotlib, the c005 teacher_sources, and the c007 V2-A checkpoint + v2 dataset. results/ is uncommitted review evidence.

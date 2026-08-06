@@ -1,0 +1,66 @@
+{
+  "name": "submission_K_official_search_v0",
+  "gates": {
+    "archive_exists": true,
+    "archive_hash_matches_manifest": true,
+    "clean_extraction_ok": true,
+    "clean_validation_all_games_completed": true,
+    "at_least_100_validation_games": true,
+    "both_seats_exercised": true,
+    "zero_validation_exceptions": true,
+    "learned_component_actually_ran": true,
+    "no_hidden_information_in_package": true,
+    "no_evidence_submission_blockers": true,
+    "inference_only": true,
+    "packaged_search_module_current": true,
+    "upload_budget_remaining": true,
+    "pre_registered_promotion_gate": false
+  },
+  "all_gates_pass": false,
+  "archive": "packages/submission_K_official_search_v0.tar.gz",
+  "archive_sha256": "4d17ab86d8e820077b6370bab845fe031cb2fb9171f3408adf6db7a0936178a9",
+  "manifest_sha256": "4d17ab86d8e820077b6370bab845fe031cb2fb9171f3408adf6db7a0936178a9",
+  "uploads_used": 0,
+  "uploads_allowed": 2,
+  "clean_validation": {
+    "games_played": 100,
+    "games_completed": 100,
+    "win_rate": 0.37,
+    "max_game_seconds": 0.81,
+    "clean_extraction_ok": true,
+    "packaged_searched": 6102,
+    "packaged_decisions": 6709,
+    "packaged_search_rate": 0.9095,
+    "search_actually_ran_in_package": true
+  },
+  "seats_exercised": [
+    0,
+    1
+  ],
+  "promotion_gate": {
+    "candidate": "m01_heuristic_search",
+    "overall": 0.21,
+    "baseline_overall": 0.58,
+    "delta_vs_baseline": -0.37,
+    "worst_matchup_rate": 0.14,
+    "dragapult_rate": 0.14,
+    "baseline_dragapult_rate": 0.54,
+    "clauses": {
+      "a_improvement": false,
+      "b_important_matchup": false,
+      "c_high_information_near_parity": false
+    },
+    "rule": "DECISION_RULES \u00a74 as corrected by Amendment 3"
+  },
+  "evidence_blockers": [],
+  "duplicate_guard": {
+    "description": "c018 submission_K_official_search_v0 eb9f0da",
+    "existing_submissions": 5,
+    "duplicate_found": false,
+    "blocked": false
+  },
+  "upload": "BLOCKED_BY_GATE",
+  "failed_gates": [
+    "pre_registered_promotion_gate"
+  ]
+}

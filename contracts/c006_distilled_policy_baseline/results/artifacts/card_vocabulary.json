@@ -1,0 +1,20 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "source": "cg.api.all_card_data()",
+  "source_hash": "53aa2eeb7dc4872ed2a559eb73b8799ccd08d078c06fc4a7fa87dcc2ad578aa1",
+  "vocab_size": 1270,
+  "n_legal_cards": 1267,
+  "n_reserved": 3,
+  "reserved_tokens": {
+    "PAD": 0,
+    "MASK": 1,
+    "UNKNOWN_INVALID_ID": 2
+  },
+  "card_id_range": [
+    1,
+    1267
+  ],
+  "id_to_row_rule": "row = 3 + (card_id - 1) for legal ids; unseen/invalid -> UNKNOWN_INVALID_ID(2)",
+  "no_generic_unk_collapse": true,
+  "feat_dim": 52
+}

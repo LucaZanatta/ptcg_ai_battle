@@ -1,0 +1,28 @@
+=== card vocabulary ===
+{
+  "contract": "c006_distilled_policy_baseline",
+  "source": "cg.api.all_card_data()",
+  "source_hash": "53aa2eeb7dc4872ed2a559eb73b8799ccd08d078c06fc4a7fa87dcc2ad578aa1",
+  "vocab_size": 1270,
+  "n_legal_cards": 1267,
+  "n_reserved": 3,
+  "reserved_tokens": {
+    "PAD": 0,
+    "MASK": 1,
+    "UNKNOWN_INVALID_ID": 2
+  },
+  "card_id_range": [
+    1,
+    1267
+  ],
+  "id_to_row_rule": "row = 3 + (card_id - 1) for legal ids; unseen/invalid -> UNKNOWN_INVALID_ID(2)",
+  "no_generic_unk_collapse": true,
+  "feat_dim": 52
+}
+=== checks ===
+  [OK ] source_hash_deterministic: 53aa2eeb7dc4872e
+  [OK ] all_legal_ids_distinct_rows: 1267 distinct rows
+  [OK ] vocab_size: 1270
+  [OK ] invalid_id_reserved: ok
+  [OK ] all_deck_cards_present: {'dragapult': {'all_present': True, 'missing': [], 'n_checked': 22}, 'mega_lucario': {'all_present': True, 'missing': [], 'n_checked': 17}, 'mega_abomasnow': {'all_present': True, 'missing': [], 'n_checked': 9}, 'iono': {'all_present': True, 'missing': [], 'n_checked': 15}}
+ALL_OK=True

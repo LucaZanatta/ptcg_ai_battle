@@ -1,0 +1,77 @@
+{
+  "5328": {
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g5328.npz",
+    "sha256": "e2b62c79bfd3a4e7de4025dc47aab0605be44ea7c13e5ba23d82f5a4223240fb",
+    "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g5328.pt",
+    "trainer_state_sha256": "31a59f844e25762a574f4a352fc06e6d702826e3b79ce7a7f6e7a5383c1710f8",
+    "trainer_state_id": "S622-u11-8e453ea5f87a",
+    "training_games": 5328,
+    "registered_eval_point": 5000,
+    "seed": 622,
+    "updates": 12,
+    "parent": "C_522_g20220"
+  },
+  "10096": {
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g10096.npz",
+    "sha256": "d2886694b4889b11d988a35326c24a5b856be2b3f317e8968c6cafa9e16d5ff8",
+    "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g10096.pt",
+    "trainer_state_sha256": "add79975b4efb743676318ece07e06246fd21900b78e87f82065580b1f0c260d",
+    "trainer_state_id": "S622-u22-32f949abf361",
+    "training_games": 10096,
+    "registered_eval_point": 10000,
+    "seed": 622,
+    "updates": 23,
+    "parent": "5328"
+  },
+  "15296": {
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g15296.npz",
+    "sha256": "d0b49327a0a4769cde8db9671cf850e6bbcd6f24479f94806a99d6a20712e4c9",
+    "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g15296.pt",
+    "trainer_state_sha256": "98a9e883b9195f02d4f8f694c2f61df418262f02217c6e22ce151a8c3b7501bc",
+    "trainer_state_id": "S622-u34-4abd8572eb01",
+    "training_games": 15296,
+    "registered_eval_point": 15000,
+    "seed": 622,
+    "updates": 35,
+    "parent": "10096"
+  },
+  "20032": {
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g20032.npz",
+    "sha256": "fb299dcafaee918c47d016b55157c07704f8c15532d89aaa05eee9b73f69b3c7",
+    "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g20032.pt",
+    "trainer_state_sha256": "999a609360a0845d4418c12aec98fc3ab9a6e2263f6bc6ae34e06ee7edfae8d2",
+    "trainer_state_id": "S622-u45-315355774440",
+    "training_games": 20032,
+    "registered_eval_point": 20000,
+    "seed": 622,
+    "updates": 46,
+    "parent": "15296"
+  },
+  "30319": {
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g30319.npz",
+    "sha256": "6f4700d2ca7fcf884871740069cb6e0a1e3d014e7241bfc68821295bd9f0ab3c",
+    "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g30319.pt",
+    "trainer_state_sha256": "124278dfb70120e50cd948275ee74503a2840ff27250f2ca8be4ab14c588fa94",
+    "trainer_state_id": "S622-u69-8def0de012e5",
+    "training_games": 30319,
+    "registered_eval_point": 30000,
+    "seed": 622,
+    "updates": 70,
+    "parent": "20032"
+  },
+  "39983": {
+    "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz",
+    "sha256": "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+    "trainer_state_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/trainer_g39983_terminal.pt",
+    "trainer_state_sha256": "e78cf091ecfd3f7c6c1d3d1c6433dab9d1a7be1a9831026d04c5302a89c04daf",
+    "trainer_state_id": "S622-u92-a0b92a4799f5",
+    "training_games": 39983,
+    "registered_eval_point": null,
+    "terminal_below_registered_point": true,
+    "unreached_registered_point": 40000,
+    "nearest_registered_point_reached": 30000,
+    "seed": 622,
+    "updates": 93,
+    "parent": "30319"
+  }
+}

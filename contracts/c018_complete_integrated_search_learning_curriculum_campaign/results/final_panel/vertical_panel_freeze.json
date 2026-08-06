@@ -1,0 +1,61 @@
+{
+  "frozen_at_commit": "eb9f0da0d7ba95e090533e728c08cc4eba542475",
+  "candidates": [
+    "official_mega_lucario",
+    "m01_heuristic_search"
+  ],
+  "candidate_hashes": {
+    "official_mega_lucario": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee"
+    },
+    "m01_heuristic_search": {
+      "baseline_main_sha256": "ab8563b67b88b3666c2ff9c308505085a84fdac676c194c5b484d8544478c3b2",
+      "deck_sha256": "406e2e9bd6ae82b8008b16ee64ffcbb58e4a50cd6bc36e33ae655456c6b9afee",
+      "search_module_sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "search_config": {
+        "beam_width": 3,
+        "max_candidates": 4,
+        "max_depth": 4,
+        "max_nodes": 40,
+        "max_ms_per_decision": 2500,
+        "max_match_ms": 60000,
+        "version": "c018.search.v1"
+      },
+      "config_hash": "1de8550665ef7226236796a49e97edb7"
+    }
+  },
+  "opponents": [
+    "dragapult",
+    "iono",
+    "mega_abomasnow",
+    "mega_lucario"
+  ],
+  "games_per_pair": 2,
+  "total_games": 16,
+  "seed_base": 1805,
+  "seed_list": [
+    1805,
+    1806,
+    11812,
+    11813,
+    21819,
+    21820,
+    31826,
+    31827
+  ],
+  "seat_assignment": "alternating by pair index; identical across candidates",
+  "identical_schedule_across_candidates": true,
+  "scoring": "win 1.0, draw 0.5, loss 0.0; unscored when either seat is not DONE",
+  "tie_break": "overall_rate desc, then worst_matchup_rate desc (DECISION_RULES \u00a73)",
+  "latency_protocol": "per-decision search budget 2500 ms with baseline fallback on overrun; full-match agent time recorded per game",
+  "deck": "mega_lucario (shared by every candidate)",
+  "opponent_coverage": {
+    "dragapult_control": "dragapult",
+    "frozen_official_mega_lucario_baseline": "mega_lucario",
+    "official_iono": "iono",
+    "official_mega_abomasnow": "mega_abomasnow",
+    "additional_current_meta_benchmark": null,
+    "additional_benchmark_reason": "no further current/meta agent is executable without broad new infrastructure; the only other runnable agents are c014/c015 customs, which are prior attempts of this project, not meta benchmarks, and which c016 measured losing to the official agents 0.90/0.92"
+  }
+}

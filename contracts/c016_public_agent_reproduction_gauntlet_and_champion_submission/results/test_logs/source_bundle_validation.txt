@@ -1,0 +1,40 @@
+[PASS] manifest_inside
+[PASS] archive_bytes_match_manifest
+    {"bad": []}
+[PASS] category_nonempty:c016_source
+    {"n": 9}
+[PASS] category_nonempty:test
+    {"n": 1}
+[PASS] category_nonempty:supporting_source
+    {"n": 5}
+[PASS] category_nonempty:contract
+    {"n": 1}
+[PASS] category_nonempty:command
+    {"n": 1}
+[PASS] category_nonempty:report
+    {"n": 38}
+[PASS] category_nonempty:log
+    {"n": 10}
+[PASS] category_nonempty:public_evidence
+    {"n": 8}
+[PASS] category_nonempty:candidate
+    {"n": 24}
+[PASS] category_nonempty:environment
+    {"n": 1}
+[PASS] category_nonempty:git_patch
+    {"n": 1}
+[PASS] python_members_compile
+    {"bad": []}
+[PASS] no_credential_material
+    {"hits": []}
+[PASS] gauntlet_bundled
+[PASS] validator_bundled
+[PASS] prior_audit_bundled
+[PASS] package_builder_bundled
+[PASS] no_submit_wrapper_is_correct_without_upload
+    {"competitive_gate": "FAIL"}
+[PASS] candidate_decks_bundled
+[PASS] candidate_manifests_bundled
+[PASS] no_submission_archive_inside
+
+overall: PASS (23/23)

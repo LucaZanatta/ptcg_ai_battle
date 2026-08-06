@@ -1,0 +1,38 @@
+{
+  "contract": "c008_fixed_deck_teacher_anchored_rl",
+  "status": "PASS",
+  "acceptance_criteria_total": 16,
+  "acceptance_criteria_passed": 16,
+  "acceptance_criteria_failed": 0,
+  "initial_head": "1f3fc63aaa36be0a45ffce8481c563c89ffa0577",
+  "final_head": "fb6e592c8c333f758014e2d2e94a39261bb63fe6",
+  "implementation_commits": [
+    "fb6e592",
+    "e52bc3b",
+    "b4e65e6",
+    "bdf89f6",
+    "c47288c",
+    "b6378f8"
+  ],
+  "teacher_id": "dragapult",
+  "teacher_submission_ref": "54948560",
+  "deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "best_rl_arm": "NONE",
+  "rl_feasibility": "INCONCLUSIVE",
+  "submission_D_decision": "DO_NOT_SUBMIT",
+  "kaggle_upload": "SKIPPED_BY_GATE",
+  "kaggle_submission_ref": null,
+  "kaggle_submission_status": null,
+  "rl_public_score": null,
+  "teacher_public_score_same_run": 705.4,
+  "promotion_decision": "NO_RL_SUBMISSION",
+  "next_step": "REVISE_RL",
+  "highest_leverage_blocker": "RL learns but no candidate reaches teacher non-inferiority (best one-sided LB 0.155 < 0.47) or a reproducible strategic improvement; the teacher remains stronger on the fixed deck",
+  "blocking_issues": [],
+  "immutability_preserved": true,
+  "known_limitations": [
+    "Pure-numpy PPO under a bounded simulator budget; sparse \u00b11 terminal reward over ~70-decision games is a weak learning signal on a fixed tuned-teacher deck.",
+    "Engine random_device: RL games are non-reproducible; conclusions are statistical over the registered samples; the value head, GAE, masking, and toy PPO control are validated.",
+    "R2 on-policy teacher-action term disabled (synchronization after divergent RL actions unproven); R2 used offline replay + reference KL only."
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "overall_seat0_winrate": 0.5097222222222222,
+  "pairs": {
+    "dragapult__vs__iono": {
+      "a": "dragapult",
+      "b": "iono",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 14.0,
+        "wilson": [
+          0.4810232237710206,
+          0.854524726031006
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 15.0,
+        "wilson": [
+          0.5312949900419365,
+          0.888139947210597
+        ]
+      },
+      "seat_balanced_a_rate": 0.725,
+      "ci95_bootstrap": [
+        0.575,
+        0.8500000000000001
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "dragapult__vs__mega_abomasnow": {
+      "a": "dragapult",
+      "b": "mega_abomasnow",
+      "games": 200,
+      "a_seat0": {
+        "games": 100,
+        "wins": 52.0,
+        "wilson": [
+          0.4231640509017654,
+          0.6153561567991945
+        ]
+      },
+      "a_seat1": {
+        "games": 100,
+        "wins": 53.0,
+        "wilson": [
+          0.4328868313724773,
+          0.6248934801789626
+        ]
+      },
+      "seat_balanced_a_rate": 0.525,
+      "ci95_bootstrap": [
+        0.455,
+        0.595
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "dragapult__vs__mega_lucario": {
+      "a": "dragapult",
+      "b": "mega_lucario",
+      "games": 200,
+      "a_seat0": {
+        "games": 100,
+        "wins": 52.0,
+        "wilson": [
+          0.4231640509017654,
+          0.6153561567991945
+        ]
+      },
+      "a_seat1": {
+        "games": 100,
+        "wins": 50.0,
+        "wilson": [
+          0.40382982859014716,
+          0.5961701714098528
+        ]
+      },
+      "seat_balanced_a_rate": 0.51,
+      "ci95_bootstrap": [
+        0.44,
+        0.58
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "iono__vs__mega_abomasnow": {
+      "a": "iono",
+      "b": "mega_abomasnow",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 13.0,
+        "wilson": [
+          0.43285051021946463,
+          0.8188104521320554
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 16.0,
+        "wilson": [
+          0.5839782779742401,
+          0.9193436467288
+        ]
+      },
+      "seat_balanced_a_rate": 0.7250000000000001,
+      "ci95_bootstrap": [
+        0.575,
+        0.8500000000000001
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "iono__vs__mega_lucario": {
+      "a": "iono",
+      "b": "mega_lucario",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 1.0,
+        "wilson": [
+          0.008881219432873136,
+          0.23613589351256675
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 7.0,
+        "wilson": [
+          0.18118954786794464,
+          0.5671494897805354
+        ]
+      },
+      "seat_balanced_a_rate": 0.19999999999999998,
+      "ci95_bootstrap": [
+        0.1,
+        0.325
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "mega_abomasnow__vs__mega_lucario": {
+      "a": "mega_abomasnow",
+      "b": "mega_lucario",
+      "games": 200,
+      "a_seat0": {
+        "games": 100,
+        "wins": 53.0,
+        "wilson": [
+          0.4328868313724773,
+          0.6248934801789626
+        ]
+      },
+      "a_seat1": {
+        "games": 100,
+        "wins": 37.0,
+        "wilson": [
+          0.28182212569509163,
+          0.46779652424866885
+        ]
+      },
+      "seat_balanced_a_rate": 0.45,
+      "ci95_bootstrap": [
+        0.385,
+        0.52
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "frozen_before_results": true,
+  "panel": {
+    "dragapult": "frozen Dragapult control (official sample)",
+    "iono": "official Iono sample agent",
+    "mega_lucario": "official Mega Lucario control",
+    "mega_abomasnow": "official Mega Abomasnow control",
+    "__c014__": "c014 custom Archaludon package (exact archive)",
+    "__c015__": "c015 custom Iono package (exact archive)",
+    "__safe__": "deterministic safe control"
+  },
+  "stage_a": {
+    "safe_games": 40,
+    "dragapult_games": 80,
+    "seats": "balanced",
+    "seed_block": 160000
+  },
+  "stage_b": {
+    "dragapult": 200,
+    "iono": 100,
+    "mega_lucario": 100,
+    "mega_abomasnow": 100,
+    "__c014__": 100,
+    "__c015__": 100,
+    "seats": "balanced 50/50",
+    "seed_block": 160000
+  },
+  "confirmation": {
+    "dragapult": 200,
+    "field_total": 300,
+    "seed_block": 970000,
+    "note": "independent seed block, disjoint from Stage A/B"
+  },
+  "crossplay": {
+    "top_two_games": 300,
+    "seats": "balanced"
+  },
+  "stage_a_hard_gates": [
+    "zero invalid selections",
+    "zero uncaught exceptions",
+    "zero timeouts",
+    "deterministic replay on a fixed sample",
+    "no hidden-information access",
+    "no inference-time network access",
+    "package-equivalent execution",
+    "score rate >= 0.80 vs the deterministic safe control unless a documented simulator/deck asymmetry explains failure"
+  ],
+  "ranking_lexicographic": [
+    "1 passes reproduction fidelity (EXACT or FAITHFUL_CLEAN_ROOM)",
+    "2 passes all reliability and package-feasibility hard gates",
+    "3 score rate vs Dragapult on independent confirmation",
+    "4 mean score rate across official Iono, Mega Lucario, Mega Abomasnow on independent confirmation",
+    "5 direct cross-play vs the other finalist",
+    "6 lower p99 latency",
+    "7 stronger current public evidence quality"
+  ],
+  "base_conditions": {
+    "safe_control_min": 0.9,
+    "vs_c014_min": 0.65,
+    "vs_c014_min_games": 100,
+    "vs_c015_min": 0.65,
+    "vs_c015_min_games": 100,
+    "reliability_violations": 0,
+    "fidelity_in": [
+      "EXACT",
+      "FAITHFUL_CLEAN_ROOM"
+    ]
+  },
+  "strength_paths": {
+    "A": {
+      "vs_dragapult_min": 0.55,
+      "min_games": 400,
+      "wilson_lb_above": 0.5
+    },
+    "B": {
+      "vs_dragapult_min": 0.48,
+      "min_games": 400,
+      "field_mean_min": 0.55,
+      "field_min_games": 600,
+      "max_deficit_vs_dragapult_on_two_opponents": 0.1
+    },
+    "C": {
+      "requires": "EXACT + >=900-equivalent PUBLIC_CLAIM + source benchmark match within 10pp over >=200 games + (>=0.50 vs Dragapult or >=0.55 field mean) + explicit evidence-quality approval"
+    }
+  },
+  "aggregation": "identity-safe: every record carries candidate_id/opponent_id/seat/seed and is aggregated by those fields; results are never zipped positionally"
+}

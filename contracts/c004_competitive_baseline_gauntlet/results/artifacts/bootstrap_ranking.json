@@ -1,0 +1,58 @@
+{
+  "n_boot": 2000,
+  "candidates": {
+    "det_cabt": {
+      "strength_mean": 2.482589497616753,
+      "strength_ci95": [
+        1.9283462384775105,
+        3.2006375937110594
+      ],
+      "rank_frequency": {
+        "1": 0.5435,
+        "2": 0.4565,
+        "3": 0.0,
+        "4": 0.0
+      }
+    },
+    "det_starter": {
+      "strength_mean": 2.4561833033634533,
+      "strength_ci95": [
+        1.9092542535653458,
+        3.193631019716696
+      ],
+      "rank_frequency": {
+        "1": 0.4565,
+        "2": 0.5435,
+        "3": 0.0,
+        "4": 0.0
+      }
+    },
+    "random_cabt": {
+      "strength_mean": 0.2803319221222321,
+      "strength_ci95": [
+        0.18374378496604066,
+        0.3929046350127067
+      ],
+      "rank_frequency": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0025,
+        "4": 0.9975
+      }
+    },
+    "random_starter": {
+      "strength_mean": 0.6135526931025502,
+      "strength_ci95": [
+        0.4442437218021946,
+        0.8080719173697851
+      ],
+      "rank_frequency": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.9975,
+        "4": 0.0025
+      }
+    }
+  },
+  "method": "resample gauntlet games, refit regularized Bradley-Terry"
+}

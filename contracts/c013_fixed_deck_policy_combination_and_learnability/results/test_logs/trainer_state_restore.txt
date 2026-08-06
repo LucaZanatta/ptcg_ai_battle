@@ -1,0 +1,30 @@
+test_generator_state_round_trip_reproduces_the_exact_stream (tests.test_c013_continuation.ActiveGeneratorState.test_generator_state_round_trip_reproduces_the_exact_stream) ... ok
+test_legacy_global_state_would_not_have_caught_this (tests.test_c013_continuation.ActiveGeneratorState.test_legacy_global_state_would_not_have_caught_this)
+Negative control for the c011 defect: saving the legacy global and restoring it ... ok
+test_state_dict_names_the_generator_type (tests.test_c013_continuation.ActiveGeneratorState.test_state_dict_names_the_generator_type) ... ok
+test_forced_only_games_count_toward_the_budget (tests.test_c013_continuation.CompletedGameAccounting.test_forced_only_games_count_toward_the_budget) ... ok
+test_schema_declares_the_budget_quantity (tests.test_c013_continuation.CompletedGameAccounting.test_schema_declares_the_budget_quantity) ... ok
+test_a_per_path_cache_returns_a_stale_hash_on_the_fixed_path (tests.test_c013_continuation.ContentAddressedHashRefresh.test_a_per_path_cache_returns_a_stale_hash_on_the_fixed_path)
+Negative control: reproduce c012's actual failure mechanism. ... ok
+test_rewriting_a_fixed_path_yields_a_new_eval_path (tests.test_c013_continuation.ContentAddressedHashRefresh.test_rewriting_a_fixed_path_yields_a_new_eval_path) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c013_continuation.py:86: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpl_hnhnjx/eval_t_84029356610e.npz'>
+  self.assertEqual(open(d1, "rb").read(), b"first-version")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/luca/kaggle/ptcg_ai_battle/tests/test_c013_continuation.py:87: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmpl_hnhnjx/eval_t_0bf4f0c2fe25.npz'>
+  self.assertEqual(open(d2, "rb").read(), b"second-version")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_partial_restore_is_not_reported_as_literal_continuation (tests.test_c013_continuation.ContinuationKindIsHonest.test_partial_restore_is_not_reported_as_literal_continuation)
+`load` distinguishes a literal continuation from an optimizer-state-only one. A run ... ok
+test_required_fields_cover_every_carried_forward_repair (tests.test_c013_continuation.ContinuationKindIsHonest.test_required_fields_cover_every_carried_forward_repair) ... ok
+test_empty_is_none_not_zero (tests.test_c013_continuation.MedianBestPerSeed.test_empty_is_none_not_zero) ... ok
+test_ignores_missing_seeds_rather_than_scoring_them_zero (tests.test_c013_continuation.MedianBestPerSeed.test_ignores_missing_seeds_rather_than_scoring_them_zero) ... ok
+test_median_not_maximum (tests.test_c013_continuation.MedianBestPerSeed.test_median_not_maximum) ... ok
+test_all_unscored_raises_with_a_defect_histogram (tests.test_c013_continuation.ZeroScoredGamesIsFatal.test_all_unscored_raises_with_a_defect_histogram) ... ok
+test_partial_scoring_is_allowed_and_returns_only_scored (tests.test_c013_continuation.ZeroScoredGamesIsFatal.test_partial_scoring_is_allowed_and_returns_only_scored) ... ok
+test_silently_returning_none_would_not_have_been_caught (tests.test_c013_continuation.ZeroScoredGamesIsFatal.test_silently_returning_none_would_not_have_been_caught)
+Negative control for the c012 behaviour that disabled gates for a whole arm. ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.015s
+
+OK

@@ -1,0 +1,276 @@
+{
+  "B0_v2a": {
+    "major_regression_matchups": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "rule": "candidate <= teacher - 0.07 AND bootstrap P(regression) >= 0.90",
+    "per_matchup": {
+      "mega_lucario": {
+        "cand": 0.16999999999999998,
+        "teacher": 0.49,
+        "diff_pp": -32.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.42000000000000004,
+          -0.21999999999999997
+        ]
+      },
+      "iono": {
+        "cand": 0.16999999999999998,
+        "teacher": 0.6799999999999999,
+        "diff_pp": -51.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.6000000000000001,
+          -0.41
+        ]
+      },
+      "mega_abomasnow": {
+        "cand": 0.12,
+        "teacher": 0.56,
+        "diff_pp": -44.00000000000001,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5300000000000001,
+          -0.34
+        ]
+      },
+      "dragapult": {
+        "cand": 0.15,
+        "teacher": 0.55,
+        "diff_pp": -40.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5,
+          -0.3
+        ]
+      }
+    }
+  },
+  "R0_202": {
+    "major_regression_matchups": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "rule": "candidate <= teacher - 0.07 AND bootstrap P(regression) >= 0.90",
+    "per_matchup": {
+      "mega_lucario": {
+        "cand": 0.30000000000000004,
+        "teacher": 0.49,
+        "diff_pp": -18.999999999999993,
+        "prob_better": 0.0018,
+        "prob_regress_7pp": 0.9638,
+        "ci90": [
+          -0.30000000000000004,
+          -0.08000000000000002
+        ]
+      },
+      "iono": {
+        "cand": 0.01,
+        "teacher": 0.6799999999999999,
+        "diff_pp": -67.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.74,
+          -0.59
+        ]
+      },
+      "mega_abomasnow": {
+        "cand": 0.07,
+        "teacher": 0.56,
+        "diff_pp": -49.00000000000001,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5800000000000001,
+          -0.4
+        ]
+      },
+      "dragapult": {
+        "cand": 0.02,
+        "teacher": 0.55,
+        "diff_pp": -53.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.61,
+          -0.44999999999999996
+        ]
+      }
+    }
+  },
+  "R1_101": {
+    "major_regression_matchups": [
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "rule": "candidate <= teacher - 0.07 AND bootstrap P(regression) >= 0.90",
+    "per_matchup": {
+      "mega_lucario": {
+        "cand": 0.36,
+        "teacher": 0.49,
+        "diff_pp": -13.0,
+        "prob_better": 0.024,
+        "prob_regress_7pp": 0.798,
+        "ci90": [
+          -0.24000000000000005,
+          -0.020000000000000018
+        ]
+      },
+      "iono": {
+        "cand": 0.24,
+        "teacher": 0.6799999999999999,
+        "diff_pp": -43.99999999999999,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.54,
+          -0.33000000000000007
+        ]
+      },
+      "mega_abomasnow": {
+        "cand": 0.27,
+        "teacher": 0.56,
+        "diff_pp": -29.000000000000004,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 0.9984,
+        "ci90": [
+          -0.3999999999999999,
+          -0.18
+        ]
+      },
+      "dragapult": {
+        "cand": 0.15,
+        "teacher": 0.55,
+        "diff_pp": -40.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5,
+          -0.3
+        ]
+      }
+    }
+  },
+  "R2_101": {
+    "major_regression_matchups": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "rule": "candidate <= teacher - 0.07 AND bootstrap P(regression) >= 0.90",
+    "per_matchup": {
+      "mega_lucario": {
+        "cand": 0.26,
+        "teacher": 0.49,
+        "diff_pp": -23.0,
+        "prob_better": 0.0004,
+        "prob_regress_7pp": 0.9906,
+        "ci90": [
+          -0.3400000000000001,
+          -0.12
+        ]
+      },
+      "iono": {
+        "cand": 0.19,
+        "teacher": 0.6799999999999999,
+        "diff_pp": -48.99999999999999,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.59,
+          -0.39
+        ]
+      },
+      "mega_abomasnow": {
+        "cand": 0.16,
+        "teacher": 0.56,
+        "diff_pp": -40.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.5,
+          -0.3
+        ]
+      },
+      "dragapult": {
+        "cand": 0.13,
+        "teacher": 0.55,
+        "diff_pp": -42.00000000000001,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.52,
+          -0.32000000000000006
+        ]
+      }
+    }
+  },
+  "R2_303": {
+    "major_regression_matchups": [
+      "mega_lucario",
+      "iono",
+      "mega_abomasnow",
+      "dragapult"
+    ],
+    "rule": "candidate <= teacher - 0.07 AND bootstrap P(regression) >= 0.90",
+    "per_matchup": {
+      "mega_lucario": {
+        "cand": 0.32,
+        "teacher": 0.49,
+        "diff_pp": -17.0,
+        "prob_better": 0.005,
+        "prob_regress_7pp": 0.9266,
+        "ci90": [
+          -0.28,
+          -0.06
+        ]
+      },
+      "iono": {
+        "cand": 0.2,
+        "teacher": 0.6799999999999999,
+        "diff_pp": -47.99999999999999,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.58,
+          -0.3799999999999999
+        ]
+      },
+      "mega_abomasnow": {
+        "cand": 0.15000000000000002,
+        "teacher": 0.56,
+        "diff_pp": -41.0,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 1.0,
+        "ci90": [
+          -0.51,
+          -0.31
+        ]
+      },
+      "dragapult": {
+        "cand": 0.24,
+        "teacher": 0.55,
+        "diff_pp": -31.000000000000007,
+        "prob_better": 0.0,
+        "prob_regress_7pp": 0.9996,
+        "ci90": [
+          -0.41999999999999993,
+          -0.2
+        ]
+      }
+    }
+  }
+}

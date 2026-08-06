@@ -1,0 +1,190 @@
+{
+  "contract": "c007",
+  "c006_encoder_dims": {
+    "GDENSE": 328,
+    "GROWS": 2,
+    "ODENSE": 158,
+    "OROWS": 2,
+    "PREV": 52,
+    "card_feat": 52
+  },
+  "v2_encoder_dims": {
+    "CARD_FEAT": 52,
+    "N_BOARD": 12,
+    "SLOT_DYN": 36,
+    "N_HAND": 12,
+    "HAND_DYN": 2,
+    "N_DISCARD": 16,
+    "OPT_DENSE": 51,
+    "OPT_ROWS": 2,
+    "GLOBAL": 211,
+    "N_CTX": 49,
+    "N_OPTTYPE": 17,
+    "N_AREA": 13,
+    "vocab_size": 1270
+  },
+  "key_upgrades_over_c006": [
+    "per-slot board (12 explicit slots) vs c006 averaged active + bag-mean bench",
+    "exact hand & discard multisets (set encoders) vs c006 bag-mean vectors",
+    "cross-option set encoder vs c006 independent per-option scoring",
+    "actual previous selected-option identity in history vs c006 index-only prev",
+    "richer per-slot dynamics: HP/energy-type/status/KO-range/evolution-stack/prize-yield",
+    "zero-init id embedding residual for unseen legal cards vs c006 shared vocab embedding"
+  ],
+  "classification_counts": {
+    "represented_directly": 22,
+    "intentionally_omitted": 3,
+    "deterministically_transformed": 10,
+    "unavailable_hidden_or_privileged": 2
+  },
+  "fields": {
+    "current.turn": {
+      "class": "represented_directly",
+      "justification": "global turn_norm"
+    },
+    "current.turnActionCount": {
+      "class": "represented_directly",
+      "justification": "global"
+    },
+    "current.yourIndex(seat)": {
+      "class": "represented_directly",
+      "justification": "global seat"
+    },
+    "current.firstPlayer": {
+      "class": "represented_directly",
+      "justification": "global first-player flag"
+    },
+    "current.supporterPlayed": {
+      "class": "represented_directly",
+      "justification": "global"
+    },
+    "current.stadiumPlayed": {
+      "class": "represented_directly",
+      "justification": "global"
+    },
+    "current.energyAttached": {
+      "class": "represented_directly",
+      "justification": "global"
+    },
+    "current.retreated": {
+      "class": "represented_directly",
+      "justification": "global"
+    },
+    "current.result": {
+      "class": "intentionally_omitted",
+      "justification": "terminal outcome \u2014 excluded from inputs (label leakage); used only as the value-head training target"
+    },
+    "current.stadium": {
+      "class": "deterministically_transformed",
+      "justification": "presence flag in global; exact stadium card identity omitted (rare; the one strategically relevant stadium is derivable from options)"
+    },
+    "current.looking": {
+      "class": "deterministically_transformed",
+      "justification": "represented through LOOKING-area option cards when a look decision is live; transient otherwise"
+    },
+    "players[].active": {
+      "class": "represented_directly",
+      "justification": "per-slot board (self/opp active)"
+    },
+    "players[].bench": {
+      "class": "represented_directly",
+      "justification": "per-slot board, 5 explicit slots each side, never averaged"
+    },
+    "players[].benchMax": {
+      "class": "deterministically_transformed",
+      "justification": "bench occupancy encoded via slot presence + global bench counts"
+    },
+    "pokemon.id": {
+      "class": "represented_directly",
+      "justification": "card row -> semantic features + id embedding"
+    },
+    "pokemon.hp/maxHp": {
+      "class": "represented_directly",
+      "justification": "hp_norm, maxhp_norm, damage_norm, remaining_frac per slot"
+    },
+    "pokemon.appearThisTurn": {
+      "class": "represented_directly",
+      "justification": "per-slot flag"
+    },
+    "pokemon.energies": {
+      "class": "represented_directly",
+      "justification": "per-slot energy count + 12 energy-type counts"
+    },
+    "pokemon.energyCards": {
+      "class": "deterministically_transformed",
+      "justification": "count per slot; exact special-energy card identities omitted (low leverage vs energy-type counts)"
+    },
+    "pokemon.tools": {
+      "class": "deterministically_transformed",
+      "justification": "count + has_tool per slot; exact tool identity omitted (rare)"
+    },
+    "pokemon.preEvolution": {
+      "class": "deterministically_transformed",
+      "justification": "evolution-stack depth per slot"
+    },
+    "player.status(poisoned/burned/asleep/paralyzed/confused)": {
+      "class": "represented_directly",
+      "justification": "5 flags on active slots"
+    },
+    "players[me].hand": {
+      "class": "represented_directly",
+      "justification": "exact multiset (12-slot set encoder + dup counts + playable mask)"
+    },
+    "players[opp].hand": {
+      "class": "unavailable_hidden_or_privileged",
+      "justification": "hidden \u2014 only handCount is used"
+    },
+    "players[].discard": {
+      "class": "deterministically_transformed",
+      "justification": "most-recent-N set encoder + per-card-type count summary; full ordered history beyond window compressed to counts"
+    },
+    "players[].deckCount": {
+      "class": "represented_directly",
+      "justification": "global deck counts (both players)"
+    },
+    "deck_composition/order": {
+      "class": "unavailable_hidden_or_privileged",
+      "justification": "hidden; teacher's remaining-count inference is a privileged label"
+    },
+    "players[].prize": {
+      "class": "deterministically_transformed",
+      "justification": "prize COUNTS represented; face-down identities hidden"
+    },
+    "select.context": {
+      "class": "represented_directly",
+      "justification": "global context one-hot"
+    },
+    "select.minCount/maxCount": {
+      "class": "represented_directly",
+      "justification": "global"
+    },
+    "select.remainDamageCounter/remainEnergyCost": {
+      "class": "represented_directly",
+      "justification": "global"
+    },
+    "select.option": {
+      "class": "represented_directly",
+      "justification": "per-option dense features + 2 referenced card rows + set encoder"
+    },
+    "select.deck": {
+      "class": "represented_directly",
+      "justification": "DECK-area options resolve to card rows"
+    },
+    "select.contextCard": {
+      "class": "deterministically_transformed",
+      "justification": "reflected through option/context features"
+    },
+    "select.effect": {
+      "class": "intentionally_omitted",
+      "justification": "effect card identity omitted from global (Crispin reverse-scoring is captured through the option set); candidate future field"
+    },
+    "logs": {
+      "class": "deterministically_transformed",
+      "justification": "compressed to the actual previous-action identity in history; full event stream not sequence-encoded (stateless model; recurrence is future work)"
+    },
+    "search_begin_input": {
+      "class": "intentionally_omitted",
+      "justification": "opaque engine-state blob; used only for the branch-and-rollout capability probe, never featurized as a model input"
+    }
+  }
+}

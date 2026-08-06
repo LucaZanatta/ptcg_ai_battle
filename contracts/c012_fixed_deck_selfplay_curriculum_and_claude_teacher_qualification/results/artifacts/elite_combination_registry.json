@@ -1,0 +1,195 @@
+{
+  "note": "Registered BEFORE any combination result is seen (\u00a712). Equal weighting only; no post-result tuning.",
+  "components": {
+    "S_611_g40127": {
+      "sha256": "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed611/checkpoints/ckpt_g40127.npz"
+    },
+    "S_622_g39983": {
+      "sha256": "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed622/checkpoints/ckpt_g39983_terminal.npz"
+    },
+    "S_633_g30176": {
+      "sha256": "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54",
+      "checkpoint_path": "contracts/c011_fixed_deck_cuda_ppo_scale/results/artifacts/training/seed633/checkpoints/ckpt_g30176.npz"
+    }
+  },
+  "ensembles": {
+    "ENSEMBLE_611+622": {
+      "components": [
+        "S_611_g40127",
+        "S_622_g39983"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "rule": "equal logit averaging (\u00a712 first choice)",
+      "component_sha256": [
+        "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+        "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf"
+      ]
+    },
+    "ENSEMBLE_611+633": {
+      "components": [
+        "S_611_g40127",
+        "S_633_g30176"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "rule": "equal logit averaging (\u00a712 first choice)",
+      "component_sha256": [
+        "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+        "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54"
+      ]
+    },
+    "ENSEMBLE_622+633": {
+      "components": [
+        "S_622_g39983",
+        "S_633_g30176"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "rule": "equal logit averaging (\u00a712 first choice)",
+      "component_sha256": [
+        "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+        "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54"
+      ]
+    },
+    "ENSEMBLE_611+622+633": {
+      "components": [
+        "S_611_g40127",
+        "S_622_g39983",
+        "S_633_g30176"
+      ],
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "rule": "equal logit averaging (\u00a712 first choice)",
+      "component_sha256": [
+        "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+        "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+        "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54"
+      ]
+    }
+  },
+  "soups": {
+    "SOUP_611+622": {
+      "components": [
+        "S_611_g40127",
+        "S_622_g39983"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "rule": "equal arithmetic weight average (\u00a712)",
+      "component_sha256": [
+        "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+        "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf"
+      ],
+      "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_611+622.npz",
+      "sha256": "f3b9df0fd0b824bf6300d31195a9e034d2f0415fe2e19b757cb5162097b8fc6b",
+      "validation": {
+        "finite_weights": true,
+        "n_tensors": 32,
+        "smoke_game_terminal": true,
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "legal_masking_ok": true,
+        "smoke_seconds": 1.59,
+        "npz_reloads": true
+      }
+    },
+    "SOUP_611+633": {
+      "components": [
+        "S_611_g40127",
+        "S_633_g30176"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "rule": "equal arithmetic weight average (\u00a712)",
+      "component_sha256": [
+        "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+        "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54"
+      ],
+      "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_611+633.npz",
+      "sha256": "3ec38df78aecbcd53fa9ce6798d33a88e73c98c4c630e50a561aa6bff4214684",
+      "validation": {
+        "finite_weights": true,
+        "n_tensors": 32,
+        "smoke_game_terminal": true,
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "legal_masking_ok": true,
+        "smoke_seconds": 0.58,
+        "npz_reloads": true
+      }
+    },
+    "SOUP_622+633": {
+      "components": [
+        "S_622_g39983",
+        "S_633_g30176"
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "rule": "equal arithmetic weight average (\u00a712)",
+      "component_sha256": [
+        "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+        "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54"
+      ],
+      "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_622+633.npz",
+      "sha256": "65175672183e911bdd070c8453c4f04f0f4677641c9c72069ef3bb49c1691897",
+      "validation": {
+        "finite_weights": true,
+        "n_tensors": 32,
+        "smoke_game_terminal": true,
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "legal_masking_ok": true,
+        "smoke_seconds": 0.49,
+        "npz_reloads": true
+      }
+    },
+    "SOUP_611+622+633": {
+      "components": [
+        "S_611_g40127",
+        "S_622_g39983",
+        "S_633_g30176"
+      ],
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "rule": "equal arithmetic weight average (\u00a712)",
+      "component_sha256": [
+        "a92e5dfec94e98f8a9876190e49d906fea5d5e93ef9abbe35598ea4efe86b6c8",
+        "59011f64cfed3370b7404a3ab23e8fd9d9cbdfafdc7a902e4cf68032ad7214cf",
+        "91fb9244d9988077bf94e2bc110eba133821d4c50cb109c4a41aff8103fc4c54"
+      ],
+      "checkpoint_path": "contracts/c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification/results/artifacts/soups/SOUP_611+622+633.npz",
+      "sha256": "c6f864a9908a277a69bff96fd61933f72e874cb4715143b174b14bfb8db661af",
+      "validation": {
+        "finite_weights": true,
+        "n_tensors": 32,
+        "smoke_game_terminal": true,
+        "invalid_actions": 0,
+        "exceptions": 0,
+        "legal_masking_ok": true,
+        "smoke_seconds": 0.25,
+        "npz_reloads": true
+      }
+    }
+  }
+}

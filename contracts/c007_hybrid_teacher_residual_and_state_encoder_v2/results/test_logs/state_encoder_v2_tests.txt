@@ -1,0 +1,8 @@
+c007 AC-03 State Encoder v2 tests
+==================================================
+dims: {'CARD_FEAT': 52, 'N_BOARD': 12, 'SLOT_DYN': 36, 'N_HAND': 12, 'HAND_DYN': 2, 'N_DISCARD': 16, 'OPT_DENSE': 51, 'OPT_ROWS': 2, 'GLOBAL': 211, 'N_CTX': 49, 'N_OPTTYPE': 17, 'N_AREA': 13, 'vocab_size': 1270}
+decisions tested: 19050
+deterministic (encode twice identical): 19050/19050
+errors: 0   nonfinite: 0   shape_mismatch: 0
+feature classification: {'represented_directly': 22, 'intentionally_omitted': 3, 'deterministically_transformed': 10, 'unavailable_hidden_or_privileged': 2}
+ALL_PASS = True

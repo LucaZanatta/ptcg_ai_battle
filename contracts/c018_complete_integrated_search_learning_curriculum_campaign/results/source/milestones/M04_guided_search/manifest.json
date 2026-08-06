@@ -1,0 +1,102 @@
+{
+  "milestone": "M04_guided_search",
+  "title": "best trusted guided-search candidate",
+  "git_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "git_tree": "b8d7d4e12e2239b85bc00ba63cc2369ce64826b9",
+  "branch": "contract/c018_complete_integrated_search_learning_curriculum_campaign",
+  "sources": [
+    {
+      "path": "tools/c018_guided.py",
+      "present": true,
+      "sha256": "73662f99185e5198e0bbe0540a1b3492f5b2f7b2437b613fac03a3f124434396",
+      "bytes": 5706,
+      "note": null
+    },
+    {
+      "path": "tools/c018_search.py",
+      "present": true,
+      "sha256": "de136713d4884f17983e96fb59024a6a19304be00188e4818c7c61229ea02d52",
+      "bytes": 21622,
+      "note": null
+    }
+  ],
+  "configs": {
+    "beam_width": 3,
+    "max_candidates": 4,
+    "max_depth": 4,
+    "max_nodes": 40,
+    "max_ms_per_decision": 2500,
+    "max_match_ms": 60000,
+    "version": "c018.search.v1"
+  },
+  "config_hash": "1de8550665ef7226236796a49e97edb7",
+  "deck": {
+    "path": "cg/deck.csv",
+    "present": true,
+    "sha256": "42068a1803902756badcfd418f6f348b7901365a281d78af0692cbf2589f0799",
+    "bytes": 245,
+    "note": null
+  },
+  "checkpoints": [
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+      "present": true,
+      "sha256": "109558529f45c44e9a4f51a33e6738cfc63cdca45798e8eb8fbf92cdb6642f08",
+      "bytes": 4511078,
+      "note": null
+    }
+  ],
+  "result_artifacts": [
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/guided_latency.json",
+      "present": true,
+      "sha256": "a84f36807af167a0390a117a23751f37abbe3dd91b8b822be85f6740af55bb42",
+      "bytes": 544,
+      "note": null
+    },
+    {
+      "path": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/guidance_comparison.json",
+      "present": true,
+      "sha256": "c181cfd582a2229d5ed0acae30a53a134ca454aea034b75558782fd6de6ccff9",
+      "bytes": 10344,
+      "note": null
+    }
+  ],
+  "command": "python tools/c018_diagnostics.py",
+  "guided_latency": {
+    "budget_ms": 2500,
+    "policy": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m03_curriculum.npz",
+    "unguided": {
+      "n": 436,
+      "p50": 2.24,
+      "p90": 3.31,
+      "p99": 5.21,
+      "max": 95.14,
+      "mean": 2.72,
+      "searched": 436,
+      "decisions": 482
+    },
+    "guided": {
+      "n": 229,
+      "p50": 5.38,
+      "p90": 7.62,
+      "p99": 13.81,
+      "max": 108.99,
+      "mean": 6.3,
+      "searched": 229,
+      "decisions": 255
+    },
+    "leaf_rows_failed": 0,
+    "order_failed": 0,
+    "leaf_rows_ok": 832
+  },
+  "guidance_comparison": {
+    "roots": 301,
+    "same_roots": true,
+    "order_changed": 215,
+    "action_changed": 133,
+    "action_change_rate": 0.4419,
+    "leaf_rank_correlation": -0.0087,
+    "method": "both valuations computed on identical successors inside one search tree; no separate guided/unguided playthroughs"
+  }
+}

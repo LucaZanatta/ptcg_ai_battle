@@ -1,0 +1,93 @@
+{
+  "defects": [
+    {
+      "rank": 1,
+      "id": "D1_nested_clone_segfault",
+      "severity": "CRITICAL",
+      "block": "A",
+      "impact": "removes forward search from the campaign entirely",
+      "symptom": "SIGSEGV / core dump; parent episodes truncated after 1-2 decisions",
+      "root_cause": "env.clone() copies the Python wrapper but both wrappers address the same native libcg.so game state, so advancing a clone destroys the parent",
+      "fixed_in_repair_pass": true,
+      "fix": "abandoned forward simulation; search runs at depth 0 as a heuristic ranker",
+      "residual": "PERMANENT \u2014 this is a property of the simulator, not of c017 code. Probe P10 records it and every downstream artifact is tainted by it."
+    },
+    {
+      "rank": 2,
+      "id": "D4_none_board_slots",
+      "severity": "HIGH",
+      "block": "A",
+      "impact": "agent errored on the first decision of every game; 0 games completed",
+      "symptom": "AttributeError, visible only as engine agent status ERROR",
+      "root_cause": "empty bench/active slots arrive as None entries rather than absent entries",
+      "fixed_in_repair_pass": true,
+      "fix": "filter None slots in every zone reader",
+      "residual": "none"
+    },
+    {
+      "rank": 3,
+      "id": "D5_global_node_budget",
+      "severity": "HIGH",
+      "block": "A",
+      "impact": "249 of 266 searches aborted before scoring any candidate",
+      "symptom": "search silently fell through to the baseline fallback",
+      "root_cause": "the per-decision node cap was tested against a GLOBAL counter, so the budget was spent once for the entire run",
+      "fixed_in_repair_pass": true,
+      "fix": "per-decision node counter",
+      "residual": "none"
+    },
+    {
+      "rank": 4,
+      "id": "D3_none_reward_comparison",
+      "severity": "HIGH",
+      "block": "B",
+      "impact": "every game marked ERROR and its true outcome destroyed",
+      "symptom": "TypeError AFTER the episode ran; the except-block then overwrote the observed statuses with ERROR",
+      "root_cause": "rewards are None when an episode ends abnormally, and the error handler discarded the real evidence",
+      "fixed_in_repair_pass": true,
+      "fix": "compute outcome only when both rewards exist; never overwrite observed statuses",
+      "residual": "none",
+      "lesson": "the most damaging defect was in the ERROR HANDLING, not the pipeline: it destroyed the evidence needed to diagnose the others"
+    },
+    {
+      "rank": 5,
+      "id": "D2_sorted_over_none_ids",
+      "severity": "HIGH",
+      "block": "A",
+      "impact": "TypeError on every game during redaction",
+      "symptom": "0 of 8 games completed",
+      "root_cause": "sorted() over card ids where some entries are None",
+      "fixed_in_repair_pass": true,
+      "fix": "filter None before sorting",
+      "residual": "none"
+    },
+    {
+      "rank": 6,
+      "id": "D6_wrong_featuriser",
+      "severity": "MEDIUM",
+      "block": "C",
+      "impact": "distillation could not start",
+      "symptom": "KeyError 'global' from TorchPolicy.forward",
+      "root_cause": "features were captured with cg.policy_features while TorchPolicy consumes the state_encoder_v2 representation; the two are not interchangeable",
+      "fixed_in_repair_pass": true,
+      "fix": "capture state_encoder_v2 features and pad ragged option arrays to a fixed width",
+      "residual": "none"
+    }
+  ],
+  "n_defects": 6,
+  "ranked_by": "impact on the campaign's ability to run the vertical at all",
+  "consolidated_repair_pass": {
+    "performed": true,
+    "passes_used": 1,
+    "allowed": 1,
+    "fixed": [
+      "D1_nested_clone_segfault",
+      "D4_none_board_slots",
+      "D5_global_node_budget",
+      "D3_none_reward_comparison",
+      "D2_sorted_over_none_ids",
+      "D6_wrong_featuriser"
+    ],
+    "note": "\u00a77 allows at most one consolidated repair pass. All six defects were repaired in that single pass; the first is permanently unfixable because it is a simulator property."
+  }
+}

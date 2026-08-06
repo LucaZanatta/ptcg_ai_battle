@@ -1,0 +1,179 @@
+{
+  "overall_seat0_winrate": 0.54,
+  "pairs": {
+    "det_cabt__vs__det_starter": {
+      "a": "det_cabt",
+      "b": "det_starter",
+      "games": 200,
+      "a_seat0": {
+        "games": 100,
+        "wins": 57.0,
+        "rate": 0.57,
+        "wilson": [
+          0.4721521169586435,
+          0.6626686099947162
+        ]
+      },
+      "a_seat1": {
+        "games": 100,
+        "wins": 42.0,
+        "rate": 0.42,
+        "wilson": [
+          0.327982249185113,
+          0.5179369200110473
+        ]
+      },
+      "seat_balanced_a_rate": 0.495,
+      "ci95_bootstrap": [
+        0.43,
+        0.56
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "det_cabt__vs__random_cabt": {
+      "a": "det_cabt",
+      "b": "random_cabt",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 19.0,
+        "rate": 0.95,
+        "wilson": [
+          0.7638641064874331,
+          0.9911187805671268
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 16.0,
+        "rate": 0.8,
+        "wilson": [
+          0.5839782779742401,
+          0.9193436467288
+        ]
+      },
+      "seat_balanced_a_rate": 0.875,
+      "ci95_bootstrap": [
+        0.7749999999999999,
+        0.975
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "det_cabt__vs__random_starter": {
+      "a": "det_cabt",
+      "b": "random_starter",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 18.0,
+        "rate": 0.9,
+        "wilson": [
+          0.6989617935882066,
+          0.9721341060158468
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 16.0,
+        "rate": 0.8,
+        "wilson": [
+          0.5839782779742401,
+          0.9193436467288
+        ]
+      },
+      "seat_balanced_a_rate": 0.8500000000000001,
+      "ci95_bootstrap": [
+        0.7250000000000001,
+        0.95
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "det_starter__vs__random_cabt": {
+      "a": "det_starter",
+      "b": "random_cabt",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 17.0,
+        "rate": 0.85,
+        "wilson": [
+          0.6395767041130426,
+          0.9476322080405041
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 19.0,
+        "rate": 0.95,
+        "wilson": [
+          0.7638641064874331,
+          0.9911187805671268
+        ]
+      },
+      "seat_balanced_a_rate": 0.8999999999999999,
+      "ci95_bootstrap": [
+        0.8,
+        0.975
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "det_starter__vs__random_starter": {
+      "a": "det_starter",
+      "b": "random_starter",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 15.0,
+        "rate": 0.75,
+        "wilson": [
+          0.5312949900419365,
+          0.888139947210597
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 16.0,
+        "rate": 0.8,
+        "wilson": [
+          0.5839782779742401,
+          0.9193436467288
+        ]
+      },
+      "seat_balanced_a_rate": 0.775,
+      "ci95_bootstrap": [
+        0.6499999999999999,
+        0.9
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    },
+    "random_cabt__vs__random_starter": {
+      "a": "random_cabt",
+      "b": "random_starter",
+      "games": 40,
+      "a_seat0": {
+        "games": 20,
+        "wins": 5.0,
+        "rate": 0.25,
+        "wilson": [
+          0.11186005278940309,
+          0.4687050099580636
+        ]
+      },
+      "a_seat1": {
+        "games": 20,
+        "wins": 6.0,
+        "rate": 0.3,
+        "wilson": [
+          0.14547527396899385,
+          0.5189767762289793
+        ]
+      },
+      "seat_balanced_a_rate": 0.275,
+      "ci95_bootstrap": [
+        0.15,
+        0.425
+      ],
+      "interval_method": "stratified_percentile_bootstrap_2000"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "checked_utc": "2026-07-26T15:31:50.708197+00:00",
+  "checked_europe_rome": "2026-07-26T17:31:50.708197+02:00",
+  "c014_accessed_utc": "2026-07-26T15:00:57.090076+00:00",
+  "hours_since_c014_access": 0.515,
+  "elapsed_hours": 0.033,
+  "time_box_hours": [
+    1,
+    2
+  ],
+  "within_time_box": true,
+  "checked": {
+    "competition_rules_or_deadline": {
+      "c014": "2026-08-16 23:59:00",
+      "now": "2026-08-16 23:59:00",
+      "changed": false
+    },
+    "submission_limit": {
+      "status": "still not scrapeable (client-rendered rules page); c015 makes exactly one upload so it remains non-binding",
+      "changed": false
+    },
+    "new_top_agent_episode_dataset": {
+      "checked": true,
+      "found": [],
+      "changed": false
+    },
+    "new_public_notebooks": {
+      "n_new_since_c014_snapshot": 12,
+      "refs": [
+        "prvsiyan/ptcg-visible-field-router-v3",
+        "prvsiyan/ptcg-ai-battle-static-deck-tusk-1208-v24",
+        "prvsiyan/ptcg-ai-battle-visible-grim-belief-alakazam-v23",
+        "prvsiyan/ptcg-ai-battle-visible-grim-belief-alakazam-v22",
+        "prvsiyan/ptcg-ai-battle-visible-grim-belief-alakazam-v21",
+        "prvsiyan/ptcg-ai-battle-visible-grim-belief-alakazam-v20",
+        "prvsiyan/ptcg-ai-battle-visible-templates-alakazam-v19",
+        "prvsiyan/ptcg-ai-battle-visible-grim-belief-alakazam-v18",
+        "prvsiyan/ptcg-observable-meta-router-v1",
+        "prvsiyan/ptcg-rocket-spidops-replay-fine-tune-v2"
+      ],
+      "changed": true
+    },
+    "dominant_archetype_evidence": {
+      "status": "unchanged; c014's 06-29 snapshot was updated the same day it was read and remains the freshest meta source",
+      "changed": false
+    },
+    "c014_submission_status": {
+      "ref": "55004756",
+      "status_at_c014": "COMPLETE",
+      "status_now": "SubmissionStatus.COMPLETE",
+      "score_at_c014": "600.0",
+      "score_now": "754.5",
+      "changed": true
+    }
+  },
+  "material_changes": [
+    {
+      "kind": "c014_score_updated",
+      "was": "600.0",
+      "now": "754.5"
+    }
+  ],
+  "n_material_changes": 1,
+  "conclusion": "material changes recorded above"
+}

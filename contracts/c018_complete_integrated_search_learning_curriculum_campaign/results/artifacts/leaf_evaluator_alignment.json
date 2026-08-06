@@ -1,0 +1,60 @@
+{
+  "question": "which leaf evaluator is better aligned with actually winning?",
+  "why_it_matters": "a forward search maximises whatever its leaf evaluator says. If that value is only weakly related to winning, more search depth optimises the wrong thing harder -- which is the mechanism that would explain search failing to beat its own baseline.",
+  "n_trusted_decisions": 42857,
+  "heuristic_leaf_vs_outcome": {
+    "pearson": 0.1804,
+    "spearman": 0.1193,
+    "binned": [
+      {
+        "range": [
+          -1,
+          -0.3
+        ],
+        "n": 4464,
+        "mean_outcome": 0.162
+      },
+      {
+        "range": [
+          -0.3,
+          -0.1
+        ],
+        "n": 9314,
+        "mean_outcome": 0.1544
+      },
+      {
+        "range": [
+          -0.1,
+          0.1
+        ],
+        "n": 21701,
+        "mean_outcome": 0.1926
+      },
+      {
+        "range": [
+          0.1,
+          0.3
+        ],
+        "n": 6236,
+        "mean_outcome": 0.2776
+      },
+      {
+        "range": [
+          0.3,
+          1.01
+        ],
+        "n": 1142,
+        "mean_outcome": 0.7907
+      }
+    ],
+    "monotonic": false
+  },
+  "learned_value_vs_outcome": {
+    "pearson": 0.284,
+    "note": "from P10 held-out metrics, same observational shape, directly comparable"
+  },
+  "heuristic_vs_learned_rank_correlation": -0.0087,
+  "finding": "The LEARNED value head is better correlated with actual outcomes (0.284) than the hand-written heuristic (0.180 pearson, 0.119 spearman), and the two are essentially uncorrelated with each other (-0.0087). The heuristic is also NON-MONOTONIC at the bottom of its range: decisions it scores in [-1.0,-0.3) win more often than those in [-0.3,-0.1). This reverses the expectation stated earlier in this campaign that learned leaf values would be the weaker component -- P10 measured the learned head against a CONSTANT baseline on MSE, which punishes its overconfidence, but a search leaf evaluator needs ordering, and on ordering it is the better of the two.",
+  "prediction_this_licenses": "m04_guided_search should NOT be assumed worse than m01_heuristic_search. The panel decides it; this artifact records the expectation BEFORE the panel result is known.",
+  "caveat": "observational: leaf value at a decision versus that game's eventual result, with no control for game length or position difficulty. Both evaluators are measured the same way, so the COMPARISON is fair even though neither number is causal."
+}

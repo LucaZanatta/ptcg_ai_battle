@@ -1,0 +1,10 @@
+=== Kaggle submission (SUBMISSION_B upload) ===
+KAGGLE_UPLOAD = SKIPPED_BY_GATE
+
+No `kaggle competitions submit` command was executed. SUBMISSION_B = DO_NOT_SUBMIT
+because BEST_STUDENT = NONE (neither distilled student is non-inferior to the frozen
+teacher: one-sided 95% lower bounds S1=0.085, S2=0.125, both far below the 0.45
+threshold). Per the contract, no upload is performed when the gate is DO_NOT_SUBMIT.
+
+Had the gate returned SUBMIT, the exact command is recorded in
+artifacts/KAGGLE_SUBMIT_COMMAND.txt. No credentials were used or exposed.

@@ -1,0 +1,24 @@
+{
+  "stage": "POLICY_DISTILLED_REAL_SEARCH",
+  "candidate_id": "m02_distilled_policy",
+  "description": "the search-distilled policy playing directly; isolates what distillation alone bought",
+  "produced": true,
+  "checkpoint": "m02_distilled.npz",
+  "checkpoint_sha256": "2e309fe67ddcc1012873c734b5d0c4a2e3cb20ede10205ac75a65aea9d3857c2",
+  "panel_result": {
+    "games": 400,
+    "overall_rate": 0.175,
+    "overall_ci": [
+      0.1409,
+      0.2153
+    ],
+    "worst_matchup": "dragapult",
+    "worst_matchup_rate": 0.12
+  },
+  "package": null,
+  "package_sha256": null,
+  "clean_extraction_ok": null,
+  "submittable": false,
+  "status": "NON_SUBMITTABLE",
+  "reason": "no clean-validated inference-only package exists for this stage; it is evaluated and archived but cannot be uploaded"
+}

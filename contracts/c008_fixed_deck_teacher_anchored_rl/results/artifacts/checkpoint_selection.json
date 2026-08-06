@@ -1,0 +1,150 @@
+{
+  "per_seed": {
+    "R0/seed101": {
+      "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed101/checkpoints/ckpt_g2556.npz",
+      "games": 2556,
+      "validation_blend": 0.20500000000000002,
+      "scores": {
+        "teacher": 0.05,
+        "lucario": 0.42500000000000004,
+        "iono": 0.07500000000000001,
+        "control": 0.6
+      },
+      "stop_reason": "R0_weak_vs_all_at_5000"
+    },
+    "R0/seed202": {
+      "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed202/checkpoints/ckpt_g10143.npz",
+      "games": 10143,
+      "validation_blend": 0.16625,
+      "scores": {
+        "teacher": 0.0,
+        "lucario": 0.42500000000000004,
+        "iono": 0.0,
+        "control": 0.6
+      },
+      "stop_reason": "budget_reached"
+    },
+    "R1/seed101": {
+      "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed101/checkpoints/ckpt_g10040.npz",
+      "games": 10040,
+      "validation_blend": 0.405,
+      "scores": {
+        "teacher": 0.325,
+        "lucario": 0.42500000000000004,
+        "iono": 0.275,
+        "control": 1.0
+      },
+      "stop_reason": "R1_reject_at_20000"
+    },
+    "R1/seed202": {
+      "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed202/checkpoints/ckpt_g5130.npz",
+      "games": 5130,
+      "validation_blend": 0.3375,
+      "scores": {
+        "teacher": 0.225,
+        "lucario": 0.325,
+        "iono": 0.32499999999999996,
+        "control": 0.8500000000000001
+      },
+      "stop_reason": "R1_reject_at_10000"
+    },
+    "R2/seed101": {
+      "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R2/seed101/checkpoints/ckpt_g2534.npz",
+      "games": 2534,
+      "validation_blend": 0.305,
+      "scores": {
+        "teacher": 0.225,
+        "lucario": 0.35,
+        "iono": 0.15,
+        "control": 0.9
+      },
+      "stop_reason": "R2_reject_at_10000"
+    },
+    "R2/seed202": {
+      "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R2/seed202/checkpoints/ckpt_g20083.npz",
+      "games": 20083,
+      "validation_blend": 0.31125,
+      "scores": {
+        "teacher": 0.1,
+        "lucario": 0.42500000000000004,
+        "iono": 0.30000000000000004,
+        "control": 0.9
+      },
+      "stop_reason": "R2_reject_at_20000"
+    },
+    "R2/seed303": {
+      "selected_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R2/seed303/checkpoints/ckpt_g5054.npz",
+      "games": 5054,
+      "validation_blend": 0.335,
+      "scores": {
+        "teacher": 0.3,
+        "lucario": 0.275,
+        "iono": 0.22499999999999998,
+        "control": 0.9
+      },
+      "stop_reason": "R2_reject_at_20000"
+    }
+  },
+  "per_arm": {
+    "R0": {
+      "representative_seed": 202,
+      "representative_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/checkpoints/R0_representative.npz",
+      "source_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R0/seed202/checkpoints/ckpt_g10143.npz",
+      "median_validation_blend": 0.16625,
+      "all_seed_blends": {
+        "101": 0.20500000000000002,
+        "202": 0.16625
+      },
+      "all_seed_games": {
+        "101": 5067,
+        "202": 10143
+      },
+      "all_seed_stop_reasons": {
+        "101": "R0_weak_vs_all_at_5000",
+        "202": "budget_reached"
+      },
+      "learning_curve_stable_2plus_seeds": false
+    },
+    "R1": {
+      "representative_seed": 202,
+      "representative_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/checkpoints/R1_representative.npz",
+      "source_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R1/seed202/checkpoints/ckpt_g5130.npz",
+      "median_validation_blend": 0.3375,
+      "all_seed_blends": {
+        "101": 0.405,
+        "202": 0.3375
+      },
+      "all_seed_games": {
+        "101": 20050,
+        "202": 10125
+      },
+      "all_seed_stop_reasons": {
+        "101": "R1_reject_at_20000",
+        "202": "R1_reject_at_10000"
+      },
+      "learning_curve_stable_2plus_seeds": true
+    },
+    "R2": {
+      "representative_seed": 202,
+      "representative_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/checkpoints/R2_representative.npz",
+      "source_checkpoint": "contracts/c008_fixed_deck_teacher_anchored_rl/results/artifacts/training/R2/seed202/checkpoints/ckpt_g20083.npz",
+      "median_validation_blend": 0.31125,
+      "all_seed_blends": {
+        "101": 0.305,
+        "202": 0.31125,
+        "303": 0.335
+      },
+      "all_seed_games": {
+        "101": 10115,
+        "202": 20083,
+        "303": 20083
+      },
+      "all_seed_stop_reasons": {
+        "101": "R2_reject_at_10000",
+        "202": "R2_reject_at_20000",
+        "303": "R2_reject_at_20000"
+      },
+      "learning_curve_stable_2plus_seeds": false
+    }
+  }
+}

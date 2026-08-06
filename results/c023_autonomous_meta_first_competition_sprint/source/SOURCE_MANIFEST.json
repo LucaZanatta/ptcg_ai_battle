@@ -1,16 +1,16 @@
 {
-  "utc": "2026-08-03T18:05:31Z",
+  "utc": "2026-08-05T22:27:22Z",
   "git": {
-    "commit": "65b16788f0de8f603f056c68cba5c930aac78843",
+    "commit": "aac420c280d64c098056f85d0faf00f2d65bd188",
     "branch": "contract/c023_autonomous_meta_first_competition_sprint",
     "merge_base_with_main": "82faa29929e28bbd287461bcac5d28574bdbc05a",
-    "dirty_tracked": false
+    "dirty_tracked": true
   },
   "c023_source_files": [
     {
       "path": "tools/c023_extract_kernels.py",
-      "sha256": "cae3af14443c81fce378473ab2a46ee5a5d9c15b9a93400604c134fe48a1f2de",
-      "bytes": 8339
+      "sha256": "2c63cc63188a411d7aab71ca1e3dca0a23ca43c4b3c1eb4e4e8d07386c1b06b0",
+      "bytes": 8471
     },
     {
       "path": "tools/c023_eval.py",
@@ -54,13 +54,13 @@
     },
     {
       "path": "tools/c023_validate.py",
-      "sha256": "93d2fc35e6867b78ad80985c70f5a11c9d7c08f41d7aa6c2afecd69126522f3c",
-      "bytes": 17909
+      "sha256": "e85f57ba6441027c6107bbffe04f0b9bfc50211b20b05b6120b6fed762b50ea4",
+      "bytes": 19504
     },
     {
       "path": "tools/c023_reports.py",
-      "sha256": "a49ef1a0421ede3f1b22ada2a483ec9ce72518375a362610f3814fe178bc0d52",
-      "bytes": 14117
+      "sha256": "b299d75a5e50fec4a2a42d20fe49ca97bf4556b1fd932d3a31f1a13a03fd284c",
+      "bytes": 15312
     },
     {
       "path": "tools/c023_capture.py",
@@ -69,8 +69,8 @@
     },
     {
       "path": "starter_kit/c023_players.py",
-      "sha256": "deed2b87dc5037f721c970a35178604594caecbcc1b02c08e7a7fa6386cbf1d3",
-      "bytes": 7724
+      "sha256": "d12c6892aaa66a2e51cbb1ee5bcc3b0d0c7d297249c99fd51a706e8cc17f73e0",
+      "bytes": 9769
     },
     {
       "path": "starter_kit/c023_wrapper_main.py",
@@ -86,20 +86,20 @@
   "archives": [
     {
       "path": "results/c023_autonomous_meta_first_competition_sprint/source/c023_source.tar.gz",
-      "sha256": "cf731696581a5687b831f81c3c1241077308fab6e69a01cb118818270438c715",
-      "bytes": 51864
+      "sha256": "243a4c28dfb9878d9efdc5f722818f8ac1ee353804a374b1f793802f88a7c842",
+      "bytes": 53555
     },
     {
       "path": "results/c023_autonomous_meta_first_competition_sprint/source/repo_python_source.tar.gz",
-      "sha256": "956c392478ec3b3b41212043b406689552cb7072ca3976d5b06e83b2fbb295e9",
-      "bytes": 1414935
+      "sha256": "04d8e4dcf191c9b8d1b051b3e6ae9deb10155fc381b1cb7f5731aaaaa9740c13",
+      "bytes": 1421827
     }
   ],
   "environment": {
     "python": "3.13.13",
     "platform": "Linux luca 6.17.0-40-generic #40~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Jun 23 16:48:12 UTC 2 x86_64 x86_64 x86_64 GNU/Linux",
     "nproc": 24,
-    "kaggle_environments": "[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: Successfully loaded OpenSpiel environments: 31.\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_amazons\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_backgammon\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_ant_foraging\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_checkers\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_chess\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_clobber\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game_arena\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_connect_four\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dark_hex\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dots_and_boxes\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_gin_rummy\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_go\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_goofspiel\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_havannah\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hearts\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hex\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_lines_of_action\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_mancala\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_matching_pennies_3p\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_negotiation\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_oshi_zumo\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_othello\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_game\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_ultimate_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.\n<function version at 0x7d1662f90860>",
+    "kaggle_environments": "[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: Successfully loaded OpenSpiel environments: 31.\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_amazons\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_backgammon\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_ant_foraging\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_checkers\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_chess\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_clobber\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_coin_game_arena\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_connect_four\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dark_hex\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_dots_and_boxes\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_gin_rummy\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_go\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_goofspiel\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_havannah\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hearts\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_hex\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_lines_of_action\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_mancala\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_matching_pennies_3p\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_negotiation\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_oshi_zumo\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_othello\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_game\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_ultimate_tic_tac_toe\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_snake\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_y\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_universal_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_repeated_poker\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO:    open_spiel_python_repeated_pokerkit\n[kaggle_environments.envs.open_spiel_env.open_spiel_env] INFO: OpenSpiel games skipped: 0.\n<function version at 0x7ee328304860>",
     "libcg_sha256": "75d7d619b56e5ad4c5caeadc698e61faecc650678dceab52ad687f08d5676beb"
   }
 }

@@ -1,0 +1,93 @@
+{
+  "milestone": "M02",
+  "probe_ids": [
+    "P09",
+    "P10"
+  ],
+  "device": "cuda",
+  "cuda_available": true,
+  "torch_version": "2.13.0+cu132",
+  "data_prefix": "vertical",
+  "trusted_rows_only": true,
+  "trusted_index_agrees_with_flag": true,
+  "rows_total": 265,
+  "rows_trusted": 233,
+  "rows_excluded_label_beyond_kmax": 0,
+  "k_max": 32,
+  "train_rows": 133,
+  "validation_rows": 34,
+  "test_rows": 66,
+  "epochs": 2,
+  "batch_size": 256,
+  "lr": 0.0003,
+  "optimizer_steps": 2,
+  "losses_finite": true,
+  "checkpoint_sha256_before": "f476b862eeb0ce2e4b8a64272bc5310426fe1c851b1a3557b65d36ec3e185023",
+  "checkpoint_sha256_after": "f761c4ce1e156ee72444b51a2d84412ab922e41900184bda081ff840fe51d35c",
+  "checkpoint_changed": true,
+  "distinct_epoch_hashes": 3,
+  "reload_hash_matches": true,
+  "reload_metrics_identical": true,
+  "checkpoint_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/vertical_distill.pt",
+  "checkpoint_file_sha256": "baa44b814b2baa62f749f7fb5dac2e2b232b949407158d313771eb450d7e7326",
+  "continues_c017_checkpoint": false,
+  "uses_c017_labels": false,
+  "final_validation": {
+    "n": 34,
+    "policy_loss": 1.376179,
+    "value_mse": 0.00019,
+    "top1_agreement": 0.4118,
+    "legal_prediction_rate": 1.0
+  },
+  "held_out_test": {
+    "n": 66,
+    "policy_loss": 1.815134,
+    "value_mse": 0.000174,
+    "top1_agreement": 0.1818,
+    "legal_prediction_rate": 1.0
+  },
+  "metric_note": "top1_agreement is FIRST-PICK agreement: the stored label is label_action[0], so multi-select decisions are scored on their first chosen option only, not on the whole selection.",
+  "multiselect_rows": 0,
+  "held_out_test_from_reload": {
+    "n": 66,
+    "policy_loss": 1.815134,
+    "value_mse": 0.000174,
+    "top1_agreement": 0.1818,
+    "legal_prediction_rate": 1.0
+  },
+  "history": [
+    {
+      "epoch": 0,
+      "optimizer_steps_cumulative": 1,
+      "batches": 1,
+      "train_policy_loss": 1.690277,
+      "train_value_loss": 0.045007,
+      "validation": {
+        "n": 34,
+        "policy_loss": 1.376179,
+        "value_mse": 0.00019,
+        "top1_agreement": 0.4118,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "f761c4ce1e156ee72444b51a2d84412ab922e41900184bda081ff840fe51d35c",
+      "elapsed_s": 0.5
+    },
+    {
+      "epoch": 1,
+      "optimizer_steps_cumulative": 2,
+      "batches": 1,
+      "train_policy_loss": 1.689826,
+      "train_value_loss": 0.043874,
+      "validation": {
+        "n": 34,
+        "policy_loss": 1.37601,
+        "value_mse": 0.000528,
+        "top1_agreement": 0.2941,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "cf12212490c8b39149b549cace9f1897eb16b9a6b84756ab3f48cc5f2b215da6",
+      "elapsed_s": 0.5
+    }
+  ],
+  "wall_clock_s": 0.5
+}

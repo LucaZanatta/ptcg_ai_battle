@@ -1,0 +1,63 @@
+{
+  "probe_id": "P30",
+  "name": "end_to_end_real_smoke",
+  "status": "PASS",
+  "source_commit": "4cbae35888b21cbfccb6ebf4f5f5bfc5e05bd757",
+  "config_hash": null,
+  "checks": {
+    "stages": [
+      {
+        "stage": "official search root",
+        "real_output": true,
+        "evidence": "233 real search_begin roots"
+      },
+      {
+        "stage": "multi-step successor trace",
+        "real_output": true,
+        "evidence": "3274 search_step calls, depth 4, 1858 distinct successors"
+      },
+      {
+        "stage": "real search trajectory",
+        "real_output": true,
+        "evidence": "233 trusted decisions in contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/vertical_trajectories.jsonl.gz"
+      },
+      {
+        "stage": "supervised optimizer step",
+        "real_output": true,
+        "evidence": "2 steps on cuda, checkpoint hash changed: True"
+      },
+      {
+        "stage": "actual PPO game and optimizer step",
+        "real_output": true,
+        "evidence": "200 real games, 88 optimizer steps, 3 distinct hashes"
+      },
+      {
+        "stage": "guided-search inference",
+        "real_output": true,
+        "evidence": "guided p90 8.02 ms vs unguided 3.31 ms; 258 shared roots compared"
+      },
+      {
+        "stage": "evaluator",
+        "real_output": true,
+        "evidence": "16/16 panel games scored from raw identity-carrying rows"
+      },
+      {
+        "stage": "package smoke",
+        "real_output": true,
+        "evidence": "4/4 games from a clean extraction with the repo off sys.path"
+      }
+    ],
+    "defects": [
+      "search_begin rejected under-length hidden-card predictions (2 begin + 49 step errors); the determinizer now tops short pools up with a legal card id and predicts a Pokemon for a face-down opponent Active",
+      "kaggle_environments errors out the seat when handed the official teacher callable directly, which silently scored the baseline panel candidate 0 for 0",
+      "clean-extraction validation could not import cg.teachers for its opponents, because the package's own cg correctly shadows the repo's; opponents now load by file path",
+      "NpzFile decompresses on every key access, so reading opt_dense inside a 12k-row generator made P07 spin for five minutes",
+      "the evidence validator returned PASS with every training milestone absent -- absence is now a critical failure in --final mode rather than a free pass"
+    ]
+  },
+  "taints": [],
+  "submission_blocker": false,
+  "raw_evidence": [
+    "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/artifacts/thin_vertical.json"
+  ]
+}

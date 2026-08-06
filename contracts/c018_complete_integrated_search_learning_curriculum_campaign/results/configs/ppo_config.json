@@ -1,0 +1,13 @@
+{
+  "gamma": 0.997,
+  "lam": 0.95,
+  "clip": 0.2,
+  "vf_coef": 0.5,
+  "max_grad_norm": 0.5,
+  "epochs": 4,
+  "minibatch": 256,
+  "learning_rate": 3e-05,
+  "weight_decay": 1e-05,
+  "entropy_coef_start": 0.006,
+  "entropy_coef_end": 0.002
+}

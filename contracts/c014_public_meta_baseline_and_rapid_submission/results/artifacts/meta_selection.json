@@ -1,0 +1,28 @@
+{
+  "selected_archetype": "Archaludon ex / Cinderace metal tempo",
+  "selected_deck_file": "selected_deck.csv",
+  "selected_deck_sha256": "42165967b565dd42ec426ecccfe79bfa7d72aa8306590e149dface0ee8bd530e",
+  "deck_cards": 60,
+  "deck_distinct": 15,
+  "is_dragapult": false,
+  "branch_thesis": "Open with Cinderace in the Active Spot to attack for 50 while it loads three Basic Energy onto a benched Duraludon, then evolve into Archaludon ex - which recovers two more {M} from the discard as it evolves - and win the damage race with a 220-damage attack that also cancels its own Fire weakness.",
+  "candidates_compared": [
+    "Archaludon ex / Cinderace",
+    "Starmie",
+    "Alakazam / Dunsparce",
+    "Mega Lucario ex"
+  ],
+  "rejected": {
+    "Starmie": "no exact 60-card list published in any retrieved public source (dimension 3)",
+    "Alakazam / Dunsparce": "Stage 2 main attacker, 23 distinct cards, neutral 50.1% score rate (dimensions 2,4,7)",
+    "Mega Lucario ex": "declining public relevance per the 06-29 snapshot (dimension 1,6)"
+  },
+  "expected_difficult_matchup": "Fire. Archaludon ex is weak to {R} and Metal Defender suppresses weakness only during the opponent's NEXT turn, leaving the evolve-turn exposed.",
+  "anti_meta_provisional": "Punish the metal lane with a fast {R} attacker that removes Duraludon before it evolves and exploits the evolve-turn weakness gap - recorded only, not implemented.",
+  "public_mining_elapsed_hours": 0.143,
+  "time_box_hours": [
+    4,
+    6
+  ],
+  "within_time_box": true
+}

@@ -1,0 +1,22 @@
+{
+  "baseline": "immutability_baseline_pre_c016.json, captured at c016 START before any edit",
+  "why_this_baseline": "a baseline written during the run would compare disk against a snapshot of that same disk and could never detect a change made DURING c016",
+  "files_per_contract": {
+    "c005_teacher_import_submission_and_dataset": 250,
+    "c006_distilled_policy_baseline": 114,
+    "c007_hybrid_teacher_residual_and_state_encoder_v2": 153,
+    "c008_fixed_deck_teacher_anchored_rl": 193,
+    "c009_amendment_c008": 79,
+    "c010_fixed_deck_rl_loop_v2": 241,
+    "c011_fixed_deck_cuda_ppo_scale": 211,
+    "c012_fixed_deck_selfplay_curriculum_and_claude_teacher_qualification": 299,
+    "c013_fixed_deck_policy_combination_and_learnability": 262,
+    "c014_public_meta_baseline_and_rapid_submission": 71,
+    "c015_anti_meta_deck_agent_v0": 65
+  },
+  "files_checked": 1938,
+  "modified": [],
+  "missing": [],
+  "c005_to_c015_unmodified": true,
+  "no_tracked_file_missing": true
+}

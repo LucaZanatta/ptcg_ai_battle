@@ -1,0 +1,42 @@
+{
+  "schema": "c013.v1",
+  "fields": [
+    "policy_weights",
+    "value_weights",
+    "full_module_state",
+    "adam_moments",
+    "optimizer_step",
+    "completed_games",
+    "games_with_trainable_decisions",
+    "trainable_decisions",
+    "entropy_schedule_definition",
+    "entropy_schedule_progress",
+    "numpy_generator_type",
+    "numpy_generator_state",
+    "torch_cpu_rng",
+    "torch_cuda_rng",
+    "python_random_state",
+    "lagged_registry",
+    "curriculum_state",
+    "branch_checkpoint_registry",
+    "seed"
+  ],
+  "generator": "numpy Generator persisted through bit_generator.state; the legacy global np.random state is deliberately unused",
+  "torch": [
+    "torch_cpu_rng",
+    "torch_cuda_rng"
+  ],
+  "optimizer": [
+    "adam_moments",
+    "optimizer_step"
+  ],
+  "counters": [
+    "completed_games",
+    "games_with_trainable_decisions",
+    "trainable_decisions"
+  ],
+  "continuation_kinds": [
+    "literal",
+    "optimizer_state_only"
+  ]
+}

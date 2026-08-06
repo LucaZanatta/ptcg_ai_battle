@@ -1,0 +1,29 @@
+=== decoder unit checks ===
+  [OK ] single_argmax: [1]
+  [OK ] fixed_topk_legal: [1, 3]
+  [OK ] variable_keep_positive_clamped: [0, 3]
+  [OK ] variable_enforce_min: [2]
+  [OK ] empty: 
+  [OK ] form_single: 
+  [OK ] form_fixed: 
+  [OK ] form_variable: 
+  [OK ] form_ordered_routes: 
+  [OK ] ordered_fallback_legal: [0, 1, 2]
+  [OK ] fuzz_all_legal: 2000 random decisions
+ALL_OK=True
+
+=== taxonomy distribution (train+val) ===
+{
+  "ROUTINE": 803,
+  "HIGH_IMPACT": 8726,
+  "TACTICAL": 6363,
+  "FORCED": 894
+}
+=== decision forms ===
+{
+  "SINGLE_CHOICE": 16079,
+  "FIXED_MULTISELECT": 497,
+  "VARIABLE_MULTISELECT": 210
+}
+samples emitted: 192 (>=100 required)
+ordered forms present: 0  unsupported routed: 0

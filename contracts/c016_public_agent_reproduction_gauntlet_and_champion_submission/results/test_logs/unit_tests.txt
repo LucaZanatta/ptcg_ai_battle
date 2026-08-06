@@ -1,0 +1,42 @@
+test_base_alone_does_not_select (tests.test_c016_gauntlet.CompetitiveGateArithmetic.test_base_alone_does_not_select) ... ok
+test_recorded_decision_matches_this_rule (tests.test_c016_gauntlet.CompetitiveGateArithmetic.test_recorded_decision_matches_this_rule) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c016_gauntlet.py:94: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/selection_decision.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(p))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_strength_path_alone_does_not_select (tests.test_c016_gauntlet.CompetitiveGateArithmetic.test_strength_path_alone_does_not_select) ... ok
+test_every_advanced_candidate_is_byte_identical_to_its_source (tests.test_c016_gauntlet.FidelityIsHashBased.test_every_advanced_candidate_is_byte_identical_to_its_source) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c016_gauntlet.py:133: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/reproduction_fidelity_summary.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(p))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/luca/kaggle/ptcg_ai_battle/tests/test_c016_gauntlet.py:135: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_iono/candidate_manifest.json' mode='r' encoding='UTF-8'>
+  m = json.load(open(os.path.join(ART, "candidates", c["candidate_id"],
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/luca/kaggle/ptcg_ai_battle/tests/test_c016_gauntlet.py:135: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_lucario/candidate_manifest.json' mode='r' encoding='UTF-8'>
+  m = json.load(open(os.path.join(ART, "candidates", c["candidate_id"],
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/luca/kaggle/ptcg_ai_battle/tests/test_c016_gauntlet.py:135: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/candidates/official_mega_abomasnow/candidate_manifest.json' mode='r' encoding='UTF-8'>
+  m = json.load(open(os.path.join(ART, "candidates", c["candidate_id"],
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_no_clean_room_candidate_was_built (tests.test_c016_gauntlet.FidelityIsHashBased.test_no_clean_room_candidate_was_built) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c016_gauntlet.py:145: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/reproduction_fidelity_summary.json' mode='r' encoding='UTF-8'>
+  self.assertEqual(json.load(open(p))["n_clean_room"], 0)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_agg_selects_by_field_not_position (tests.test_c016_gauntlet.IdentitySafeAggregation.test_agg_selects_by_field_not_position) ... ok
+test_shuffling_records_does_not_change_aggregates (tests.test_c016_gauntlet.IdentitySafeAggregation.test_shuffling_records_does_not_change_aggregates) ... ok
+test_unscored_records_are_excluded_from_the_denominator (tests.test_c016_gauntlet.IdentitySafeAggregation.test_unscored_records_are_excluded_from_the_denominator) ... ok
+test_no_benchmark_only_candidate_is_advanced (tests.test_c016_gauntlet.PermissionGate.test_no_benchmark_only_candidate_is_advanced) ... /home/luca/kaggle/ptcg_ai_battle/tests/test_c016_gauntlet.py:153: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/luca/kaggle/ptcg_ai_battle/contracts/c016_public_agent_reproduction_gauntlet_and_champion_submission/results/artifacts/public_agent_inventory.json' mode='r' encoding='UTF-8'>
+  for c in json.load(open(inv))["leads"]:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_panel_contains_every_required_opponent (tests.test_c016_gauntlet.ProtocolFrozenBeforeResults.test_panel_contains_every_required_opponent) ... ok
+test_protocol_declares_thresholds_used_by_the_gate (tests.test_c016_gauntlet.ProtocolFrozenBeforeResults.test_protocol_declares_thresholds_used_by_the_gate) ... ok
+test_seed_blocks_are_disjoint (tests.test_c016_gauntlet.ProtocolFrozenBeforeResults.test_seed_blocks_are_disjoint) ... ok
+test_known_value (tests.test_c016_gauntlet.WilsonInterval.test_known_value) ... ok
+test_zero_games_is_none_not_zero (tests.test_c016_gauntlet.WilsonInterval.test_zero_games_is_none_not_zero) ... ok
+test_detects_rate_claimed_over_zero_opportunities (tests.test_c016_gauntlet.ZeroDenominatorDetector.test_detects_rate_claimed_over_zero_opportunities) ... ok
+test_zero_opportunities_with_no_rate_is_fine (tests.test_c016_gauntlet.ZeroDenominatorDetector.test_zero_opportunities_with_no_rate_is_fine) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.006s
+
+OK

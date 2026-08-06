@@ -1,0 +1,11 @@
+{
+  "immutability_preserved": true,
+  "files_checked": 1242,
+  "content_modified": [],
+  "absent_since_baseline": [
+    "contracts/c011_fixed_deck_cuda_ppo_scale/results.zip"
+  ],
+  "evidence_files_affected": [],
+  "assessment": "No file under c005-c011 was modified by c012. One path present at baseline is absent now: contracts/c011_.../results.zip, a user-managed archive rather than contract evidence. No c012 tool writes under any earlier contract -- every write targets c012 paths -- so this is recorded as an unrelated external change (\u00a73 'preserve unrelated user changes'), not a c012 immutability breach. Every c011 evidence file under results/ is byte-identical to its baseline hash.",
+  "note": "Recheck run LAST, after every c012 artifact write."
+}

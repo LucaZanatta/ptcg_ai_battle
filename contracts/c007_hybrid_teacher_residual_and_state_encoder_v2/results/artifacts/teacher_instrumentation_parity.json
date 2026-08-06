@@ -1,0 +1,81 @@
+{
+  "contract": "c007",
+  "teacher_id": "dragapult",
+  "instrumented_source_diff": {
+    "frozen_main_sha256": "ef8936859fd215e6c704071042e5438d55e2e972b8f1806fb6eddbd03027e0b9",
+    "instrumented_main_sha256": "c68c0cd88ca3305626418c7a5a7c8fa7f619ea7feeb08abc49574ee6b496949d",
+    "added_lines": [
+      "",
+      "    # c007 instrumentation (side-effect-free): expose the local decision internals as",
+      "    # auxiliary teacher-plan labels. Reads existing locals into a fresh module global;",
+      "    # does not touch control flow, RNG, teacher state, or the returned action.",
+      "    globals()[\"_c007_capture\"] = {",
+      "        \"scores\": list(scores),",
+      "        \"prize_diff\": prize_diff,",
+      "        \"do_switch\": bool(do_switch),",
+      "        \"no_draw\": bool(no_draw),",
+      "        \"damage\": damage,",
+      "        \"no_more_dex\": bool(no_more_dex),",
+      "    }"
+    ],
+    "removed_lines": [],
+    "only_additions": true,
+    "addition_is_capture_only": false
+  },
+  "replay_parity": {
+    "games": 240,
+    "decisions": 19050,
+    "frozen_vs_instrumented_match": 19050,
+    "frozen_vs_instrumented_mismatch": 0,
+    "frozen_vs_recorded_match": 19050,
+    "exceptions": 0,
+    "parity_exact": true,
+    "min_required_decisions": 15000,
+    "meets_minimum": true,
+    "sample_mismatches": [],
+    "captured_plan_labels_example": {
+      "game": "dragapult-vs-__control__-s0-00090",
+      "didx": 0,
+      "labels": {
+        "plan_a_attack": 0,
+        "plan_a_counter": [],
+        "plan_b_attack": 0,
+        "plan_b_counter": [],
+        "use_support": 0,
+        "bench_attacker": false,
+        "can_switch": false,
+        "can_attack": false,
+        "can_main_attack": false,
+        "prize_inference_count": 0,
+        "prize_inference": [],
+        "scores": [
+          -1,
+          0
+        ],
+        "argmax_option": 1,
+        "top1_score": 0,
+        "top2_score": -1,
+        "score_margin": 1,
+        "prize_diff": 0,
+        "do_switch": false,
+        "no_draw": false,
+        "damage": 200,
+        "no_more_dex": true,
+        "plan_recomputed_this_decision": false,
+        "select_context": 41
+      }
+    }
+  },
+  "live_dual_call_parity": {
+    "games": 100,
+    "n_decisions": 8796,
+    "n_mismatch": 0,
+    "n_invalid": 0,
+    "n_exc": 0,
+    "completed": 100,
+    "samples": [],
+    "parity_exact": true
+  },
+  "overall_valid": true,
+  "wall_seconds": 22.0
+}

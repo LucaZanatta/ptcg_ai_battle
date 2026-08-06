@@ -1,0 +1,913 @@
+{
+  "note": "Confirmation is a 500-game panel on every \u00a717 nomination. A nomination that does not survive is retained here as evidence, not deleted.",
+  "incumbent_reference": {
+    "teacher": 0.165,
+    "field": 0.2833333333333334,
+    "composite": 0.21825,
+    "panel": "confirmation"
+  },
+  "n_nominated": 30,
+  "n_confirmed_panels": 30,
+  "candidates": {
+    "A_311_g2527": {
+      "arm": "A",
+      "seed": 311,
+      "training_games": 2527,
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.25,
+        "composite": 0.23625000000000002
+      },
+      "confirmation": {
+        "teacher": 0.18,
+        "teacher_lb95": 0.135,
+        "field": 0.2133333333333333,
+        "composite": 0.195,
+        "composite_ci95": [
+          0.15999375000000002,
+          0.23125
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_311_g5054": {
+      "arm": "A",
+      "seed": 311,
+      "training_games": 5054,
+      "screen": {
+        "teacher": 0.325,
+        "field": 0.2333333333333333,
+        "composite": 0.28375
+      },
+      "confirmation": {
+        "teacher": 0.20500000000000002,
+        "teacher_lb95": 0.16,
+        "field": 0.265,
+        "composite": 0.232,
+        "composite_ci95": [
+          0.19425,
+          0.27075
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": false,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_311_g7581": {
+      "arm": "A",
+      "seed": 311,
+      "training_games": 7581,
+      "screen": {
+        "teacher": 0.125,
+        "field": 0.3333333333333333,
+        "composite": 0.21875
+      },
+      "confirmation": {
+        "teacher": 0.21,
+        "teacher_lb95": 0.16499999999999998,
+        "field": 0.26999999999999996,
+        "composite": 0.237,
+        "composite_ci95": [
+          0.19975,
+          0.27625
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_311_g10108": {
+      "arm": "A",
+      "seed": 311,
+      "training_games": 10108,
+      "screen": {
+        "teacher": 0.15000000000000002,
+        "field": 0.325,
+        "composite": 0.22875
+      },
+      "confirmation": {
+        "teacher": 0.24,
+        "teacher_lb95": 0.195,
+        "field": 0.28,
+        "composite": 0.258,
+        "composite_ci95": [
+          0.21949375000000002,
+          0.29775
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_311_g12103": {
+      "arm": "A",
+      "seed": 311,
+      "training_games": 12103,
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.23333333333333336,
+        "composite": 0.21500000000000002
+      },
+      "confirmation": {
+        "teacher": 0.21500000000000002,
+        "teacher_lb95": 0.165,
+        "field": 0.30833333333333335,
+        "composite": 0.257,
+        "composite_ci95": [
+          0.21925,
+          0.29525625000000005
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_322_g2534": {
+      "arm": "A",
+      "seed": 322,
+      "training_games": 2534,
+      "screen": {
+        "teacher": 0.15000000000000002,
+        "field": 0.2833333333333333,
+        "composite": 0.21000000000000002
+      },
+      "confirmation": {
+        "teacher": 0.19,
+        "teacher_lb95": 0.14500000000000002,
+        "field": 0.25,
+        "composite": 0.21700000000000003,
+        "composite_ci95": [
+          0.18099375000000004,
+          0.2535
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_322_g5061": {
+      "arm": "A",
+      "seed": 322,
+      "training_games": 5061,
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.3,
+        "composite": 0.25875000000000004
+      },
+      "confirmation": {
+        "teacher": 0.175,
+        "teacher_lb95": 0.135,
+        "field": 0.28,
+        "composite": 0.22225,
+        "composite_ci95": [
+          0.18624375000000004,
+          0.25849999999999995
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_322_g12110": {
+      "arm": "A",
+      "seed": 322,
+      "training_games": 12110,
+      "screen": {
+        "teacher": 0.175,
+        "field": 0.2333333333333333,
+        "composite": 0.20125
+      },
+      "confirmation": {
+        "teacher": 0.225,
+        "teacher_lb95": 0.18,
+        "field": 0.3,
+        "composite": 0.25875000000000004,
+        "composite_ci95": [
+          0.21875,
+          0.29925625000000006
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_333_g2541": {
+      "arm": "A",
+      "seed": 333,
+      "training_games": 2541,
+      "screen": {
+        "teacher": 0.125,
+        "field": 0.18333333333333335,
+        "composite": 0.15125
+      },
+      "confirmation": {
+        "teacher": 0.18,
+        "teacher_lb95": 0.14,
+        "field": 0.26333333333333336,
+        "composite": 0.21750000000000003,
+        "composite_ci95": [
+          0.18324375000000004,
+          0.255
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_333_g5068": {
+      "arm": "A",
+      "seed": 333,
+      "training_games": 5068,
+      "screen": {
+        "teacher": 0.1,
+        "field": 0.21666666666666667,
+        "composite": 0.1525
+      },
+      "confirmation": {
+        "teacher": 0.23500000000000001,
+        "teacher_lb95": 0.185,
+        "field": 0.22999999999999998,
+        "composite": 0.23275000000000004,
+        "composite_ci95": [
+          0.19474375000000002,
+          0.27275000000000005
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_333_g7595": {
+      "arm": "A",
+      "seed": 333,
+      "training_games": 7595,
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.30000000000000004,
+        "composite": 0.25875000000000004
+      },
+      "confirmation": {
+        "teacher": 0.185,
+        "teacher_lb95": 0.14,
+        "field": 0.31333333333333335,
+        "composite": 0.24275000000000002,
+        "composite_ci95": [
+          0.20500000000000002,
+          0.28050625000000007
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_333_g10122": {
+      "arm": "A",
+      "seed": 333,
+      "training_games": 10122,
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.2833333333333333,
+        "composite": 0.27875
+      },
+      "confirmation": {
+        "teacher": 0.22,
+        "teacher_lb95": 0.17,
+        "field": 0.28,
+        "composite": 0.247,
+        "composite_ci95": [
+          0.20849375,
+          0.2852562500000001
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "A_333_g12117": {
+      "arm": "A",
+      "seed": 333,
+      "training_games": 12117,
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.2833333333333333,
+        "composite": 0.25125000000000003
+      },
+      "confirmation": {
+        "teacher": 0.22999999999999998,
+        "teacher_lb95": 0.18,
+        "field": 0.26333333333333336,
+        "composite": 0.245,
+        "composite_ci95": [
+          0.20650000000000002,
+          0.28375
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "B_411_g2508": {
+      "arm": "B",
+      "seed": 411,
+      "training_games": 2508,
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.25,
+        "composite": 0.25
+      },
+      "confirmation": {
+        "teacher": 0.245,
+        "teacher_lb95": 0.195,
+        "field": 0.2966666666666667,
+        "composite": 0.26825,
+        "composite_ci95": [
+          0.22924375000000002,
+          0.3075
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "B_411_g5016": {
+      "arm": "B",
+      "seed": 411,
+      "training_games": 5016,
+      "screen": {
+        "teacher": 0.35,
+        "field": 0.31666666666666665,
+        "composite": 0.335
+      },
+      "confirmation": {
+        "teacher": 0.22499999999999998,
+        "teacher_lb95": 0.18,
+        "field": 0.32,
+        "composite": 0.26775,
+        "composite_ci95": [
+          0.22999375000000002,
+          0.30750625000000004
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": false,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "B_411_g7524": {
+      "arm": "B",
+      "seed": 411,
+      "training_games": 7524,
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.2833333333333334,
+        "composite": 0.265
+      },
+      "confirmation": {
+        "teacher": 0.275,
+        "teacher_lb95": 0.22499999999999998,
+        "field": 0.30333333333333334,
+        "composite": 0.28775,
+        "composite_ci95": [
+          0.24699375000000004,
+          0.329
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "B_422_g2508": {
+      "arm": "B",
+      "seed": 422,
+      "training_games": 2508,
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.31666666666666665,
+        "composite": 0.28
+      },
+      "confirmation": {
+        "teacher": 0.265,
+        "teacher_lb95": 0.215,
+        "field": 0.3,
+        "composite": 0.28075,
+        "composite_ci95": [
+          0.24023125,
+          0.32025625
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "B_422_g7524": {
+      "arm": "B",
+      "seed": 422,
+      "training_games": 7524,
+      "screen": {
+        "teacher": 0.22499999999999998,
+        "field": 0.2833333333333333,
+        "composite": 0.25125
+      },
+      "confirmation": {
+        "teacher": 0.22,
+        "teacher_lb95": 0.17,
+        "field": 0.3666666666666667,
+        "composite": 0.28600000000000003,
+        "composite_ci95": [
+          0.24650000000000002,
+          0.32600625000000005
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "B_433_g2508": {
+      "arm": "B",
+      "seed": 433,
+      "training_games": 2508,
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.3,
+        "composite": 0.245
+      },
+      "confirmation": {
+        "teacher": 0.24,
+        "teacher_lb95": 0.19,
+        "field": 0.30666666666666664,
+        "composite": 0.27,
+        "composite_ci95": [
+          0.23199375000000003,
+          0.31024999999999997
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "B_433_g7524": {
+      "arm": "B",
+      "seed": 433,
+      "training_games": 7524,
+      "screen": {
+        "teacher": 0.2,
+        "field": 0.31666666666666665,
+        "composite": 0.2525
+      },
+      "confirmation": {
+        "teacher": 0.27,
+        "teacher_lb95": 0.22,
+        "field": 0.31,
+        "composite": 0.28800000000000003,
+        "composite_ci95": [
+          0.24925000000000003,
+          0.32875
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_511_g2748": {
+      "arm": "C",
+      "seed": 511,
+      "training_games": 2748,
+      "screen": {
+        "teacher": 0.125,
+        "field": 0.35000000000000003,
+        "composite": 0.22625
+      },
+      "confirmation": {
+        "teacher": 0.255,
+        "teacher_lb95": 0.20500000000000002,
+        "field": 0.2866666666666667,
+        "composite": 0.26925,
+        "composite_ci95": [
+          0.22849375,
+          0.3100062500000001
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_511_g5012": {
+      "arm": "C",
+      "seed": 511,
+      "training_games": 5012,
+      "screen": {
+        "teacher": 0.30000000000000004,
+        "field": 0.35000000000000003,
+        "composite": 0.3225
+      },
+      "confirmation": {
+        "teacher": 0.27,
+        "teacher_lb95": 0.22,
+        "field": 0.29000000000000004,
+        "composite": 0.279,
+        "composite_ci95": [
+          0.23874375000000003,
+          0.31949999999999995
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_511_g7660": {
+      "arm": "C",
+      "seed": 511,
+      "training_games": 7660,
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.39999999999999997,
+        "composite": 0.3175
+      },
+      "confirmation": {
+        "teacher": 0.25,
+        "teacher_lb95": 0.2,
+        "field": 0.27999999999999997,
+        "composite": 0.2635,
+        "composite_ci95": [
+          0.22475000000000003,
+          0.3045
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": false,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_511_g20292": {
+      "arm": "C",
+      "seed": 511,
+      "training_games": 20292,
+      "screen": {
+        "teacher": 0.3,
+        "field": 0.26666666666666666,
+        "composite": 0.28500000000000003
+      },
+      "confirmation": {
+        "teacher": 0.28,
+        "teacher_lb95": 0.22999999999999998,
+        "field": 0.33666666666666667,
+        "composite": 0.3055,
+        "composite_ci95": [
+          0.26449374999999997,
+          0.34675
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_522_g2728": {
+      "arm": "C",
+      "seed": 522,
+      "training_games": 2728,
+      "screen": {
+        "teacher": 0.225,
+        "field": 0.31666666666666665,
+        "composite": 0.26625
+      },
+      "confirmation": {
+        "teacher": 0.275,
+        "teacher_lb95": 0.22499999999999998,
+        "field": 0.25000000000000006,
+        "composite": 0.26375000000000004,
+        "composite_ci95": [
+          0.22375,
+          0.3045
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_522_g5428": {
+      "arm": "C",
+      "seed": 522,
+      "training_games": 5428,
+      "screen": {
+        "teacher": 0.325,
+        "field": 0.35000000000000003,
+        "composite": 0.33625
+      },
+      "confirmation": {
+        "teacher": 0.265,
+        "teacher_lb95": 0.215,
+        "field": 0.3233333333333333,
+        "composite": 0.29125,
+        "composite_ci95": [
+          0.25049375,
+          0.332
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_522_g20220": {
+      "arm": "C",
+      "seed": 522,
+      "training_games": 20220,
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.35000000000000003,
+        "composite": 0.30875
+      },
+      "confirmation": {
+        "teacher": 0.31,
+        "teacher_lb95": 0.26,
+        "field": 0.3033333333333333,
+        "composite": 0.307,
+        "composite_ci95": [
+          0.2655,
+          0.3505
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_533_g2772": {
+      "arm": "C",
+      "seed": 533,
+      "training_games": 2772,
+      "screen": {
+        "teacher": 0.32499999999999996,
+        "field": 0.3666666666666667,
+        "composite": 0.34375
+      },
+      "confirmation": {
+        "teacher": 0.245,
+        "teacher_lb95": 0.195,
+        "field": 0.25333333333333335,
+        "composite": 0.24875000000000003,
+        "composite_ci95": [
+          0.21049375000000003,
+          0.2890062500000001
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": false,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_533_g15168": {
+      "arm": "C",
+      "seed": 533,
+      "training_games": 15168,
+      "screen": {
+        "teacher": 0.25,
+        "field": 0.4333333333333333,
+        "composite": 0.3325
+      },
+      "confirmation": {
+        "teacher": 0.28,
+        "teacher_lb95": 0.22999999999999998,
+        "field": 0.3233333333333333,
+        "composite": 0.29950000000000004,
+        "composite_ci95": [
+          0.25925,
+          0.34275
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    },
+    "C_533_g19952": {
+      "arm": "C",
+      "seed": 533,
+      "training_games": 19952,
+      "screen": {
+        "teacher": 0.275,
+        "field": 0.3333333333333333,
+        "composite": 0.30125
+      },
+      "confirmation": {
+        "teacher": 0.3,
+        "teacher_lb95": 0.25,
+        "field": 0.3133333333333333,
+        "composite": 0.306,
+        "composite_ci95": [
+          0.266,
+          0.34775625000000004
+        ],
+        "games": 500
+      },
+      "screen_survived_confirmation": true,
+      "reliability": {
+        "games": 500,
+        "defects": 0,
+        "invalid": 0,
+        "exceptions": 0,
+        "timeouts": 0,
+        "fallbacks": 0
+      }
+    }
+  }
+}

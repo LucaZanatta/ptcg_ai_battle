@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "model_version": "c017.policyvalue.v1",
+  "device": "cuda",
+  "epochs": 4,
+  "history": [
+    {
+      "epoch": 1,
+      "train_policy_loss": 1.62731,
+      "train_value_loss": 0.49514,
+      "n": 600,
+      "top1_agreement": 0.535,
+      "value_mae": 0.4958
+    },
+    {
+      "epoch": 2,
+      "train_policy_loss": 1.62046,
+      "train_value_loss": 0.30281,
+      "n": 600,
+      "top1_agreement": 0.55,
+      "value_mae": 0.4779
+    },
+    {
+      "epoch": 3,
+      "train_policy_loss": 1.59933,
+      "train_value_loss": 0.25881,
+      "n": 600,
+      "top1_agreement": 0.5467,
+      "value_mae": 0.4885
+    },
+    {
+      "epoch": 4,
+      "train_policy_loss": 1.5623,
+      "train_value_loss": 0.24027,
+      "n": 600,
+      "top1_agreement": 0.5433,
+      "value_mae": 0.4856
+    }
+  ],
+  "test": {
+    "n": 557,
+    "top1_agreement": 0.526,
+    "value_mae": 0.5373
+  },
+  "n_train": 2459,
+  "n_validation": 600,
+  "n_test": 557,
+  "checkpoint": "contracts/c017_end_to_end_search_learning_curriculum_campaign/results/models/c017_policy_value.pt",
+  "checkpoint_sha256": "be9d1e5da2ca63e8c776bec13b5f5ebd0f3c9f490badda05e9321fb9c5ea1d19",
+  "teacher_equals_baseline_rate": 0.9087,
+  "interpretation": "top-1 agreement must be read against teacher_equals_baseline_rate: a model that only reproduces the baseline would score close to it without having learned anything from the ranker",
+  "trust_status": "TAINTED",
+  "tainted_by": [
+    "P10_forward_simulation"
+  ],
+  "taint_reason": "the teacher is a depth-0 heuristic ranker, not lookahead; no claim about search depth is supported"
+}

@@ -1,0 +1,74 @@
+{
+  "note": "\u00a718 top-1 agreement on identical frozen visible states.",
+  "n_states": 63,
+  "mean_entropy": {
+    "S_611_g40127": 0.2825676720962884,
+    "S_622_g39983": 0.2711026128384227,
+    "S_633_g30176": 0.31671011057216736,
+    "SOUP_622+633": 0.26769458908014376,
+    "C_522_g20220": 0.40449590145665126,
+    "I0_incumbent": 0.4742941869504227
+  },
+  "pairs": {
+    "C_522_g20220|I0_incumbent": {
+      "top1_agreement": 0.8253968253968254,
+      "n_states": 63
+    },
+    "C_522_g20220|SOUP_622+633": {
+      "top1_agreement": 0.873015873015873,
+      "n_states": 63
+    },
+    "C_522_g20220|S_611_g40127": {
+      "top1_agreement": 0.9047619047619048,
+      "n_states": 63
+    },
+    "C_522_g20220|S_622_g39983": {
+      "top1_agreement": 0.8888888888888888,
+      "n_states": 63
+    },
+    "C_522_g20220|S_633_g30176": {
+      "top1_agreement": 0.8571428571428571,
+      "n_states": 63
+    },
+    "I0_incumbent|SOUP_622+633": {
+      "top1_agreement": 0.7301587301587301,
+      "n_states": 63
+    },
+    "I0_incumbent|S_611_g40127": {
+      "top1_agreement": 0.7619047619047619,
+      "n_states": 63
+    },
+    "I0_incumbent|S_622_g39983": {
+      "top1_agreement": 0.7936507936507936,
+      "n_states": 63
+    },
+    "I0_incumbent|S_633_g30176": {
+      "top1_agreement": 0.7301587301587301,
+      "n_states": 63
+    },
+    "SOUP_622+633|S_611_g40127": {
+      "top1_agreement": 0.873015873015873,
+      "n_states": 63
+    },
+    "SOUP_622+633|S_622_g39983": {
+      "top1_agreement": 0.9206349206349206,
+      "n_states": 63
+    },
+    "SOUP_622+633|S_633_g30176": {
+      "top1_agreement": 0.9206349206349206,
+      "n_states": 63
+    },
+    "S_611_g40127|S_622_g39983": {
+      "top1_agreement": 0.8571428571428571,
+      "n_states": 63
+    },
+    "S_611_g40127|S_633_g30176": {
+      "top1_agreement": 0.8571428571428571,
+      "n_states": 63
+    },
+    "S_622_g39983|S_633_g30176": {
+      "top1_agreement": 0.8571428571428571,
+      "n_states": 63
+    }
+  }
+}

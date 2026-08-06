@@ -1,0 +1,39 @@
+{
+  "resolved_at_utc": "2026-07-27T08:48:03.127775+00:00",
+  "resolved_parent_commit": "d8a34b1bac60dc57ec7b0c356c3b261cc10d95da",
+  "resolution_method": "git log on the c017 branch, cross-checked against c017 STATUS.json and the c017 source tree",
+  "discrepancy": {
+    "c017_STATUS_json_final_head": "6e60056340c5656dd11e1930a060d9b9d99a43de",
+    "actual_latest_c017_commit": "d8a34b1bac60dc57ec7b0c356c3b261cc10d95da",
+    "also_named_in_command": "930b8f9",
+    "explanation": "all three commits exist and sit on one chain: 930b8f9 (distillation/curriculum/panel) -> 6e60056 (complete result tree) -> d8a34b1 (panel-recompute fix). c017's STATUS.json records 6e60056 because reports were regenerated at that commit; the subsequent d8a34b1 fixed a destructive --panel-games 0 path and was committed WITHOUT regenerating STATUS.json, leaving the recorded final_head stale by one commit.",
+    "which_is_correct": "d8a34b1 is the true latest c017 state and is the c018 parent. It is strictly newer than both named commits and contains the panel fix.",
+    "c017_status_not_modified": true,
+    "note": "c017 STATUS.json is left stale and unmodified: sections 5 of c017 and the c018 command both forbid editing c005-c017. The discrepancy is recorded here instead."
+  },
+  "chain": [
+    {
+      "commit": "1f059eecf132279fdafe95eb7284379f37922a09",
+      "subject": "c017: baseline reverification, package and accepted submission"
+    },
+    {
+      "commit": "2aad0294b2dfe8f315589664079ee159d7d20c45",
+      "subject": "c017: offline search teacher and labelled trajectories"
+    },
+    {
+      "commit": "930b8f9cfb5c4c369255db66b84db95c362f3060",
+      "subject": "c017: distillation, curriculum, final panel, validator and reports"
+    },
+    {
+      "commit": "6e60056340c5656dd11e1930a060d9b9d99a43de",
+      "subject": "c017: complete the mandatory result tree"
+    },
+    {
+      "commit": "d8a34b1bac60dc57ec7b0c356c3b261cc10d95da",
+      "subject": "c017: --panel-games 0 must recompute, not re-run with zero games"
+    }
+  ],
+  "c018_branch": "contract/c018_complete_integrated_search_learning_curriculum_campaign",
+  "c018_head_at_creation": "d8a34b1bac60dc57ec7b0c356c3b261cc10d95da",
+  "branch_matches_resolved_parent": true
+}

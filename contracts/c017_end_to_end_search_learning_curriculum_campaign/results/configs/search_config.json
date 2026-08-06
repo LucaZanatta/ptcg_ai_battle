@@ -1,0 +1,20 @@
+{
+  "smoke": {
+    "beam_width": 3,
+    "max_candidates": 3,
+    "max_nodes": 48,
+    "max_depth": 10,
+    "max_ms": 4000,
+    "search_every": 3
+  },
+  "scaled": {
+    "beam_width": 4,
+    "max_candidates": 4,
+    "max_nodes": 64,
+    "max_depth": 12,
+    "max_ms": 6000,
+    "search_every": 2
+  },
+  "effective_depth": 0,
+  "why": "probe P10 - forward simulation core-dumps this simulator"
+}

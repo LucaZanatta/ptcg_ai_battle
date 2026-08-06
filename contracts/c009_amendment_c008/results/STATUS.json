@@ -1,0 +1,36 @@
+{
+  "contract": "c009_amendment_c008",
+  "status": "PASS",
+  "acceptance_criteria_total": 16,
+  "acceptance_criteria_passed": 16,
+  "acceptance_criteria_failed": 0,
+  "initial_head": "fb6e592c8c333f758014e2d2e94a39261bb63fe6",
+  "final_head": "e868dfbbeefc30bcf246cd60e0f51bf6d0043eb8",
+  "implementation_commits": [
+    "e868dfb",
+    "9488406"
+  ],
+  "c008_evaluation": "REPAIRED",
+  "rl_improved_over_initialization": "YES",
+  "best_saved_checkpoint": "R1_101_ckpt_g10040",
+  "teacher_noninferiority": "FAIL",
+  "rl_feasibility_recalibrated": "INCONCLUSIVE",
+  "submission_D_amended": "DO_NOT_SUBMIT",
+  "kaggle_upload": "SKIPPED_BY_GATE",
+  "kaggle_submission_ref": null,
+  "kaggle_submission_status": null,
+  "promotion_decision": "NO_RL_SUBMISSION",
+  "next_step": "FIXED_DECK_SELECTIVE_SEARCH",
+  "highest_leverage_blocker": "Sparse terminal-reward credit assignment cannot close the teacher gap at the measured learning rate: c008 spent 95,666 training games to move the teacher score from 0.160 (untouched V2-A) to 0.220, leaving 0.250 to the 0.47 non-inferiority bound \u2014 roughly 4x the total improvement achieved so far. Teacher-anchored PPO on the fixed deck improves its own initialization but is the wrong instrument for closing a >2x strength gap.",
+  "total_evaluation_games": 4100,
+  "teacher_public_score_same_run": 709.1,
+  "immutability_preserved": true,
+  "evidence_validator_passed": true,
+  "blocking_issues": [],
+  "known_limitations": [
+    "Evaluation games are engine random_device-seeded and not bit-reproducible; all conclusions are stated with bootstrap intervals over the 4,100 recorded games, and the raw per-game records are shipped so every aggregate can be recomputed.",
+    "c008's R2 anchor schedule never reached its registered low-anchor phase (replay coefficient stopped at ~0.27 of a 0.05 target) because every R2 seed early-stopped, so R2's near-initialization teacher score is partly a budget artifact rather than evidence that anchoring cannot work.",
+    "The corrected strategic field uses 100 games per candidate/opponent cell; per-cell differences below roughly 10 percentage points are inside noise.",
+    "No retraining was permitted, so only already-saved checkpoints could be assessed."
+  ]
+}

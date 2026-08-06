@@ -1,0 +1,63 @@
+{
+  "contract": "c007",
+  "teacher_id": "dragapult",
+  "teacher_deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "generated_by": "instrumented teacher (behavior-equivalent, AC-04)",
+  "opponents_strategic": [
+    "mega_lucario",
+    "mega_abomasnow",
+    "iono",
+    "dragapult"
+  ],
+  "engineering_control": "__control__ (separate)",
+  "games_scheduled": 768,
+  "games_strategic_played": 720,
+  "games_strategic_valid": 720,
+  "games_control_valid": 48,
+  "split_counts": {
+    "train": {
+      "games": 504,
+      "decisions": 43111
+    },
+    "validation": {
+      "games": 112,
+      "decisions": 9355
+    },
+    "test": {
+      "games": 104,
+      "decisions": 8846
+    }
+  },
+  "total_strategic_games": 720,
+  "total_strategic_decisions": 61312,
+  "control_decisions": 3829,
+  "control_games": 48,
+  "split_seed": 70157,
+  "split_scheme": "whole-game 70/15/15 stratified by (opponent,seat)",
+  "file_sha256": {
+    "train": "90a219bc0210d7ffe9782095b6f240123fd1e4338d980604e82aa50428f4e40c",
+    "validation": "bbdfee0cb7ebe91b5ae23fed281ee228d04b1820f8868bbdfd5a715d063b491c",
+    "test": "518b2b5762fe0aed5892118e61692cdab299c2acd1fe3c78fefc15e4e4763540"
+  },
+  "meets_min_600_games": true,
+  "meets_min_50000_decisions": true,
+  "semantic_context_counts": {
+    "MAIN": 29554,
+    "TO_HAND": 10867,
+    "DAMAGE_COUNTER_ANY": 10698,
+    "TO_ACTIVE": 1506,
+    "SWITCH": 1430,
+    "DISCARD_ENERGY": 1339,
+    "DISCARD": 1225,
+    "ATTACH_TO": 864,
+    "ATTACH_FROM": 864,
+    "TO_BENCH": 798,
+    "SETUP_ACTIVE_POKEMON": 720,
+    "EVOLVE": 415,
+    "IS_FIRST": 360,
+    "SETUP_BENCH_POKEMON": 291,
+    "ACTIVATE": 208,
+    "DRAW_COUNT": 173
+  },
+  "wall_seconds": 43.8
+}

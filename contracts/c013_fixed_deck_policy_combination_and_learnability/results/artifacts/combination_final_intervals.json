@@ -1,0 +1,192 @@
+{
+  "SOUP13_SOUP+P1_822": {
+    "family": "weight_soup",
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.36,
+        "ci95": [
+          0.318,
+          0.402
+        ],
+        "n": 500
+      },
+      "iono": {
+        "point": 0.448,
+        "ci95": [
+          0.384,
+          0.508
+        ],
+        "n": 250
+      },
+      "mega_abomasnow": {
+        "point": 0.232,
+        "ci95": [
+          0.18,
+          0.288
+        ],
+        "n": 250
+      },
+      "mega_lucario": {
+        "point": 0.4,
+        "ci95": [
+          0.34,
+          0.46
+        ],
+        "n": 250
+      }
+    },
+    "composite": 0.3684
+  },
+  "P0_711": {
+    "family": "single",
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.352,
+        "ci95": [
+          0.31,
+          0.394
+        ],
+        "n": 500
+      },
+      "iono": {
+        "point": 0.484,
+        "ci95": [
+          0.42390000000000005,
+          0.548
+        ],
+        "n": 250
+      },
+      "mega_abomasnow": {
+        "point": 0.3,
+        "ci95": [
+          0.244,
+          0.356
+        ],
+        "n": 250
+      },
+      "mega_lucario": {
+        "point": 0.334,
+        "ci95": [
+          0.276,
+          0.392
+        ],
+        "n": 250
+      }
+    },
+    "composite": 0.3661
+  },
+  "LOGIT_S611+S622": {
+    "family": "online_ensemble",
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.336,
+        "ci95": [
+          0.296,
+          0.378
+        ],
+        "n": 500
+      },
+      "iono": {
+        "point": 0.452,
+        "ci95": [
+          0.392,
+          0.516
+        ],
+        "n": 250
+      },
+      "mega_abomasnow": {
+        "point": 0.244,
+        "ci95": [
+          0.192,
+          0.296
+        ],
+        "n": 250
+      },
+      "mega_lucario": {
+        "point": 0.384,
+        "ci95": [
+          0.324,
+          0.448
+        ],
+        "n": 250
+      }
+    },
+    "composite": 0.35740000000000005
+  },
+  "PROB_SOUP+P0_711+P1_822+P1_833": {
+    "family": "online_ensemble",
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.32,
+        "ci95": [
+          0.28,
+          0.36
+        ],
+        "n": 500
+      },
+      "iono": {
+        "point": 0.42,
+        "ci95": [
+          0.36,
+          0.48
+        ],
+        "n": 250
+      },
+      "mega_abomasnow": {
+        "point": 0.272,
+        "ci95": [
+          0.216,
+          0.328
+        ],
+        "n": 250
+      },
+      "mega_lucario": {
+        "point": 0.396,
+        "ci95": [
+          0.336,
+          0.456
+        ],
+        "n": 250
+      }
+    },
+    "composite": 0.3518
+  },
+  "C012_SOUP_622_633": {
+    "family": "weight_soup",
+    "per_opponent": {
+      "dragapult": {
+        "point": 0.32,
+        "ci95": [
+          0.28,
+          0.36
+        ],
+        "n": 500
+      },
+      "iono": {
+        "point": 0.436,
+        "ci95": [
+          0.376,
+          0.496
+        ],
+        "n": 250
+      },
+      "mega_abomasnow": {
+        "point": 0.268,
+        "ci95": [
+          0.212,
+          0.324
+        ],
+        "n": 250
+      },
+      "mega_lucario": {
+        "point": 0.358,
+        "ci95": [
+          0.298,
+          0.42
+        ],
+        "n": 250
+      }
+    },
+    "composite": 0.3449
+  }
+}

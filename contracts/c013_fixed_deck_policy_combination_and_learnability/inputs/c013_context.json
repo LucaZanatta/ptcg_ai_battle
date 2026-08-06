@@ -1,0 +1,49 @@
+{
+  "contract": "c013_fixed_deck_policy_combination_and_learnability",
+  "objective": "Find the strongest existing combination, diagnose soup learnability, smoke-test repaired adaptive curriculum, correctly analyze opponent overlap, and run a semantic Claude preflight.",
+  "frozen_deck": "c005 Dragapult",
+  "teacher_submission_ref": "54948560",
+  "required_candidates": [
+    "C012_SOUP_622_633",
+    "S611",
+    "S622",
+    "S633",
+    "P0_711",
+    "P1_822",
+    "P1_833"
+  ],
+  "training_budget": {
+    "Q0_max_completed_games": 12000,
+    "Q1_max_completed_games": 12000,
+    "Q2_component_max_completed_games_each": 10000,
+    "curriculum_smoke_max_each": 5000,
+    "hard_max_completed_games": 62000
+  },
+  "claude": {
+    "access": "Claude Code",
+    "requested_model": "Opus",
+    "primary_state_maximum": 30,
+    "repeat_state_maximum": 10,
+    "labels_used_for_training": false
+  },
+  "machine": {
+    "os": "Ubuntu 24.04 native Linux",
+    "cpu": "AMD Ryzen 9 7900X, 12 cores / 24 threads",
+    "ram_gib": 61,
+    "gpu": "NVIDIA GeForce RTX 5070",
+    "gpu_vram_mib": 12227,
+    "pytorch": "2.12.1+cu130",
+    "cuda_available": true
+  },
+  "forbidden": [
+    "deck mutation",
+    "deck search",
+    "broad ensemble-weight search",
+    "broad PPO tuning",
+    "full adaptive curriculum scale run",
+    "mass Claude labeling",
+    "Claude-label training",
+    "architecture change",
+    "reward shaping"
+  ]
+}

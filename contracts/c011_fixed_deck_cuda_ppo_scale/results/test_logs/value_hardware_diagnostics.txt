@@ -1,0 +1,27 @@
+c011 AC-12 value diagnostics vs ACTUAL outcomes (last quarter of training)
+
+seed 611
+  0-20    brier=0.2281 auc=0.674 acc=0.625 calib=-0.0429 EVvsOutcome=0.095 advSNR=0.1032 n=147751
+  20-40   brier=0.2010 auc=0.758 acc=0.690 calib=-0.0215 EVvsOutcome=0.198 advSNR=0.0733 n=153728
+  40-60   brier=0.1659 auc=0.837 acc=0.758 calib=-0.0013 EVvsOutcome=0.337 advSNR=0.0483 n=153639
+  60-80   brier=0.1256 auc=0.907 acc=0.826 calib=+0.0129 EVvsOutcome=0.498 advSNR=0.0490 n=153728
+  80-100  brier=0.0848 auc=0.960 acc=0.885 calib=+0.0302 EVvsOutcome=0.665 advSNR=0.1128 n=159565
+
+seed 622
+  0-20    brier=0.2292 auc=0.667 acc=0.621 calib=-0.0422 EVvsOutcome=0.090 advSNR=0.1044 n=154308
+  20-40   brier=0.2026 auc=0.751 acc=0.688 calib=-0.0227 EVvsOutcome=0.191 advSNR=0.0793 n=160398
+  40-60   brier=0.1694 auc=0.829 acc=0.751 calib=-0.0042 EVvsOutcome=0.322 advSNR=0.0410 n=160417
+  60-80   brier=0.1298 auc=0.900 acc=0.816 calib=+0.0094 EVvsOutcome=0.481 advSNR=0.0375 n=160398
+  80-100  brier=0.0874 auc=0.957 acc=0.884 calib=+0.0280 EVvsOutcome=0.653 advSNR=0.0964 n=166383
+
+seed 633
+  0-20    brier=0.2281 auc=0.674 acc=0.627 calib=-0.0457 EVvsOutcome=0.096 advSNR=0.1031 n=147821
+  20-40   brier=0.1996 auc=0.761 acc=0.692 calib=-0.0265 EVvsOutcome=0.204 advSNR=0.0792 n=153744
+  40-60   brier=0.1653 auc=0.837 acc=0.759 calib=-0.0073 EVvsOutcome=0.339 advSNR=0.0450 n=153769
+  60-80   brier=0.1281 auc=0.902 acc=0.819 calib=+0.0072 EVvsOutcome=0.488 advSNR=0.0382 n=153744
+  80-100  brier=0.0859 auc=0.958 acc=0.885 calib=+0.0285 EVvsOutcome=0.659 advSNR=0.1018 n=159782
+
+optimization / hardware
+  seed 611: 92 updates on cuda/FP32_CUDA rollout 33.3s update 6.7s gpu 52% vram 2325MiB ram_min 30.45GiB
+  seed 622: 93 updates on cuda/FP32_CUDA rollout 32.7s update 6.6s gpu 54% vram 2127MiB ram_min 31.32GiB
+  seed 633: 92 updates on cuda/FP32_CUDA rollout 32.5s update 6.5s gpu 55% vram 2125MiB ram_min 31.66GiB

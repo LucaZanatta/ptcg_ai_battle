@@ -1,0 +1,68 @@
+{
+  "archive": "contracts/c014_public_meta_baseline_and_rapid_submission/results/artifacts/submission_H_public_meta_v0.tar.gz",
+  "sha256": "d7ffe95c45373fba01bfaec6397380c443858bace673d39be57edb6b324a29b5",
+  "bytes": 500271,
+  "members": [
+    {
+      "name": "main.py",
+      "size": 22301
+    },
+    {
+      "name": "deck.csv",
+      "size": 253
+    },
+    {
+      "name": "cg",
+      "size": 0
+    },
+    {
+      "name": "cg/__init__.py",
+      "size": 0
+    },
+    {
+      "name": "cg/api.py",
+      "size": 26933
+    },
+    {
+      "name": "cg/game.py",
+      "size": 2225
+    },
+    {
+      "name": "cg/libcg.so",
+      "size": 1338304
+    },
+    {
+      "name": "cg/sim.py",
+      "size": 1966
+    },
+    {
+      "name": "cg/utils.py",
+      "size": 1970
+    }
+  ],
+  "n_members": 9,
+  "deck_sha256": "42165967b565dd42ec426ecccfe79bfa7d72aa8306590e149dface0ee8bd530e",
+  "expert_source_sha256": "94c0d0c6d7f402a355d8096d6008c9e30fd4c3029dc26b6844babf07ad36c280",
+  "source_commit": "a7d78dd56b7d4a9b75c5e5fa2e6828fc3bdfb477",
+  "package_shape_reference": "c005 submission_A_teacher.tar.gz (accepted, scored 719.7)",
+  "build_command": "python tools/c014_package.py --stage build",
+  "inference_only": {
+    "excludes": [
+      "credentials/kaggle config",
+      "training data",
+      "checkpoints",
+      "opponent agents",
+      "evaluation logs",
+      "public source snapshots",
+      "git metadata",
+      "tests",
+      "development tools",
+      "caches"
+    ],
+    "contains_only": [
+      "main.py (entry point + inlined deterministic expert)",
+      "deck.csv (the exact frozen selected deck)",
+      "cg/ (official runtime SDK required by the environment)"
+    ]
+  }
+}

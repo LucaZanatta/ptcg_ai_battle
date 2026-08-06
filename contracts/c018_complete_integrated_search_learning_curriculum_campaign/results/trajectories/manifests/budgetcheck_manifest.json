@@ -1,0 +1,19 @@
+{
+  "prefix": "budgetcheck",
+  "games": 4,
+  "decisions": 202,
+  "trusted_decisions": 183,
+  "trajectory_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/budgetcheck_trajectories.jsonl.gz",
+  "trajectory_sha256": "1cc91538a0e4a54f0239c2f9d6c5c7edf1dd16add08751316d3290ecb3ba30cd",
+  "feature_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/trajectories/budgetcheck_features.npz",
+  "config": {
+    "beam_width": 3,
+    "max_candidates": 4,
+    "max_depth": 4,
+    "max_nodes": 40,
+    "max_ms_per_decision": 2500,
+    "max_match_ms": 60000,
+    "version": "c018.search.v1"
+  },
+  "uses_c017_labels": false
+}

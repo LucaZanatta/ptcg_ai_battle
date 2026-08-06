@@ -1,0 +1,189 @@
+{
+  "candidates": {
+    "dragapult": {
+      "context_counts": {
+        "IS_FIRST": 220,
+        "SETUP_ACTIVE_POKEMON": 440,
+        "MAIN": 17775,
+        "TO_HAND": 6249,
+        "TO_ACTIVE": 1074,
+        "ATTACH_TO": 517,
+        "ATTACH_FROM": 517,
+        "TO_BENCH": 491,
+        "DAMAGE_COUNTER_ANY": 6228,
+        "ACTIVATE": 115,
+        "DISCARD": 764,
+        "EVOLVE": 246,
+        "SWITCH": 869,
+        "DISCARD_ENERGY": 820,
+        "SETUP_BENCH_POKEMON": 199,
+        "DRAW_COUNT": 110
+      },
+      "high_impact_contexts": {
+        "MAIN": 17775,
+        "TO_HAND": 6249,
+        "TO_ACTIVE": 1074,
+        "TO_BENCH": 491,
+        "ACTIVATE": 115,
+        "DISCARD": 764,
+        "EVOLVE": 246,
+        "SWITCH": 869
+      },
+      "high_impact_context_count": 8,
+      "total_decisions": 36634,
+      "action_entropy_by_context": {
+        "IS_FIRST": -0.0,
+        "SETUP_ACTIVE_POKEMON": 0.8288,
+        "MAIN": 3.595,
+        "TO_HAND": 1.5512,
+        "TO_ACTIVE": 1.6807,
+        "ATTACH_TO": -0.0,
+        "ATTACH_FROM": 2.0772,
+        "TO_BENCH": 1.3256,
+        "DAMAGE_COUNTER_ANY": 2.2061,
+        "ACTIVATE": -0.0,
+        "DISCARD": 2.8265,
+        "EVOLVE": 0.3151,
+        "SWITCH": 1.8832,
+        "DISCARD_ENERGY": 1.176,
+        "SETUP_BENCH_POKEMON": 1.3846,
+        "DRAW_COUNT": 1.5459
+      },
+      "mean_action_entropy": 1.3997
+    },
+    "iono": {
+      "context_counts": {
+        "SETUP_ACTIVE_POKEMON": 120,
+        "SETUP_BENCH_POKEMON": 52,
+        "MAIN": 6716,
+        "TO_HAND": 1221,
+        "DISCARD": 246,
+        "TO_ACTIVE": 304,
+        "DISCARD_ENERGY_CARD": 626,
+        "ATTACH_TO": 2485,
+        "ATTACH_FROM": 2485,
+        "DRAW_COUNT": 36,
+        "DISCARD_ENERGY": 175,
+        "SWITCH": 95,
+        "TO_BENCH": 145,
+        "IS_FIRST": 60
+      },
+      "high_impact_contexts": {
+        "MAIN": 6716,
+        "TO_HAND": 1221,
+        "DISCARD": 246,
+        "TO_ACTIVE": 304,
+        "SWITCH": 95,
+        "TO_BENCH": 145
+      },
+      "high_impact_context_count": 6,
+      "total_decisions": 14766,
+      "action_entropy_by_context": {
+        "SETUP_ACTIVE_POKEMON": 0.7517,
+        "SETUP_BENCH_POKEMON": -0.0,
+        "MAIN": 3.8802,
+        "TO_HAND": 1.4337,
+        "DISCARD": 2.4791,
+        "TO_ACTIVE": 2.2513,
+        "DISCARD_ENERGY_CARD": -0.0,
+        "ATTACH_TO": -0.0,
+        "ATTACH_FROM": 2.5634,
+        "DRAW_COUNT": 1.1084,
+        "DISCARD_ENERGY": -0.0,
+        "SWITCH": 2.0928,
+        "TO_BENCH": 1.5559,
+        "IS_FIRST": -0.0
+      },
+      "mean_action_entropy": 1.294
+    },
+    "mega_abomasnow": {
+      "context_counts": {
+        "SETUP_ACTIVE_POKEMON": 440,
+        "MAIN": 8837,
+        "DISCARD": 595,
+        "TO_HAND": 1607,
+        "TO_BENCH": 155,
+        "TO_ACTIVE": 517,
+        "SWITCH": 193,
+        "DRAW_COUNT": 83,
+        "DISCARD_ENERGY": 30,
+        "IS_FIRST": 220,
+        "SETUP_BENCH_POKEMON": 122
+      },
+      "high_impact_contexts": {
+        "MAIN": 8837,
+        "DISCARD": 595,
+        "TO_HAND": 1607,
+        "TO_BENCH": 155,
+        "TO_ACTIVE": 517,
+        "SWITCH": 193
+      },
+      "high_impact_context_count": 6,
+      "total_decisions": 12799,
+      "action_entropy_by_context": {
+        "SETUP_ACTIVE_POKEMON": 0.4786,
+        "MAIN": 2.0623,
+        "DISCARD": 1.0935,
+        "TO_HAND": 0.8105,
+        "TO_BENCH": 1.1145,
+        "TO_ACTIVE": 1.0986,
+        "SWITCH": 1.3551,
+        "DRAW_COUNT": 1.1115,
+        "DISCARD_ENERGY": -0.0,
+        "IS_FIRST": -0.0,
+        "SETUP_BENCH_POKEMON": -0.0
+      },
+      "mean_action_entropy": 0.8295
+    },
+    "mega_lucario": {
+      "context_counts": {
+        "SETUP_ACTIVE_POKEMON": 440,
+        "SETUP_BENCH_POKEMON": 203,
+        "MAIN": 16825,
+        "TO_HAND": 4415,
+        "DISCARD": 1808,
+        "ATTACH_TO": 716,
+        "ATTACH_FROM": 1842,
+        "TO_ACTIVE": 527,
+        "ACTIVATE": 303,
+        "SWITCH": 782,
+        "DISCARD_ENERGY": 218,
+        "DRAW_COUNT": 136,
+        "IS_FIRST": 220
+      },
+      "high_impact_contexts": {
+        "MAIN": 16825,
+        "TO_HAND": 4415,
+        "DISCARD": 1808,
+        "TO_ACTIVE": 527,
+        "ACTIVATE": 303,
+        "SWITCH": 782
+      },
+      "high_impact_context_count": 6,
+      "total_decisions": 28435,
+      "action_entropy_by_context": {
+        "SETUP_ACTIVE_POKEMON": 0.8432,
+        "SETUP_BENCH_POKEMON": -0.0,
+        "MAIN": 3.5732,
+        "TO_HAND": 1.8841,
+        "DISCARD": -0.0,
+        "ATTACH_TO": -0.0,
+        "ATTACH_FROM": 2.1789,
+        "TO_ACTIVE": 2.0252,
+        "ACTIVATE": -0.0,
+        "SWITCH": 1.9288,
+        "DISCARD_ENERGY": -0.0,
+        "DRAW_COUNT": 1.6773,
+        "IS_FIRST": -0.0
+      },
+      "mean_action_entropy": 1.0854
+    }
+  },
+  "game_length_steps": {
+    "count": 720,
+    "mean": 130.65833333333333,
+    "p50": 123,
+    "max": 304
+  },
+  "total_gauntlet_decisions": 92634
+}

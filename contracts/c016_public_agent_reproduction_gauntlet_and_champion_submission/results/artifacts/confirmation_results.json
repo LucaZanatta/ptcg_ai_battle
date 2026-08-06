@@ -1,0 +1,78 @@
+{
+  "top2": [
+    "official_mega_abomasnow",
+    "official_mega_lucario"
+  ],
+  "confirmation": [
+    {
+      "candidate_id": "official_mega_abomasnow",
+      "confirm_dragapult_games": 400,
+      "confirm_dragapult_rate": 0.5025,
+      "confirm_dragapult_wilson_lo": 0.4537,
+      "confirm_field_games": 600,
+      "confirm_field_mean": 0.4067,
+      "confirm_iono": 0.295,
+      "confirm_mega_lucario": 0.445,
+      "confirm_mega_abomasnow": 0.48
+    },
+    {
+      "candidate_id": "official_mega_lucario",
+      "confirm_dragapult_games": 400,
+      "confirm_dragapult_rate": 0.52,
+      "confirm_dragapult_wilson_lo": 0.4711,
+      "confirm_field_games": 600,
+      "confirm_field_mean": 0.6142,
+      "confirm_iono": 0.805,
+      "confirm_mega_lucario": 0.5075,
+      "confirm_mega_abomasnow": 0.53
+    }
+  ],
+  "dragapult_control_same_seeds": {
+    "iono": {
+      "games": 200,
+      "score": 131.0,
+      "score_rate": 0.655,
+      "wilson95": [
+        0.5868,
+        0.7174
+      ],
+      "seat0": 100,
+      "seat1": 100
+    },
+    "mega_lucario": {
+      "games": 200,
+      "score": 99.0,
+      "score_rate": 0.495,
+      "wilson95": [
+        0.4265,
+        0.5637
+      ],
+      "seat0": 100,
+      "seat1": 100
+    },
+    "mega_abomasnow": {
+      "games": 200,
+      "score": 105.0,
+      "score_rate": 0.525,
+      "wilson95": [
+        0.456,
+        0.5931
+      ],
+      "seat0": 100,
+      "seat1": 100
+    }
+  },
+  "dragapult_control_field_mean": 0.5583,
+  "crossplay": {
+    "games": 300,
+    "score": 159.0,
+    "score_rate": 0.53,
+    "wilson95": [
+      0.4735,
+      0.5857
+    ],
+    "seat0": 150,
+    "seat1": 150
+  },
+  "topup_note": "confirmation extended to the pre-registered strength-path minimums (>=400 vs Dragapult, >=600 field) in a single fixed-target pass"
+}

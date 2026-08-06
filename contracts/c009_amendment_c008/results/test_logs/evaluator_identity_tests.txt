@@ -1,0 +1,23 @@
+test_checkpoint_hash_mismatch_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_checkpoint_hash_mismatch_detected) ... ok
+test_classified_defect_allowed (tests.test_c009_eval_identity.TestIdentityFailures.test_classified_defect_allowed) ... ok
+test_duplicated_job_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_duplicated_job_detected) ... ok
+test_mislabeled_candidate_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_mislabeled_candidate_detected) ... ok
+test_mislabeled_opponent_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_mislabeled_opponent_detected) ... ok
+test_mislabeled_seat_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_mislabeled_seat_detected) ... ok
+test_missing_job_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_missing_job_detected) ... ok
+test_registry_hash_mismatch_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_registry_hash_mismatch_detected) ... ok
+test_unclassified_nonterminal_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_unclassified_nonterminal_detected) ... ok
+test_unknown_candidate_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_unknown_candidate_detected) ... ok
+test_wrong_deck_detected (tests.test_c009_eval_identity.TestIdentityFailures.test_wrong_deck_detected) ... ok
+test_arbitrary_shuffle_preserves_identity (tests.test_c009_eval_identity.TestIdentityUnderReordering.test_arbitrary_shuffle_preserves_identity) ... ok
+test_c008_positional_zip_pattern_is_rejected (tests.test_c009_eval_identity.TestIdentityUnderReordering.test_c008_positional_zip_pattern_is_rejected)
+Reproduces the c008 bug shape: results arrive out of order and the arm/candidate ... ok
+test_clean_passes (tests.test_c009_eval_identity.TestIdentityUnderReordering.test_clean_passes) ... ok
+test_reversed_completion_order_preserves_identity (tests.test_c009_eval_identity.TestIdentityUnderReordering.test_reversed_completion_order_preserves_identity) ... ok
+test_job_id_is_deterministic (tests.test_c009_eval_identity.TestJobIdUniqueness.test_job_id_is_deterministic) ... ok
+test_job_ids_unique_across_grid (tests.test_c009_eval_identity.TestJobIdUniqueness.test_job_ids_unique_across_grid) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.006s
+
+OK

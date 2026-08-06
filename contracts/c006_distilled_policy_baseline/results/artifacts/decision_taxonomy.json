@@ -1,0 +1,104 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "computed_on_splits": [
+    "train",
+    "validation"
+  ],
+  "test_split_touched": false,
+  "total_decisions": 16786,
+  "importance_classes": [
+    "FORCED",
+    "ROUTINE",
+    "TACTICAL",
+    "HIGH_IMPACT"
+  ],
+  "importance_distribution": {
+    "ROUTINE": 803,
+    "HIGH_IMPACT": 8726,
+    "TACTICAL": 6363,
+    "FORCED": 894
+  },
+  "semantic_type_distribution": {
+    "coin_or_setup_flag": 104,
+    "promotion_to_active": 644,
+    "bench_placement": 321,
+    "main_board_action": 2743,
+    "search_card_target": 2806,
+    "energy_attachment_target": 464,
+    "attack_choice_in_MAIN": 5474,
+    "resource_discard_or_move": 356,
+    "retreat_switch": 389,
+    "count_choice": 61,
+    "multiselect_discard_resource": 497,
+    "evolution_target": 120,
+    "dragapult_damage_counter": 2754,
+    "ability_activation": 53
+  },
+  "importance_by_context": {
+    "IS_FIRST": {
+      "ROUTINE": 104
+    },
+    "SETUP_ACTIVE_POKEMON": {
+      "HIGH_IMPACT": 90,
+      "FORCED": 117
+    },
+    "SETUP_BENCH_POKEMON": {
+      "TACTICAL": 101
+    },
+    "MAIN": {
+      "TACTICAL": 2252,
+      "HIGH_IMPACT": 5474,
+      "ROUTINE": 462,
+      "FORCED": 29
+    },
+    "TO_HAND": {
+      "TACTICAL": 2861,
+      "FORCED": 93
+    },
+    "ATTACH_TO": {
+      "TACTICAL": 232
+    },
+    "ATTACH_FROM": {
+      "TACTICAL": 223,
+      "FORCED": 9
+    },
+    "DISCARD_ENERGY": {
+      "FORCED": 180,
+      "ROUTINE": 176
+    },
+    "SWITCH": {
+      "HIGH_IMPACT": 364,
+      "FORCED": 25
+    },
+    "TO_ACTIVE": {
+      "HIGH_IMPACT": 404,
+      "FORCED": 33
+    },
+    "DRAW_COUNT": {
+      "ROUTINE": 61
+    },
+    "DISCARD": {
+      "TACTICAL": 349
+    },
+    "EVOLVE": {
+      "FORCED": 48,
+      "TACTICAL": 72
+    },
+    "DAMAGE_COUNTER_ANY": {
+      "HIGH_IMPACT": 2394,
+      "FORCED": 360
+    },
+    "ACTIVATE": {
+      "TACTICAL": 53
+    },
+    "TO_BENCH": {
+      "TACTICAL": 220
+    }
+  },
+  "rules": {
+    "FORCED": "n_options<=1, or maxCount==0, or must-take-all (lo==hi==n)",
+    "HIGH_IMPACT": "MAIN w/ attack option; end-turn while attack available; any DAMAGE_COUNTER*; promotion/switch/gust target w/ >1 option; ATTACK; Phantom Dive available",
+    "TACTICAL": "evolve/attach/multiselect/search/bench/retreat/ability choices not forced/high",
+    "ROUTINE": "remaining non-forced low-leverage choices"
+  }
+}

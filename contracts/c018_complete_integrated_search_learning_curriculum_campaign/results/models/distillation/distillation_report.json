@@ -1,0 +1,1021 @@
+{
+  "milestone": "M02",
+  "probe_ids": [
+    "P09",
+    "P10"
+  ],
+  "device": "cuda",
+  "cuda_available": true,
+  "torch_version": "2.13.0+cu132",
+  "data_prefix": "scaled2",
+  "trusted_rows_only": true,
+  "trusted_index_agrees_with_flag": true,
+  "rows_total": 47086,
+  "rows_trusted": 42857,
+  "rows_excluded_label_beyond_kmax": 0,
+  "k_max": 32,
+  "train_rows": 30045,
+  "validation_rows": 6074,
+  "test_rows": 6738,
+  "epochs": 60,
+  "batch_size": 256,
+  "lr": 0.0003,
+  "optimizer_steps": 7080,
+  "losses_finite": true,
+  "checkpoint_sha256_before": "f476b862eeb0ce2e4b8a64272bc5310426fe1c851b1a3557b65d36ec3e185023",
+  "checkpoint_sha256_after": "0903a0755e951c1eaca22807fa6caf25bd1379de82f5506118dfb84b468c7546",
+  "checkpoint_changed": true,
+  "distinct_epoch_hashes": 61,
+  "reload_hash_matches": true,
+  "reload_metrics_identical": true,
+  "checkpoint_file": "contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/m02_distilled.pt",
+  "checkpoint_file_sha256": "199fe48e979d748ca36a2e3cfeb1332e69c130259d6ba209201c7c7269df380d",
+  "continues_c017_checkpoint": false,
+  "uses_c017_labels": false,
+  "final_validation": {
+    "n": 6074,
+    "policy_loss": 1.00518,
+    "value_mse": 0.191135,
+    "top1_agreement": 0.6315,
+    "legal_prediction_rate": 1.0
+  },
+  "held_out_test": {
+    "n": 6738,
+    "policy_loss": 1.047054,
+    "value_mse": 0.202133,
+    "top1_agreement": 0.6167,
+    "legal_prediction_rate": 1.0
+  },
+  "metric_note": "top1_agreement is FIRST-PICK agreement: the stored label is label_action[0], so multi-select decisions are scored on their first chosen option only, not on the whole selection.",
+  "multiselect_rows": 848,
+  "held_out_test_from_reload": {
+    "n": 6738,
+    "policy_loss": 1.047054,
+    "value_mse": 0.202133,
+    "top1_agreement": 0.6167,
+    "legal_prediction_rate": 1.0
+  },
+  "history": [
+    {
+      "epoch": 0,
+      "optimizer_steps_cumulative": 118,
+      "batches": 118,
+      "train_policy_loss": 1.508158,
+      "train_value_loss": 0.159574,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.349205,
+        "value_mse": 0.151508,
+        "top1_agreement": 0.4832,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "6c53d6f6119c48cc944f9d53864ddf13f3e262374812a93fbb37e78bdc4e22f7",
+      "elapsed_s": 1.5
+    },
+    {
+      "epoch": 1,
+      "optimizer_steps_cumulative": 236,
+      "batches": 118,
+      "train_policy_loss": 1.32076,
+      "train_value_loss": 0.126403,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.289143,
+        "value_mse": 0.149084,
+        "top1_agreement": 0.4857,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "04c8e985a665d16e53894f1aea58d3d8ae8e360ce7dae869abfa2070fb96ca13",
+      "elapsed_s": 2.6
+    },
+    {
+      "epoch": 2,
+      "optimizer_steps_cumulative": 354,
+      "batches": 118,
+      "train_policy_loss": 1.249751,
+      "train_value_loss": 0.115369,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.217514,
+        "value_mse": 0.147501,
+        "top1_agreement": 0.5018,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "620547880188f9692e1070b6baafb50ec65d7c2c108d95e516db757b9e54c5bf",
+      "elapsed_s": 3.6
+    },
+    {
+      "epoch": 3,
+      "optimizer_steps_cumulative": 472,
+      "batches": 118,
+      "train_policy_loss": 1.192511,
+      "train_value_loss": 0.105848,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.172805,
+        "value_mse": 0.149746,
+        "top1_agreement": 0.5176,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "abe8e35a0aa5adc4bc0c63c346dcd966fab5598599573386296cb5e75d95c3fc",
+      "elapsed_s": 4.7
+    },
+    {
+      "epoch": 4,
+      "optimizer_steps_cumulative": 590,
+      "batches": 118,
+      "train_policy_loss": 1.158166,
+      "train_value_loss": 0.097066,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.14519,
+        "value_mse": 0.153012,
+        "top1_agreement": 0.5244,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "3a4eea0a75d584404f399adba7f28879c4d3a3545b4d9996b2e00ef53ff27ae2",
+      "elapsed_s": 5.7
+    },
+    {
+      "epoch": 5,
+      "optimizer_steps_cumulative": 708,
+      "batches": 118,
+      "train_policy_loss": 1.128163,
+      "train_value_loss": 0.085116,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.118098,
+        "value_mse": 0.165477,
+        "top1_agreement": 0.5413,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "cccd962f8fab878808c97f65eff79f2294cbd69dbeb6e691df8a55ca6a8b6824",
+      "elapsed_s": 6.8
+    },
+    {
+      "epoch": 6,
+      "optimizer_steps_cumulative": 826,
+      "batches": 118,
+      "train_policy_loss": 1.102292,
+      "train_value_loss": 0.076568,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.098953,
+        "value_mse": 0.159161,
+        "top1_agreement": 0.5535,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "cd2a28a1052a4c22dc6c5c5cd381be06af41895f2b6617f3ef14cc118f3671cf",
+      "elapsed_s": 7.8
+    },
+    {
+      "epoch": 7,
+      "optimizer_steps_cumulative": 944,
+      "batches": 118,
+      "train_policy_loss": 1.080564,
+      "train_value_loss": 0.067425,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.075654,
+        "value_mse": 0.161375,
+        "top1_agreement": 0.5655,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "80b91e439f37778ab8da524c02e9f6c7dc25e42eae1156243b19427a4bbeb686",
+      "elapsed_s": 8.9
+    },
+    {
+      "epoch": 8,
+      "optimizer_steps_cumulative": 1062,
+      "batches": 118,
+      "train_policy_loss": 1.05742,
+      "train_value_loss": 0.060969,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.07798,
+        "value_mse": 0.16923,
+        "top1_agreement": 0.564,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "9dcb62630b7c7c397e61d78a63af4e25e2cc1386f32faec864c8957ba126aa33",
+      "elapsed_s": 9.9
+    },
+    {
+      "epoch": 9,
+      "optimizer_steps_cumulative": 1180,
+      "batches": 118,
+      "train_policy_loss": 1.038211,
+      "train_value_loss": 0.055518,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.044613,
+        "value_mse": 0.164856,
+        "top1_agreement": 0.5812,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "1fa57fb55705e95b1e1dc527b6425de972c43300474eb71ae92dcf51cc83af24",
+      "elapsed_s": 10.9
+    },
+    {
+      "epoch": 10,
+      "optimizer_steps_cumulative": 1298,
+      "batches": 118,
+      "train_policy_loss": 1.014946,
+      "train_value_loss": 0.051446,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.033464,
+        "value_mse": 0.170665,
+        "top1_agreement": 0.5863,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "e108323570d2c75b56ba9af5dac921c70bf1840958077d97770c45e26a0d3270",
+      "elapsed_s": 11.9
+    },
+    {
+      "epoch": 11,
+      "optimizer_steps_cumulative": 1416,
+      "batches": 118,
+      "train_policy_loss": 0.996918,
+      "train_value_loss": 0.046875,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.024974,
+        "value_mse": 0.179803,
+        "top1_agreement": 0.5968,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "6558c5590d851fe4f3c770f5eaec27e5f3ea4c5d50c2aa1c67920d2b1a86ab76",
+      "elapsed_s": 13.0
+    },
+    {
+      "epoch": 12,
+      "optimizer_steps_cumulative": 1534,
+      "batches": 118,
+      "train_policy_loss": 0.967421,
+      "train_value_loss": 0.043893,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.030616,
+        "value_mse": 0.185698,
+        "top1_agreement": 0.6047,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "7044ee9c3d14675b9f59dc17fcac2777478ea4d2b12e054b2f0240a430874d85",
+      "elapsed_s": 14.0
+    },
+    {
+      "epoch": 13,
+      "optimizer_steps_cumulative": 1652,
+      "batches": 118,
+      "train_policy_loss": 0.946095,
+      "train_value_loss": 0.041887,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.01362,
+        "value_mse": 0.182495,
+        "top1_agreement": 0.6166,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "eb188214eeb841f842da828a0319150996fb2ebcf80cdfa6dcbc43157c3588a2",
+      "elapsed_s": 15.0
+    },
+    {
+      "epoch": 14,
+      "optimizer_steps_cumulative": 1770,
+      "batches": 118,
+      "train_policy_loss": 0.922099,
+      "train_value_loss": 0.039808,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.000771,
+        "value_mse": 0.174898,
+        "top1_agreement": 0.6162,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "1f3609314d213f2b5af8477e4a8d42092e4f080f4c0e42dce97677635d6ab183",
+      "elapsed_s": 16.1
+    },
+    {
+      "epoch": 15,
+      "optimizer_steps_cumulative": 1888,
+      "batches": 118,
+      "train_policy_loss": 0.9044,
+      "train_value_loss": 0.038009,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 0.990458,
+        "value_mse": 0.200402,
+        "top1_agreement": 0.6294,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "a748cb1469c846c6346bf0de247514e4e1081eccf2f4ae358827e26102e8ad1d",
+      "elapsed_s": 17.1
+    },
+    {
+      "epoch": 16,
+      "optimizer_steps_cumulative": 2006,
+      "batches": 118,
+      "train_policy_loss": 0.87511,
+      "train_value_loss": 0.037457,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 0.992625,
+        "value_mse": 0.180998,
+        "top1_agreement": 0.6253,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "48562cf6e3baf33c666d213f91db5f5db3f9368603cdc855bdc01eb3dc37bcac",
+      "elapsed_s": 18.1
+    },
+    {
+      "epoch": 17,
+      "optimizer_steps_cumulative": 2124,
+      "batches": 118,
+      "train_policy_loss": 0.85264,
+      "train_value_loss": 0.034938,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 0.991137,
+        "value_mse": 0.179956,
+        "top1_agreement": 0.6268,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "8f8ae4a73d5389993c94094b91a4572515389b8c5321f75c54e560a04cbc8645",
+      "elapsed_s": 19.2
+    },
+    {
+      "epoch": 18,
+      "optimizer_steps_cumulative": 2242,
+      "batches": 118,
+      "train_policy_loss": 0.836984,
+      "train_value_loss": 0.033639,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.005533,
+        "value_mse": 0.192215,
+        "top1_agreement": 0.624,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "2e46cf8159363f20372382bbbb57d537b949e426fff0d0e8490d920f47d305a1",
+      "elapsed_s": 20.2
+    },
+    {
+      "epoch": 19,
+      "optimizer_steps_cumulative": 2360,
+      "batches": 118,
+      "train_policy_loss": 0.818327,
+      "train_value_loss": 0.033526,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.025891,
+        "value_mse": 0.18451,
+        "top1_agreement": 0.625,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "ce98bebb12655effce7e7cb484b48f17d2244c979cf395cbaf2259a8e622ad54",
+      "elapsed_s": 21.2
+    },
+    {
+      "epoch": 20,
+      "optimizer_steps_cumulative": 2478,
+      "batches": 118,
+      "train_policy_loss": 0.800565,
+      "train_value_loss": 0.03242,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.00518,
+        "value_mse": 0.191135,
+        "top1_agreement": 0.6315,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "0903a0755e951c1eaca22807fa6caf25bd1379de82f5506118dfb84b468c7546",
+      "elapsed_s": 22.2
+    },
+    {
+      "epoch": 21,
+      "optimizer_steps_cumulative": 2596,
+      "batches": 118,
+      "train_policy_loss": 0.779907,
+      "train_value_loss": 0.031215,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.01914,
+        "value_mse": 0.184562,
+        "top1_agreement": 0.6291,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "0f85ae3ac8e428ad338fb2432ad4297f5a6a146367a0d65998215f6451a5b7e6",
+      "elapsed_s": 23.3
+    },
+    {
+      "epoch": 22,
+      "optimizer_steps_cumulative": 2714,
+      "batches": 118,
+      "train_policy_loss": 0.766794,
+      "train_value_loss": 0.030486,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.05486,
+        "value_mse": 0.19264,
+        "top1_agreement": 0.6182,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "4cc01b12feeb2aacc3ef21c58db86d983bcc22cc3f02b464afa67cc7a7fecdf1",
+      "elapsed_s": 24.3
+    },
+    {
+      "epoch": 23,
+      "optimizer_steps_cumulative": 2832,
+      "batches": 118,
+      "train_policy_loss": 0.75051,
+      "train_value_loss": 0.030364,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.047565,
+        "value_mse": 0.190691,
+        "top1_agreement": 0.6246,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "d357af624729b956e5090ca99b2f0751f0ebb4c8806c58d322a1fccf12d09b50",
+      "elapsed_s": 25.3
+    },
+    {
+      "epoch": 24,
+      "optimizer_steps_cumulative": 2950,
+      "batches": 118,
+      "train_policy_loss": 0.726083,
+      "train_value_loss": 0.029617,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.054361,
+        "value_mse": 0.204505,
+        "top1_agreement": 0.6207,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "2f28efb6f1bf895f36f8ce2ca929401253b41d93039b8d1bc9e4091853f0d8d6",
+      "elapsed_s": 26.3
+    },
+    {
+      "epoch": 25,
+      "optimizer_steps_cumulative": 3068,
+      "batches": 118,
+      "train_policy_loss": 0.714993,
+      "train_value_loss": 0.028859,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.104462,
+        "value_mse": 0.196764,
+        "top1_agreement": 0.6161,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "eee59e9ccef54cc11d2dedec58789784359c61a6a28126177fcb805340fcca4f",
+      "elapsed_s": 27.4
+    },
+    {
+      "epoch": 26,
+      "optimizer_steps_cumulative": 3186,
+      "batches": 118,
+      "train_policy_loss": 0.69514,
+      "train_value_loss": 0.028243,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.092948,
+        "value_mse": 0.192323,
+        "top1_agreement": 0.6133,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "97e84f1e96630f0e7aabbc97a997192fa34cf087b2e91b43106b2bcc56389386",
+      "elapsed_s": 28.4
+    },
+    {
+      "epoch": 27,
+      "optimizer_steps_cumulative": 3304,
+      "batches": 118,
+      "train_policy_loss": 0.682291,
+      "train_value_loss": 0.02791,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.1113,
+        "value_mse": 0.204121,
+        "top1_agreement": 0.6197,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "a1196ea8074177a5c55ebe14d051eed4e352758b86295b7103362dbab28f9f26",
+      "elapsed_s": 29.4
+    },
+    {
+      "epoch": 28,
+      "optimizer_steps_cumulative": 3422,
+      "batches": 118,
+      "train_policy_loss": 0.662094,
+      "train_value_loss": 0.02708,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.128802,
+        "value_mse": 0.189802,
+        "top1_agreement": 0.6207,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "cfc7c533086e3ae3ebc8e475f02403946c9cb0afb4f9a59074218c39a8527ef5",
+      "elapsed_s": 30.5
+    },
+    {
+      "epoch": 29,
+      "optimizer_steps_cumulative": 3540,
+      "batches": 118,
+      "train_policy_loss": 0.651174,
+      "train_value_loss": 0.027586,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.173537,
+        "value_mse": 0.205159,
+        "top1_agreement": 0.6143,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "d73c07d3efad242bf3d97e86e3595fc96afe03cda45e5c15454f9d2d005072d6",
+      "elapsed_s": 31.5
+    },
+    {
+      "epoch": 30,
+      "optimizer_steps_cumulative": 3658,
+      "batches": 118,
+      "train_policy_loss": 0.632456,
+      "train_value_loss": 0.026337,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.187109,
+        "value_mse": 0.193872,
+        "top1_agreement": 0.6157,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "bca8d368af32a8fb4017569e7400ce2258b8455048943c4a4701a8386a017f8a",
+      "elapsed_s": 32.5
+    },
+    {
+      "epoch": 31,
+      "optimizer_steps_cumulative": 3776,
+      "batches": 118,
+      "train_policy_loss": 0.612951,
+      "train_value_loss": 0.026243,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.219381,
+        "value_mse": 0.191074,
+        "top1_agreement": 0.6184,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "46364d6d81d2150b4645b729fc1b1228585db2376760f411c38d74b7b6f82d63",
+      "elapsed_s": 33.5
+    },
+    {
+      "epoch": 32,
+      "optimizer_steps_cumulative": 3894,
+      "batches": 118,
+      "train_policy_loss": 0.599094,
+      "train_value_loss": 0.025925,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.260315,
+        "value_mse": 0.188754,
+        "top1_agreement": 0.6212,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "62724b0e9c099545b20126381b74ca21a52979c2fcdd8bcd086e0ca464999fa5",
+      "elapsed_s": 34.6
+    },
+    {
+      "epoch": 33,
+      "optimizer_steps_cumulative": 4012,
+      "batches": 118,
+      "train_policy_loss": 0.5899,
+      "train_value_loss": 0.025757,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.262415,
+        "value_mse": 0.191844,
+        "top1_agreement": 0.6098,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "ab0bdd1cd1f6a4a54e95e8fe7c422c2d9043d71a026b3efe3572e2560030ae83",
+      "elapsed_s": 35.6
+    },
+    {
+      "epoch": 34,
+      "optimizer_steps_cumulative": 4130,
+      "batches": 118,
+      "train_policy_loss": 0.575971,
+      "train_value_loss": 0.025112,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.29474,
+        "value_mse": 0.19422,
+        "top1_agreement": 0.6082,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "0c472fecf0af3d2bfa2cfbd8eb1d0b35c4c5016f8f303fd4be297f687d83e027",
+      "elapsed_s": 36.6
+    },
+    {
+      "epoch": 35,
+      "optimizer_steps_cumulative": 4248,
+      "batches": 118,
+      "train_policy_loss": 0.556835,
+      "train_value_loss": 0.025003,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.334033,
+        "value_mse": 0.193408,
+        "top1_agreement": 0.612,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "230b255c239a5efe3958f0c1b6eae09e6d7a2d73943e217ebd1f8fd488a9d547",
+      "elapsed_s": 37.6
+    },
+    {
+      "epoch": 36,
+      "optimizer_steps_cumulative": 4366,
+      "batches": 118,
+      "train_policy_loss": 0.549362,
+      "train_value_loss": 0.024714,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.368287,
+        "value_mse": 0.215496,
+        "top1_agreement": 0.6133,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "5d65acebd2db3d57bb253be38eafdcffaf801f41e62b36cd477d355cd0dce17b",
+      "elapsed_s": 38.7
+    },
+    {
+      "epoch": 37,
+      "optimizer_steps_cumulative": 4484,
+      "batches": 118,
+      "train_policy_loss": 0.534302,
+      "train_value_loss": 0.025063,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.397795,
+        "value_mse": 0.198176,
+        "top1_agreement": 0.611,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "d58337ceaef2eda1ec8de3379162a1ba6a2316b6e0e86ada28916ecae1b35523",
+      "elapsed_s": 39.7
+    },
+    {
+      "epoch": 38,
+      "optimizer_steps_cumulative": 4602,
+      "batches": 118,
+      "train_policy_loss": 0.516129,
+      "train_value_loss": 0.024504,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.445277,
+        "value_mse": 0.193724,
+        "top1_agreement": 0.6124,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "002153b8881393ea8ed4d44cf317bb5d69cff10f6a6ce13140c21adcf039fed9",
+      "elapsed_s": 40.8
+    },
+    {
+      "epoch": 39,
+      "optimizer_steps_cumulative": 4720,
+      "batches": 118,
+      "train_policy_loss": 0.504796,
+      "train_value_loss": 0.024347,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.461544,
+        "value_mse": 0.192386,
+        "top1_agreement": 0.609,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "d66de2c942cc5131aa96e640e8736c88badf3d781ab2e88f3d3b2775ea4880e4",
+      "elapsed_s": 41.8
+    },
+    {
+      "epoch": 40,
+      "optimizer_steps_cumulative": 4838,
+      "batches": 118,
+      "train_policy_loss": 0.490269,
+      "train_value_loss": 0.023533,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.513249,
+        "value_mse": 0.196574,
+        "top1_agreement": 0.6054,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "29e87bc06faa199e44a50a66aa935c49d87789ad2a45dc1ececa8a5ca3376f2b",
+      "elapsed_s": 42.8
+    },
+    {
+      "epoch": 41,
+      "optimizer_steps_cumulative": 4956,
+      "batches": 118,
+      "train_policy_loss": 0.481667,
+      "train_value_loss": 0.023427,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.522495,
+        "value_mse": 0.204821,
+        "top1_agreement": 0.6073,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "1aee61d6ca6d2527ab6a06a13e297d9ee3774f20a5d7d3153605fe5b8089f3f8",
+      "elapsed_s": 43.8
+    },
+    {
+      "epoch": 42,
+      "optimizer_steps_cumulative": 5074,
+      "batches": 118,
+      "train_policy_loss": 0.474732,
+      "train_value_loss": 0.023484,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.5994,
+        "value_mse": 0.20183,
+        "top1_agreement": 0.5955,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "c5587c4032fd5447904147697743387a1bc97e2d8eaba66ee24b8293ea86ded9",
+      "elapsed_s": 44.8
+    },
+    {
+      "epoch": 43,
+      "optimizer_steps_cumulative": 5192,
+      "batches": 118,
+      "train_policy_loss": 0.462679,
+      "train_value_loss": 0.023036,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.612047,
+        "value_mse": 0.192564,
+        "top1_agreement": 0.6034,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "4934d07f3292a6c5cdff7235ab0427e01148b9992743962bd8058a049792cc6c",
+      "elapsed_s": 45.9
+    },
+    {
+      "epoch": 44,
+      "optimizer_steps_cumulative": 5310,
+      "batches": 118,
+      "train_policy_loss": 0.452166,
+      "train_value_loss": 0.023197,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.681953,
+        "value_mse": 0.205177,
+        "top1_agreement": 0.5957,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "c4bb965f952eb1d6f44f24d676bda7d18fd7ab4d2fd5b817d70eca6d36a35af9",
+      "elapsed_s": 46.9
+    },
+    {
+      "epoch": 45,
+      "optimizer_steps_cumulative": 5428,
+      "batches": 118,
+      "train_policy_loss": 0.439705,
+      "train_value_loss": 0.02306,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.677103,
+        "value_mse": 0.188934,
+        "top1_agreement": 0.6082,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "3e46f418e3cf19893bf866801b573741ea016a885a0e3e1bccc99c74150d0e88",
+      "elapsed_s": 47.9
+    },
+    {
+      "epoch": 46,
+      "optimizer_steps_cumulative": 5546,
+      "batches": 118,
+      "train_policy_loss": 0.431545,
+      "train_value_loss": 0.022802,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.695309,
+        "value_mse": 0.191049,
+        "top1_agreement": 0.6113,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "3958883fa6c83a86b204e0f76b778044df9484daf79ed4d7f69332396961e4c5",
+      "elapsed_s": 48.9
+    },
+    {
+      "epoch": 47,
+      "optimizer_steps_cumulative": 5664,
+      "batches": 118,
+      "train_policy_loss": 0.417944,
+      "train_value_loss": 0.022796,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.819941,
+        "value_mse": 0.201271,
+        "top1_agreement": 0.5991,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "8a2bfdce9d10bca66b08f1b649262c7f3e0d26206c3b609225684173ea113f66",
+      "elapsed_s": 50.0
+    },
+    {
+      "epoch": 48,
+      "optimizer_steps_cumulative": 5782,
+      "batches": 118,
+      "train_policy_loss": 0.41133,
+      "train_value_loss": 0.021789,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.831289,
+        "value_mse": 0.20539,
+        "top1_agreement": 0.5953,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "cb031f17ca10cdef7e7ab53a4c6e8273ae10cf5a6939e80189fdbaa7527600d6",
+      "elapsed_s": 51.0
+    },
+    {
+      "epoch": 49,
+      "optimizer_steps_cumulative": 5900,
+      "batches": 118,
+      "train_policy_loss": 0.398953,
+      "train_value_loss": 0.021495,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.862419,
+        "value_mse": 0.195712,
+        "top1_agreement": 0.6013,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "183fd46e26a7577e4c1a8910cf549e205d1a819afe8a656c8a0766cce9ffad96",
+      "elapsed_s": 52.0
+    },
+    {
+      "epoch": 50,
+      "optimizer_steps_cumulative": 6018,
+      "batches": 118,
+      "train_policy_loss": 0.387143,
+      "train_value_loss": 0.021959,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.972874,
+        "value_mse": 0.202021,
+        "top1_agreement": 0.5905,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "a9092b1a4ed8733ed65393784c20e628931ea34b4217b7d5567b0993ce4eba63",
+      "elapsed_s": 53.1
+    },
+    {
+      "epoch": 51,
+      "optimizer_steps_cumulative": 6136,
+      "batches": 118,
+      "train_policy_loss": 0.382723,
+      "train_value_loss": 0.022204,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 1.94972,
+        "value_mse": 0.202489,
+        "top1_agreement": 0.5932,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "d831c644fbbc43aad7b2a1554a52a089ada0c730b98738d60e9c5b43c96ea255",
+      "elapsed_s": 54.1
+    },
+    {
+      "epoch": 52,
+      "optimizer_steps_cumulative": 6254,
+      "batches": 118,
+      "train_policy_loss": 0.365199,
+      "train_value_loss": 0.021811,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.034061,
+        "value_mse": 0.195985,
+        "top1_agreement": 0.5932,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "efb09b5a22f550c61b478df291a46677465b41a2aee6fa5ab0ce6b5f7844c3c3",
+      "elapsed_s": 55.1
+    },
+    {
+      "epoch": 53,
+      "optimizer_steps_cumulative": 6372,
+      "batches": 118,
+      "train_policy_loss": 0.365076,
+      "train_value_loss": 0.021628,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.059656,
+        "value_mse": 0.200377,
+        "top1_agreement": 0.597,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "f80a1a57d9a8f1e2049548e0ff4d5d7beac1203b033a65f080732d7f90edf6b1",
+      "elapsed_s": 56.1
+    },
+    {
+      "epoch": 54,
+      "optimizer_steps_cumulative": 6490,
+      "batches": 118,
+      "train_policy_loss": 0.352399,
+      "train_value_loss": 0.021109,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.062992,
+        "value_mse": 0.200069,
+        "top1_agreement": 0.5989,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "30630f095b9f9dad9ca6dfcfee7a933a5a3717726a5f85b4f7b6a99712d64c6c",
+      "elapsed_s": 57.1
+    },
+    {
+      "epoch": 55,
+      "optimizer_steps_cumulative": 6608,
+      "batches": 118,
+      "train_policy_loss": 0.345827,
+      "train_value_loss": 0.021233,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.17886,
+        "value_mse": 0.206942,
+        "top1_agreement": 0.6001,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "757902df049fed7193049a24c8111609cc1ef22d427dd8ce7426aff69665ebad",
+      "elapsed_s": 58.2
+    },
+    {
+      "epoch": 56,
+      "optimizer_steps_cumulative": 6726,
+      "batches": 118,
+      "train_policy_loss": 0.341313,
+      "train_value_loss": 0.021087,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.266247,
+        "value_mse": 0.196658,
+        "top1_agreement": 0.594,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "5d0a31dd8630192c39a622adc42a44f43fac8748fb0dadf5fbed10712603de37",
+      "elapsed_s": 59.2
+    },
+    {
+      "epoch": 57,
+      "optimizer_steps_cumulative": 6844,
+      "batches": 118,
+      "train_policy_loss": 0.339857,
+      "train_value_loss": 0.020729,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.245612,
+        "value_mse": 0.197936,
+        "top1_agreement": 0.5968,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "d5cc56b7df1325cbcd7d642de593662e68f2142eeb372a0d4549bd94e425d1ea",
+      "elapsed_s": 60.2
+    },
+    {
+      "epoch": 58,
+      "optimizer_steps_cumulative": 6962,
+      "batches": 118,
+      "train_policy_loss": 0.32657,
+      "train_value_loss": 0.020732,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.26859,
+        "value_mse": 0.197428,
+        "top1_agreement": 0.5935,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "5024aa62ce402745275a094f7883d9c4af9febaf686b2d43c61723d6e00cb725",
+      "elapsed_s": 61.2
+    },
+    {
+      "epoch": 59,
+      "optimizer_steps_cumulative": 7080,
+      "batches": 118,
+      "train_policy_loss": 0.310757,
+      "train_value_loss": 0.020672,
+      "validation": {
+        "n": 6074,
+        "policy_loss": 2.351607,
+        "value_mse": 0.203529,
+        "top1_agreement": 0.5955,
+        "legal_prediction_rate": 1.0
+      },
+      "checkpoint_sha256": "c433e2074cf379aa16317ddeae38ecc0a7966f6ac2b0f5d4d1c263ba89d38af8",
+      "elapsed_s": 62.3
+    }
+  ],
+  "wall_clock_s": 62.3
+}

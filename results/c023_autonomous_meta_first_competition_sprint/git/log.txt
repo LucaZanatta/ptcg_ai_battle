@@ -1,3 +1,33 @@
+aac420c c023: the two-hit race over 22 meta archetypes, and it validates itself
+fae3b53 c023: record the user's submission authorization in the repository before using it
+f067114 c023: F8 -- the real ladder's answer, and it retires F5
+ad8173f c023: mine the champion's real ladder losses turn by turn
+26a21e3 c023: the local panel predicts Kaggle rating with R2 = 0.987
+ae4af5d c023: F6 killed by three independent lines, and the registered prediction was exact
+4fe2787 c023: the search's final table -- every accepted change left the incumbent worse than the defaults
+aa4aa34 c023: the fourth acceptance is the exception, and it changes nothing
+a79284e c023: F6 in the agent ledger -- the score-constant search, and why its own incumbent series buried it
+216be50 c023: register the powered A/B that replaces the rest of the search, before stopping it
+26ed474 c023: the accepted parameter is worth zero, over 17,000 re-measurement games
+e5baf9c c023: D7 -- the acceptance rule is asymmetric, and both acceptances prove it
+7da9209 c023: the search's most useful output is its incumbent series, not its winner
+c3b0781 c023: selection bias with a number on it, measured inside the search
+e1fbac8 c023: the search accepts one change, and the incumbent gives the noise floor a sixth measurement
+b4ba186 c023: a results README, so 530 MB of evidence has a front door
+5ed0b7c c023: our own two prior submissions join the panel, to make the calibration a line through four points
+22f89cd c023: acceptance criteria that measure the right things
+50c0b25 c023: the close path exercised early -- 11/11 checks pass, 9/9 injections detected
+c83a4c0 c023: EXECUTIVE_DECISION -- the champion changed and nothing beat it
+c6589c4 c023: all four submissions' ladder records -- 380 public games, zero parse errors
+dac3764 c023: the Crustle branch, killed before a line of it was written
+913174a c023: P-B confirmed -- the archetype's headroom is agent, not deck
+19f8dbd c023: D6 -- a third lazy-initialisation defect, and why the harness change does not invalidate earlier runs
+b0bdac3 c023: the first local-to-ladder calibration this project has had
+168ff36 c023: F4 killed, and the registered prediction holds
+22b2e33 c023: the calibration point -- the champion's real ladder score rate is 0.5783 over 83 games
+85b5902 c023: amend the panel split -- Crustle Wall joins VALIDATION, not dev
+bd1aa92 c023: META_REPORT 5b -- the ladder's own record of the champion, and two corrections to this campaign's design
+08dc7e0 c023: our own ladder replays, and the matchup the panel was missing
 65b1678 c023: F3 verdict, and the finalisation script
 445e94f c023: mine our own ladder replays -- first-hand evidence instead of a third-party snapshot
 535db08 c023: register the score-constant search protocol before it runs
@@ -8,33 +38,3 @@ e9ec1f4 c023: parameterise the sample agent's own 110 score constants, and a (1+
 8f15227 c023: the veto primitive, conservative admission, and the expert shortlist
 068513a c023: deck co-optimization fails, the planner fails, and the loss profile says why
 ea8360d c023: the turn planner, and three killed rules
-23e3937 c023: champion truth -- official_dragapult, decided by measurement not by label
-ee14b54 c023: infrastructure -- player registry, fork-per-game evaluation harness, candidate builder
-e730e7e c022: the five empty schema directories, and the submission decision that was never recorded
-1354272 c022: close -- 26/26 schema outputs, 44/46 probes MET, 20/20 validator checks
-2cea40c c022: T1/T2 and M09/M10 land -- TRANSFER=INCONCLUSIVE, and the ensemble stabilises the value not the choice
-05a4a02 c022: transfer instrumentation, V20, acceptance generator, decision board
-3d65097 c022: restart -- transfer needed a c022 provider, and the M08 ceiling moved
-2d5e03a c022: D28 -- every arm I killed left its workers alive, for eleven hours
-63666e5 c022: BYTERL_FIXED_DECK = PASS -- the extension arm reaches 73% of the matched budget and learns
-425ac48 c022: the extension window -- the faithful system DOES learn, and the depth question stays open
-75d0f46 c022: the summary -- both methods faithful, one negative result about its own premise
-21f784f c022: D27 -- the 8x depth arm measured its guard, and is quarantined
-6e99d93 c022: the BYTERL_REFERENCE_FIDELITY evidence, one artifact per requirement
-f918105 c022: a user-granted window to 07:00, and the two arms it buys -- registered before either ran
-1b11137 c022: the final panel -- the bar re-runs to 0.5833 against its recorded 0.5837, and the gap is 45 points
-ca6a78c c022: the 00:00 assessment, and D25/D26 -- a panel that scored nothing, and checks that failed correct behaviour
-f431265 c022: the overconfidence fix is simulations, not worlds -- and D24, the predicate that nearly missed it
-c4e6588 c022: the midnight projection, recorded before the trigger fires
-c323b80 c022: stage 2's wait was sized from clean throughput, and would have probed a tag that does not exist
-1e01f12 c022: M12 deploy arms land -- at a fixed clock, K=8 gets 42 sims/decision and K=1 gets 44
-cf82430 c022: the decisive arms stop at 23:50 and self-report, rather than being killed
-8585ec9 c022: D23 -- the M11 headline was a mean of two decisions, and the deploy panel is missing half a matchup
-f9de736 c022: D22 -- I contaminated my own quiet window, an hour after establishing it
-0a1fd0d c022: the eleven statuses are computed from artifacts, and B11-B17 get artifacts to compute from
-4e7017d c022: D21 -- the validator was validating the shortlist, not the result
-92ceac8 c022: split the ladder at the b2 line, and verify B06 where it can actually be verified
-afafa02 c022: D20 -- B06 ran once in 556 policy versions and reported PASS
-556754f c022: the deploy arm's clock comes from c021, and the M11 probe measures the term that decides
-79273ea c022: M11's 15/10 schedule is implemented, not merely recorded as a constant
-dacb16d c022: D19 -- the B06 check was comparing the learner against mu, and D17 made mu uniform

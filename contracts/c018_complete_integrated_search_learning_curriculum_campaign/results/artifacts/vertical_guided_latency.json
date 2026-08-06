@@ -1,0 +1,27 @@
+{
+  "budget_ms": 2500,
+  "policy": "/home/luca/kaggle/ptcg_ai_battle/contracts/c018_complete_integrated_search_learning_curriculum_campaign/results/checkpoints/vertical_curric.npz",
+  "unguided": {
+    "n": 213,
+    "p50": 2.29,
+    "p90": 3.31,
+    "p99": 4.59,
+    "max": 8.99,
+    "mean": 2.31,
+    "searched": 213,
+    "decisions": 240
+  },
+  "guided": {
+    "n": 226,
+    "p50": 5.63,
+    "p90": 8.02,
+    "p99": 10.0,
+    "max": 13.52,
+    "mean": 5.79,
+    "searched": 226,
+    "decisions": 253
+  },
+  "leaf_rows_failed": 0,
+  "order_failed": 0,
+  "leaf_rows_ok": 838
+}

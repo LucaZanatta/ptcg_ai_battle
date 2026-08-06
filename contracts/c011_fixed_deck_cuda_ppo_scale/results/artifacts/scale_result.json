@@ -1,0 +1,67 @@
+{
+  "scale_result": "EXTENDED",
+  "conditions": {
+    "two_seeds_beat_incumbent_teacher": true,
+    "two_seeds_beat_incumbent_field": true,
+    "median_teacher_gain_ge_0.03": true,
+    "median_field_gain_ge_0.03": true,
+    "one_median_improvement_90pct": true,
+    "no_majority_abomasnow_regression": true,
+    "reliability_passes": true
+  },
+  "detail": {
+    "median_teacher": 0.345,
+    "median_field": 0.3666666666666667,
+    "median_teacher_gain": 0.07499999999999996,
+    "median_field_gain": 0.06833333333333336,
+    "max_significance": 0.99225,
+    "seeds_above_teacher": [
+      "S_611_g40127",
+      "S_622_g39983",
+      "S_633_g30176"
+    ],
+    "seeds_above_field": [
+      "S_611_g40127",
+      "S_622_g39983",
+      "S_633_g30176"
+    ],
+    "abomasnow_regressions": {
+      "S_611_g40127": false,
+      "S_622_g39983": false,
+      "S_633_g30176": false
+    },
+    "incumbent": {
+      "teacher": 0.27,
+      "field": 0.29833333333333334,
+      "composite": 0.28275000000000006
+    }
+  },
+  "milestones": {
+    "M1_teacher_0.35_field_0.36": false,
+    "M2_teacher_0.40_field_0.40": false,
+    "M3_teacher_lb95_0.47": false,
+    "best_teacher": 0.345,
+    "best_field": 0.3916666666666666,
+    "best_teacher_lb95": 0.29000000000000004
+  },
+  "seed_best": {
+    "611": {
+      "candidate_id": "S_611_g40127",
+      "teacher": 0.32,
+      "field": 0.3916666666666666,
+      "composite": 0.35225
+    },
+    "622": {
+      "candidate_id": "S_622_g39983",
+      "teacher": 0.345,
+      "field": 0.33666666666666667,
+      "composite": 0.34125
+    },
+    "633": {
+      "candidate_id": "S_633_g30176",
+      "teacher": 0.345,
+      "field": 0.3666666666666667,
+      "composite": 0.35475
+    }
+  }
+}

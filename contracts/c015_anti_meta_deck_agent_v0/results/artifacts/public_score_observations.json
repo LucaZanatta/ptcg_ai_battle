@@ -1,0 +1,56 @@
+{
+  "observed_utc": "2026-07-26T15:53:09.055181+00:00",
+  "observed_europe_rome": "2026-07-26T17:53:09.055181+02:00",
+  "readings": [
+    {
+      "ref": "55005237",
+      "file": "submission_I_anti_meta_v0.tar.gz",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "619.4"
+    },
+    {
+      "ref": "55004756",
+      "file": "submission_H_public_meta_v0.tar.gz",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "589.6"
+    },
+    {
+      "ref": "54948560",
+      "file": "submission_A_teacher.tar.gz",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "719.7"
+    },
+    {
+      "ref": "54948476",
+      "file": "submission_A_teacher.tar.gz",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "711.0"
+    }
+  ],
+  "finding": "the public score is a LIVE ladder rating, not a fixed result. c014's ref 55004756 read 600.0 immediately after upload, 754.5 about twenty minutes later, and 589.6 at this observation.",
+  "consequence": "no champion may be declared from a single reading; this is what \u00a716 forbids",
+  "score_history_c014": [
+    {
+      "when": "at poll (~90s after upload)",
+      "score": "600.0"
+    },
+    {
+      "when": "c015 delta check",
+      "score": "754.5"
+    },
+    {
+      "when": "final observation",
+      "score": "589.6"
+    }
+  ],
+  "score_history_c015": [
+    {
+      "when": "at poll (~90s after upload)",
+      "score": "600.0"
+    },
+    {
+      "when": "final observation",
+      "score": "619.4"
+    }
+  ]
+}

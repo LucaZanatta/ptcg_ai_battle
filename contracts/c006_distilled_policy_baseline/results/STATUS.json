@@ -1,0 +1,63 @@
+{
+  "contract": "c006_distilled_policy_baseline",
+  "status": "PASS",
+  "acceptance_criteria_total": 14,
+  "acceptance_criteria_passed": 14,
+  "acceptance_criteria_failed": 0,
+  "initial_head": "4137d983c6a05c0eea8332718d3e7f3acc7b7830",
+  "final_head": "08ebac88385444a69d0615b7976dea9dbddeb79a",
+  "implementation_commits": [
+    "b970f88 c006: add c005 dependency/freeze verification tool",
+    "476b453 c006: add ordered sequence dataset rebuild and stateless ambiguity analysis",
+    "ae43c98 c006: add card vocabulary, decision taxonomy, and action decoders",
+    "fb728ed c006: add numpy autograd, shared featurizer, and S1/S2 policy models",
+    "641f2a5 c006: add experiment registration and reproducible training harness",
+    "35ba071 c006: add runtime student agent, gameplay harness, offline+gameplay eval",
+    "2c920b6 c006: add strategic-gauntlet analysis (ranking, BT, worst, regression)",
+    "08ebac8 c006: add submission-B packaging and decision artifacts"
+  ],
+  "teacher_id": "dragapult",
+  "deck_id": "sha256:8055443275c86105b38198992c9556a642b833a47430aa97fb1a84c9ee4fdbab",
+  "sequence_examples": 19050,
+  "sequence_games": 240,
+  "split_examples": {"train": 13795, "validation": 2991, "test": 2264},
+  "split_games": {"train": 170, "validation": 37, "test": 33},
+  "stateless_exact_ambiguity_conflicts": 0,
+  "stateless_exact_agreement_upper_bound": 1.0,
+  "card_vocabulary_size": 1270,
+  "s1_param_count": 152673,
+  "s2_param_count": 273441,
+  "selected_s1_checkpoint": {"seed": 303, "sha256_12": "293fb39fb5da", "val_iw_agreement": 0.7066},
+  "selected_s2_checkpoint": {"seed": 222, "sha256_12": "fbdfb0ef2dd4", "val_iw_agreement": 0.6982},
+  "test_agreement": {
+    "S1_STATELESS": {"overall_exact": 0.7323, "importance_weighted": 0.6951, "high_impact": 0.6748, "test_nll": null},
+    "S2_RECURRENT": {"overall_exact": 0.7248, "importance_weighted": 0.6897, "high_impact": 0.6757}
+  },
+  "memory_decision": "MEMORY_NOT_JUSTIFIED",
+  "student_vs_teacher": {
+    "S1_STATELESS": {"point": 0.120, "one_sided_lb_95": 0.085, "non_inferior": false},
+    "S2_RECURRENT": {"point": 0.170, "one_sided_lb_95": 0.125, "non_inferior": false}
+  },
+  "gauntlet_mean_vs_field": {"teacher": 0.604, "S1": 0.188, "S2": 0.150, "control": 0.106},
+  "students_beat_control": true,
+  "major_regressions": 8,
+  "reliability_defects_total": 0,
+  "best_student": "NONE",
+  "submission_B_decision": "DO_NOT_SUBMIT",
+  "kaggle_upload": "SKIPPED_BY_GATE",
+  "kaggle_submission_ref": null,
+  "kaggle_submission_status": null,
+  "student_public_score": null,
+  "teacher_recorded_public_score": 617.8,
+  "teacher_live_public_score": 674.6,
+  "promotion_decision": "NO_STUDENT_SUBMISSION",
+  "rl_readiness": "NOT_READY_FOR_RL",
+  "blocking_issues": [],
+  "known_limitations": [
+    "Behavioral cloning of the stateful Dragapult teacher into a <300k-param policy reproduces ~73% of test decisions but compounding errors collapse full-game strength (both students clearly inferior to the teacher; one-sided LB 0.085/0.125 << 0.45).",
+    "S2 GRU inference uses the student's own previous action count as an explicit input while training used the teacher's; a minor S2-only input skew. Immaterial to conclusions (S2 also ties S1 offline where inputs are matched). Documented, not retrained.",
+    "Exact competition size/latency limits and full rules text are not machine-retrievable (inherited from c005); size limit treated conservatively (100MB) and latency reported as single-process P99.",
+    "Engine trajectories are non-reproducible (std::random_device); the dataset/splits, offline eval, and checkpoints are reproducible; gameplay conclusions rest on statistical intervals over many games."
+  ],
+  "negative_result_note": "A PASS does not require a successful student; it requires correct, honest execution and rule-anchored decision-making. Both students BEAT the deterministic control (learned to imitate) but are not teacher-strong."
+}

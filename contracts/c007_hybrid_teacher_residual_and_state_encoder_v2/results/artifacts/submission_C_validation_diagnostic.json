@@ -1,0 +1,42 @@
+{
+  "contract": "c007",
+  "status": "NOT_FOR_SUBMISSION (SUBMISSION_C=DO_NOT_SUBMIT)",
+  "archive": "contracts/c007_hybrid_teacher_residual_and_state_encoder_v2/results/artifacts/submission_C_hybrid_NOT_FOR_SUBMISSION.tar.gz",
+  "size_bytes": 3985118,
+  "clean_extraction": true,
+  "required_files_present": {
+    "submission_C_hybrid/main.py": true,
+    "submission_C_hybrid/deck.csv": true,
+    "submission_C_hybrid/model.npz": true,
+    "submission_C_hybrid/hybrid_config.json": true,
+    "submission_C_hybrid/teacher/main.py": true,
+    "submission_C_hybrid/cg/libcg.so": true,
+    "submission_C_hybrid/cg/hybrid_agent.py": true,
+    "submission_C_hybrid/cg/state_encoder_v2.py": true
+  },
+  "all_required_present": true,
+  "forbidden_files_present": [],
+  "excludes_data_and_secrets": true,
+  "inprocess_reliability_run": {
+    "games": 78,
+    "invalid": 0,
+    "exceptions": 0,
+    "incomplete": 0,
+    "p99_ms_max_contended": 54.1514392800001,
+    "zero_defects": true
+  },
+  "subprocess_self_containment_smoke": {
+    "self_contained_ok": true,
+    "stdout_tail": [
+      "SMOKE_DONE 2"
+    ],
+    "stderr_tail": []
+  },
+  "missing_weights_fallback": {
+    "games": 4,
+    "completed": 4,
+    "fallback_ok": true
+  },
+  "package_validation_pass": true,
+  "wall_seconds": 12.5
+}

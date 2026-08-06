@@ -1,0 +1,16 @@
+{
+  "argv": [
+    ".venv/bin/kaggle",
+    "competitions",
+    "submit",
+    "pokemon-tcg-ai-battle",
+    "-f",
+    "contracts/c015_anti_meta_deck_agent_v0/results/artifacts/submission_I_anti_meta_v0.tar.gz",
+    "-m",
+    "c015 anti-meta-v0 iono-bellibolt vs archaludon 15d9e69"
+  ],
+  "returncode": 0,
+  "stdout": "Successfully submitted to The Pok\u00e9mon Company - PTCG AI Battle Challenge Simulation",
+  "stderr": "\n  0%|          | 0.00/489k [00:00<?, ?B/s]\n 98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 480k/489k [00:00<00:00, 4.72MB/s]\n100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 489k/489k [00:00<00:00, 536kB/s] \n",
+  "seconds": 2.5
+}
