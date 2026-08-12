@@ -108,6 +108,14 @@ def _is_rule_box(card_id: int) -> bool:
     return bool(d and (d.ex or d.megaEx))
 
 
+def _prize_value(p) -> int:
+    """Prizes the opponent gives up when this Pokemon is knocked out."""
+    if p is None:
+        return 0
+    d = _CARD.get(p.id)
+    return 3 if (d and d.megaEx) else 2 if (d and d.ex) else 1
+
+
 def _powerful_hand_damage(hand_size: int) -> int:
     return DAMAGE_PER_CARD * hand_size
 
@@ -308,9 +316,18 @@ def _score_main(sel, st, mi: int) -> List[int]:
                 # what produced that -- the bigger hand is worth nothing if nothing can attack.
                 s = 96000 if energy_starved else 78000
             elif cid == BOSS and op.bench:
-                # Only worth a supporter when it drags out something we can actually knock out.
-                best = max((p for p in op.bench if p is not None), key=lambda p: -p.hp, default=None)
-                s = 88000 if (best is not None and ready and dmg >= best.hp) else 26000
+                # Boss's Orders is worth a supporter only when the Pokemon it drags out is worth
+                # MORE PRIZES than the one already standing there. Picking the lowest-HP target --
+                # the easiest knockout -- is the wrong objective, and the measurement said so
+                # exactly: our knockout rate per attack was 72% against the reference agent's 66%
+                # while we took 1.90 prizes a game to their 3.50, because we spent attacks
+                # dragging out one-prize Munkidori while a two-prize ex stood in the Active spot.
+                after = _powerful_hand_damage(hand - 1)     # Boss costs the card that is damage
+                here = _prize_value(op_active) if (ready and op_active is not None
+                                                   and dmg >= op_active.hp) else 0
+                there = max((_prize_value(p) for p in op.bench
+                             if p is not None and ready and after >= p.hp), default=0)
+                s = 88000 if there > here else 26000
             elif cid == POKE_PAD:
                 s = 60000                       # net zero cards, but it finds the attacker line
             elif cid == BUDDY_POFFIN and bench < 4:
@@ -448,9 +465,11 @@ def _choose(obs) -> List[int]:
             if pk is None:
                 v = 0
             else:
-                d = _CARD.get(pk.id)
-                prize = 3 if (d and d.megaEx) else 2 if (d and d.ex) else 1
-                v = (1000 if (ready and dmg >= pk.hp) else 0) + prize * 100 - pk.hp
+                # Same objective as the decision to play Boss at all: a knockout is worth what it
+                # pays, so a killable three-prize Mega outranks a killable one-prize basic.
+                prize = _prize_value(pk)
+                killable = bool(ready and dmg >= pk.hp)
+                v = (prize * 1000 if killable else 0) + prize * 10 - pk.hp // 10
             if bv is None or v > bv:
                 best, bv = i, v
         return [best]
