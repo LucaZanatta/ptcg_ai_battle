@@ -26,16 +26,20 @@ before everything below, because what follows is not a claim that the panel is n
 | `official_mega_lucario` | 0.3952 | 273 | 595.1 | 603.0 | −7.9 |
 | c014 Archaludon | 0.1583 | 33 | 471.4 | 449.8 | +21.6 |
 | c015 anti-meta | 0.0900 | 119 | 393.2 | 405.7 | −12.5 |
-| **c024 Alakazam (ours)** | **0.4177** | **24** | **497.6** | **617.5** | **−119.9** |
+| **c024 Alakazam (ours)** | **0.4177** | **26** | **505.8** | **617.5** | **−111.7** |
 
-The four fitted points sit within ±22. **The one point that was not in the fit misses by −120** —
+The four fitted points sit within ±22. **The one point that was not in the fit misses by −112** —
 five times the worst in-sample residual.
+
+*(Updated 2026-08-13 15:06: the agent has drifted 497.6 → 505.8 and its episode count has been
+stuck at 26 for three hours, so this residual is unlikely to move much before the close. The
+figure quoted earlier in this campaign was −119.9 at 24 episodes.)*
 
 Two qualifications, both real:
 
-- **24 episodes is not a converged rating.** The other points have 119–273. But the direction is
-  not reassuring: its score rate is 0.360 and falling, so the residual is more likely to grow than
-  to shrink.
+- **26 episodes is not a converged rating**, and it has stopped accumulating — the other points
+  have 119–273. Its score rate is 0.370. The residual is therefore an estimate from a thin sample
+  and is quoted as ~−110, not to one decimal place.
 - **The original fit used under-converged ratings.** `official_dragapult` was entered at **719.7**
   on 83 games; over 200 games the same agent settles at **688.5**. Refitting on the three points
   with 100+ episodes gives `rating = 340.9 + 619.2 × field`, which moves the prediction only to

@@ -371,3 +371,14 @@ submissions. What was declined was submitting *for the purpose of* freezing a lu
 no other reason to submit. The distinction matters because the resulting leaderboard figure is the
 same either way — so the report must state, as it already does, that **688.5 is the strength and
 the leaderboard number is an artifact**, regardless of how the artifact arose.
+| 2026-08-13 15:06 | 802.4 (39 eps, rate 0.550) | 688.5 frozen | 505.8 (26 eps, unchanged 3h) |
+
+`55478202` continues to drift down — 947.9 → 854.2 → 810.6 → 817.4 → 820.8 → **802.4**. The trend
+is toward the converged 688.5 but it is noisy and slow; at ~1–2 games an hour it will finish the
+competition somewhere in the 700s or 800s having played under 100 games.
+
+**`55477137` has been stuck at 26 episodes for three hours** while the champion copy keeps getting
+matched. It is still one of the two most recent submissions, so the likeliest explanation is thin
+matchmaking in a 500-rated band rather than dormancy. The consequence for the record: the Alakazam
+calibration point stays a **thin-sample** estimate, and `CALIBRATION_RETEST.md` has been updated to
+quote its residual as **~−110** rather than to one decimal place.
