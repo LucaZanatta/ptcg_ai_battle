@@ -288,3 +288,17 @@ rating-matched, so score rate is compressed toward 0.5 and is not a skill measur
 See `CALIBRATION_RETEST.md`: the panel reproduced its own anchor to 0.0002 over ten days, missed
 our new agent by 120 rating points out of sample, and — the finding that matters — **has a ceiling
 of ~960 predicted rating against a leaderboard top of 1230.3**.
+| 2026-08-13 10:57 | **810.6** (19W-15L, 33 eps) | 688.5 frozen | 493.9 (9W-17L, 25) |
+
+Regression, third reading: 947.9 (11 games) -> 854.2 (23) -> **810.6** (33). Score rate 0.818 ->
+0.625 -> 0.559, converging on the champion's measured 0.468.
+
+**Standing at each of the three numbers this one agent is simultaneously worth:**
+
+| rating | rank of 6,791 | percentile |
+|---:|---:|---:|
+| 810.6 (live, un-converged) | 907 | 86.6 |
+| 719.7 (frozen July draw) | 1,840 | 72.9 |
+| 688.5 (converged, 200 games) | 2,360 | 65.2 |
+
+Leaderboard top 1233.7, P99 1026.7, P90 844.3, median 620.0.
