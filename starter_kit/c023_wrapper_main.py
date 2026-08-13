@@ -27,7 +27,11 @@ import json
 import os
 import sys
 
-_HERE = os.path.dirname(os.path.abspath(__file__))
+# See the note in c024_alakazam.py: `kaggle_environments` execs a file-path agent's source in a
+# namespace with no `__file__`, so touching it here kills the submission before it plays a card.
+# Every wrapper candidate this contract packaged carried that defect; none was ever submitted,
+# so it stayed invisible until c024 submitted a from-scratch agent built the same way.
+_HERE = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
 if not os.path.isfile(os.path.join(_HERE, "base_agent.py")):
     _HERE = "/kaggle_simulations/agent"
 if _HERE not in sys.path:

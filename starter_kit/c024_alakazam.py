@@ -57,7 +57,16 @@ from cg.api import (AreaType, CardType, OptionType, SelectContext, SelectType,
                     all_attack, all_card_data, to_observation_class)
 
 # ---- deck ------------------------------------------------------------------------------------
-_HERE = os.path.dirname(os.path.abspath(__file__))
+# The competition harness does NOT import this file as a module. `kaggle_environments`
+# `get_last_callable` reads the source and `exec`s it in a bare namespace, and that namespace
+# has **no `__file__`**. Any module-level `os.path.abspath(__file__)` therefore raises
+# `NameError` before the agent exists, the harness reports `Invalid raw Python`, and the
+# submission dies on its validation episode having played nothing. The official samples avoid
+# it by construction -- they open a relative "deck.csv" and fall back to the deployment path --
+# and this does the same. Do not reintroduce `__file__` here.
+_HERE = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
+if not os.path.isfile(os.path.join(_HERE, "deck.csv")) and os.path.isdir("/kaggle_simulations/agent"):
+    _HERE = "/kaggle_simulations/agent"
 _deck_path = os.path.join(_HERE, "deck.csv")
 if not os.path.exists(_deck_path):
     _deck_path = "/kaggle_simulations/agent/deck.csv"

@@ -1,0 +1,62 @@
+{
+  "tag": "c024_azam_mirror",
+  "meta": {
+    "utc": "2026-08-13T07:26:38Z",
+    "elapsed_seconds": 2.4,
+    "procs": 4,
+    "phase": "dev",
+    "games_per_pair": 8,
+    "candidates": [
+      "c024_azam_v1"
+    ],
+    "opponents": [
+      "c024_azam_v1"
+    ],
+    "nproc_machine": 24,
+    "loadavg": [
+      1.4619140625,
+      1.15966796875,
+      1.05615234375
+    ]
+  },
+  "requested_games": 8,
+  "completed_games": 8,
+  "errors": 0,
+  "summary": {
+    "c024_azam_v1": {
+      "candidate_id": "c024_azam_v1",
+      "requested_games": 8,
+      "completed_games": 8,
+      "errors": 0,
+      "field_score": 0.375,
+      "field_score_off_mirror": null,
+      "pooled_score_rate": 0.375,
+      "pooled_wilson95": [
+        0.1368,
+        0.6943
+      ],
+      "per_opponent": {
+        "c024_azam_v1": {
+          "games": 8,
+          "score_rate": 0.375,
+          "wilson95": [
+            0.1368,
+            0.6943
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.5,
+        "seat1": 0.25,
+        "seat0_games": 4,
+        "seat1_games": 4
+      },
+      "latency_p99_ms": 1.5694,
+      "latency_max_ms": 1.7725,
+      "mean_game_seconds": 0.4177,
+      "decisions": 560,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.5906
+    }
+  }
+}

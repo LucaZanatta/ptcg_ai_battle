@@ -73,3 +73,55 @@ ladder is made of, and only the ladder can say.
 **If it returns above 686.7 it changes the answer and there is time to act. If it returns near
 the predicted 569, the panel was right and the champion is the entry.** Either way the champion
 keeps playing throughout.
+
+## D11 — the submission that could never have run, and the check that would not have caught it
+
+Submission **55466460** passed every check `tools/c023_package.py` had — extracted cleanly, played
+24 games against four opponents in both seats, zero errors, latency inside bound — and then died
+on Kaggle's validation episode having played **nothing**:
+
+```
+Invalid raw Python: NameError("name '__file__' is not defined")
+```
+
+**The competition does not import `main.py` as a module.** `kaggle_environments.get_last_callable`
+reads the source and `exec`s it in a bare namespace, and that namespace has no `__file__`. The
+module-level line
+
+```python
+_HERE = os.path.dirname(os.path.abspath(__file__))
+```
+
+therefore raises before the agent function exists. The official samples never touch `__file__` —
+they open a relative `"deck.csv"` and fall back to `/kaggle_simulations/agent/` — which is why
+this had never been seen.
+
+The replay is unambiguous once read: two steps, both seats `ERROR`, and the deck handshake at
+step 1 never happened. A working episode's step 1 carries the 60-card list.
+
+**Two independent gaps let it through, and both are now closed:**
+
+1. **The harness loads players the wrong way for this purpose.** `c023_players.make_fresh` uses
+   `importlib.util.spec_from_file_location`, which *does* set `__file__`. Every local measurement
+   in c023 and c024 — 400,000-odd games — ran agents through a loader the competition does not
+   use. That is correct for comparing players against each other and useless for predicting
+   whether one will start.
+2. **Nothing ever played a candidate against itself.** Kaggle's first act on a new submission is a
+   validation episode of the agent versus a copy of itself; the campaign's evaluations all pass
+   `--skip-self`.
+
+`raw_python_check` now runs the extracted package by **file path, agent against itself**, in a
+subprocess with the package as its working directory, and `valid` is false unless it finishes.
+Verified against the broken package: it returns false. Verified against the fixed one: true.
+
+**This is a latent defect in c023, not only in c024.** `c023_wrapper_main.py` opens with the same
+`__file__` line, so **every one of the 28 wrapper candidates c023 built and "validated" would have
+failed on submission the same way.** None was ever submitted — c023's champion was
+`official_dragapult` verbatim — so the contract's conclusions are unaffected, but its statement
+that candidates were packaged and validated for submission was not true of the deployment path.
+Both files are fixed.
+
+| ref | agent | outcome |
+|---|---|---|
+| 55466460 | c024 Alakazam v1 | **ERROR** — `__file__` NameError, 0 games played |
+| 55477137 | c024 Alakazam v2 | resubmitted 2026-08-13 with the fix and the new check |

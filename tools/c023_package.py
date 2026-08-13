@@ -111,6 +111,8 @@ def clean_validate(archive: str, games: int, opponents: List[str],
         jobs = E.build_jobs(["_pkgtest"], opponents, games, "package")
         results = E.run_jobs(jobs, procs)
         summ = E.summarize(results, games)["_pkgtest"]
+        # Run it the way Kaggle will, BEFORE the extracted tree is deleted.
+        raw = raw_python_check(ext)
     finally:
         if os.path.islink(link):
             os.remove(link)
@@ -118,8 +120,9 @@ def clean_validate(archive: str, games: int, opponents: List[str],
 
     ok = (summ["errors"] == 0 and summ["completed_games"] == summ["requested_games"]
           and summ["latency_max_ms"] <= LATENCY_BOUND_MS
-          and summ["per_seat"]["seat0_games"] > 0 and summ["per_seat"]["seat1_games"] > 0)
-    return {"valid": bool(ok), "summary": summ,
+          and summ["per_seat"]["seat0_games"] > 0 and summ["per_seat"]["seat1_games"] > 0
+          and raw["raw_python_self_play"])
+    return {"valid": bool(ok), "summary": summ, "raw_python": raw,
             "latency_bound_ms": LATENCY_BOUND_MS,
             "latency_bound_is": "SELF-IMPOSED; the competition's published per-decision timeout "
                                 "is not machine-retrievable (client-rendered rules page)",
@@ -128,7 +131,46 @@ def clean_validate(archive: str, games: int, opponents: List[str],
                 "all_completed": summ["completed_games"] == summ["requested_games"],
                 "max_latency_within_bound": summ["latency_max_ms"] <= LATENCY_BOUND_MS,
                 "both_seats": summ["per_seat"]["seat0_games"] > 0 and summ["per_seat"]["seat1_games"] > 0,
+                # The check that submission 55466460 needed and did not have.
+                "raw_python_self_play": raw["raw_python_self_play"],
             }}
+
+
+def raw_python_check(pkg_dir: str) -> dict:
+    """Run the package the way the COMPETITION runs it: by file path, agent against itself.
+
+    This is not a duplicate of the play validation above. That one imports `main.py` as a module,
+    which is how this repository's harness loads a player -- and it is *not* how Kaggle loads one.
+    `kaggle_environments.get_last_callable` reads the source and `exec`s it in a bare namespace
+    with no `__file__`, then Kaggle's first act on a new submission is a VALIDATION episode of the
+    agent against itself.
+
+    c024 submission 55466460 passed every check in this file and then died on that validation
+    episode with `Invalid raw Python: NameError("name '__file__' is not defined")`, having played
+    no cards at all. Module-import validation cannot see that class of defect, and neither can a
+    round-robin against other players. Both gaps are closed here.
+    """
+    import subprocess
+    code = (
+        "from kaggle_environments import make\n"
+        "env = make('cabt', configuration={})\n"
+        "env.run(['main.py', 'main.py'])\n"
+        "last = env.steps[-1]\n"
+        "print('STATUS', last[0]['status'], last[1]['status'], len(env.steps))\n"
+    )
+    r = subprocess.run([sys.executable, "-c", code], cwd=pkg_dir, capture_output=True, text=True,
+                       timeout=900)
+    line = next((l for l in r.stdout.splitlines() if l.startswith("STATUS")), "")
+    parts = line.split()
+    ok = len(parts) == 4 and parts[1] == "DONE" and parts[2] == "DONE" and int(parts[3]) > 10
+    err = ""
+    if not ok:
+        # The engine SDK logs ~35 INFO lines to stderr on import, so the last line is almost
+        # never the exception. Keep the lines that look like a traceback's payload.
+        lines = [l for l in (r.stderr or "").splitlines()
+                 if l.strip() and "INFO:" not in l and not l.startswith(" ")]
+        err = lines[-1][:300] if lines else ((r.stderr or r.stdout or "").strip()[-300:])
+    return {"raw_python_self_play": ok, "steps": (int(parts[3]) if ok else None), "error": err}
 
 
 def main() -> int:

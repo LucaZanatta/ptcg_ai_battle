@@ -1,0 +1,97 @@
+{
+  "player_id": "c024_azam_v1",
+  "archive": "results/c023_autonomous_meta_first_competition_sprint/final_packages/c024_alakazam_v2.tar.gz",
+  "archive_sha256": "f776a1ce0e376991b5c7126d84d9386311f6505464c0d31d87c8a05e84141df8",
+  "archive_bytes": 501243,
+  "members": [
+    "ATTRIBUTION.txt",
+    "cg/__init__.py",
+    "cg/api.py",
+    "cg/game.py",
+    "cg/libcg.so",
+    "cg/sim.py",
+    "cg/utils.py",
+    "deck.csv",
+    "main.py"
+  ],
+  "clean_validation": {
+    "valid": true,
+    "summary": {
+      "candidate_id": "_pkgtest",
+      "requested_games": 96,
+      "completed_games": 96,
+      "errors": 0,
+      "field_score": 0.2812,
+      "field_score_off_mirror": 0.2812,
+      "pooled_score_rate": 0.2812,
+      "pooled_wilson95": [
+        0.2011,
+        0.3783
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 24,
+          "score_rate": 0.3333,
+          "wilson95": [
+            0.1797,
+            0.5329
+          ]
+        },
+        "official_iono": {
+          "games": 24,
+          "score_rate": 0.1667,
+          "wilson95": [
+            0.0668,
+            0.3585
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 24,
+          "score_rate": 0.5,
+          "wilson95": [
+            0.3143,
+            0.6857
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 24,
+          "score_rate": 0.125,
+          "wilson95": [
+            0.0434,
+            0.31
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.2917,
+        "seat1": 0.2708,
+        "seat0_games": 48,
+        "seat1_games": 48
+      },
+      "latency_p99_ms": 160.6796,
+      "latency_max_ms": 160.6796,
+      "mean_game_seconds": 0.6173,
+      "decisions": 5365,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.5851
+    },
+    "raw_python": {
+      "raw_python_self_play": true,
+      "steps": 149,
+      "error": ""
+    },
+    "latency_bound_ms": 1000.0,
+    "latency_bound_is": "SELF-IMPOSED; the competition's published per-decision timeout is not machine-retrievable (client-rendered rules page)",
+    "checks": {
+      "zero_errors": true,
+      "all_completed": true,
+      "max_latency_within_bound": true,
+      "both_seats": true,
+      "raw_python_self_play": true
+    }
+  },
+  "note": "c024 Alakazam, __file__ defect fixed; now validated by file-path self-play as Kaggle runs it",
+  "utc": "2026-08-13T07:30:33Z",
+  "git_commit": "fd8227777e6b068af4681bc0bc5751af4e7d2c09",
+  "git_dirty": true
+}
