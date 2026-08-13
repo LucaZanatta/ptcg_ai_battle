@@ -273,3 +273,18 @@ Two things worth keeping from this:
 - **The check earns its place.** It was written for the from-scratch agent and it immediately
   caught a stale artifact in a different family — one that four other checks (extraction, play,
   latency, both seats) all passed.
+
+| 2026-08-13 09:54 | **854.2** (15W-9L, 23 eps) | 688.5 frozen (94W-107L, 200) | 497.6 (9W-16L, 24) |
+
+**The regression happened as described, in forty-eight minutes.** `55478202` went 947.9 on 11
+games (9W–2L, rate 0.818) to 854.2 on 23 (15W–9L, rate 0.625). It is the champion package
+byte-for-byte and it is on its way to ~690. Anyone reading 947.9 as an achievement would have
+been reading eleven games of variance.
+
+Also worth recording: the champion's converged **score rate is 0.468**, below 0.5, while its
+rating is the best we have. That is `LADDER_CALIBRATION`'s point restated — the ladder is
+rating-matched, so score rate is compressed toward 0.5 and is not a skill measure. Rating is.
+
+See `CALIBRATION_RETEST.md`: the panel reproduced its own anchor to 0.0002 over ten days, missed
+our new agent by 120 rating points out of sample, and — the finding that matters — **has a ceiling
+of ~960 predicted rating against a leaderboard top of 1230.3**.
