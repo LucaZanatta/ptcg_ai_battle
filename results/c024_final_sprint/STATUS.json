@@ -1,6 +1,6 @@
 {
   "contract": "c024_final_sprint",
-  "generated_utc": "2026-08-13T13:01:13Z",
+  "generated_utc": "2026-08-13T14:04:16Z",
   "deadline": "2026-08-16T23:59:00+02:00",
   "decision": "official_dragapult (Kiyota sample, byte-for-byte) is the entry",
   "champion_converged_rating": 688.5,
@@ -600,6 +600,17 @@
       },
       "sha256": "f776a1ce0e376991"
     },
+    "c024_champion_dragapult": {
+      "valid": true,
+      "checks": {
+        "zero_errors": true,
+        "all_completed": true,
+        "max_latency_within_bound": true,
+        "both_seats": true,
+        "raw_python_self_play": true
+      },
+      "sha256": "e441125dad85e0c8"
+    },
     "c024_wrapper_d11_check": {
       "valid": true,
       "checks": {
@@ -613,17 +624,17 @@
     }
   },
   "ladder": {
-    "utc": "2026-08-13T13:01:13Z",
+    "utc": "2026-08-13T14:04:16Z",
     "submissions": [
       {
         "submission": 55478202,
         "agent": "champion_redeploy",
         "status": "COMPLETE",
-        "rating": 813.9,
-        "episodes": 36,
-        "wins": 21,
+        "rating": 820.8,
+        "episodes": 37,
+        "wins": 22,
         "losses": 16,
-        "score_rate": 0.5676
+        "score_rate": 0.5789
       },
       {
         "submission": 55254872,

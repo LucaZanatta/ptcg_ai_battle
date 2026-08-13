@@ -348,3 +348,26 @@ evidence for its own contract.
 | `c024_wrapper_d11_check` | true | true |
 | `c023_champion_dragapult` | true | unverified (predates the check; passes when run by hand) |
 | `c024_alakazam_v1` | true | **false — known bad** |
+| 2026-08-13 14:04 | 820.8 (37 eps) | 688.5 frozen | 505.8 (26 eps) |
+
+Monitoring only. `55478202` added one game in the hour; `55477137` added none in two, which at a
+505 rating is most likely thin matchmaking in its band rather than dormancy — it is still one of
+the two most recent submissions.
+
+**Deadline package verified executable:** `c024_champion_dragapult.tar.gz`, sha256
+`e441125dad85e0c8` matching its manifest, `raw_python_self_play: true`. Two of five daily
+submissions used today.
+
+### One distinction to keep honest at the close
+
+Resubmitting the champion on 2026-08-15 will, as a side effect, push `55478202` out of the active
+pair and **freeze whatever rating it is showing** — currently 820.8 against the agent's converged
+688.5.
+
+That is not the manoeuvre declined earlier in this file. The difference is the reason: the
+resubmission happens because the endgame rule requires a champion copy to be certainly live at
+the close, and the freeze is an unavoidable consequence of Kaggle keeping only the two most recent
+submissions. What was declined was submitting *for the purpose of* freezing a lucky number, with
+no other reason to submit. The distinction matters because the resulting leaderboard figure is the
+same either way — so the report must state, as it already does, that **688.5 is the strength and
+the leaderboard number is an artifact**, regardless of how the artifact arose.
