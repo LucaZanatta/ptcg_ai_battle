@@ -405,3 +405,8 @@ The regression is now unambiguous. `55478202`'s **score rate** across its life:
 Nothing in the agent changed — it is the identical package throughout. This is the clearest
 evidence in the campaign that a ladder rating read before ~100 games is a statement about the
 sample, not about the player.
+| 2026-08-13 22:53 | 779.1 (48 eps, rate 0.510) | 688.5 frozen | 469.8 (30 eps) |
+
+Two games won, rate 0.489 → 0.510, rating 767.1 → 779.1. Noise on a 48-game sample, not a
+reversal of the trend; recorded without comment beyond that. Champion copy playing. Neither date
+rule fires — Rule A is due 2026-08-15.
