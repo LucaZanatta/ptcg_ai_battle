@@ -18,7 +18,7 @@ Ten days, two contracts, two independently-assembled evaluation runs, and the sa
 the same field to within **0.0002**. The instrument is *precise*. That is worth stating plainly
 before everything below, because what follows is not a claim that the panel is noisy.
 
-## Then it fails out of sample by roughly 110 rating points
+## Then it fails out of sample by roughly 115 rating points
 
 | agent | 13-panel field | episodes | rating | predicted | residual |
 |---|---:|---:|---:|---:|---:|
@@ -26,27 +26,28 @@ before everything below, because what follows is not a claim that the panel is n
 | `official_mega_lucario` | 0.3952 | 273 | 595.1 | 603.0 | −7.9 |
 | c014 Archaludon | 0.1583 | 33 | 471.4 | 449.8 | +21.6 |
 | c015 anti-meta | 0.0900 | 119 | 393.2 | 405.7 | −12.5 |
-| **c024 Alakazam (ours)** | **0.4177** | **26** | **505.8** | **617.5** | **−111.7** |
+| **c024 Alakazam (ours)** | **0.4177** | **27** | **497.6 – 505.8** | **617.5** | **≈ −115** |
 
-The four fitted points sit within ±22. **The one point that was not in the fit misses by −112** —
+The four fitted points sit within ±22. **The one point that was not in the fit misses by about −115** —
 five times the worst in-sample residual.
 
-*(Updated 2026-08-13 15:06: the agent has drifted 497.6 → 505.8 and its episode count has been
-stuck at 26 for three hours, so this residual is unlikely to move much before the close. The
-figure quoted earlier in this campaign was −119.9 at 24 episodes.)*
+*The agent's rating oscillates between roughly 497 and 506 as it picks up a game every few hours
+(24 episodes → 497.6, 26 → 505.8, 27 → 497.6), so the residual is quoted as a **range**, once. It
+is not restated every reading: chasing the last decimal place of a number that moves by eight
+points on a single game would be false precision dressed as diligence.*
 
 Two qualifications, both real:
 
-- **26 episodes is not a converged rating**, and it has stopped accumulating — the other points
-  have 119–273. Its score rate is 0.370. The residual is therefore an estimate from a thin sample
-  and is quoted as ~−110, not to one decimal place.
+- **27 episodes is not a converged rating**, and it accumulates only a game every few hours — the
+  other points have 119–273. Its score rate is ~0.36. The residual is an estimate from a thin,
+  drifting sample; what is solid is its *sign and order of magnitude*, not its value.
 - **The original fit used under-converged ratings.** `official_dragapult` was entered at **719.7**
   on 83 games; over 200 games the same agent settles at **688.5**. Refitting on the three points
   with 100+ episodes gives `rating = 340.9 + 619.2 × field`, which moves the prediction only to
   599.6 — so the miss is not an artifact of the old fit.
 
 **What survives is the ordering.** The panel ranked our Alakazam agent below the champion
-(0.4177 against 0.5710) and the ladder agrees (505.8 against 688.5). Every archetype-level
+(0.4177 against 0.5710) and the ladder agrees (~500 against 688.5). Every archetype-level
 decision this campaign made on panel evidence was directionally right. What does not survive is
 the *level*: the panel cannot say how much rating a local point is worth for an agent unlike the
 ones it was fitted on.

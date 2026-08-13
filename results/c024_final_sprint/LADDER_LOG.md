@@ -382,3 +382,10 @@ matched. It is still one of the two most recent submissions, so the likeliest ex
 matchmaking in a 500-rated band rather than dormancy. The consequence for the record: the Alakazam
 calibration point stays a **thin-sample** estimate, and `CALIBRATION_RETEST.md` has been updated to
 quote its residual as **~−110** rather than to one decimal place.
+| 2026-08-13 16:08 | 799.5 (41 eps, rate 0.548) | 688.5 frozen | 497.6 (27 eps) |
+
+`55477137` picked up one game and its rating moved 505.8 → 497.6 — **eight points on a single
+game.** That is the whole argument for quoting thin-sample ratings as ranges: an hourly "update"
+of the calibration residual would have written −119.9, then −111.7, then −119.9 again, each time
+looking like a refinement and each time being noise. `CALIBRATION_RETEST.md` now states it once
+as **≈ −115** over a 497–506 band and will not be restated per reading.
