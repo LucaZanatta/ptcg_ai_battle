@@ -1,0 +1,106 @@
+{
+  "player_id": "official_dragapult",
+  "archive": "results/c023_autonomous_meta_first_competition_sprint/final_packages/c024_champion_dragapult.tar.gz",
+  "archive_sha256": "e441125dad85e0c878cdb963b64d931d10c95933f2214ce55591ba48677fbbcb",
+  "archive_bytes": 1505820,
+  "members": [
+    "a-sample-rule-based-agent-dragapult-ex-deck.log",
+    "cg/__init__.py",
+    "cg/__init__.py",
+    "cg/api.py",
+    "cg/api.py",
+    "cg/game.py",
+    "cg/game.py",
+    "cg/libcg.so",
+    "cg/libcg.so",
+    "cg/sim.py",
+    "cg/sim.py",
+    "cg/utils.py",
+    "cg/utils.py",
+    "deck.csv",
+    "main.py",
+    "src/a-sample-rule-based-agent-dragapult-ex-deck.ipynb",
+    "src/kernel-metadata.json",
+    "submission.tar.gz"
+  ],
+  "clean_validation": {
+    "valid": true,
+    "summary": {
+      "candidate_id": "_pkgtest",
+      "requested_games": 96,
+      "completed_games": 96,
+      "errors": 0,
+      "field_score": 0.5416,
+      "field_score_off_mirror": 0.5416,
+      "pooled_score_rate": 0.5417,
+      "pooled_wilson95": [
+        0.4423,
+        0.6378
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 24,
+          "score_rate": 0.5833,
+          "wilson95": [
+            0.3883,
+            0.7553
+          ]
+        },
+        "official_iono": {
+          "games": 24,
+          "score_rate": 0.7083,
+          "wilson95": [
+            0.5083,
+            0.8509
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 24,
+          "score_rate": 0.5417,
+          "wilson95": [
+            0.3507,
+            0.7211
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 24,
+          "score_rate": 0.3333,
+          "wilson95": [
+            0.1797,
+            0.5329
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.5417,
+        "seat1": 0.5417,
+        "seat0_games": 48,
+        "seat1_games": 48
+      },
+      "latency_p99_ms": 145.1318,
+      "latency_max_ms": 153.3775,
+      "mean_game_seconds": 0.6965,
+      "decisions": 8354,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.3374
+    },
+    "raw_python": {
+      "raw_python_self_play": true,
+      "steps": 119,
+      "error": ""
+    },
+    "latency_bound_ms": 1000.0,
+    "latency_bound_is": "SELF-IMPOSED; the competition's published per-decision timeout is not machine-retrievable (client-rendered rules page)",
+    "checks": {
+      "zero_errors": true,
+      "all_completed": true,
+      "max_latency_within_bound": true,
+      "both_seats": true,
+      "raw_python_self_play": true
+    }
+  },
+  "note": "the entry: official Kiyota Dragapult sample byte-for-byte, packaged under the post-D11 checks",
+  "utc": "2026-08-13T13:02:39Z",
+  "git_commit": "6740f52ec9016f64a6d9c972b545548767c13f89",
+  "git_dirty": true
+}

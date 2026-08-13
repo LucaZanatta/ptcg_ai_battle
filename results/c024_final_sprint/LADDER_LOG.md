@@ -319,3 +319,32 @@ discovered at the close:
 `games.jsonl` rather than reading them out of summaries: **14,432 local games this contract,
 7 errors**, all seven accounted for (six are D9's entry-point defect before it was fixed, one is
 a single engine-side INVALID on an opponent in 6,540 games).
+| 2026-08-13 13:01 | 813.9 (36 eps) | 688.5 frozen | 505.8 (26 eps) |
+
+## The deadline package, and a stale-evidence trap worth naming
+
+Capturing deployability alongside source hashes surfaced this:
+
+```
+c024_alakazam_v1   valid=True   raw_python=None   <- the package that ERRORED on Kaggle
+```
+
+Its manifest still reads `valid: true`, because it was built before `raw_python_check` existed.
+**A status summary that reported the stored `valid` alone would launder a known-bad artifact into
+a clean one** — the exact package that played zero cards would appear as validated. `valid` and
+`deployable` are now separate fields: the first is what the manifest recorded, the second is
+whether the file-path self-play was actually run and passed, and a package that predates the check
+reports `None` rather than inheriting a pass it never earned.
+
+`c024_champion_dragapult` was then built so the entry itself has a manifest carrying the full
+check — **`valid: true`, `raw_python_self_play: true`, sha256 `e441125dad85e0c8`.** That is the
+archive for the deadline resubmission; the c023 champion package is left untouched as frozen
+evidence for its own contract.
+
+| package | valid | deployable |
+|---|---|---|
+| `c024_champion_dragapult` | true | **true** |
+| `c024_alakazam_v2` | true | true |
+| `c024_wrapper_d11_check` | true | true |
+| `c023_champion_dragapult` | true | unverified (predates the check; passes when run by hand) |
+| `c024_alakazam_v1` | true | **false — known bad** |
