@@ -211,3 +211,37 @@ day) on the metric the competition actually scores. Our present 719.7 is already
 exactly this kind — the luckiest of three draws, frozen at 83 games, against a converged 688.5.
 Any final report must quote **~690** as the champion's strength and 719.7 only as the leaderboard
 number.
+
+## Readings (cont.)
+
+| UTC | 55478202 champ redeploy | eps | 55254872 champ (frozen) | eps | 55477137 Alakazam v2 | eps |
+|---|---:|---:|---:|---:|---:|---:|
+| 2026-08-13 08:22 | — | — | 688.5 | 200 | 522.2 | 14 |
+| 2026-08-13 09:06 | **947.9** | 10 | 688.5 (dormant) | 200 | **501.0** | 23 |
+
+Alakazam v2 is now **9W–15L, score rate 0.375** over 24 games and still falling. Predicted 569,
+currently 501. The archetype branch is closed by the ladder as well as by the panel.
+
+## An open decision the campaign should not make for itself
+
+`55478202` is **the champion package, byte-for-byte** — the same agent that has played 200 games
+and settled at 688.5. Eleven games in, it is **9W–2L** and the ladder is showing **947.9**, which
+would be roughly the 96th percentile.
+
+That is a hot streak, not a better agent. Given long enough it regresses to ~690, exactly as the
+other three copies did.
+
+**But a dormant submission freezes its rating.** Two further submissions today would push
+`55478202` out of the active pair and lock 947.9 in, and the leaderboard takes the best across
+submissions. Five submissions a day are allowed, so nothing about that is against the rules, and
+our current 719.7 is already a frozen lucky draw that happened by accident.
+
+**I am not doing it.** Not because it breaks a rule, but because it converts a measurement
+artifact into the headline number for an agent whose measured strength is 690, and this campaign's
+whole value is that its numbers mean what they say. `55478202` is being left to play and
+converge honestly.
+
+**It is a competitive-strategy call rather than a technical one, and it belongs to the user.** The
+option is time-limited — the streak decays as it plays — so it is recorded here at the moment it
+was live, with the number it was showing, rather than mentioned afterwards. If the answer is
+"take it", it costs two submissions and can be done in a minute.
