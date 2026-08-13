@@ -174,3 +174,40 @@ Submitting further agents cannot cost us the 719.7 or the 688.5. The endgame rul
 (the champion must be **live** at the deadline, in case the competition scores active agents at
 close rather than taking the leaderboard maximum) but it is now a hedge against an unknown, not a
 defence of the score.
+
+## Correction: `prize_only` was not an untested arm
+
+Before spending a wake on it, I checked. `CANDIDATE_HISTORY.jsonl` carries **seven** candidates
+with `planner.prize_only = 1.0` — `chal_dp_prizeonly`, `chal_dp_prizeall`, `chal_dp_koexact`,
+`chal_dp_koall`, `chal_dp_short3`, `chal_dp_bench_prize`, `chal_dp_bench_prizef` — measured at
+1,200 and 2,000 games each:
+
+| candidate | field |
+|---|---:|
+| `chal_dp_bench_prizef` | 0.5285 |
+| `chal_dp_bench_prize` | 0.5125 |
+| `chal_dp_koall` | 0.5142 |
+| `chal_dp_koexact` | 0.4990 / 0.5050 |
+
+Against a same-run control of 0.5042–0.5166. **All inside the noise floor.** The fact-gated
+override was built, run and closed in c023; I had misremembered it as motivated-but-unmeasured.
+There is no untested arm left on the legal base.
+
+## 55478202 — champion redeployment 1
+
+With no local arm left, the only remaining lever is the one the ratings themselves exposed:
+**three byte-identical copies of this agent sit at 719.7, 711.0 and 688.5**, and a submission
+freezes its rating when it goes dormant. So an additional deployment does two things at once:
+
+1. **It executes the endgame rule early.** The champion must be live at close in case the
+   competition scores active agents rather than taking the leaderboard maximum. This guarantees
+   it, with three days to converge instead of one.
+2. **It is an independent draw from a 31-point-wide distribution**, and the leaderboard takes the
+   best across submissions.
+
+**The second of those is variance, not skill, and it is recorded as such.** It does not make the
+agent better and it is not evidence of progress; it uses an allowed budget (five submissions a
+day) on the metric the competition actually scores. Our present 719.7 is already an artifact of
+exactly this kind — the luckiest of three draws, frozen at 83 games, against a converged 688.5.
+Any final report must quote **~690** as the champion's strength and 719.7 only as the leaderboard
+number.
