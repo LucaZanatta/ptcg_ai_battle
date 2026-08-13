@@ -396,3 +396,12 @@ report corrections; the ladder moves 1–2 games an hour and every deliverable i
 polling of a system that changes that slowly is cost without information, so the schedule moves to
 **every four hours**, with the two dated actions (2026-08-15 resubmission, 2026-08-16 close)
 carried in the standing prompt rather than depending on a particular wake landing on them.
+| 2026-08-13 18:53 | **767.1** (46 eps, rate 0.489) | 688.5 frozen | 483.7 (29 eps) |
+
+The regression is now unambiguous. `55478202`'s **score rate** across its life:
+0.818 → 0.625 → 0.559 → 0.550 → 0.548 → 0.535 → **0.489**, against the same agent's converged
+**0.468** over 200 games. Its rating has come 947.9 → 767.1 and is still falling.
+
+Nothing in the agent changed — it is the identical package throughout. This is the clearest
+evidence in the campaign that a ladder rating read before ~100 games is a statement about the
+sample, not about the player.
