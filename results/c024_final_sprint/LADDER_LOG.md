@@ -389,3 +389,10 @@ game.** That is the whole argument for quoting thin-sample ratings as ranges: an
 of the calibration residual would have written −119.9, then −111.7, then −119.9 again, each time
 looking like a refinement and each time being noise. `CALIBRATION_RETEST.md` now states it once
 as **≈ −115** over a 497–506 band and will not be restated per reading.
+| 2026-08-13 17:09 | 792.8 (42 eps, rate 0.535) | 688.5 frozen | 492.6 (28 eps) |
+
+**Monitoring cadence changed here.** Ten hourly wakes had produced ten one-line rows and two
+report corrections; the ladder moves 1–2 games an hour and every deliverable is written. Hourly
+polling of a system that changes that slowly is cost without information, so the schedule moves to
+**every four hours**, with the two dated actions (2026-08-15 resubmission, 2026-08-16 close)
+carried in the standing prompt rather than depending on a particular wake landing on them.
