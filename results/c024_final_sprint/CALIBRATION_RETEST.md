@@ -18,7 +18,7 @@ Ten days, two contracts, two independently-assembled evaluation runs, and the sa
 the same field to within **0.0002**. The instrument is *precise*. That is worth stating plainly
 before everything below, because what follows is not a claim that the panel is noisy.
 
-## Then it fails out of sample by 102 rating points
+## Then it fails out of sample by roughly 110 rating points
 
 | agent | 13-panel field | episodes | rating | predicted | residual |
 |---|---:|---:|---:|---:|---:|
@@ -46,7 +46,7 @@ Two qualifications, both real:
   599.6 — so the miss is not an artifact of the old fit.
 
 **What survives is the ordering.** The panel ranked our Alakazam agent below the champion
-(0.4177 against 0.5710) and the ladder agrees (497.6 against 688.5). Every archetype-level
+(0.4177 against 0.5710) and the ladder agrees (505.8 against 688.5). Every archetype-level
 decision this campaign made on panel evidence was directionally right. What does not survive is
 the *level*: the panel cannot say how much rating a local point is worth for an agent unlike the
 ones it was fitted on.
@@ -63,9 +63,9 @@ Field score is a mean over per-opponent score rates, so it **cannot exceed 1.0**
 | **1.00 — beat all twelve opponents in every game** | **960.1** |
 | | |
 | leaderboard P99 | 1026.0 |
-| **leaderboard top** | **1230.3** |
+| **leaderboard top** | **1233.7** |
 
-**A perfect score on this panel predicts ~960, and the top of the leaderboard is 1230.** The
+**A perfect score on this panel predicts ~960, and the top of the leaderboard is ~1233** (it drifts by a few points a day; 1230.3 and 1233.7 were read a few hours apart). The
 instrument's maximum reading sits below the target — not near it, *below* it, by more than the
 entire distance from our champion to a flawless panel score.
 
