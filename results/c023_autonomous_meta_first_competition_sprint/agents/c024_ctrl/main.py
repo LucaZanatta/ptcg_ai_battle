@@ -27,7 +27,11 @@ import json
 import os
 import sys
 
-_HERE = os.path.dirname(os.path.abspath(__file__))
+# See the note in c024_alakazam.py: `kaggle_environments` execs a file-path agent's source in a
+# namespace with no `__file__`, so touching it here kills the submission before it plays a card.
+# Every wrapper candidate this contract packaged carried that defect; none was ever submitted,
+# so it stayed invisible until c024 submitted a from-scratch agent built the same way.
+_HERE = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
 if not os.path.isfile(os.path.join(_HERE, "base_agent.py")):
     _HERE = "/kaggle_simulations/agent"
 if _HERE not in sys.path:
@@ -105,6 +109,25 @@ class _FinishStats:
 
 
 FINISH_STATS = _FinishStats()
+
+# The harness forks one child per game, so in-process counters die with the child and a rule can
+# look inert when it is merely gated. When C024_FINISH_STATS names a DIRECTORY, each child
+# rewrites its own `<pid>.json` snapshot and the caller sums the directory -- which is what
+# separates "never fired" from "fired rarely because the expert was already winning".
+#
+# Written on update rather than at exit on purpose: the harness's children leave via os._exit,
+# which does not run atexit handlers, so an exit-time dump produces no files at all.
+_FSTAT_DIR = os.environ.get("C024_FINISH_STATS")
+
+
+def _dump_finish_stats():
+    if not _FSTAT_DIR:
+        return
+    try:
+        with open(os.path.join(_FSTAT_DIR, f"{os.getpid()}.json"), "w") as fh:
+            json.dump(FINISH_STATS.as_dict(), fh)
+    except Exception:
+        pass
 
 
 def _load_planner():
@@ -327,8 +350,11 @@ def _finish_mode(v, base_action):
     if fm is None:
         return None
     t = _tracker(v)
-    return fm.finish(v.obs, base_action, MY_DECK, _sim, t.known() if t else None,
-                     TH.get("finish"), FINISH_STATS)
+    out = fm.finish(v.obs, base_action, MY_DECK, _sim, t.known() if t else None,
+                    TH.get("finish"), FINISH_STATS)
+    if _FSTAT_DIR:
+        _dump_finish_stats()
+    return out
 
 
 # ---- the veto primitive ----------------------------------------------------------------------

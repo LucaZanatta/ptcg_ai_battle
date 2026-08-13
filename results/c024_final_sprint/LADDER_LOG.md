@@ -245,3 +245,31 @@ converge honestly.
 option is time-limited — the streak decays as it plays — so it is recorded here at the moment it
 was live, with the number it was showing, rather than mentioned afterwards. If the answer is
 "take it", it costs two submissions and can be done in a minute.
+
+## D11, second layer: the fix does not travel to already-built candidates
+
+The wrapper family was re-checked rather than assumed fixed, and it **failed**:
+
+```
+c024_wrapper_d11_check   valid: false   raw_python_self_play: false
+NameError: name '__file__' is not defined    (main.py, line 30)
+```
+
+`c023_build_candidate.py` copies the wrapper into each candidate directory **at build time**, and
+`c023_package.py` ships that directory as it stands. Fixing `starter_kit/c023_wrapper_main.py`
+therefore repairs nothing that was already built — every one of the 28 c023 candidates still
+carries the broken bytes on disk, and would still die on a validation episode.
+
+Rebuilding the candidate from the fixed wrapper and re-running:
+
+```
+c024_wrapper_d11_check   valid: true    raw_python_self_play: true
+```
+
+Two things worth keeping from this:
+
+- **A source fix is not an artifact fix.** Any candidate intended for submission has to be rebuilt
+  after this change, not merely re-packaged.
+- **The check earns its place.** It was written for the from-scratch agent and it immediately
+  caught a stale artifact in a different family — one that four other checks (extraction, play,
+  latency, both seats) all passed.

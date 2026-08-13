@@ -1,0 +1,103 @@
+{
+  "player_id": "c024_ctrl",
+  "archive": "results/c023_autonomous_meta_first_competition_sprint/final_packages/c024_wrapper_d11_check.tar.gz",
+  "archive_sha256": "a5ca5a17ccf058621a3793a9e8382ab2ff24901333f5cdf8ac3063f8935e69fe",
+  "archive_bytes": 518411,
+  "members": [
+    "ATTRIBUTION.txt",
+    "base_agent.py",
+    "cg/__init__.py",
+    "cg/api.py",
+    "cg/game.py",
+    "cg/libcg.so",
+    "cg/sim.py",
+    "cg/utils.py",
+    "deck.csv",
+    "finish.py",
+    "main.py",
+    "params.json",
+    "planner.py",
+    "prizes.py"
+  ],
+  "clean_validation": {
+    "valid": true,
+    "summary": {
+      "candidate_id": "_pkgtest",
+      "requested_games": 32,
+      "completed_games": 32,
+      "errors": 0,
+      "field_score": 0.5625,
+      "field_score_off_mirror": 0.5625,
+      "pooled_score_rate": 0.5625,
+      "pooled_wilson95": [
+        0.3933,
+        0.7183
+      ],
+      "per_opponent": {
+        "official_dragapult": {
+          "games": 8,
+          "score_rate": 0.625,
+          "wilson95": [
+            0.3057,
+            0.8632
+          ]
+        },
+        "official_iono": {
+          "games": 8,
+          "score_rate": 0.375,
+          "wilson95": [
+            0.1368,
+            0.6943
+          ]
+        },
+        "official_mega_abomasnow": {
+          "games": 8,
+          "score_rate": 0.875,
+          "wilson95": [
+            0.5291,
+            0.9776
+          ]
+        },
+        "pub_tetsutani_grimmsnarl": {
+          "games": 8,
+          "score_rate": 0.375,
+          "wilson95": [
+            0.1368,
+            0.6943
+          ]
+        }
+      },
+      "per_seat": {
+        "seat0": 0.625,
+        "seat1": 0.5,
+        "seat0_games": 16,
+        "seat1_games": 16
+      },
+      "latency_p99_ms": 140.494,
+      "latency_max_ms": 140.6488,
+      "mean_game_seconds": 0.7097,
+      "decisions": 2913,
+      "engine_process_deaths": 0,
+      "trivial_fallback_rate": 0.3471
+    },
+    "raw_python": {
+      "raw_python_self_play": true,
+      "steps": 154,
+      "error": ""
+    },
+    "latency_bound_ms": 1000.0,
+    "latency_bound_is": "SELF-IMPOSED; the competition's published per-decision timeout is not machine-retrievable (client-rendered rules page)",
+    "checks": {
+      "zero_errors": true,
+      "all_completed": true,
+      "max_latency_within_bound": true,
+      "both_seats": true,
+      "raw_python_self_play": true
+    }
+  },
+  "note": "D11 regression check after rebuilding the candidate from the fixed wrapper",
+  "utc": "2026-08-13T09:08:22Z",
+  "git_commit": "852f2c4e80525fb178f108058c42246d4fd6d443",
+  "git_dirty": true,
+  "attribution": "base_agent.py: Official Kaggle sample kernel kiyotah/a-sample-rule-based-agent-dragapult-ex-deck (Kiyota)\nreuse class: SUBMISSION_REUSE_ALLOWED (see results/.../SOURCES.md)\nmain.py, params.json: c023 contract code (this repository)\ndeck.csv: see DECK_CHANGE_LEDGER.md\n"
+}
