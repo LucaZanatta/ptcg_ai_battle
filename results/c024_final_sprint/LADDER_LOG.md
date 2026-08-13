@@ -125,3 +125,52 @@ Both files are fixed.
 |---|---|---|
 | 55466460 | c024 Alakazam v1 | **ERROR** — `__file__` NameError, 0 games played |
 | 55477137 | c024 Alakazam v2 | resubmitted 2026-08-13 with the fix and the new check |
+
+## Readings
+
+| UTC | champion 55254872 | eps | Alakazam v2 55477137 | eps |
+|---|---:|---:|---:|---:|
+| 2026-08-13 07:30 | 690.2 | 198 | — | — |
+| 2026-08-13 07:48 | 693.9 | 199 | 681.2 | 6 |
+| 2026-08-13 08:22 | **688.5** | 200 | **522.2** | 14 |
+
+**The Alakazam agent is converging downward, toward the number the panel predicted.** 681.2 at six
+episodes was almost entirely the starting prior; by fourteen it is 522.2 against a prediction of
+569 from `rating = 347.5 + 646.7 × 0.3424`. It is not a challenger, and the panel — which
+`S0_PUBLIC_AGENT_SCREEN.md` showed cannot predict a single *matchup* — has again predicted the
+*aggregate* correctly, this time for an archetype it had never seen and an agent we wrote.
+
+## A dormant submission keeps its rating, and our best one is dormant
+
+| ref | agent | rating | last played | state |
+|---|---|---:|---|---|
+| 54948560 | `official_dragapult` (c005) | **719.7** | 2026-07-26 | dormant |
+| 54948476 | `official_dragapult` (c005) | **711.0** | 2026-07-26 | dormant |
+| 55254872 | `official_dragapult` (c023) | 688.5 | now | **live** |
+| 55011215 | `official_mega_lucario` | 595.1 | 2026-08-13 | live-ish |
+| 55477137 | c024 Alakazam v2 | 522.2 | now | live |
+
+**Three submissions of the same agent, byte-for-byte, sitting at 719.7, 711.0 and 688.5.** The
+spread is **31 rating points**, and it is pure measurement noise on one policy — a direct estimate
+of the ladder's own variance, and a caution against reading any single rating as a skill estimate.
+
+Two consequences:
+
+1. **The eviction risk was overstated.** A submission that goes dormant *freezes* its rating; it
+   does not lose it. The leaderboard takes the best across submissions, so our standing is
+   **719.7**, not 688.5 — about **1,836th of 6,789**, the 73rd percentile. (Top 1230.3,
+   P99 1026.0, P90 845.5, median 620.2.)
+2. **The 719.7 is itself an under-converged reading that got frozen.** The same agent, given 200
+   games instead of 83, settles at 688.5. Our headline number is the luckiest of three draws, and
+   the honest estimate of the champion's strength is **~690**.
+
+That second point matters more than the first, and it is the correction to make loudly: every
+rating this project has quoted — 788.1 in c023, 719.7 on the leaderboard now — has been a
+high-variance early reading. The converged value is lower.
+
+## What this changes about the remaining days
+
+Submitting further agents cannot cost us the 719.7 or the 688.5. The endgame rule stays
+(the champion must be **live** at the deadline, in case the competition scores active agents at
+close rather than taking the leaderboard maximum) but it is now a hedge against an unknown, not a
+defence of the score.
