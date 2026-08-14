@@ -426,3 +426,9 @@ due tomorrow, 2026-08-15.
 | 2026-08-14 10:53 | 759.7 (58 eps, rate 0.4746) | 688.5 frozen | 490.8 (36 eps) |
 
 Stable; champion copy playing. Neither date rule fires.
+| 2026-08-14 14:53 | 753.5 (64 eps, rate **0.4615**) | 688.5 frozen (rate 0.4677) | 490.8 (36 eps) |
+
+**Convergence complete on the rate.** `55478202` is now at 0.4615 against the original package's
+0.4677 — it has crossed *below* it. Six games since the last check; champion copy playing. The
+rating trails at 753.5 against 688.5, which is the lag already recorded on 2026-08-14 02:53.
+Neither date rule fires; Rule A is due tomorrow.
