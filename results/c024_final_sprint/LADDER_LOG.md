@@ -410,3 +410,12 @@ sample, not about the player.
 Two games won, rate 0.489 → 0.510, rating 767.1 → 779.1. Noise on a 48-game sample, not a
 reversal of the trend; recorded without comment beyond that. Champion copy playing. Neither date
 rule fires — Rule A is due 2026-08-15.
+| 2026-08-14 02:53 | 757.3 (52 eps, rate **0.4717**) | 688.5 frozen (rate 0.4677) | 467.8 (31 eps) |
+
+**The score rate has converged; the rating has not.** `55478202` is at 0.4717 against the same
+package's 0.4677 over 200 games — a 0.004 difference — while its *rating* is still 69 points
+higher at 757.3. Rating incorporates opponent strength and moves more slowly than the raw win
+fraction, so the two converge on different timescales. The practical consequence for this
+campaign's reporting: **score rate settles first and is the earlier signal that a rating is still
+inflated.** Champion copy playing. Neither date rule fires — Rule A is due today, 2026-08-15,
+Rome time.
