@@ -417,5 +417,9 @@ package's 0.4677 over 200 games — a 0.004 difference — while its *rating* is
 higher at 757.3. Rating incorporates opponent strength and moves more slowly than the raw win
 fraction, so the two converge on different timescales. The practical consequence for this
 campaign's reporting: **score rate settles first and is the earlier signal that a rating is still
-inflated.** Champion copy playing. Neither date rule fires — Rule A is due today, 2026-08-15,
-Rome time.
+inflated.** Champion copy playing. Neither date rule fires — Rule A is due 2026-08-15; that
+row was written at 04:53 CEST on 2026-08-14 and called it "today" in error.
+| 2026-08-14 06:53 | 758.8 (56 eps, rate 0.4737) | 688.5 frozen | 467.8 (34 eps) |
+
+Stable. Champion copy playing, four games since the last check. Neither date rule fires; Rule A is
+due tomorrow, 2026-08-15.
