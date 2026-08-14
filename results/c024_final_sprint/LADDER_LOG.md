@@ -423,3 +423,6 @@ row was written at 04:53 CEST on 2026-08-14 and called it "today" in error.
 
 Stable. Champion copy playing, four games since the last check. Neither date rule fires; Rule A is
 due tomorrow, 2026-08-15.
+| 2026-08-14 10:53 | 759.7 (58 eps, rate 0.4746) | 688.5 frozen | 490.8 (36 eps) |
+
+Stable; champion copy playing. Neither date rule fires.
