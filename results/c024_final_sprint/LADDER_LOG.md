@@ -432,3 +432,7 @@ Stable; champion copy playing. Neither date rule fires.
 0.4677 — it has crossed *below* it. Six games since the last check; champion copy playing. The
 rating trails at 753.5 against 688.5, which is the lag already recorded on 2026-08-14 02:53.
 Neither date rule fires; Rule A is due tomorrow.
+| 2026-08-14 18:53 | 758.0 (67 eps, rate 0.4706) | 688.5 frozen | 482.4 (37 eps) |
+
+Stable; champion copy playing, three games since the last check. Neither date rule fires — **Rule A
+becomes due at the next scheduled check**, which lands just after midnight Rome time on 2026-08-15.
