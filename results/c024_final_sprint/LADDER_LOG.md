@@ -499,3 +499,7 @@ evening.
 | 2026-08-15 18:53 | 55524374 602.7 (27 eps) · 55478202 744.3 (81 eps) | 688.5 frozen | 491.1 (44 eps) |
 
 Both champion copies playing. Neither date rule fires; Rule B is due tomorrow after 21:00 Rome.
+| 2026-08-16 00:53 CEST | 55524374 605.1 (31 eps) · 55478202 745.9 (83 eps) | 688.5 frozen | 491.1 (44 eps) |
+
+Both champion copies playing. Neither date rule fires — Rule B is due this evening after 21:00
+Rome, ahead of the corrected 01:59 cut-off on the 17th.
