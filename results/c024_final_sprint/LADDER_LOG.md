@@ -436,3 +436,34 @@ Neither date rule fires; Rule A is due tomorrow.
 
 Stable; champion copy playing, three games since the last check. Neither date rule fires — **Rule A
 becomes due at the next scheduled check**, which lands just after midnight Rome time on 2026-08-15.
+| 2026-08-15 09:21 | 747.8 (76 eps, rate 0.4545) | 688.5 frozen | 491.1 (44 eps) |
+
+## RULE A EXECUTED — the final entry is submitted
+
+**`55524374`** — `c024_champion_dragapult.tar.gz`, sha256 `e441125dad85e0c8` verified against its
+manifest before upload, `raw_python_self_play: true`. Validated on Kaggle: **COMPLETE**, one
+episode, no error. The D11 class is closed in practice, not just in the checker.
+
+`official_dragapult`, the Kiyota sample byte-for-byte, is the entry.
+
+## Deadline correction
+
+The user pointed out the deadline is the 17th. They are right, and the plan was wrong:
+
+```
+Kaggle API deadline : 2026-08-16 23:59        (UTC, unlabelled)
+                    = 2026-08-17 01:59        Europe/Rome
+```
+
+`AUTONOMOUS_PLAN.md` and every standing prompt derived from it read that field as Rome time. The
+error was **conservative** — it would have closed the campaign two hours early, never late — but
+it was the one hard constraint in the contract and it was wrong for three days. Corrected in the
+plan.
+
+## Where this actually stands, competitively
+
+The user's assessment — "really far from winning" — is correct and this file should say so
+plainly. Converged strength **688.5**; leaderboard top **~1233**; roughly the 65th–87th percentile
+of 6,825 teams depending on which frozen draw is read. **Not competitive for a prize.** The
+campaign's output is a set of measurements and four named defects, not a winning agent, and
+`EXECUTIVE_DECISION.md` says so.

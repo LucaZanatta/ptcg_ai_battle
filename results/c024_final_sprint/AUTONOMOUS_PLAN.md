@@ -3,7 +3,13 @@
 The user asked to be out of the loop. This is the standing plan, written down so it survives a
 restart, and it is executed without further prompting.
 
-**Hard deadline: 2026-08-16 23:59 Europe/Rome.**
+**Hard deadline: 2026-08-16 23:59 UTC = 2026-08-17 01:59 Europe/Rome.**
+
+*(Corrected 2026-08-15. This plan and every standing prompt derived from it read the Kaggle API's
+`deadline: 2026-08-16 23:59` as Rome time. It is UTC, so the true cut-off is two hours later than
+recorded, early on the 17th Rome time. The error was conservative — it would have closed early,
+never late — but the user caught it before the close, and a two-hour error in the one hard
+constraint of the campaign is worth naming rather than silently patching.)*
 
 ## The one rule that outranks everything else
 
