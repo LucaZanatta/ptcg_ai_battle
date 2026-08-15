@@ -491,3 +491,8 @@ converge before the close either**: at ~23 episodes a day it would need a week.
 The practical consequence for the final report: the entry's *displayed* rating at close will be
 whatever its ~40-episode sample happens to say, likely in the 500s or 600s. **That number is not
 the agent's strength.** 688.5 over 200 episodes is.
+| 2026-08-15 14:53 | 55524374 **589.0** (26 eps, rate 0.519) · 55478202 743.6 (79 eps) | 688.5 frozen | 491.1 (44 eps) |
+
+Both champion copies playing. The final entry is climbing from its 600 seed as expected
+(568.5 → 589.0), the older copy is flat at ~744. Neither date rule fires; Rule B is due tomorrow
+evening.
