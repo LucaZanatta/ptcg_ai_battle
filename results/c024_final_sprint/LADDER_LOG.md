@@ -467,3 +467,27 @@ plainly. Converged strength **688.5**; leaderboard top **~1233**; roughly the 65
 of 6,825 teams depending on which frozen draw is read. **Not competitive for a prize.** The
 campaign's output is a set of measurements and four named defects, not a winning agent, and
 `EXECUTIVE_DECISION.md` says so.
+| 2026-08-15 10:53 | **55524374 (final entry) 568.5** (23 eps, rate 0.500) · 55478202 743.8 (77 eps) | 688.5 frozen | 491.1 (44 eps) |
+
+**Both live submissions are now champion copies** (`55524374` and `55478202`), which is exactly
+what the endgame rule wanted: whatever the competition scores at close — the leaderboard maximum
+or the active agents — it is reading `official_dragapult`.
+
+`55524374` was added to `tools/c024_status.py`'s tracked list this check; it had been submitted but
+was not being polled, which is the sort of gap that goes unnoticed until it matters.
+
+### New submissions start at 600 and diverge from there, in either direction
+
+| copy | first reading | now | direction |
+|---|---:|---:|---|
+| `55478202` | 947.9 @ 11 eps | 743.8 @ 77 eps | down |
+| `55524374` | 600.0 @ 1 ep | 568.5 @ 23 eps | down, from a lower start |
+
+Identical bytes, both drifting down, from opposite sides of the agent's converged 688.5. A new
+submission is seeded near **600** and moves fast while its uncertainty is high — so `55478202`'s
+947.9 was a hot start amplified by that volatility, not a different agent. **`55524374` will not
+converge before the close either**: at ~23 episodes a day it would need a week.
+
+The practical consequence for the final report: the entry's *displayed* rating at close will be
+whatever its ~40-episode sample happens to say, likely in the 500s or 600s. **That number is not
+the agent's strength.** 688.5 over 200 episodes is.

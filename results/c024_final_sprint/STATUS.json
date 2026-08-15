@@ -1,6 +1,6 @@
 {
   "contract": "c024_final_sprint",
-  "generated_utc": "2026-08-15T09:21:43Z",
+  "generated_utc": "2026-08-15T10:53:20Z",
   "deadline": "2026-08-16T23:59:00+02:00",
   "decision": "official_dragapult (Kiyota sample, byte-for-byte) is the entry",
   "champion_converged_rating": 688.5,
@@ -624,17 +624,27 @@
     }
   },
   "ladder": {
-    "utc": "2026-08-15T09:21:43Z",
+    "utc": "2026-08-15T10:53:20Z",
     "submissions": [
+      {
+        "submission": 55524374,
+        "agent": "champion_FINAL_ENTRY",
+        "status": "COMPLETE",
+        "rating": 568.5,
+        "episodes": 23,
+        "wins": 12,
+        "losses": 12,
+        "score_rate": 0.5
+      },
       {
         "submission": 55478202,
         "agent": "champion_redeploy",
         "status": "COMPLETE",
-        "rating": 747.8,
-        "episodes": 76,
+        "rating": 743.8,
+        "episodes": 77,
         "wins": 35,
-        "losses": 42,
-        "score_rate": 0.4545
+        "losses": 43,
+        "score_rate": 0.4487
       },
       {
         "submission": 55254872,

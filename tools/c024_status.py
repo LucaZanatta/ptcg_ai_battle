@@ -29,7 +29,8 @@ PKG = os.path.join(_REPO, "results", "c023_autonomous_meta_first_competition_spr
                    "final_packages")
 LADDER_SNAPSHOT = os.path.join(C024, "ladder_snapshot.json")
 
-TRACKED = [(55478202, "champion_redeploy"), (55254872, "champion_original"),
+TRACKED = [(55524374, "champion_FINAL_ENTRY"),
+           (55478202, "champion_redeploy"), (55254872, "champion_original"),
            (55477137, "c024_alakazam_v2"), (55466460, "c024_alakazam_v1"),
            (55011215, "official_mega_lucario"), (54948560, "c005_dragapult")]
 
