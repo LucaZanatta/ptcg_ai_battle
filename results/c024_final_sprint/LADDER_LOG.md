@@ -496,3 +496,6 @@ the agent's strength.** 688.5 over 200 episodes is.
 Both champion copies playing. The final entry is climbing from its 600 seed as expected
 (568.5 → 589.0), the older copy is flat at ~744. Neither date rule fires; Rule B is due tomorrow
 evening.
+| 2026-08-15 18:53 | 55524374 602.7 (27 eps) · 55478202 744.3 (81 eps) | 688.5 frozen | 491.1 (44 eps) |
+
+Both champion copies playing. Neither date rule fires; Rule B is due tomorrow after 21:00 Rome.
