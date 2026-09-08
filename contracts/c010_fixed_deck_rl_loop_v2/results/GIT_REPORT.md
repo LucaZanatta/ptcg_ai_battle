@@ -1,0 +1,35 @@
+# Git Report (c010)
+
+- Branch: `contract/c010_fixed_deck_rl_loop_v2`
+- Initial HEAD (c009 final): `e868dfbbeefc30bcf246cd60e0f51bf6d0043eb8`
+- Final HEAD: `6530fe8b313a026561cce51be6b541796ac5846a`
+- Implementation commits (25):
+  - 6530fe8 c010: guard the threshold-tie defect in content validation, not only unit tests
+  - fe32e3d c010: derive the Sec.25 blocker from measured diagnostics
+  - 53cd771 c010: apply the tie tolerance to the Sec.20 strong-continuation thresholds too
+  - 54eff9d c010: fix a floating-point tie that read a registered threshold as a miss
+  - b947c8d c010: raise eval parallelism now that training has released the cores
+  - 937b591 c010: driver for the post-training pipeline in registered order
+  - 92df66a c010: report registered evaluation-point coverage per seed
+  - 654c1e2 c010: decide Sec.25's next step from continuation evidence, not a fall-through
+  - c3f2dc1 c010: validate seed-best aggregates against the panel set the artifact declares
+  - db9506b c010: record the Sec.16 teacher-extension assessment for every finalist
+  - 26fcd83 c010: select finalists from confirmation evidence only, not pooled with the final panel
+  - 2b0ef95 c010: emit the AC-05 identity protocol artifact from live batch evidence
+  - 8f7a60f c010: record the final-panel finalist list on every aggregate pass
+  - 6c43d18 c010: register the Sec.16 teacher-extension trigger as a testable rule
+  - 45aa094 c010: implement the Sec.16 teacher head-to-head extension (400 -> 800 games)
+  - 2746a36 c010: apply the registered Sec.17 nomination rule and record confirmation panels
+  - c245fc0 c010: list every AC-15 Kaggle artifact in the checklist
+  - 6f7191f c010: gate content-validation control on the full artifact tree
+  - 46baad8 c010: consolidation tool, derived Arm C budget, terminal-checkpoint safety net
+  - cd90c63 c010: content-validation tests (13 corruption cases must be detected)
+  - 974529a c010: split BLAS threads (parent multi-threaded for PPO update, rollout workers single-threaded)
+  - 9641463 c010: reports, acceptance checklist, and evaluation identity tests
+  - 79e72df c010: content-aware evidence validation and submission/kaggle finalization
+  - 49aceed c010: decision rules, aggregation, and crash-safe update evidence
+  - 02e2777 c010: register fixed-deck rl loop v2
+
+- c005-c009 unchanged: **True**
+- Protected baselines B0/I0 unmodified: **True**
+- Source-only commits; results/ uncommitted; no `.so`; no credentials.

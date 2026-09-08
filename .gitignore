@@ -1,0 +1,22 @@
+# Byte-compiled / caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Never commit archives again. A `git archive` of this repository was once committed INTO it
+# (5.7 GB), which is why the history cannot be pushed to GitHub. Files over 100 MB are rejected
+# outright and a push over 2 GB is rejected outright.
+*.tar.gz
+*.tgz
+*.zip
+*.z0[0-9]
+*.z1[0-9]
+*.patch
+*.pdf
+
+# Raw evaluation output: regenerable by tools/, and hundreds of thousands of JSONL rows.
+results/**/raw_evaluations/
+results/**/final_packages/
+external_refs/
+tmp.txt

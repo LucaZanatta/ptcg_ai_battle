@@ -1,0 +1,37 @@
+{
+  "generated_utc": "2026-08-05T22:26:12Z",
+  "decisions": {
+    "CHAMPION": {
+      "value": "official_dragapult",
+      "basis": "highest off-mirror field score on the c023 round-robin AMONG SUBMISSION-ELIGIBLE bases -- every player measured on one panel, with one harness, in one protocol",
+      "evidence": "champion.json, MATCHUP_MATRIX.csv"
+    },
+    "BRANCH_B1_AGENT_RULES": {
+      "value": "SEE AGENT_CHANGE_LEDGER",
+      "evidence": "AGENT_CHANGE_LEDGER.md, FAILURE_TAXONOMY.md"
+    },
+    "BRANCH_B2_DECK": {
+      "value": "FAIL",
+      "basis": "17 constrained mutations; none separated from a control measured in the same run over 1,200 games each",
+      "evidence": "DECK_CHANGE_LEDGER.md, raw_evaluations/deck_confirm1"
+    },
+    "BYTERL": {
+      "value": "NOT_ADMITTED",
+      "basis": "value head scores -0.06/-0.10 against a constant predictor at the base rate (c022); no component passed isolated admission",
+      "evidence": "BYTERL_COMPONENT_RESULTS.md"
+    },
+    "PACKAGE": {
+      "value": "PASS",
+      "evidence": "final_packages/*_manifest.json"
+    },
+    "SUBMISSION": {
+      "value": "NOT_RUN",
+      "basis": "no explicit autonomous-submission authorization exists in the repository; see LEADERBOARD_SUBMISSION_PLAN.md. The competition deadline is 2026-08-16, so not uploading on 2026-08-05 forfeits nothing.",
+      "evidence": "LEADERBOARD_SUBMISSION_PLAN.md"
+    },
+    "OVERALL": {
+      "value": "RESEARCH_SUCCESS",
+      "evidence": "EXECUTIVE_DECISION.md"
+    }
+  }
+}

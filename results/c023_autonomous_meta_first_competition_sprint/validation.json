@@ -1,0 +1,119 @@
+{
+  "utc": "2026-08-05T22:26:27Z",
+  "root": "results/c023_autonomous_meta_first_competition_sprint",
+  "checks": [
+    {
+      "id": "V01",
+      "title": "every summary score rate is recomputable from its own raw games",
+      "status": "PASS",
+      "detail": "70 tags recomputed"
+    },
+    {
+      "id": "V02",
+      "title": "no summary reports a candidate with zero completed games",
+      "status": "PASS",
+      "detail": "70 tags"
+    },
+    {
+      "id": "V03",
+      "title": "every raw game's job_id encodes its own candidate/opponent/seat",
+      "status": "PASS",
+      "detail": "392792 records"
+    },
+    {
+      "id": "V04",
+      "title": "every candidate manifest carries deck, base-agent and wrapper hashes",
+      "status": "PASS",
+      "detail": "347 manifests"
+    },
+    {
+      "id": "V05",
+      "title": "no arm reports fewer raw games than it requested without saying so",
+      "status": "PASS",
+      "detail": "70 tags"
+    },
+    {
+      "id": "V06",
+      "title": "no summary is older than the raw games it summarises",
+      "status": "PASS",
+      "detail": "70 tags"
+    },
+    {
+      "id": "V07",
+      "title": "champion.json's per-opponent cells exist in the raw games it cites",
+      "status": "PASS",
+      "detail": "9 cells"
+    },
+    {
+      "id": "V08",
+      "title": "error counts in summaries equal the raw non-completed rows",
+      "status": "PASS",
+      "detail": "70 tags"
+    },
+    {
+      "id": "V09",
+      "title": "every package manifest carries an executed clean validation",
+      "status": "PASS",
+      "detail": "1 packages"
+    },
+    {
+      "id": "V10",
+      "title": "every file and directory the contract names is present and non-empty",
+      "status": "PASS",
+      "detail": "15 files, 7 directories"
+    },
+    {
+      "id": "V11",
+      "title": "every evaluated candidate appears in CANDIDATE_HISTORY.jsonl",
+      "status": "PASS",
+      "detail": "359 recorded, 351 evaluated"
+    }
+  ],
+  "injections": [
+    {
+      "check": "V01",
+      "injection": "alter one score rate in a summary without touching the raw games",
+      "status": "DETECTED"
+    },
+    {
+      "check": "V02",
+      "injection": "set a candidate's completed_games to 0",
+      "status": "DETECTED"
+    },
+    {
+      "check": "V03",
+      "injection": "rewrite one raw record's candidate_id, leaving its job_id intact",
+      "status": "DETECTED"
+    },
+    {
+      "check": "V04",
+      "injection": "delete deck_sha256 from a candidate manifest",
+      "status": "DETECTED"
+    },
+    {
+      "check": "V05",
+      "injection": "delete raw rows for one candidate, leaving requested_games unchanged",
+      "status": "DETECTED"
+    },
+    {
+      "check": "V06",
+      "injection": "backdate a summary behind its games.jsonl",
+      "status": "UNDETECTED"
+    },
+    {
+      "check": "V07",
+      "injection": "alter a champion.json per-opponent score rate",
+      "status": "DETECTED"
+    },
+    {
+      "check": "V08",
+      "injection": "zero the error count in a summary that has a failed game",
+      "status": "DETECTED"
+    },
+    {
+      "check": "V11",
+      "injection": "remove one evaluated candidate from CANDIDATE_HISTORY.jsonl",
+      "status": "DETECTED"
+    }
+  ]
+}

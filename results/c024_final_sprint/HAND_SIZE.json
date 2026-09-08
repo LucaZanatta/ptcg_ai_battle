@@ -1,0 +1,3932 @@
+{
+  "report": {
+    "utc": "2026-08-06T23:47:13Z",
+    "games": 16,
+    "players": {
+      "c024_azam_v1": {
+        "games": 16,
+        "score": 0.25,
+        "attacks": 53,
+        "attacks_per_game": 3.31,
+        "hand_at_attack": {
+          "mean": 10.83,
+          "median": 10,
+          "p10": 2,
+          "p90": 19,
+          "max": 28
+        },
+        "damage_at_attack": {
+          "mean": 216.6,
+          "median": 200,
+          "p90": 380
+        },
+        "hand_when_attack_available": 12.34,
+        "hand_all_main": 10.73,
+        "attacks_at_16_plus": 13,
+        "attacks_at_11_plus": 26,
+        "histogram": {
+          "0": 1,
+          "2": 6,
+          "3": 2,
+          "4": 2,
+          "6": 1,
+          "7": 2,
+          "8": 2,
+          "9": 5,
+          "10": 6,
+          "11": 5,
+          "12": 4,
+          "13": 1,
+          "14": 3,
+          "16": 5,
+          "17": 1,
+          "18": 1,
+          "19": 2,
+          "21": 1,
+          "23": 1,
+          "24": 1,
+          "28": 1
+        }
+      }
+    }
+  },
+  "rows": [
+    {
+      "job_id": "c024_azam_v1|official_dragapult|14",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 14,
+      "error": null,
+      "score": 1.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 16,
+          "can_attack": false,
+          "deck": 25,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 23,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 23,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 23,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 23,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 20,
+          "prize": 3
+        },
+        {
+          "turn": 7,
+          "hand": 19,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 3
+        },
+        {
+          "turn": 7,
+          "hand": 18,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 3
+        },
+        {
+          "turn": 7,
+          "hand": 19,
+          "can_attack": true,
+          "deck": 15,
+          "prize": 3
+        },
+        {
+          "turn": 7,
+          "hand": 19,
+          "can_attack": true,
+          "deck": 14,
+          "prize": 3
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 9
+        },
+        {
+          "turn": 5,
+          "hand": 14
+        },
+        {
+          "turn": 7,
+          "hand": 19
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|12",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 12,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 43,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 4,
+          "can_attack": true,
+          "deck": 41,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 40,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 4,
+          "can_attack": true,
+          "deck": 39,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 39,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 2,
+          "can_attack": true,
+          "deck": 39,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 2,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 5
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 5,
+          "hand": 11
+        },
+        {
+          "turn": 7,
+          "hand": 3
+        },
+        {
+          "turn": 9,
+          "hand": 2
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|10",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 10,
+      "error": null,
+      "score": 1.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 33,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 25,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 25,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 25,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 25,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 16,
+          "can_attack": false,
+          "deck": 21,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 19,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 19,
+          "can_attack": false,
+          "deck": 18,
+          "prize": 2
+        },
+        {
+          "turn": 9,
+          "hand": 18,
+          "can_attack": true,
+          "deck": 18,
+          "prize": 2
+        },
+        {
+          "turn": 9,
+          "hand": 19,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 2
+        },
+        {
+          "turn": 9,
+          "hand": 19,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 2
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 9
+        },
+        {
+          "turn": 5,
+          "hand": 12
+        },
+        {
+          "turn": 7,
+          "hand": 16
+        },
+        {
+          "turn": 9,
+          "hand": 19
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|9",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 9,
+      "error": null,
+      "score": 1.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 34,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 27,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 27,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 3
+        },
+        {
+          "turn": 9,
+          "hand": 2,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 3
+        },
+        {
+          "turn": 11,
+          "hand": 4,
+          "can_attack": true,
+          "deck": 36,
+          "prize": 2
+        },
+        {
+          "turn": 11,
+          "hand": 6,
+          "can_attack": true,
+          "deck": 33,
+          "prize": 2
+        },
+        {
+          "turn": 11,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 2
+        },
+        {
+          "turn": 11,
+          "hand": 6,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 2
+        },
+        {
+          "turn": 13,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 2
+        },
+        {
+          "turn": 13,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 26,
+          "prize": 2
+        },
+        {
+          "turn": 13,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 24,
+          "prize": 2
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 8
+        },
+        {
+          "turn": 5,
+          "hand": 11
+        },
+        {
+          "turn": 7,
+          "hand": 12
+        },
+        {
+          "turn": 9,
+          "hand": 2
+        },
+        {
+          "turn": 11,
+          "hand": 6
+        },
+        {
+          "turn": 13,
+          "hand": 10
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|7",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 7,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 4,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 2,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 2,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 2,
+          "can_attack": true,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 2,
+          "can_attack": true,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 40,
+          "prize": 6
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 2
+        },
+        {
+          "turn": 5,
+          "hand": 2
+        },
+        {
+          "turn": 7,
+          "hand": 3
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|8",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 8,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 26,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 24,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 24,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 24,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 23,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 19,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 18,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 16,
+          "can_attack": false,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 18,
+          "can_attack": false,
+          "deck": 16,
+          "prize": 5
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 11
+        },
+        {
+          "turn": 5,
+          "hand": 11
+        },
+        {
+          "turn": 7,
+          "hand": 16
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|13",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 13,
+      "error": null,
+      "score": 1.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 33,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 28,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 16,
+          "can_attack": false,
+          "deck": 28,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 27,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 19,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 20,
+          "can_attack": false,
+          "deck": 22,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 19,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 18,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 20,
+          "can_attack": true,
+          "deck": 20,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 22,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 21,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 23,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 24,
+          "can_attack": true,
+          "deck": 14,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 25,
+          "can_attack": true,
+          "deck": 12,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 24,
+          "can_attack": true,
+          "deck": 12,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 26,
+          "can_attack": true,
+          "deck": 11,
+          "prize": 3
+        },
+        {
+          "turn": 13,
+          "hand": 28,
+          "can_attack": true,
+          "deck": 8,
+          "prize": 3
+        },
+        {
+          "turn": 13,
+          "hand": 28,
+          "can_attack": true,
+          "deck": 7,
+          "prize": 3
+        },
+        {
+          "turn": 15,
+          "hand": 30,
+          "can_attack": false,
+          "deck": 6,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 29,
+          "can_attack": true,
+          "deck": 6,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 29,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 28,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 27,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 26,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 25,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 24,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 23,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 23,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 23,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 23,
+          "can_attack": true,
+          "deck": 5,
+          "prize": 2
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 7,
+          "hand": 18
+        },
+        {
+          "turn": 9,
+          "hand": 21
+        },
+        {
+          "turn": 11,
+          "hand": 24
+        },
+        {
+          "turn": 13,
+          "hand": 28
+        },
+        {
+          "turn": 15,
+          "hand": 23
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|5",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 5,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 35,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 26,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 16,
+          "can_attack": false,
+          "deck": 23,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 21,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 20,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 16,
+          "can_attack": false,
+          "deck": 20,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 20,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 20,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 20,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 19,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 13,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 16,
+          "prize": 6
+        },
+        {
+          "turn": 13,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 15,
+          "prize": 6
+        },
+        {
+          "turn": 13,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 15,
+          "prize": 6
+        },
+        {
+          "turn": 13,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 15,
+          "prize": 6
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 11,
+          "hand": 12
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|1",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 1,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|11",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 11,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 4,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 4,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 27,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 22,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 26,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 24,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 23,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 20,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 15,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 15,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 13,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 13,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 13,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 13,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 12,
+          "prize": 2
+        },
+        {
+          "turn": 13,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 11,
+          "prize": 2
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 9
+        },
+        {
+          "turn": 5,
+          "hand": 12
+        },
+        {
+          "turn": 7,
+          "hand": 7
+        },
+        {
+          "turn": 9,
+          "hand": 10
+        },
+        {
+          "turn": 11,
+          "hand": 10
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|15",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 15,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 42,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 16,
+          "can_attack": false,
+          "deck": 26,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 18,
+          "can_attack": false,
+          "deck": 23,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 19,
+          "can_attack": false,
+          "deck": 21,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 18,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 20,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 19,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 18,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 2,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 1,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 0,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 1,
+          "can_attack": false,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 0,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 5
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 7,
+          "hand": 16
+        },
+        {
+          "turn": 11,
+          "hand": 0
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|6",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 6,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 36,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 33,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 33,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 33,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 40,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 4,
+          "can_attack": true,
+          "deck": 38,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 36,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 2,
+          "can_attack": true,
+          "deck": 36,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 35,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 2,
+          "can_attack": false,
+          "deck": 35,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 30,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 27,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 26,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 25,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 23,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 23,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 23,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 22,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 19,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 18,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 15,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 15,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 15,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 14,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 14,
+          "prize": 2
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 7
+        },
+        {
+          "turn": 5,
+          "hand": 9
+        },
+        {
+          "turn": 7,
+          "hand": 2
+        },
+        {
+          "turn": 11,
+          "hand": 10
+        },
+        {
+          "turn": 13,
+          "hand": 9
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|4",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 4,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 33,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 4,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 31,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 5
+        },
+        {
+          "turn": 13,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 27,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 24,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 23,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 20,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 20,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 4
+        },
+        {
+          "turn": 15,
+          "hand": 20,
+          "can_attack": false,
+          "deck": 16,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 22,
+          "can_attack": false,
+          "deck": 13,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 21,
+          "can_attack": false,
+          "deck": 13,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 22,
+          "can_attack": false,
+          "deck": 11,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 22,
+          "can_attack": false,
+          "deck": 10,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 21,
+          "can_attack": false,
+          "deck": 10,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 20,
+          "can_attack": false,
+          "deck": 10,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 19,
+          "can_attack": false,
+          "deck": 10,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 18,
+          "can_attack": false,
+          "deck": 10,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 17,
+          "can_attack": false,
+          "deck": 15,
+          "prize": 2
+        },
+        {
+          "turn": 17,
+          "hand": 18,
+          "can_attack": false,
+          "deck": 14,
+          "prize": 2
+        },
+        {
+          "turn": 17,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 14,
+          "prize": 2
+        },
+        {
+          "turn": 17,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 14,
+          "prize": 2
+        },
+        {
+          "turn": 17,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 14,
+          "prize": 2
+        },
+        {
+          "turn": 17,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 14,
+          "prize": 2
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 10
+        },
+        {
+          "turn": 11,
+          "hand": 10
+        },
+        {
+          "turn": 13,
+          "hand": 17
+        },
+        {
+          "turn": 17,
+          "hand": 14
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|3",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 1,
+      "replicate": 3,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 11,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 12,
+          "can_attack": false,
+          "deck": 28,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": false,
+          "deck": 25,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 15,
+          "can_attack": false,
+          "deck": 23,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 21,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 18,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 18,
+          "prize": 5
+        },
+        {
+          "turn": 9,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 17,
+          "prize": 5
+        },
+        {
+          "turn": 11,
+          "hand": 18,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 16,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 15,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 15,
+          "prize": 4
+        },
+        {
+          "turn": 13,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 2
+        },
+        {
+          "turn": 13,
+          "hand": 2,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 2
+        },
+        {
+          "turn": 13,
+          "hand": 2,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 2
+        },
+        {
+          "turn": 15,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 29,
+          "prize": 2
+        },
+        {
+          "turn": 17,
+          "hand": 4,
+          "can_attack": false,
+          "deck": 28,
+          "prize": 2
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 7,
+          "hand": 13
+        },
+        {
+          "turn": 9,
+          "hand": 16
+        },
+        {
+          "turn": 11,
+          "hand": 16
+        },
+        {
+          "turn": 13,
+          "hand": 2
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|0",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 0,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 46,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 44,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 5,
+          "can_attack": true,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 7,
+          "hand": 4,
+          "can_attack": true,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 9,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 36,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 9,
+          "can_attack": false,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 10,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 11,
+          "hand": 8,
+          "can_attack": true,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 13,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 5
+        },
+        {
+          "turn": 13,
+          "hand": 2,
+          "can_attack": false,
+          "deck": 38,
+          "prize": 5
+        },
+        {
+          "turn": 15,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 5
+        },
+        {
+          "turn": 15,
+          "hand": 3,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 5
+        },
+        {
+          "turn": 15,
+          "hand": 4,
+          "can_attack": false,
+          "deck": 35,
+          "prize": 5
+        },
+        {
+          "turn": 15,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 5
+        },
+        {
+          "turn": 15,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 32,
+          "prize": 5
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 7,
+          "hand": 4
+        },
+        {
+          "turn": 11,
+          "hand": 8
+        }
+      ]
+    },
+    {
+      "job_id": "c024_azam_v1|official_dragapult|2",
+      "player": "c024_azam_v1",
+      "opponent": "official_dragapult",
+      "seat": 0,
+      "replicate": 2,
+      "error": null,
+      "score": 0.0,
+      "samples": [
+        {
+          "turn": 1,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 45,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 43,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 41,
+          "prize": 6
+        },
+        {
+          "turn": 1,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 40,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 39,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 7,
+          "can_attack": true,
+          "deck": 37,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 34,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 10,
+          "can_attack": true,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 9,
+          "can_attack": true,
+          "deck": 32,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 31,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 12,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 3,
+          "hand": 11,
+          "can_attack": true,
+          "deck": 29,
+          "prize": 6
+        },
+        {
+          "turn": 5,
+          "hand": 13,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 25,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 17,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 16,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 15,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 5
+        },
+        {
+          "turn": 5,
+          "hand": 14,
+          "can_attack": true,
+          "deck": 22,
+          "prize": 5
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 34,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 3,
+          "can_attack": true,
+          "deck": 33,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 5,
+          "can_attack": true,
+          "deck": 30,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 6,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 5,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 4
+        },
+        {
+          "turn": 7,
+          "hand": 4,
+          "can_attack": true,
+          "deck": 28,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 5,
+          "can_attack": false,
+          "deck": 27,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 4,
+          "can_attack": false,
+          "deck": 27,
+          "prize": 4
+        },
+        {
+          "turn": 9,
+          "hand": 6,
+          "can_attack": false,
+          "deck": 27,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 26,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 8,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 4
+        },
+        {
+          "turn": 11,
+          "hand": 7,
+          "can_attack": false,
+          "deck": 24,
+          "prize": 4
+        }
+      ],
+      "attacks": [
+        {
+          "turn": 3,
+          "hand": 11
+        },
+        {
+          "turn": 5,
+          "hand": 14
+        },
+        {
+          "turn": 7,
+          "hand": 4
+        }
+      ]
+    }
+  ]
+}

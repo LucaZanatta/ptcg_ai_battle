@@ -1,0 +1,93 @@
+{
+  "utc": "2026-08-13T13:02:53Z",
+  "commit": "6740f52ec9016f64a6d9c972b545548767c13f89",
+  "branch": "contract/c023_autonomous_meta_first_competition_sprint",
+  "dirty": true,
+  "sources": {
+    "tools/c024_extract_kernels.py": {
+      "sha256": "8c04b9fcf42b069cf67ffafb01de789013f50eeae30ffd9685f4ecdd97ecdf39",
+      "bytes": 5810
+    },
+    "tools/c024_prize_oracle.py": {
+      "sha256": "c4a28ac2dd6ac16ca5e22634f1521a1b27c0f97bc2e43f566be5d69dba271edf",
+      "bytes": 8774
+    },
+    "tools/c024_handsize.py": {
+      "sha256": "399e75b71c80d090a910492da3e7c031059eea44ca3b78fb2b2ba2690d1dcb41",
+      "bytes": 8174
+    },
+    "tools/c024_status.py": {
+      "sha256": "1031e22171dde88d7eb1c15db5074bba980556702b4634e31b209673e4058881",
+      "bytes": 9185
+    },
+    "tools/c024_capture.py": {
+      "sha256": "b10ec445382dddba0a6191c31d05cd213f9967ec8312cf7f532a285d0a3318ee",
+      "bytes": 5555
+    },
+    "starter_kit/c024_prizes.py": {
+      "sha256": "8bbb176a0c5dfd57052600c72488bdb0fa34fea58c72841bdd0342f16748e669",
+      "bytes": 7486
+    },
+    "starter_kit/c024_finish.py": {
+      "sha256": "234d11008b405d43cab7c8aed4a6c5952b6e14ac9d76f64601e69a8234f6716d",
+      "bytes": 10642
+    },
+    "starter_kit/c024_alakazam.py": {
+      "sha256": "c5cdca1d3aacd32bd68334837307958e1654a152e9baebea93061a4678eef42d",
+      "bytes": 24891
+    },
+    "tools/c023_package.py": {
+      "sha256": "7c625fcf38da10531a98964f139071ce19a946557e961b5292415f30b544ce15",
+      "bytes": 10026
+    },
+    "starter_kit/c023_wrapper_main.py": {
+      "sha256": "38e43f34a9310822588211a5313e94ed9d186233889eee9daae4cbd449c7d69c",
+      "bytes": 20684
+    },
+    "starter_kit/c023_players.py": {
+      "sha256": "a89a7cd69109b8cbf8681a5b345cd11ae52c71ae8b142414e6053359a965cf32",
+      "bytes": 13466
+    },
+    "tools/c023_build_candidate.py": {
+      "sha256": "01258c0eea3680f6d3b112e194c156805b2d8e6bc6531c120f32519308c3e70c",
+      "bytes": 7663
+    }
+  },
+  "deployability": {
+    "c023_champion_dragapult": {
+      "archive_sha256": "cf5bcd01a5028d1f3b90f3ce392113383e8b534e1ce9a1245286a3b93b266217",
+      "valid": true,
+      "raw_python_self_play": null,
+      "note": "manifest predates raw_python_check -- deployability UNVERIFIED, not a claim that it works",
+      "deployable": null
+    },
+    "c024_alakazam_v1": {
+      "archive_sha256": "616637c2eec6535e00884a0f97fd1c6c7626db7f9795626f15888659a2811980",
+      "valid": true,
+      "raw_python_self_play": null,
+      "note": "submitted as 55466460 and ERRORED on its validation episode (D11); manifest predates raw_python_check",
+      "deployable": false
+    },
+    "c024_alakazam_v2": {
+      "archive_sha256": "f776a1ce0e376991b5c7126d84d9386311f6505464c0d31d87c8a05e84141df8",
+      "valid": true,
+      "raw_python_self_play": true,
+      "note": null,
+      "deployable": true
+    },
+    "c024_champion_dragapult": {
+      "archive_sha256": "e441125dad85e0c878cdb963b64d931d10c95933f2214ce55591ba48677fbbcb",
+      "valid": true,
+      "raw_python_self_play": true,
+      "note": null,
+      "deployable": true
+    },
+    "c024_wrapper_d11_check": {
+      "archive_sha256": "a5ca5a17ccf058621a3793a9e8382ab2ff24901333f5cdf8ac3063f8935e69fe",
+      "valid": true,
+      "raw_python_self_play": true,
+      "note": null,
+      "deployable": true
+    }
+  }
+}

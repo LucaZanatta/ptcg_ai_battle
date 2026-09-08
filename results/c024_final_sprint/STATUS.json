@@ -1,0 +1,720 @@
+{
+  "contract": "c024_final_sprint",
+  "generated_utc": "2026-08-16T02:53:12Z",
+  "deadline": "2026-08-16T23:59:00+02:00",
+  "decision": "official_dragapult (Kiyota sample, byte-for-byte) is the entry",
+  "champion_converged_rating": 688.5,
+  "champion_converged_basis": "submission 55254872, 200 episodes, 94W-107L",
+  "leaderboard_number_is_not_strength": "Three byte-identical copies of this agent have read 719.7 (83 eps), 688.5 (200 eps) and 947.9->817.4 (34 eps and falling). Quote ~690 as strength; the leaderboard number is whichever draw is frozen highest.",
+  "local_games_this_contract": 14432,
+  "local_errors_this_contract": 7,
+  "local_errors_accounted": {
+    "6": "pub_prvsiyan_lopunny_1208 in c024_smoke -- D9, the kernel's entry point is not called `agent`; fixed by _ENTRYPOINT_ALIASES and it played cleanly after",
+    "1": "pub_soutasakurai_libraryout_1208 in c024_screen1 -- one engine-side INVALID status in 6,540 games, opponent-side, not reproduced"
+  },
+  "evaluations": {
+    "c024_azam_mirror": {
+      "c024_azam_v1": {
+        "games": 8,
+        "errors": 0,
+        "field_off_mirror": null,
+        "opponents": 0,
+        "per_opponent": {}
+      }
+    },
+    "c024_azam_panel1": {
+      "c024_azam_v1": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.3424,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.3667,
+          "official_iono": 0.2167,
+          "official_mega_abomasnow": 0.6667,
+          "official_mega_lucario": 0.6333,
+          "pub_jazivxt_codex_alakazam": 0.1667,
+          "pub_jazivxt_rising_tide_v21": 0.1667,
+          "pub_makthanithin_lucario_1084": 0.5,
+          "pub_prvsiyan_crustle_wall": 0.1833,
+          "pub_prvsiyan_lucario_v12": 0.5667,
+          "pub_raunakdey_heuristic": 0.1833,
+          "pub_tetsutani_grimmsnarl": 0.1167
+        }
+      }
+    },
+    "c024_azam_panel2": {
+      "c024_azam_v1": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.3227,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.2833,
+          "official_iono": 0.15,
+          "official_mega_abomasnow": 0.6167,
+          "official_mega_lucario": 0.5,
+          "pub_jazivxt_codex_alakazam": 0.1333,
+          "pub_jazivxt_rising_tide_v21": 0.15,
+          "pub_makthanithin_lucario_1084": 0.6667,
+          "pub_prvsiyan_crustle_wall": 0.1667,
+          "pub_prvsiyan_lucario_v12": 0.6667,
+          "pub_raunakdey_heuristic": 0.15,
+          "pub_tetsutani_grimmsnarl": 0.0667
+        }
+      }
+    },
+    "c024_azam_panel3": {
+      "c024_azam_v1": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.3061,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.2667,
+          "official_iono": 0.25,
+          "official_mega_abomasnow": 0.5833,
+          "official_mega_lucario": 0.5,
+          "pub_jazivxt_codex_alakazam": 0.1833,
+          "pub_jazivxt_rising_tide_v21": 0.1167,
+          "pub_makthanithin_lucario_1084": 0.5667,
+          "pub_prvsiyan_crustle_wall": 0.2167,
+          "pub_prvsiyan_lucario_v12": 0.4833,
+          "pub_raunakdey_heuristic": 0.1167,
+          "pub_tetsutani_grimmsnarl": 0.0833
+        }
+      }
+    },
+    "c024_azam_skel": {
+      "c024_azam_dragapult": {
+        "games": 60,
+        "errors": 0,
+        "field_off_mirror": 0.0167,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.0,
+          "pub_romanrozen_v10_950": 0.05,
+          "pub_tetsutani_grimmsnarl": 0.0
+        }
+      },
+      "c024_azam_iono": {
+        "games": 60,
+        "errors": 0,
+        "field_off_mirror": 0.0167,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.0,
+          "pub_romanrozen_v10_950": 0.05,
+          "pub_tetsutani_grimmsnarl": 0.0
+        }
+      },
+      "c024_azam_mega_abomasnow": {
+        "games": 60,
+        "errors": 0,
+        "field_off_mirror": 0.0167,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.05,
+          "pub_romanrozen_v10_950": 0.0,
+          "pub_tetsutani_grimmsnarl": 0.0
+        }
+      },
+      "c024_azam_mega_lucario": {
+        "games": 60,
+        "errors": 0,
+        "field_off_mirror": 0.1833,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.4,
+          "pub_romanrozen_v10_950": 0.05,
+          "pub_tetsutani_grimmsnarl": 0.1
+        }
+      }
+    },
+    "c024_azam_v1": {
+      "c024_azam_v1": {
+        "games": 60,
+        "errors": 0,
+        "field_off_mirror": 0.15,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.2,
+          "pub_romanrozen_v10_950": 0.1,
+          "pub_tetsutani_grimmsnarl": 0.15
+        }
+      }
+    },
+    "c024_azam_v2": {
+      "c024_azam_v1": {
+        "games": 60,
+        "errors": 0,
+        "field_off_mirror": 0.2,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.3,
+          "pub_romanrozen_v10_950": 0.15,
+          "pub_tetsutani_grimmsnarl": 0.15
+        }
+      }
+    },
+    "c024_azam_v3": {
+      "c024_azam_v1": {
+        "games": 72,
+        "errors": 0,
+        "field_off_mirror": 0.1528,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.2917,
+          "pub_romanrozen_v10_950": 0.125,
+          "pub_tetsutani_grimmsnarl": 0.0417
+        }
+      }
+    },
+    "c024_azam_v4": {
+      "c024_azam_v1": {
+        "games": 160,
+        "errors": 0,
+        "field_off_mirror": 0.1875,
+        "opponents": 4,
+        "per_opponent": {
+          "official_dragapult": 0.3,
+          "pub_jazivxt_rising_tide_v21": 0.175,
+          "pub_romanrozen_v10_950": 0.125,
+          "pub_tetsutani_grimmsnarl": 0.15
+        }
+      }
+    },
+    "c024_azam_v5": {
+      "c024_azam_v1": {
+        "games": 160,
+        "errors": 0,
+        "field_off_mirror": 0.2375,
+        "opponents": 4,
+        "per_opponent": {
+          "official_dragapult": 0.575,
+          "pub_jazivxt_rising_tide_v21": 0.225,
+          "pub_romanrozen_v10_950": 0.1,
+          "pub_tetsutani_grimmsnarl": 0.05
+        }
+      }
+    },
+    "c024_calib13": {
+      "c024_azam_v1": {
+        "games": 2600,
+        "errors": 0,
+        "field_off_mirror": 0.4177,
+        "opponents": 13,
+        "per_opponent": {
+          "c014_archaludon_expert": 0.825,
+          "c015_anti_meta_expert": 0.825,
+          "official_dragapult": 0.365,
+          "official_iono": 0.29,
+          "official_mega_abomasnow": 0.625,
+          "official_mega_lucario": 0.52,
+          "pub_jazivxt_codex_alakazam": 0.165,
+          "pub_jazivxt_rising_tide_v21": 0.21,
+          "pub_makthanithin_lucario_1084": 0.565,
+          "pub_prvsiyan_crustle_wall": 0.2,
+          "pub_prvsiyan_lucario_v12": 0.565,
+          "pub_raunakdey_heuristic": 0.17,
+          "pub_tetsutani_grimmsnarl": 0.105
+        }
+      },
+      "official_dragapult": {
+        "games": 2400,
+        "errors": 0,
+        "field_off_mirror": 0.571,
+        "opponents": 12,
+        "per_opponent": {
+          "c014_archaludon_expert": 0.835,
+          "c015_anti_meta_expert": 0.96,
+          "official_iono": 0.6,
+          "official_mega_abomasnow": 0.5,
+          "official_mega_lucario": 0.475,
+          "pub_jazivxt_codex_alakazam": 0.52,
+          "pub_jazivxt_rising_tide_v21": 0.61,
+          "pub_makthanithin_lucario_1084": 0.3775,
+          "pub_prvsiyan_crustle_wall": 0.675,
+          "pub_prvsiyan_lucario_v12": 0.465,
+          "pub_raunakdey_heuristic": 0.54,
+          "pub_tetsutani_grimmsnarl": 0.295
+        }
+      }
+    },
+    "c024_finish_smoke": {
+      "c024_ctrl": {
+        "games": 16,
+        "errors": 0,
+        "field_off_mirror": 0.375,
+        "opponents": 2,
+        "per_opponent": {
+          "official_dragapult": 0.375,
+          "pub_tetsutani_grimmsnarl": 0.375
+        }
+      },
+      "c024_finish1": {
+        "games": 16,
+        "errors": 0,
+        "field_off_mirror": 0.5,
+        "opponents": 2,
+        "per_opponent": {
+          "official_dragapult": 0.625,
+          "pub_tetsutani_grimmsnarl": 0.375
+        }
+      }
+    },
+    "c024_fstat": {
+      "c024_finish1": {
+        "games": 60,
+        "errors": 0,
+        "field_off_mirror": 0.4833,
+        "opponents": 3,
+        "per_opponent": {
+          "official_dragapult": 0.5,
+          "pub_prvsiyan_crustle_wall": 0.7,
+          "pub_tetsutani_grimmsnarl": 0.25
+        }
+      }
+    },
+    "c024_screen1": {
+      "official_dragapult": {
+        "games": 600,
+        "errors": 0,
+        "field_off_mirror": 0.4967,
+        "opponents": 10,
+        "per_opponent": {
+          "official_iono": 0.75,
+          "official_mega_abomasnow": 0.6167,
+          "official_mega_lucario": 0.6,
+          "pub_jazivxt_codex_alakazam": 0.55,
+          "pub_jazivxt_rising_tide_v21": 0.6,
+          "pub_makthanithin_lucario_1084": 0.3167,
+          "pub_prvsiyan_crustle_wall": 0.5667,
+          "pub_prvsiyan_lucario_v12": 0.3,
+          "pub_raunakdey_heuristic": 0.5333,
+          "pub_tetsutani_grimmsnarl": 0.1333
+        }
+      },
+      "pub_aristophanivan_multiply_940": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.4439,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.6667,
+          "official_iono": 0.75,
+          "official_mega_abomasnow": 0.6333,
+          "official_mega_lucario": 0.6,
+          "pub_jazivxt_codex_alakazam": 0.0833,
+          "pub_jazivxt_rising_tide_v21": 0.1667,
+          "pub_makthanithin_lucario_1084": 0.4333,
+          "pub_prvsiyan_crustle_wall": 0.4333,
+          "pub_prvsiyan_lucario_v12": 0.4333,
+          "pub_raunakdey_heuristic": 0.1833,
+          "pub_tetsutani_grimmsnarl": 0.5
+        }
+      },
+      "pub_borealis27_1050": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.4205,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.6833,
+          "official_iono": 0.8333,
+          "official_mega_abomasnow": 0.55,
+          "official_mega_lucario": 0.6833,
+          "pub_jazivxt_codex_alakazam": 0.1667,
+          "pub_jazivxt_rising_tide_v21": 0.1333,
+          "pub_makthanithin_lucario_1084": 0.3083,
+          "pub_prvsiyan_crustle_wall": 0.1833,
+          "pub_prvsiyan_lucario_v12": 0.5333,
+          "pub_raunakdey_heuristic": 0.1333,
+          "pub_tetsutani_grimmsnarl": 0.4167
+        }
+      },
+      "pub_masamikobayashi_archaludon": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.4515,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.7167,
+          "official_iono": 0.5167,
+          "official_mega_abomasnow": 0.7167,
+          "official_mega_lucario": 0.65,
+          "pub_jazivxt_codex_alakazam": 0.1333,
+          "pub_jazivxt_rising_tide_v21": 0.05,
+          "pub_makthanithin_lucario_1084": 0.6333,
+          "pub_prvsiyan_crustle_wall": 0.3,
+          "pub_prvsiyan_lucario_v12": 0.6833,
+          "pub_raunakdey_heuristic": 0.2167,
+          "pub_tetsutani_grimmsnarl": 0.35
+        }
+      },
+      "pub_penguin069_915": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.428,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.6333,
+          "official_iono": 0.8333,
+          "official_mega_abomasnow": 0.6167,
+          "official_mega_lucario": 0.5583,
+          "pub_jazivxt_codex_alakazam": 0.2167,
+          "pub_jazivxt_rising_tide_v21": 0.1833,
+          "pub_makthanithin_lucario_1084": 0.3833,
+          "pub_prvsiyan_crustle_wall": 0.2167,
+          "pub_prvsiyan_lucario_v12": 0.4833,
+          "pub_raunakdey_heuristic": 0.2,
+          "pub_tetsutani_grimmsnarl": 0.3833
+        }
+      },
+      "pub_prvsiyan_lopunny_1208": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.2386,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.5167,
+          "official_iono": 0.4083,
+          "official_mega_abomasnow": 0.2167,
+          "official_mega_lucario": 0.1,
+          "pub_jazivxt_codex_alakazam": 0.2333,
+          "pub_jazivxt_rising_tide_v21": 0.15,
+          "pub_makthanithin_lucario_1084": 0.1167,
+          "pub_prvsiyan_crustle_wall": 0.2667,
+          "pub_prvsiyan_lucario_v12": 0.05,
+          "pub_raunakdey_heuristic": 0.1833,
+          "pub_tetsutani_grimmsnarl": 0.3833
+        }
+      },
+      "pub_prvsiyan_tusk_1208_v24": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.5182,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.3333,
+          "official_iono": 0.0167,
+          "official_mega_abomasnow": 0.3333,
+          "official_mega_lucario": 0.95,
+          "pub_jazivxt_codex_alakazam": 0.65,
+          "pub_jazivxt_rising_tide_v21": 0.7,
+          "pub_makthanithin_lucario_1084": 0.6667,
+          "pub_prvsiyan_crustle_wall": 0.5667,
+          "pub_prvsiyan_lucario_v12": 0.55,
+          "pub_raunakdey_heuristic": 0.7,
+          "pub_tetsutani_grimmsnarl": 0.2333
+        }
+      },
+      "pub_romanrozen_v10_950": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.6197,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.45,
+          "official_iono": 0.8333,
+          "official_mega_abomasnow": 0.8833,
+          "official_mega_lucario": 0.8833,
+          "pub_jazivxt_codex_alakazam": 0.45,
+          "pub_jazivxt_rising_tide_v21": 0.45,
+          "pub_makthanithin_lucario_1084": 0.8833,
+          "pub_prvsiyan_crustle_wall": 0.4333,
+          "pub_prvsiyan_lucario_v12": 0.8667,
+          "pub_raunakdey_heuristic": 0.4833,
+          "pub_tetsutani_grimmsnarl": 0.2
+        }
+      },
+      "pub_ryotasueyoshi_alakazam_5th": {
+        "games": 660,
+        "errors": 0,
+        "field_off_mirror": 0.3455,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.3167,
+          "official_iono": 0.3167,
+          "official_mega_abomasnow": 0.7667,
+          "official_mega_lucario": 0.65,
+          "pub_jazivxt_codex_alakazam": 0.0333,
+          "pub_jazivxt_rising_tide_v21": 0.0667,
+          "pub_makthanithin_lucario_1084": 0.5333,
+          "pub_prvsiyan_crustle_wall": 0.1667,
+          "pub_prvsiyan_lucario_v12": 0.5167,
+          "pub_raunakdey_heuristic": 0.1833,
+          "pub_tetsutani_grimmsnarl": 0.25
+        }
+      },
+      "pub_soutasakurai_libraryout_1208": {
+        "games": 660,
+        "errors": 1,
+        "field_off_mirror": 0.4933,
+        "opponents": 11,
+        "per_opponent": {
+          "official_dragapult": 0.3333,
+          "official_iono": 0.0667,
+          "official_mega_abomasnow": 0.3667,
+          "official_mega_lucario": 0.9,
+          "pub_jazivxt_codex_alakazam": 0.7,
+          "pub_jazivxt_rising_tide_v21": 0.6667,
+          "pub_makthanithin_lucario_1084": 0.5333,
+          "pub_prvsiyan_crustle_wall": 0.4333,
+          "pub_prvsiyan_lucario_v12": 0.5932,
+          "pub_raunakdey_heuristic": 0.7333,
+          "pub_tetsutani_grimmsnarl": 0.1
+        }
+      }
+    },
+    "c024_smoke": {
+      "pub_aristophanivan_multiply_940": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.25,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.25
+        }
+      },
+      "pub_borealis27_1050": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.5,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.5
+        }
+      },
+      "pub_masamikobayashi_archaludon": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.6667,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.6667
+        }
+      },
+      "pub_penguin069_915": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.5,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.5
+        }
+      },
+      "pub_prvsiyan_lopunny_1208": {
+        "games": 6,
+        "errors": 6,
+        "field_off_mirror": null,
+        "opponents": 0,
+        "per_opponent": {}
+      },
+      "pub_prvsiyan_tusk_1208_v24": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.3333,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.3333
+        }
+      },
+      "pub_romanrozen_v10_950": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.6667,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.6667
+        }
+      },
+      "pub_ryotasueyoshi_alakazam_5th": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.6667,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.6667
+        }
+      },
+      "pub_soutasakurai_libraryout_1208": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.0,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.0
+        }
+      }
+    },
+    "c024_smoke2": {
+      "pub_prvsiyan_lopunny_1208": {
+        "games": 6,
+        "errors": 0,
+        "field_off_mirror": 0.5,
+        "opponents": 1,
+        "per_opponent": {
+          "official_dragapult": 0.5
+        }
+      }
+    }
+  },
+  "prize_tracker_oracle": {
+    "games": 83,
+    "frames": 7580,
+    "frames_with_known_prizes": 7213,
+    "prize_reveals_checked": 233,
+    "violations": 0,
+    "coverage": 0.9516
+  },
+  "packages": {
+    "c023_champion_dragapult": {
+      "valid": true,
+      "checks": {
+        "zero_errors": true,
+        "all_completed": true,
+        "max_latency_within_bound": true,
+        "both_seats": true
+      },
+      "sha256": "cf5bcd01a5028d1f"
+    },
+    "c024_alakazam_v1": {
+      "valid": true,
+      "checks": {
+        "zero_errors": true,
+        "all_completed": true,
+        "max_latency_within_bound": true,
+        "both_seats": true
+      },
+      "sha256": "616637c2eec6535e"
+    },
+    "c024_alakazam_v2": {
+      "valid": true,
+      "checks": {
+        "zero_errors": true,
+        "all_completed": true,
+        "max_latency_within_bound": true,
+        "both_seats": true,
+        "raw_python_self_play": true
+      },
+      "sha256": "f776a1ce0e376991"
+    },
+    "c024_champion_dragapult": {
+      "valid": true,
+      "checks": {
+        "zero_errors": true,
+        "all_completed": true,
+        "max_latency_within_bound": true,
+        "both_seats": true,
+        "raw_python_self_play": true
+      },
+      "sha256": "e441125dad85e0c8"
+    },
+    "c024_wrapper_d11_check": {
+      "valid": true,
+      "checks": {
+        "zero_errors": true,
+        "all_completed": true,
+        "max_latency_within_bound": true,
+        "both_seats": true,
+        "raw_python_self_play": true
+      },
+      "sha256": "a5ca5a17ccf05862"
+    }
+  },
+  "ladder": {
+    "utc": "2026-08-16T02:53:12Z",
+    "submissions": [
+      {
+        "submission": 55524374,
+        "agent": "champion_FINAL_ENTRY",
+        "status": "COMPLETE",
+        "rating": 612.4,
+        "episodes": 32,
+        "wins": 18,
+        "losses": 15,
+        "score_rate": 0.5455
+      },
+      {
+        "submission": 55478202,
+        "agent": "champion_redeploy",
+        "status": "COMPLETE",
+        "rating": 745.9,
+        "episodes": 83,
+        "wins": 38,
+        "losses": 46,
+        "score_rate": 0.4524
+      },
+      {
+        "submission": 55254872,
+        "agent": "champion_original",
+        "status": "COMPLETE",
+        "rating": 688.5,
+        "episodes": 200,
+        "wins": 94,
+        "losses": 107,
+        "score_rate": 0.4677
+      },
+      {
+        "submission": 55477137,
+        "agent": "c024_alakazam_v2",
+        "status": "COMPLETE",
+        "rating": 491.1,
+        "episodes": 44,
+        "wins": 17,
+        "losses": 28,
+        "score_rate": 0.3778
+      },
+      {
+        "submission": 55466460,
+        "agent": "c024_alakazam_v1",
+        "status": "ERROR",
+        "rating": null,
+        "episodes": 1,
+        "wins": 0,
+        "losses": 0,
+        "score_rate": 0.5
+      },
+      {
+        "submission": 55011215,
+        "agent": "official_mega_lucario",
+        "status": "COMPLETE",
+        "rating": 595.1,
+        "episodes": 273,
+        "wins": 129,
+        "losses": 145,
+        "score_rate": 0.4708
+      },
+      {
+        "submission": 54948560,
+        "agent": "c005_dragapult",
+        "status": "COMPLETE",
+        "rating": 719.7,
+        "episodes": 83,
+        "wins": 48,
+        "losses": 36,
+        "score_rate": 0.5714
+      }
+    ]
+  },
+  "findings": {
+    "panel_ceiling_below_target": {
+      "fit": "rating ~= 341 + 619 * field, field <= 1.0 by construction",
+      "perfect_panel_score_predicts": 960,
+      "leaderboard_top": 1233.7,
+      "evidence": "CALIBRATION_RETEST.md"
+    },
+    "panel_reproducibility": {
+      "official_dragapult_13panel_2026_08_03": 0.5708,
+      "official_dragapult_13panel_2026_08_13": 0.571,
+      "games_each": 2400
+    },
+    "calibration_out_of_sample_miss_rating": -119.9,
+    "d11_unsubmittable_candidates": {
+      "cause": "kaggle_environments execs main.py with no __file__ in scope",
+      "second_layer": "the wrapper is copied into candidates at BUILD time, so a source fix does not repair the 28 already built",
+      "check_added": "raw_python_check: file-path self-play, gates package validity"
+    }
+  }
+}

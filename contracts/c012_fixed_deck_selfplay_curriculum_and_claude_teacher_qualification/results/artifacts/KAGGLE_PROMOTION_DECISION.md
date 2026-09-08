@@ -1,0 +1,5 @@
+# Kaggle promotion (AC-14)
+
+**PROMOTION_DECISION = KEEP_TRUE_INCUMBENT**, **KAGGLE_UPLOAD = SKIPPED_BY_GATE**, **SUBMISSION_F = DO_NOT_SUBMIT**
+
+Teacher ref 54948560 same-run public score: 712.6.
